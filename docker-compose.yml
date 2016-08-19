@@ -1,0 +1,19 @@
+version: '2'
+services:
+    web:
+        image: web
+        volumes:
+            - ./web:/var/www/app
+        ports:
+            - "3000:3000"
+        links:
+            - db
+        environment:
+            - POSTGRES_HOST=postgres://db/asicsaccess
+
+    db:
+        image: postgres
+        volumes:
+            - ./db/data:/var/lib/postgresql/data
+        env_file:
+            - ./env/.env
