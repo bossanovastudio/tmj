@@ -1,19 +1,73 @@
 version: '2'
 services:
-    web:
-        image: web
-        volumes:
-            - ./web:/var/www/app
-        ports:
-            - "3000:3000"
-        links:
-            - db
-        environment:
-            - POSTGRES_HOST=postgres://db/asicsaccess
+  web:
+    build: web
+    volumes:
+      - ./web:/var/www/app
+    ports:
+      - "3000:3000"
+    links:
+      - db
+    environment:
+      - POSTGRES_HOST=postgres://db/tmj
+    env_file:
+      - ./env/.env
 
-    db:
-        image: postgres
-        volumes:
-            - ./db/data:/var/lib/postgresql/data
-        env_file:
-            - ./env/.env
+  crawler_sn:
+    build: crawler_socialnetwork
+    volumes:
+      - ./crawler:/var/app
+    links:
+      - db
+    environment:
+      - POSTGRES_HOST=postgres://db/tmj
+    env_file:
+      - ./env/.env
+
+  crawler_web:
+    build: crawler_web
+    volumes:
+      - ./crawler:/var/app
+    links:
+      - db
+    environment:
+      - POSTGRES_HOST=postgres://db/tmj
+    env_file:
+      - ./env/.env
+
+  crawler_parser:
+    build: crawler_parser
+    volumes:
+      - ./crawler:/var/app
+    links:
+      - db
+    environment:
+      - POSTGRES_HOST=postgres://db/tmj
+    env_file:
+      - ./env/.env
+
+  missions:
+    build: missions
+    volumes:
+      - ./crawler:/var/app
+    links:
+      - db
+    environment:
+      - POSTGRES_HOST=postgres://db/tmj
+    env_file:
+      - ./env/.env
+
+  db:
+    image: postgres
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+    env_file:
+      - ./env/.env
+
+  cache:
+    image: memcached
+    volumes:
+      - ./db/data:/var/lib/memcached/data
+    env_file:
+      - ./env/.env
+

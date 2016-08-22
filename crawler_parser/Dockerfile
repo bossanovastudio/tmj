@@ -16,14 +16,12 @@ ENV LC_ALL en_US.UTF-8
 
 RUN echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
 
-RUN mkdir -p /var/www/app
-WORKDIR /var/www/app
+RUN mkdir -p /var/app
+WORKDIR /var/app
 
 COPY Gemfile Gemfile.lock ./
 RUN gem update --system
 RUN gem install bundler && bundle install --jobs 20 --retry 5
-
-EXPOSE 3000
 
 COPY . ./
 
