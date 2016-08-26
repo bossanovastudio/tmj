@@ -12,6 +12,16 @@ services:
       - POSTGRES_HOST=postgres://db/tmj
     env_file:
       - ./env/.env
+  api:
+    build: api
+    volumes:
+      - ./api:/var/www/app
+    ports:
+      - "3000:3000"
+    links:
+      - db
+    env_file:
+      - ./env/.env
 
   crawler_sn:
     build: crawler_socialnetwork
