@@ -4,7 +4,6 @@ require "bundler/setup"
 require "optparse"
 require "crawler_socialnetwork"
 
-
 opts = OptionParser.new do |opts|
   opts.banner = "Social Network Crawler"
   opts.define_head "Usage: crawler [options]"

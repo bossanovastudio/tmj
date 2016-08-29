@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
+require "dotenv"
+
+Dotenv.load '../env/.env'
 require "crawler_socialnetwork"
 
 # You can add fixtures and/or initialization code here to make experimenting

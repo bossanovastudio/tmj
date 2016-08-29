@@ -1,0 +1,3 @@
+class CrawledPost < ApplicationRecord
+
+end

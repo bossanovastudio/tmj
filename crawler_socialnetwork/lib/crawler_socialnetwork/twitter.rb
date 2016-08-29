@@ -15,9 +15,12 @@ module CrawlerSocialnetwork
       end
     end
 
-    def tweets
-      conn.search("#turmadamonicajovem", lang: "pt-br").each do |status|
-        tweet = conn.status(status.id)
+    def tweets(search_term=nil)
+      raise ::RuntimeError unless search_term
+
+      @conn.search(search_term, lang: "pt-br").each do |status|
+        tweet = @conn.status(status.id)
+
         tweet
       end
     end

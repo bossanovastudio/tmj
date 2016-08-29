@@ -6,14 +6,16 @@ module CrawlerSocialnetwork
       tokens[:facebook_app_secret] = ENV.fetch 'FACEBOOK_APP_SECRET'
 
       conn = Koala::Facebook::OAuth.new(tokens[:facebook_app_id], tokens[:facebook_app_secret])
-      @graph = Koala::Facebook::API.new(conn.get_app_access_token)
+      @graph = Koala::Facebook::API.new(conn.get_app_access_token, tokens[:facebook_app_secret])
     end
 
-    def timeline
-      timeline = @graph.get_object("/#{client.atsv012facebookn}/feed")
+    def timeline(user_id=nil)
+      raise RuntimeError unless user_id
 
-      timeline.each do |post|
-        post[:attachments] = @graph.get_object("/#{post['id']}/attachments")
+      feed = @graph.get_connections(user_id, "feed")
+
+      feed.each do |post|
+        post['attachments'] = @graph.get_object("/#{post['id']}/attachments")
 
         post
       end
