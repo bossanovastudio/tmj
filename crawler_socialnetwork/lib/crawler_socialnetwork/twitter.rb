@@ -19,9 +19,18 @@ module CrawlerSocialnetwork
       raise ::RuntimeError unless search_term
 
       @conn.search(search_term, lang: "pt-br").each do |status|
-        tweet = @conn.status(status.id)
+        unless CrawledPost.find_by_social_uuid(status.id)
+          tweet = @conn.status(status.id)
 
-        tweet
+          crawled_post = CrawledPost.new
+          crawled_post.social_media = :twitter
+          crawled_post.social_uuid  = status.id
+          crawled_post.data = tweet
+
+          unless crawled_post.save
+            $logger.error("Error saving tweet: #{tweet.inspect}")
+          end
+        end
       end
     end
   end

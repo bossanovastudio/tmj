@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20160829171000) do
 
   create_table "crawled_posts", force: :cascade do |t|
     t.integer  "social_media"
-    t.integer  "social_uuid"
+    t.string   "social_uuid",  null: false
     t.jsonb    "data"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false

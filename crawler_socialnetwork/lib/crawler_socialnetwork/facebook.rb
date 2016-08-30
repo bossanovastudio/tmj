@@ -15,9 +15,18 @@ module CrawlerSocialnetwork
       feed = @graph.get_connections(user_id, "feed")
 
       feed.each do |post|
-        post['attachments'] = @graph.get_object("/#{post['id']}/attachments")
+        unless CrawledPost.find_by_social_uuid(post['id'])
+          post['attachments'] = @graph.get_object("/#{post['id']}/attachments")
 
-        post
+          crawled_post = CrawledPost.new
+          crawled_post.social_media = :facebook
+          crawled_post.social_uuid  = post['id']
+          crawled_post.data = post
+
+          unless crawled_post.save
+            $logger.error('Error saving post: #{post.inspect}')
+          end
+        end
       end
     end
   end
