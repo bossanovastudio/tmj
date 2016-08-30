@@ -6,8 +6,12 @@ module CrawlerSocialnetwork
     end
 
     def run
-      @twitter.tweets '#turmadamonicajovem'
-      @facebook.timeline 'revistaturmadamonicajovem'
+      begin
+        @twitter.tweets '#turmadamonicajovem'
+        @facebook.timeline 'revistaturmadamonicajovem'
+      rescue => e
+        $logger.error(e)
+      end
     end
   end
 end
