@@ -16,6 +16,7 @@ module CrawlerSocialnetwork
 
       feed.each do |post|
         unless CrawledPost.find_by_social_uuid(post['id'])
+          post['user']        = @graph.get_object("/#{post['id']}?fields=from")
           post['attachments'] = @graph.get_object("/#{post['id']}/attachments")
 
           crawled_post = CrawledPost.new
