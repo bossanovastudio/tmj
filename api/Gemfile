@@ -1,0 +1,56 @@
+source 'https://rubygems.org'
+ruby '2.3.1'
+
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+
+# Use postgresql as the database for Active Record
+gem 'pg', '~> 0.18'
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.5'
+
+# FriendlyId is the “Swiss Army bulldozer” of slugging and permalink plugins for ActiveRecord
+gem 'friendly_id', github: 'norman/friendly_id'
+
+# Mini replacement for RMagick
+gem 'mini_magick'
+
+# Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem 'rack-cors'
+
+# Flexible authentication solution for Rails with Warden.
+gem 'devise'
+
+# Use Puma as the app server
+gem 'puma', '~> 3.0'
+
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platform: :mri
+
+  # Minitest provides a complete suite of testing facilities supporting TDD, BDD, mocking, and benchmarking.
+  gem 'minitest-rails'
+
+  # Brings back `assigns` and `assert_template` to your Rails tests
+  gem 'rails-controller-testing'
+end
+
+group :development do
+  gem 'listen', '~> 3.0.5'
+
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # Meta package that requires several pry extensions.
+  gem 'pry-meta'
+end
+
+group :production do
+  # Embed the V8 Javascript Interpreter into Ruby
+  gem 'therubyracer'
+end
