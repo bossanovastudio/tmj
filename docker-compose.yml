@@ -8,14 +8,14 @@ services:
       - "3000:3000"
     links:
       - db
-    environment:
-      - POSTGRES_HOST=postgres://db/tmj
     env_file:
       - ./env/.env
+
   api:
     build: api
     volumes:
       - ./api:/var/www/app
+    command: bundle exec rails s -p 3000 -b 0.0.0.0
     ports:
       - "3000:3000"
     links:
@@ -26,22 +26,19 @@ services:
   crawler_sn:
     build: crawler_socialnetwork
     volumes:
-      - ./crawler:/var/app
+      - ./crawler_socialnetwork:/var/app
+    command: bundle exec bin/crawler
     links:
       - db
-    environment:
-      - POSTGRES_HOST=postgres://db/tmj
     env_file:
       - ./env/.env
 
   crawler_web:
     build: crawler_web
     volumes:
-      - ./crawler:/var/app
+      - ./crawler_web:/var/app
     links:
       - db
-    environment:
-      - POSTGRES_HOST=postgres://db/tmj
     env_file:
       - ./env/.env
 
@@ -51,8 +48,6 @@ services:
       - ./crawler:/var/app
     links:
       - db
-    environment:
-      - POSTGRES_HOST=postgres://db/tmj
     env_file:
       - ./env/.env
 
@@ -62,8 +57,6 @@ services:
       - ./crawler:/var/app
     links:
       - db
-    environment:
-      - POSTGRES_HOST=postgres://db/tmj
     env_file:
       - ./env/.env
 
