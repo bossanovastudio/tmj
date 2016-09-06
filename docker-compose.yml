@@ -45,7 +45,8 @@ services:
   crawler_parser:
     build: crawler_parser
     volumes:
-      - ./crawler:/var/app
+      - ./crawler_parser:/var/app
+    command: bundle exec bin/crawler
     links:
       - db
     env_file:
