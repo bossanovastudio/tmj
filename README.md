@@ -17,3 +17,60 @@ docker-compose build [container-name]
 ```shell
 docker-compose up [container-name] [container-name-2]
 ```
+
+## Rodando as aplicações
+
+### API
+
+#### Criando ou re-configurando
+
+Para buildar o container utilize o seguinte comando:
+```shell
+docker-compose build api
+```
+
+Para criação e migração do banco de dados:
+```shell
+docker-compose run api rake db:create db:migrate
+```
+
+#### Subindo a aplicação
+
+```shell
+docker-compose up api
+```
+
+### Crawler Social Network
+
+#### Criando ou re-configurando
+
+Para buildar o container utilize o seguinte comando:
+```shell
+docker-compose build crawler_sn
+```
+
+Para criação e migração do banco de dados:
+```shell
+docker-compose run crawler_sn rake db:create db:migrate
+```
+
+#### Rodando o crawler
+
+```shell
+docker-compose run crawler_sn
+```
+
+### Crawler Parser
+
+#### Criando ou re-configurando
+
+Para buildar o container utilize o seguinte comando:
+```shell
+docker-compose build crawler_parser
+```
+
+#### Rodando o crawler
+
+```shell
+docker-compose run crawler_parser
+```
