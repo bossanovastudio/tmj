@@ -71,6 +71,7 @@ PLATFORMS
 DEPENDENCIES
   activeresource!
   bundler (~> 1.12)
+  byebug
   crawler_parser!
   dotenv (~> 2.1.1)
   minitest (~> 5.0)
