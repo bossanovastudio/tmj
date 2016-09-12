@@ -49,8 +49,3 @@ group :development do
   # Meta package that requires several pry extensions.
   gem 'pry-meta'
 end
-
-group :production do
-  # Embed the V8 Javascript Interpreter into Ruby
-  gem 'therubyracer'
-end

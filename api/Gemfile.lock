@@ -75,7 +75,6 @@ GEM
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
-    libv8 (3.16.14.15)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -152,7 +151,6 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
-    ref (2.0.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     slop (3.6.0)
@@ -167,9 +165,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    therubyracer (0.12.2)
-      libv8 (~> 3.16.14.0)
-      ref
     thor (0.19.1)
     thread_safe (0.3.5)
     tzinfo (1.2.2)
@@ -200,7 +195,6 @@ DEPENDENCIES
   rails-controller-testing
   spring
   spring-watcher-listen (~> 2.0.0)
-  therubyracer
 
 RUBY VERSION
    ruby 2.3.1p112
