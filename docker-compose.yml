@@ -11,6 +11,18 @@ services:
     env_file:
       - ./env/.env
 
+  admin:
+    build: admin
+    volumes:
+      - ./admin:/var/www/app
+    command: bundle exec rails s -p 3001 -b 0.0.0.0
+    ports:
+      - "3001:3001"
+    links:
+      - db
+    env_file:
+      - ./env/.env
+
   api:
     build: api
     volumes:
