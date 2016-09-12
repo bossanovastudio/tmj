@@ -25,7 +25,7 @@ module CrawlerParser
     def twitter(post)
       card = Card.new
       card.origin     = 2
-      card.content    = post.content.description
+      card.content    = post.content.text
       card.posted_at  = post.content.created_at
 
       card
