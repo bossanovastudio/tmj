@@ -49,6 +49,9 @@ services:
     build: crawler_web
     volumes:
       - ./crawler_web:/var/app
+    command: bundle exec puma -p 3002 -b tcp://0.0.0.0
+    ports:
+      - "3002:3002"
     links:
       - db
     env_file:
