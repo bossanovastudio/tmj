@@ -10,7 +10,7 @@
     <%= javascript_include_tag "application.js" %>
   </head>
   <body class="admin">
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
       <%= render "shared/navigation" %>
     </nav>
     <div class="container-fluid">
@@ -18,7 +18,7 @@
         <div class="col-sm-3 col-md-2 sidebar-nav">
           <%= render "shared/sidebar_navigation" %>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 content">
+        <div class="col-sm-9 col-md-10 content">
           <%= yield %>
         </div>
       </div>
