@@ -8,10 +8,13 @@
 /.bundle
 
 # Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
-!/log/.keep
-!/tmp/.keep
+log/*
+tmp/*
+!log/.keep
+!tmp/.keep
+
+# Uploaded files
+public/uploads
 
 # Ignore Byebug command history file.
 .byebug_history
