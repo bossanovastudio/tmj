@@ -4,9 +4,29 @@ module CrawlerParser
       @post = post
     end
 
-    def run
-      card = self.send(@post.social_media, @post)
+    def media_url
+      if @post.content.respond_to?('entities')
+        if @post.content.entities.include?('media')
+          unless @post.content.entities['media'].first.nil?
+            @post.content.entities['media'].first['media_url'] if @post.content.entities['media'].first['type'] == 'photo'
+          end
+        end
+      elsif @post.content.respond_to?('attachments')
+        unless @post.content.attachments.first.nil?
+          @post.content.attachments.first['media']['image']['src'] if @post.content.attachments.first['type'] == 'photo'
+        end
+      end
+    end
 
+    def run
+      image_id = self.send('image', self.media_url) unless self.media_url.nil?
+      card = self.send(@post.social_media, @post)
+      
+      unless image_id.nil?
+        card.media_type = 'Image'
+        card.media_id   = image_id
+      end
+      
       unless card.save
         $logger.error('Error saving card: #{card.inspect}')
       end
@@ -29,6 +49,17 @@ module CrawlerParser
       card.posted_at  = post.content.created_at
 
       card
+    end
+
+    def image(url)
+      @image = Image.new
+      @image.remote_file_url = url
+      
+      if @image.save
+        @image.id
+      else
+        $logger.error('Error saving image: #{image.inspect}')
+      end
     end
   end
 end
