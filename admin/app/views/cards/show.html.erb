@@ -10,10 +10,10 @@
   <%= @card.content %>
 </p>
 
-<% if @card.media_id %>
+<% if @card.media %>
 <p>
   <strong>Media:</strong>
-  <%= @card.media %>
+  <%= image_tag @card.media.file.url %>
 </p>
 <% end %>
 

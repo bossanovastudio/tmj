@@ -3,6 +3,9 @@
   <% if card.content %>
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
+      <% if card.media %>
+      <img src="<%= card.media.file.url %>" alt="<%= card.content %>">
+      <% end %>
       <div class="caption">
         <p><%= card.content %></p>
         <p>
