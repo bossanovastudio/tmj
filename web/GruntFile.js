@@ -19,7 +19,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= settings.dir.src %>/',
-                    src: ['*.html', 'img/**'],
+                    src: ['index.html', 'pages/**', 'img/**'],
                     dest: '<%= settings.dir.dest %>'
                 }]
             }
@@ -32,13 +32,17 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= settings.dir.src %>/scss',
-                    src: ['*.scss'],
+                    src: ['**/*.scss'],
                     dest: '<%= settings.dir.dest %>/css',
                     ext: '.css'
                 }]
             }
         },
         uglify: {
+            options: {
+                beautify: true,
+                mangle: false
+            },
             target: {
                 files: [{
                     expand: true,
