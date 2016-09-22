@@ -3,13 +3,10 @@ services:
   web:
     build: web
     volumes:
-      - ./web:/var/www/app
+      - ./web/src:/usr/share/nginx/html
+      - ./web/nginx:/etc/nginx/conf.d
     ports:
-      - "3000:3000"
-    links:
-      - db
-    env_file:
-      - ./env/.env
+      - "8080:8080"
 
   admin:
     build: admin
@@ -67,14 +64,14 @@ services:
     env_file:
       - ./env/.env
 
-  missions:
-    build: missions
-    volumes:
-      - ./crawler:/var/app
-    links:
-      - db
-    env_file:
-      - ./env/.env
+  # missions:
+  #   build: missions
+  #   volumes:
+  #     - ./crawler:/var/app
+  #   links:
+  #     - db
+  #   env_file:
+  #     - ./env/.env
 
   db:
     image: postgres
