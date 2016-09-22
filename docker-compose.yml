@@ -3,7 +3,7 @@ services:
   web:
     build: web
     volumes:
-      - ./web/src:/usr/share/nginx/html
+      - ./web/dist:/usr/share/nginx/html
       - ./web/nginx:/etc/nginx/conf.d
     ports:
       - "8080:8080"
