@@ -19,7 +19,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= settings.dir.src %>/',
-                    src: ['index.html', 'pages/**', 'img/**'],
+                    src: ['index.html', 'pages/**/*.*', 'img/**/*.*', 'fonts/**/*.*'],
                     dest: '<%= settings.dir.dest %>'
                 }]
             }

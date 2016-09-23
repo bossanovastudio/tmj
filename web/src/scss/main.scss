@@ -1,0 +1,68 @@
+@import 'reset.scss';
+@import 'grid.scss';
+@import 'https://fonts.googleapis.com/css?family=Lato';
+
+@font-face {
+    font-family: 'KomikaTitle';
+    src: url('/fonts/KomikaTitle-webfont.eot');
+    src: url('/fonts/KomikaTitle-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/KomikaTitle-webfont.woff') format('woff'),
+         url('/fonts/KomikaTitle-webfont.ttf') format('truetype'),
+         url('/fonts/KomikaTitle-webfont.svg#komika_titleregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+body {
+    background: url(/img/bg.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+header {
+    height: 105px;
+    display: block;
+    padding-top: 35px;
+    text-align: right;
+    position: relative;
+    z-index: 1;
+}
+
+#menu {
+    position: absolute;
+    left: 38px;
+    top: 38px;
+    z-index: 2;
+    cursor: hand;
+}
+
+div.card {
+    background-color: #d8d8d8;
+    position: relative;
+    div.img{
+        height: 165px;
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    img.userPhoto {
+        position: absolute;
+        left: 50%;
+        top: 143px;
+        z-index: 2;
+        margin-left: -22px;
+        width: 42px;
+        border-radius: 100%;
+        border: 2px solid #ffffff;
+    }
+    div.content {
+        background: #ffffff;
+        padding: 24px;
+    }
+}

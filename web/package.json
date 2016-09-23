@@ -5,7 +5,9 @@
   "description": "TMJ Web app",
   "repository": "https://github.com/d3estudio/tmj",
   "scripts": {},
-  "dependencies": {},
+  "dependencies": {
+    "angular-masonry": "^0.16.0"
+  },
   "devDependencies": {
     "grunt": "^0.4.4",
     "grunt-contrib-clean": "^1.0.0",

@@ -13,6 +13,10 @@ tmj.config(function($routeProvider, $locationProvider, $httpProvider) {
                 templateUrl: '/pages/home.html',
                 controller: 'HomeController'
             })
+            .when('/login', {
+                templateUrl: '/pages/home.html',
+                controller: 'HomeController'
+            })
 
         $routeProvider
             .otherwise({
