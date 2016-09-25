@@ -78,5 +78,5 @@ module.exports = function(grunt) {
     };
     grunt.initConfig(appConfig);
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.registerTask('default', ['clean', 'copy', 'sass', 'uglify']);
+    grunt.registerTask('default', ['copy', 'sass', 'uglify']);
 };
