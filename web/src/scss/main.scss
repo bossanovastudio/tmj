@@ -1,6 +1,6 @@
 @import 'reset.scss';
 @import 'grid.scss';
-@import 'https://fonts.googleapis.com/css?family=Lato';
+@import 'https://fonts.googleapis.com/css?family=Lato:300';
 
 @font-face {
     font-family: 'KomikaTitle';
@@ -15,6 +15,9 @@
 
 * {
     font-family: 'Lato', sans-serif;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
@@ -45,6 +48,13 @@ header {
 div.card {
     background-color: #d8d8d8;
     position: relative;
+    width: 216px;
+    margin-bottom: 24px;
+
+    &.six {
+        width: 432px;
+    }
+
     div.img{
         height: 165px;
         background-position: center center;
@@ -63,6 +73,68 @@ div.card {
     }
     div.content {
         background: #ffffff;
-        padding: 24px;
+        padding: 24px 22px 11px;
+    }
+    p.name {
+        font-family: KomikaTitle;
+        font-size: 12px;
+        letter-spacing: 0.4px;
+        text-align: center;
+        color: #000000;
+    }
+    p.date{
+        font-family: Lato;
+        font-weight: 300;
+        font-size: 9px;
+        font-weight: bold;
+        letter-spacing: 0.3px;
+        text-align: center;
+        color: #9b9b9b;
+    }
+    p.text{
+        font-family: Lato;
+        font-size: 12px;
+        text-align: center;
+        color: #000000;
+    }
+    p.share{
+        margin-bottom: 38px;
+
+        img.heart{
+            float: left;
+            margin-left: -10px;
+        }
+        img.arrow{
+            float: right;
+            margin-right: -10px;
+        }
+    }
+}
+footer{
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    width: 38px;
+
+    img {
+        margin-top: 10px;
+    }
+}
+.mobile {
+    display: none;
+}
+
+@media only screen and (max-device-width : 480px) {
+    div.card {
+        width: 100% !important;
+    }
+    .desktop {
+        display: none;
+    }
+    .mobile {
+        display: block;
+    }
+    footer {
+        display: none;
     }
 }
