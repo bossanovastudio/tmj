@@ -1,29 +1,27 @@
-FROM ruby:2.3
-MAINTAINER hey@vito.io
+FROM debian:jessie
 
-RUN apt-get update
-RUN apt-get -y install build-essential locales \
-    autoconf zlib1g-dev libssl-dev \
-    libreadline-dev libyaml-dev \
-    libcurl4-openssl-dev curl git-core \
-    python-software-properties libxml2-dev \
-    libxslt1-dev imagemagick graphicsmagick-libmagick-dev-compat
+MAINTAINER NGINX Docker Maintainers "docker-maint@nginx.com"
 
-RUN locale-gen en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
+ENV NGINX_VERSION 1.11.4-1~jessie
 
-RUN echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
+RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
+    && echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list \
+    && apt-get update \
+    && apt-get install --no-install-recommends --no-install-suggests -y \
+                        ca-certificates \
+                        nginx=${NGINX_VERSION} \
+                        nginx-module-xslt \
+                        nginx-module-geoip \
+                        nginx-module-image-filter \
+                        nginx-module-perl \
+                        nginx-module-njs \
+                        gettext-base \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /var/www/app
-WORKDIR /var/www/app
+# forward request and error logs to docker log collector
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
 
-COPY Gemfile Gemfile.lock ./
-RUN gem update --system
-RUN gem install bundler && bundle install --jobs 20 --retry 5
+EXPOSE 80 443
 
-EXPOSE 3000
-
-COPY . ./
-
+CMD ["nginx", "-g", "daemon off;"]

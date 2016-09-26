@@ -1,0 +1,140 @@
+@import 'reset.scss';
+@import 'grid.scss';
+@import 'https://fonts.googleapis.com/css?family=Lato:300';
+
+@font-face {
+    font-family: 'KomikaTitle';
+    src: url('/fonts/KomikaTitle-webfont.eot');
+    src: url('/fonts/KomikaTitle-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/KomikaTitle-webfont.woff') format('woff'),
+         url('/fonts/KomikaTitle-webfont.ttf') format('truetype'),
+         url('/fonts/KomikaTitle-webfont.svg#komika_titleregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Lato', sans-serif;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background: url(/img/bg.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+header {
+    height: 105px;
+    display: block;
+    padding-top: 35px;
+    text-align: right;
+    position: relative;
+    z-index: 1;
+}
+
+#menu {
+    position: absolute;
+    left: 38px;
+    top: 38px;
+    z-index: 2;
+    cursor: hand;
+}
+
+div.card {
+    background-color: #d8d8d8;
+    position: relative;
+    width: 216px;
+    margin-bottom: 24px;
+
+    &.six {
+        width: 432px;
+    }
+
+    div.img{
+        height: 165px;
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    img.userPhoto {
+        position: absolute;
+        left: 50%;
+        top: 143px;
+        z-index: 2;
+        margin-left: -22px;
+        width: 42px;
+        border-radius: 100%;
+        border: 2px solid #ffffff;
+    }
+    div.content {
+        background: #ffffff;
+        padding: 24px 22px 11px;
+    }
+    p.name {
+        font-family: KomikaTitle;
+        font-size: 12px;
+        letter-spacing: 0.4px;
+        text-align: center;
+        color: #000000;
+    }
+    p.date{
+        font-family: Lato;
+        font-weight: 300;
+        font-size: 9px;
+        font-weight: bold;
+        letter-spacing: 0.3px;
+        text-align: center;
+        color: #9b9b9b;
+    }
+    p.text{
+        font-family: Lato;
+        font-size: 12px;
+        text-align: center;
+        color: #000000;
+    }
+    p.share{
+        margin-bottom: 38px;
+
+        img.heart{
+            float: left;
+            margin-left: -10px;
+        }
+        img.arrow{
+            float: right;
+            margin-right: -10px;
+        }
+    }
+}
+footer{
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    width: 38px;
+
+    img {
+        margin-top: 10px;
+    }
+}
+.mobile {
+    display: none;
+}
+
+@media only screen and (max-device-width : 480px) {
+    div.card {
+        width: 100% !important;
+    }
+    .desktop {
+        display: none;
+    }
+    .mobile {
+        display: block;
+    }
+    footer {
+        display: none;
+    }
+}
