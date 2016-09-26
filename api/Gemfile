@@ -22,8 +22,17 @@ gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
+# Resque is a Redis-backed Ruby library for creating background jobs, placing them on multiple queues, and processing them later.
+gem 'resque'
+
 # Flexible authentication solution for Rails with Warden.
 gem 'devise'
+
+# Token based authentication for Rails JSON APIs.
+gem 'devise_token_auth'
+
+# Send Devise's emails in background. Supports Resque, Sidekiq, Delayed::Job and QueueClassic.
+gem 'devise-async'
 
 # OmniAuth is a flexible authentication system utilizing Rack middleware
 gem 'omniauth'
