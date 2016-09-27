@@ -3,7 +3,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce) {
         itemSelector: '.card',
         columnWidth: 100,
         percentPosition: true,
-        gutter: 24,
+        gutter: 20,
         percentPosition: true
     });
 });

@@ -35,11 +35,15 @@
 <body ng-app="tmj" ng-controller="MainController">
 
     <div id="menu">
-        <img src="/img/menu-desktop.png" class="desktop" />
-        <img src="/img/menu-mobile.png" class="mobile" />
+        <img src="/img/menu-desktop.png" class="desktop" ng-click="openMenu()" />
+        <img src="/img/menu-mobile.png" class="mobile" ng-click="openMenu()" />
     </div>
     <div class="sidebar">
-        <img src="/img/fechar-desktop.png" class="menu" />
+        <img src="/img/fechar-desktop.png" class="menu desktop" ng-click="closeMenu()" />
+        <img src="/img/fechar.png" class="menu mobile" ng-click="closeMenu()" />
+        <a ng-href="login" class="mobile login">
+            <img src="/img/botao-entrar.png" />
+        </a>
         <ul>
             <li class="red"><a ng-href="/tudo-sobre-tmj">TUDO SOBRE TMJ</a></li>
             <li class="orange"><a ng-href="/remix">REMIX</a></li>
@@ -48,8 +52,22 @@
             <li class="pink"><a ng-href="/personagem/denise">DENISE</a></li>
             <li class="blue"><a ng-href="/personagem/geek">GEEK</a></li>
         </ul>
+        <footer class="mobile">
+            <a href="#">
+                <img src="/img/rede-social-facebook.png" />
+            </a>
+            <a href="#">
+                <img src="/img/rede-social-twitter.png" />
+            </a>
+            <a href="#">
+                <img src="/img/rede-social-youtube.png" />
+            </a>
+            <a href="#">
+                <img src="/img/rede-social-google.png" />
+            </a>
+        </footer>
     </div>
-    <div class="overlay">
+    <div class="overlay" ng-click="closeMenu()">
 
     </div>
     <header>
@@ -60,7 +78,7 @@
         </p>
     </header>
     <section ng-view></section>
-    <footer>
+    <footer class="desktop">
         <a href="#">
             <img src="/img/rede-social-facebook.png" />
         </a>

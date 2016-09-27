@@ -2,12 +2,6 @@ var tmj = angular.module('tmj', ['ngTouch', 'ngRoute', 'ngAnimate', 'ngCookies']
 
 tmj.config(function($routeProvider, $locationProvider, $httpProvider) {
 
-        // disable IE ajax request caching
-        // $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
-        // extra
-        // $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
-        // $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
-
         $routeProvider
             .when('/', {
                 templateUrl: '/pages/home.html',
@@ -16,7 +10,7 @@ tmj.config(function($routeProvider, $locationProvider, $httpProvider) {
             .when('/login', {
                 templateUrl: '/pages/home.html',
                 controller: 'HomeController'
-            })
+            });
 
         $routeProvider
             .otherwise({
@@ -25,3 +19,11 @@ tmj.config(function($routeProvider, $locationProvider, $httpProvider) {
 
         $locationProvider.html5Mode(true);
     })
+    .run(function($rootScope, $location) {
+        $rootScope.$on('$routeChangeStart', function() {
+            var overlay = angular.element( document.querySelector( '.overlay' ) );
+            overlay.removeClass('open');
+            var sidebar = angular.element( document.querySelector( '.sidebar' ) );
+            sidebar.removeClass('open');
+        })
+    });
