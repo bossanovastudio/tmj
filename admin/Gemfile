@@ -22,6 +22,9 @@ gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 
+# Forms made easy for Rails! It's tied to a simple DSL, with no opinion on markup
+gem 'simple_form'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 
