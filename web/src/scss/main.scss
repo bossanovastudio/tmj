@@ -20,12 +20,18 @@
     box-sizing: border-box;
 }
 
+html {
+    height:100%;
+    min-height:100%;
+}
+
 body {
     background: url(/img/bg.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    min-height: 100%;
 }
 
 header {
@@ -162,11 +168,12 @@ div.card {
         background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;
+        position: relative;
     }
     img.userPhoto {
         position: absolute;
         left: 50%;
-        top: 143px;
+        bottom: -20px;
         z-index: 2;
         margin-left: -22px;
         width: 42px;
@@ -240,36 +247,24 @@ footer{
         top: 10%;
         width: 100%;
         height: 90%;
-        overflow-y: hidden;
-        overflow-x: auto;
+        overflow: hidden;
     }
     .cards {
         position: absolute;
         left: 0px;
         top: 0px;
         height: 100%;
-        overflow-y: hidden;
-        overflow-x: auto;
+        overflow: hidden;
 
         .card {
-            display:-moz-inline-stack;
-            display: inline-block;
-            width: fit-content;
-            height: fit-content;
-            width: 150px;
-            height: 75px;
-            margin: 10px;
-            border: 3px solid #73AD21;
-            position: relative !important;
+            float: left;
+            margin: 0px 10px;
         }
     }
     #menu {
         position: absolute;
-        left: 34px;
-        top: 23px;
-    }
-    div.card {
-        width: 100% !important;
+        left: 40px;
+        top: 26px;
     }
     .sidebar {
         width: 100%;
