@@ -1,4 +1,30 @@
 tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $compile) {
+
+    $scope.ready = false;
+    $scope.cards = [];
+    $http({
+            method: 'get',
+            url: API_URL + '/api/cards.json',
+        })
+        .success(function(data) {
+            data.forEach(function(card) {
+                var id = card.id;
+                var content = card.content;
+                var origin = card.origin;
+                var media = false;
+                if (card.media) {
+                    media = API_URL + card.media.file.url;
+                }
+                $scope.cards.push({
+                    id: id,
+                    content: content,
+                    origin: origin,
+                    media: media
+                });
+            });
+            $scope.ready = true;
+        });
+
     $scope.swipeLeft = function() {
         var current = $('section').scrollLeft();
         $('section').animate({
@@ -16,10 +42,9 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
         if (!elem.hasClass('arrow') && !elem.hasClass('heart')) {
             $http({
                     method: 'get',
-                    url: '/pages/card.json?id=' + id,
+                    url: API_URL + '/api/cards/' + id + '.json',
                 })
                 .success(function(data) {
-                    console.log(data);
                     var card = $(elem).closest('.card').clone();
                     card.css({
                         "position": "absolute",
@@ -58,7 +83,6 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         display: 'block'
                     });
                 });
-            console.log('open', id);
         } else {
             console.log('share', id);
         }

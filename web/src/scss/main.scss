@@ -179,6 +179,16 @@ div.card {
         width: 42px;
         border-radius: 100%;
         border: 2px solid #ffffff;
+
+        &.noPhoto {
+            position: relative;
+            left: 50%;
+            bottom: auto;
+            top: 0px;
+            z-index: 2;
+            margin-left: -22px;
+            margin-top: -10px;
+        }
     }
     div.content {
         background: #ffffff;
