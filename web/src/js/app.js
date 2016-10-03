@@ -25,9 +25,9 @@ tmj.config(function($routeProvider, $locationProvider, $httpProvider) {
     })
     .run(function($rootScope, $location) {
         $rootScope.$on('$routeChangeStart', function() {
-            var overlay = angular.element(document.querySelector('.overlay'));
+            var overlay = $('.overlay');
             overlay.removeClass('open');
-            var sidebar = angular.element(document.querySelector('.sidebar'));
+            var sidebar = $('.sidebar');
             sidebar.removeClass('open');
         })
     });
