@@ -1,4 +1,4 @@
-var API_URL = 'http://0.0.0.0:3000';
+var API_URL = 'http://' + window.location.hostname + ':3000';
 
 var tmj = angular.module('tmj', ['ngTouch', 'ngRoute', 'ngAnimate', 'ngCookies']);
 tmj.config(function($routeProvider, $locationProvider, $httpProvider) {
