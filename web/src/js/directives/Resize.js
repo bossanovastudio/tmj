@@ -19,7 +19,6 @@ var organizeCards = function(newValue, oldValue) {
                 "margin-left": 40
             });
             card.attr('class', 'card');
-            console.log(newValue.h);
             var h = newValue.h - 280;
             card.find('.img').height(h);
             var e = card.width() + 20
