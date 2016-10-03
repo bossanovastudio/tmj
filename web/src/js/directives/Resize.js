@@ -20,29 +20,24 @@ tmj.directive('resize', function($window) {
                     $('.cards').masonry('destroy');
                 }
 
-                $('.card').width(newValue.w - 80);
-                $('.card').eq(0).css({
-                    "margin-left": 40
+                $('.cards').each(function() {
+                    var card = $(this).find('.card');
+                    card.width(newValue.w - 80);
+                    card.eq(0).css({
+                        "margin-left": 40
+                    });
+                    card.attr('class', 'card');
+                    var h = newValue.h - $('header').height() - (card.height() - card.find('.img').height()) - 20;
+                    card.find('.img').height(h);
+                    var e = card.width() + 20
+                    var w = (e * card.length) + 70;
+                    $(this).css({
+                        "width": w,
+                        "max-width": w,
+                        "margin": 0,
+                        "padding": 0
+                    });
                 });
-
-                $('.cards').css({
-                    "width": 4000,
-                    "max-width": 4000,
-                    "margin": 0,
-                    "padding": 0
-                });
-
-                var e = $('.card').width() + 20
-                var w = (e * $('.card').length) + 70;
-                $('.cards').css({
-                    "width": w,
-                    "max-width": w
-                });
-
-                $('.card').attr('class', 'card');
-                // -20 is the footer height
-                var h = newValue.h - $('header').height() - ($('.card').height() - $('.card .img').height()) - 20;
-                $('.card .img').height(h);
             }
         }, true);
         w.bind('resize', function() {

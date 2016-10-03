@@ -218,6 +218,13 @@ div.card {
             margin-right: -10px;
         }
     }
+    .close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        z-index: 99;
+        display: none;
+    }
 }
 footer{
     position: fixed;

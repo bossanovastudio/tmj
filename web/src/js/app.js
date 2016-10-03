@@ -1,15 +1,17 @@
 var tmj = angular.module('tmj', ['ngTouch', 'ngRoute', 'ngAnimate', 'ngCookies']);
-
 tmj.config(function($routeProvider, $locationProvider, $httpProvider) {
-
         $routeProvider
             .when('/', {
                 templateUrl: '/pages/home.html',
                 controller: 'HomeController'
             })
+            .when('/get-card/:id', {
+                templateUrl: '/pages/card.json',
+                controller: 'CardController'
+            })
             .when('/login', {
-                templateUrl: '/pages/home.html',
-                controller: 'HomeController'
+                templateUrl: '/pages/login.html',
+                controller: 'LoginController'
             });
 
         $routeProvider
@@ -21,9 +23,9 @@ tmj.config(function($routeProvider, $locationProvider, $httpProvider) {
     })
     .run(function($rootScope, $location) {
         $rootScope.$on('$routeChangeStart', function() {
-            var overlay = angular.element( document.querySelector( '.overlay' ) );
+            var overlay = angular.element(document.querySelector('.overlay'));
             overlay.removeClass('open');
-            var sidebar = angular.element( document.querySelector( '.sidebar' ) );
+            var sidebar = angular.element(document.querySelector('.sidebar'));
             sidebar.removeClass('open');
         })
     });
