@@ -1,5 +1,5 @@
 FROM ruby:2.3
-MAINTAINER hey@vito.io
+MAINTAINER jotadev@me.com
 
 RUN apt-get update
 RUN apt-get -y install build-essential locales \
