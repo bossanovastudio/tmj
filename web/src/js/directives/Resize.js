@@ -7,9 +7,13 @@ var organizeCards = function(newValue, oldValue) {
             "padding": 0
         });
         $('.cards').find('.card').each(function() {
-            //$(this).attr('style', '');
             $(this).attr('class', 'card three ng-scope');
+            $(this).attr('style', '');
+            $(this).find('.img').attr('style', '');
         });
+        if ($('.cards').masonry()) {
+            $('.cards').masonry('destroy');
+        }
         $('.cards').masonry({
             itemSelector: '.card',
             columnWidth: 100,
