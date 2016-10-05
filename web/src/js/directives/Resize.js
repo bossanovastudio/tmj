@@ -1,5 +1,15 @@
 var organizeCards = function(newValue, oldValue) {
     if (newValue.w > 480) {
+        $('.cards').css({
+            "width": "80%",
+            "max-width": "1180px",
+            "margin": "0 auto",
+            "padding": 0
+        });
+        $('.cards').find('.card').each(function() {
+            //$(this).attr('style', '');
+            $(this).attr('class', 'card three ng-scope');
+        });
         $('.cards').masonry({
             itemSelector: '.card',
             columnWidth: 100,
@@ -18,7 +28,7 @@ var organizeCards = function(newValue, oldValue) {
             card.eq(0).css({
                 "margin-left": 40
             });
-            card.attr('class', 'card');
+            card.attr('class', 'card ng-scope');
             var h = newValue.h - 280;
             card.find('.img').height(h);
             var e = card.width() + 20

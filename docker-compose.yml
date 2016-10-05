@@ -24,7 +24,7 @@ services:
     build: api
     volumes:
       - ./api:/var/www/app
-    command: sh -c "QUEUE=* rake environment resque:work & bundle exec rails s -p 3000 -b 0.0.0.0"
+    command: sh -c "QUEUE=* rake environment resque:work & bundle exec rails s -p 3000 -b 0.0.0.0 -P /dev/null"
     ports:
       - "3000:3000"
     links:
@@ -88,7 +88,7 @@ services:
       - ./db/data:/var/lib/memcached/data
     env_file:
       - ./env/.env
-  
+
   redis:
     image: redis
     volumes:
