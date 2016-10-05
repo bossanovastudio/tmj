@@ -24,4 +24,3 @@ RUN gem update --system
 RUN gem install bundler && bundle install --jobs 20 --retry 5
 
 COPY . ./
-
