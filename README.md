@@ -74,3 +74,24 @@ docker-compose build crawler_parser
 ```shell
 docker-compose run crawler_parser
 ```
+
+### Web
+
+#### Criando o ambiente
+
+Para buildar o container utilize o seguinte comando:
+```shell
+docker-compose build web
+```
+
+#### Gerando os arquivos estáticos
+
+```shell
+cd ./web && sudo gem install sass && npm install && npm install -g grunt && grunt
+```
+
+#### Rodando o container
+
+```shell
+docker-compose up web
+```

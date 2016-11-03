@@ -1,105 +1,20 @@
-<div class="container cards">
-    <div class="card three">
-        <div style="background-image:url(/img/card.jpg)" class="img"></div>
-        <img class="userPhoto" src="/img/user.jpg" />
-        <div class="content">
-            <p class="name">Robson Coelho</p>
-            <p class="date"><img src="/img/facebook.png" /> 28 Jul 2016, 18h48</p>
-            <p class="text">Biquinis inspirados em sereias é o sonho de qualquer princesa do mar!</p>
-            <p class="share">
-                <img class="heart" src="/img/like.png">
-                <img class="arrow" src="/img/share.png">
-            </p>
+<div resize ng-if="ready" class="container cards" ng-swipe-left="swipeLeft()" ng-swipe-right="swipeRight()">
+    <div ng-repeat="card in cards" class="card three" ng-swipe-left="swipeLeft()" ng-swipe-right="swipeRight()" ng-click="openCard($event, card.id)" organize-cards>
+        <div ng-if="card.media" style="background-image:url('{{card.media}}')" class="img">
+            <img class="userPhoto" src="/img/user.jpg" />
         </div>
-    </div>
-    <div class="card six">
-        <div style="background-image:url(/img/card.jpg)" class="img"></div>
-        <img class="userPhoto" src="/img/user.jpg" />
         <div class="content">
+            <img ng-if="!card.media" class="userPhoto noPhoto" src="/img/user.jpg" />
             <p class="name">Robson Coelho</p>
             <p class="date"><img src="/img/facebook.png" /> 28 Jul 2016, 18h48</p>
-            <p class="text">Biquinis inspirados em sereias é o sonho de qualquer princesa do mar!</p>
+            <p class="text">{{card.content}}</p>
             <p class="share">
-                <img class="heart" src="/img/like.png">
-                <img class="arrow" src="/img/share.png">
-            </p>
-        </div>
-    </div>
-    <div class="card three">
-        <div style="background-image:url(/img/card.jpg)" class="img"></div>
-        <img class="userPhoto" src="/img/user.jpg" />
-        <div class="content">
-            <p class="name">Robson Coelho</p>
-            <p class="date"><img src="/img/facebook.png" /> 28 Jul 2016, 18h48</p>
-            <p class="text">Biquinis inspirados em sereias é o sonho de qualquer princesa do mar!</p>
-            <p class="share">
-                <img class="heart" src="/img/like.png">
-                <img class="arrow" src="/img/share.png">
-            </p>
-        </div>
-    </div>
-    <div class="card three">
-        <div style="background-image:url(/img/card.jpg)" class="img"></div>
-        <img class="userPhoto" src="/img/user.jpg" />
-        <div class="content">
-            <p class="name">Robson Coelho</p>
-            <p class="date"><img src="/img/facebook.png" /> 28 Jul 2016, 18h48</p>
-            <p class="text">Biquinis inspirados em sereias é o sonho de qualquer princesa do mar!</p>
-            <p class="share">
-                <img class="heart" src="/img/like.png">
-                <img class="arrow" src="/img/share.png">
-            </p>
-        </div>
-    </div>
-    <div class="card three">
-        <div style="background-image:url(/img/card.jpg)" class="img"></div>
-        <img class="userPhoto" src="/img/user.jpg" />
-        <div class="content">
-            <p class="name">Robson Coelho</p>
-            <p class="date"><img src="/img/facebook.png" /> 28 Jul 2016, 18h48</p>
-            <p class="text">Biquinis inspirados em sereias é o sonho de qualquer princesa do mar!</p>
-            <p class="share">
-                <img class="heart" src="/img/like.png">
-                <img class="arrow" src="/img/share.png">
-            </p>
-        </div>
-    </div>
-    <div class="card six">
-        <div style="background-image:url(/img/card.jpg)" class="img"></div>
-        <img class="userPhoto" src="/img/user.jpg" />
-        <div class="content">
-            <p class="name">Robson Coelho</p>
-            <p class="date"><img src="/img/facebook.png" /> 28 Jul 2016, 18h48</p>
-            <p class="text">Biquinis inspirados em sereias é o sonho de qualquer princesa do mar!</p>
-            <p class="share">
-                <img class="heart" src="/img/like.png">
-                <img class="arrow" src="/img/share.png">
-            </p>
-        </div>
-    </div>
-    <div class="card three">
-        <div style="background-image:url(/img/card.jpg)" class="img"></div>
-        <img class="userPhoto" src="/img/user.jpg" />
-        <div class="content">
-            <p class="name">Robson Coelho</p>
-            <p class="date"><img src="/img/facebook.png" /> 28 Jul 2016, 18h48</p>
-            <p class="text">Biquinis inspirados em sereias é o sonho de qualquer princesa do mar!</p>
-            <p class="share">
-                <img class="heart" src="/img/like.png">
-                <img class="arrow" src="/img/share.png">
-            </p>
-        </div>
-    </div>
-    <div class="card three">
-        <div style="background-image:url(/img/card.jpg)" class="img"></div>
-        <img class="userPhoto" src="/img/user.jpg" />
-        <div class="content">
-            <p class="name">Robson Coelho</p>
-            <p class="date"><img src="/img/facebook.png" /> 28 Jul 2016, 18h48</p>
-            <p class="text">Biquinis inspirados em sereias é o sonho de qualquer princesa do mar!</p>
-            <p class="share">
-                <img class="heart" src="/img/like.png">
-                <img class="arrow" src="/img/share.png">
+                <a ng-href="#">
+                    <img class="heart" src="/img/like.png">
+                </a>
+                <a ng-href="#">
+                    <img class="arrow" src="/img/share.png">
+                </a>
             </p>
         </div>
     </div>

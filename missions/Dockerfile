@@ -1,5 +1,5 @@
 FROM ruby:2.3
-MAINTAINER hey@vito.io
+MAINTAINER jotadev@me.com
 
 RUN apt-get update
 RUN apt-get -y install build-essential locales \
@@ -24,4 +24,3 @@ RUN gem update --system
 RUN gem install bundler && bundle install --jobs 20 --retry 5
 
 COPY . ./
-
