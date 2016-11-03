@@ -4,7 +4,9 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    @cards = Card.all
+    pagination = pagination_params
+    
+    @cards = Card.page(pagination[:page]).per(pagination[:quantity])
   end
 
   # GET /cards/1
@@ -44,6 +46,10 @@ class CardsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_card
       @card = Card.find(params[:id])
+    end
+    
+    def pagination_params
+      params.permit(:page, :quantity)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

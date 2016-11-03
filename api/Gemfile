@@ -43,6 +43,9 @@ gem 'omniauth-facebook'
 # OmniAuth strategy for Twitter
 gem 'omniauth-twitter', github: 'nextglass/omniauth-twitter'
 
+# A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps
+gem 'kaminari'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 
