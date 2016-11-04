@@ -159,10 +159,6 @@ div.card {
     width: 216px;
     margin-bottom: 24px;
 
-    &.six {
-        width: 454px;
-    }
-
     div.img{
         height: 165px;
         background-position: center center;
@@ -196,7 +192,7 @@ div.card {
     }
     p.name {
         font-family: KomikaTitle;
-        font-size: 12px;
+        font-size: 14px;
         letter-spacing: 0.4px;
         text-align: center;
         color: #000000;
@@ -204,7 +200,7 @@ div.card {
     p.date{
         font-family: Lato;
         font-weight: 300;
-        font-size: 9px;
+        font-size: 11px;
         font-weight: bold;
         letter-spacing: 0.3px;
         text-align: center;
@@ -212,9 +208,10 @@ div.card {
     }
     p.text{
         font-family: Lato;
-        font-size: 12px;
+        font-size: 14px;
         text-align: center;
         color: #000000;
+        word-wrap: break-word;
     }
     p.share{
         margin-bottom: 38px;
@@ -234,6 +231,46 @@ div.card {
         top: 20px;
         z-index: 99;
         display: none;
+    }
+
+    &.six {
+        width: 454px;
+    }
+
+    &.nine {
+        width: 454px;
+    }
+
+    &.geeklike {
+        background: url(/img/faixa_geek.png) #d8d8d8 center top no-repeat;
+        padding-top: 30px;
+    }
+
+    &.geek {
+        background-color: #5bcfed;
+        .content {
+            background-color: #5bcfed;
+
+            *{
+                color: #ffffff;
+            }
+        }
+    }
+
+    &.noimage {
+        .text {
+            font-size: 20px;
+        }
+    }
+
+    &.video {
+        background: #ffffff;
+        .content {
+            padding-top: 0px;
+        }
+        iframe {
+            width: 100%; height: 250px;
+        }
     }
 }
 footer{
