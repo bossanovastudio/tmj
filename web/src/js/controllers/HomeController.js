@@ -100,5 +100,17 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
         'card three-five column',
         // 'card four-five column',
         // 'card five-five column',
-    ]
+    ];
+    $scope.openShare = function($event) {
+        var elem = angular.element($event.target);
+        var card = $(elem).closest('.card');
+        $('.card').css({ "z-index": 0 });
+        card.css({ "z-index": 1 });
+        card.find('.shareBox').fadeIn();
+    }
+    $("body").click(function(e) {
+        if (e.target.className !== "shareBox" && e.target.className.indexOf('share') === -1 && e.target.className !== "arrow") {
+            $(".shareBox").fadeOut();
+        }
+    });
 });
