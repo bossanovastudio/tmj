@@ -7,7 +7,7 @@ var organizeCards = function(newValue, oldValue) {
             "padding": 0
         });
         $('.cards').find('.card').each(function() {
-            $(this).attr('class', 'card three ng-scope');
+            //$(this).attr('class', 'card three ng-scope');
             $(this).attr('style', '');
             $(this).find('.img').attr('style', '');
         });
@@ -16,10 +16,9 @@ var organizeCards = function(newValue, oldValue) {
         }
         $('.cards').masonry({
             itemSelector: '.card',
-            columnWidth: 100,
+            columnWidth: '.one-five',
             percentPosition: true,
-            gutter: 20,
-            percentPosition: true
+            gutter: 20
         });
     } else {
         if ($('.cards').masonry()) {

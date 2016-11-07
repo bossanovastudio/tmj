@@ -1,12 +1,20 @@
 version: '2'
 services:
   web:
-    build: web
+    image: nginx:latest
     volumes:
       - ./web/dist:/usr/share/nginx/html
       - ./web/nginx:/etc/nginx/conf.d
     ports:
       - "8080:8080"
+
+  remix:
+    image: nginx:latest
+    volumes:
+      - ./remix/dist:/usr/share/nginx/html
+      - ./remix/nginx:/etc/nginx/conf.d
+    ports:
+      - "8081:8080"
 
   admin:
     build: admin
