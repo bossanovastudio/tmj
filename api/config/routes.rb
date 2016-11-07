@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  mount_devise_token_auth_for 'User', at: 'auth'
   scope '/api' do
+    mount_devise_token_auth_for 'User', at: 'auth'
     resources :cards do
       collection do
         get '(:page)/(:quantity)', to: 'cards#index', defaults: { page: 1, quantity: 10 }
