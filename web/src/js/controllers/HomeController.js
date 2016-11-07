@@ -94,4 +94,11 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
             $(this).remove();
         })
     }
+    $scope.classes = [
+        'card one-five column',
+        'card two-five column',
+        'card three-five column',
+        // 'card four-five column',
+        // 'card five-five column',
+    ]
 });

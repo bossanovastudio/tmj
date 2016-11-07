@@ -16,10 +16,9 @@ var organizeCards = function(newValue, oldValue) {
         }
         $('.cards').masonry({
             itemSelector: '.card',
-            columnWidth: 100,
+            columnWidth: '.one-five',
             percentPosition: true,
-            gutter: 20,
-            percentPosition: true
+            gutter: 20
         });
     } else {
         if ($('.cards').masonry()) {

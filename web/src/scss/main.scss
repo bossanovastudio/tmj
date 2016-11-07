@@ -156,7 +156,7 @@ header {
 div.card {
     background-color: #d8d8d8;
     position: relative;
-    width: 216px;
+    // width: 216px;
     margin-bottom: 24px;
 
     div.img{
@@ -231,14 +231,6 @@ div.card {
         top: 20px;
         z-index: 99;
         display: none;
-    }
-
-    &.six {
-        width: 454px;
-    }
-
-    &.nine {
-        width: 454px;
     }
 
     &.geeklike {
