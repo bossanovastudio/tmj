@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: [:show, :update, :destroy]
+  before_action :set_card, only: [:show, :like, :unlike, :update, :destroy]
+  before_action :authenticate_user!, only: [:like, :unlike]
 
   # GET /cards
   # GET /cards.json
@@ -14,6 +15,26 @@ class CardsController < ApplicationController
   def show
   end
 
+  # GET /cards/1/like
+  # GET /cards/1/like.json
+  def like
+    if user_signed_in?
+      liked = current_user.like(@card)
+      
+      render :show, status: :ok, location: @card
+    end
+  end
+
+  # GET /cards/1/unlike
+  # GET /cards/1/unlike.json
+  def unlike
+    if user_signed_in?
+      unliked = current_user.unlike(@card)
+      
+      render :show, status: :ok, location: @card
+    end
+  end
+  
   # POST /cards
   # POST /cards.json
   def create
@@ -39,7 +60,9 @@ class CardsController < ApplicationController
   # DELETE /cards/1
   # DELETE /cards/1.json
   def destroy
-    @card.destroy
+    unless @card.destroy
+      render json: @card.errors, status: :unprocessable_entity
+    end
   end
 
   private
