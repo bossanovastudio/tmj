@@ -2,6 +2,9 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
 
     $scope.ready = false;
     $scope.cards = [];
+
+    $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+
     $http({
             method: 'get',
             url: API_URL + '/api/cards.json',
@@ -101,6 +104,32 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
         // 'card four-five column',
         // 'card five-five column',
     ];
+    $scope.likeCard = function($event, id) {
+        var elem = $(angular.element($event.target)).closest('.card');
+        var heart = elem.find('.heart');
+        if (!heart.parent().hasClass('liked')) {
+            var count = parseInt(elem.find('.counter').text());
+            $http({
+                    method: 'POST',
+                    url: API_URL + '/api/cards/' + id + '/like',
+                    data: $.param({
+                        id: id
+                    })
+                })
+                .then(function(data) {
+                    heart.attr('src', '/img/liked.png');
+                    count++;
+                    heart.parent().find('.counter').html('&nbsp;' + count);
+                    heart.parent().addClass('liked');
+                }, function(data) {
+                    //remove that and parse error
+                    heart.attr('src', '/img/liked.png');
+                    count++;
+                    heart.parent().find('.counter').html('&nbsp;' + count);
+                    heart.parent().addClass('liked');
+                });
+        }
+    }
     $scope.openShare = function($event) {
         var elem = angular.element($event.target);
         var card = $(elem).closest('.card');

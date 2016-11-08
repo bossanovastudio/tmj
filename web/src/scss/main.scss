@@ -203,10 +203,20 @@ div.card {
         word-wrap: break-word;
     }
     p.share {
-        margin-bottom: 38px;
+        margin-bottom: 0px;
+        a {
+            text-decoration: none;
+        }
         img.heart {
             float: left;
             margin-left: -10px;
+        }
+        span.counter {
+            //font-size: 20px;
+            letter-spacing: 0.4px;
+            color: #bdbdbd;
+            font-family: 'KomikaTitle';
+            text-decoration: none;
         }
         img.arrow {
             float: right;
@@ -222,7 +232,6 @@ div.card {
         background: #bdbdbd;
         height: 40px;
         display: none;
-
         img {
             margin-left: 10px;
             float: left;
