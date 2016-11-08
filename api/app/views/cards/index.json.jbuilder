@@ -1,1 +1,3 @@
-json.array! @cards, partial: 'cards/card', as: :card
+json.cards @cards do |card|
+  json.partial! 'cards/card', card: card
+end

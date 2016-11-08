@@ -14,6 +14,7 @@ if card.user
   json.user do
     json.id     card.user.id
     json.name   card.user.name
+    json.avatar card.user.avatar.url
   end
 end
 

@@ -1,24 +1,36 @@
-# README
+# Turma da Mônica Jovem - API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. [Cards](#cards)
 
-Things you may want to cover:
+## API Methods
 
-* Ruby version
+### Cards
 
-* System dependencies
+#### List
+* Endpoint: /api/cards.json OR /api/cards/(:page)/(:quantity).json
+* Method: [GET]
 
-* Configuration
+_response:_
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```json
+{
+  "cards": [
+    {
+      "id": 1,
+      "origin": "twitter",
+      "content": "RT @blackcanaryw: Fui pro chão!! 💔 #Doconica #TurmaDaMonicaJovem #TMJ https://t.co/1T0msg5Z7k",
+      "kind": "image",
+      "user": {
+        "id": 1,
+        "name": "Adão Raul",
+        "avatar": "http://localhost:3000//uploads/image/file/1/CpJ3csIWEAAQegg.jpg"
+      },
+      "image": {
+        "url": "http://localhost:3000//uploads/image/file/1/CpJ3csIWEAAQegg.jpg",
+        "ratio": "0,913"
+      },
+      "posted_at": "2016-09-15T19:24:00.000Z"
+    }
+  ]
+}
+```
