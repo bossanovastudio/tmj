@@ -9,13 +9,27 @@
             <p class="date"><img src="/img/facebook.png" /> 28 Jul 2016, 18h48</p>
             <p class="text">{{card.content}}</p>
             <p class="share">
-                <a ng-href="#">
-                    <img class="heart" src="/img/like.png">
+                <a ng-click="likeCard($event, card.id)" class="{{card.liked ? 'liked' : ''}}" ng-href="#">
+                    <img class="heart" src="{{card.liked ? '/img/liked.png' : '/img/like.png'}}"><span class="counter">&nbsp;{{card.likes ? card.likes : 0}}</span>
                 </a>
-                <a ng-href="#">
+                <a ng-click="openShare($event)" ng-href="#">
                     <img class="arrow" src="/img/share.png">
                 </a>
             </p>
+            <div class="shareBox">
+                <a target="_blank" ng-href="https://www.facebook.com/sharer/sharer.php?u=">
+                    <img src="/img/facebook-remix-copy.png" />
+                </a>
+                <a target="_blank" ng-href="https://pinterest.com/pin/create/button/?url=localhost&media=localhost&description=">
+                    <img src="/img/page-1.png" />
+                </a>
+                <a target="_blank" ng-href="https://twitter.com/home?status=">
+                    <img src="/img/twitter-remix-copy.png" />
+                </a>
+                <a target="_blank" ng-href="http://www.tumblr.com/share/link?url=">
+                    <img src="/img/tumblr-remix-copy.png" />
+                </a>
+            </div>
         </div>
     </div>
 </div>
