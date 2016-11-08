@@ -1,4 +1,5 @@
 tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
+    $rootScope.API_URL = API_URL;
     $scope.openMenu = function() {
         var overlay = angular.element( document.querySelector( '.overlay' ) );
         overlay.addClass('open');

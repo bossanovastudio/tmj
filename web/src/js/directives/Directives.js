@@ -9,7 +9,7 @@ var organizeCards = function(newValue, oldValue) {
         $('.cards').find('.card').each(function() {
             //$(this).attr('class', 'card three ng-scope');
             $(this).attr('style', '');
-            $(this).find('.img').attr('style', '');
+            //$(this).find('.img').attr('style', '');
         });
         if ($('.cards').masonry()) {
             $('.cards').masonry('destroy');
@@ -77,3 +77,37 @@ tmj.directive('organizeCards', function() {
         }
     };
 })
+
+tmj.directive("cardClass", function() {
+    return {
+        restrict: 'EA',
+        replace: false,
+        scope: {
+            ngClasses: "="
+        },
+        link: function(scope, elem, attr) {
+            var card = scope.ngClasses;
+            if (card.kind == 'image') {
+                var ratio = parseFloat(card.image.ratio.replace(',', '.'));
+                if (ratio <= 1) {
+                    var percent = 50 * (1 + (1 - ratio));
+                    $(elem).parent().addClass('card one-five column');
+                    $(elem).css({ "padding": percent + "% 0" });
+                } else {
+                    var percent = 50 * (card.image.height / card.image.width);
+                    $(elem).css({ "padding": percent + "% 0" });
+                    if (percent > 16) {
+                        $(elem).parent().addClass('card two-five column');
+                    } else if (percent > 33) {
+                        $(elem).parent().addClass('card three-five column');
+                    } else {
+                        $(elem).parent().addClass('card one-five column');
+                    }
+                }
+            } else {
+                $(elem).parent().addClass('card one-five column');
+                $(elem).remove();
+            }
+        }
+    }
+});

@@ -10,7 +10,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
             url: API_URL + '/api/cards.json',
         })
         .success(function(data) {
-            data.forEach(function(card) {
+            data.cards.forEach(function(card) {
                 var id = card.id;
                 var content = card.content;
                 var origin = card.origin;
@@ -18,12 +18,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                 if (card.media) {
                     media = API_URL + card.media.file.url;
                 }
-                $scope.cards.push({
-                    id: id,
-                    content: content,
-                    origin: origin,
-                    media: media
-                });
+                $scope.cards.push(card);
             });
             $scope.ready = true;
         });
@@ -86,8 +81,8 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         display: 'block'
                     });
                 });
-        } else {
-            console.log('share', id);
+        } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && $(window).width() > 481) {
+            console.log('open card desktop', id);
         }
     }
     $scope.close = function($event) {
@@ -97,13 +92,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
             $(this).remove();
         })
     }
-    $scope.classes = [
-        'card one-five column',
-        'card two-five column',
-        'card three-five column',
-        // 'card four-five column',
-        // 'card five-five column',
-    ];
+
     $scope.likeCard = function($event, id) {
         var elem = $(angular.element($event.target)).closest('.card');
         var heart = elem.find('.heart');
