@@ -315,8 +315,24 @@ div.card {
         position: absolute;
         top: 50%;
         left: 50%;
-        padding: 23px 34px;
         transform: translate(-50%, -50%);
+        max-width: 440px;
+        width: auto;
+        .preview {
+            width: 60%;
+            height: 481px;
+            float: left;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-color: #000000;
+            background-position: center center;
+            display: none;
+        }
+        .text {
+            float: left;
+            width: 100%;
+            padding: 23px 34px;
+        }
         p {
             text-align: left !important;
         }
@@ -325,7 +341,6 @@ div.card {
             overflow: auto;
             max-height: 400px;
             font-size: 13px;
-            max-width: 400px;
         }
         p.share img.heart {
             margin-left: 0px !important;
@@ -334,14 +349,23 @@ div.card {
             margin-right: 0px !important;
         }
         div.hr {
-            width: 400px;
+            width: 100%;
             border-bottom: solid 1px #bbbbbb;
         }
-        &.image {}
         .close {
             position: absolute;
             right: -22px;
             top: -22px;
+        }
+        &.image {
+            width: 80%;
+            max-width: 80%;
+            .preview {
+                display: block;
+            }
+            .text {
+                width: 39%;
+            }
         }
     }
 }

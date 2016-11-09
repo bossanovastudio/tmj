@@ -94,12 +94,12 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                             display: 'block'
                         });
                     } else {
-                        $('body').css({overflow: "hidden"});
-                        var lightbox = angular.element(document.querySelector('.lightbox'));
-                        lightbox.fadeIn();
+                        if ($rootScope.card.content.length > 250 || $rootScope.card.kind == 'image') {
+                            $('body').css({ overflow: "hidden" });
+                            var lightbox = angular.element(document.querySelector('.lightbox'));
+                            lightbox.fadeIn();
+                        }
                     }
-
-
                 });
         }
     }

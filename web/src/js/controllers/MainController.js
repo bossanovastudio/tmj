@@ -2,6 +2,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
     $rootScope.API_URL = API_URL;
     $rootScope.card = {};
     $rootScope.card.posted_at = "";
+    $rootScope.card.liked = false;
     $scope.openMenu = function() {
         var overlay = angular.element(document.querySelector('.overlay'));
         overlay.addClass('open');
