@@ -21,6 +21,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         var id = card.id;
                         var content = card.content;
                         var origin = card.origin;
+                        var posted_at = card.posted_at;
                         var media = false;
                         if (card.media) {
                             media = API_URL + card.media.file.url;

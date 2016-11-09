@@ -3,7 +3,7 @@
         <div card-class ng-classes="card" ng-style="{'background-image':'url({{card.image.url}})'}" class="img"></div>
         <div class="content">
             <p class="name">Robson Coelho</p>
-            <p class="date"><img src="/img/facebook.png" /> 28 Jul 2016, 18h48</p>
+            <p class="date"><img src="/img/{{card.origin}}.png" /> 28 Jul 2016, 18h48</p>
             <p class="text">{{card.content | cropText}}</p>
             <div ng-include src="'/pages/share.html'"></div>
         </div>
