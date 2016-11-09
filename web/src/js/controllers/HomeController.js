@@ -94,11 +94,9 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                     });
                 });
         } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && $(window).width() > 481) {
-            var lightbox = angular.element(document.querySelector('.lightbox'));
-            lightbox.fadeIn();
+            console.log('open card desktop', id);
         }
     }
-
     $scope.close = function($event) {
         var elem = angular.element($event.target);
         var card = $(elem).closest('.card');
@@ -136,10 +134,10 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
     $scope.openShare = function($event) {
         var elem = angular.element($event.target);
         var card = $(elem).closest('.card');
-        $(".shareBox").stop(true, true).fadeOut(100, function() {
+        $(".shareBox").stop(true,true).fadeOut(100, function() {
             $('.card').css({ "z-index": 0 });
             card.css({ "z-index": 1 });
-            card.find('.shareBox').stop(true, true).fadeIn(200);
+            card.find('.shareBox').stop(true,true).fadeIn(200);
         });
     }
     $("body").click(function(e) {

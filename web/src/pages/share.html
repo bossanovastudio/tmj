@@ -1,5 +1,5 @@
 <p class="share">
-    <a ng-click="likeCard($event, card.id)" class="{{card.liked ? 'liked' : ''}}" ng-href="#">
+    <a ng-click="likeCard($event, card.id)" class="{{card.liked ? 'liked' : ''}} ng-hide" ng-href="#">
         <img class="heart" src="{{card.liked ? '/img/liked.png' : '/img/like.png'}}"><span class="counter">&nbsp;{{card.likes ? card.likes : 0}}</span>
     </a>
     <a ng-click="openShare($event)" ng-href="#">
