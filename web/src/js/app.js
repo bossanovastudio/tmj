@@ -47,8 +47,14 @@ tmj.filter('cropText', function() {
 tmj.filter('formatDate', function() {
     return function(input) {
         var year = input.substring(0, 4);
+        var monthNames = ["jan", "fev", "mar", "abr", "mai", "jun",
+  "jul", "ago", "set", "out", "nov", "dez"
+];
         var month = input.substring(5, 7);
         var day = input.substring(8, 10);
-        return day + '/' + month + '/' + year;
+        var hour = input.substring(11, 13);
+        var minute = input.substring(14, 16);
+
+        return day + ' ' + monthNames[month-1] + ' ' + year +', ' + hour + 'h' + minute;
     };
 });
