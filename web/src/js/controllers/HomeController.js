@@ -8,6 +8,10 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
 
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
+    $scope.randomNumber = function() {
+        return ['one','two','three','four','five'][parseInt(Math.random()*4)];
+    }
+
     $scope.loadCards = function(p) {
         $http({
                 method: 'get',
@@ -17,15 +21,13 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                 if (data.cards.length == 0) {
                     $scope.END = true;
                 } else {
+                    $scope.cards.push({
+                        id: 9,
+                        kind: 'featured',
+                        url: 'http://localhost:8080/img/featured_background.png',
+                        size: $scope.randomNumber()
+                    })
                     data.cards.forEach(function(card) {
-                        var id = card.id;
-                        var content = card.content;
-                        var origin = card.origin;
-                        var posted_at = card.posted_at;
-                        var media = false;
-                        if (card.media) {
-                            media = API_URL + card.media.file.url;
-                        }
                         $scope.cards.push(card);
                     });
                     $scope.ready = true;
