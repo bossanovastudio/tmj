@@ -30,12 +30,12 @@
 
 <body ng-app="tmj" ng-controller="MainController">
     <div id="menu">
-        <img src="/img/menu-desktop.png" class="desktop" ng-click="openMenu()" />
-        <img src="/img/menu-mobile.png" class="mobile" ng-click="openMenu()" />
+        <img src="/img/menu-desktop.png" class="desktop" ng-click="toggle()" />
+        <img src="/img/menu-mobile.png" class="mobile" ng-click="toggle()" />
     </div>
     <div class="sidebar">
-        <img src="/img/fechar-desktop.png" class="menu desktop" ng-click="closeMenu()" />
-        <img src="/img/fechar.png" class="menu mobile" ng-click="closeMenu()" />
+        <!-- <img src="/img/fechar-desktop.png" class="menu desktop" ng-click="closeMenu()" />
+        <img src="/img/fechar.png" class="menu mobile" ng-click="closeMenu()" /> -->
         <a ng-href="login" class="mobile login">
             <img src="/img/botao-entrar.png" />
         </a>

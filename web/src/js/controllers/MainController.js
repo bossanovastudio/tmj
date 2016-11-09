@@ -4,15 +4,28 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
     $rootScope.card = {};
     $rootScope.card.posted_at = "";
     $rootScope.card.liked = false;
+    var toggled;
+    $scope.toggle = function() {
+        $scope[toggled ? "closeMenu" : "openMenu"]();
+        toggled = !toggled;
+    };
     $scope.openMenu = function() {
         var overlay = angular.element(document.querySelector('.overlay'));
         overlay.addClass('open');
+        var desktop = angular.element(document.querySelector('.desktop'));
+        desktop.attr('src', '/img/fechar-desktop.png');
+        var mobile = angular.element(document.querySelector('.mobile'));
+        mobile.attr('src', '/img/fechar-mobile.png');
         var sidebar = angular.element(document.querySelector('.sidebar'));
         sidebar.addClass('open');
     }
     $scope.closeMenu = function() {
         var overlay = angular.element(document.querySelector('.overlay'));
         overlay.removeClass('open');
+        var desktop = angular.element(document.querySelector('.desktop'));
+        desktop.attr('src', '/img/menu-desktop.png');
+        var mobile = angular.element(document.querySelector('.mobile'));
+        mobile.attr('src', '/img/menu-mobile.png');
         var sidebar = angular.element(document.querySelector('.sidebar'));
         sidebar.removeClass('open');
     }
