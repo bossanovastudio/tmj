@@ -1,19 +1,4 @@
 <div resize ng-if="ready" class="container cards" ng-swipe-left="swipeLeft()" ng-swipe-right="swipeRight()">
-    <!-- <div class="card one-five column featured">
-        <p>I watched the storm, so beautiful yet so terrific</p>
-    </div>
-    <div class="card two-five column featured">
-        <p>I watched the storm, so beautiful yet so terrific</p>
-    </div>
-    <div class="card three-five column featured">
-        <p>I watched the storm, so beautiful yet so terrific</p>
-    </div>
-    <div class="card four-five column featured">
-        <p>I watched the storm, so beautiful yet so terrific</p>
-    </div>
-    <div class="card five-five column featured">
-        <p>I watched the storm, so beautiful yet so terrific</p>
-    </div> -->
     <div ng-repeat="card in cards" ng-swipe-left="swipeLeft()" ng-swipe-right="swipeRight()" ng-click="openCard($event, card.id)" organize-cards>
         <div card-class ng-classes="card" ng-style="{'background-image':'url({{card.image.url}})'}" class="img"></div>
         <div ng-if="card.kind != 'featured'" class="content">

@@ -31,9 +31,17 @@ var organizeCards = function(newValue, oldValue) {
             card.eq(0).css({
                 "margin-left": 40
             });
-            card.attr('class', 'card ng-scope');
+            card.each(function(i, c) {
+                if ($(c).hasClass('featured')) {
+                    $(c).attr('class', 'card featured ng-scope');
+                    $(c).css({"height": h});
+                } else {
+                    $(c).attr('class', 'card ng-scope');
+                }
+            })
+
             var h = newValue.h - 280;
-            card.find('.img').height(h);
+            card.find('.img').css({"height": h, "padding": 0});
             var e = card.width() + 20
             var w = (e * card.length) + 70;
             $(this).css({
