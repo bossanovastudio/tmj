@@ -8,6 +8,10 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
 
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
+    $scope.randomNumber = function() {
+        return ['one','two','three','four','five','five'][parseInt(Math.random()*5)];
+    }
+
     $scope.loadCards = function(p) {
         $http({
                 method: 'get',
@@ -17,15 +21,14 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                 if (data.cards.length == 0) {
                     $scope.END = true;
                 } else {
+                    $scope.cards.push({
+                        id: 9,
+                        kind: 'featured',
+                        url: 'http://localhost:8080/img/featured_background.png',
+                        size: $scope.randomNumber(),
+                        content: 'I watched the storm, so beautiful yet so terrific'
+                    })
                     data.cards.forEach(function(card) {
-                        var id = card.id;
-                        var content = card.content;
-                        var origin = card.origin;
-                        var posted_at = card.posted_at;
-                        var media = false;
-                        if (card.media) {
-                            media = API_URL + card.media.file.url;
-                        }
                         $scope.cards.push(card);
                     });
                     $scope.ready = true;
@@ -95,7 +98,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                             display: 'block'
                         });
                     } else {
-                        if ($rootScope.card.content.length > 250 || $rootScope.card.kind == 'image') {
+                        if ($rootScope.card.content.length > 200 || $rootScope.card.kind == 'image') {
                             $('body').css({ overflow: "hidden" });
                             var lightbox = angular.element(document.querySelector('.lightbox'));
                             lightbox.fadeIn();
@@ -167,15 +170,11 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
             if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
                 $scope.PAGE++;
                 if (!$scope.END) {
-                    $scope.pageHeight();
+                    $('section').height($('.cards').height());
                     $scope.loadCards($scope.PAGE);
                 }
             }
         }, $scope._throttleDelay);
-    }
-
-    $scope.pageHeight = function() {
-        $('section').height($('.cards').height());
     }
 
     $(document).ready(function() {
