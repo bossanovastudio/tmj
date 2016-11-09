@@ -17,7 +17,7 @@ var organizeCards = function(newValue, oldValue) {
         $('.cards').masonry({
             itemSelector: '.card',
             columnWidth: '.one-five',
-            percentPosition: true,
+            percentPosition: false,
             gutter: 20
         });
     } else {
