@@ -105,7 +105,8 @@ tmj.directive("cardClass", function() {
                     }
                 }
             } else if (card.kind == 'text') {
-                $(elem).parent().addClass('card one-five column');
+                $(elem).parent().addClass('card one-five column text');
+                $(elem).remove();
             }
         }
     }

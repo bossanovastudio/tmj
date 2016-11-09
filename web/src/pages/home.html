@@ -6,9 +6,6 @@
             <p class="date"><img src="/img/facebook.png" /> 28 Jul 2016, 18h48</p>
             <p class="text">{{card.content}}</p>
             <p class="share">
-                <a ng-click="likeCard($event, card.id)" class="{{card.liked ? 'liked' : ''}}" ng-href="#">
-                    <img class="heart" src="{{card.liked ? '/img/liked.png' : '/img/like.png'}}"><span class="counter">&nbsp;{{card.likes ? card.likes : 0}}</span>
-                </a>
                 <a ng-click="openShare($event)" ng-href="#">
                     <img class="arrow" src="/img/share.png">
                 </a>

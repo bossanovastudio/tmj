@@ -180,7 +180,7 @@ div.card {
     }
     p.name {
         font-family: KomikaTitle;
-        font-size: 14px;
+        font-size: 13px;
         letter-spacing: 0.4px;
         text-align: center;
         color: #000000;
@@ -193,6 +193,11 @@ div.card {
         letter-spacing: 0.3px;
         text-align: center;
         color: #9b9b9b;
+        img {
+            display: inline-block;
+            vertical-align: text-bottom;
+            margin-right: 3px;
+        }
     }
     p.text {
         font-family: Lato;
@@ -203,6 +208,7 @@ div.card {
     }
     p.share {
         margin-bottom: 0px;
+        height: 23px;
         a {
             text-decoration: none;
         }
@@ -255,6 +261,11 @@ div.card {
         top: 20px;
         z-index: 99;
         display: none;
+    }
+    &.text {
+        p.text {
+            font-size: 16px;
+        }
     }
     &.geeklike {
         background: url(/img/faixa_geek.png) #d8d8d8 center top no-repeat;
