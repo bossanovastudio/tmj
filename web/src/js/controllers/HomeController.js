@@ -3,25 +3,36 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
     $scope.ready = false;
     $scope.cards = [];
 
+    $scope.PAGE = 1;
+    $scope.END = false;
+
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
-    $http({
-            method: 'get',
-            url: API_URL + '/api/cards.json',
-        })
-        .success(function(data) {
-            data.cards.forEach(function(card) {
-                var id = card.id;
-                var content = card.content;
-                var origin = card.origin;
-                var media = false;
-                if (card.media) {
-                    media = API_URL + card.media.file.url;
+    $scope.loadCards = function(p) {
+        $http({
+                method: 'get',
+                url: API_URL + '/api/cards/' + p + '/20.json',
+            })
+            .success(function(data) {
+                if (data.cards.length == 0) {
+                    $scope.END = true;
+                } else {
+                    data.cards.forEach(function(card) {
+                        var id = card.id;
+                        var content = card.content;
+                        var origin = card.origin;
+                        var media = false;
+                        if (card.media) {
+                            media = API_URL + card.media.file.url;
+                        }
+                        $scope.cards.push(card);
+                    });
+                    $scope.ready = true;
                 }
-                $scope.cards.push(card);
             });
-            $scope.ready = true;
-        });
+    }
+
+    $scope.loadCards($scope.PAGE);
 
     $scope.swipeLeft = function() {
         var current = $('section').scrollLeft();
@@ -130,5 +141,23 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
         if (e.target.className !== "shareBox" && e.target.className.indexOf('share') === -1 && e.target.className !== "arrow") {
             $(".shareBox").fadeOut();
         }
+    });
+
+    $scope._throttleTimer = null;
+    $scope._throttleDelay = 100;
+
+    $scope.ScrollHandler = function(e) {
+        clearTimeout($scope._throttleTimer);
+        $scope._throttleTimer = setTimeout(function() {
+            if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                $scope.PAGE++;
+                if (!$scope.END) {
+                    $scope.loadCards($scope.PAGE);
+                }
+            }
+        }, $scope._throttleDelay);
+    }
+    $(document).ready(function() {
+        $(window).off('scroll', $scope.ScrollHandler).on('scroll', $scope.ScrollHandler);
     });
 });
