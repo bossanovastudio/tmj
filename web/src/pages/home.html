@@ -1,5 +1,5 @@
 <div resize ng-if="ready" class="container cards" ng-swipe-left="swipeLeft()" ng-swipe-right="swipeRight()">
-    <div class="card one-five column featured">
+    <!-- <div class="card one-five column featured">
         <p>I watched the storm, so beautiful yet so terrific</p>
     </div>
     <div class="card two-five column featured">
@@ -13,15 +13,16 @@
     </div>
     <div class="card five-five column featured">
         <p>I watched the storm, so beautiful yet so terrific</p>
-    </div>
+    </div> -->
     <div ng-repeat="card in cards" ng-swipe-left="swipeLeft()" ng-swipe-right="swipeRight()" ng-click="openCard($event, card.id)" organize-cards>
         <div card-class ng-classes="card" ng-style="{'background-image':'url({{card.image.url}})'}" class="img"></div>
-        <div class="content">
+        <div ng-if="card.kind != 'featured'" class="content">
             <p class="name">{{card.user.name}}</p>
             <p class="date"><img src="/img/{{card.origin}}.png" /> {{card.posted_at | formatDate}}</p>
             <p class="text">{{card.content | cropText}}</p>
             <div ng-include src="'/pages/share.html'"></div>
         </div>
+        <p ng-if="card.kind == 'featured'">{{card.content}}</p>
     </div>
 </div>
 <div class="card one-five column"></div>

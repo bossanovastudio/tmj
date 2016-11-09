@@ -9,7 +9,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
     $scope.randomNumber = function() {
-        return ['one','two','three','four','five'][parseInt(Math.random()*4)];
+        return ['one','two','three','four','five','five'][parseInt(Math.random()*5)];
     }
 
     $scope.loadCards = function(p) {
@@ -25,7 +25,8 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         id: 9,
                         kind: 'featured',
                         url: 'http://localhost:8080/img/featured_background.png',
-                        size: $scope.randomNumber()
+                        size: $scope.randomNumber(),
+                        content: 'I watched the storm, so beautiful yet so terrific'
                     })
                     data.cards.forEach(function(card) {
                         $scope.cards.push(card);
