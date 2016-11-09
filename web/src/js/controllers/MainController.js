@@ -1,5 +1,6 @@
 tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
     $rootScope.API_URL = API_URL;
+    $rootScope.SITE_URL = SITE_URL;
     $rootScope.card = {};
     $rootScope.card.posted_at = "";
     $rootScope.card.liked = false;

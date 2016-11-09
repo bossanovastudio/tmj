@@ -1,4 +1,5 @@
 var API_URL = 'http://' + window.location.hostname + ':3000';
+var SITE_URL = window.location.protocol + '//' + window.location.host;
 
 var tmj = angular.module('tmj', ['ngTouch', 'ngRoute', 'ngAnimate', 'ngCookies']);
 tmj
@@ -8,9 +9,9 @@ tmj
                 templateUrl: '/pages/home.html',
                 controller: 'HomeController'
             })
-            .when('/get-card/:id', {
-                templateUrl: '/pages/card.json',
-                controller: 'CardController'
+            .when('/detalhe/card/:id', {
+                templateUrl: '/pages/home.html',
+                controller: 'HomeController'
             })
             .when('/login', {
                 templateUrl: '/pages/login.html',

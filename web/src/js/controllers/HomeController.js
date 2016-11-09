@@ -1,4 +1,4 @@
-tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $compile) {
+tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $compile, $routeParams) {
 
     $scope.ready = false;
     $scope.cards = [];
@@ -104,6 +104,11 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                 });
         }
     }
+
+    if ($routeParams.id) {
+        $scope.openCard({}, $routeParams.id);
+    }
+
     $scope.close = function($event) {
         var elem = angular.element($event.target);
         var card = $(elem).closest('.card');
