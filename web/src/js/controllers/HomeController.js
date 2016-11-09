@@ -154,11 +154,17 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
             if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
                 $scope.PAGE++;
                 if (!$scope.END) {
+                    $scope.pageHeight();
                     $scope.loadCards($scope.PAGE);
                 }
             }
         }, $scope._throttleDelay);
     }
+
+    $scope.pageHeight = function() {
+        $('section').height( $('.cards').height() );
+    }
+
     $(document).ready(function() {
         $(window).off('scroll', $scope.ScrollHandler).on('scroll', $scope.ScrollHandler);
     });
