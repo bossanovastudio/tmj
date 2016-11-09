@@ -55,7 +55,7 @@ header {
     height: 100%;
     opacity: 0;
     visibility: hidden;
-    background-color: rgba(74, 73, 74, 0.6);
+    background-color: rgba(74, 74, 74, 0.6);
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     -ms-transition: all 0.3s;
@@ -144,6 +144,56 @@ header {
     }
 }
 
+p.share {
+    margin-bottom: 0px;
+    a {
+        text-decoration: none;
+    }
+    img.heart {
+        float: left;
+        margin-left: -10px;
+    }
+    span.counter {
+        //font-size: 20px;
+        letter-spacing: 0.4px;
+        color: #bdbdbd;
+        font-family: 'KomikaTitle';
+        text-decoration: none;
+    }
+    img.arrow {
+        float: right;
+        margin-right: -10px;
+    }
+}
+
+div.shareBox {
+    position: absolute;
+    right: 10px;
+    bottom: -40px;
+    padding: 10px;
+    padding-left: 0px;
+    background: #bdbdbd;
+    height: 40px;
+    display: none;
+    img {
+        margin-left: 10px;
+        float: left;
+    }
+}
+div.shareBox:after {
+    bottom: 100%;
+    right: 0px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-bottom-color: #bdbdbd;
+    border-width: 12px;
+    margin-left: -24px;
+}
+
 div.card {
     background-color: #d8d8d8;
     position: relative;
@@ -207,55 +257,6 @@ div.card {
         color: #000000;
         word-wrap: break-word;
     }
-    p.share {
-        margin-bottom: 0px;
-        height: 23px;
-        a {
-            text-decoration: none;
-        }
-        img.heart {
-            float: left;
-            margin-left: -10px;
-        }
-        span.counter {
-            //font-size: 20px;
-            letter-spacing: 0.4px;
-            color: #bdbdbd;
-            font-family: 'KomikaTitle';
-            text-decoration: none;
-        }
-        img.arrow {
-            float: right;
-            margin-right: -10px;
-        }
-    }
-    div.shareBox {
-        position: absolute;
-        right: 10px;
-        bottom: -40px;
-        padding: 10px;
-        padding-left: 0px;
-        background: #bdbdbd;
-        height: 40px;
-        display: none;
-        img {
-            margin-left: 10px;
-            float: left;
-        }
-    }
-    div.shareBox:after {
-        bottom: 100%;
-        right: 0px;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-        border-bottom-color: #bdbdbd;
-        border-width: 12px;
-        margin-left: -24px;
-    }
     .close {
         position: absolute;
         right: 20px;
@@ -294,6 +295,34 @@ div.card {
         iframe {
             width: 100%;
             height: 250px;
+        }
+    }
+}
+
+.lightbox {
+    position: fixed;
+    right: 0px;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: rgba(74, 74, 74, 0.6);
+    .detail {
+        background: #ffffff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        padding: 23px 34px;
+        transform: translate(-50%, -50%);
+        div.hr {
+            width: 362px;
+            border-bottom: solid 1px #bbbbbb;
+        }
+        &.image {}
+        .close {
+            position: absolute;
+            right: -22px;
+            top: -22px;
         }
     }
 }

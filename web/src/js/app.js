@@ -33,4 +33,10 @@ tmj
         })
     });
 
-
+tmj.filter('cropText', function() {
+    return function(input) {
+        var maxLength = 30;
+        var trimmedString = input.substr(0, maxLength);
+        return trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" "))) + ' ...';
+    };
+});
