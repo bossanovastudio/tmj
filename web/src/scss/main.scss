@@ -325,9 +325,16 @@ div.card {
             overflow: auto;
             max-height: 400px;
             font-size: 13px;
+            max-width: 400px;
+        }
+        p.share img.heart {
+            margin-left: 0px !important;
+        }
+        p.share img.arrow {
+            margin-right: 0px !important;
         }
         div.hr {
-            width: 362px;
+            width: 400px;
             border-bottom: solid 1px #bbbbbb;
         }
         &.image {}

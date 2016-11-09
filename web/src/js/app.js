@@ -43,3 +43,12 @@ tmj.filter('cropText', function() {
         return trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" "))) + ' ...';
     };
 });
+
+tmj.filter('formatDate', function() {
+    return function(input) {
+        var year = input.substring(0, 4);
+        var month = input.substring(5, 7);
+        var day = input.substring(8, 10);
+        return day + '/' + month + '/' + year;
+    };
+});

@@ -69,7 +69,7 @@
                 <img ng-click="closeLightbox()" src="/img/fechar-desktop.png" class="close" />
             </a>
             <p class="name">{{card.user.name}}</p>
-            <p class="date"><img src="/img/facebook.png" /> {{card.date}}</p>
+            <p class="date"><img src="/img/{{card.origin}}.png" /> {{card.posted_at | formatDate}}</p>
             <p class="content">
                 {{card.content}}
             </p>

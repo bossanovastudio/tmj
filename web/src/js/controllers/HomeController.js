@@ -48,53 +48,59 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
     }
     $scope.openCard = function($event, id) {
         var elem = angular.element($event.target);
-        if (!elem.hasClass('arrow') && !elem.hasClass('heart') && $(window).width() < 481) {
+        if (!elem.hasClass('arrow') && !elem.hasClass('heart')) {
             $http({
                     method: 'get',
                     url: API_URL + '/api/cards/' + id + '.json',
                 })
                 .success(function(data) {
-                    var card = $(elem).closest('.card').clone();
-                    card.css({
-                        "position": "absolute",
-                        "left": "50%",
-                        "margin": 0,
-                        "margin-left": card.width() / 2 * -1,
-                        "top": 47,
-                        "z-index": 999
-                    });
-                    $('body').append(card);
-                    card.animate({
-                        left: 0,
-                        top: 0,
-                        margin: 0,
-                        width: '100%',
-                        height: '100%'
-                    }, 300);
-                    card.find('.img, .content').animate({
-                        height: "50%"
-                    }, 300);
-                    card.find('.heart').attr('src', '/img/like-copy.png').width(24);
-                    card.find('.arrow').attr('src', '/img/share-copy.png').width(24);
-                    card.find('.text').css({
-                        height: '45%',
-                        overflow: 'auto'
-                    });
-                    card.find('.share').css({
-                        position: 'absolute',
-                        bottom: 0,
-                        width: '90%',
-                        'margin-bottom': 10
-                    });
-                    var close = $compile('<img class="close" ng-click="close($event)" src="/img/fechar.png" />')($scope);
-                    card.append(close);
-                    card.find('.close').css({
-                        display: 'block'
-                    });
+                    $rootScope.card = data;
+                    if ($(window).width() < 481) {
+                        var card = $(elem).closest('.card').clone();
+                        card.css({
+                            "position": "absolute",
+                            "left": "50%",
+                            "margin": 0,
+                            "margin-left": card.width() / 2 * -1,
+                            "top": 47,
+                            "z-index": 999
+                        });
+                        $('body').append(card);
+                        card.animate({
+                            left: 0,
+                            top: 0,
+                            margin: 0,
+                            width: '100%',
+                            height: '100%'
+                        }, 300);
+                        card.find('.img, .content').animate({
+                            height: "50%"
+                        }, 300);
+                        card.find('.heart').attr('src', '/img/like-copy.png').width(24);
+                        card.find('.arrow').attr('src', '/img/share-copy.png').width(24);
+                        card.find('.text').css({
+                            height: '45%',
+                            overflow: 'auto'
+                        });
+                        card.find('.share').css({
+                            position: 'absolute',
+                            bottom: 0,
+                            width: '90%',
+                            'margin-bottom': 10
+                        });
+                        var close = $compile('<img class="close" ng-click="close($event)" src="/img/fechar.png" />')($scope);
+                        card.append(close);
+                        card.find('.close').css({
+                            display: 'block'
+                        });
+                    } else {
+                        $('body').css({overflow: "hidden"});
+                        var lightbox = angular.element(document.querySelector('.lightbox'));
+                        lightbox.fadeIn();
+                    }
+
+
                 });
-        } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && $(window).width() > 481) {
-            var lightbox = angular.element(document.querySelector('.lightbox'));
-            lightbox.fadeIn();
         }
     }
 
@@ -164,7 +170,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
     }
 
     $scope.pageHeight = function() {
-        $('section').height( $('.cards').height() );
+        $('section').height($('.cards').height());
     }
 
     $(document).ready(function() {

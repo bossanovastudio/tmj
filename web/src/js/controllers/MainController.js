@@ -1,5 +1,7 @@
 tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
     $rootScope.API_URL = API_URL;
+    $rootScope.card = {};
+    $rootScope.card.posted_at = "";
     $scope.openMenu = function() {
         var overlay = angular.element(document.querySelector('.overlay'));
         overlay.addClass('open');
@@ -46,5 +48,6 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
     $scope.closeLightbox = function() {
         var lightbox = angular.element(document.querySelector('.lightbox'));
         lightbox.fadeOut();
+        $('body').css({overflow: "auto"});
     }
 });
