@@ -98,7 +98,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                             display: 'block'
                         });
                     } else {
-                        if ($rootScope.card.content.length > 250 || $rootScope.card.kind == 'image') {
+                        if ($rootScope.card.content.length > 200 || $rootScope.card.kind == 'image') {
                             $('body').css({ overflow: "hidden" });
                             var lightbox = angular.element(document.querySelector('.lightbox'));
                             lightbox.fadeIn();
@@ -170,15 +170,11 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
             if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
                 $scope.PAGE++;
                 if (!$scope.END) {
-                    $scope.pageHeight();
+                    $('section').height($('.cards').height());
                     $scope.loadCards($scope.PAGE);
                 }
             }
         }, $scope._throttleDelay);
-    }
-
-    $scope.pageHeight = function() {
-        $('section').height($('.cards').height());
     }
 
     $(document).ready(function() {

@@ -36,12 +36,14 @@ tmj
 
 tmj.filter('cropText', function() {
     return function(input) {
-        var maxLength = 250;
-        var trimmedString = input.substr(0, maxLength);
-        if (trimmedString.length == input.length) {
-            return input;
+        if(input !== null) {
+            var maxLength = 200;
+            var trimmedString = input.substr(0, maxLength);
+            if (trimmedString.length == input.length) {
+                return input;
+            }
+            return trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" "))) + ' ...';
         }
-        return trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" "))) + ' ...';
     };
 });
 

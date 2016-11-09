@@ -1,6 +1,6 @@
 @import 'reset.scss';
 @import 'grid.scss';
-@import 'https://fonts.googleapis.com/css?family=Lato:300';
+@import 'https://fonts.googleapis.com/css?family=Lato:300,700';
 @font-face {
     font-family: 'KomikaTitle';
     src: url('/fonts/KomikaTitle-webfont.eot');
@@ -145,7 +145,7 @@ header {
 }
 
 p.share {
-    margin-bottom: 0px;
+    margin: 0;
     height: 23px;
     a {
         text-decoration: none;
@@ -285,6 +285,16 @@ div.card {
         text-align: center;
         color: #000000;
         word-wrap: break-word;
+    }
+    p.read-more{
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        color: #9b9b9b;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        margin: 0;
     }
     .close {
         position: absolute;
