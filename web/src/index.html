@@ -68,6 +68,11 @@
             <a ng-href="#">
                 <img ng-click="closeLightbox()" src="/img/fechar-desktop.png" class="close" />
             </a>
+            <p class="name">{{card.user.name}}</p>
+            <p class="date"><img src="/img/facebook.png" /> {{card.date}}</p>
+            <p class="content">
+                {{card.content}}
+            </p>
             <div class="hr"></div>
             <div ng-include src="'/pages/share.html'"></div>
         </div>

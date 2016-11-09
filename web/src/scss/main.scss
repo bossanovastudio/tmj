@@ -180,6 +180,7 @@ div.shareBox {
         float: left;
     }
 }
+
 div.shareBox:after {
     bottom: 100%;
     right: 0px;
@@ -192,6 +193,30 @@ div.shareBox:after {
     border-bottom-color: #bdbdbd;
     border-width: 12px;
     margin-left: -24px;
+}
+
+p.name {
+    font-family: KomikaTitle;
+    font-size: 13px;
+    margin-top: 0;
+    letter-spacing: 0.4px;
+    text-align: center;
+    color: #000000;
+}
+
+p.date {
+    font-family: Lato;
+    font-weight: 300;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    text-align: center;
+    color: #9b9b9b;
+    img {
+        display: inline-block;
+        vertical-align: text-bottom;
+        margin-right: 3px;
+    }
 }
 
 div.card {
@@ -227,28 +252,6 @@ div.card {
     div.content {
         background: #ffffff;
         padding: 24px 22px 11px;
-    }
-    p.name {
-        font-family: KomikaTitle;
-        font-size: 13px;
-        margin-top: 0;
-        letter-spacing: 0.4px;
-        text-align: center;
-        color: #000000;
-    }
-    p.date {
-        font-family: Lato;
-        font-weight: 300;
-        font-size: 11px;
-        font-weight: bold;
-        letter-spacing: 0.3px;
-        text-align: center;
-        color: #9b9b9b;
-        img {
-            display: inline-block;
-            vertical-align: text-bottom;
-            margin-right: 3px;
-        }
     }
     p.text {
         font-family: Lato;
@@ -314,6 +317,15 @@ div.card {
         left: 50%;
         padding: 23px 34px;
         transform: translate(-50%, -50%);
+        p {
+            text-align: left !important;
+        }
+        p.content {
+            padding: 20px 0px;
+            overflow: auto;
+            max-height: 400px;
+            font-size: 13px;
+        }
         div.hr {
             width: 362px;
             border-bottom: solid 1px #bbbbbb;
