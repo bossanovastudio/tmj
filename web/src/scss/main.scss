@@ -306,7 +306,7 @@ div.card {
 .lightbox {
     position: fixed;
     right: 0px;
-    z-index: 99;
+    z-index: 9999;
     width: 100%;
     height: 100%;
     display: none;
@@ -368,6 +368,17 @@ div.card {
                 width: 39%;
             }
         }
+    }
+    div.shareBox {
+        position: absolute;
+        right: 45px !important;
+        margin-top: 15px;
+        bottom: auto !important;
+        padding: 10px;
+        padding-left: 0px;
+        background: #bdbdbd;
+        height: 40px;
+        display: none;
     }
 }
 
