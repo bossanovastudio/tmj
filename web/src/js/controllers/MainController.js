@@ -13,7 +13,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
         var overlay = angular.element(document.querySelector('.overlay'));
         overlay.addClass('open');
         var desktop = angular.element(document.querySelector('.desktop'));
-        desktop.attr('src', '/img/fechar-desktop.png');
+        desktop.attr('src', '/img/fechar-desktop.svg');
         var mobile = angular.element(document.querySelector('.mobile'));
         mobile.attr('src', '/img/fechar-mobile.png');
         var sidebar = angular.element(document.querySelector('.sidebar'));
@@ -23,7 +23,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
         var overlay = angular.element(document.querySelector('.overlay'));
         overlay.removeClass('open');
         var desktop = angular.element(document.querySelector('.desktop'));
-        desktop.attr('src', '/img/menu-desktop.png');
+        desktop.attr('src', '/img/menu-desktop.svg');
         var mobile = angular.element(document.querySelector('.mobile'));
         mobile.attr('src', '/img/menu-mobile.png');
         var sidebar = angular.element(document.querySelector('.sidebar'));

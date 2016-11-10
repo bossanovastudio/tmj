@@ -30,7 +30,7 @@
 
 <body ng-app="tmj" ng-controller="MainController">
     <div id="menu">
-        <img src="/img/menu-desktop.png" class="desktop" ng-click="toggle()" />
+        <img src="/img/menu-desktop.svg" class="desktop" ng-click="toggle()" />
         <img src="/img/menu-mobile.png" class="mobile" ng-click="toggle()" />
     </div>
     <div class="sidebar">
@@ -68,7 +68,7 @@
             <div class="preview" style="background-image:url('{{card.image.url}}')"></div>
             <div class="text">
                 <a ng-href="#">
-                    <img ng-click="closeLightbox()" src="/img/fechar-desktop.png" class="close" />
+                    <img ng-click="closeLightbox()" src="/img/fechar-desktop.svg" class="close" />
                 </a>
                 <p class="name">{{card.user.name}}</p>
                 <p class="date"><img src="/img/{{card.origin}}.png" /> {{card.posted_at | formatDate}}</p>
