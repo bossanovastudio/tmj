@@ -40,7 +40,7 @@ header {
 }
 
 #menu {
-    position: absolute;
+    position: fixed;
     left: 38px;
     top: 38px;
     z-index: 120;
@@ -78,6 +78,7 @@ header {
 }
 
 .sidebar {
+    overflow: auto;
     position: fixed;
     left: 0px;
     z-index: 100;
@@ -230,6 +231,8 @@ div.card {
     position: relative;
     // width: 216px;
     margin-bottom: 24px;
+    margin: 0 1% 20px 1%;
+
     &.featured {
         height: 300px;
         position: relative;

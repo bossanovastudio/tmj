@@ -42,8 +42,8 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                                 $('.cards').masonry({
                                     itemSelector: '.card',
                                     columnWidth: '.one-five',
-                                    percentPosition: false,
-                                    gutter: 20,
+                                    percentPosition: true,
+                                    gutter: 0,
                                     transitionDuration: 0
                                 });
                             }
