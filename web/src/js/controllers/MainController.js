@@ -56,15 +56,21 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
         var elem = angular.element($event.target);
         var card = $(elem).closest('.card');
 
-        $(".shareBox").stop(true, true).fadeOut(100, function() {
-            $('.card').css({ "z-index": 0 });
-            if( card.length > 0 ) {
-                card.css({ "z-index": 1 });
-                card.find('.shareBox').stop(true, true).fadeIn(200);
-            } else {
-                $('.lightbox .shareBox').stop(true, true).fadeIn(200);
-            }
-        });
+        if( card.length > 0 && card.find('.shareBox').is(':visible')) {
+            card.find('.shareBox').fadeOut(200);
+        } else if( card.length == 0 && $('.lightbox .shareBox').is(':visible') ) {
+            $('.lightbox .shareBox').fadeOut(200);
+        } else {
+            $(".shareBox").stop(true, true).fadeOut(100, function() {
+                $('.card').css({ "z-index": 0 });
+                if( card.length > 0 ) {
+                    card.css({ "z-index": 1 });
+                    card.find('.shareBox').stop(true, true).fadeIn(200);
+                } else {
+                    $('.lightbox .shareBox').stop(true, true).fadeIn(200);
+                }
+            });
+        }
     }
 
     $("body").click(function(e) {
