@@ -1,5 +1,5 @@
 <div resize ng-if="ready" class="container cards" ng-swipe-left="swipeLeft()" ng-swipe-right="swipeRight()">
-    <div ng-repeat="card in cards" ng-swipe-left="swipeLeft()" ng-swipe-right="swipeRight()" ng-click="openCard($event, card.id)" organize-cards>
+    <div ng-repeat="card in cards" ng-swipe-left="swipeLeft()" ng-swipe-right="swipeRight()" ng-click="openCard($event, card.id)" organize-cards data-class="">
         <div card-class ng-classes="card" ng-style="{'background-image':'url({{card.image.url}})'}" class="img"></div>
         <div ng-if="card.kind != 'featured'" class="content">
             <p class="name">{{card.user.name}}</p>

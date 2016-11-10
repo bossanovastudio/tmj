@@ -255,6 +255,10 @@ div.card {
         background-size: cover;
         background-repeat: no-repeat;
         position: relative;
+
+        &.no-padding {
+            padding: 0 !important;
+        }
     }
     img.userPhoto {
         position: absolute;

@@ -7,9 +7,11 @@ var organizeCards = function(newValue, oldValue) {
             "padding": 0
         });
         $('.cards').find('.card').each(function() {
-            //$(this).attr('class', 'card three ng-scope');
             $(this).attr('style', '');
-            //$(this).find('.img').attr('style', '');
+            $(this).attr('class', $(this).attr('data-class'));
+            $(this).find('.img').css('height', 'auto');
+            $(this).find('.img').removeClass('no-padding');
+            $(this).find('.img').css('padding', $(this).attr('data-padding'));
         });
         if ($('.cards').masonry()) {
             $('.cards').masonry('destroy');
@@ -41,7 +43,8 @@ var organizeCards = function(newValue, oldValue) {
             })
 
             var h = newValue.h - 280;
-            card.find('.img').css({"height": h, "padding": 0});
+            card.find('.img').css({"height": h});
+            card.find('.img').addClass('no-padding');
             var e = card.width() + 20
             var w = (e * card.length) + 70;
             $(this).css({
@@ -100,23 +103,31 @@ tmj.directive("cardClass", function() {
                 if (ratio <= 1) {
                     var percent = 50 * (1 + (1 - ratio));
                     $(elem).parent().addClass('card one-five column');
+                    $(elem).parent().attr('data-class', 'card one-five column');
                     $(elem).css({ "padding": percent + "% 0" });
+                    $(elem).attr('data-padding', percent + "% 0");
                 } else {
                     var percent = 50 * (card.image.height / card.image.width);
                     $(elem).css({ "padding": percent + "% 0" });
+                    $(elem).attr('data-padding', percent + "% 0");
                     if (percent > 16) {
                         $(elem).parent().addClass('card two-five column');
+                        $(elem).parent().attr('data-class', 'card two-five column');
                     } else if (percent > 33) {
                         $(elem).parent().addClass('card three-five column');
+                        $(elem).parent().attr('data-class', 'card three-five column');
                     } else {
                         $(elem).parent().addClass('card one-five column');
+                        $(elem).parent().attr('data-class', 'card one-five column');
                     }
                 }
             } else if (card.kind == 'text') {
                 $(elem).parent().addClass('card one-five column text');
+                $(elem).parent().attr('data-class', 'card one-five column text');
                 $(elem).remove();
             } else if (card.kind == 'featured') {
                 $(elem).parent().addClass('card '+card.size+'-five column featured');
+                $(elem).parent().attr('data-class', 'card '+card.size+'-five column featured');
             }
         }
     }
