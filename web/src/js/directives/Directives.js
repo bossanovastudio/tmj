@@ -19,7 +19,8 @@ var organizeCards = function(newValue, oldValue) {
                     itemSelector: '.card',
                     columnWidth: '.one-five',
                     percentPosition: false,
-                    gutter: 20
+                    gutter: 20,
+                    transitionDuration: 0
                 });
             } else {
                 $('.cards').masonry('reloadItems');

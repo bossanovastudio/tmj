@@ -43,7 +43,8 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                                     itemSelector: '.card',
                                     columnWidth: '.one-five',
                                     percentPosition: false,
-                                    gutter: 20
+                                    gutter: 20,
+                                    transitionDuration: 0
                                 });
                             }
                         }, 1000);
