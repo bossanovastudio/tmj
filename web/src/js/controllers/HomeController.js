@@ -4,25 +4,26 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
     $scope.cards = [];
 
     $scope.PAGE = 1;
+    $scope.SIZE = 20;
     $scope.END = false;
 
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
     $scope.randomNumber = function() {
-        return ['one','two','three','four','five','five'][parseInt(Math.random()*5)];
+        return ['one', 'two', 'three', 'four', 'five', 'five'][parseInt(Math.random() * 5)];
     }
 
-    $scope.loadCards = function(p) {
+    $scope.loadCards = function(p, m) {
         $http({
                 method: 'get',
-                url: API_URL + '/api/cards/' + p + '/20.json',
+                url: API_URL + '/api/cards/' + p + '/' + $scope.SIZE + '.json',
             })
             .success(function(data) {
                 if (data.cards.length == 0) {
                     $scope.END = true;
                 } else {
                     $scope.cards.push({
-                        id: 9,
+                        id: (parseInt(Math.random() * 999999) + 1),
                         kind: 'featured',
                         url: 'http://localhost:8080/img/featured_background.png',
                         size: $scope.randomNumber(),
@@ -32,22 +33,44 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         $scope.cards.push(card);
                     });
                     $scope.ready = true;
+                    if (!m) {
+                        setTimeout(function() {
+                            if ($('.cards').data('masonry')) {
+                                $('.cards').masonry('reloadItems');
+                                $('.cards').masonry();
+                            } else {
+                                $('.cards').masonry({
+                                    itemSelector: '.card',
+                                    columnWidth: '.one-five',
+                                    percentPosition: false,
+                                    gutter: 20
+                                });
+                            }
+                        }, 1000);
+                    }
                 }
             });
     }
 
-    $scope.loadCards($scope.PAGE);
+    $scope.loadCards($scope.PAGE, false);
+    $scope.currentScroll = 0;
 
     $scope.swipeLeft = function() {
-        var current = $('section').scrollLeft();
+        $scope.currentScroll = $('section').scrollLeft();
         $('section').animate({
-            scrollLeft: current += $('.card').width() + 20
+            scrollLeft: $scope.currentScroll += $('.card').width() + 20
         }, 250);
+        $scope.currentScroll = $scope.currentScroll + ($('.card').width() + 20) * 2;
+        var total = $('.card').length * ($('.card').width() + 20);
+        if ($scope.currentScroll == total) {
+            $scope.PAGE++;
+            $scope.loadCards($scope.PAGE, true);
+        }
     }
     $scope.swipeRight = function() {
-        var current = $('section').scrollLeft();
+        $scope.currentScroll = $('section').scrollLeft();
         $('section').animate({
-            scrollLeft: current -= $('.card').width() + 20
+            scrollLeft: $scope.currentScroll -= $('.card').width() + 20
         }, 250);
     }
     $scope.openCard = function($event, id) {
@@ -170,8 +193,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
             if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
                 $scope.PAGE++;
                 if (!$scope.END) {
-                    $('section').height($('.cards').height());
-                    $scope.loadCards($scope.PAGE);
+                    $scope.loadCards($scope.PAGE, false);
                 }
             }
         }, $scope._throttleDelay);

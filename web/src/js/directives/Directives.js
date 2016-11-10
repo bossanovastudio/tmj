@@ -6,27 +6,30 @@ var organizeCards = function(newValue, oldValue) {
             "margin": "0 auto",
             "padding": 0
         });
-        $('.cards').find('.card').each(function() {
-            $(this).attr('style', '');
-            $(this).attr('class', $(this).attr('data-class'));
-            $(this).find('.img').css('height', 'auto');
-            $(this).find('.img').removeClass('no-padding');
-            $(this).find('.img').css('padding', $(this).attr('data-padding'));
-        });
-        if ($('.cards').masonry()) {
-            $('.cards').masonry('destroy');
+        if (newValue.w < 550) {
+            $('.cards').find('.card').each(function() {
+                $(this).attr('style', '');
+                $(this).attr('class', $(this).attr('data-class'));
+                $(this).find('.img').css('height', 'auto');
+                $(this).find('.img').removeClass('no-padding');
+                $(this).find('.img').css('padding', $(this).attr('data-padding'));
+            });
+            if (!$('.cards').data('masonry')) {
+                $('.cards').masonry({
+                    itemSelector: '.card',
+                    columnWidth: '.one-five',
+                    percentPosition: false,
+                    gutter: 20
+                });
+            } else {
+                $('.cards').masonry('reloadItems');
+                $('.cards').masonry();
+            }
         }
-        $('.cards').masonry({
-            itemSelector: '.card',
-            columnWidth: '.one-five',
-            percentPosition: false,
-            gutter: 20
-        });
     } else {
-        if ($('.cards').masonry()) {
+        if ($('.cards').data('masonry')) {
             $('.cards').masonry('destroy');
         }
-
         $('.cards').each(function() {
             var card = $(this).find('.card');
             card.width(newValue.w - 80);
@@ -36,14 +39,13 @@ var organizeCards = function(newValue, oldValue) {
             card.each(function(i, c) {
                 if ($(c).hasClass('featured')) {
                     $(c).attr('class', 'card featured ng-scope');
-                    $(c).css({"height": h});
+                    $(c).css({ "height": h });
                 } else {
                     $(c).attr('class', 'card ng-scope');
                 }
             })
-
             var h = newValue.h - 280;
-            card.find('.img').css({"height": h});
+            card.find('.img').css({ "height": h });
             card.find('.img').addClass('no-padding');
             var e = card.width() + 20
             var w = (e * card.length) + 70;
@@ -126,8 +128,8 @@ tmj.directive("cardClass", function() {
                 $(elem).parent().attr('data-class', 'card one-five column text');
                 $(elem).remove();
             } else if (card.kind == 'featured') {
-                $(elem).parent().addClass('card '+card.size+'-five column featured');
-                $(elem).parent().attr('data-class', 'card '+card.size+'-five column featured');
+                $(elem).parent().addClass('card ' + card.size + '-five column featured');
+                $(elem).parent().attr('data-class', 'card ' + card.size + '-five column featured');
             }
         }
     }
