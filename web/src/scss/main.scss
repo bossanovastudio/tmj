@@ -112,30 +112,29 @@ header {
         list-style-type: none;
         padding: 0px;
         li {
-            margin: 0px 0px 2px 0px;
             &.red {
-                background: rgba(148, 25, 25, 0.8);
-                mix-blend-mode: color-burn;
+                background: url(/img/tudo_sobre_tmj.png) center center no-repeat;
+                background-size: cover;
             }
             &.orange {
-                background: rgba(248, 71, 28, 0.8);
-                mix-blend-mode: color-burn;
+                background: url(/img/remix.png) center center no-repeat;
+                background-size: cover;
             }
             &.yellow {
-                background: rgba(248, 140, 28, 0.8);
-                mix-blend-mode: color-burn;
+                background: url(/img/feito_por_voce.png) center center no-repeat;
+                background-size: cover;
             }
             &.purple {
-                background: url(/img/teste-pattern-ramona.png) center center no-repeat;
-                background-size: 100%;
+                background: url(/img/ramona.png) center center no-repeat;
+                background-size: cover;
             }
             &.pink {
-                background: url(/img/teste-pattern-denise.png) center center no-repeat;
-                background-size: 100%;
+                background: url(/img/denise.png) center center no-repeat;
+                background-size: cover;
             }
             &.blue {
-                background: url(/img/teste-pattern-geek.png) center center no-repeat;
-                background-size: 100%;
+                background: url(/img/geek.png) center center no-repeat;
+                background-size: cover;
             }
             a {
                 font-family: KomikaTitle;
