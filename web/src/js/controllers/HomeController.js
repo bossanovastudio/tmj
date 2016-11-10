@@ -170,20 +170,6 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                 });
         }
     }
-    $scope.openShare = function($event) {
-        var elem = angular.element($event.target);
-        var card = $(elem).closest('.card');
-        $(".shareBox").stop(true, true).fadeOut(100, function() {
-            $('.card').css({ "z-index": 0 });
-            card.css({ "z-index": 1 });
-            card.find('.shareBox').stop(true, true).fadeIn(200);
-        });
-    }
-    $("body").click(function(e) {
-        if (e.target.className !== "shareBox" && e.target.className.indexOf('share') === -1 && e.target.className !== "arrow") {
-            $(".shareBox").fadeOut(200);
-        }
-    });
 
     $scope._throttleTimer = null;
     $scope._throttleDelay = 100;
