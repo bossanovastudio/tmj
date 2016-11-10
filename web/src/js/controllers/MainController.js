@@ -18,8 +18,8 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
         mobile.attr('src', '/img/fechar-mobile.png');
         var sidebar = angular.element(document.querySelector('.sidebar'));
         sidebar.addClass('open');
-        var body = angular.element(document.querySelector('body'));
-        body.css({'overflow':'hidden'});
+        var html = angular.element(document.querySelector('html'));
+        html.css({'overflow':'hidden'});
     }
     $scope.closeMenu = function() {
         var overlay = angular.element(document.querySelector('.overlay'));
@@ -30,8 +30,8 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
         mobile.attr('src', '/img/menu-mobile.png');
         var sidebar = angular.element(document.querySelector('.sidebar'));
         sidebar.removeClass('open');
-        var body = angular.element(document.querySelector('body'));
-        body.css({'overflow':'auto'});
+        var html = angular.element(document.querySelector('html'));
+        html.css({'overflow':'auto'});
     }
     $scope.likeCard = function($event, id) {
         var elem = $(angular.element($event.target)).closest('.card');
