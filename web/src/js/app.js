@@ -1,4 +1,4 @@
-var API_URL = 'http://' + window.location.hostname + ':3000';
+var API_URL = "@@replace_api_grunt";
 var SITE_URL = window.location.protocol + '//' + window.location.host;
 
 var tmj = angular.module('tmj', ['ngTouch', 'ngRoute', 'ngAnimate', 'ngCookies']);

@@ -52,6 +52,19 @@ module.exports = function(grunt) {
                 }]
             }
         },
+        replace: {
+            dist: {
+                options: {
+                    patterns: [{
+                        match: 'replace_api_grunt',
+                        replacement: process.env.API_URL ? process.env.API_URL : "http://\" + window.location.hostname + \":3000"
+                    }]
+                },
+                files: [
+                    { expand: false, flatten: true, src: ['src/js/app.js'], dest: 'dist/js/app.js' }
+                ]
+            }
+        },
         watch: {
             scripts: {
                 files: ['<%= settings.dir.src %>/js/**/*.js'],
@@ -78,5 +91,5 @@ module.exports = function(grunt) {
     };
     grunt.initConfig(appConfig);
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.registerTask('default', ['copy', 'sass', 'uglify']);
+    grunt.registerTask('default', ['copy', 'sass', 'uglify','replace']);
 };
