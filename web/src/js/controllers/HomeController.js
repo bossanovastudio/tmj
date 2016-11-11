@@ -7,6 +7,15 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
     $scope.SIZE = 20;
     $scope.END = false;
 
+    $scope.VIDEOS = [
+        'https://www.youtube.com/watch?v=ZdBY7qEQDjc',
+        'https://www.youtube.com/watch?v=F1gjyTLq2lU',
+        'https://www.youtube.com/watch?v=w_Dut12rQdA',
+        'https://vimeo.com/151437857',
+        'https://vimeo.com/90695670',
+        'https://vimeo.com/95656929'
+    ]
+
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
     $scope.randomNumber = function() {
@@ -28,7 +37,15 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         url: 'http://localhost:8080/img/featured_background.png',
                         size: $scope.randomNumber(),
                         content: 'I watched the storm, so beautiful yet so terrific'
-                    })
+                    });
+                    $scope.cards.push({
+                        id: (parseInt(Math.random() * 999999) + 1),
+                        kind: 'video',
+                        url: $scope.VIDEOS[parseInt(Math.random() * 6)],
+                        content: 'I watched the storm, so beautiful yet so terrific',
+                        size: 'two',
+                        posted_at: '2016-11-03T12:38:43.000Z'
+                    });
                     data.cards.forEach(function(card) {
                         $scope.cards.push(card);
                     });

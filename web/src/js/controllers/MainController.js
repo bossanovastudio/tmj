@@ -5,6 +5,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
     $rootScope.card.posted_at = "";
     $rootScope.card.liked = false;
     var toggled;
+
     $scope.toggle = function() {
         $scope[toggled ? "closeMenu" : "openMenu"]();
         toggled = !toggled;
@@ -19,7 +20,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
         var sidebar = angular.element(document.querySelector('.sidebar'));
         sidebar.addClass('open');
         var html = angular.element(document.querySelector('html'));
-        html.css({'overflow':'hidden'});
+        html.css({ 'overflow': 'hidden' });
     }
     $scope.closeMenu = function() {
         var overlay = angular.element(document.querySelector('.overlay'));
@@ -31,7 +32,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
         var sidebar = angular.element(document.querySelector('.sidebar'));
         sidebar.removeClass('open');
         var html = angular.element(document.querySelector('html'));
-        html.css({'overflow':'auto'});
+        html.css({ 'overflow': 'auto' });
     }
     $scope.likeCard = function($event, id) {
         var elem = $(angular.element($event.target)).closest('.card');
@@ -81,6 +82,6 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
     $scope.closeLightbox = function() {
         var lightbox = angular.element(document.querySelector('.lightbox'));
         lightbox.fadeOut();
-        $('body').css({overflow: "auto"});
+        $('body').css({ overflow: "auto" });
     }
 });

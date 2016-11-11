@@ -131,6 +131,9 @@ tmj.directive("cardClass", function() {
             } else if (card.kind == 'featured') {
                 $(elem).parent().addClass('card ' + card.size + '-five column featured');
                 $(elem).parent().attr('data-class', 'card ' + card.size + '-five column featured');
+            } else if (card.kind == 'video') {
+                $(elem).parent().addClass('card ' + card.size + '-five column video');
+                $(elem).parent().attr('data-class', 'card ' + card.size + '-five column video');
             }
         }
     }
