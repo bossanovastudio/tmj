@@ -7,39 +7,46 @@
 </head>
 <body id="admin">
   <div class="menu">
-    <a href="#" class="title-admin" >Admin TMJ</a>
+    <%= link_to "Admin TMJ", root_path, class: "title-admin" %>
+
     <a href="#" class="user">Robson C.</a>
   </div>
   <div class="sidebar">
     <ul class="item-list">
       <li>
-        <a href="#">
-          <%=image_tag("dashboard.svg")%>
+        <%= link_to root_path do %>
+          <%= image_tag "dashboard.svg" %>
           <p>Dashboard</p>
-        </a>
+        <% end %>
       </li>
       <li class="active">
-        <a href="#">
-          <%=image_tag("cards.svg")%>
+        <%= link_to root_path do %>
+          <%= image_tag "cards.svg" %>
           <p>Cards</p>
-        </a>
+        <% end %>
         <ul class="subitem-list">
-          <li class="active"><a href="#">Moderar cards</a></li>
-          <li><a href="#">Destaques</a></li>
-          <li><a href="#">Upload card</a></li>
+          <li class="active"> 
+            <%= link_to "Moderar cards", root_path %>
+          </li>
+          <li>  
+            <%= link_to "Destaques", root_path %>
+          </li>
+          <li>  
+            <%= link_to "Upload card", root_path%>
+          </li>
         </ul>
       </li>
       <li>
-        <a href="#">
-          <%=image_tag("usuarios.svg")%>
+        <%= link_to root_path do %>
+          <%= image_tag "usuarios.svg" %>
           <p>Usuários</p>
-        </a>
+        <% end %>
       </li>
       <li>
-        <a href="#">
-          <%=image_tag("pontuacao.svg")%>
+        <%= link_to root_path do %>
+          <%= image_tag "pontuacao.svg" %>
           <p>Pontuação</p>
-        </a>
+        <% end %>
       </li>
     </ul>
   </div>
