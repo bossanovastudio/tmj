@@ -48,7 +48,7 @@ header {
 
     .desktop{
         width: 40px;
-        height: 41px;
+        height: auto;
     }
 }
 
@@ -154,7 +154,6 @@ p.share {
     height: 23px;
     a {
         text-decoration: none;
-        outline: none;
     }
     img.heart {
         float: left;
@@ -182,10 +181,6 @@ div.shareBox {
     background: #bdbdbd;
     height: 40px;
     display: none;
-    outline: none;
-    a{
-        outline: none;
-    }
     img {
         margin-left: 10px;
         float: left;
@@ -204,6 +199,7 @@ div.shareBox:after {
     border-bottom-color: #bdbdbd;
     border-width: 12px;
     margin-left: -24px;
+    top: -23px;
 }
 
 p.name {
