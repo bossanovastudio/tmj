@@ -324,6 +324,7 @@ div.card {
     &.text {
         p.text {
             font-size: 16px;
+            margin-bottom: 5px;
         }
     }
     &.geeklike {
@@ -485,13 +486,14 @@ footer {
     }
     #menu {
         position: absolute;
-        left: 40px;
+        left: 8%;
         top: 23px;
     }
     .sidebar {
         width: 100%;
         ul {
-            margin-top: 71px;
+            margin-top: 0;
+            top: 110px;
             li {
                 a {
                     font-size: 17px;
@@ -518,6 +520,9 @@ footer {
     }
     .mobile {
         display: block;
+        a {
+            text-decoration: none;
+        }
     }
     footer {
         position: relative;
