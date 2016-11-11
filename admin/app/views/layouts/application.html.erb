@@ -11,19 +11,19 @@
     <a href="#" class="user">Robson C.</a>
   </div>
   <div class="sidebar">
-    <ul>
+    <ul class="item-list">
       <li>
         <a href="#">
-          <img src="" alt="">
+          <%=image_tag("dashboard.svg")%>
           <p>Dashboard</p>
         </a>
       </li>
       <li class="active">
         <a href="#">
-          <img src="" alt="">
+          <%=image_tag("cards.svg")%>
           <p>Cards</p>
         </a>
-        <ul>
+        <ul class="subitem-list">
           <li class="active"><a href="#">Moderar cards</a></li>
           <li><a href="#">Destaques</a></li>
           <li><a href="#">Upload card</a></li>
@@ -31,13 +31,13 @@
       </li>
       <li>
         <a href="#">
-          <img src="" alt="">
+          <%=image_tag("usuarios.svg")%>
           <p>Usuários</p>
         </a>
       </li>
       <li>
         <a href="#">
-          <img src="" alt="">
+          <%=image_tag("pontuacao.svg")%>
           <p>Pontuação</p>
         </a>
       </li>
