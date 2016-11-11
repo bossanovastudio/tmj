@@ -62,7 +62,9 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
         } else if( card.length == 0 && $('.lightbox .shareBox').is(':visible') ) {
             $('.lightbox .shareBox').fadeOut(200);
         } else {
-            $(".shareBox").stop(true, true).fadeOut(100, function() {
+            $(".shareBox").fadeOut(100);
+
+            setTimeout(function() {
                 $('.card').css({ "z-index": 0 });
                 if( card.length > 0 ) {
                     card.css({ "z-index": 1 });
@@ -70,7 +72,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
                 } else {
                     $('.lightbox .shareBox').stop(true, true).fadeIn(200);
                 }
-            });
+            }, 100)
         }
     }
 

@@ -22,7 +22,7 @@ html {
 }
 
 body {
-    background: url(/img/bg.png) no-repeat center center fixed;
+    background: #d9d9db url(/img/bg.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -310,7 +310,7 @@ div.card {
         width: 100%;
         color: #9b9b9b;
         font-weight: 700;
-        font-size: 14px;
+        font-size: 13px;
         cursor: pointer;
         margin: 0;
     }

@@ -93,7 +93,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
     }
     $scope.openCard = function($event, id) {
         var elem = angular.element($event.target);
-        if (!elem.hasClass('arrow') && !elem.hasClass('heart')) {
+        if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('shareButton')) {
             $http({
                     method: 'get',
                     url: API_URL + '/api/cards/' + id + '.json',
