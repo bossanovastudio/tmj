@@ -45,10 +45,9 @@ header {
     top: 38px;
     z-index: 120;
     cursor: pointer;
-
-    .desktop{
+    .desktop {
         width: 40px;
-        height: auto;
+        height: 41px;
     }
 }
 
@@ -107,34 +106,39 @@ header {
         cursor: pointer;
     }
     ul {
-        margin: 136px 0px 0px 0px;
+        position: absolute;
+        margin: 0px 0px 0px;
         list-style-type: none;
         padding: 0px;
+        overflow: auto;
+        top: 136px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
         li {
-            margin: 0px 0px 2px 0px;
             &.red {
-                background: rgba(148, 25, 25, 0.8);
-                mix-blend-mode: color-burn;
+                background: url(/img/tudo_sobre_tmj.png) center center no-repeat;
+                background-size: cover;
             }
             &.orange {
-                background: rgba(248, 71, 28, 0.8);
-                mix-blend-mode: color-burn;
+                background: url(/img/remix.png) center center no-repeat;
+                background-size: cover;
             }
             &.yellow {
-                background: rgba(248, 140, 28, 0.8);
-                mix-blend-mode: color-burn;
+                background: url(/img/feito_por_voce.png) center center no-repeat;
+                background-size: cover;
             }
             &.purple {
-                background: url(/img/teste-pattern-ramona.png) center center no-repeat;
-                background-size: 100%;
+                background: url(/img/ramona.png) center center no-repeat;
+                background-size: cover;
             }
             &.pink {
-                background: url(/img/teste-pattern-denise.png) center center no-repeat;
-                background-size: 100%;
+                background: url(/img/denise.png) center center no-repeat;
+                background-size: cover;
             }
             &.blue {
-                background: url(/img/teste-pattern-geek.png) center center no-repeat;
-                background-size: 100%;
+                background: url(/img/geek.png) center center no-repeat;
+                background-size: cover;
             }
             a {
                 font-family: KomikaTitle;
@@ -154,6 +158,7 @@ p.share {
     height: 23px;
     a {
         text-decoration: none;
+        outline: none;
     }
     img.heart {
         float: left;
@@ -181,6 +186,10 @@ div.shareBox {
     background: #bdbdbd;
     height: 40px;
     display: none;
+    outline: none;
+    a{
+        outline: none;
+    }
     img {
         margin-left: 10px;
         float: left;
@@ -199,7 +208,6 @@ div.shareBox:after {
     border-bottom-color: #bdbdbd;
     border-width: 12px;
     margin-left: -24px;
-    top: -23px;
 }
 
 p.name {
@@ -232,14 +240,13 @@ div.card {
     // width: 216px;
     margin-bottom: 24px;
     margin: 0 1% 20px 1%;
-
     &.featured {
         height: 300px;
         position: relative;
         background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;
-        background-image: linear-gradient(90deg, rgba(0,0,0,0.8), rgba(0,0,0,0)) ,url(/img/featured_background.png);
+        background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), url(/img/featured_background.png);
         p {
             font-family: KomikaTitle;
             font-size: 30px;
@@ -263,7 +270,6 @@ div.card {
         background-size: cover;
         background-repeat: no-repeat;
         position: relative;
-
         &.no-padding {
             padding: 0 !important;
         }
@@ -298,7 +304,7 @@ div.card {
         color: #000000;
         word-wrap: break-word;
     }
-    p.read-more{
+    p.read-more {
         text-align: center;
         display: inline-block;
         width: 100%;
@@ -389,7 +395,6 @@ div.card {
             overflow: auto;
             max-height: 400px;
             font-size: 13px;
-            line-height: 20px;
         }
         p.share img.heart {
             margin-left: 0px !important;
@@ -410,9 +415,6 @@ div.card {
         &.image {
             width: 80%;
             max-width: 80%;
-            div.shareBox {
-                right: 45px !important;
-            }
             .preview {
                 display: block;
             }
@@ -423,7 +425,7 @@ div.card {
     }
     div.shareBox {
         position: absolute;
-        right: 33px !important;
+        right: 45px !important;
         margin-top: 15px;
         bottom: auto !important;
         padding: 10px;
