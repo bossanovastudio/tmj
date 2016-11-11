@@ -1,27 +1,47 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <meta content="width=device-width, initial-scale=1" name="viewport; charset=utf-8"/>
-    <meta content="NONE,NOARCHIVE" name="robots"/>
-    <%= csrf_meta_tag %>
-    <%= stylesheet_link_tag "application.css", media: :all %>
-    <%= javascript_include_tag "application.js" %>
-  </head>
-  <body class="admin">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <%= render "shared/navigation" %>
-    </nav>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar-nav">
-          <%= render "shared/sidebar_navigation" %>
-        </div>
-        <div class="col-sm-9 col-md-10 content">
-          <%= yield %>
-        </div>
-      </div>
-    </div>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin TMJ</title>
+  <%= stylesheet_link_tag "application"%>
+</head>
+<body id="admin">
+  <div class="menu">
+    <a href="#" class="title-admin" >Admin TMJ</a>
+    <a href="#" class="user">Robson C.</a>
+  </div>
+  <div class="sidebar">
+    <ul>
+      <li>
+        <a href="#">
+          <img src="" alt="">
+          <p>Dashboard</p>
+        </a>
+      </li>
+      <li class="active">
+        <a href="#">
+          <img src="" alt="">
+          <p>Cards</p>
+        </a>
+        <ul>
+          <li class="active"><a href="#">Moderar cards</a></li>
+          <li><a href="#">Destaques</a></li>
+          <li><a href="#">Upload card</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <img src="" alt="">
+          <p>Usuários</p>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="" alt="">
+          <p>Pontuação</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</body>
 </html>
