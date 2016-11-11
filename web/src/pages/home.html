@@ -1,7 +1,7 @@
 <div resize ng-if="ready" class="container cards" ng-swipe-left="swipeLeft()" ng-swipe-right="swipeRight()">
     <div ng-repeat="card in cards track by card.id" ng-click="openCard($event, card.id)" organize-cards data-class="" data-id="{{card.id}}">
         <div card-class ng-classes="card" ng-style="{'background-image':'url({{card.image.url}})'}" class="img"></div>
-        {{card.url | formatVideo | trust}}
+        <div ng-if="card.kind == 'video'" ng-bind-html="card.url | formatVideo | trust"></div>
         <div ng-if="card.kind != 'featured'" class="content">
             <p class="name">{{card.user.name}}</p>
             <p class="date"><img src="/img/{{card.origin}}.png" /> {{card.posted_at | formatDate}}</p>
