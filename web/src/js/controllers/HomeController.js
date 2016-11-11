@@ -16,13 +16,17 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
         'https://vimeo.com/95656929'
     ]
 
+    $scope.isMobile = function() {
+        return $(window).width() <= 480;
+    }
+
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
     $scope.randomNumber = function() {
         return ['one', 'two', 'three', 'four', 'five', 'five'][parseInt(Math.random() * 5)];
     }
 
-    $scope.loadCards = function(p, m) {
+    $scope.loadCards = function(p) {
         $http({
                 method: 'get',
                 url: API_URL + '/api/cards/' + p + '/' + $scope.SIZE + '.json',
@@ -50,7 +54,8 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         $scope.cards.push(card);
                     });
                     $scope.ready = true;
-                    if (!m) {
+                    console.log($scope.isMobile());
+                    if (!$scope.isMobile()) {
                         setTimeout(function() {
                             if ($('.cards').data('masonry')) {
                                 $('.cards').masonry('reloadItems');
@@ -65,12 +70,16 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                                 });
                             }
                         }, 1000);
+                    } else {
+                        if ($('.cards').data('masonry')) {
+                            $('.cards').masonry('destroy');
+                        }
                     }
                 }
             });
     }
 
-    $scope.loadCards($scope.PAGE, false);
+    $scope.loadCards($scope.PAGE);
     $scope.currentScroll = 0;
 
     $scope.swipeLeft = function() {
@@ -82,7 +91,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
         var total = $('.card').length * ($('.card').width() + 20);
         if ($scope.currentScroll == total) {
             $scope.PAGE++;
-            $scope.loadCards($scope.PAGE, true);
+            $scope.loadCards($scope.PAGE);
         }
     }
     $scope.swipeRight = function() {
@@ -197,7 +206,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
             if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
                 $scope.PAGE++;
                 if (!$scope.END) {
-                    $scope.loadCards($scope.PAGE, false);
+                    $scope.loadCards($scope.PAGE);
                 }
             }
         }, $scope._throttleDelay);
