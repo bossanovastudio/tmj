@@ -1,0 +1,221 @@
+@import "variables";
+@import "reset";
+@import "buttons";
+
+@font-face {
+  font-family: 'KomikaTitle';
+  src: url('../fonts/KomikaTitle-webfont.eot');
+  src: url('../fonts/KomikaTitle-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/KomikaTitle-webfont.woff') format('woff'),
+    url('../fonts/KomikaTitle-webfont.ttf') format('truetype'),
+    url('../fonts/KomikaTitle-webfont.svg#komika_titleregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background: url(../img/bg-pattern.png) no-repeat;
+  background-size: cover;
+  font: 14px 'Lato', sans-serif;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 320px;
+
+  @media (min-width: $screen-lg-min) {
+    padding-left: ($grid-gutter-width / 2);
+    padding-right: ($grid-gutter-width / 2);
+    width: $container-lg;
+  }
+}
+
+.remix-container {
+  h2 {
+    font-family: 'KomikaTitle';
+    font-size: 32px;
+    margin-top: 20px;
+  }
+  &.composing {
+    .remix-landing {
+      display: none;
+    }
+    .remix-composing {
+      display: block;
+    }
+  }
+  &.can-compose {
+    .remix-composing {
+      .top-actions button {
+        display: none;
+        &.next {
+          display: inline-block;
+        }
+      }
+      .toolbox {
+        .toolbox-item {
+          display: none;
+          &.categories {
+            display: none;
+          }
+          &.pictures {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+  &.can-publish {
+    .remix-composing {
+      .top-actions button {
+        display: none;
+        &.publish {
+          display: inline-block;
+        }
+      }
+      .toolbox {
+        .toolbox-item {
+          display: none;
+          &.tools {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+  &.can-share {
+    .remix-composing {
+      .top-actions button {
+        display: none;
+        &.skip-share {
+          display: inline-block;
+        }
+      }
+      .toolbox {
+        .toolbox-item {
+          display: none;
+          &.share {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+.remix-landing {
+  .intro {
+    margin-top: 20px;
+  }
+  .new {
+    margin-top: 20px;
+  }
+  .gallery {
+    overflow: auto;
+    .gallery-holder {
+      font-size: 0;
+      line-height: 0;
+      margin: 20px 0 0 (-$grid-gutter-width);
+      white-space: nowrap;
+    }
+    .gallery-item {
+      display: inline-block;
+      margin-left: $grid-gutter-width;
+      .actions {
+        margin-top: 10px;
+        overflow: hidden;
+        text-align: right;
+        button {
+          padding: 0 5px;
+          &:first-child {
+            padding-left: 0;
+          }
+          &:last-child {
+            padding-right: 0;
+          }
+          &.remove {
+            float: left;
+          }
+        }
+      }
+    }
+  }
+}
+
+.remix-composing {
+  display: none;
+  position: relative;
+  .cancel {
+    font-size: 24px;
+    line-height: 40px;
+    padding: 0 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+  .top-actions {
+    min-height: 40px;
+    overflow: hidden;
+    text-align: right;
+    button {
+      display: none;
+      line-height: 40px;
+      padding: 0 10px;
+      &.publish, &.skip-share {
+        font-family: 'KomikaTitle';
+        font-size: 15px;
+      }
+    }
+  }
+  .artboard {
+    background-color: #FFF;
+    position: relative;
+    &:before {
+      content: '';
+      display: block;
+      left: 0;
+      padding-bottom: 100%;
+      top: 0;
+      width: 100%;
+    }
+    .empty {
+      transform: translate(-50%, -50%);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+
+      font-family: 'KomikaTitle';
+      font-size: 26px;
+      text-align: center;
+      width: 180px;
+    }
+  }
+  .toolbox {
+    .toolbox-item {
+      display: none;
+      &.categories, &.pictures {
+        overflow: hidden;
+        > div {
+          background-color: #EFEFEF;
+          float: left;
+          line-height: 80px;
+          height: 80px;
+          padding: 0 1px;
+          text-align: center;
+          width: 80px;
+        }
+      }
+      &.categories {
+        display: block;
+      }
+      &.tools {
+        text-align: center;
+        button {
+          line-height: 40px;
+          padding: 0 5px;
+        }
+      }
+    }
+  }
+}
