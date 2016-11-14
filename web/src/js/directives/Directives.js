@@ -96,6 +96,7 @@ tmj.directive('organizeCards', function() {
 })
 
 tmj.directive("cardClass", function() {
+    var colors = ["941919", "f8471c", "414141"];
     return {
         restrict: 'EA',
         replace: false,
@@ -127,6 +128,8 @@ tmj.directive("cardClass", function() {
                         $(elem).parent().attr('data-class', 'card one-five column');
                     }
                 }
+                var color = "#" + colors[Math.floor(Math.random()*colors.length)];
+                $(elem).css({ "background-color": color });
             } else if (card.kind == 'text') {
                 $(elem).parent().addClass('card one-five column text');
                 $(elem).parent().attr('data-class', 'card one-five column text');

@@ -22,9 +22,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
 
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
-    $scope.randomNumber = function() {
-        return ['one', 'two', 'three', 'four', 'five', 'five'][parseInt(Math.random() * 5)];
-    }
+    $scope.count = 0;
 
     $scope.loadCards = function(p) {
         $http({
@@ -39,7 +37,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         id: (parseInt(Math.random() * 999999) + 1),
                         kind: 'featured',
                         url: 'http://localhost:8080/img/featured_background.png',
-                        size: $scope.randomNumber(),
+                        size: ['four', 'one', 'two', 'three', 'four', 'five', 'five'][$scope.count++],
                         content: 'I watched the storm, so beautiful yet so terrific'
                     });
                     $scope.cards.push({
@@ -73,6 +71,15 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         if ($('.cards').data('masonry')) {
                             $('.cards').masonry('destroy');
                         }
+                    }
+                    if ($scope.PAGE == 1) {
+                        setTimeout(function() {
+                            $('.cards').find('.card').addClass('show');
+                        }, 1000);
+                    } else {
+                        setTimeout(function() {
+                            $('.cards').find('.card').addClass('show');
+                        }, 1000);
                     }
                 }
             });
