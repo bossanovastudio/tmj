@@ -74,6 +74,9 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                     }
                     if ($scope.PAGE == 1) {
                         setTimeout(function() {
+                            if ( $('.initial-loading').is(':visible') ) {
+                                $('.initial-loading').hide();
+                            }
                             $('.cards').find('.card').addClass('show');
                         }, 1000);
                     } else {
@@ -136,8 +139,8 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         card.find('.img, .content').animate({
                             height: "50%"
                         }, 300);
-                        card.find('.heart').attr('src', '/img/like-copy.png').width(24);
-                        card.find('.arrow').attr('src', '/img/share-copy.png').width(24);
+                        card.find('.heart').attr('src', '/img/like.png').width(24);
+                        card.find('.arrow').attr('src', '/img/share.png').width(24);
                         card.find('.text').css({
                             height: '45%',
                             overflow: 'auto'

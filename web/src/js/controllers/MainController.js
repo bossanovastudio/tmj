@@ -57,20 +57,19 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
         var elem = angular.element($event.target);
         var card = $(elem).closest('.card');
 
-        if( card.length > 0 && card.find('.shareBox').is(':visible')) {
-            card.find('.shareBox').fadeOut(200);
-        } else if( card.length == 0 && $('.lightbox .shareBox').is(':visible') ) {
-            $('.lightbox .shareBox').fadeOut(200);
+        if( card.length > 0 && card.find('.shareBox').hasClass('show')) {
+            card.find('.shareBox').removeClass('show');
+        } else if( card.length == 0 && $('.lightbox .shareBox').hasClass('show') ) {
+            $('.lightbox .shareBox').removeClass('show');
         } else {
-            $(".shareBox").fadeOut(100);
-
+            $(".shareBox").removeClass('show');
             setTimeout(function() {
                 $('.card').css({ "z-index": 0 });
                 if( card.length > 0 ) {
                     card.css({ "z-index": 1 });
-                    card.find('.shareBox').stop(true, true).fadeIn(200);
+                    card.find('.shareBox').addClass('show');
                 } else {
-                    $('.lightbox .shareBox').stop(true, true).fadeIn(200);
+                    $('.lightbox .shareBox').addClass('show');
                 }
             }, 100)
         }
@@ -78,7 +77,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
 
     $("body").click(function(e) {
         if (e.target.className !== "shareBox" && e.target.className.indexOf('share') === -1 && e.target.className !== "arrow") {
-            $(".shareBox").fadeOut(200);
+            $(".shareBox").removeClass('show');
         }
     });
     $scope.closeLightbox = function() {

@@ -51,6 +51,13 @@ header {
     }
 }
 
+.initial-loading{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .overlay {
     position: fixed;
     right: 0px;
@@ -177,14 +184,18 @@ p.share {
 
 div.shareBox {
     position: absolute;
-    right: 10px;
-    bottom: -40px;
+    right: 14px;
+    bottom: -30px;
     padding: 10px;
     padding-left: 0px;
     background: #bdbdbd;
     height: 40px;
-    display: none;
+    opacity: 0;
     outline: none;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
     a {
         outline: none;
     }
@@ -192,11 +203,15 @@ div.shareBox {
         margin-left: 10px;
         float: left;
     }
+    &.show{
+        bottom: -37px;
+        opacity: 1;
+    }
 }
 
 div.shareBox:after {
     bottom: 100%;
-    right: 0px;
+    right: 12px;
     border: solid transparent;
     content: " ";
     height: 0;
@@ -204,8 +219,7 @@ div.shareBox:after {
     position: absolute;
     pointer-events: none;
     border-bottom-color: #bdbdbd;
-    border-width: 12px;
-    margin-left: -24px;
+    border-width: 8px;
 }
 
 p.name {
@@ -399,10 +413,9 @@ div.card {
             text-align: left !important;
         }
         p.content {
-            padding: 20px 0px;
             overflow: auto;
             max-height: 400px;
-            font-size: 13px;
+            font-size: 16px;
             line-height: 20px;
         }
         p.share img.heart {
@@ -437,14 +450,13 @@ div.card {
     }
     div.shareBox {
         position: absolute;
-        right: 33px !important;
-        margin-top: 15px;
+        right: 30px !important;
+        margin-top: 10px;
         bottom: auto !important;
         padding: 10px;
         padding-left: 0px;
         background: #bdbdbd;
         height: 40px;
-        display: none;
     }
 }
 

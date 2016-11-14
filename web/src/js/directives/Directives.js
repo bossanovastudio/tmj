@@ -128,8 +128,6 @@ tmj.directive("cardClass", function() {
                         $(elem).parent().attr('data-class', 'card one-five column');
                     }
                 }
-                var color = "#" + colors[Math.floor(Math.random()*colors.length)];
-                $(elem).css({ "background-color": color });
             } else if (card.kind == 'text') {
                 $(elem).parent().addClass('card one-five column text');
                 $(elem).parent().attr('data-class', 'card one-five column text');
