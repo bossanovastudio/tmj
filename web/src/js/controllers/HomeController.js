@@ -147,7 +147,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                             display: 'block'
                         });
                     } else {
-                        if ($rootScope.card.content.length > 200 || $rootScope.card.kind == 'image') {
+                        if ($rootScope.card.content.length > 100 || $rootScope.card.kind == 'image') {
                             $('body').css({ overflow: "hidden" });
                             var lightbox = angular.element(document.querySelector('.lightbox'));
                             lightbox.fadeIn();

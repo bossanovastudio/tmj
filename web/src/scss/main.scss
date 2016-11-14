@@ -154,7 +154,7 @@ header {
 }
 
 p.share {
-    margin: 0;
+    margin: 10px 0 0 0;
     height: 23px;
     a {
         text-decoration: none;
@@ -162,7 +162,6 @@ p.share {
     }
     img.heart {
         float: left;
-        margin-left: -10px;
     }
     span.counter {
         //font-size: 20px;
@@ -173,7 +172,6 @@ p.share {
     }
     img.arrow {
         float: right;
-        margin-right: -10px;
     }
 }
 
@@ -217,16 +215,18 @@ p.name {
     letter-spacing: 0.4px;
     text-align: center;
     color: #000000;
+    margin-bottom: 3px;
 }
 
 p.date {
     font-family: Lato;
     font-weight: 300;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: bold;
     letter-spacing: 0.3px;
     text-align: center;
     color: #9b9b9b;
+    margin-top: 0;
     img {
         display: inline-block;
         vertical-align: text-bottom;
@@ -295,7 +295,7 @@ div.card {
     }
     div.content {
         background: #ffffff;
-        padding: 24px 22px 11px;
+        padding: 18px 18px 12px 18px;
     }
     p.text {
         font-family: Lato;
@@ -303,16 +303,18 @@ div.card {
         text-align: center;
         color: #000000;
         word-wrap: break-word;
+        margin-top: 0;
+        margin-bottom: 0;
     }
     p.read-more {
         text-align: center;
         display: inline-block;
         width: 100%;
-        color: #9b9b9b;
+        color: #000;
         font-weight: 700;
         font-size: 13px;
         cursor: pointer;
-        margin: 0;
+        margin: 5px 0 0 0;
     }
     .close {
         position: absolute;
@@ -323,8 +325,7 @@ div.card {
     }
     &.text {
         p.text {
-            font-size: 16px;
-            margin-bottom: 5px;
+            font-size: 19px;
         }
     }
     &.geeklike {
