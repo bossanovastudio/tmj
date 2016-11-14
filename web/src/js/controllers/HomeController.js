@@ -54,7 +54,6 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         $scope.cards.push(card);
                     });
                     $scope.ready = true;
-                    console.log($scope.isMobile());
                     if (!$scope.isMobile()) {
                         setTimeout(function() {
                             if ($('.cards').data('masonry')) {
