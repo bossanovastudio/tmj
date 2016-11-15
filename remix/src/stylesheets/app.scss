@@ -1,4 +1,4 @@
-@import "variables";
+@import "settings";
 @import "reset";
 @import "buttons";
 
@@ -123,8 +123,8 @@ body {
       display: inline-block;
       margin-left: $grid-gutter-width;
       .actions {
+        @include clearfix;
         margin-top: 10px;
-        overflow: hidden;
         text-align: right;
         button {
           padding: 0 5px;
@@ -155,8 +155,8 @@ body {
     right: 0;
   }
   .top-actions {
+    @include clearfix;
     min-height: 40px;
-    overflow: hidden;
     text-align: right;
     button {
       display: none;
@@ -195,7 +195,7 @@ body {
     .toolbox-item {
       display: none;
       &.categories, &.pictures {
-        overflow: hidden;
+        @include clearfix;
         > div {
           background-color: #EFEFEF;
           float: left;
@@ -210,10 +210,49 @@ body {
         display: block;
       }
       &.tools {
+        @include clearfix;
+        padding: 15px 20px 15px;
+        position: relative;
         text-align: center;
-        button {
-          line-height: 40px;
-          padding: 0 5px;
+        .tool-item {
+          float: left;
+          width: 20%;
+          .toggler {
+            line-height: 40px;
+            padding: 0 5px;
+            position: relative;
+            &:after {
+              width: 0;
+              height: 0;
+              border-style: solid;
+              border-width: 0 5px 10px 5px;
+              border-color: transparent transparent #FFF transparent;
+
+              content: '';
+              display: none;
+              margin: 5px 0 0 -5px;
+              position: absolute;
+              left: 50%;
+              top: 100%;
+            }
+          }
+          .popup {
+            background-color: #FFF;
+            display: none;
+            left: 0;
+            padding: 10px;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+          }
+          &.on {
+            .toggler:after {
+              display: block;
+            }
+            .popup {
+              display: block;
+            }
+          }
         }
       }
     }

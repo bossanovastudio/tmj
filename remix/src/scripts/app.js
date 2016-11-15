@@ -58,4 +58,8 @@ $('.remix-container').each(function() {
   $(this).find('.remix-composing .toolbox .pictures .go-back').click(function() {
     $container.trigger('lock');
   });
+
+  $(this).find('.remix-composing .toolbox .tools .toggler').click(function() {
+    $(this).closest('.tool-item').toggleClass('on').siblings().removeClass('on');
+  });
 });
