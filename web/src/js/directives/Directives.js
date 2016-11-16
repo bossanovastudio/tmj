@@ -37,12 +37,12 @@ var organizeCards = function(newValue, oldValue) {
             card.eq(0).css({
                 "margin-left": 40
             });
-            var h = newValue.h - 280;
+            var h = newValue.h - 320;
             card.find('.img').css({ "height": h });
             card.each(function(i, c) {
                 if ($(c).hasClass('featured')) {
                     $(c).attr('class', 'card featured ng-scope');
-                    $(c).css({ "height": h + (h/3)*2 });
+                    $(c).css({ "height": h + (h/3)*2 + 40 });
                 } else if ($(c).hasClass('video')) {
                     $(c).attr('class', 'card video ng-scope');
                     $(c).find('.img').css({ "height": 0 });

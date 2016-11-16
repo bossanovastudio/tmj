@@ -35,12 +35,17 @@ tmj
     });
 
 tmj.filter('cropText', function() {
-    return function(input) {
-        if (input !== null) {
-            var maxLength = $(window).width() > 480 ? 100 : 200;
-            var trimmedString = input.substr(0, maxLength);
-            if (trimmedString.length == input.length) {
-                return input;
+    return function(card) {
+        if (card.content !== null) {
+            var maxLength = 0;
+            if (card.kind == 'text') {
+                maxLength = $(window).width() > 480 ? 100 : 300
+            } else {
+                maxLength = $(window).width() > 480 ? 100 : 200;
+            }
+            var trimmedString = card.content.substr(0, maxLength);
+            if (trimmedString.length == card.content.length) {
+                return card.content;
             }
             return trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" "))) + ' ...';
         }
