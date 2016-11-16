@@ -54,6 +54,9 @@ tmj.filter('cropText', function() {
 
 tmj.filter('formatDate', function() {
     return function(input) {
+        if (!input) {
+            return '';
+        }
         var year = input.substring(0, 4);
         var monthNames = ["jan", "fev", "mar", "abr", "mai", "jun",
             "jul", "ago", "set", "out", "nov", "dez"
