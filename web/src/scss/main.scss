@@ -408,6 +408,9 @@ div.card {
             float: left;
             width: 100%;
             padding: 23px 34px;
+            .content{
+                font-size: 14px;
+            }
         }
         p {
             text-align: left !important;
@@ -523,6 +526,15 @@ footer {
             p.text{
                 font-size:18px;
             }
+        }
+    }
+    div.card{
+        .close{
+            right: 10px;
+            top: 10px;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 9px;
+            border-radius: 50%;
         }
     }
     #menu {
