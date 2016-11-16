@@ -37,7 +37,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         id: (parseInt(Math.random() * 999999) + 1),
                         kind: 'featured',
                         url: '/img/featured_background.png',
-                        size: ['four', 'one', 'two', 'three', 'four', 'five', 'five'][$scope.count++],
+                        size: ['four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four'][$scope.count++],
                         content: 'I watched the storm, so beautiful yet so terrific'
                     });
                     $scope.cards.push({
