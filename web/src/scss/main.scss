@@ -191,6 +191,7 @@ div.shareBox {
     background: #bdbdbd;
     height: 40px;
     opacity: 0;
+    z-index: -1;
     outline: none;
     border-radius: 5px;
     transition: all 0.3s ease-in-out;
@@ -206,6 +207,7 @@ div.shareBox {
     &.show {
         bottom: -37px;
         opacity: 1;
+        z-index: 9;
     }
 }
 
@@ -592,6 +594,7 @@ footer {
         }
     }
     div.shareBox {
+        bottom: 10px;
         &.show {
             bottom: 50px;
             opacity: 1;
