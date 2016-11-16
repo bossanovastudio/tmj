@@ -137,26 +137,28 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                             height: '100%'
                         }, 300);
 
+                        card.find('.heart').attr('src', '/img/like.png').width(24);
+                        card.find('.arrow').attr('src', '/img/share.png').width(24);
+                        card.find('.read-more').remove();
 
                         if (card.hasClass('text')) {
-                            console.log('here');
-                            card.find('.img, .content').css({
-                            height: '100%',
-                            overflow: 'auto'
-                        });
+                            card.find('.content').css({
+                                height: '100%',
+                                overflow: 'auto'
+                            });
+                            card.find('.text').css({
+                                height: '85%',
+                                overflow: 'auto'
+                            });
                         } else {
                             card.find('.img, .content').animate({
                                 height: "50%"
                             }, 300);
+                            card.find('.text').css({
+                                height: '45%',
+                                overflow: 'auto'
+                            });
                         }
-
-                        card.find('.heart').attr('src', '/img/like.png').width(24);
-                        card.find('.arrow').attr('src', '/img/share.png').width(24);
-                        card.find('.read-more').remove();
-                        card.find('.text').css({
-                            height: '45%',
-                            overflow: 'auto'
-                        });
 
                         card.find('.text').text(content.content);
                         card.find('.share').css({
