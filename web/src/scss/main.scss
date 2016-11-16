@@ -277,7 +277,7 @@ div.card {
             left: 0px;
             bottom: 0px;
             padding: 25px;
-            max-width: 250px;
+            max-width: 400px;
         }
         &.pne {
             p {
@@ -317,6 +317,7 @@ div.card {
     div.content {
         background: #ffffff;
         padding: 18px 18px 12px 18px;
+        text-align: center;
     }
     p.text {
         font-family: Lato;
@@ -328,17 +329,18 @@ div.card {
         margin-bottom: 0;
     }
     p.read-more {
-        text-align: center;
-        display: inline-block;
-        width: 100%;
-        color: #9b9b9b;
+        display: inline;
+        width: auto;
+        color: #000;
         font-weight: 700;
         font-size: 13px;
         cursor: pointer;
         margin: 5px 0 0 0;
         transition-duration: 0.1s;
+        padding: 1px 6px;
         &:hover{
-            color: #000;
+            color: #fff;
+            background: #ff5050;
             transition-duration: 0.1s;
         }
     }
@@ -541,6 +543,11 @@ footer {
             background: rgba(255, 255, 255, 0.6);
             padding: 9px;
             border-radius: 50%;
+        }
+        &.featured {
+            p {
+                font-size: 31px;
+            }
         }
     }
     #menu {

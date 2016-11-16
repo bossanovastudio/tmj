@@ -38,13 +38,13 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         kind: 'featured',
                         url: '/img/featured_background.png',
                         size: ['four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four'][$scope.count++],
-                        content: 'I watched the storm, so beautiful yet so terrific'
+                        content: 'Seja sua própria heroína. Somos todas #donasdarua'
                     });
                     $scope.cards.push({
                         id: (parseInt(Math.random() * 999999) + 1),
                         kind: 'video',
                         url: $scope.VIDEOS[parseInt(Math.random() * 6)],
-                        content: 'I watched the storm, so beautiful yet so terrific',
+                        content: 'Seja sua própria heroína. Somos todas #donasdarua',
                         size: 'two',
                         posted_at: '2016-11-03T12:38:43.000Z'
                     });
