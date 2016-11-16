@@ -46,6 +46,8 @@ var organizeCards = function(newValue, oldValue) {
                 } else if ($(c).hasClass('video')) {
                     $(c).attr('class', 'card video ng-scope');
                     $(c).find('.img').css({ "height": 0 });
+                } else if ($(c).hasClass('text')) {
+                    $(c).attr('class', 'card text ng-scope');
                 } else {
                     $(c).attr('class', 'card ng-scope');
                 }
