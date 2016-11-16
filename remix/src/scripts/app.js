@@ -6,6 +6,7 @@ $('.remix-container').each(function() {
   $container.on({
     'reset': function() {
       $(this).removeClass('can-compose can-publish can-share');
+      $(this).find('.remix-composing .toolbox .toolbox-item.tools .tool-item').removeClass('on');
     },
     'lock': function() {
       $(this).trigger('reset').addClass('composing');
