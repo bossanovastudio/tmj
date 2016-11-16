@@ -43,7 +43,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                     $scope.cards.push({
                         id: (parseInt(Math.random() * 999999) + 1),
                         kind: 'video',
-                        url: $scope.VIDEOS[parseInt(Math.random() * 6)],
+                        url: $scope.VIDEOS[4],
                         content: 'Seja sua própria heroína. Somos todas #donasdarua',
                         size: 'two',
                         posted_at: '2016-11-03T12:38:43.000Z'
