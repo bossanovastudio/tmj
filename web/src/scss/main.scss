@@ -51,7 +51,7 @@ header {
     }
 }
 
-.initial-loading{
+.initial-loading {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -203,7 +203,7 @@ div.shareBox {
         margin-left: 10px;
         float: left;
     }
-    &.show{
+    &.show {
         bottom: -37px;
         opacity: 1;
     }
@@ -474,24 +474,23 @@ footer {
     right: 40px;
     bottom: 40px;
     width: 38px;
-    a{
+    a {
         width: 34px;
         height: 34px;
         overflow: hidden;
-        -webkit-box-shadow: 5px 5px 0px 0px rgba(0,0,0,1);
-        -moz-box-shadow:  5px 5px 0px 0px rgba(0,0,0,1);
-        box-shadow:  5px 5px 5x 0px rgba(0,0,0,1);
+        -webkit-box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
+        -moz-box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
+        box-shadow: 5px 5px 5x 0px rgba(0, 0, 0, 1);
         transition-duration: 0.2s;
         position: relative;
         display: block;
         left: 0px;
         top: 0px;
         margin-top: 10px;
-
-        &:hover{
-            -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
-            -moz-box-shadow:  0px 0px 0px 0px rgba(0,0,0,1);
-            box-shadow:  0px 0px 0x 0px rgba(0,0,0,1);
+        &:hover {
+            -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+            -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+            box-shadow: 0px 0px 0x 0px rgba(0, 0, 0, 1);
             transition-duration: 0.2s;
             left: 5px;
             top: 5px;
@@ -529,8 +528,10 @@ footer {
         .card {
             float: left;
             margin: 0px 10px;
-            p.text{
-                font-size:18px;
+            &.text {
+                p.text {
+                    font-size: 18px;
+                }
             }
         }
     }
