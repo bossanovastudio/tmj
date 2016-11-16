@@ -591,6 +591,19 @@ footer {
             text-decoration: none;
         }
     }
+    div.shareBox {
+        &.show {
+            bottom: 50px;
+            opacity: 1;
+        }
+    }
+
+    div.shareBox:after {
+        bottom: 100%;
+        top: 40px;
+        border-bottom-color: transparent;
+        border-top-color: #bdbdbd !important;
+    }
     footer {
         position: relative;
         text-align: center;
