@@ -2,9 +2,10 @@
     <a ng-click="likeCard($event, card.id)" class="{{card.liked ? 'liked' : ''}} ng-hide" ng-href="#">
         <img class="heart" src="{{card.liked ? '/img/liked.png' : '/img/like.png'}}"><span class="counter">&nbsp;{{card.likes ? card.likes : 0}}</span>
     </a>
-    <a ng-click="openShare($event)" ng-href="#">
-        <img class="arrow" src="/img/share.png">
+    <a ng-click="openShare($event)" ng-href="#" ng-init="imgsrc='/img/share.png'" ng-mouseover="imgsrc='/img/share-rollover.png'" ng-mouseout="imgsrc='/img/share.png'">
+        <img class="arrow" ng-src="{{imgsrc}}">
     </a>
+
 </p>
 <div class="shareBox">
     <a target="_blank" ng-href="https://www.facebook.com/sharer/sharer.php?u={{SITE_URL}}/detalhe/card/{{card.id}}">
