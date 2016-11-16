@@ -571,8 +571,19 @@ footer {
         right: auto;
         bottom: auto;
         width: 100%;
-        img {
-            margin: 26px 5px 5px 5px;
+        a{
+            top:26px;
+            display: inline-block;
+            margin: 0 5px 5px 5px;
+            &:hover{
+                -webkit-box-shadow: 5px 5px 0px 0px rgba(0,0,0,1);
+                -moz-box-shadow:  5px 5px 0px 0px rgba(0,0,0,1);
+                box-shadow:  5px 5px 5x 0px rgba(0,0,0,1);
+                transition-duration: 0.2s;
+                top:26px;
+                left: 0;
+            }
         }
+
     }
 }
