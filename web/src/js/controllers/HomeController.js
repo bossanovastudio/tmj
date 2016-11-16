@@ -36,7 +36,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                     $scope.cards.push({
                         id: (parseInt(Math.random() * 999999) + 1),
                         kind: 'featured',
-                        url: 'http://localhost:8080/img/featured_background.png',
+                        url: '/img/featured_background.png',
                         size: ['four', 'one', 'two', 'three', 'four', 'five', 'five'][$scope.count++],
                         content: 'I watched the storm, so beautiful yet so terrific'
                     });
