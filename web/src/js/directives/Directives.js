@@ -96,6 +96,7 @@ tmj.directive('organizeCards', function() {
 })
 
 tmj.directive("cardClass", function() {
+    var colors = ["941919", "f8471c", "414141"];
     return {
         restrict: 'EA',
         replace: false,

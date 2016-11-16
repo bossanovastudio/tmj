@@ -28,7 +28,7 @@ services:
     build: admin
     volumes:
       - ./admin:/var/www/app
-    command: bundle exec rails s -p 3001 -b 0.0.0.0
+    command: bundle exec rails s -p 3001 -b 0.0.0.0 -P/dev/null
     ports:
       - "3001:3001"
     links:

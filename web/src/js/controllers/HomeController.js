@@ -22,9 +22,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
 
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
-    $scope.randomNumber = function() {
-        return ['one', 'two', 'three', 'four', 'five', 'five'][parseInt(Math.random() * 5)];
-    }
+    $scope.count = 0;
 
     $scope.loadCards = function(p) {
         $http({
@@ -39,7 +37,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         id: (parseInt(Math.random() * 999999) + 1),
                         kind: 'featured',
                         url: 'http://localhost:8080/img/featured_background.png',
-                        size: $scope.randomNumber(),
+                        size: ['four', 'one', 'two', 'three', 'four', 'five', 'five'][$scope.count++],
                         content: 'I watched the storm, so beautiful yet so terrific'
                     });
                     $scope.cards.push({
@@ -54,7 +52,6 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         $scope.cards.push(card);
                     });
                     $scope.ready = true;
-                    console.log($scope.isMobile());
                     if (!$scope.isMobile()) {
                         setTimeout(function() {
                             if ($('.cards').data('masonry')) {
@@ -74,6 +71,18 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         if ($('.cards').data('masonry')) {
                             $('.cards').masonry('destroy');
                         }
+                    }
+                    if ($scope.PAGE == 1) {
+                        setTimeout(function() {
+                            if ( $('.initial-loading').is(':visible') ) {
+                                $('.initial-loading').hide();
+                            }
+                            $('.cards').find('.card').addClass('show');
+                        }, 1000);
+                    } else {
+                        setTimeout(function() {
+                            $('.cards').find('.card').addClass('show');
+                        }, 1000);
                     }
                 }
             });
@@ -130,8 +139,8 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         card.find('.img, .content').animate({
                             height: "50%"
                         }, 300);
-                        card.find('.heart').attr('src', '/img/like-copy.png').width(24);
-                        card.find('.arrow').attr('src', '/img/share-copy.png').width(24);
+                        card.find('.heart').attr('src', '/img/like.png').width(24);
+                        card.find('.arrow').attr('src', '/img/share.png').width(24);
                         card.find('.text').css({
                             height: '45%',
                             overflow: 'auto'
@@ -148,7 +157,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                             display: 'block'
                         });
                     } else {
-                        if ($rootScope.card.content.length > 200 || $rootScope.card.kind == 'image') {
+                        if ($rootScope.card.content.length > 100 || $rootScope.card.kind == 'image') {
                             $('body').css({ overflow: "hidden" });
                             var lightbox = angular.element(document.querySelector('.lightbox'));
                             lightbox.fadeIn();

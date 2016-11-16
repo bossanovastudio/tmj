@@ -51,6 +51,13 @@ header {
     }
 }
 
+.initial-loading{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .overlay {
     position: fixed;
     right: 0px;
@@ -154,7 +161,7 @@ header {
 }
 
 p.share {
-    margin: 0;
+    margin: 10px 0 0 0;
     height: 23px;
     a {
         text-decoration: none;
@@ -162,7 +169,6 @@ p.share {
     }
     img.heart {
         float: left;
-        margin-left: -10px;
     }
     span.counter {
         //font-size: 20px;
@@ -173,32 +179,39 @@ p.share {
     }
     img.arrow {
         float: right;
-        margin-right: -10px;
     }
 }
 
 div.shareBox {
     position: absolute;
-    right: 10px;
-    bottom: -40px;
+    right: 14px;
+    bottom: -30px;
     padding: 10px;
     padding-left: 0px;
     background: #bdbdbd;
     height: 40px;
-    display: none;
+    opacity: 0;
     outline: none;
-    a{
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    a {
         outline: none;
     }
     img {
         margin-left: 10px;
         float: left;
     }
+    &.show{
+        bottom: -37px;
+        opacity: 1;
+    }
 }
 
 div.shareBox:after {
     bottom: 100%;
-    right: 0px;
+    right: 12px;
     border: solid transparent;
     content: " ";
     height: 0;
@@ -206,8 +219,7 @@ div.shareBox:after {
     position: absolute;
     pointer-events: none;
     border-bottom-color: #bdbdbd;
-    border-width: 12px;
-    margin-left: -24px;
+    border-width: 8px;
 }
 
 p.name {
@@ -217,16 +229,18 @@ p.name {
     letter-spacing: 0.4px;
     text-align: center;
     color: #000000;
+    margin-bottom: 3px;
 }
 
 p.date {
     font-family: Lato;
     font-weight: 300;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: bold;
     letter-spacing: 0.3px;
     text-align: center;
     color: #9b9b9b;
+    margin-top: 0;
     img {
         display: inline-block;
         vertical-align: text-bottom;
@@ -237,9 +251,15 @@ p.date {
 div.card {
     background-color: #d8d8d8;
     position: relative;
-    // width: 216px;
     margin-bottom: 24px;
     margin: 0 1% 20px 1%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
+    &.show {
+        opacity: 1;
+    }
     &.featured {
         height: 300px;
         position: relative;
@@ -295,7 +315,7 @@ div.card {
     }
     div.content {
         background: #ffffff;
-        padding: 24px 22px 11px;
+        padding: 18px 18px 12px 18px;
     }
     p.text {
         font-family: Lato;
@@ -303,16 +323,18 @@ div.card {
         text-align: center;
         color: #000000;
         word-wrap: break-word;
+        margin-top: 0;
+        margin-bottom: 0;
     }
     p.read-more {
         text-align: center;
         display: inline-block;
         width: 100%;
-        color: #9b9b9b;
+        color: #000;
         font-weight: 700;
         font-size: 13px;
         cursor: pointer;
-        margin: 0;
+        margin: 5px 0 0 0;
     }
     .close {
         position: absolute;
@@ -323,8 +345,7 @@ div.card {
     }
     &.text {
         p.text {
-            font-size: 16px;
-            margin-bottom: 5px;
+            font-size: 19px;
         }
     }
     &.geeklike {
@@ -392,10 +413,9 @@ div.card {
             text-align: left !important;
         }
         p.content {
-            padding: 20px 0px;
             overflow: auto;
             max-height: 400px;
-            font-size: 13px;
+            font-size: 16px;
             line-height: 20px;
         }
         p.share img.heart {
@@ -423,7 +443,6 @@ div.card {
             .text {
                 width: 39%;
             }
-
             div.shareBox {
                 right: 45px !important;
             }
@@ -431,14 +450,13 @@ div.card {
     }
     div.shareBox {
         position: absolute;
-        right: 33px !important;
-        margin-top: 15px;
+        right: 30px !important;
+        margin-top: 10px;
         bottom: auto !important;
         padding: 10px;
         padding-left: 0px;
         background: #bdbdbd;
         height: 40px;
-        display: none;
     }
 }
 
