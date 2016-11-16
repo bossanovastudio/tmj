@@ -74,7 +74,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                     }
                     if ($scope.PAGE == 1) {
                         setTimeout(function() {
-                            if ( $('.initial-loading').is(':visible') ) {
+                            if ($('.initial-loading').is(':visible')) {
                                 $('.initial-loading').hide();
                             }
                             $('.cards').find('.card').addClass('show');
@@ -136,9 +136,20 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                             width: '100%',
                             height: '100%'
                         }, 300);
-                        card.find('.img, .content').animate({
-                            height: "50%"
-                        }, 300);
+
+
+                        if (card.hasClass('text')) {
+                            console.log('here');
+                            card.find('.img, .content').css({
+                            height: '100%',
+                            overflow: 'auto'
+                        });
+                        } else {
+                            card.find('.img, .content').animate({
+                                height: "50%"
+                            }, 300);
+                        }
+
                         card.find('.heart').attr('src', '/img/like.png').width(24);
                         card.find('.arrow').attr('src', '/img/share.png').width(24);
                         card.find('.read-more').remove();
@@ -146,6 +157,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                             height: '45%',
                             overflow: 'auto'
                         });
+
                         card.find('.text').text(content.content);
                         card.find('.share').css({
                             position: 'absolute',
@@ -207,6 +219,8 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                 });
         }
     }
+
+    $scope.textSize = $(window).width() > 480 ? 100 : 200;
 
     $scope._throttleTimer = null;
     $scope._throttleDelay = 100;
