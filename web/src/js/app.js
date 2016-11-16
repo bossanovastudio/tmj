@@ -37,7 +37,7 @@ tmj
 tmj.filter('cropText', function() {
     return function(input) {
         if (input !== null) {
-            var maxLength = 100;
+            var maxLength = $(window).width() > 480 ? 100 : 200;
             var trimmedString = input.substr(0, maxLength);
             if (trimmedString.length == input.length) {
                 return input;
