@@ -109,7 +109,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
             scrollLeft: $scope.currentScroll -= $('.card').width() + 20
         }, 250);
     }
-    $scope.openCard = function($event, id) {
+    $scope.openCard = function($event, id, content) {
         var elem = angular.element($event.target);
         if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('shareButton')) {
             $http({
@@ -141,10 +141,12 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         }, 300);
                         card.find('.heart').attr('src', '/img/like.png').width(24);
                         card.find('.arrow').attr('src', '/img/share.png').width(24);
+                        card.find('.read-more').remove();
                         card.find('.text').css({
                             height: '45%',
                             overflow: 'auto'
                         });
+                        card.find('.text').text(content.content);
                         card.find('.share').css({
                             position: 'absolute',
                             bottom: 0,

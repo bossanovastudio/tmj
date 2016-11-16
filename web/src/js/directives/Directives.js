@@ -42,7 +42,7 @@ var organizeCards = function(newValue, oldValue) {
             card.each(function(i, c) {
                 if ($(c).hasClass('featured')) {
                     $(c).attr('class', 'card featured ng-scope');
-                    $(c).css({ "height": h });
+                    $(c).css({ "height": h + (h/3)*2 });
                 } else if ($(c).hasClass('video')) {
                     $(c).attr('class', 'card video ng-scope');
                     $(c).find('.img').css({ "height": 0 });
