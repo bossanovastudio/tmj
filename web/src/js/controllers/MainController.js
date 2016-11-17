@@ -74,7 +74,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
                 $('.card').css({ "z-index": 0 });
                 if (card.length > 0) {
                     card.find('.shareBox').show();
-                    card.css({ "z-index": 1 });
+                    card.css({ "z-index": 999 });
                     card.find('.shareBox').addClass('show');
                 } else {
                     $('.lightbox .shareBox').show();
