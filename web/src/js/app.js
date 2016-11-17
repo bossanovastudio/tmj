@@ -2,7 +2,7 @@ var API_URL = "@@replace_api_grunt";
 var SITE_URL = window.location.protocol + '//' + window.location.host;
 var isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-var tmj = angular.module('tmj', ['ngTouch', 'ngRoute', 'ngAnimate', 'ngCookies', 'ngResource']);
+var tmj = angular.module('tmj', ['ngTouch', 'ngRoute', 'ngAnimate', 'ngCookies', 'ngResource', 'swipe']);
 tmj
     .config(function($routeProvider, $locationProvider, $httpProvider) {
         $routeProvider

@@ -33,7 +33,8 @@ var organizeCards = function(newValue, oldValue) {
             $('.cards').masonry('destroy');
         }
         $('html, body, section').css({overflow: 'hidden'});
-        $('.cards').each(function() {
+        $('.cards').each(function(i, e) {
+            $(e).css({top: i*$(window).height()});
             var card = $(this).find('.card');
             card.width(newValue.w - 80);
             card.eq(0).css({

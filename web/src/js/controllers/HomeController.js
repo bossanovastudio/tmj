@@ -87,6 +87,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
     $scope.loadCards($scope.PAGE);
     $scope.currentScroll = 0;
 
+    var distanceTop = 0;
     $scope.swipeLeft = function() {
         $scope.currentScroll = $('section').scrollLeft();
         $('section').animate({
@@ -104,6 +105,24 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
         $('section').animate({
             scrollLeft: $scope.currentScroll -= $('.card').width() + 20
         }, 250);
+    }
+    $scope.swipeUp = function() {
+        distanceTop = $(window).height();
+        $('.cards').each(function() {
+            var top = parseInt($(this).css('top').replace('px'));
+            $(this).animate({ top: top - distanceTop });
+        });
+    }
+    $scope.swipeDown = function() {
+        distanceTop = $(window).height();
+        $('.cards').each(function() {
+            var top = parseInt($(this).css('top').replace('px'));
+            var to = top + distanceTop;
+            if (to > 0) {
+                to = 0;
+            }
+            $(this).animate({ top: to });
+        });
     }
     $scope.openCard = function($event, id, content) {
         var elem = angular.element($event.target);
