@@ -59,16 +59,25 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
 
         if (card.length > 0 && card.find('.shareBox').hasClass('show')) {
             card.find('.shareBox').removeClass('show');
+            setTimeout(function() {
+                card.find('.shareBox').hide();
+            }, 300);
         } else if (card.length == 0 && $('.lightbox .shareBox').hasClass('show')) {
             $('.lightbox .shareBox').removeClass('show');
+            setTimeout(function() {
+                $('.lightbox .shareBox').hide();
+            }, 300);
         } else {
             $(".shareBox").removeClass('show');
+            $(".shareBox").hide();
             setTimeout(function() {
                 $('.card').css({ "z-index": 0 });
                 if (card.length > 0) {
+                    card.find('.shareBox').show();
                     card.css({ "z-index": 1 });
                     card.find('.shareBox').addClass('show');
                 } else {
+                    $('.lightbox .shareBox').show();
                     $('.lightbox .shareBox').addClass('show');
                 }
             }, 100)
@@ -78,6 +87,9 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
     $("body").click(function(e) {
         if (e.target.className !== "shareBox" && e.target.className.indexOf('share') === -1 && e.target.className !== "arrow") {
             $(".shareBox").removeClass('show');
+            setTimeout(function() {
+                $(".shareBox").hide();
+            }, 300);
         }
     });
     $scope.closeLightbox = function() {
