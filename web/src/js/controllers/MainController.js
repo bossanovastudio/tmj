@@ -87,7 +87,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
     $scope.closeLightboxClick = function($event) {
         var e = angular.element($event.target);
         e = $(e);
-        if (!e.hasClass('preview') && !e.hasClass('detail') && !e.hasClass('share')) {
+        if (!e.hasClass('preview') && !e.hasClass('detail') && !e.hasClass('share') && !e.hasClass('arrow')) {
             $scope.closeLightbox();
         }
     }
