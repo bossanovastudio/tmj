@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="/css/main.css" type="text/css">
 </head>
 
-<body ng-app="tmj" ng-controller="MainController">
+<body ng-app="tmj" ng-controller="MainController" ng-keypress="closeLightboxKey($event.keyCode)">
     <div id="menu">
         <img src="/img/menu-desktop.svg" class="desktop" ng-click="toggle()" />
         <img src="/img/menu-mobile.svg" class="mobile" ng-click="toggle()" />
@@ -49,21 +49,21 @@
         </ul>
         <footer class="mobile">
             <a href="#">
-                <img src="/img/rede-social-facebook.png" />
+                <img src="/img/rede-social-facebook.svg" />
             </a>
             <a href="#">
-                <img src="/img/rede-social-twitter.png" />
+                <img src="/img/rede-social-twitter.svg" />
             </a>
             <a href="#">
-                <img src="/img/rede-social-youtube.png" />
+                <img src="/img/rede-social-youtube.svg" />
             </a>
             <a href="#">
-                <img src="/img/rede-social-google.png" />
+                <img src="/img/rede-social-google.svg" />
             </a>
         </footer>
     </div>
     <div class="overlay" ng-click="closeMenu()"></div>
-    <div class="lightbox">
+    <div class="lightbox" ng-click="closeLightboxClick($event)">
         <div class="detail content {{card.kind=='image' ? 'image' : ''}}">
             <div class="preview" style="background-image:url('{{card.image.url}}')"></div>
             <div class="text">
@@ -88,16 +88,16 @@
     <img class="initial-loading" src="/img/loading.gif" />
     <footer class="desktop">
         <a href="#">
-            <img src="/img/rede-social-facebook.png" />
+            <img src="/img/rede-social-facebook.svg" />
         </a>
         <a href="#">
-            <img src="/img/rede-social-twitter.png" />
+            <img src="/img/rede-social-twitter.svg" />
         </a>
         <a href="#">
-            <img src="/img/rede-social-youtube.png" />
+            <img src="/img/rede-social-youtube.svg" />
         </a>
         <a href="#">
-            <img src="/img/rede-social-google.png" />
+            <img src="/img/rede-social-google.svg" />
         </a>
     </footer>
     <!-- libs -->
