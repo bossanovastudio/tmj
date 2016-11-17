@@ -57,15 +57,15 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
         var elem = angular.element($event.target);
         var card = $(elem).closest('.card');
 
-        if( card.length > 0 && card.find('.shareBox').hasClass('show')) {
+        if (card.length > 0 && card.find('.shareBox').hasClass('show')) {
             card.find('.shareBox').removeClass('show');
-        } else if( card.length == 0 && $('.lightbox .shareBox').hasClass('show') ) {
+        } else if (card.length == 0 && $('.lightbox .shareBox').hasClass('show')) {
             $('.lightbox .shareBox').removeClass('show');
         } else {
             $(".shareBox").removeClass('show');
             setTimeout(function() {
                 $('.card').css({ "z-index": 0 });
-                if( card.length > 0 ) {
+                if (card.length > 0) {
                     card.css({ "z-index": 1 });
                     card.find('.shareBox').addClass('show');
                 } else {
@@ -81,8 +81,21 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
         }
     });
     $scope.closeLightbox = function() {
-        var lightbox = angular.element(document.querySelector('.lightbox'));
-        lightbox.fadeOut();
+        $('.lightbox').fadeOut();
         $('body').css({ overflow: "auto" });
+    }
+    $scope.closeLightboxClick = function($event) {
+        var e = angular.element($event.target);
+        e = $(e);
+        console.log(e.attr('class'));
+        // if (parseInt(keyCode) == 27) {
+        //     $scope.closeLightbox();
+        // }
+    }
+    $scope.closeLightboxKey = function(keyCode) {
+        console.log(keyCode);
+        if (parseInt(keyCode) == 27) {
+            $scope.closeLightbox();
+        }
     }
 });

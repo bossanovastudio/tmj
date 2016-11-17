@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="/css/main.css" type="text/css">
 </head>
 
-<body ng-app="tmj" ng-controller="MainController">
+<body ng-app="tmj" ng-controller="MainController" ng-keypress="closeLightboxKey($event.keyCode)">
     <div id="menu">
         <img src="/img/menu-desktop.svg" class="desktop" ng-click="toggle()" />
         <img src="/img/menu-mobile.svg" class="mobile" ng-click="toggle()" />
@@ -63,7 +63,7 @@
         </footer>
     </div>
     <div class="overlay" ng-click="closeMenu()"></div>
-    <div class="lightbox">
+    <div class="lightbox" ng-click="closeLightboxClick()">
         <div class="detail content {{card.kind=='image' ? 'image' : ''}}">
             <div class="preview" style="background-image:url('{{card.image.url}}')"></div>
             <div class="text">
