@@ -394,6 +394,221 @@ div.card {
     }
 }
 
+.purple-overlay {
+    display: none;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(125deg, #3023ae, #c86dd7);
+    opacity: 0.5;
+}
+.container.login {
+    height: 100%;
+    min-height: 100%;
+    /* habilita o flex nos filhos diretos */
+    display: -ms-flex;
+    display: -webkit-flex;
+    display: flex;
+
+    /* centraliza na vertical */
+    -ms-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+
+    /* centraliza na horizontal */
+    -ms-justify-content: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    .content-box {
+        width: 251px;
+        height: auto;
+        h1.title {
+            font-family: KomikaTitle;
+            font-size: 30px;
+            letter-spacing: 1.2px;
+            margin: 19px 0;
+            color: #000;
+        }
+        h2 {
+            text-align: center;
+            font-family: KomikaTitle;
+            font-size: 18px;
+            letter-spacing: 0.6px;
+        }
+        button.btn {
+            width: 100%;
+            height: 33px;
+            outline: none;
+            border: 1px solid #000;
+            -webkit-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+            -moz-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+            box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+            font-family: KomikaTitle;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+
+            &.btn-fb {
+                background-color: #4a90e2;
+                color: #fff;
+                position: relative;
+                &:after {
+                    content: '';
+                    width: 6px;
+                    height: 12px;
+                    position: absolute;
+                    top: 10px;
+                    left: 17px;
+                    background-image: url(/img/facebook-form.svg);
+                }
+            }
+            &.btn-submit {
+                margin-top: 31px;
+                background-color: #fff;
+            }
+        }
+        form {
+            position: relative;
+            .form-group label {
+                position: relative;
+                font-weight: bold;
+                letter-spacing: 0.3px;
+            }
+            .user label{
+                padding-left: 20px;
+                &:after {
+                    content: '';
+                    width: 14px;
+                    height: 13px;
+                    position: absolute;
+                    top: 3px;
+                    left: 0px;
+                    background: no-repeat url(/img/apelido-icon.svg);
+                }
+            }
+            .pass label {
+                padding-left: 20px;
+                &:after {
+                    content: '';
+                    width: 10px;
+                    height: 12px;
+                    position: absolute;
+                    top: 3px;
+                    left: 0px;
+                    background: no-repeat url(/img/senha-icon.svg);
+                }
+            }
+            input {
+                background-color: transparent;
+                border: none;
+                border-bottom: 1px #fff solid;
+                width: 100%;
+                letter-spacing: 0.4px;
+                color: #ffffff;
+                font-weight: bold;
+                letter-spacing: 0.4px;
+                font-size: 16px;
+                margin-bottom: 34px;
+                padding: 7px 0 4px 0;
+
+                &:focus {
+                    outline: none;
+                }
+                &::-webkit-input-placeholder {
+                    opacity: 1;
+                }
+
+                &:-moz-placeholder { /* Firefox 18- */
+                    opacity: 1;
+                }
+
+                &::-moz-placeholder {  /* Firefox 19+ */
+                    opacity: 1;
+                }
+
+                &:-ms-input-placeholder {  
+                    opacity: 1;
+                }
+            }
+            .box-pass {
+                list-style:none;
+                display: block;
+                padding: 0;
+                width: 100%;
+                margin: 12px 0 0 0;
+                li {
+                    width: 43px;
+                    height: 43px;
+                    border: solid 1px #fff;
+                    cursor: pointer;
+                    display: inline-block;
+                }
+            }
+            .link-pass{
+                text-decoration: none;
+                border: none;
+                color: #fff;
+                font-weight: bold;
+                font-size: 13px;
+            }
+            .link-cadastro{
+                color: #000;
+                text-align: center;
+                margin-top: 50px;
+                a{
+                    text-decoration: none;
+                    font-weight: bold;
+                    border: none;
+                    color: #000;
+                }
+            }
+            .pass-box {
+                position: absolute;
+                top: -50px;
+                display: none;
+                ul{
+                    width: 100%;
+                    height: 117px;
+                    background-color: #fff;
+                    border-radius: 3px;
+                    text-align: justify;
+                    padding: 10px;
+
+                    li{
+                        height: 43px;
+                        width: 43px;
+                        list-style: none;
+                        display: inline-block;
+                        cursor: pointer;
+                        img{
+                            max-width: 100%;
+                            height: auto;
+                        }
+                    }
+                    &:after{
+                        content: '';
+                        display: inline-block;
+                        width: 100%;
+                    }
+                }
+                &:after{
+                    position: relative;
+                    display: block;
+                    content: '';
+                    width: 24.9px;
+                    height: 25.4px;
+                    top: -20px;
+                    left: 10px;
+                    background: no-repeat url(/img/arrow-login.svg)
+                }
+                &.show{
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
 .lightbox {
     position: fixed;
     right: 0px;
@@ -490,7 +705,7 @@ footer {
         overflow: hidden;
         -webkit-box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
         -moz-box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
-        box-shadow: 5px 5px 5x 0px rgba(0, 0, 0, 1);
+        box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
         transition-duration: 0.2s;
         position: relative;
         display: block;
@@ -500,7 +715,7 @@ footer {
         &:hover {
             -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
             -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
-            box-shadow: 0px 0px 0x 0px rgba(0, 0, 0, 1);
+            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
             transition-duration: 0.2s;
             left: 5px;
             top: 5px;

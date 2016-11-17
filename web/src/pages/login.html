@@ -1,3 +1,63 @@
-<div>
-	<h1>Hello World</h1>
+<div class="container login">
+	<div class="content-box">
+		<h1 class="title">Minha Área</h1>
+		<button class=" btn btn-fb">Entrar com Facebook</button>
+		<h2>ou</h2>
+		<form name="profileForm">
+	        <div class="form-group user">
+	            <label for="username">Apelido</label>
+	            <br>
+	            <input type="text" name="username" class="form-control" placeholder="insira seu apelido"/>
+	        </div>
+	        <div class="form-group pass">
+	            <label for="password">Senha</label>
+	            <br>
+	            <input type="hidden" name="password" class="form-control"/>
+	            <ul class="box-pass">
+	            	<li ng-click="openPassword($event)"></li>
+	            	<li ng-click="openPassword($event)"></li>
+	            	<li ng-click="openPassword($event)"></li>
+	            </ul>
+	            <a href="#" class="link-pass">Esqueceu a senha?</a>
+	            <div class="pass-box">
+	            	<ul>
+	            		<li class="pass-monica">
+	            			<img src="/img/monica.png" alt="">
+	            		</li>
+	            		<li class="pass-cebola">
+	            			<img src="/img/cebola.png" alt="">
+	            		</li>
+	            		<li class="pass-cascao">
+	            			<img src="/img/cascao.png" alt="">
+	            		</li>
+	            		<li class="pass-magali">
+	            			<img src="/img/magali.png" alt="">
+	            		</li>
+	            		<li class="pass-marina">
+	            			<img src="/img/marina.png" alt="">
+	            		</li>
+	            		<li class="pass-denise">
+	            			<img src="/img/denisejovem.png" alt="">
+	            		</li>
+	            		<li class="pass-xaveco">
+	            			<img src="/img/xaveco.png" alt="">
+	            		</li>
+	            		<li class="pass-carmen">
+	            			<img src="/img/carmen.png" alt="">
+	            		</li>
+	            		<li class="pass-docontra">
+	            			<img src="/img/docontra.png" alt="">
+	            		</li>
+	            		<li class="pass-nimbus">
+	            			<img src="/img/nimbus.png" alt="">
+	            		</li>
+	            	</ul>
+	            </div>
+	        </div>
+	        <div class="form-actions">
+	            <button type="submit" class="btn btn-submit">Entrar</button>
+	        </div>
+	        <p class="link-cadastro">É novo aqui? <a href="#"> Cadastre-se</a></p>
+    	</form>
+	</div>
 </div>
