@@ -110,7 +110,7 @@ tmj.directive("cardClass", function() {
         },
         link: function(scope, elem, attr) {
             var card = scope.ngClasses;
-            if (card.content.length > 100) {
+            if (card.content.length > 100 || card.kind !== 'text') {
                 $(elem).parent().addClass('cursor');
             }
             if (card.kind == 'image') {
