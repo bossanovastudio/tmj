@@ -16,7 +16,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
         var desktop = angular.element(document.querySelector('.desktop'));
         desktop.attr('src', '/img/fechar-desktop.svg');
         var mobile = angular.element(document.querySelector('.mobile'));
-        mobile.attr('src', '/img/fechar-mobile.png');
+        mobile.attr('src', '/img/fechar-mobile.svg');
         var sidebar = angular.element(document.querySelector('.sidebar'));
         sidebar.addClass('open');
         var html = angular.element(document.querySelector('html'));
@@ -28,7 +28,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
         var desktop = angular.element(document.querySelector('.desktop'));
         desktop.attr('src', '/img/menu-desktop.svg');
         var mobile = angular.element(document.querySelector('.mobile'));
-        mobile.attr('src', '/img/menu-mobile.png');
+        mobile.attr('src', '/img/menu-mobile.svg');
         var sidebar = angular.element(document.querySelector('.sidebar'));
         sidebar.removeClass('open');
         var html = angular.element(document.querySelector('html'));

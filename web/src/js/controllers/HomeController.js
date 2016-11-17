@@ -16,10 +16,6 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
         'https://vimeo.com/95656929'
     ]
 
-    $scope.isMobile = function() {
-        return $(window).width() <= 480;
-    }
-
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
     $scope.count = 0;
@@ -38,13 +34,13 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         kind: 'featured',
                         url: '/img/featured_background.png',
                         size: ['four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four'][$scope.count++],
-                        content: 'I watched the storm, so beautiful yet so terrific'
+                        content: 'Seja sua própria heroína. Somos todas #donasdarua'
                     });
                     $scope.cards.push({
                         id: (parseInt(Math.random() * 999999) + 1),
                         kind: 'video',
-                        url: $scope.VIDEOS[parseInt(Math.random() * 6)],
-                        content: 'I watched the storm, so beautiful yet so terrific',
+                        url: $scope.VIDEOS[3],
+                        content: 'Seja sua própria heroína. Somos todas #donasdarua',
                         size: 'two',
                         posted_at: '2016-11-03T12:38:43.000Z'
                     });
@@ -52,7 +48,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         $scope.cards.push(card);
                     });
                     $scope.ready = true;
-                    if (!$scope.isMobile()) {
+                    if (!isMobileDevice) {
                         setTimeout(function() {
                             if ($('.cards').data('masonry')) {
                                 $('.cards').masonry('reloadItems');
@@ -74,7 +70,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                     }
                     if ($scope.PAGE == 1) {
                         setTimeout(function() {
-                            if ( $('.initial-loading').is(':visible') ) {
+                            if ($('.initial-loading').is(':visible')) {
                                 $('.initial-loading').hide();
                             }
                             $('.cards').find('.card').addClass('show');
@@ -118,7 +114,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                 })
                 .success(function(data) {
                     $rootScope.card = data;
-                    if ($(window).width() < 481) {
+                    if (isMobileDevice) {
                         var card = $(elem).closest('.card').clone();
                         card.css({
                             "position": "absolute",
@@ -128,6 +124,8 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                             "top": 47,
                             "z-index": 999
                         });
+                        var content = $compile(card.html())($scope);
+                        card.html(content);
                         $('body').append(card);
                         card.animate({
                             left: 0,
@@ -135,29 +133,46 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                             margin: 0,
                             width: '100%',
                             height: '100%'
-                        }, 300);
-                        card.find('.img, .content').animate({
-                            height: "50%"
-                        }, 300);
-                        card.find('.heart').attr('src', '/img/like.png').width(24);
-                        card.find('.arrow').attr('src', '/img/share.png').width(24);
-                        card.find('.read-more').remove();
-                        card.find('.text').css({
-                            height: '45%',
-                            overflow: 'auto'
-                        });
-                        card.find('.text').text(content.content);
-                        card.find('.share').css({
-                            position: 'absolute',
-                            bottom: 0,
-                            width: '90%',
-                            'margin-bottom': 10
-                        });
-                        var close = $compile('<img class="close" ng-click="close($event)" src="/img/fechar.png" />')($scope);
-                        card.append(close);
-                        card.find('.close').css({
-                            display: 'block'
-                        });
+                        }, 200);
+
+                        setTimeout(function() {
+                            $('.card').last().find('.heart').attr('src', '/img/like.png').width(24);
+                            $('.card').last().find('.arrow').attr('src', '/img/share.png').width(24);
+                            $('.card').last().find('.read-more').remove();
+
+                            if ($('.card').last().hasClass('text')) {
+                                $('.card').last().find('.content').css({
+                                    height: '100%',
+                                    overflow: 'auto'
+                                });
+                                $('.card').last().find('.text').css({
+                                    height: '85%',
+                                    overflow: 'auto'
+                                });
+                            } else {
+                                $('.card').last().find('.img, .content').animate({
+                                    height: "50%"
+                                }, 300);
+                                $('.card').last().find('.text').css({
+                                    height: '45%',
+                                    overflow: 'auto'
+                                });
+                            }
+
+                            $('.card').last().find('.text').text(content.content);
+                            $('.card').last().find('.share').css({
+                                position: 'absolute',
+                                bottom: 0,
+                                width: '90%',
+                                'margin-bottom': 10
+                            });
+                            var close = $compile('<img class="close" ng-click="close($event)" src="/img/fechar.png" />')($scope);
+                            $('.card').last().append(close);
+                            $('.card').last().find('.close').css({
+                                display: 'block'
+                            });
+                        }, 1);
+
                     } else {
                         if ($rootScope.card.content.length > 100 || $rootScope.card.kind == 'image') {
                             $('body').css({ overflow: "hidden" });
@@ -207,6 +222,8 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                 });
         }
     }
+
+    $scope.textSize = !isMobileDevice ? 100 : 200;
 
     $scope._throttleTimer = null;
     $scope._throttleDelay = 100;

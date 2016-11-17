@@ -5,8 +5,8 @@
         <div ng-if="card.kind != 'featured'" class="content">
             <p class="name">{{card.user.name}}</p>
             <p class="date"><img src="/img/{{card.origin}}.png" /> {{card.posted_at | formatDate}}</p>
-            <p class="text">{{card.content | cropText}}</p>
-            <p class="read-more" ng-if="card.content.length > 100 || card.kind == 'image'">Leia mais</p>
+            <p class="text">{{card | cropText}}</p>
+            <p class="read-more" ng-if="card.content.length > textSize || card.kind == 'image'">Leia mais</p>
             <div ng-include src="'/pages/share.html'"></div>
         </div>
         <p ng-if="card.kind == 'featured'">{{card.content}}</p>

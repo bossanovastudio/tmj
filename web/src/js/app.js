@@ -1,5 +1,6 @@
 var API_URL = "@@replace_api_grunt";
 var SITE_URL = window.location.protocol + '//' + window.location.host;
+var isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 var tmj = angular.module('tmj', ['ngTouch', 'ngRoute', 'ngAnimate', 'ngCookies', 'ngResource']);
 tmj
@@ -35,12 +36,17 @@ tmj
     });
 
 tmj.filter('cropText', function() {
-    return function(input) {
-        if (input !== null) {
-            var maxLength = 100;
-            var trimmedString = input.substr(0, maxLength);
-            if (trimmedString.length == input.length) {
-                return input;
+    return function(card) {
+        if (card.content !== null) {
+            var maxLength = 0;
+            if (card.kind == 'text') {
+                maxLength = $(window).width() > 480 ? 100 : 300
+            } else {
+                maxLength = $(window).width() > 480 ? 100 : 200;
+            }
+            var trimmedString = card.content.substr(0, maxLength);
+            if (trimmedString.length == card.content.length) {
+                return card.content;
             }
             return trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" "))) + ' ...';
         }
@@ -49,6 +55,9 @@ tmj.filter('cropText', function() {
 
 tmj.filter('formatDate', function() {
     return function(input) {
+        if (!input) {
+            return '';
+        }
         var year = input.substring(0, 4);
         var monthNames = ["jan", "fev", "mar", "abr", "mai", "jun",
             "jul", "ago", "set", "out", "nov", "dez"
