@@ -262,6 +262,9 @@ div.card {
     transition: opacity 1s ease-in-out;
     -moz-transition: opacity 1s ease-in-out;
     -webkit-transition: opacity 1s ease-in-out;
+    &.cursor {
+        cursor: pointer;
+    }
     &.show {
         opacity: 1;
     }

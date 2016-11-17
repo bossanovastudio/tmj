@@ -110,6 +110,9 @@ tmj.directive("cardClass", function() {
         },
         link: function(scope, elem, attr) {
             var card = scope.ngClasses;
+            if (card.content.length > 100) {
+                $(elem).parent().addClass('cursor');
+            }
             if (card.kind == 'image') {
                 var ratio = parseFloat(card.image.ratio.replace(',', '.'));
                 if (ratio <= 1) {
