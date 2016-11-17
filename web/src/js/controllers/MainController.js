@@ -87,10 +87,9 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
     $scope.closeLightboxClick = function($event) {
         var e = angular.element($event.target);
         e = $(e);
-        console.log(e.attr('class'));
-        // if (parseInt(keyCode) == 27) {
-        //     $scope.closeLightbox();
-        // }
+        if (!e.hasClass('preview') && !e.hasClass('detail')) {
+            $scope.closeLightbox();
+        }
     }
     $scope.closeLightboxKey = function(keyCode) {
         console.log(keyCode);

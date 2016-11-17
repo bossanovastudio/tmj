@@ -63,7 +63,7 @@
         </footer>
     </div>
     <div class="overlay" ng-click="closeMenu()"></div>
-    <div class="lightbox" ng-click="closeLightboxClick()">
+    <div class="lightbox" ng-click="closeLightboxClick($event)">
         <div class="detail content {{card.kind=='image' ? 'image' : ''}}">
             <div class="preview" style="background-image:url('{{card.image.url}}')"></div>
             <div class="text">
