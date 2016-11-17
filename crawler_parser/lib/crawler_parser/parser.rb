@@ -37,7 +37,7 @@ module CrawlerParser
       card = Card.new
       card.origin     = :facebook
       card.content    = post.content.message
-      card.source_url = "https://facebook.com/" post.id
+      card.source_url = "https://facebook.com/" + post.id
       card.posted_at  = post.content.created_time
 
       card
