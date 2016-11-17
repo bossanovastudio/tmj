@@ -4,7 +4,7 @@ module CrawlerParser
       @post = post
     end
 
-    def media_url
+    def image_url
       if @post.content.respond_to?('entities')
         if @post.content.entities.include?('media')
           unless @post.content.entities['media'].first.nil?
@@ -19,7 +19,7 @@ module CrawlerParser
     end
 
     def run
-      image_id = self.send('image', self.media_url) unless self.media_url.nil?
+      image_id = self.send('image', self.image_url) unless self.image_url.nil?
       card = self.send(@post.social_media, @post)
       
       unless image_id.nil?
@@ -35,8 +35,9 @@ module CrawlerParser
     private
     def facebook(post)
       card = Card.new
-      card.origin     = 1
+      card.origin     = :facebook
       card.content    = post.content.message
+      card.source_url = "https://facebook.com/" post.id
       card.posted_at  = post.content.created_time
 
       card
@@ -44,8 +45,9 @@ module CrawlerParser
 
     def twitter(post)
       card = Card.new
-      card.origin     = 2
+      card.origin     = :twitter
       card.content    = post.content.text
+      card.source_url = "https://twitter.com/statuses/" + post.id
       card.posted_at  = post.content.created_at
 
       card
