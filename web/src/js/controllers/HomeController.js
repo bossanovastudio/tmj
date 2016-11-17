@@ -21,6 +21,9 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
     $scope.count = 0;
 
     $scope.loadCards = function(p) {
+        if ($scope.PAGE > 1) {
+            $('.cards').addClass('loading');
+        }
         $http({
                 method: 'get',
                 url: API_URL + '/api/cards/' + p + '/' + $scope.SIZE + '.json',
@@ -77,6 +80,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         }, 1000);
                     } else {
                         setTimeout(function() {
+                            $('.cards').removeClass('loading');
                             $('.cards').find('.card').addClass('show');
                         }, 1000);
                     }

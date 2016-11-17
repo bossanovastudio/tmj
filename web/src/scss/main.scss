@@ -253,6 +253,21 @@ p.date {
     }
 }
 
+.cards{
+    &.loading{
+        &:after{
+            content: 'loading...';
+            z-index: 9;
+            position: absolute;
+            color: #fff;
+            bottom: 0;
+            font-size: 18px;
+            width: 100%;
+            text-align: center;
+        }
+    }
+}
+
 div.card {
     background-color: #d8d8d8;
     position: relative;
@@ -678,7 +693,7 @@ div.card {
                 width: 39%;
             }
             div.shareBox {
-                right: 45px !important;
+                right: 35px !important;
             }
         }
     }
