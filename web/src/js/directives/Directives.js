@@ -1,11 +1,12 @@
 var organizeCards = function(newValue, oldValue) {
-    if (newValue.w > 480) {
+    if (!isMobileDevice) {
         $('.cards').css({
             "width": "80%",
             "max-width": "1180px",
             "margin": "0 auto",
             "padding": 0
         });
+        $('html, body, section').css({overflow: 'auto'});
         if (newValue.w < 550) {
             $('.cards').find('.card').each(function() {
                 $(this).attr('style', '');
@@ -27,10 +28,11 @@ var organizeCards = function(newValue, oldValue) {
                 $('.cards').masonry();
             }
         }
-    } else {
+    } else if (isMobileDevice) {
         if ($('.cards').data('masonry')) {
             $('.cards').masonry('destroy');
         }
+        $('html, body, section').css({overflow: 'hidden'});
         $('.cards').each(function() {
             var card = $(this).find('.card');
             card.width(newValue.w - 80);
@@ -42,7 +44,7 @@ var organizeCards = function(newValue, oldValue) {
             card.each(function(i, c) {
                 if ($(c).hasClass('featured')) {
                     $(c).attr('class', 'card featured ng-scope');
-                    $(c).css({ "height": h + (h/3)*2 + 40 });
+                    $(c).css({ "height": h + (h / 3) * 2 + 40 });
                 } else if ($(c).hasClass('video')) {
                     $(c).attr('class', 'card video ng-scope');
                     $(c).find('.img').css({ "height": 0 });
