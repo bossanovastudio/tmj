@@ -284,6 +284,7 @@ div.card {
         opacity: 1;
     }
     &.featured {
+        cursor: pointer;
         height: 300px;
         position: relative;
         background-position: center center;

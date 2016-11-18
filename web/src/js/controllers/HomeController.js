@@ -1,4 +1,4 @@
-tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $compile, $routeParams) {
+tmj.controller('HomeController', function($rootScope, $location, $scope, $http, $sce, $compile, $routeParams) {
 
     $scope.ready = false;
     $scope.cards = [];
@@ -98,7 +98,6 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                             if ($('.initial-loading').is(':visible')) {
                                 $('.initial-loading').hide();
                             }
-                            console.log('teste');
                             $('.cards').find('.card').addClass('show');
                         }, 1000);
                     } else {
@@ -177,7 +176,9 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
     }
     $scope.openCard = function($event, id, content) {
         var elem = angular.element($event.target);
-        if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('shareButton')) {
+        if (content.kind == "featured") {
+            $location.path( content.source_url );
+        } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('shareButton')) {
             $http({
                     method: 'get',
                     url: API_URL + '/api/cards/' + id + '.json',
