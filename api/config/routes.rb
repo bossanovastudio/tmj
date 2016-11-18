@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       member do
         get 'like'
         get 'unlike'
+        get 'accept'
+        get 'reject'
       end
       
       collection do
