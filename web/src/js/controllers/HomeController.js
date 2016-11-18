@@ -4,7 +4,7 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
     $scope.cards = [];
 
     $scope.PAGE = 1;
-    $scope.SIZE = 20;
+    $scope.SIZE = 3;
     $scope.END = false;
 
     $scope.VIDEOS = [
@@ -19,6 +19,21 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
     $scope.count = 0;
+
+    if (!isMobileDevice) {
+        $('.cards.mobile').remove();
+    }
+
+    $scope.cardsFeatured = [];
+    for (var i = 0; i < 5; i++) {
+        $scope.cardsFeatured.push({
+            id: (parseInt(Math.random() * 999999) + 1),
+            kind: 'featured',
+            url: '/img/featured_background.png',
+            size: ['four'],
+            content: 'Seja sua própria heroína. Somos todas #donasdarua'
+        })
+    }
 
     $scope.loadCards = function(p) {
         if ($scope.PAGE > 1) {
@@ -70,12 +85,20 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                         if ($('.cards').data('masonry')) {
                             $('.cards').masonry('destroy');
                         }
+                        if ($scope.PAGE == 1) {
+                            setTimeout(function() {
+                                $('.cards').each(function(i, e) {
+                                    $(e).css({ top: i * $(window).height() });
+                                });
+                            }, 500);
+                        }
                     }
                     if ($scope.PAGE == 1) {
                         setTimeout(function() {
                             if ($('.initial-loading').is(':visible')) {
                                 $('.initial-loading').hide();
                             }
+                            console.log('teste');
                             $('.cards').find('.card').addClass('show');
                         }, 1000);
                     } else {
@@ -87,45 +110,69 @@ tmj.controller('HomeController', function($rootScope, $scope, $http, $sce, $comp
                 }
             });
     }
-
     $scope.loadCards($scope.PAGE);
-    $scope.currentScroll = 0;
 
-    var distanceTop = 0;
-    $scope.swipeLeft = function() {
-        $scope.currentScroll = $('section').scrollLeft();
-        $('section').animate({
-            scrollLeft: $scope.currentScroll += $('.card').width() + 20
-        }, 250);
-        $scope.currentScroll = $scope.currentScroll + ($('.card').width() + 20) * 2;
-        var total = $('.card').length * ($('.card').width() + 20);
-        if ($scope.currentScroll == total) {
-            $scope.PAGE++;
-            $scope.loadCards($scope.PAGE);
+    $scope.swipeLeft = function($event) {
+        var e = angular.element($event.target);
+        e = $(e);
+        if (!e.hasClass('container')) {
+            e = $(e).closest('.container');
+        }
+        var walk = parseInt(e.css('left').replace('px')) - ($('.card').width() + 20);
+        var size = e.find('.card').length;
+        if (!e.hasClass('mobile')) {
+            size = size - 1;
+        }
+        if (walk != -(size * ($('.card').width() + 20))) {
+            $(e).animate({
+                left: walk
+            }, 250);
+        } else {
+            if (!e.hasClass('mobile')) {
+                $scope.PAGE++;
+                $scope.loadCards($scope.PAGE);
+            }
+            if (walk != -((size+1) * ($('.card').width() + 20))) {
+                $(e).animate({
+                    left: walk
+                }, 250);
+            }
         }
     }
-    $scope.swipeRight = function() {
-        $scope.currentScroll = $('section').scrollLeft();
-        $('section').animate({
-            scrollLeft: $scope.currentScroll -= $('.card').width() + 20
+    $scope.swipeRight = function($event) {
+        var e = angular.element($event.target);
+        e = $(e);
+        if (!e.hasClass('container')) {
+            e = $(e).closest('.container');
+        }
+        var walk = parseInt(e.css('left').replace('px')) + ($('.card').width() + 20);
+        if (walk > 0) {
+            walk = 0;
+        }
+        $(e).animate({
+            left: walk
         }, 250);
     }
+
+    var distanceTop = 0;
     $scope.swipeUp = function() {
-        distanceTop = $(window).height();
-        $('.cards').each(function() {
+        distanceTop = -$(window).height();
+        $('.cards').each(function(i, e) {
             var top = parseInt($(this).css('top').replace('px'));
-            $(this).animate({ top: top - distanceTop });
+            if (i == 0 && top == (($('.cards').length - 1) * distanceTop)) {
+                distanceTop = 0;
+            }
+            $(this).animate({ top: top + distanceTop });
         });
     }
     $scope.swipeDown = function() {
         distanceTop = $(window).height();
-        $('.cards').each(function() {
+        $('.cards').each(function(i, e) {
             var top = parseInt($(this).css('top').replace('px'));
-            var to = top + distanceTop;
-            if (to > 0) {
-                to = 0;
+            if (i == 0 && top == 0) {
+                distanceTop = 0;
             }
-            $(this).animate({ top: to });
+            $(this).animate({ top: top + distanceTop });
         });
     }
     $scope.openCard = function($event, id, content) {

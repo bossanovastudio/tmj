@@ -273,7 +273,7 @@ div.card {
     position: relative;
     margin-bottom: 24px;
     margin: 0 1% 20px 1%;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 1s ease-in-out;
     -moz-transition: opacity 1s ease-in-out;
     -webkit-transition: opacity 1s ease-in-out;
@@ -541,7 +541,7 @@ div.card {
                     opacity: 1;
                 }
 
-                &:-ms-input-placeholder {  
+                &:-ms-input-placeholder {
                     opacity: 1;
                 }
             }
