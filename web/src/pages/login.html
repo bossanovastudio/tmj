@@ -12,47 +12,26 @@
 	        <div class="form-group pass">
 	            <label for="password">Senha</label>
 	            <br>
-	            <input type="hidden" name="password" class="form-control"/>
 	            <ul class="input-pass">
-	            	<li ng-click="openPassword($event)"></li>
-	            	<li ng-click="openPassword($event)"></li>
-	            	<li ng-click="openPassword($event)"></li>
+	            	<li ng-click="togglePassword()" style="background:url('{{selected1.img}}'); background-size: cover;">
+	            		<input type="hidden" name="pass-1" value="{{pass.value}}"/>
+	            	</li>
+	            	<li ng-click="togglePassword()">
+	            		<input type="hidden" name="pass-2" value="{{pass.value}}"/>
+	            	</li>
+	            	<li ng-click="togglePassword()">
+	            		<input type="hidden" name="pass-3" value="{{pass.value}}"/>
+	            	</li>
 	            </ul>
 	            <a href="#" class="link-pass">Esqueceu a senha?</a>
-	            <div class="pass-box">
+	            <div class="pass-box hide" ng-class="{show: open, hide: !open}">
 	            	<ul>
-	            		<li class="pass-monica">
-	            			<img src="/img/monica.png" alt="">
-	            		</li>
-	            		<li class="pass-cebola">
-	            			<img src="/img/cebola.png" alt="">
-	            		</li>
-	            		<li class="pass-cascao">
-	            			<img src="/img/cascao.png" alt="">
-	            		</li>
-	            		<li class="pass-magali">
-	            			<img src="/img/magali.png" alt="">
-	            		</li>
-	            		<li class="pass-marina">
-	            			<img src="/img/marina.png" alt="">
-	            		</li>
-	            		<li class="pass-denise">
-	            			<img src="/img/denisejovem.png" alt="">
-	            		</li>
-	            		<li class="pass-xaveco">
-	            			<img src="/img/xaveco.png" alt="">
-	            		</li>
-	            		<li class="pass-carmen">
-	            			<img src="/img/carmen.png" alt="">
-	            		</li>
-	            		<li class="pass-docontra">
-	            			<img src="/img/docontra.png" alt="">
-	            		</li>
-	            		<li class="pass-nimbus">
-	            			<img src="/img/nimbus.png" alt="">
+	            		<li ng-repeat="pass in passwords" ng-class="{active : isSelected(pass)}">
+	            			<img src="{{pass.img}}" alt="{{pass.name}}" ng-click="setMaster(pass)">
 	            		</li>
 	            	</ul>
 	            </div>
+            	<h1>{{selected1.value}}</h1>
 	        </div>
 	        <div class="form-actions">
 	            <button type="submit" class="btn btn-submit">Entrar</button>
