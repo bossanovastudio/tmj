@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Admin TMJ</title>
   <%= stylesheet_link_tag "application"%>
+  <%= javascript_include_tag "application", 'data-turbolinks-track': 'reload' %>
 </head>
 <body id="admin">
   <div class="menu">
@@ -29,13 +30,13 @@
           <p>Cards</p>
         <% end %>
         <ul class="subitem-list">
-          <li class="active"> 
+          <li class="active">
             <%= link_to "Moderar cards", root_path %>
           </li>
-          <li>  
+          <li>
             <%= link_to "Destaques", root_path %>
           </li>
-          <li>  
+          <li>
             <%= link_to "Upload card", root_path%>
           </li>
         </ul>
@@ -58,17 +59,17 @@
     <h1 class="title"> Moderar Cards</h1>
     <div class="filter-bar">
     <div class="btn-filter">
-      <div class="status">
-        <a href="#" class="main-select st-sel">Pendentes</a>
+      <div class="status item">
+        <div class="main-select st-sel">Pendentes</div>
         <ul>
            <li class="active" value='0'>Pendentes</li>
            <li value='1'>Negados</li>
            <li value='2'>Aprovados</li>
         </ul>
       </div>
-      
-      <div class="social">
-        <a href="#" class="main-select so-sel">Todos</a>
+
+      <div class="social item">
+        <div class="main-select so-sel">Todos</div>
         <ul>
            <li value='0' class="active">Todos</li>
            <li value='1'>Facebook</li>
@@ -81,12 +82,12 @@
            <li value='8'>Blog</li>
         </ul>
       </div>
-      
+
       <form>
           <input type=search name=search placeholder="Buscar">
       </form>
     </div>
-      
+
       <div class="btn-status">
         <%= link_to root_path, class: "aprovar" do %>
           <%= image_tag "aprovar.svg" %>
@@ -101,5 +102,7 @@
     </div>
 
   </div>
+
+  <div id="overlay"></div>
 </body>
 </html>

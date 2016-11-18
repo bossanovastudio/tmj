@@ -4,7 +4,7 @@
         <div ng-if="card.kind == 'video'" ng-bind-html="card.url | formatVideo | trust"></div>
         <div ng-if="card.kind != 'featured'" class="content">
             <p class="name">{{card.user.name}}</p>
-            <p class="date"><img src="/img/{{card.origin}}.svg" /> {{card.posted_at | formatDate}}</p>
+            <p class="date"><a ng-href="{{card.source_url}}"><img src="/img/{{card.origin}}.svg" /></a> {{card.posted_at | formatDate}}</p>
             <p class="text">{{card | cropText}}</p>
             <p class="read-more" ng-if="card.content.length > textSize || card.kind == 'image'">Leia mais</p>
             <div ng-include src="'/pages/share.html'"></div>
@@ -18,7 +18,7 @@
         <div ng-if="card.kind == 'video'" ng-bind-html="card.url | formatVideo | trust"></div>
         <div ng-if="card.kind != 'featured'" class="content">
             <p class="name">{{card.user.name}}</p>
-            <p class="date"><img src="/img/{{card.origin}}.svg" /> {{card.posted_at | formatDate}}</p>
+            <p class="date"><a ng-href="{{card.source_url}}"><img src="/img/{{card.origin}}.svg" /></a> {{card.posted_at | formatDate}}</p>
             <p class="text">{{card | cropText}}</p>
             <p class="read-more" ng-if="card.content.length > textSize || card.kind == 'image'">Leia mais</p>
             <div ng-include src="'/pages/share.html'"></div>

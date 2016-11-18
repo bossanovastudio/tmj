@@ -3,7 +3,7 @@ var organizeCards = function(newValue, oldValue) {
         $('.cards').css({
             "width": "80%",
             "max-width": "1180px",
-            "margin": "0 auto",
+            "margin": "0 auto 50px auto",
             "padding": 0
         });
         $('html, body, section').css({overflow: 'auto'});
