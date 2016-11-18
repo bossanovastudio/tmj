@@ -273,7 +273,7 @@ div.card {
     position: relative;
     margin-bottom: 24px;
     margin: 0 1% 20px 1%;
-    opacity: 1;
+    opacity: 0;
     transition: opacity 1s ease-in-out;
     -moz-transition: opacity 1s ease-in-out;
     -webkit-transition: opacity 1s ease-in-out;
@@ -776,6 +776,7 @@ footer {
         }
     }
     div.card{
+        opacity: 1;
         .close{
             right: 10px;
             top: 10px;
