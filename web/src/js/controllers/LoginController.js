@@ -4,6 +4,10 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
     $('.purple-overlay').show();
 
     $scope.openPassword = function($event) {
-        $('.pass-box').addClass('show');
+        if ($('.pass-box').hasClass('show')){
+            $('.pass-box').removeClass('show');
+        } else{
+            $('.pass-box').addClass('show');
+        }
     }
 });
