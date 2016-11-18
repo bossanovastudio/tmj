@@ -247,6 +247,7 @@ tmj.controller('HomeController', function($rootScope, $location, $scope, $http, 
                     } else {
                         if ($rootScope.card.content.length > 100 || $rootScope.card.kind == 'image') {
                             $('body').css({ overflow: "hidden" });
+                            $location.path( "/detalhe/card/" + $rootScope.card.id, false );
                             var lightbox = angular.element(document.querySelector('.lightbox'));
                             lightbox.fadeIn();
                         }
@@ -256,7 +257,7 @@ tmj.controller('HomeController', function($rootScope, $location, $scope, $http, 
     }
 
     if ($routeParams.id) {
-        $scope.openCard({}, $routeParams.id);
+        $scope.openCard({}, $routeParams.id, $rootScope.card);
     }
 
     $scope.close = function($event) {

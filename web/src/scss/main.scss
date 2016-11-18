@@ -254,16 +254,20 @@ p.date {
 }
 
 .cards{
+    &:after{
+        content: '';
+        z-index: 9;
+        position: absolute;
+        bottom: -30px;
+        width: 51px;
+        height: 21px;
+        left: 50%;
+        margin-left: -35px;
+    }
     &.loading{
         &:after{
-            content: 'loading...';
-            z-index: 9;
-            position: absolute;
-            color: #fff;
-            bottom: 0;
-            font-size: 18px;
-            width: 100%;
-            text-align: center;
+            background: url(/img/pag_loading.gif);
+            background-size: cover;
         }
     }
 }
@@ -766,6 +770,9 @@ footer {
         top: 0px;
         height: 100%;
         overflow: hidden;
+        &:after{
+            display: none;
+        }
         .card {
             float: left;
             margin: 0px 10px;

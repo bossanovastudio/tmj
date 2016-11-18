@@ -1,4 +1,4 @@
-tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
+tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $location) {
     $rootScope.API_URL = API_URL;
     $rootScope.SITE_URL = SITE_URL;
     $rootScope.card = {};
@@ -93,6 +93,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
         }
     });
     $scope.closeLightbox = function() {
+        $location.path( $rootScope.previousURL, false);
         $('.lightbox').fadeOut();
         $('body').css({ overflow: "auto" });
     }
