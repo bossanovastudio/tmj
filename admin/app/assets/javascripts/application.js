@@ -15,3 +15,25 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+  var overlay = $('#overlay'),
+      filterList = $('.btn-filter .item ul'),
+      filterItem = $('.btn-filter .item');
+
+  filterItem.click(function(e){
+    if ($(e.target).is('li')) {
+      overlay.hide();
+      $(this).find('ul').hide();
+    } else {
+      $(this).find('ul').show();
+      overlay.show();
+    }
+  })
+
+  overlay.click(function(){
+    $(this).hide();
+    filterList.hide();
+  })
+
+});
