@@ -16,6 +16,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
         $scope.open = !$scope.open;
 
         if ($scope.open) {
+        	$scope.passwordChoise.length = 0;
             
         } else {
 
@@ -23,72 +24,80 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
     };
 
     $scope.passwords = [{
-		id: 1,
+		id: 0,
 		value: 'mon',
 		name: 'monica',
 		img: '/img/monica.png'
 	},
 	{
-		id: 2,
+		id: 1,
 		value: 'ceb',
 		name: 'cebola',
 		img: '/img/cebola.png'
 	},
 	{
-		id: 3,
+		id: 2,
 		value: 'cas',
 		name: 'cascao',
 		img: '/img/cascao.png'
 	},
 	{
-		id: 4,
+		id: 3,
 		value: 'mag',
 		name: 'magali',
 		img: '/img/magali.png'
 	},
 	{
-		id: 5,
+		id: 4,
 		value: 'mar',
 		name: 'marina',
 		img: '/img/marina.png'
 	},
 	{
-		id: 6,
+		id: 5,
 		value: 'den',
 		name: 'denise',
 		img: '/img/denisejovem.png'
 	},
 	{
-		id: 7,
+		id: 6,
 		value: 'xav',
 		name: 'xaveco',
 		img: '/img/xaveco.png'
 	},
 	{
-		id: 8,
+		id: 7,
 		value: 'car',
 		name: 'carmen',
 		img: '/img/carmen.png'
 	},
 	{
-		id: 9,
+		id: 8,
 		value: 'doc',
 		name: 'docontra',
 		img: '/img/docontra.png'
 	},
 	{
-		id: 10,
+		id: 9,
 		value: 'nim',
 		name: 'nimbus',
 		img: '/img/nimbus.png'
 	}];
 
-	$scope.setMaster = function(pass) {
-        $scope.selected1 = pass;
-    }
-
-    $scope.isSelected = function(pass) {
-        return $scope.selected1 === pass;
-    }
+	$scope.passwordChoise = [];
+	$scope.numClick = 0;
+	$scope.addToPasswordChoise = function(pass) {
+		$scope.numClick = $scope.numClick + 1;
+		$scope.passwordChoise.push($scope.passwords[pass.id]);
+		if ($scope.numClick == 1){
+			$('.after').css({ "left": 55 });
+		} else if ($scope.numClick == 2){
+			$('.after').css({ "left": 95 });
+		} else{
+			$('.after').css({ "left": 10 });
+			$scope.numClick = 0;
+	        $scope.open = !$scope.open;
+		}
+	}
 
 });

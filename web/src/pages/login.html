@@ -13,25 +13,23 @@
 	            <label for="password">Senha</label>
 	            <br>
 	            <ul class="input-pass">
-	            	<li ng-click="togglePassword()" style="background:url('{{selected1.img}}'); background-size: cover;">
-	            		<input type="hidden" name="pass-1" value="{{pass.value}}"/>
+	            	<li ng-click="togglePassword()" style="background:url('{{passwordChoise[0].img}}'); background-size: cover;">
+	            		<input type="hidden" name="pass-1" value="{{passwordChoise[0].value}}"/>
 	            	</li>
-	            	<li ng-click="togglePassword()">
-	            		<input type="hidden" name="pass-2" value="{{pass.value}}"/>
-	            	</li>
-	            	<li ng-click="togglePassword()">
-	            		<input type="hidden" name="pass-3" value="{{pass.value}}"/>
-	            	</li>
+	            	<li ng-click="togglePassword()" style="background:url('{{passwordChoise[1].img}}'); background-size: cover;">
+	            		<input type="hidden" name="pass-2" value="{{passwordChoise[1].value}}"/>
+	            	<li ng-click="togglePassword()" style="background:url('{{passwordChoise[2].img}}'); background-size: cover;">
+	            		<input type="hidden" name="pass-3" value="{{passwordChoise[2].value}}"/>
 	            </ul>
 	            <a href="#" class="link-pass">Esqueceu a senha?</a>
 	            <div class="pass-box hide" ng-class="{show: open, hide: !open}">
 	            	<ul>
-	            		<li ng-repeat="pass in passwords" ng-class="{active : isSelected(pass)}">
-	            			<img src="{{pass.img}}" alt="{{pass.name}}" ng-click="setMaster(pass)">
+	            		<li ng-repeat="pass in passwords" ng-click="addToPasswordChoise(pass)">
+	            			<img src="{{pass.img}}" alt="{{pass.name}}">
 	            		</li>
 	            	</ul>
+	            	<div class="after"></div>
 	            </div>
-            	<h1>{{selected1.value}}</h1>
 	        </div>
 	        <div class="form-actions">
 	            <button type="submit" class="btn btn-submit">Entrar</button>
