@@ -32,6 +32,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery'
   gem 'rails-assets-jquery-ujs'
   gem 'rails-assets-bootstrap'
+  gem 'rails-assets-masonry'
 end
 
 group :development, :test do
@@ -60,4 +61,3 @@ group :production do
   # Embed the V8 Javascript Interpreter into Ruby
   gem 'therubyracer'
 end
-

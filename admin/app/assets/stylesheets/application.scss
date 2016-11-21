@@ -137,16 +137,13 @@ html {
   }
 }
 
-.content {
-  display: block;
+.top-bar {
   float: left;
   position: absolute;
   padding-top: 59px;
+  min-width: 836px;
   left: 244px;
   right: 0;
-  min-width: 836px;
-  height: 100%;
-  background-color: #eaeaea;
   .title {
     height: 79px;
     width: 100%;
@@ -269,6 +266,19 @@ html {
   }
 }
 
+.admin-content {
+  margin-top: 200px;
+  display: block;
+  float: left;
+  position: fixed;
+  overflow-y: auto;
+  left: 244px;
+  right: 0;
+  min-width: 836px;
+  height: 100%;
+  background-color: #eaeaea;
+}
+
 div.card {
     background-color: #d8d8d8;
     position: relative;
@@ -320,7 +330,7 @@ div.card {
             padding: 0 !important;
         }
     }
-    img.userPhoto {
+    img.user-photo {
         position: absolute;
         left: 50%;
         bottom: -20px;

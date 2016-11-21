@@ -128,9 +128,21 @@ GEM
       sprockets-rails (>= 2.0.0)
     rails-assets-bootstrap (3.3.7)
       rails-assets-jquery (>= 1.9.1, < 4)
+    rails-assets-desandro-matches-selector (2.0.1)
+    rails-assets-ev-emitter (1.0.3)
+    rails-assets-fizzy-ui-utils (2.0.3)
+      rails-assets-desandro-matches-selector (~> 2.0.0)
+    rails-assets-get-size (2.0.2)
     rails-assets-jquery (3.1.0)
     rails-assets-jquery-ujs (1.2.2)
       rails-assets-jquery (> 1.8)
+    rails-assets-masonry (4.1.1)
+      rails-assets-get-size (>= 2.0.2, < 3)
+      rails-assets-outlayer (>= 2.1.0, < 3)
+    rails-assets-outlayer (2.1.0)
+      rails-assets-ev-emitter (>= 1.0.0, < 2)
+      rails-assets-fizzy-ui-utils (>= 2.0.0, < 3)
+      rails-assets-get-size (>= 2.0.2, < 3)
     rails-controller-testing (1.0.1)
       actionpack (~> 5.x)
       actionview (~> 5.x)
@@ -206,6 +218,7 @@ DEPENDENCIES
   rails-assets-bootstrap!
   rails-assets-jquery!
   rails-assets-jquery-ujs!
+  rails-assets-masonry!
   rails-controller-testing
   sass-rails (~> 5.0)
   simple_form
@@ -219,4 +232,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.13.1
+   1.13.6
