@@ -46,6 +46,7 @@ tmj.controller('HomeController', function($rootScope, $location, $scope, $http, 
             .success(function(data) {
                 if (data.cards.length == 0) {
                     $scope.END = true;
+                    $('.cards').removeClass('loading');
                 } else {
                     $scope.cards.push({
                         id: (parseInt(Math.random() * 999999) + 1),
