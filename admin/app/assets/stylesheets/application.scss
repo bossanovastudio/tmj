@@ -3,6 +3,7 @@
 // = require_self
 
 @import 'https://fonts.googleapis.com/css?family=Lato:300,700';
+
 @font-face {
   font-family: 'KomikaTitle';
   src: url('/fonts/KomikaTitle-webfont.eot');
@@ -21,6 +22,23 @@
 html {
   height: 100%;
   min-height: 100%;
+}
+
+.scrollbar {
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    background-color: #D9D9DB;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #727272;
+  }
 }
 
 #admin {
@@ -43,44 +61,44 @@ html {
   font-style: normal;
   font-stretch: normal;
 
-	.user {
-		float: right;
-		font-size: 15px;
-		letter-spacing: 1px;
-	    line-height: 59px;
-	    text-align: right;
-	    position: relative;
-        padding-right: 20px;
-        color: #fff;
-        cursor: pointer;
-        .dropdown-content {
-		    display: none;
-		    position: absolute;
-    	    right: 0;
-    	    top: 45px;
-	        z-index: 9;
-	    	background-color: #f1f1f1;
-	    	border-radius: 3px;
-    	    line-height: 35px;
-		    a {
-				font-size: 13px;
-				color: #000;
-				padding: 0 13px;
-		    }
-		}
-		&:hover .dropdown-content {
-		    display: block;
-		}
-	    &:after {
-			content: '';
-			width: 11px;
-			height: 8px;
-			background-image: image-url("triangle.svg");
-		    position: absolute;
-		    right: 0px;
-		    top: 25px;
-		}
-	}
+  .user {
+    float: right;
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 59px;
+    text-align: right;
+    position: relative;
+    padding-right: 20px;
+    color: #fff;
+    cursor: pointer;
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 45px;
+      z-index: 9;
+      background-color: #f1f1f1;
+      border-radius: 3px;
+      line-height: 35px;
+      a {
+        font-size: 13px;
+        color: #000;
+        padding: 0 13px;
+      }
+    }
+    &:hover .dropdown-content {
+      display: block;
+    }
+    &:after {
+      content: '';
+      width: 11px;
+      height: 8px;
+      background-image: image-url("triangle.svg");
+      position: absolute;
+      right: 0px;
+      top: 25px;
+    }
+  }
 }
 
 .sidebar {
@@ -137,13 +155,17 @@ html {
   }
 }
 
-.top-bar {
-  float: left;
-  position: absolute;
-  padding-top: 59px;
-  min-width: 836px;
+.admin-content {
+  position: fixed;
   left: 244px;
   right: 0;
+  min-width: 836px;
+  height: 100%;
+}
+
+.top-bar {
+  padding-top: 59px;
+  width: 100%;
   .title {
     height: 79px;
     width: 100%;
@@ -266,159 +288,11 @@ html {
   }
 }
 
-.admin-content {
-  margin-top: 200px;
-  display: block;
-  float: left;
-  position: fixed;
-  overflow-y: auto;
-  left: 244px;
-  right: 0;
-  min-width: 836px;
+.bottom-content {
   height: 100%;
+  width: 100%;
   background-color: #eaeaea;
-}
-
-div.card {
-    background-color: #d8d8d8;
-    position: relative;
-    margin-bottom: 24px;
-    margin: 0 1% 20px 1%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    -moz-transition: opacity 1s ease-in-out;
-    -webkit-transition: opacity 1s ease-in-out;
-    &.cursor {
-        cursor: pointer;
-    }
-    &.show {
-        opacity: 1;
-    }
-    &.featured {
-        cursor: pointer;
-        height: 300px;
-        position: relative;
-        background-position: center center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), url(/img/tmj_monica.gif);
-        p {
-            font-family: KomikaTitle;
-            font-size: 30px;
-            letter-spacing: 1.2px;
-            margin: 0px;
-            color: #ffffff;
-            position: absolute;
-            left: 0px;
-            bottom: 0px;
-            padding: 25px;
-            max-width: 400px;
-        }
-        &.pne {
-            p {
-                font-size: 20px;
-            }
-        }
-    }
-    div.img {
-        background-position: center center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        position: relative;
-        cursor: pointer;
-        &.no-padding {
-            padding: 0 !important;
-        }
-    }
-    img.user-photo {
-        position: absolute;
-        left: 50%;
-        bottom: -20px;
-        z-index: 2;
-        margin-left: -22px;
-        width: 42px;
-        border-radius: 100%;
-        border: 2px solid #ffffff;
-        &.noPhoto {
-            position: relative;
-            left: 50%;
-            bottom: auto;
-            top: 0px;
-            z-index: 2;
-            margin-left: -22px;
-            margin-top: -10px;
-        }
-    }
-    div.content {
-        background: #ffffff;
-        padding: 18px 18px 12px 18px;
-        text-align: center;
-    }
-    p.text {
-        font-family: Lato;
-        font-size: 13px;
-        text-align: center;
-        color: #000000;
-        word-wrap: break-word;
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-    p.read-more {
-        display: inline;
-        width: auto;
-        color: #000;
-        font-weight: 700;
-        font-size: 13px;
-        cursor: pointer;
-        margin: 5px 0 0 0;
-        transition-duration: 0.1s;
-        padding: 1px 6px;
-        &:hover{
-            color: #fff;
-            background: #ff5050;
-            transition-duration: 0.1s;
-        }
-    }
-    .close {
-        position: absolute;
-        right: 20px;
-        top: 20px;
-        z-index: 99;
-        display: none;
-    }
-    &.text {
-        p.text {
-            font-size: 19px;
-        }
-    }
-    &.geeklike {
-        background: url(/img/faixa_geek.png) #d8d8d8 center top no-repeat;
-        padding-top: 30px;
-    }
-    &.geek {
-        background-color: #5bcfed;
-        .content {
-            background-color: #5bcfed;
-            * {
-                color: #ffffff;
-            }
-        }
-    }
-    &.noimage {
-        .text {
-            font-size: 20px;
-        }
-    }
-    &.video {
-        background: #ffffff;
-        .content {
-            padding-top: 0px;
-        }
-        iframe {
-            width: 100%;
-            height: 250px;
-        }
-    }
+  overflow-y: auto;
 }
 
 #overlay {
@@ -428,3 +302,5 @@ div.card {
   position: absolute;
   z-index: 3;
 }
+
+@import 'cards';

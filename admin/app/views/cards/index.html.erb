@@ -2,28 +2,19 @@
 
 <div id="cards-container" class="container cards">
   <% @cards.each do |card| %>
-    <div class="card two-five column show" data-class="card two-five column" data-id="<%= card.id %>">
-      <div class="card"  class="img"></div>
-        <div style="background-image:url('http://cdntmjofilme.s3.amazonaws.com/image/file/89/CqmjQMrWcAAyTuC.jpg')" class="img ">
-            <%= image_tag "user", class: 'user-photo' %>
-        </div>
-        <div class="content">
-            <p class="name">Robson Coelho</p>
-            <p class="date"><%= card.posted_at %></p>
-            <p class="text"><%= card.content %></p>
-            <!-- <p class="share">
-                <a ng-href="#">
-                    <img class="heart" src="/img/like.png">
-                </a>
-                <a ng-href="#">
-                    <img class="arrow" src="/img/share.png">
-                </a>
-            </p> -->
-        </div>
+  <div class="card two-five column show" data-class="card two-five column" data-id="<%= card.id %>">
+    <div style="background-image:url('http://cdntmjofilme.s3.amazonaws.com/image/file/89/CqmjQMrWcAAyTuC.jpg')" class="img ">
+      <%= image_tag "user", class: 'user-photo' %>
     </div>
+    <div class="content">
+      <p class="name">Robson Coelho</p>
+      <p class="date"><%= card.posted_at %></p>
+      <p class="text"><%= card.content %></p>
+    </div>
+  </div>
   <% end %>
 </div>
 <div class="card one-five column"></div>
 
 
-<%= link_to 'NEW CARD', new_card_path %>
+<!-- <%= link_to 'NEW CARD', new_card_path %> -->

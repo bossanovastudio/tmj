@@ -18,6 +18,8 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
+  resizeAdminBottomContent();
+
   var overlay = $('#overlay'),
   filterList = $('.btn-filter .item ul'),
   filterItem = $('.btn-filter .item');
@@ -58,4 +60,12 @@ $(document).on('turbolinks:load', function() {
   //   $('.cards').masonry('reloadItems');
   //   $('.cards').masonry();
   // }
+});
+
+function resizeAdminBottomContent() {
+  $('.admin-content .bottom-content').css('height', $('.admin-content').height() - 200);
+};
+
+$(window).resize(function() {
+    resizeAdminBottomContent();
 });
