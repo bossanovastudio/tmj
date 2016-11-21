@@ -178,7 +178,7 @@ tmj.controller('HomeController', function($rootScope, $location, $scope, $http, 
         var elem = angular.element($event.target);
         if (content.kind == "featured") {
             $location.path( content.source_url );
-        } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('shareButton')) {
+        } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('originalPost') && !elem.hasClass('shareButton')) {
             $http({
                     method: 'get',
                     url: API_URL + '/api/cards/' + id + '.json',
