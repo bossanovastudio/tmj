@@ -414,6 +414,14 @@ div.card {
     }
 }
 
+.arrowBottom{
+    position: fixed;
+    z-index: 999;
+    left: 50%;
+    margin-left: -10px;
+    bottom: 10px;
+}
+
 .purple-overlay {
     display: none;
     position: absolute;
