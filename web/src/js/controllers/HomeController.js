@@ -129,10 +129,7 @@ tmj.controller('HomeController', function($rootScope, $location, $scope, $http, 
             });
         } else {
             $("div.img").each(function(i, e) {
-                $(e).lazyload({
-                    effect: "fadeIn"
-                });
-                $(e).addClass('lazyloaded');
+                $(this).css({ "background-image": "url(" + $(this).data('original') + ")" });
             });
         }
     }
