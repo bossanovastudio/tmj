@@ -36,4 +36,32 @@ $(document).on('turbolinks:load', function() {
     filterList.hide();
   })
 
+  $('.cards').css({
+      "width": "80%",
+      "max-width": "1180px",
+      "margin": "0 auto",
+      "padding": 0
+  });
+  $('html, body, section').css({overflow: 'auto'});
+  if (newValue.w < 550) {
+      $('.cards').find('.card').each(function() {
+          $(this).attr('style', '');
+          $(this).attr('class', $(this).attr('data-class'));
+          $(this).find('.img').css('height', 'auto');
+          $(this).find('.img').removeClass('no-padding');
+          $(this).find('.img').css('padding', $(this).attr('data-padding'));
+      });
+      if (!$('.cards').data('masonry')) {
+          $('.cards').masonry({
+              itemSelector: '.card',
+              columnWidth: '.one-five',
+              percentPosition: false,
+              gutter: 20,
+              transitionDuration: 0
+          });
+      } else {
+          $('.cards').masonry('reloadItems');
+          $('.cards').masonry();
+      }
+  }
 });

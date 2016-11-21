@@ -1,8 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Cards</h1>
+<div id="cards-container" class="cards">
+  <% @cards.each do |card| %>
+    <div class="card six two-five column show">
+        <div style="background-image:url('{{card.media}}')" class="img">
+            <img class="userPhoto" src="/img/user.jpg" />
+        </div>
+        <div class="content">
+            <p class="name">Robson Coelho</p>
+            <p class="date"><img src="/img/facebook.png" /> <%= card.posted_at %></p>
+            <p class="text"><%= card.content %></p>
+            <p class="share">
+                <a ng-href="#">
+                    <img class="heart" src="/img/like.png">
+                </a>
+                <a ng-href="#">
+                    <img class="arrow" src="/img/share.png">
+                </a>
+            </p>
+        </div>
+    </div>
+  <% end %>
+</div>
 
-<table class="table table-striped">
+<!-- <table class="table table-striped">
   <thead>
     <tr>
       <th>Origin</th>
@@ -20,7 +41,7 @@
         <td><%= card.posted_at %></td>
         <td>
           <%= link_to card do %>
-          <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           <% end %>
         </td>
         <td>
@@ -36,7 +57,7 @@
       </tr>
     <% end %>
   </tbody>
-</table>
+</table> -->
 
 <br>
 
