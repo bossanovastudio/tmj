@@ -42,7 +42,7 @@ module CrawlerParser
       card = Card.new
       card.origin     = :facebook
       card.content    = post.content.message
-      card.source_url = "https://facebook.com/" + post.social_uuid unless post.social_uuid
+      card.source_url = "https://facebook.com/" + post.social_uuid if post.social_uuid
       card.posted_at  = post.content.created_time
 
       card
@@ -52,7 +52,7 @@ module CrawlerParser
       card = Card.new
       card.origin     = :twitter
       card.content    = post.content.text
-      card.source_url = "https://twitter.com/statuses/" + post.social_uuid unless post.social_uuid
+      card.source_url = "https://twitter.com/statuses/" + post.social_uuid if post.social_uuid
       card.posted_at  = post.content.created_at
 
       card
@@ -62,7 +62,7 @@ module CrawlerParser
       card = Card.new
       card.origin     = :youtube
       card.content    = post.content.title
-      card.source_url = "https://www.youtube.com/watch?v=" + post.social_uuid unless post.social_uuid
+      card.source_url = "https://www.youtube.com/watch?v=" + post.social_uuid if post.social_uuid
       card.posted_at  = post.content.publishedAt
 
       card
