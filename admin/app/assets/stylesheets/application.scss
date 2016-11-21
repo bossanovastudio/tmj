@@ -46,6 +46,13 @@ html {
   height: 100vh;
 }
 
+.title-admin {
+  line-height: 59px;
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
 .menu {
   z-index: 2;
   position: absolute;
@@ -299,7 +306,9 @@ html {
   display: none;
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
+  left: 0;
+  top: 0;
   z-index: 3;
 }
 

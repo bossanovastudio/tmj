@@ -1,20 +1,85 @@
-<p id="notice"><%= notice %></p>
+<div class="top-bar">
+  <h1 class="title"> Moderar Cards</h1>
+  <div id="overlay"></div>
+  
+  <div class="filter-bar">
+    <div class="btn-filter">
+      <div class="status item">
+        <div class="main-select st-sel">Pendentes</div>
+        <ul>
+          <li class="active" value='0'>Pendentes</li>
+          <li value='1'>Negados</li>
+          <li value='2'>Aprovados</li>
+        </ul>
+      </div>
 
-<div id="cards-container" class="container cards">
-  <% @cards.each do |card| %>
-  <div class="card two-five column show" data-class="card two-five column" data-id="<%= card.id %>">
-    <div style="background-image:url('http://cdntmjofilme.s3.amazonaws.com/image/file/89/CqmjQMrWcAAyTuC.jpg')" class="img ">
-      <%= image_tag "user", class: 'user-photo' %>
+      <div class="social item">
+        <div class="main-select so-sel">Todos</div>
+        <ul class="social-options">
+          <li value='all' class="active">Todos</li>
+          <li value='facebook'>Facebook</li>
+          <li value='instagram'>Instagram</li>
+          <li value='twitter'>Twitter</li>
+          <li value='youtube'>Youtube</li>
+          <li value='tumblr'>Tumblr</li>
+          <li value='pinterest'>Pinterest</li>
+          <li value='twitch_tv'>Twitch TV</li>
+          <li value='blog'>Blog</li>
+        </ul>
+      </div>
+
+      <form>
+        <input type=search name=search placeholder="Buscar">
+      </form>
     </div>
-    <div class="content">
-      <p class="name">Robson Coelho</p>
-      <p class="date"><%= card.posted_at %></p>
-      <p class="text"><%= card.content %></p>
+
+    <div class="btn-status">
+      <%= link_to root_path, class: "aprovar" do %>
+      <%= image_tag "aprovar.svg" %>
+      <% end %>
+      <%= link_to root_path, class: "negar" do %>
+      <%= image_tag "negar.svg" %>
+      <% end %>
+      <%= link_to root_path, class: "select-all" do %>
+      <%= image_tag "select-all.svg" %>
+      <% end %>
     </div>
   </div>
-  <% end %>
 </div>
-<div class="card one-five column"></div>
+<div class="bottom-content">
+
+  <p id="notice"><%= notice %></p>
+
+  <div id="cards-container" class="container cards">
+    <% @cards.each do |card| %>
+    <div class="card two-five column show" data-class="card two-five column" data-id="<%= card.id %>">
+      <% if card.kind == 'image' %>
+        <div style="background-image:url('<%= card.image.url %>')" class="img">
+          <%= image_tag "user", class: 'user-photo' %>
+        </div>
+      <% else %>
+        <%= image_tag "user", class: 'user-photo' %>
+      <% end %>
+      <% if card.kind == 'video' %>
+        <div class="videoMobile"></div>
+      <% end %>
+      <% if card.kind != 'featured' %>
+        <div class="content">
+          <p class="name">Adão Coelho</p>
+          <p class="date"><%= image_tag('social/' + card.origin + '.svg')%><%= card.posted_at %></p>
+          <p class="text"><%= card.content %></p>
+        </div>
+      <% end %>
+      <% if card.kind == 'featured' %>
+        <%= card.content %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+  <div class="card one-five column"></div>
 
 
-<!-- <%= link_to 'NEW CARD', new_card_path %> -->
+  <!-- <%= link_to 'NEW CARD', new_card_path %> -->
+
+
+</div>

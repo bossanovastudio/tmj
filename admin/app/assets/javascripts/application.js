@@ -21,8 +21,9 @@ $(document).on('turbolinks:load', function() {
   resizeAdminBottomContent();
 
   var overlay = $('#overlay'),
-  filterList = $('.btn-filter .item ul'),
-  filterItem = $('.btn-filter .item');
+      filterList = $('.btn-filter .item ul'),
+      filterItem = $('.btn-filter .item'),
+      socialOptions = $('ul.social-options');
 
   filterItem.click(function(e){
     if ($(e.target).is('li')) {
@@ -38,6 +39,12 @@ $(document).on('turbolinks:load', function() {
     $(this).hide();
     filterList.hide();
   })
+
+  socialOptions.click(function(e) {
+    $(this).children('li').removeClass('active');
+    $(e.target).addClass('active');
+    $('.social .main-select').text($(e.target).text());
+  });
 
 
 
@@ -66,6 +73,7 @@ function resizeAdminBottomContent() {
   $('.admin-content .bottom-content').css('height', $('.admin-content').height() - 200);
 };
 
+// On window resize
 $(window).resize(function() {
     resizeAdminBottomContent();
 });
