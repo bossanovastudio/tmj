@@ -105,7 +105,6 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         }
     }
     $scope.closeLightboxKey = function(keyCode) {
-        console.log(keyCode);
         if (parseInt(keyCode) == 27) {
             $scope.closeLightbox();
         }

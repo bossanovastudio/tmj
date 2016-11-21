@@ -4,7 +4,7 @@ tmj.controller('HomeController', function($rootScope, $location, $scope, $http, 
     $scope.cards = [];
 
     $scope.PAGE = 1;
-    $scope.SIZE = 3;
+    $scope.SIZE = 20;
     $scope.END = false;
 
     $scope.VIDEOS = [
@@ -80,6 +80,7 @@ tmj.controller('HomeController', function($rootScope, $location, $scope, $http, 
                                     transitionDuration: 0
                                 });
                             }
+                            $scope.lazyLoad(true);
                         }, 1000);
                     } else {
                         if ($('.cards').data('masonry')) {
@@ -111,6 +112,24 @@ tmj.controller('HomeController', function($rootScope, $location, $scope, $http, 
     }
     $scope.loadCards($scope.PAGE);
 
+    $scope.lazyLoad = function(desktop) {
+        if (desktop) {
+            $("div.img").not('.lazyloaded').each(function(i, e) {
+                $(e).lazyload({
+                    effect: "fadeIn"
+                });
+                $(e).addClass('lazyloaded');
+            });
+        } else {
+            $("div.img").each(function(i, e) {
+                $(e).lazyload({
+                    effect: "fadeIn"
+                });
+                $(e).addClass('lazyloaded');
+            });
+        }
+    }
+
     $scope.swipeLeft = function($event) {
         var e = angular.element($event.target);
         e = $(e);
@@ -131,12 +150,13 @@ tmj.controller('HomeController', function($rootScope, $location, $scope, $http, 
                 $scope.PAGE++;
                 $scope.loadCards($scope.PAGE);
             }
-            if (walk != -((size+1) * ($('.card').width() + 20))) {
+            if (walk != -((size + 1) * ($('.card').width() + 20))) {
                 $(e).animate({
                     left: walk
                 }, 250);
             }
         }
+        $scope.lazyLoad(false);
     }
     $scope.swipeRight = function($event) {
         var e = angular.element($event.target);
@@ -163,6 +183,7 @@ tmj.controller('HomeController', function($rootScope, $location, $scope, $http, 
             }
             $(this).animate({ top: top + distanceTop });
         });
+        $scope.lazyLoad(false);
     }
     $scope.swipeDown = function() {
         distanceTop = $(window).height();
@@ -177,7 +198,7 @@ tmj.controller('HomeController', function($rootScope, $location, $scope, $http, 
     $scope.openCard = function($event, id, content) {
         var elem = angular.element($event.target);
         if (content.kind == "featured") {
-            $location.path( content.source_url );
+            $location.path(content.source_url);
         } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('originalPost') && !elem.hasClass('shareButton')) {
             $http({
                     method: 'get',
@@ -247,7 +268,7 @@ tmj.controller('HomeController', function($rootScope, $location, $scope, $http, 
                     } else {
                         if ($rootScope.card.content.length > 100 || $rootScope.card.kind == 'image') {
                             $('body').css({ overflow: "hidden" });
-                            $location.path( "/detalhe/card/" + $rootScope.card.id, false );
+                            $location.path("/detalhe/card/" + $rootScope.card.id, false);
                             var lightbox = angular.element(document.querySelector('.lightbox'));
                             lightbox.fadeIn();
                         }
