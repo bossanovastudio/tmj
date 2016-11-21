@@ -48,7 +48,7 @@ var organizeCards = function(newValue, oldValue) {
                     $(c).css({ "height": h + (h / 3) * 2 + 40 });
                 } else if ($(c).hasClass('video')) {
                     $(c).attr('class', 'card video ng-scope');
-                    $(c).find('.img').css({ "height": 0 });
+                    //$(c).find('.img').css({ "height": 0 });
                 } else if ($(c).hasClass('text')) {
                     $(c).attr('class', 'card text ng-scope');
                 } else {
@@ -116,7 +116,7 @@ tmj.directive("cardClass", function() {
                     $(elem).parent().addClass('cursor');
                 }
             }
-            if (card.kind == 'image') {
+            if (card.kind == 'image' || card.kind == 'video') {
                 var ratio = parseFloat(card.image.ratio.replace(',', '.'));
                 if (ratio <= 1) {
                     var percent = 50 * (1 + (1 - ratio));

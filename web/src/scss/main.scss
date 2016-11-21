@@ -205,7 +205,6 @@ div.shareBox {
         float: left;
         width: 20px;
         height: 20px;
-
     }
     &.show {
         bottom: -37px;
@@ -253,8 +252,8 @@ p.date {
     }
 }
 
-.cards{
-    &:after{
+.cards {
+    &:after {
         content: '';
         z-index: 9;
         position: absolute;
@@ -264,8 +263,8 @@ p.date {
         left: 50%;
         margin-left: -35px;
     }
-    &.loading{
-        &:after{
+    &.loading {
+        &:after {
             background: url(/img/pag_loading.gif);
             background-size: cover;
         }
@@ -366,7 +365,7 @@ div.card {
         margin: 5px 0 0 0;
         transition-duration: 0.1s;
         padding: 1px 6px;
-        &:hover{
+        &:hover {
             color: #fff;
             background: #ff5050;
             transition-duration: 0.1s;
@@ -407,14 +406,24 @@ div.card {
         .content {
             padding-top: 0px;
         }
-        iframe {
-            width: 100%;
-            height: 250px;
-        }
     }
 }
 
-.arrowBottom{
+.videoMobile, .videoIframe {
+    width: 100%;
+    height: 100%;
+
+    iframe {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.videoMobile {
+    display: none;
+}
+
+.arrowBottom {
     position: fixed;
     z-index: 999;
     left: 50%;
@@ -430,6 +439,7 @@ div.card {
     background-image: linear-gradient(125deg, #3023ae, #c86dd7);
     opacity: 0.5;
 }
+
 .container.login {
     height: 100%;
     min-height: 100%;
@@ -437,12 +447,10 @@ div.card {
     display: -ms-flex;
     display: -webkit-flex;
     display: flex;
-
     /* centraliza na vertical */
     -ms-align-items: center;
     -webkit-align-items: center;
     align-items: center;
-
     /* centraliza na horizontal */
     -ms-justify-content: center;
     -webkit-justify-content: center;
@@ -475,7 +483,6 @@ div.card {
             font-size: 14px;
             letter-spacing: 0.5px;
             cursor: pointer;
-
             &.btn-fb {
                 background-color: #4a90e2;
                 color: #fff;
@@ -502,7 +509,7 @@ div.card {
                 font-weight: bold;
                 letter-spacing: 0.3px;
             }
-            .user label{
+            .user label {
                 padding-left: 20px;
                 &:after {
                     content: '';
@@ -538,28 +545,26 @@ div.card {
                 font-size: 16px;
                 margin-bottom: 34px;
                 padding: 7px 0 4px 0;
-
                 &:focus {
                     outline: none;
                 }
                 &::-webkit-input-placeholder {
                     opacity: 1;
                 }
-
-                &:-moz-placeholder { /* Firefox 18- */
+                &:-moz-placeholder {
+                    /* Firefox 18- */
                     opacity: 1;
                 }
-
-                &::-moz-placeholder {  /* Firefox 19+ */
+                &::-moz-placeholder {
+                    /* Firefox 19+ */
                     opacity: 1;
                 }
-
                 &:-ms-input-placeholder {
                     opacity: 1;
                 }
             }
             .input-pass {
-                list-style:none;
+                list-style: none;
                 display: block;
                 padding: 0;
                 width: 100%;
@@ -572,18 +577,18 @@ div.card {
                     display: inline-block;
                 }
             }
-            .link-pass{
+            .link-pass {
                 text-decoration: none;
                 border: none;
                 color: #fff;
                 font-weight: bold;
                 font-size: 13px;
             }
-            .link-cadastro{
+            .link-cadastro {
                 color: #000;
                 text-align: center;
                 margin-top: 50px;
-                a{
+                a {
                     text-decoration: none;
                     font-weight: bold;
                     border: none;
@@ -593,15 +598,14 @@ div.card {
             .pass-box {
                 position: absolute;
                 top: -50px;
-                ul{
+                ul {
                     width: 100%;
                     height: 117px;
                     background-color: #fff;
                     border-radius: 3px;
                     text-align: justify;
                     padding: 10px;
-
-                    li{
+                    li {
                         height: 43px;
                         width: 43px;
                         list-style: none;
@@ -609,7 +613,7 @@ div.card {
                         cursor: pointer;
                         padding: 1.5px;
                         margin: 1.5px;
-                        img{
+                        img {
                             max-width: 100%;
                             height: auto;
                         }
@@ -617,13 +621,13 @@ div.card {
                             background-color: orange;
                         }
                     }
-                    &:after{
+                    &:after {
                         content: '';
                         display: inline-block;
                         width: 100%;
                     }
                 }
-                .after{
+                .after {
                     position: relative;
                     display: block;
                     content: '';
@@ -633,10 +637,10 @@ div.card {
                     left: 10px;
                     background: no-repeat url(/img/arrow-login.svg)
                 }
-                &.show{
+                &.show {
                     display: block;
                 }
-                &.hide{
+                &.hide {
                     display: none;
                 }
             }
@@ -674,7 +678,7 @@ div.card {
             float: left;
             width: 100%;
             padding: 23px 34px;
-            .content{
+            .content {
                 font-size: 14px;
             }
         }
@@ -785,7 +789,7 @@ footer {
         top: 0px;
         height: 100%;
         overflow: hidden;
-        &:after{
+        &:after {
             display: none;
         }
         .card {
@@ -798,9 +802,9 @@ footer {
             }
         }
     }
-    div.card{
+    div.card {
         opacity: 1;
-        .close{
+        .close {
             right: 10px;
             top: 10px;
             background: rgba(255, 255, 255, 0.6);
@@ -860,7 +864,6 @@ footer {
             opacity: 1;
         }
     }
-
     div.shareBox:after {
         bottom: 100%;
         top: 40px;
@@ -873,19 +876,18 @@ footer {
         right: auto;
         bottom: auto;
         width: 100%;
-        a{
-            top:26px;
+        a {
+            top: 26px;
             display: inline-block;
             margin: 0 5px 5px 5px;
-            &:hover{
-                -webkit-box-shadow: 5px 5px 0px 0px rgba(0,0,0,1);
-                -moz-box-shadow:  5px 5px 0px 0px rgba(0,0,0,1);
-                box-shadow:  5px 5px 5x 0px rgba(0,0,0,1);
+            &:hover {
+                -webkit-box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
+                -moz-box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
+                box-shadow: 5px 5px 5x 0px rgba(0, 0, 0, 1);
                 transition-duration: 0.2s;
-                top:26px;
+                top: 26px;
                 left: 0;
             }
         }
-
     }
 }

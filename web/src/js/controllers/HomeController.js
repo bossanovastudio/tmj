@@ -59,6 +59,12 @@ tmj.controller('HomeController', function($rootScope, $location, $scope, $http, 
                         id: (parseInt(Math.random() * 999999) + 1),
                         kind: 'video',
                         url: $scope.VIDEOS[3],
+                        image: {
+                            url: 'https://i.vimeocdn.com/video/551181496.jpg?mw=900&mh=506',
+                            width: 900,
+                            height: 506,
+                            ratio: "1,778"
+                        },
                         content: 'Seja sua própria heroína. Somos todas #donasdarua',
                         size: 'two',
                         posted_at: '2016-11-03T12:38:43.000Z'
@@ -201,12 +207,34 @@ tmj.controller('HomeController', function($rootScope, $location, $scope, $http, 
         if (content.kind == "featured") {
             $location.path(content.source_url);
         } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('originalPost') && !elem.hasClass('shareButton')) {
+            //REMOVE THIS IF WHEN THE VIDEO IS IMPLEMENTED ON THE API
+            if (content.kind == 'video') {
+                id = 26;
+            }
             $http({
                     method: 'get',
                     url: API_URL + '/api/cards/' + id + '.json',
                 })
                 .success(function(data) {
                     $rootScope.card = data;
+
+                    if (content.kind == 'video') {
+                        $rootScope.card = {
+                            id: (parseInt(Math.random() * 999999) + 1),
+                            kind: 'video',
+                            url: $scope.VIDEOS[3],
+                            image: {
+                                url: 'https://i.vimeocdn.com/video/551181496.jpg?mw=900&mh=506',
+                                width: 900,
+                                height: 506,
+                                ratio: "1,778"
+                            },
+                            content: 'Seja sua própria heroína. Somos todas #donasdarua',
+                            size: 'two',
+                            posted_at: '2016-11-03T12:38:43.000Z'
+                        }
+                    }
+
                     if (isMobileDevice) {
                         var card = $(elem).closest('.card').clone();
                         card.css({
@@ -217,8 +245,8 @@ tmj.controller('HomeController', function($rootScope, $location, $scope, $http, 
                             "top": 47,
                             "z-index": 999
                         });
-                        var content = $compile(card.html())($scope);
-                        card.html(content);
+                        var contentHTML = $compile(card.html())($scope);
+                        card.html(contentHTML);
                         $('body').append(card);
                         card.animate({
                             left: 0,
@@ -228,7 +256,9 @@ tmj.controller('HomeController', function($rootScope, $location, $scope, $http, 
                             height: '100%'
                         }, 200);
 
+
                         setTimeout(function() {
+                            $('.card').last().find('.videoMobile').show(0);
                             $('.card').last().find('.heart').attr('src', '/img/like.png').width(24);
                             $('.card').last().find('.arrow').attr('src', '/img/share.png').width(24);
                             $('.card').last().find('.read-more').remove();
@@ -267,7 +297,7 @@ tmj.controller('HomeController', function($rootScope, $location, $scope, $http, 
                         }, 1);
 
                     } else {
-                        if ($rootScope.card.content.length > 100 || $rootScope.card.kind == 'image') {
+                        if ($rootScope.card.content.length > 100 || $rootScope.card.kind == 'image' || $rootScope.card.kind == 'video') {
                             $('body').css({ overflow: "hidden" });
                             $location.path("/detalhe/card/" + $rootScope.card.id, false);
                             var lightbox = angular.element(document.querySelector('.lightbox'));

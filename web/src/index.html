@@ -65,8 +65,10 @@
     </div>
     <div class="overlay" ng-click="closeMenu()"></div>
     <div class="lightbox" ng-click="closeLightboxClick($event)">
-        <div class="detail content {{card.kind=='image' ? 'image' : ''}}">
-            <div class="preview" style="background-image:url('{{card.image.url}}')"></div>
+        <div class="detail content {{card.kind=='image' || card.kind=='video' ? 'image' : ''}}">
+            <div class="preview" style="background-image:url('{{card.image.url}}')">
+                <div ng-if="card.kind == 'video'" class="videoIframe" ng-bind-html="card.url | formatVideo | trust"></div>
+            </div>
             <div class="text">
                 <a ng-href="#">
                     <img ng-click="closeLightbox()" src="/img/fechar-desktop.svg" class="close" />
