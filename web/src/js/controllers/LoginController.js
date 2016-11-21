@@ -3,26 +3,6 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
     $('.initial-loading').hide(0);
     $('.purple-overlay').show();
 
-    // $scope.openPassword = function($event) {
-    //     if ($('.pass-box').hasClass('show')){
-    //         $('.pass-box').removeClass('show');
-    //     } else{
-    //         $('.pass-box').addClass('show');
-    //     }
-    // }
-
-    $scope.open = false;
-    $scope.togglePassword = function () {
-        $scope.open = !$scope.open;
-
-        if ($scope.open) {
-        	$scope.passwordChoise.length = 0;
-            
-        } else {
-
-        }
-    };
-
     $scope.passwords = [{
 		id: 0,
 		value: 'mon',
@@ -86,6 +66,20 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
 
 	$scope.passwordChoise = [];
 	$scope.numClick = 0;
+
+	$scope.open = false;
+    $scope.togglePassword = function () {
+        $scope.open = !$scope.open;
+
+        if ($scope.open) {
+        	$scope.passwordChoise.length = 0;
+			$('.after').css({ "left": 10 });
+			$scope.numClick = 0;
+        } else {
+
+        }
+    };
+    
 	$scope.addToPasswordChoise = function(pass) {
 		$scope.numClick = $scope.numClick + 1;
 		$scope.passwordChoise.push($scope.passwords[pass.id]);
