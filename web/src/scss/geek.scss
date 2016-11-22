@@ -10,6 +10,11 @@ body.geekPage {
         img.avatar {
             border-radius: 100%;
         }
+        img.badge{
+            position: absolute;
+            left: 160px;
+            top: 10px;
+        }
         p {
             margin: 0;
         }
@@ -87,7 +92,7 @@ body.geekPage {
                 font-stretch: normal;
                 letter-spacing: 0.1px;
                 color: #000000;
-                margin: 10px 0px;
+                margin: 10px 0px 30px 0px;
             }
         }
     }
@@ -100,6 +105,12 @@ body.geekPage {
             margin: 0px;
             .avatar {
                 width: 106px;
+            }
+            img.badge {
+                position: absolute;
+                left: 190px;
+                top: 0px;
+                width: 20px;
             }
             .follow {
                 margin: 10px auto;
