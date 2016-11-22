@@ -1,0 +1,180 @@
+.remix-composing {
+  display: none;
+  position: relative;
+  .cancel {
+    font-size: 24px;
+    line-height: 40px;
+    padding: 0 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+  .top-actions {
+    @include clearfix;
+    min-height: 40px;
+    text-align: right;
+    button {
+      display: none;
+      line-height: 40px;
+      padding: 0 10px;
+      &.publish, &.skip-share {
+        font-family: 'KomikaTitle';
+        font-size: 15px;
+      }
+    }
+  }
+  .artboard {
+    position: relative;
+    .canvas {
+      background-color: #FFF;
+      &:before {
+        content: '';
+        display: block;
+        left: 0;
+        padding-bottom: 100%;
+        top: 0;
+        width: 100%;
+      }
+      * {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .picture {
+        height: 100%;
+        width: 100%;
+      }
+    }
+    .empty {
+      transform: translate(-50%, -50%);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+
+      font-family: 'KomikaTitle';
+      font-size: 26px;
+      text-align: center;
+      width: 180px;
+    }
+  }
+  .toolbox {
+    @include clearfix;
+    padding: 15px 20px 15px;
+    position: relative;
+    text-align: center;
+    .toolbox-item {
+      float: left;
+      width: percentage(1 / 5);
+      .toggler {
+        line-height: 40px;
+        padding: 0 5px;
+        position: relative;
+        &:after {
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 0 5px 10px 5px;
+          border-color: transparent transparent #FFF transparent;
+
+          content: '';
+          display: none;
+          margin: 5px 0 0 -5px;
+          position: absolute;
+          left: 50%;
+          top: 100%;
+        }
+      }
+      .popup {
+        background-color: #FFF;
+        display: none;
+        left: 0;
+        padding: 10px;
+        position: absolute;
+        top: 100%;
+        width: 100%;
+      }
+      &.category {
+        .popup {
+          padding: 2px;
+          .categories, .pictures {
+            @include clearfix;
+            > div {
+              background-color: #EFEFEF;
+              float: left;
+              line-height: 80px;
+              height: 80px;
+              padding: 0 1px;
+              text-align: center;
+              width: 80px;
+            }
+          }
+          .pictures {
+            display: none;
+          }
+        }
+      }
+      &.on {
+        .toggler:after {
+          display: block;
+        }
+        .popup {
+          display: block;
+        }
+      }
+    }
+  }
+  .share {
+    display: none;
+    p {
+      font-family: 'KomikaTitle';
+      font-size: 15px;
+      margin: 20px auto;
+      text-align: center;
+      width: 60%;
+    }
+    .networks {
+      font-size: 0;
+      line-height: 0;
+      margin-top: 20px;
+      text-align: center;
+      a {
+        display: inline-block;
+        margin: 0 5px;
+      }
+    }
+  }
+  @include mq-only-xs {
+    margin-left: -($grid-gutter-width / 2);
+    margin-right: -($grid-gutter-width / 2);
+    .toolbox {
+      .toolbox-item.category {
+        .toggler {
+          display: none;
+        }
+        .popup {
+          margin-top: -70px;
+          z-index: 10;
+        }
+      }
+    }
+  }
+  @include mq-from-sm {
+    @include make-row;
+    .top-actions,
+    .cancel {
+      display: none;
+    }
+    .artboard {
+      @include make-sm-column(6);
+    }
+    .toolbox {
+      @include make-sm-column(6);
+      .toolbox-item {
+        width: percentage(1 / 6);
+      }
+    }
+    .share {
+      @include make-sm-column(6);
+    }
+  }
+}
