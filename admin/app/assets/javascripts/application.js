@@ -23,7 +23,8 @@ $(document).on('turbolinks:load', function() {
   var overlay = $('#overlay'),
       filterList = $('.btn-filter .item ul'),
       filterItem = $('.btn-filter .item'),
-      socialOptions = $('ul.social-options');
+      socialOptions = $('ul.social-options'),
+      statusOptions = $('ul.status-options');
 
   filterItem.click(function(e){
     if ($(e.target).is('li')) {
@@ -44,6 +45,12 @@ $(document).on('turbolinks:load', function() {
     $(this).children('li').removeClass('active');
     $(e.target).addClass('active');
     $('.social .main-select').text($(e.target).text());
+  });
+
+  statusOptions.click(function(e) {
+    $(this).children('li').removeClass('active');
+    $(e.target).addClass('active');
+    $('.status .main-select').text($(e.target).text());
   });
 
 
