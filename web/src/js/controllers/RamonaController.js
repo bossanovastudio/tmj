@@ -1,6 +1,6 @@
-tmj.controller('GeekController', function($rootScope, $scope, $http, $sce, $compile, $routeParams) {
+tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $compile, $routeParams) {
 
-    $rootScope.pageName = 'geekPage';
+    $rootScope.pageName = 'ramonaPage';
 
     var distanceTop = 0;
     $scope.swipeUp = function() {
