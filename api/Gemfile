@@ -19,6 +19,9 @@ gem 'mini_magick'
 # Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 
+# Module for the 'fog' gem to support Amazon Web Services
+gem 'fog-aws'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 

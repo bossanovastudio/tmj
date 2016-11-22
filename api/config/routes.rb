@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   scope '/api' do
     mount_devise_token_auth_for 'User', at: 'auth'
-
+    
+    get '/all/(:page)/(:quantity)', to: 'general#all', defaults: { page: 1, quantity: 10 }
+    
     resources :cards do
       member do
         get 'like'
         get 'unlike'
+        get 'accept'
+        get 'reject'
       end
       
       collection do

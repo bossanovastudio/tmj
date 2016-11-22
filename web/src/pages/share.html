@@ -1,22 +1,23 @@
 <p class="share">
     <a ng-click="likeCard($event, card.id)" class="{{card.liked ? 'liked' : ''}} ng-hide" ng-href="#">
-        <img class="heart" src="{{card.liked ? '/img/liked.png' : '/img/like.png'}}"><span class="counter">&nbsp;{{card.likes ? card.likes : 0}}</span>
+        <img class="heart" src="{{card.liked ? '/img/liked.svg' : '/img/like.svg'}}"><span class="counter">&nbsp;{{card.likes ? card.likes : 0}}</span>
     </a>
-    <a ng-click="openShare($event)" ng-href="#">
-        <img class="arrow" src="/img/share.png">
+    <a ng-click="openShare($event)" ng-href="#" ng-init="imgsrc='/img/share.svg'" ng-mouseover="imgsrc='/img/share-rollover.svg'" ng-mouseout="imgsrc='/img/share.svg'">
+        <img class="arrow" ng-src="{{imgsrc}}">
     </a>
+
 </p>
 <div class="shareBox">
     <a target="_blank" ng-href="https://www.facebook.com/sharer/sharer.php?u={{SITE_URL}}/detalhe/card/{{card.id}}">
-        <img class="shareButton" src="/img/facebook-remix-copy.png" />
+        <img class="shareButton" src="/img/facebook-remix.svg" />
     </a>
     <a target="_blank" ng-href="https://pinterest.com/pin/create/button/?url=localhost&media=localhost&description={{SITE_URL}}/detalhe/card/{{card.id}}">
-        <img class="shareButton" src="/img/page-1.png" />
+        <img class="shareButton" src="/img/pinterest-remix.svg" />
     </a>
     <a target="_blank" ng-href="https://twitter.com/home?status={{SITE_URL}}/detalhe/card/{{card.id}}">
-        <img class="shareButton" src="/img/twitter-remix-copy.png" />
+        <img class="shareButton" src="/img/twitter-remix.svg" />
     </a>
     <a target="_blank" ng-href="http://www.tumblr.com/share/link?url={{SITE_URL}}/detalhe/card/{{card.id}}">
-        <img class="shareButton" src="/img/tumblr-remix-copy.png" />
+        <img class="shareButton" src="/img/tumblr-remix.svg" />
     </a>
 </div>

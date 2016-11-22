@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/rails/activeresource.git
-  revision: f8abaf13174e94d179227f352c9dd6fb8b03e0da
+  revision: 4ff7b1496c7abc5633386e30f90b2d4ae73257a6
   specs:
     activeresource (5.0.0)
       activemodel (> 4.2, < 6)
@@ -13,6 +13,7 @@ PATH
     crawler_parser (0.1.0)
       activerecord (~> 5.0.0)
       pg (~> 0.18)
+      video_info (~> 2.6.1)
 
 GEM
   remote: https://rubygems.org/
@@ -33,17 +34,24 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    arel (7.1.1)
+    ansi (1.5.0)
+    arel (7.1.4)
+    ast (2.3.0)
     awesome_print (1.7.0)
     builder (3.2.2)
-    byebug (9.0.5)
+    byebug (9.0.6)
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
     dotenv (2.1.1)
     i18n (0.7.0)
+    iso8601 (0.9.1)
     method_source (0.8.2)
-    minitest (5.9.0)
-    pg (0.18.4)
+    minitest (5.9.1)
+    net_http_timeout_errors (0.3.0)
+    oga (2.7)
+      ast
+      ruby-ll (~> 2.1)
+    pg (0.19.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -60,10 +68,17 @@ GEM
       pry (~> 0.9)
       slop (~> 3.0)
     rake (10.5.0)
+    ruby-ll (2.1.2)
+      ansi
+      ast
     slop (3.6.0)
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    video_info (2.6.1)
+      iso8601 (~> 0.9)
+      net_http_timeout_errors (~> 0.3.0)
+      oga (~> 2.2)
 
 PLATFORMS
   ruby
@@ -79,4 +94,4 @@ DEPENDENCIES
   rake (~> 10.0)
 
 BUNDLED WITH
-   1.12.5
+   1.13.6

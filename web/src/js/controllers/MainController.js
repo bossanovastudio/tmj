@@ -1,4 +1,4 @@
-tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
+tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $location) {
     $rootScope.API_URL = API_URL;
     $rootScope.SITE_URL = SITE_URL;
     $rootScope.card = {};
@@ -16,7 +16,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
         var desktop = angular.element(document.querySelector('.desktop'));
         desktop.attr('src', '/img/fechar-desktop.svg');
         var mobile = angular.element(document.querySelector('.mobile'));
-        mobile.attr('src', '/img/fechar-mobile.png');
+        mobile.attr('src', '/img/fechar-mobile.svg');
         var sidebar = angular.element(document.querySelector('.sidebar'));
         sidebar.addClass('open');
         var html = angular.element(document.querySelector('html'));
@@ -28,7 +28,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
         var desktop = angular.element(document.querySelector('.desktop'));
         desktop.attr('src', '/img/menu-desktop.svg');
         var mobile = angular.element(document.querySelector('.mobile'));
-        mobile.attr('src', '/img/menu-mobile.png');
+        mobile.attr('src', '/img/menu-mobile.svg');
         var sidebar = angular.element(document.querySelector('.sidebar'));
         sidebar.removeClass('open');
         var html = angular.element(document.querySelector('html'));
@@ -57,18 +57,27 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
         var elem = angular.element($event.target);
         var card = $(elem).closest('.card');
 
-        if( card.length > 0 && card.find('.shareBox').hasClass('show')) {
+        if (card.length > 0 && card.find('.shareBox').hasClass('show')) {
             card.find('.shareBox').removeClass('show');
-        } else if( card.length == 0 && $('.lightbox .shareBox').hasClass('show') ) {
+            setTimeout(function() {
+                card.find('.shareBox').hide();
+            }, 300);
+        } else if (card.length == 0 && $('.lightbox .shareBox').hasClass('show')) {
             $('.lightbox .shareBox').removeClass('show');
+            setTimeout(function() {
+                $('.lightbox .shareBox').hide();
+            }, 300);
         } else {
             $(".shareBox").removeClass('show');
+            $(".shareBox").hide();
             setTimeout(function() {
                 $('.card').css({ "z-index": 0 });
-                if( card.length > 0 ) {
-                    card.css({ "z-index": 1 });
+                if (card.length > 0) {
+                    card.find('.shareBox').show();
+                    card.css({ "z-index": 999 });
                     card.find('.shareBox').addClass('show');
                 } else {
+                    $('.lightbox .shareBox').show();
                     $('.lightbox .shareBox').addClass('show');
                 }
             }, 100)
@@ -78,11 +87,26 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce) {
     $("body").click(function(e) {
         if (e.target.className !== "shareBox" && e.target.className.indexOf('share') === -1 && e.target.className !== "arrow") {
             $(".shareBox").removeClass('show');
+            setTimeout(function() {
+                $(".shareBox").hide();
+            }, 300);
         }
     });
     $scope.closeLightbox = function() {
-        var lightbox = angular.element(document.querySelector('.lightbox'));
-        lightbox.fadeOut();
+        $location.path( $rootScope.previousURL, false);
+        $('.lightbox').fadeOut();
         $('body').css({ overflow: "auto" });
+    }
+    $scope.closeLightboxClick = function($event) {
+        var e = angular.element($event.target);
+        e = $(e);
+        if (!e.hasClass('preview') && !e.hasClass('detail') && !e.hasClass('share') && !e.hasClass('arrow') && !e.hasClass('content')) {
+            $scope.closeLightbox();
+        }
+    }
+    $scope.closeLightboxKey = function(keyCode) {
+        if (parseInt(keyCode) == 27) {
+            $scope.closeLightbox();
+        }
     }
 });

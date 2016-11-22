@@ -2,6 +2,7 @@ json.id         card.id
 json.origin     card.origin
 json.content    card.content
 json.kind       card.kind
+json.source_url card.source_url
 
 if card.media
   json.image do

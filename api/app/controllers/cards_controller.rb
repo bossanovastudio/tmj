@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: [:show, :like, :unlike, :update, :destroy]
+  before_action :set_card, only: [:show, :like, :unlike, :update, :destroy, :accept, :reject]
   before_action :authenticate_user!, only: [:like, :unlike]
+  # before_action :authenticate_admin!, only: [:index, :show, :accept, :reject, :create, :update, :destroy]
 
   # GET /cards
   # GET /cards.json
@@ -18,20 +19,32 @@ class CardsController < ApplicationController
   # GET /cards/1/like
   # GET /cards/1/like.json
   def like
-    if user_signed_in?
-      liked = current_user.like(@card)
-      
-      render :show, status: :ok, location: @card
-    end
-  end
+    liked = current_user.like(@card)
+    
+    render :show, status: :ok, location: @card
+end
 
   # GET /cards/1/unlike
   # GET /cards/1/unlike.json
   def unlike
-    if user_signed_in?
-      unliked = current_user.unlike(@card)
-      
-      render :show, status: :ok, location: @card
+    unliked = current_user.unlike(@card)
+    
+    render :show, status: :ok, location: @card
+  end
+  
+  def accept
+    if @card.status == :pending
+      @card.update_attribute!(:status, :accepted)
+    else
+      render json: @card.errors, status: :unprocessable_entity
+    end
+  end
+  
+  def reject
+    if @card.status.member_of?([:pending, :accepted])
+      @card.update_attribute!(:status, :rejected)
+    else
+      render json: @card.errors, status: :unprocessable_entity
     end
   end
   
@@ -77,6 +90,6 @@ class CardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
-      params.require(:card).permit(:user_id, :origin, :content, :media_id, :media_type, :posted_at)
+      params.require(:card).permit(:user_id, :origin, :source_url, :content, :media_id, :media_type, :posted_at)
     end
 end

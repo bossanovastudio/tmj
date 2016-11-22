@@ -28,10 +28,11 @@
     <link rel="stylesheet" href="/css/main.css" type="text/css">
 </head>
 
-<body ng-app="tmj" ng-controller="MainController">
+<body ng-app="tmj" ng-controller="MainController" ng-keypress="closeLightboxKey($event.keyCode)">
+    <div class="purple-overlay"></div>
     <div id="menu">
         <img src="/img/menu-desktop.svg" class="desktop" ng-click="toggle()" />
-        <img src="/img/menu-mobile.png" class="mobile" ng-click="toggle()" />
+        <img src="/img/menu-mobile.svg" class="mobile" ng-click="toggle()" />
     </div>
     <div class="sidebar">
         <!-- <img src="/img/fechar-desktop.png" class="menu desktop" ng-click="closeMenu()" />
@@ -49,23 +50,25 @@
         </ul>
         <footer class="mobile">
             <a href="#">
-                <img src="/img/rede-social-facebook.png" />
+                <img src="/img/rede-social-facebook.svg" />
             </a>
             <a href="#">
-                <img src="/img/rede-social-twitter.png" />
+                <img src="/img/rede-social-twitter.svg" />
             </a>
             <a href="#">
-                <img src="/img/rede-social-youtube.png" />
+                <img src="/img/rede-social-youtube.svg" />
             </a>
             <a href="#">
-                <img src="/img/rede-social-google.png" />
+                <img src="/img/rede-social-google.svg" />
             </a>
         </footer>
     </div>
     <div class="overlay" ng-click="closeMenu()"></div>
-    <div class="lightbox">
-        <div class="detail content {{card.kind=='image' ? 'image' : ''}}">
-            <div class="preview" style="background-image:url('{{card.image.url}}')"></div>
+    <div class="lightbox" ng-click="closeLightboxClick($event)">
+        <div class="detail content {{card.kind=='image' || card.kind=='video' ? 'image' : ''}}">
+            <div class="preview" style="background-image:url('{{card.image.url}}')">
+                <div ng-if="card.kind == 'video'" class="videoIframe" ng-bind-html="card.url | formatVideo | trust"></div>
+            </div>
             <div class="text">
                 <a ng-href="#">
                     <img ng-click="closeLightbox()" src="/img/fechar-desktop.svg" class="close" />
@@ -88,33 +91,36 @@
     <img class="initial-loading" src="/img/loading.gif" />
     <footer class="desktop">
         <a href="#">
-            <img src="/img/rede-social-facebook.png" />
+            <img src="/img/rede-social-facebook.svg" />
         </a>
         <a href="#">
-            <img src="/img/rede-social-twitter.png" />
+            <img src="/img/rede-social-twitter.svg" />
         </a>
         <a href="#">
-            <img src="/img/rede-social-youtube.png" />
+            <img src="/img/rede-social-youtube.svg" />
         </a>
         <a href="#">
-            <img src="/img/rede-social-google.png" />
+            <img src="/img/rede-social-google.svg" />
         </a>
     </footer>
     <!-- libs -->
     <script src="/js/libs/external/retina.js"></script>
     <script src="/js/libs/external/jquery.js"></script>
     <script src="/js/libs/external/masonry.js"></script>
+    <script src="/js/libs/external/lazyload.js"></script>
     <!-- load angular, ngRoute, ngAnimate -->
     <script src="/js/libs/angular/angular.js"></script>
     <script src="/js/libs/angular/angular-cookies.js"></script>
     <script src="/js/libs/angular/angular-route.js"></script>
     <script src="/js/libs/angular/angular-animate.js"></script>
     <script src="/js/libs/angular/angular-touch.js"></script>
+    <script src="/js/libs/angular/angular-swipe.js"></script>
     <script src="/js/libs/angular/angular-resource.js"></script>
     <!-- main controllers -->
     <script src="/js/app.js"></script>
     <script src="/js/controllers/MainController.js"></script>
     <script src="/js/controllers/HomeController.js"></script>
+    <script src="/js/controllers/LoginController.js"></script>
     <script src="/js/directives/Directives.js"></script>
 </body>
 
