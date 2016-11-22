@@ -16,18 +16,107 @@
     box-sizing: border-box;
 }
 
-html {
+html,
+body,
+section {
     height: 100%;
     min-height: 100%;
 }
 
-body {
-    background: #d9d9db url(/img/bg.png) no-repeat center center fixed;
+.container {
+    width: 70%;
+    position: relative;
+    height: 100%;
+}
+
+.six.columns.left,
+.six.columns.right {
+    position: relative;
+    width: 50%;
+    height: 100%;
+}
+
+.left {
+    background: #d9d9db url(/img/bg1.png) no-repeat center top fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    min-height: 100%;
+    .logo {
+        margin: 10% 0 15%;
+    }
+    p.intro {
+        font-family: KomikaTitle;
+        font-size: 38px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.24;
+        letter-spacing: 1.3px;
+        color: #000000;
+        margin: 0 0 10%;
+    }
+    iframe {
+        width: 100%;
+        height: 280px;
+        margin: 0 0 10%;
+    }
+}
+
+.right {
+    background: #d9d9db url(/img/bg2.png) no-repeat center top fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    .steps {
+        margin: 10% 0;
+        height: 73px;
+        .step {
+            div {
+                width: 35px;
+                height: 35px;
+                border-radius: 100%;
+                border: 1px solid #ffffff;
+                font-family: KomikaTitle;
+                font-size: 16px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                letter-spacing: 0.5px;
+                text-align: center;
+                color: #ffffff;
+                line-height: 2;
+                margin: 0 auto;
+            }
+            p {
+                font-family: KomikaTitle;
+                font-size: 14px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: 1.14;
+                letter-spacing: 0.5px;
+                text-align: center;
+                color: #ffffff;
+                padding: 0 30px;
+            }
+            &.active {
+                div {
+                    background: #ffffff;
+                    color: #1865a2;
+                }
+            }
+        }
+    }
+    .forms {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 175px;
+        overflow: scroll;
+    }
 }
 
 .mobile {
