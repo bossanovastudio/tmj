@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
@@ -32,6 +31,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery'
   gem 'rails-assets-jquery-ujs'
   gem 'rails-assets-bootstrap'
+  gem 'rails-assets-masonry'
 end
 
 group :development, :test do
@@ -60,4 +60,3 @@ group :production do
   # Embed the V8 Javascript Interpreter into Ruby
   gem 'therubyracer'
 end
-

@@ -8,7 +8,7 @@
 </head>
 <body id="admin">
   <div class="menu">
-    <%= link_to "Admin TMJ", root_path, class: "title-admin" %>
+    <%= link_to "ADMIN TMJ", root_path, class: "title-admin" %>
     <div class="user">
       <span>Robson C.</span>
       <div class="dropdown-content">
@@ -16,18 +16,19 @@
       </div>
     </div>
   </div>
-  <div class="sidebar">
+
+  <div class="sidebar">    
     <ul class="item-list">
       <li>
         <%= link_to root_path do %>
-          <%= image_tag "dashboard.svg" %>
-          <p>Dashboard</p>
+        <%= image_tag "dashboard.svg" %>
+        <p>Dashboard</p>
         <% end %>
       </li>
       <li class="active">
         <%= link_to root_path do %>
-          <%= image_tag "cards.svg" %>
-          <p>Cards</p>
+        <%= image_tag "cards.svg" %>
+        <p>Cards</p>
         <% end %>
         <ul class="subitem-list">
           <li class="active">
@@ -43,66 +44,22 @@
       </li>
       <li>
         <%= link_to root_path do %>
-          <%= image_tag "usuarios.svg" %>
-          <p>Usuários</p>
+        <%= image_tag "usuarios.svg" %>
+        <p>Usuários</p>
         <% end %>
       </li>
       <li>
         <%= link_to root_path do %>
-          <%= image_tag "pontuacao.svg" %>
-          <p>Pontuação</p>
+        <%= image_tag "pontuacao.svg" %>
+        <p>Pontuação</p>
         <% end %>
       </li>
     </ul>
   </div>
-  <div class="content">
-    <h1 class="title"> Moderar Cards</h1>
-    <div class="filter-bar">
-    <div class="btn-filter">
-      <div class="status item">
-        <div class="main-select st-sel">Pendentes</div>
-        <ul>
-           <li class="active" value='0'>Pendentes</li>
-           <li value='1'>Negados</li>
-           <li value='2'>Aprovados</li>
-        </ul>
-      </div>
 
-      <div class="social item">
-        <div class="main-select so-sel">Todos</div>
-        <ul>
-           <li value='0' class="active">Todos</li>
-           <li value='1'>Facebook</li>
-           <li value='2'>Instagram</li>
-           <li value='3'>Twitter</li>
-           <li value='4'>Youtube</li>
-           <li value='5'>Tumblr</li>
-           <li value='6'>Pinterest</li>
-           <li value='7'>Twitch TV</li>
-           <li value='8'>Blog</li>
-        </ul>
-      </div>
-
-      <form>
-          <input type=search name=search placeholder="Buscar">
-      </form>
-    </div>
-
-      <div class="btn-status">
-        <%= link_to root_path, class: "aprovar" do %>
-          <%= image_tag "aprovar.svg" %>
-        <% end %>
-        <%= link_to root_path, class: "negar" do %>
-          <%= image_tag "negar.svg" %>
-        <% end %>
-        <%= link_to root_path, class: "select-all" do %>
-          <%= image_tag "select-all.svg" %>
-        <% end %>
-      </div>
-    </div>
-
+  <div class="admin-content scrollbar">
+    <%= yield %>
   </div>
 
-  <div id="overlay"></div>
 </body>
 </html>
