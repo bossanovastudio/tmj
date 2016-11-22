@@ -53,7 +53,7 @@
 
   <div id="cards-container" class="container cards">
     <% @cards.each do |card| %>
-    <div class="card two-five column show" data-class="card two-five column" data-id="<%= card.id %>">
+    <div class="card show" data-class="" data-id="<%= card.id %>">
       <div class="selected-overlay"></div>
       <% if card.kind == 'image' %>
         <div style="background-image:url('<%= card.image.url %>')" class="img">
