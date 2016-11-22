@@ -35,6 +35,15 @@
         top: 0;
         width: 100%;
       }
+      * {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .picture {
+        height: 100%;
+        width: 100%;
+      }
     }
     .empty {
       transform: translate(-50%, -50%);
@@ -53,7 +62,7 @@
     padding: 15px 20px 15px;
     position: relative;
     text-align: center;
-    .tool-item {
+    .toolbox-item {
       float: left;
       width: percentage(1 / 5);
       .toggler {
@@ -138,7 +147,7 @@
     margin-left: -($grid-gutter-width / 2);
     margin-right: -($grid-gutter-width / 2);
     .toolbox {
-      .tool-item.category {
+      .toolbox-item.category {
         .toggler {
           display: none;
         }
@@ -160,7 +169,7 @@
     }
     .toolbox {
       @include make-sm-column(6);
-      .tool-item {
+      .toolbox-item {
         width: percentage(1 / 6);
       }
     }

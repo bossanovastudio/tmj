@@ -19,12 +19,28 @@ body {
 }
 
 .remix-container {
-  &.composing {
+  &.initial {
     .remix-landing {
       display: none;
     }
     .remix-composing {
       display: block;
+    }
+  }
+  &.can-choose {
+    .toolbox {
+      .toolbox-item {
+        &.category {
+          .popup {
+            .categories {
+              display: none;
+            }
+            .pictures {
+              display: block;
+            }
+          }
+        }
+      }
     }
   }
   &.can-compose {
@@ -33,20 +49,6 @@ body {
         display: none;
         &.next {
           display: inline-block;
-        }
-      }
-      .toolbox {
-        .tool-item {
-          &.category {
-            .popup {
-              .categories {
-                display: none;
-              }
-              .pictures {
-                display: block;
-              }
-            }
-          }
         }
       }
     }
@@ -60,7 +62,7 @@ body {
         }
       }
       .toolbox {
-        .tool-item {
+        .toolbox-item {
           &.category {
             display: none;
           }
@@ -85,7 +87,7 @@ body {
     }
   }
   @include mq-only-xs {
-    &.composing {
+    &.initial {
       .remix-title {
         display: none;
       }

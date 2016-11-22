@@ -1,18 +1,25 @@
 var API_URL = 'http://' + window.location.hostname + ':3000';
 
 $('.remix-container').each(function() {
-  var $container = $(this);
+  var $remix = $(this);
+  var $composer = $remix.find('.remix-composing');
 
-  $container.on({
+  $remix.on({
     'reset': function() {
-      $(this).removeClass('can-compose can-publish can-share');
-      $(this).find('.remix-composing .toolbox .toolbox-item.tools .tool-item').removeClass('on');
+      $remix.removeClass('can-choose can-compose can-publish can-share');
+      $composer
+        .find('.toolbox .toolbox-item').removeClass('on')
+        .filter('.category').addClass('on');
+
+      // removes all elements from artboard and display empty message
+      $composer.find('.artboard .canvas *').remove();
+      $composer.find('.artboard .empty').show();
     },
-    'lock': function() {
-      $(this).trigger('reset').addClass('composing');
+    'init': function() {
+      $(this).trigger('reset').addClass('initial');
     },
-    'unlock': function() {
-      $(this).trigger('reset').removeClass('composing');
+    'choose': function() {
+      $(this).trigger('reset').addClass('can-choose');
     },
     'compose': function() {
       $(this).trigger('reset').addClass('can-compose');
@@ -23,44 +30,61 @@ $('.remix-container').each(function() {
     'publish': function() {
       $(this).trigger('reset').addClass('can-share');
       // todo: save image
+    },
+    'finish': function() {
+      $(this).trigger('reset').removeClass('initial');
     }
   });
 
   // new
-  $(this).find('.remix-landing .new').click(function() {
-    $container.trigger('lock');
+  $remix.find('.remix-landing .new').click(function() {
+    $remix.trigger('init');
   });
 
   // cancel
-  $(this).find('.remix-composing .cancel').click(function() {
-    $container.trigger('unlock');
+  $composer.find('.cancel').click(function() {
+    $remix.trigger('finish');
   });
 
   // top actions
-  $(this).find('.remix-composing .top-actions .next').click(function() {
-    $container.trigger('next');
+  $composer.find('.top-actions .next').click(function() {
+    $remix.trigger('next');
   });
 
-  $(this).find('.remix-composing .top-actions .publish').click(function() {
-    $container.trigger('publish');
+  $composer.find('.top-actions .publish').click(function() {
+    $remix.trigger('publish');
   });
 
-  $(this).find('.remix-composing .top-actions .skip-share').click(function() {
-    $container.trigger('unlock');
+  $composer.find('.top-actions .skip-share').click(function() {
+    $remix.trigger('finish');
   });
 
   // toolbox
-  $(this).find('.remix-composing .toolbox .categories > div').click(function() {
+  $composer.find('.toolbox .categories > div').click(function() {
     // todo: check take-photo class
-
-    $container.trigger('compose');
+    $remix.trigger('choose');
   });
 
-  $(this).find('.remix-composing .toolbox .pictures .go-back').click(function() {
-    $container.trigger('lock');
+  $composer.find('.toolbox .pictures .go-back').click(function(event) {
+    $remix.trigger('init');
   });
 
-  $(this).find('.remix-composing .toolbox .toggler').click(function() {
-    $(this).closest('.tool-item').toggleClass('on').siblings().removeClass('on');
+  // sets picture element to the artboard and hides empty message
+  $composer.find('.toolbox .pictures > div[data-picture-src]').click(function() {
+    var $picture = $composer.find('.artboard .canvas .picture');
+    console.log($(this).data('picture-src'));
+
+    if (!$picture.length) {
+      $picture = $('<img>');
+      $composer.find('.artboard .canvas').append($picture);
+    }
+
+    $picture.attr({ src: $(this).data('picture-src'), alt: '', class: 'picture' });
+    $composer.find('.artboard .empty').hide();
+  });
+
+  // toggles between
+  $composer.find('.toolbox .toggler').click(function() {
+    $(this).closest('.toolbox-item').toggleClass('on').siblings().removeClass('on');
   });
 });
