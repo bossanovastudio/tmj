@@ -1,3 +1,92 @@
 body.geekPage {
     background-image: linear-gradient(126deg, rgba(0, 164, 207, 0.6), rgba(0, 188, 207, 0.6)), url(/img/bg.png);
+    .author {
+        margin-bottom: 87px;
+        margin-top: 47px;
+        height: 205px;
+        img.avatar {
+            border-radius: 100%;
+        }
+        p {
+            margin: 0;
+        }
+        .followers {
+            width: 130px;
+            border: solid 1px #ffffff;
+            p.number {
+                font-family: KomikaTitle;
+                font-size: 37px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                letter-spacing: 1.2px;
+                text-align: center;
+                color: #ffffff;
+                margin-top: 5px;
+            }
+            p.description {
+                font-family: Lato;
+                font-size: 13px;
+                font-weight: bold;
+                font-style: normal;
+                font-stretch: normal;
+                letter-spacing: 0.4px;
+                text-align: center;
+                color: #ffffff;
+                margin-bottom: 15px;
+            }
+        }
+        .profile {
+            .editor {
+                font-family: KomikaTitle;
+                font-size: 29px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                letter-spacing: 1px;
+                color: #000000;
+            }
+            .position {
+                font-family: KomikaTitle;
+                font-size: 14px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                letter-spacing: 0.5px;
+                color: #000000;
+            }
+            .follow {
+                display: block;
+                text-decoration: none;
+                background: #ffffff;
+                border: 1px solid #000000;
+                font-family: KomikaTitle;
+                font-size: 19px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                letter-spacing: 0.6px;
+                text-align: center;
+                color: #000000;
+                width: 127px;
+                padding: 5px 0px;
+                -webkit-box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
+                -moz-box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
+                box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
+            }
+        }
+        .about {
+            .summary {
+                font-family: Lato;
+                font-size: 17px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                letter-spacing: 0.1px;
+                color: #000000;
+                margin: 10px 0px;
+            }
+        }
+    }
+    @media only screen and (max-device-width: 480px) {}
 }
