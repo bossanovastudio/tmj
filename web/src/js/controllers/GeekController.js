@@ -2,4 +2,16 @@ tmj.controller('GeekController', function($rootScope, $scope, $http, $sce, $comp
 
     $rootScope.pageName = 'geekPage';
 
+    var distanceTop = 0;
+    $scope.swipeUp = function() {
+        distanceTop = -$(window).height();
+        $('.cards').each(function(i, e) {
+            var top = parseInt($(this).css('top').replace('px'));
+            if (i == 0 && top == (($('.cards').length - 1) * distanceTop)) {
+                distanceTop = 0;
+            }
+            $(this).animate({ top: top + distanceTop });
+        });
+    }
+
 });

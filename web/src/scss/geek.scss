@@ -1,5 +1,8 @@
 body.geekPage {
     background-image: linear-gradient(126deg, rgba(0, 164, 207, 0.6), rgba(0, 188, 207, 0.6)), url(/img/bg.png);
+    .container.geek {
+        height: 205px !important;
+    }
     .author {
         margin-bottom: 87px;
         margin-top: 47px;
@@ -27,7 +30,7 @@ body.geekPage {
             p.description {
                 font-family: Lato;
                 font-size: 13px;
-                font-weight: bold;
+                font-weight: normal;
                 font-style: normal;
                 font-stretch: normal;
                 letter-spacing: 0.4px;
@@ -79,7 +82,7 @@ body.geekPage {
             .summary {
                 font-family: Lato;
                 font-size: 17px;
-                font-weight: normal;
+                font-weight: 700;
                 font-style: normal;
                 font-stretch: normal;
                 letter-spacing: 0.1px;
@@ -88,5 +91,68 @@ body.geekPage {
             }
         }
     }
-    @media only screen and (max-device-width: 480px) {}
+    @media only screen and (max-device-width: 550px) {
+        .container.geek {
+            width: 100% !important;
+            height: 100% !important;
+        }
+        .author {
+            margin: 0px;
+            .avatar {
+                width: 106px;
+            }
+            .follow {
+                margin: 10px auto;
+            }
+            .about {
+                .summary {
+                    font-family: Lato;
+                    font-size: 13px;
+                    font-weight: normal;
+                    font-style: normal;
+                    font-stretch: normal;
+                    letter-spacing: 0.1px;
+                    text-align: center;
+                    color: #000000;
+                    padding: 0px 20px;
+                }
+            }
+            .social {
+                margin: 0 auto;
+                width: 80%;
+                .two {
+                    width: 20%;
+                }
+            }
+            .followers {
+                margin: 0 auto;
+                width: 90px;
+                margin-top: 10px;
+                p.number {
+                    font-family: KomikaTitle;
+                    font-size: 23px;
+                    font-weight: normal;
+                    font-style: normal;
+                    font-stretch: normal;
+                    letter-spacing: 0.8px;
+                    text-align: center;
+                    color: #ffffff;
+                }
+                p.description {
+                    font-family: Lato;
+                    font-size: 11px;
+                    font-weight: bold;
+                    font-style: normal;
+                    font-stretch: normal;
+                    letter-spacing: 0.4px;
+                    text-align: center;
+                    color: #ffffff;
+                    margin-bottom: 10px;
+                }
+            }
+            * {
+                text-align: center;
+            }
+        }
+    }
 }
