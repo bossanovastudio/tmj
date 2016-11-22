@@ -4,12 +4,22 @@ json.content    card.content
 json.kind       card.kind
 json.source_url card.source_url
 
+p card.kind
+
 if card.media
-  json.image do
-    json.url    card.media.file.url
-    json.width  card.media.width
-    json.height card.media.height
-    json.ratio  number_with_precision(card.media.ratio, precision: 3)
+  if card.kind == :image
+    json.image do
+      json.url    card.media.file.url
+      json.width  card.media.width
+      json.height card.media.height
+      json.ratio  number_with_precision(card.media.ratio, precision: 3)
+    end
+  elsif card.kind == :video
+    json.video do
+      json.thumbnail  card.media.thumbnail.url
+      json.url        card.media.url
+      json.origin     card.media.origin
+    end
   end
 end
 
