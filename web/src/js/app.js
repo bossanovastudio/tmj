@@ -10,6 +10,10 @@ tmj
                 templateUrl: '/pages/home.html',
                 controller: 'HomeController'
             })
+            .when('/personagem/geek', {
+                templateUrl: '/pages/geek.html',
+                controller: 'GeekController'
+            })
             .when('/detalhe/card/:id', {
                 templateUrl: '/pages/home.html',
                 controller: 'HomeController'

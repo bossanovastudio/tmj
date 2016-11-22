@@ -26,9 +26,10 @@
     <!-- CSS -->
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="stylesheet" href="/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/css/geek.css" type="text/css">
 </head>
 
-<body ng-app="tmj" ng-controller="MainController" ng-keypress="closeLightboxKey($event.keyCode)">
+<body ng-app="tmj" ng-controller="MainController" ng-keypress="closeLightboxKey($event.keyCode)" class="{{pageName}}">
     <div class="purple-overlay"></div>
     <div id="menu">
         <img src="/img/menu-desktop.svg" class="desktop" ng-click="toggle()" />
@@ -89,7 +90,7 @@
     </header>
     <section ng-view></section>
     <img class="initial-loading" src="/img/loading.gif" />
-    <footer class="desktop">
+    <footer ng-if="pageName == 'home'" class="desktop">
         <a href="#">
             <img src="/img/rede-social-facebook.svg" />
         </a>
@@ -121,6 +122,8 @@
     <script src="/js/controllers/MainController.js"></script>
     <script src="/js/controllers/HomeController.js"></script>
     <script src="/js/controllers/LoginController.js"></script>
+    <script src="/js/controllers/CardsController.js"></script>
+    <script src="/js/controllers/GeekController.js"></script>
     <script src="/js/directives/Directives.js"></script>
 </body>
 

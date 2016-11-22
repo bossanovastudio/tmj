@@ -6,6 +6,8 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
     $rootScope.card.liked = false;
     var toggled;
 
+    $rootScope.pageName = 'homePage';
+
     $scope.toggle = function() {
         $scope[toggled ? "closeMenu" : "openMenu"]();
         toggled = !toggled;

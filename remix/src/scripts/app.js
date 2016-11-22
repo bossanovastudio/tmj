@@ -60,7 +60,7 @@ $('.remix-container').each(function() {
     $container.trigger('lock');
   });
 
-  $(this).find('.remix-composing .toolbox .tools .toggler').click(function() {
+  $(this).find('.remix-composing .toolbox .toggler').click(function() {
     $(this).closest('.tool-item').toggleClass('on').siblings().removeClass('on');
   });
 });
