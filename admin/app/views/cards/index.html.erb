@@ -34,15 +34,16 @@
     </div>
 
     <div class="btn-status">
-      <%= link_to root_path, class: "aprovar" do %>
-      <%= image_tag "aprovar.svg" %>
-      <% end %>
-      <%= link_to root_path, class: "negar" do %>
-      <%= image_tag "negar.svg" %>
-      <% end %>
-      <%= link_to root_path, class: "select-all" do %>
-      <%= image_tag "select-all.svg" %>
-      <% end %>
+      <a class="approve">
+        <%= image_tag "aprovar.svg" %>
+      </a>
+      <a class="deny">
+        <%= image_tag "negar.svg" %>
+      </a>
+      <a class="select-all">
+        <%= image_tag "select-all.svg", class: "select-all-img" %>
+        <%= image_tag "deselect-all.svg", class: "deselect-all-img" %>
+      </a>
     </div>
   </div>
 </div>
@@ -53,6 +54,7 @@
   <div id="cards-container" class="container cards">
     <% @cards.each do |card| %>
     <div class="card two-five column show" data-class="card two-five column" data-id="<%= card.id %>">
+      <div class="selected-overlay"></div>
       <% if card.kind == 'image' %>
         <div style="background-image:url('<%= card.image.url %>')" class="img">
           <%= image_tag "user", class: 'user-photo' %>

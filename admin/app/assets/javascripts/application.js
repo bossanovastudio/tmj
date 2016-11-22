@@ -23,6 +23,8 @@ $(document).on('turbolinks:load', function() {
   var overlay = $('#overlay'),
       filterList = $('.btn-filter .item ul'),
       filterItem = $('.btn-filter .item'),
+      filterSelectAllCards = $('.filter-bar a.select-all'),
+      cardsContainer = $('#cards-container'),
       socialOptions = $('ul.social-options'),
       statusOptions = $('ul.status-options');
 
@@ -51,6 +53,22 @@ $(document).on('turbolinks:load', function() {
     $(this).children('li').removeClass('active');
     $(e.target).addClass('active');
     $('.status .main-select').text($(e.target).text());
+  });
+
+  filterSelectAllCards.click(function() {
+    $(this).toggleClass('active');
+    if ($(this).hasClass('active'))
+      cardsContainer.children('.card').addClass('selected');
+    else
+      cardsContainer.children('.card').removeClass('selected');
+  });
+
+  $('.card').click(function() {
+    if (filterSelectAllCards.hasClass('active')){
+      filterSelectAllCards.removeClass('active');
+      cardsContainer.children('.card').removeClass('selected');  
+    }
+    $(this).toggleClass('selected');
   });
 
 

@@ -7,9 +7,7 @@ div.card {
   transition: opacity 1s ease-in-out;
   -moz-transition: opacity 1s ease-in-out;
   -webkit-transition: opacity 1s ease-in-out;
-  &.cursor {
-    cursor: pointer;
-  }
+  cursor: pointer;
   &.show {
     opacity: 1;
   }
@@ -39,6 +37,17 @@ div.card {
       }
     }
   }
+  &.selected {
+    .selected-overlay {
+      width: 100%;
+      height: 100%;
+      background-color: #0055E5;
+      opacity: 0.4;
+      position: absolute;
+      z-index: 3;
+    }
+  }
+
   img.user-photo {
     position: absolute;
     left: 50%;

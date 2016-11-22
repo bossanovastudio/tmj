@@ -291,6 +291,20 @@ html {
       a{
         margin-left: 12px;
       }
+
+      .select-all {
+        .deselect-all-img {
+          display: none;
+        }
+        &.active {
+          .deselect-all-img {
+            display: inline;
+          }
+          .select-all-img {
+            display: none;
+          }
+        }
+      }
     }
   }
 }
