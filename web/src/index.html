@@ -68,7 +68,7 @@
     <div class="lightbox" ng-click="closeLightboxClick($event)">
         <div class="detail content {{card.kind=='image' || card.kind=='video' ? 'image' : ''}}">
             <div class="preview" style="background-image:url('{{card.image.url}}')">
-                <div ng-if="card.kind == 'video'" class="videoIframe" ng-bind-html="card.url | formatVideo | trust"></div>
+                <div ng-if="card.kind == 'video'" class="videoIframe" ng-bind-html="card.source_url | formatVideo | trust"></div>
             </div>
             <div class="text">
                 <a ng-href="#">

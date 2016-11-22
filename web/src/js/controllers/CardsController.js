@@ -7,15 +7,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope.SIZE = 20;
     $scope.END = false;
 
-    $scope.VIDEOS = [
-        'https://www.youtube.com/watch?v=ZdBY7qEQDjc',
-        'https://www.youtube.com/watch?v=F1gjyTLq2lU',
-        'https://www.youtube.com/watch?v=w_Dut12rQdA',
-        'https://vimeo.com/151437857',
-        'https://vimeo.com/90695670',
-        'https://vimeo.com/95656929'
-    ]
-
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
     $scope.count = 0;
@@ -54,20 +45,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         url: '/img/featured_background.png',
                         size: ['four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four'][$scope.count++],
                         content: 'Seja sua própria heroína. Somos todas #donasdarua'
-                    });
-                    $scope.cards.push({
-                        id: (parseInt(Math.random() * 999999) + 1),
-                        kind: 'video',
-                        url: $scope.VIDEOS[3],
-                        image: {
-                            url: 'https://i.vimeocdn.com/video/551181496.jpg?mw=900&mh=506',
-                            width: 900,
-                            height: 506,
-                            ratio: "1,778"
-                        },
-                        content: 'Seja sua própria heroína. Somos todas #donasdarua',
-                        size: 'two',
-                        posted_at: '2016-11-03T12:38:43.000Z'
                     });
                     data.cards.forEach(function(card) {
                         $scope.cards.push(card);
@@ -204,33 +181,12 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         if (content.kind == "featured") {
             $location.path(content.source_url);
         } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('originalPost') && !elem.hasClass('shareButton')) {
-            //REMOVE THIS IF WHEN THE VIDEO IS IMPLEMENTED ON THE API
-            if (content.kind == 'video') {
-                id = 26;
-            }
             $http({
                     method: 'get',
                     url: API_URL + '/api/cards/' + id + '.json',
                 })
                 .success(function(data) {
                     $rootScope.card = data;
-
-                    if (content.kind == 'video') {
-                        $rootScope.card = {
-                            id: (parseInt(Math.random() * 999999) + 1),
-                            kind: 'video',
-                            url: $scope.VIDEOS[3],
-                            image: {
-                                url: 'https://i.vimeocdn.com/video/551181496.jpg?mw=900&mh=506',
-                                width: 900,
-                                height: 506,
-                                ratio: "1,778"
-                            },
-                            content: 'Seja sua própria heroína. Somos todas #donasdarua',
-                            size: 'two',
-                            posted_at: '2016-11-03T12:38:43.000Z'
-                        }
-                    }
 
                     if (isMobileDevice) {
                         var card = $(elem).closest('.card').clone();
