@@ -178,4 +178,11 @@ body.geekPage {
             }
         }
     }
+    @media only screen and (min-device-width: 550px) {
+        .social {
+            .two.columns {
+                width: 45px;
+            }
+        }
+    }
 }
