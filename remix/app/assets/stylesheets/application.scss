@@ -1,0 +1,102 @@
+@import "variables";
+
+@import "bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/mixins/clearfix";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/mixins/grid";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/mixins/grid-framework";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/grid";
+
+@import "mixins";
+@import "reset";
+@import "buttons";
+@import "fonts";
+
+body {
+  background: asset-url("bg-pattern.png") no-repeat;
+  background-size: cover;
+  font: 14px 'Lato', sans-serif;
+  min-width: 320px;
+}
+
+.remix-container {
+  &.initial {
+    .remix-landing {
+      display: none;
+    }
+    .remix-composing {
+      display: block;
+    }
+  }
+  &.can-choose {
+    .toolbox {
+      .toolbox-item {
+        &.category {
+          .popup {
+            .categories {
+              display: none;
+            }
+            .pictures {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.can-compose {
+    .remix-composing {
+      .top-actions button {
+        display: none;
+        &.next {
+          display: inline-block;
+        }
+      }
+    }
+  }
+  &.can-publish {
+    .remix-composing {
+      .top-actions button {
+        display: none;
+        &.publish {
+          display: inline-block;
+        }
+      }
+      .toolbox {
+        .toolbox-item {
+          &.category {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  &.can-share {
+    .remix-composing {
+      .top-actions button {
+        display: none;
+        &.skip-share {
+          display: inline-block;
+        }
+      }
+      .toolbox {
+        display: none;
+      }
+      .share {
+        display: block;
+      }
+    }
+  }
+  @include mq-only-xs {
+    &.initial {
+      .remix-title {
+        display: none;
+      }
+    }
+  }
+  @include mq-from-sm {
+  }
+}
+
+@import "components/remix-title";
+@import "components/remix-landing";
+@import "components/remix-composing";

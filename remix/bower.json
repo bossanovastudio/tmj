@@ -16,12 +16,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.5.8",
-    "angular-cookies": "^1.5.8",
-    "angular-route": "^1.5.8",
-    "angular-animate": "^1.5.8",
-    "angular-touch": "^1.5.8",
     "jquery": "^3.1.1",
-    "bootstrap-sass": "^3.3.7"
+    "jquery-ujs": "^1.2.2",
+		"bootstrap-sass": "^3.3.7"
   }
 }
