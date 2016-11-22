@@ -1,0 +1,163 @@
+<div role="main">
+  <div class="container">
+    <div class="remix-container">
+      <section class="remix-title">
+        <h2>Remix</h2>
+        <p class="intro">Aqui você pode criar suas artes a partir de imagens da turma! Divirta-se!</p>
+      </section>
+      <section class="remix-landing">
+        <button type="button" class="btn btn-default new">Criar um novo</button>
+        <div class="gallery">
+          <div class="gallery-holder">
+            <% 10.times do %>
+            <div class="gallery-item">
+              <%= image_tag "http://placehold.it/252x252" %>
+              <div class="actions">
+                <button type="button" class="remove">
+                  <%= image_tag "icon-trash", alt: 'Remover' %>
+                </button>
+                <button type="button" class="download">
+                  <%= image_tag "icon-arrow-down", alt: 'Baixar' %>
+                </button>
+                <button type="button" class="share">
+                  <%= image_tag "icon-reply", alt: 'Compartilhar' %>
+                </button>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </section>
+      <section class="remix-composing">
+        <button type="button" class="cancel">&times;</button>
+        <div class="top-actions">
+          <button type="button" class="next"><%= image_tag "icon-arrow-right", alt: 'Próximo' %></button>
+          <button type="button" class="publish">Publicar</button>
+          <button type="button" class="skip-share">Pular</button>
+        </div>
+        <div class="artboard">
+          <div class="canvas"></div>
+          <div class="empty">Escolha uma categoria</div>
+        </div>
+        <div class="toolbox">
+          <div class="toolbox-item category on">
+            <button type="button" class="toggler" title="Categoria">
+              <%= image_tag "icon-image", alt: 'Categoria' %>
+            </button>
+            <div class="popup">
+              <div class="categories">
+                <div class="take-photo">
+                  <%= image_tag "icon-camera", alt: 'Enviar foto' %>
+                </div>
+                <div>
+                  <%= image_tag "remix-category-1" %>
+                </div>
+                <div>
+                  <%= image_tag "remix-category-1" %>
+                </div>
+                <div>
+                  <%= image_tag "remix-category-1" %>
+                </div>
+                <div>
+                  <%= image_tag "remix-category-1" %>
+                </div>
+                <div>
+                  <%= image_tag "remix-category-1" %>
+                </div>
+                <div>
+                  <%= image_tag "remix-category-1" %>
+                </div>
+                <div>
+                  <%= image_tag "remix-category-1" %>
+                </div>
+              </div>
+              <div class="pictures">
+                <div class="go-back">
+                  <%= image_tag "icon-arrow-left" %>
+                </div>
+                <div data-picture-src="<%= image_url "remix-category-1-1" %>">
+                  <%= image_tag "remix-category-1-1" %>
+                </div>
+                <div data-picture-src="<%= image_url "remix-category-1-2" %>">
+                  <%= image_tag "remix-category-1-2" %>
+                </div>
+                <div data-picture-src="<%= image_url "remix-category-1-3" %>">
+                  <%= image_tag "remix-category-1-3" %>
+                </div>
+                <div data-picture-src="<%= image_url "remix-category-1-4" %>">
+                  <%= image_tag "remix-category-1-4" %>
+                </div>
+                <div data-picture-src="<%= image_url "remix-category-1-5" %>">
+                  <%= image_tag "remix-category-1-5" %>
+                </div>
+                <div data-picture-src="<%= image_url "remix-category-1-6" %>">
+                  <%= image_tag "remix-category-1-6" %>
+                </div>
+                <div data-picture-src="<%= image_url "remix-category-1-7" %>">
+                  <%= image_tag "remix-category-1-7" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="toolbox-item color">
+            <button type="button" class="toggler" title="Aquarela">
+              <%= image_tag "icon-watercolor", alt: 'Aquarela' %>
+            </button>
+            <div class="popup">
+              options
+            </div>
+          </div>
+          <div class="toolbox-item effects">
+            <button type="button" class="toggler" title="Efeitos">
+              <%= image_tag "icon-magic-wand", alt: 'Efeitos' %>
+            </button>
+            <div class="popup">
+              options
+            </div>
+          </div>
+          <div class="toolbox-item ballons">
+            <button type="button" class="toggler" title="Balões">
+              <%= image_tag "icon-ballon", alt: 'Balões' %>
+            </button>
+            <div class="popup">
+              options
+            </div>
+          </div>
+          <div class="toolbox-item stickers">
+            <button type="button" class="toggler" title="Stickers">
+              <%= image_tag "icon-smile", alt: 'Stickers' %>
+            </button>
+            <div class="popup">
+              options
+            </div>
+          </div>
+          <div class="toolbox-item texts">
+            <button type="button" class="toggler" title="Texto">
+              <%= image_tag "icon-typography", alt: 'Texto' %>
+            </button>
+            <div class="popup">
+              options
+            </div>
+          </div>
+        </div>
+        <div class="share">
+          <p>Escolha uma rede social para compartilhar sua arte!</p>
+          <div class="networks">
+            <%= link_to '#' do %>
+              <%= image_tag "icon-facebook", alt: 'Facebook' %>
+            <% end %>
+            <%= link_to '#' do %>
+              <%= image_tag "icon-instagram", alt: 'Instagram' %>
+            <% end %>
+            <%= link_to '#' do %>
+              <%= image_tag "icon-twitter", alt: 'Twitter' %>
+            <% end %>
+            <%= link_to '#' do %>
+              <%= image_tag "icon-tumblr", alt: 'Tumblr' %>
+            <% end %>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
