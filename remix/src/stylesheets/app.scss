@@ -1,4 +1,12 @@
-@import "settings";
+@import "variables";
+
+@import "bootstrap/variables";
+@import "bootstrap/mixins/clearfix";
+@import "bootstrap/mixins/grid";
+@import "bootstrap/mixins/grid-framework";
+@import "bootstrap/grid";
+
+@import "mixins";
 @import "reset";
 @import "buttons";
 
@@ -17,26 +25,10 @@ body {
   background: url(../img/bg-pattern.png) no-repeat;
   background-size: cover;
   font: 14px 'Lato', sans-serif;
-}
-
-.container {
-  margin-left: auto;
-  margin-right: auto;
-  width: 320px;
-
-  @media (min-width: $screen-lg-min) {
-    padding-left: ($grid-gutter-width / 2);
-    padding-right: ($grid-gutter-width / 2);
-    width: $container-lg;
-  }
+  min-width: 320px;
 }
 
 .remix-container {
-  h2 {
-    font-family: 'KomikaTitle';
-    font-size: 32px;
-    margin-top: 20px;
-  }
   &.composing {
     .remix-landing {
       display: none;
@@ -54,13 +46,16 @@ body {
         }
       }
       .toolbox {
-        .toolbox-item {
-          display: none;
-          &.categories {
-            display: none;
-          }
-          &.pictures {
-            display: block;
+        .tool-item {
+          &.category {
+            .popup {
+              .categories {
+                display: none;
+              }
+              .pictures {
+                display: block;
+              }
+            }
           }
         }
       }
@@ -75,10 +70,9 @@ body {
         }
       }
       .toolbox {
-        .toolbox-item {
-          display: none;
-          &.tools {
-            display: block;
+        .tool-item {
+          &.category {
+            display: none;
           }
         }
       }
@@ -93,35 +87,44 @@ body {
         }
       }
       .toolbox {
-        .toolbox-item {
-          display: none;
-          &.share {
-            display: block;
-          }
-        }
+        display: none;
+      }
+      .share {
+        display: block;
       }
     }
+  }
+  @include mq-only-xs {
+    &.composing {
+      .remix-title {
+        display: none;
+      }
+    }
+  }
+  @include mq-from-sm {
+  }
+}
+
+.remix-title {
+  h2 {
+    font-family: 'KomikaTitle';
+    font-size: 32px;
+    margin-top: 20px;
+  }
+  .intro {
+    margin: 20px 0;
   }
 }
 
 .remix-landing {
-  .intro {
-    margin-top: 20px;
-  }
-  .new {
-    margin-top: 20px;
-  }
   .gallery {
-    overflow: auto;
     .gallery-holder {
-      font-size: 0;
-      line-height: 0;
-      margin: 20px 0 0 (-$grid-gutter-width);
-      white-space: nowrap;
+      margin-top: 20px;
     }
     .gallery-item {
-      display: inline-block;
-      margin-left: $grid-gutter-width;
+      img {
+        max-width: 100%;
+      }
       .actions {
         @include clearfix;
         margin-top: 10px;
@@ -137,6 +140,31 @@ body {
           &.remove {
             float: left;
           }
+        }
+      }
+    }
+  }
+  @include mq-only-xs {
+    .gallery {
+      overflow: auto;
+      .gallery-holder {
+        font-size: 0;
+        line-height: 0;
+        margin-left: -$grid-gutter-width;
+        white-space: nowrap;
+        .gallery-item {
+          display: inline-block;
+          margin-left: $grid-gutter-width;
+        }
+      }
+    }
+  }
+  @include mq-from-sm {
+    .gallery {
+      .gallery-holder {
+        @include make-row;
+        .gallery-item {
+          @include make-sm-column(3);
         }
       }
     }
@@ -169,15 +197,17 @@ body {
     }
   }
   .artboard {
-    background-color: #FFF;
     position: relative;
-    &:before {
-      content: '';
-      display: block;
-      left: 0;
-      padding-bottom: 100%;
-      top: 0;
-      width: 100%;
+    .canvas {
+      background-color: #FFF;
+      &:before {
+        content: '';
+        display: block;
+        left: 0;
+        padding-bottom: 100%;
+        top: 0;
+        width: 100%;
+      }
     }
     .empty {
       transform: translate(-50%, -50%);
@@ -192,88 +222,121 @@ body {
     }
   }
   .toolbox {
-    .toolbox-item {
-      display: none;
-      &.categories, &.pictures {
-        @include clearfix;
-        > div {
-          background-color: #EFEFEF;
-          float: left;
-          line-height: 80px;
-          height: 80px;
-          padding: 0 1px;
-          text-align: center;
-          width: 80px;
-        }
-      }
-      &.categories {
-        display: block;
-      }
-      &.tools {
-        @include clearfix;
-        padding: 15px 20px 15px;
+    @include clearfix;
+    padding: 15px 20px 15px;
+    position: relative;
+    text-align: center;
+    .tool-item {
+      float: left;
+      width: percentage(1 / 5);
+      .toggler {
+        line-height: 40px;
+        padding: 0 5px;
         position: relative;
-        text-align: center;
-        .tool-item {
-          float: left;
-          width: 20%;
-          .toggler {
-            line-height: 40px;
-            padding: 0 5px;
-            position: relative;
-            &:after {
-              width: 0;
-              height: 0;
-              border-style: solid;
-              border-width: 0 5px 10px 5px;
-              border-color: transparent transparent #FFF transparent;
+        &:after {
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 0 5px 10px 5px;
+          border-color: transparent transparent #FFF transparent;
 
-              content: '';
-              display: none;
-              margin: 5px 0 0 -5px;
-              position: absolute;
-              left: 50%;
-              top: 100%;
+          content: '';
+          display: none;
+          margin: 5px 0 0 -5px;
+          position: absolute;
+          left: 50%;
+          top: 100%;
+        }
+      }
+      .popup {
+        background-color: #FFF;
+        display: none;
+        left: 0;
+        padding: 10px;
+        position: absolute;
+        top: 100%;
+        width: 100%;
+      }
+      &.category {
+        .popup {
+          padding: 2px;
+          .categories, .pictures {
+            @include clearfix;
+            > div {
+              background-color: #EFEFEF;
+              float: left;
+              line-height: 80px;
+              height: 80px;
+              padding: 0 1px;
+              text-align: center;
+              width: 80px;
             }
           }
-          .popup {
-            background-color: #FFF;
+          .pictures {
             display: none;
-            left: 0;
-            padding: 10px;
-            position: absolute;
-            top: 100%;
-            width: 100%;
-          }
-          &.on {
-            .toggler:after {
-              display: block;
-            }
-            .popup {
-              display: block;
-            }
           }
         }
       }
-      &.share {
-        p {
-          font-family: 'KomikaTitle';
-          font-size: 15px;
-          margin: 20px auto;
-          text-align: center;
-          width: 60%;
+      &.on {
+        .toggler:after {
+          display: block;
         }
-        .networks {
-          font-size: 0;
-          line-height: 0;
-          margin-top: 20px;
-          text-align: center;
-          a {
-            display: inline-block;
-            margin: 0 5px;
-          }
+        .popup {
+          display: block;
         }
       }
+    }
+  }
+  .share {
+    display: none;
+    p {
+      font-family: 'KomikaTitle';
+      font-size: 15px;
+      margin: 20px auto;
+      text-align: center;
+      width: 60%;
+    }
+    .networks {
+      font-size: 0;
+      line-height: 0;
+      margin-top: 20px;
+      text-align: center;
+      a {
+        display: inline-block;
+        margin: 0 5px;
+      }
+    }
+  }
+  @include mq-only-xs {
+    .toolbox {
+      .tool-item.category {
+        .toggler {
+          display: none;
+        }
+        .popup {
+          margin-top: -70px;
+          z-index: 10;
+        }
+      }
+    }
+  }
+  @include mq-from-sm {
+    @include make-row;
+    .top-actions,
+    .cancel {
+      display: none;
+    }
+    .artboard {
+      @include make-sm-column(6);
+    }
+    .toolbox {
+      @include make-sm-column(6);
+      .tool-item {
+        width: percentage(1 / 6);
+      }
+    }
+    .share {
+      @include make-sm-column(6);
     }
   }
 }

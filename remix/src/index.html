@@ -34,9 +34,11 @@
   <div role="main">
     <div class="container">
       <div class="remix-container">
-        <section class="remix-landing">
+        <section class="remix-title">
           <h2>Remix</h2>
           <p class="intro">Aqui você pode criar suas artes a partir de imagens da turma! Divirta-se!</p>
+        </section>
+        <section class="remix-landing">
           <button type="button" class="btn btn-default new">Criar um novo</button>
           <div class="gallery">
             <div class="gallery-holder">
@@ -93,111 +95,117 @@
             <button type="button" class="skip-share">Pular</button>
           </div>
           <div class="artboard">
+            <div class="canvas"></div>
             <div class="empty">Escolha uma categoria</div>
           </div>
           <div class="toolbox">
-            <div class="toolbox-item categories">
-              <div class="take-photo">
-                <img src="img/icon-camera.svg" alt="Enviar foto">
-              </div>
-              <div>
-                <img src="img/remix-category-1.png" alt="">
-              </div>
-              <div>
-                <img src="img/remix-category-1.png" alt="">
-              </div>
-              <div>
-                <img src="img/remix-category-1.png" alt="">
-              </div>
-              <div>
-                <img src="img/remix-category-1.png" alt="">
-              </div>
-              <div>
-                <img src="img/remix-category-1.png" alt="">
-              </div>
-              <div>
-                <img src="img/remix-category-1.png" alt="">
-              </div>
-              <div>
-                <img src="img/remix-category-1.png" alt="">
-              </div>
-            </div>
-            <div class="toolbox-item pictures">
-              <div class="go-back">
-                <img src="img/icon-arrow-left.svg" alt="">
-              </div>
-              <div>
-                <img src="img/remix-category-1-1.png" alt="">
-              </div>
-              <div>
-                <img src="img/remix-category-1-2.png" alt="">
-              </div>
-              <div>
-                <img src="img/remix-category-1-3.png" alt="">
-              </div>
-              <div>
-                <img src="img/remix-category-1-4.png" alt="">
-              </div>
-              <div>
-                <img src="img/remix-category-1-5.png" alt="">
-              </div>
-              <div>
-                <img src="img/remix-category-1-6.png" alt="">
-              </div>
-              <div>
-                <img src="img/remix-category-1-7.png" alt="">
-              </div>
-            </div>
-            <div class="toolbox-item tools">
-              <div class="tool-item color">
-                <button type="button" class="toggler" title="Aquarela">
-                  <img src="img/icon-watercolor.svg" alt="Aquarela">
-                </button>
-                <div class="popup">
-                  options
+            <div class="tool-item category on">
+              <button type="button" class="toggler" title="Categoria">
+                <img src="img/icon-image.svg" alt="Categoria">
+              </button>
+              <div class="popup">
+                <div class="categories">
+                  <div class="take-photo">
+                    <img src="img/icon-camera.svg" alt="Enviar foto">
+                  </div>
+                  <div>
+                    <img src="img/remix-category-1.png" alt="">
+                  </div>
+                  <div>
+                    <img src="img/remix-category-1.png" alt="">
+                  </div>
+                  <div>
+                    <img src="img/remix-category-1.png" alt="">
+                  </div>
+                  <div>
+                    <img src="img/remix-category-1.png" alt="">
+                  </div>
+                  <div>
+                    <img src="img/remix-category-1.png" alt="">
+                  </div>
+                  <div>
+                    <img src="img/remix-category-1.png" alt="">
+                  </div>
+                  <div>
+                    <img src="img/remix-category-1.png" alt="">
+                  </div>
                 </div>
-              </div>
-              <div class="tool-item effects">
-                <button type="button" class="toggler" title="Efeitos">
-                  <img src="img/icon-magic-wand.svg" alt="Efeitos">
-                </button>
-                <div class="popup">
-                  options
-                </div>
-              </div>
-              <div class="tool-item ballons">
-                <button type="button" class="toggler" title="Balões">
-                  <img src="img/icon-ballon.svg" alt="Balões">
-                </button>
-                <div class="popup">
-                  options
-                </div>
-              </div>
-              <div class="tool-item stickers">
-                <button type="button" class="toggler" title="Stickers">
-                  <img src="img/icon-smile.svg" alt="Stickers">
-                </button>
-                <div class="popup">
-                  options
-                </div>
-              </div>
-              <div class="tool-item texts">
-                <button type="button" class="toggler" title="Texto">
-                  <img src="img/icon-typography.svg" alt="Texto">
-                </button>
-                <div class="popup">
-                  options
+                <div class="pictures">
+                  <div class="go-back">
+                    <img src="img/icon-arrow-left.svg" alt="">
+                  </div>
+                  <div>
+                    <img src="img/remix-category-1-1.png" alt="">
+                  </div>
+                  <div>
+                    <img src="img/remix-category-1-2.png" alt="">
+                  </div>
+                  <div>
+                    <img src="img/remix-category-1-3.png" alt="">
+                  </div>
+                  <div>
+                    <img src="img/remix-category-1-4.png" alt="">
+                  </div>
+                  <div>
+                    <img src="img/remix-category-1-5.png" alt="">
+                  </div>
+                  <div>
+                    <img src="img/remix-category-1-6.png" alt="">
+                  </div>
+                  <div>
+                    <img src="img/remix-category-1-7.png" alt="">
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="toolbox-item share">
-              <p>Escolha uma rede social para compartilhar sua arte!</p>
-              <div class="networks">
-                <a href="#"><img src="img/icon-facebook.svg" alt="Facebook"></a>
-                <a href="#"><img src="img/icon-instagram.svg" alt="Instagram"></a>
-                <a href="#"><img src="img/icon-twitter.svg" alt="Twitter"></a>
-                <a href="#"><img src="img/icon-tumblr.svg" alt="Tumblr"></a>
+            <div class="tool-item color">
+              <button type="button" class="toggler" title="Aquarela">
+                <img src="img/icon-watercolor.svg" alt="Aquarela">
+              </button>
+              <div class="popup">
+                options
               </div>
+            </div>
+            <div class="tool-item effects">
+              <button type="button" class="toggler" title="Efeitos">
+                <img src="img/icon-magic-wand.svg" alt="Efeitos">
+              </button>
+              <div class="popup">
+                options
+              </div>
+            </div>
+            <div class="tool-item ballons">
+              <button type="button" class="toggler" title="Balões">
+                <img src="img/icon-ballon.svg" alt="Balões">
+              </button>
+              <div class="popup">
+                options
+              </div>
+            </div>
+            <div class="tool-item stickers">
+              <button type="button" class="toggler" title="Stickers">
+                <img src="img/icon-smile.svg" alt="Stickers">
+              </button>
+              <div class="popup">
+                options
+              </div>
+            </div>
+            <div class="tool-item texts">
+              <button type="button" class="toggler" title="Texto">
+                <img src="img/icon-typography.svg" alt="Texto">
+              </button>
+              <div class="popup">
+                options
+              </div>
+            </div>
+          </div>
+          <div class="share">
+            <p>Escolha uma rede social para compartilhar sua arte!</p>
+            <div class="networks">
+              <a href="#"><img src="img/icon-facebook.svg" alt="Facebook"></a>
+              <a href="#"><img src="img/icon-instagram.svg" alt="Instagram"></a>
+              <a href="#"><img src="img/icon-twitter.svg" alt="Twitter"></a>
+              <a href="#"><img src="img/icon-tumblr.svg" alt="Tumblr"></a>
             </div>
           </div>
         </section>

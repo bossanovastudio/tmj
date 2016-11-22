@@ -30,7 +30,7 @@ var app = {
 var configs = {
   sass: {
     outputStyle: 'compressed',
-    // includePaths: [dirs.bower + '/bootstrap-sass/assets/stylesheets']
+    includePaths: [dirs.bower + '/bootstrap-sass/assets/stylesheets']
   },
   uglify: {
     preserveComments: 'license'
