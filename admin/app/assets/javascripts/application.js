@@ -64,11 +64,14 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('.card').click(function() {
+    $(this).toggleClass('selected');
     if (filterSelectAllCards.hasClass('active')){
       filterSelectAllCards.removeClass('active');
-      cardsContainer.children('.card').removeClass('selected');
+    } else if ($("#cards-container .card.selected").length == $("#cards-container .card").length) {
+      filterSelectAllCards.addClass('active');
     }
-    $(this).toggleClass('selected');
+    console.log("cards selecionados: " + $("#cards-container .card.selected").length);
+    console.log("cards totais: " + $("#cards-container .card").length);
   });
 
   $('.btn-status a.accept').click(function() {
