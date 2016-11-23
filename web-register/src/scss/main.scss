@@ -1,6 +1,6 @@
 @import 'reset.scss';
 @import 'grid.scss';
-@import 'https://fonts.googleapis.com/css?family=Lato:300,500,700';
+@import 'https://fonts.googleapis.com/css?family=Lato:300,400,700';
 @font-face {
     font-family: 'KomikaTitle';
     src: url('/fonts/KomikaTitle-webfont.eot');
@@ -14,6 +14,10 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+.clear {
+    clear: both;
 }
 
 html,
@@ -116,6 +120,181 @@ section {
         right: 0;
         top: 175px;
         overflow: scroll;
+        overflow-x: hidden;
+        .container {
+            //overflow-x: hidden;
+            .form {
+                display: none;
+                position: relative;
+                left: 150%;
+                p.title {
+                    font-family: KomikaTitle;
+                    font-size: 19px;
+                    font-weight: normal;
+                    font-style: normal;
+                    font-stretch: normal;
+                    letter-spacing: 0.6px;
+                    color: #000000;
+                    margin-bottom: 18px;
+                    &.space {
+                        margin-top: 65px;
+                    }
+                }
+                .field {
+                    margin-bottom: 22px;
+                    label.placeholder {
+                        font-family: Lato;
+                        font-size: 11px;
+                        font-weight: 700;
+                        font-style: normal;
+                        font-stretch: normal;
+                        letter-spacing: 0.4px;
+                        color: #000000;
+                        display: block;
+                        width: 100%;
+                        text-transform: uppercase;
+                        margin-bottom: 9px;
+                    }
+                    input,
+                    textarea {
+                        border: none;
+                        border-bottom: solid 1px #ffffff;
+                        background: none;
+                        font-family: Lato;
+                        font-size: 13px;
+                        font-weight: 400;
+                        font-style: normal;
+                        font-stretch: normal;
+                        letter-spacing: 0.4px;
+                        color: #ffffff;
+                        padding: 5px 0px;
+                        width: 100%;
+                        &.error {
+                            border-bottom: solid 1px #da001b;
+                        }
+                    }
+                    textarea {
+                        height: 58px;
+                        border: solid 1px #ffffff;
+                    }
+                    .file {
+                        margin-top: 10px;
+                        label {
+                            font-family: Lato;
+                            font-size: 13px;
+                            font-weight: 300;
+                            font-style: normal;
+                            font-stretch: normal;
+                            letter-spacing: 0.4px;
+                            color: #dfdfdf;
+                            border: solid 1px #ffffff;
+                            display: block;
+                            padding: 8px;
+                        }
+                        button {
+                            background-color: #ffffff;
+                            border: solid 1px #ffffff;
+                            font-family: KomikaTitle;
+                            font-size: 12px;
+                            font-weight: normal;
+                            font-style: normal;
+                            font-stretch: normal;
+                            letter-spacing: 0.4px;
+                            text-align: center;
+                            color: #000000;
+                            cursor: pointer;
+                        }
+                        input {
+                            display: none;
+                        }
+                        label,
+                        button {
+                            height: 35px;
+                            overflow: hidden;
+                        }
+                    }
+                    button.shadow {
+                        display: block;
+                        text-decoration: none;
+                        background: #ffffff;
+                        border: 1px solid #000000;
+                        font-family: KomikaTitle;
+                        font-size: 19px;
+                        font-weight: normal;
+                        font-style: normal;
+                        font-stretch: normal;
+                        letter-spacing: 0.6px;
+                        text-align: center;
+                        color: #000000;
+                        padding: 5px 0px;
+                        -webkit-box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
+                        -moz-box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
+                        box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
+                    }
+                    &.boolean {
+                        .option {
+                            border: 1px solid #ffffff;
+                            font-family: Lato;
+                            font-size: 13px;
+                            font-weight: bold;
+                            font-style: normal;
+                            font-stretch: normal;
+                            letter-spacing: 0.4px;
+                            text-align: center;
+                            color: #ffffff;
+                            margin-right: 10px;
+                            cursor: pointer;
+                            padding: 5px;
+                            &.active {
+                                background: #ffffff;
+                                color: #000000;
+                            }
+                        }
+                        input[type=radio],
+                        .complement,
+                        .value {
+                            display: none;
+                        }
+                        .complement.space {
+                            margin-top: 20px;
+                        }
+                        &.active {
+                            .complement,
+                            .value {
+                                display: block;
+                            }
+                        }
+                    }
+                    &.terms {
+                        input {
+                            width: 20px;
+                            height: 20px;
+                        }
+                        label {
+                            color: #ffffff;
+                            display: block;
+                            padding: 5px;
+                            a {
+                                color: #ffffff;
+                            }
+                        }
+                    }
+                    &.advance {
+                        margin-top: 46px;
+                        margin-bottom: 100px;
+                    }
+                    &.middle {
+                        margin: 0 3.95%;
+                    }
+                    &.last {
+                        float: right;
+                    }
+                }
+                &.active {
+                    display: block;
+                }
+            }
+        }
     }
 }
 
