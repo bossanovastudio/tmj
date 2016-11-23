@@ -57,18 +57,18 @@
       <div class="selected-overlay"></div>
       <% if card.kind == 'image' %>
         <div style="background-image:url('<%= card.image.url %>')" class="img">
-          <%= image_tag "user", class: 'user-photo' %>
+          <!-- <%= image_tag "user", class: 'user-photo' %> -->
         </div>
       <% else %>
-        <%= image_tag "user", class: 'user-photo' %>
+      <!-- <%= image_tag "user", class: 'user-photo' %> -->
       <% end %>
       <% if card.kind == 'video' %>
         <div class="videoMobile"></div>
       <% end %>
       <% if card.kind != 'featured' %>
         <div class="content">
-          <p class="name">Adão Coelho</p>
           <p class="name"><%= card.status %></p>
+          <!-- <p class="name">Adão Coelho</p> -->
           <p class="date"><%= image_tag('social/' + card.origin + '.svg')%><%=l card.posted_at, format: '%d %h %Y, %H:%M' %></p>
           <p class="text"><%= card.content %></p>
         </div>
