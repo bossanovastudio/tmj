@@ -72,6 +72,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         }
                         if ($scope.PAGE == 1) {
                             setTimeout(function() {
+                                $scope.initialCard('posts');
                                 $('.cards').each(function(i, e) {
                                     $(e).css({ top: i * $(window).height() });
                                 });
@@ -298,6 +299,17 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     heart.parent().addClass('liked');
                 });
         }
+    }
+
+    $scope.initialCard = function(filterType) {
+        var cardContent;
+        if( filterType == "posts" ) cardContent = "Posts";
+        $scope.cards.push({
+            id: (parseInt(Math.random() * 999999) + 1),
+            kind: 'initial',
+            url: '/img/initial_' + filterType + '.png',
+            content: cardContent
+        });
     }
 
     $scope.textSize = !isMobileDevice ? 100 : 200;
