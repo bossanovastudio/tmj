@@ -71,6 +71,12 @@ $(document).on('turbolinks:load', function() {
     $(this).toggleClass('selected');
   });
 
+  $('.btn-status a.accept').click(function() {
+    cardsContainer.children('.card selected').each(function () {
+      console.log();
+    });
+  });
+
 
 
   $('.cards').find('.card').each(function() {

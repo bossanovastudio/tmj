@@ -34,10 +34,10 @@
     </div>
 
     <div class="btn-status">
-      <a class="approve">
+      <a class="accept">
         <%= image_tag "aprovar.svg" %>
       </a>
-      <a class="deny">
+      <a class="reject">
         <%= image_tag "negar.svg" %>
       </a>
       <a class="select-all">
@@ -68,7 +68,7 @@
       <% if card.kind != 'featured' %>
         <div class="content">
           <p class="name">Adão Coelho</p>
-          <p class="date"><%= image_tag('social/' + card.origin + '.svg')%><%=l card.posted_at, format: '%d %h %Y, %H:%m' %></p>
+          <p class="date"><%= image_tag('social/' + card.origin + '.svg')%><%=l card.posted_at, format: '%d %h %Y, %H:%M' %></p>
           <p class="text"><%= card.content %></p>
         </div>
       <% end %>
