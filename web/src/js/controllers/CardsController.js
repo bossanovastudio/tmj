@@ -39,6 +39,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     $scope.END = true;
                     $('.cards').removeClass('loading');
                 } else {
+                    if ($scope.PAGE == 1 && isMobileDevice) {
+                        $scope.initialCard('posts');
+                    }
                     $scope.cards.push({
                         id: (parseInt(Math.random() * 999999) + 1),
                         kind: 'featured',
@@ -72,7 +75,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         }
                         if ($scope.PAGE == 1) {
                             setTimeout(function() {
-                                $scope.initialCard('posts');
                                 $('.cards').each(function(i, e) {
                                     $(e).css({ top: i * $(window).height() });
                                 });
@@ -303,11 +305,14 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
     $scope.initialCard = function(filterType) {
         var cardContent;
-        if( filterType == "posts" ) cardContent = "Posts";
+        if (filterType == "posts") cardContent = "Posts";
         $scope.cards.push({
             id: (parseInt(Math.random() * 999999) + 1),
             kind: 'initial',
-            url: '/img/initial_' + filterType + '.png',
+            icon: {
+                url: '/img/initial_' + filterType + '.svg'
+            },
+            count: 64,
             content: cardContent
         });
     }

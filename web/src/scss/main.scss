@@ -819,6 +819,32 @@ footer {
                 font-size: 31px;
             }
         }
+        &.initial {
+            background: transparent;
+            .img {
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                > div{
+                    text-align: center;
+                    position: relative;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    p{
+                        font-size: 30px;
+                        font-family: KomikaTitle;
+                        color: #fff;
+                        margin: 5px;
+                    }
+                    div{
+                        p{
+                            color: #000;
+                            display: inline;
+                        }
+                    }
+                }
+            }
+        }
         .img {
             min-height: 200px;
         }
