@@ -156,7 +156,8 @@ section {
                         margin-bottom: 9px;
                     }
                     input,
-                    textarea {
+                    textarea,
+                    select {
                         border: none;
                         border-bottom: solid 1px #ffffff;
                         background: none;
@@ -169,13 +170,26 @@ section {
                         color: #ffffff;
                         padding: 5px 0px;
                         width: 100%;
+                        -webkit-transition: border 1s ease-out;
+                        -moz-transition: border 1s ease-out;
+                        -o-transition: border 1s ease-out;
+                        transition: border 1s ease-out;
                         &.error {
                             border-bottom: solid 1px #da001b;
                         }
                     }
+                    select {
+                        background: url(/img/select.svg) right center no-repeat;
+                        appearance: none;
+                        -moz-appearance: none;
+                        -webkit-appearance: none;
+                    }
                     textarea {
                         height: 58px;
                         border: solid 1px #ffffff;
+                        &.error {
+                            border: solid 1px #da001b;
+                        }
                     }
                     .file {
                         margin-top: 10px;
@@ -190,6 +204,13 @@ section {
                             border: solid 1px #ffffff;
                             display: block;
                             padding: 8px;
+                            -webkit-transition: border 1s ease-out;
+                            -moz-transition: border 1s ease-out;
+                            -o-transition: border 1s ease-out;
+                            transition: border 1s ease-out;
+                            &.error {
+                                border: solid 1px #da001b;
+                            }
                         }
                         button {
                             background-color: #ffffff;
@@ -245,6 +266,13 @@ section {
                             margin-right: 10px;
                             cursor: pointer;
                             padding: 5px;
+                            -webkit-transition: border 1s ease-out;
+                            -moz-transition: border 1s ease-out;
+                            -o-transition: border 1s ease-out;
+                            transition: border 1s ease-out;
+                            &.error {
+                                border: solid 1px #da001b;
+                            }
                             &.active {
                                 background: #ffffff;
                                 color: #000000;
@@ -254,6 +282,13 @@ section {
                         .complement,
                         .value {
                             display: none;
+                            -webkit-transition: border 1s ease-out;
+                            -moz-transition: border 1s ease-out;
+                            -o-transition: border 1s ease-out;
+                            transition: border 1s ease-out;
+                            &.error {
+                                border: solid 1px #da001b;
+                            }
                         }
                         .complement.space {
                             margin-top: 20px;
@@ -274,8 +309,19 @@ section {
                             color: #ffffff;
                             display: block;
                             padding: 5px;
+                            span,
                             a {
                                 color: #ffffff;
+                                -webkit-transition: all 1s ease-out;
+                                -moz-transition: all 1s ease-out;
+                                -o-transition: all 1s ease-out;
+                                transition: all 1s ease-out;
+                            }
+                            &.error {
+                                span,
+                                a {
+                                    color: #da001b;
+                                }
                             }
                         }
                     }
@@ -293,20 +339,61 @@ section {
                 &.active {
                     display: block;
                 }
+                &.finish {
+                    text-align: center;
+                    img {
+                        margin: 60px auto 18px;
+                    }
+                    h1 {
+                        font-family: KomikaTitle;
+                        font-size: 19px;
+                        font-weight: normal;
+                        font-style: normal;
+                        font-stretch: normal;
+                        letter-spacing: 0.6px;
+                        text-align: center;
+                        color: #ffffff;
+                    }
+                }
             }
         }
     }
 }
 
-.mobile {
-    display: none;
-}
-
-@media only screen and (max-device-width: 480px) {
-    .desktop {
+@media (max-width: 1250px) {
+    .left {
         display: none;
     }
-    .mobile {
-        display: block;
+    .six.columns.right {
+        width: 100%;
+        height: auto;
+        position: relative;
+        min-height: 100%;
+    }
+    .four.columns.mobile {
+        width: 30.6667%;
+    }
+    .container {
+        width: 80% !important;
+        height: auto !important;
+    }
+    .right .forms {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        top: auto;
+        right: auto;
+        overflow: auto;
+    }
+    .right .forms .container .form .field.last {
+        float: left;
+    }
+    .right .forms .container .form .field.middle {
+        margin-right: 0;
+        margin-left: 0;
+        margin-bottom: 22px;
+    }
+    .right .forms .container .form .field.boolean .complement {
+        margin-top: 22px;
     }
 }
