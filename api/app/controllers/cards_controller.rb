@@ -47,7 +47,7 @@ end
   # POST /cards/1/reject
   # POST /cards/1/reject.json
   def reject
-    if @card.status.member_of?([:pending, :accepted])
+    if ['pending', 'accepted'].include? @card.status
       @card.update_attribute(:status, :rejected)
     else
       render json: @card.errors, status: :unprocessable_entity

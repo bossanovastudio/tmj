@@ -76,14 +76,18 @@ $(document).on('turbolinks:load', function() {
     }
   });
 
-  $('.btn-status a.accept').click(function() {
+
+
+  $('.btn-status a').click(function() {
     var cardIds = [];
     cardsContainer.children('.card.selected').each(function () {
       cardIds.push($(this).attr('data-id'));
     });
 
+    var action = $(this).attr('data-action');
+
     $.ajax({
-      url: '/cards/accept',
+      url: '/cards/' + action,
       method: 'POST',
       data: {
         card: {id: cardIds}
