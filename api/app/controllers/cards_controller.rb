@@ -8,13 +8,7 @@ class CardsController < ApplicationController
   def index
     filter = params[:filter]
 
-    if filter.nil?
-      @cards = Card.all
-    else
-      filter.each do |field, value|
-        @cards = Card.where(field => value)
-      end
-    end
+    @cards = Card.filter_query(filter)
   end
 
   # GET /cards/1

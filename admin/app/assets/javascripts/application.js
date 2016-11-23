@@ -47,6 +47,10 @@ $(document).on('turbolinks:load', function() {
     $(this).children('li').removeClass('active');
     $(e.target).addClass('active');
     $('.social .main-select').text($(e.target).text());
+
+    $.ajax({
+      url: '/cards?status=pending&origin=youtube',
+    });
   });
 
   statusOptions.click(function(e) {
@@ -79,20 +83,32 @@ $(document).on('turbolinks:load', function() {
     });
 
     $.ajax({
-          url: '/cards/accept',
-          method: 'POST',
-          data: {
-            card: {id: cardIds}
-          },
-          success: function(data) {
-            console.log(data);
-          },
-          error: function(data) {
-            console.log(data);
-          }
-        })
+      url: '/cards/accept',
+      method: 'POST',
+      data: {
+        card: {id: cardIds}
+      },
+      success: function(data) {
+        console.log(data);
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    })
   });
 
+  $('input.search').on('keyup', function(){
+    var context = $(this).val().toLowerCase();
+    cardsContainer.children('.card').each(function(){
+      var contentText = $(this).find('.content p.text').text().toLowerCase();
+      if (contentText.indexOf(context) != -1)
+        $(this).show();
+      else
+        $(this).hide();
+    })
+    $('.cards').masonry('reloadItems');
+    $('.cards').masonry();
+  });
 
 
   $('.cards').find('.card').each(function() {
