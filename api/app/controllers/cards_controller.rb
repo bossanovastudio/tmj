@@ -7,7 +7,7 @@ class CardsController < ApplicationController
   # GET /cards.json
   def index
     pagination = pagination_params
-    
+
     @cards = Card.page(pagination[:page]).per(pagination[:quantity])
   end
 
@@ -20,7 +20,7 @@ class CardsController < ApplicationController
   # GET /cards/1/like.json
   def like
     liked = current_user.like(@card)
-    
+
     render :show, status: :ok, location: @card
 end
 
@@ -28,30 +28,32 @@ end
   # GET /cards/1/unlike.json
   def unlike
     unliked = current_user.unlike(@card)
-    
+
     render :show, status: :ok, location: @card
   end
 
   # POST /cards/1/accept
-  # POST /cards/1/accept.json  
+  # POST /cards/1/accept.json
   def accept
-    if @card.status == :pending
-      @card.update_attribute!(:status, :accepted)
+    if @card.status == 'pending'
+      @card.update_attribute(:status, :accepted)
+
+      render json: @card
     else
       render json: @card.errors, status: :unprocessable_entity
     end
   end
-  
+
   # POST /cards/1/reject
   # POST /cards/1/reject.json
   def reject
     if @card.status.member_of?([:pending, :accepted])
-      @card.update_attribute!(:status, :rejected)
+      @card.update_attribute(:status, :rejected)
     else
       render json: @card.errors, status: :unprocessable_entity
     end
   end
-  
+
   # POST /cards
   # POST /cards.json
   def create
@@ -87,7 +89,7 @@ end
     def set_card
       @card = Card.find(params[:id])
     end
-    
+
     def pagination_params
       params.permit(:page, :quantity)
     end

@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20161122195143) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "source_url"
-    t.integer  "status"
+    t.integer  "status",     default: 1
     t.integer  "size",       default: 1
     t.index ["media_type", "media_id"], name: "index_cards_on_media_type_and_media_id", using: :btree
   end

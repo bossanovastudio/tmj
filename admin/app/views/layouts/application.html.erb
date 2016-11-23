@@ -5,6 +5,7 @@
   <title>Admin TMJ</title>
   <%= stylesheet_link_tag "application"%>
   <%= javascript_include_tag "application", 'data-turbolinks-track': 'reload' %>
+  <%= csrf_meta_tags %>
 </head>
 <body id="admin">
   <div class="menu">
@@ -17,7 +18,7 @@
     </div>
   </div>
 
-  <div class="sidebar">    
+  <div class="sidebar">
     <ul class="item-list">
       <li>
         <%= link_to root_path do %>

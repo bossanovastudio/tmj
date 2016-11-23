@@ -44,13 +44,13 @@ class CardsController < ApplicationController
     @card.destroy
     redirect_to cards_url, notice: 'Card was successfully destroyed.'
   end
-  
+
   # POST /cards/accept
   def accept
     @cards = Card.find(:all, params: { id: bulk_params[:id] })
-    
+
     @cards.each do |card|
-      card.accept
+      card.get(:accept)
     end
   end
 
@@ -62,7 +62,7 @@ class CardsController < ApplicationController
       card.reject
     end
   end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_card
@@ -73,7 +73,7 @@ class CardsController < ApplicationController
     def card_params
       params.require(:card).permit(:origin, :content, :media_id, :media_type, :posted_at)
     end
-    
+
     def bulk_params
       params.require(:card).permit('id[]')
     end

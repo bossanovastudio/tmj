@@ -72,9 +72,29 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('.btn-status a.accept').click(function() {
-    cardsContainer.children('.card selected').each(function () {
-      console.log();
+    var cardIds = [];
+    cardsContainer.children('.card.selected').each(function () {
+      cardIds.push($(this).attr('data-id'));
     });
+
+    $.ajax({
+          url: '/cards/accept',
+          method: 'POST',
+          data: {
+            card: {id: cardIds}
+          },
+          success: function(data) {
+            if (data.success) {
+              console.log('Cards accepted');
+              console.log(cardIds);
+            } else {
+              window.displayError(data.error);
+            }
+          },
+          error: function(data) {
+            console.log(data);
+          }
+        })
   });
 
 
