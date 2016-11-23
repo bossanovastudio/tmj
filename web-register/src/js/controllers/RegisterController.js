@@ -3,8 +3,8 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
 
 
     //temporary
-    $('.form.active').removeClass('active');
-    $('.form').eq(3).addClass('active');
+    // $('.form.active').removeClass('active');
+    // $('.form').eq(3).addClass('active');
     //temporary
 
     $('.form.active').css({ left: 0 });
