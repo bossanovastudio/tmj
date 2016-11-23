@@ -70,8 +70,6 @@ $(document).on('turbolinks:load', function() {
     } else if ($("#cards-container .card.selected").length == $("#cards-container .card").length) {
       filterSelectAllCards.addClass('active');
     }
-    console.log("cards selecionados: " + $("#cards-container .card.selected").length);
-    console.log("cards totais: " + $("#cards-container .card").length);
   });
 
   $('.btn-status a.accept').click(function() {
