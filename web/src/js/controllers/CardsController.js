@@ -128,7 +128,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         if (walk != -(size * ($('.card').width() + 20))) {
             $(e).animate({
                 left: walk
-            }, 250);
+            }, 1000, 'easeOutElastic');
         } else {
             if (!e.hasClass('mobile')) {
                 $scope.PAGE++;
@@ -137,7 +137,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             if (walk != -((size + 1) * ($('.card').width() + 20))) {
                 $(e).animate({
                     left: walk
-                }, 250);
+                }, 1000, 'easeOutElastic');
             }
         }
         $scope.lazyLoad(false);
@@ -154,7 +154,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         }
         $(e).animate({
             left: walk
-        }, 250);
+        }, 1000, 'easeOutElastic');
     }
     var distanceTop = 0;
     var cardPage = 1;
