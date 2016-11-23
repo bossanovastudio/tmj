@@ -84,12 +84,7 @@ $(document).on('turbolinks:load', function() {
             card: {id: cardIds}
           },
           success: function(data) {
-            if (data.success) {
-              console.log('Cards accepted');
-              console.log(cardIds);
-            } else {
-              window.displayError(data.error);
-            }
+            console.log(data);
           },
           error: function(data) {
             console.log(data);

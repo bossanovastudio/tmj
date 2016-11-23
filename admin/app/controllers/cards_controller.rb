@@ -47,7 +47,7 @@ class CardsController < ApplicationController
 
   # POST /cards/accept
   def accept
-    @cards = Card.find(:all, params: { id: bulk_params[:id] })
+    @cards = Card.find(:all, params: { filter: { id: bulk_params[:id] } })
 
     @cards.each do |card|
       card.get(:accept)
@@ -56,10 +56,10 @@ class CardsController < ApplicationController
 
   # POST /cards/reject
   def reject
-    @cards = Card.find(:all, params: { id: bulk_params[:id] })
+    @cards = Card.find(:all, params: { filter: { id: bulk_params[:id] } })
 
     @cards.each do |card|
-      card.reject
+      card.get(:reject)
     end
   end
 
@@ -75,6 +75,6 @@ class CardsController < ApplicationController
     end
 
     def bulk_params
-      params.require(:card).permit('id[]')
+      params.require(:card).permit(:id => [])
     end
 end

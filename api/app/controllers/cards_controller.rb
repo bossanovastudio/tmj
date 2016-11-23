@@ -6,9 +6,15 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    pagination = pagination_params
+    filter = params[:filter]
 
-    @cards = Card.page(pagination[:page]).per(pagination[:quantity])
+    if filter.nil?
+      @cards = Card.all
+    else
+      filter.each do |field, value|
+        @cards = Card.where(field => value)
+      end
+    end
   end
 
   # GET /cards/1
@@ -92,6 +98,10 @@ end
 
     def pagination_params
       params.permit(:page, :quantity)
+    end
+
+    def filter_params
+      params.permit(:filter => {})
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
