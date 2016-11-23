@@ -35,22 +35,20 @@ end
   # POST /cards/1/accept
   # POST /cards/1/accept.json
   def accept
-    if @card.status == 'pending'
+    unless @card.nil?
       @card.update_attribute(:status, :accepted)
 
       render json: @card
-    else
-      render json: @card.errors, status: :unprocessable_entity
     end
   end
 
   # POST /cards/1/reject
   # POST /cards/1/reject.json
   def reject
-    if ['pending', 'accepted'].include? @card.status
+    unless @card.nil?
       @card.update_attribute(:status, :rejected)
-    else
-      render json: @card.errors, status: :unprocessable_entity
+
+      render json: @card
     end
   end
 

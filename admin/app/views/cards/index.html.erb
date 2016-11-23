@@ -5,26 +5,30 @@
   <div class="filter-bar">
     <div class="btn-filter">
       <div class="status item">
-        <div class="main-select st-sel">Pendentes</div>
-        <ul class="status-options">
-          <li class="active" value='pending'>Pendentes</li>
-          <li value='denied'>Negados</li>
-          <li value='approved'>Aprovados</li>
+        <div class="main-select st-sel">Todos</div>
+        <%- status = { "" => "Todos", pending: "Pendentes", rejected: "Negados", accepted: "Aprovados" } %>
+        <ul class="status-options filter-options">
+          <% status.each do |key, value| %>
+            <%= link_to cards_path + query_string(:status, key) do %>
+            <li class="<%= ((params[:status] == key.to_s) && "active") || "" %>" value='<%= key %>'>
+              <%= value %>
+            </li>
+            <% end %>
+          <% end %>
         </ul>
       </div>
 
       <div class="social item">
         <div class="main-select so-sel">Todos</div>
-        <ul class="social-options">
-          <li value='all' class="active">Todos</li>
-          <li value='facebook'>Facebook</li>
-          <li value='instagram'>Instagram</li>
-          <li value='twitter'>Twitter</li>
-          <li value='youtube'>Youtube</li>
-          <li value='tumblr'>Tumblr</li>
-          <li value='pinterest'>Pinterest</li>
-          <li value='twitch_tv'>Twitch TV</li>
-          <li value='blog'>Blog</li>
+        <%- social = { "" => "Todos", facebook: "Facebook", twitter: "Twitter", youtube: "Youtube", instagram: "Instagram" }%>
+        <ul class="social-options filter-options">
+          <% social.each do |key, value| %>
+            <%= link_to cards_path + query_string(:origin, key) do%>
+            <li class="<%= ((params[:origin] == key.to_s) && "active") || "" %>" value='<%= key %>'>
+              <%= value %>
+            </li>
+            <% end %>
+          <% end %>
         </ul>
       </div>
 
@@ -56,25 +60,25 @@
     <div class="card show" data-class="" data-id="<%= card.id %>">
       <div class="selected-overlay"></div>
       <% if card.kind == 'image' %>
-        <div style="background-image:url('<%= card.image.url %>')" class="img">
-          <!-- <%= image_tag "user", class: 'user-photo' %> -->
-        </div>
+      <div style="background-image:url('<%= card.image.url %>')" class="img">
+        <!-- <%= image_tag "user", class: 'user-photo' %> -->
+      </div>
       <% else %>
       <!-- <%= image_tag "user", class: 'user-photo' %> -->
       <% end %>
       <% if card.kind == 'video' %>
-        <div class="videoMobile"></div>
+      <div class="videoMobile"></div>
       <% end %>
       <% if card.kind != 'featured' %>
-        <div class="content">
-          <p class="name"><%= card.status %></p>
-          <!-- <p class="name">Adão Coelho</p> -->
-          <p class="date"><%= image_tag('social/' + card.origin + '.svg')%><%=l card.posted_at, format: '%d %h %Y, %H:%M' %></p>
-          <p class="text"><%= card.content %></p>
-        </div>
+      <div class="content">
+        <p class="name"><%= card.status %></p>
+        <!-- <p class="name">Adão Coelho</p> -->
+        <p class="date"><%= image_tag('social/' + card.origin + '.svg')%><%=l card.posted_at, format: '%d %h %Y, %H:%M' %></p>
+        <p class="text"><%= card.content %></p>
+      </div>
       <% end %>
       <% if card.kind == 'featured' %>
-        <%= card.content %>
+      <%= card.content %>
       <% end %>
     </div>
     <% end %>

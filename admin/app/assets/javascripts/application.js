@@ -25,8 +25,7 @@ $(document).on('turbolinks:load', function() {
       filterItem = $('.btn-filter .item'),
       filterSelectAllCards = $('.filter-bar a.select-all'),
       cardsContainer = $('#cards-container'),
-      socialOptions = $('ul.social-options'),
-      statusOptions = $('ul.status-options');
+      filterOptions = $('ul.filter-options');
 
   filterItem.click(function(e){
     if ($(e.target).is('li')) {
@@ -36,27 +35,23 @@ $(document).on('turbolinks:load', function() {
       $(this).find('ul').show();
       overlay.show();
     }
-  })
+  });
 
   overlay.click(function(){
     $(this).hide();
     filterList.hide();
-  })
-
-  socialOptions.click(function(e) {
-    $(this).children('li').removeClass('active');
-    $(e.target).addClass('active');
-    $('.social .main-select').text($(e.target).text());
-
-    $.ajax({
-      url: '/cards?status=pending&origin=youtube',
-    });
   });
 
-  statusOptions.click(function(e) {
+  filterOptions.click(function(e) {
+    var optionFilter = $(e.target).text();
     $(this).children('li').removeClass('active');
     $(e.target).addClass('active');
-    $('.status .main-select').text($(e.target).text());
+    $(this).siblings('.main-select').text(optionFilter);
+  });
+
+  filterOptions.each(function(){
+    var optionFilter = $(this).find('li.active').text();
+    $(this).siblings('.main-select').text(optionFilter);
   });
 
   filterSelectAllCards.click(function() {
@@ -94,6 +89,7 @@ $(document).on('turbolinks:load', function() {
       },
       success: function(data) {
         console.log(data);
+        location.reload();
       },
       error: function(data) {
         console.log(data);
