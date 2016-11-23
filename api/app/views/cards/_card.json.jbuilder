@@ -4,8 +4,6 @@ json.content    card.content
 json.kind       card.kind
 json.source_url card.source_url
 
-p card.kind
-
 if card.media
   if card.kind == :image
     json.image do
@@ -31,4 +29,5 @@ if card.user
   end
 end
 
+json.status     card.status
 json.posted_at  card.posted_at

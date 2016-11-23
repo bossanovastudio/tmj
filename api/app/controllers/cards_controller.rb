@@ -31,7 +31,9 @@ end
     
     render :show, status: :ok, location: @card
   end
-  
+
+  # POST /cards/1/accept
+  # POST /cards/1/accept.json  
   def accept
     if @card.status == :pending
       @card.update_attribute!(:status, :accepted)
@@ -40,6 +42,8 @@ end
     end
   end
   
+  # POST /cards/1/reject
+  # POST /cards/1/reject.json
   def reject
     if @card.status.member_of?([:pending, :accepted])
       @card.update_attribute!(:status, :rejected)
