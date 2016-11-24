@@ -106,8 +106,6 @@ tmj.directive('organizeCards', function() {
 })
 
 tmj.directive("cardClass", function() {
-    //var colors = ["941919", "f8471c", "414141"];
-    var colors = ["FFFFFF", "FFFFFF", "FFFFFF"];
     return {
         restrict: 'EA',
         replace: false,
@@ -157,9 +155,8 @@ tmj.directive("cardClass", function() {
             } else if (card.kind == 'video') {
                 $(elem).parent().addClass('card two-five column video');
                 $(elem).parent().attr('data-class', 'card two-five column video');
-                var percent = 35;
-                $(elem).css({ "padding": percent + "% 0" });
-                $(elem).attr('data-padding', percent + "% 0");
+                $(elem).css({ "padding": 35 + "% 0" });
+                $(elem).attr('data-padding', 35 + "% 0");
             }
         }
     }

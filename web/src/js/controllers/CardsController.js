@@ -32,7 +32,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         }
         $http({
                 method: 'get',
-                url: API_URL + '/api/cards/' + p + '/' + $scope.SIZE + '.json',
+                url: API_URL + '/api/all/' + p + '/' + $scope.SIZE + '.json',
             })
             .success(function(data) {
                 if (data.cards.length == 0) {
@@ -282,10 +282,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         var w = $(window);
         var ratio;
         if ($rootScope.card.image) {
-
-                ratio = $rootScope.card.image.height / $rootScope.card.image.width;
-
-            console.log( ratio )
+            ratio = $rootScope.card.image.height / $rootScope.card.image.width;
             return w.width() * ratio;
         }
     }
