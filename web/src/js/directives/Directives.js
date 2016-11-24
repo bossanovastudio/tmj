@@ -40,7 +40,7 @@ var organizeCards = function(newValue, oldValue) {
             card.eq(0).css({
                 "margin-left": 40
             });
-            var h = newValue.h - 320;
+            var h = newValue.h - 240;
             card.find('.img').css({ "height": h });
             card.each(function(i, c) {
                 var setHeight;
