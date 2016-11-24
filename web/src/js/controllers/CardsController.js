@@ -10,20 +10,20 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
     $scope.count = 0;
+    $scope.cardsFeatured = [];
 
     if (!isMobileDevice) {
         $('.cards.mobile').remove();
-    }
-
-    $scope.cardsFeatured = [];
-    for (var i = 0; i < 5; i++) {
-        $scope.cardsFeatured.push({
-            id: (parseInt(Math.random() * 999999) + 1),
-            kind: 'featured',
-            url: '/img/featured_background.png',
-            size: ['four'],
-            content: 'Seja sua própria heroína. Somos todas #donasdarua'
-        })
+    } else {
+        $http({
+                method: 'get',
+                url: API_URL + '/api/highlights.json',
+            })
+            .success(function(data) {
+                data.highlights.forEach(function(f) {
+                    $scope.cardsFeatured.push(f);
+                });
+            });
     }
 
     $scope.loadCards = function(p) {
@@ -32,7 +32,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         }
         $http({
                 method: 'get',
-                url: API_URL + '/api/cards/' + p + '/' + $scope.SIZE + '.json',
+                url: API_URL + '/api/all/' + p + '/' + $scope.SIZE + '.json',
             })
             .success(function(data) {
                 if (data.cards.length == 0) {
@@ -42,13 +42,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     if ($scope.PAGE == 1 && isMobileDevice) {
                         $scope.initialCard('posts');
                     }
-                    $scope.cards.push({
-                        id: (parseInt(Math.random() * 999999) + 1),
-                        kind: 'featured',
-                        url: '/img/featured_background.png',
-                        size: ['four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four'][$scope.count++],
-                        content: 'Seja sua própria heroína. Somos todas #donasdarua'
-                    });
+                    if (data.highlight) {
+                        data.highlight.id = data.highlight.id * 999999;
+                        $scope.cards.push(data.highlight);
+                    }
                     data.cards.forEach(function(card) {
                         $scope.cards.push(card);
                     });

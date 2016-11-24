@@ -6,6 +6,7 @@ class Card < ApplicationRecord
   belongs_to :user
 
   scope :ordered, -> { order(posted_at: 'DESC') }
+  scope :approved, -> { where(status: :accepted) }
   
   def self.filter_query(params)
     options = {}
