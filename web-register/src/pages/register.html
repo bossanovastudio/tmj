@@ -36,21 +36,17 @@
                 </div>
                 <p class="title">SOBRE O CANDIDATO</p>
                 <div class="field simple twelve columns">
-                    <label class="placeholder" for="name">Nome</label>
+                    <label class="placeholder" for="name">Nome Completo</label>
                     <input id="name" ng-model="form.name" />
-                </div>
-                <div class="field simple six columns">
-                    <label class="placeholder" for="birthdate">Data de nascimento</label>
-                    <input id="birthdate" class="date" ng-model="form.birthdate" />
                 </div>
                 <div class="clear"></div>
                 <div class="field simple six columns">
-                    <label class="placeholder" for="cellphone">Celular</label>
-                    <input id="cellphone" class="phone" ng-model="form.cellphone" />
+                    <label class="placeholder" for="age">Idade</label>
+                    <input id="age" class="number" ng-model="form.age" />
                 </div>
                 <div class="field simple six columns last">
-                    <label class="placeholder" for="phone">Telefone fixo</label>
-                    <input id="phone" class="phone" ng-model="form.phone" />
+                    <label class="placeholder" for="birthdate">Data de nascimento</label>
+                    <input id="birthdate" class="date" ng-model="form.birthdate" />
                 </div>
                 <div class="clear"></div>
                 <div class="field simple six columns">
@@ -65,8 +61,17 @@
                 <p class="title space">APRESENTAÇÃO DO CANDIDATO</p>
                 <div class="field simple twelve columns">
                     <label for="video" class="placeholder files">VIDEO</label>
-                    <p>Fale seu nome, idade, de onde você é, explicando qual a sua relação com atuação e com a Turma da Mônica Jovem</p>
-                    <input id="video" ng-model="form.video" placeholder="https://" />
+                    <p>Fale seu nome, idade, de onde você é, explicando qual a sua relação com atuação e com a Turma da Mônica Jovem <br>
+                    <b>O vídeo deve estar no youtube ou vimeo, privado com senha ou não listado na busca.</b>
+                    </p>
+                    <div class="field simple twelve columns">
+                        <input id="video" ng-model="form.video" placeholder="https://" />
+                    </div>
+                    <div class="clear"></div>
+                    <div class="field simple six columns">
+                        <label class="placeholder" for="videopassword">Senha do vídeo (Se houver)</label>
+                        <input id="videopassword" ng-model="form.videopassword" />
+                    </div>
                 </div>
                 <div class="clear"></div>
                 <div class="field twelve columns files">
