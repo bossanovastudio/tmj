@@ -168,6 +168,46 @@ section {
                         font-size: 13px;
                         margin-top: 5px;
                     }
+                    #accept_terms[type="checkbox"]:not(:checked),
+                    #accept_terms[type="checkbox"]:checked {
+                      position: absolute;
+                      left: -9999px;
+                    }
+                    #accept_terms[type="checkbox"]:not(:checked) + label,
+                    #accept_terms[type="checkbox"]:checked + label {
+                      position: relative;
+                      padding-left: 25px;
+                      cursor: pointer;
+                    }
+                    #accept_terms[type="checkbox"]:not(:checked) + label:before,
+                    #accept_terms[type="checkbox"]:checked + label:before {
+                      content: '';
+                      position: absolute;
+                      left:0;
+                      top: 2px;
+                      width: 17px;
+                      height: 17px;
+                      border: 1px solid #fff;
+                      background: none;
+                    }
+                    #accept_terms[type="checkbox"]:not(:checked) + label:after,
+                    #accept_terms[type="checkbox"]:checked + label:after {
+                      content: '✔';
+                      position: absolute;
+                      top: 3px; left: 4px;
+                      font-size: 18px;
+                      line-height: 0.8;
+                      color: #fff;
+                      transition: all .2s;
+                    }
+                    #accept_terms[type="checkbox"]:not(:checked) + label:after {
+                      opacity: 0;
+                      transform: scale(0);
+                    }
+                    #accept_terms[type="checkbox"]:checked + label:after {
+                      opacity: 1;
+                      transform: scale(1);
+                    }
                     input,
                     textarea,
                     select {
