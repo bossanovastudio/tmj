@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     mount_devise_token_auth_for 'User', at: 'auth'
     
     get '/all/(:page)/(:quantity)', to: 'general#all', defaults: { page: 1, quantity: 10 }
+    get '/highlights', to: 'general#highlights'
     
     resources :cards do
       member do
