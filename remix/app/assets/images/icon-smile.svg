@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="34px" height="33px" viewBox="0 0 34 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="33px" height="33px" viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: sketchtool 40 (33762) - http://www.bohemiancoding.com/sketch -->
-    <title>CA86DF7A-2F3C-4DE3-B80F-D44AB9A2073E</title>
+    <title>8E2833ED-03C0-4880-802C-C154540D9E38</title>
     <desc>Created with sketchtool.</desc>
     <defs></defs>
-    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Remix-tela-9" transform="translate(-207.000000, -441.000000)">
-            <g id="stickers" transform="translate(207.000000, 441.000000)">
-                <g transform="translate(0.750000, 0.000000)">
+    <g id="Styleguide" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-993.000000, -586.000000)" id="sticker">
+            <g transform="translate(993.000000, 586.000000)">
+                <g id="Page-1">
                     <path d="M1.6226,16.7922 C1.6226,8.3282 8.4836,1.4672 16.9476,1.4672 C25.4116,1.4672 32.2726,8.3282 32.2726,16.7922 C32.2726,25.2552 25.4116,32.1172 16.9476,32.1172 C8.4836,32.1172 1.6226,25.2552 1.6226,16.7922" id="Fill-1" fill="#000000"></path>
                     <path d="M1.6226,16.7922 C1.6226,8.3282 8.4836,1.4672 16.9476,1.4672 C25.4116,1.4672 32.2726,8.3282 32.2726,16.7922 C32.2726,25.2552 25.4116,32.1172 16.9476,32.1172 C8.4836,32.1172 1.6226,25.2552 1.6226,16.7922 L1.6226,16.7922 Z" id="Stroke-3" stroke="#000000" stroke-width="1.109" stroke-linecap="round" stroke-linejoin="round"></path>
                     <path d="M0.5546,15.8794 C0.5546,7.4154 7.4156,0.5544 15.8796,0.5544 C24.3436,0.5544 31.2046,7.4154 31.2046,15.8794 C31.2046,24.3424 24.3436,31.2044 15.8796,31.2044 C7.4156,31.2044 0.5546,24.3424 0.5546,15.8794" id="Fill-5" fill="#FFFFFF"></path>

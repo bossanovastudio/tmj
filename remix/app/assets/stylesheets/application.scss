@@ -27,7 +27,7 @@ body {
       display: block;
     }
   }
-  &.can-choose {
+  &.can-choose-picture {
     .toolbox {
       .toolbox-item {
         &.category {
@@ -45,38 +45,30 @@ body {
   }
   &.can-compose {
     .remix-composing {
-      .top-actions button {
-        display: none;
-        &.next {
-          display: inline-block;
+      // .top-actions button.next {
+      //   display: inline-block;
+      // }
+      .top-actions button.publish { // fixme: misplaced
+        display: inline-block;
+      }
+      .toolbox {
+        .toolbox-item {
+          opacity: 1;
         }
       }
     }
   }
   &.can-publish {
     .remix-composing {
-      .top-actions button {
-        display: none;
-        &.publish {
-          display: inline-block;
-        }
-      }
-      .toolbox {
-        .toolbox-item {
-          &.category {
-            display: none;
-          }
-        }
+      .top-actions button.publish {
+        display: inline-block;
       }
     }
   }
   &.can-share {
     .remix-composing {
-      .top-actions button {
-        display: none;
-        &.skip-share {
-          display: inline-block;
-        }
+      .top-actions button.skip-share {
+        display: inline-block;
       }
       .toolbox {
         display: none;
@@ -92,11 +84,23 @@ body {
         display: none;
       }
     }
+    &.can-publish {
+      .remix-composing .toolbox-item.category {
+        display: none;
+      }
+    }
   }
   @include mq-from-sm {
+    &.can-compose {
+      .remix-composing {
+        .toolbox .publish { // fixme: misplaced
+          display: block;
+        }
+      }
+    }
   }
 }
 
-@import "components/remix-title";
-@import "components/remix-landing";
-@import "components/remix-composing";
+@import "partials/remix-title";
+@import "partials/remix-landing";
+@import "partials/remix-composing";

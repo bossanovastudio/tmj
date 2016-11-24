@@ -27,6 +27,7 @@
     position: relative;
     .canvas {
       background-color: #FFF;
+      position: relative;
       &:before {
         content: '';
         display: block;
@@ -64,6 +65,7 @@
     text-align: center;
     .toolbox-item {
       float: left;
+      opacity: 0.5;
       width: percentage(1 / 5);
       .toggler {
         line-height: 40px;
@@ -94,18 +96,21 @@
         width: 100%;
       }
       &.category {
+        opacity: 1;
         .popup {
           padding: 2px;
           .categories, .pictures {
             @include clearfix;
             > div {
+              @include make-xs-column(3);
               background-color: #EFEFEF;
-              float: left;
               line-height: 80px;
               height: 80px;
               padding: 0 1px;
               text-align: center;
-              width: 80px;
+              img {
+                max-width: 100%;
+              }
             }
           }
           .pictures {
@@ -121,6 +126,14 @@
           display: block;
         }
       }
+    }
+    .publish {
+      display: none;
+      font-size: 23px;
+      position: absolute;
+      right: 0;
+      top: 10px;
+      width: 120px;
     }
   }
   .share {
@@ -169,6 +182,7 @@
     }
     .toolbox {
       @include make-sm-column(6);
+      padding-right: 132px;
       .toolbox-item {
         width: percentage(1 / 6);
       }
