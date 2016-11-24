@@ -219,12 +219,12 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             height: '100%'
                         }, 200);
 
-
                         setTimeout(function() {
                             $('.card').last().find('.videoMobile').show(0);
                             $('.card').last().find('.heart').attr('src', '/img/like.png').width(24);
                             $('.card').last().find('.arrow').attr('src', '/img/share.png').width(24);
                             $('.card').last().find('.read-more').remove();
+                            $('.card').last().addClass('openMobile');
 
                             if ($('.card').last().hasClass('text')) {
                                 $('.card').last().find('.content').css({
@@ -236,21 +236,24 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                                     overflow: 'auto'
                                 });
                             } else {
-                                $('.card').last().find('.img, .content').animate({
-                                    height: "50%"
+                                var h = $scope.imageHeightMobile();
+                                $('.card').last().find('.img').animate({
+                                    height: h
+                                }, 300);
+                                $('.card').last().find('.content').animate({
+                                    height: 'auto'
                                 }, 300);
                                 $('.card').last().find('.text').css({
-                                    height: '45%',
+                                    height: 'auto',
                                     overflow: 'auto'
                                 });
                             }
 
                             $('.card').last().find('.text').text(content.content);
                             $('.card').last().find('.share').css({
-                                position: 'absolute',
+                                position: 'fixed',
                                 bottom: 0,
-                                width: '90%',
-                                'margin-bottom': 10
+                                width: '100%'
                             });
                             var close = $compile('<img class="close" ng-click="close($event)" src="/img/fechar.png" />')($scope);
                             $('.card').last().append(close);
@@ -275,12 +278,27 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         $scope.openCard({}, $routeParams.id, $rootScope.card);
     }
 
+    $scope.imageHeightMobile = function() {
+        var w = $(window);
+        var ratio;
+        if ($rootScope.card.image) {
+
+                ratio = $rootScope.card.image.height / $rootScope.card.image.width;
+
+            console.log( ratio )
+            return w.width() * ratio;
+        }
+    }
+
     $scope.close = function($event) {
         var elem = angular.element($event.target);
         var card = $(elem).closest('.card');
         card.fadeOut(300, function() {
             $(this).remove();
         })
+        if (isMobileDevice) {
+            $('.card').removeClass('openMobile');
+        }
     }
 
     $scope.likeCard = function($event, id) {

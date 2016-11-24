@@ -275,7 +275,7 @@ p.date {
 }
 
 div.card {
-    background-color: #d8d8d8;
+    background-color: #fff;
     position: relative;
     margin-bottom: 24px;
     margin: 0 1% 20px 1%;
@@ -375,7 +375,7 @@ div.card {
         }
     }
     .close {
-        position: absolute;
+        position: fixed;
         right: 20px;
         top: 20px;
         z-index: 99;
@@ -813,6 +813,25 @@ footer {
             background: rgba(255, 255, 255, 0.6);
             padding: 9px;
             border-radius: 50%;
+        }
+        &.openMobile{
+            overflow: auto;
+            padding-bottom: 60px;
+            div.img{
+                background-position: top center;
+                background-size: 100%;
+            }
+            p.share{
+                margin: 0;
+                background: #fff;
+                padding: 15px;
+                left: 0;
+                height: auto;
+                display: inline-block;
+            }
+            div.shareBox{
+                position: fixed;
+            }
         }
         &.show{
             opacity: 1;
