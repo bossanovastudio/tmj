@@ -1,10 +1,12 @@
 #= require 'jquery'
 #= require 'jquery-ujs'
+#= require 'jquery-touchswipe'
 
 API_URL = 'http://' + window.location.hostname + ':3000'
 
 $('.remix-container').each ->
   $remix = $(this)
+  $landing = $remix.find('.remix-landing')
   $composer = $remix.find('.remix-composing')
 
   $remix.on
@@ -62,7 +64,17 @@ $('.remix-container').each ->
 
       $composer.find('.artboard .empty').hide()
 
-  $remix.find('.remix-landing .new').click ->
+  $landing.find('.gallery').swipe {
+    swipeLeft: (event, direction, duration, fingerCount, fingerData, currentDirection) ->
+      width = $(this).find('.gallery-item').first().outerWidth(true)
+      $(this).animate({ scrollLeft: ('+=' + width) }, 200)
+
+    swipeRight: (event, direction, duration, fingerCount, fingerData, currentDirection) ->
+      width = $(this).find('.gallery-item').first().outerWidth(true)
+      $(this).animate({ scrollLeft: ('-=' + width) }, 200)
+  }
+
+  $landing.find('.new').click ->
     $remix.trigger 'init'
 
   $composer.find('.cancel').click ->
