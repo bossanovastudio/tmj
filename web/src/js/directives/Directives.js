@@ -121,7 +121,7 @@ tmj.directive("cardClass", function() {
                     $(elem).parent().addClass('cursor');
                 }
             }
-            if (card.kind == 'image' || card.kind == 'video') {
+            if (card.kind == 'image') {
                 var ratio = parseFloat(card.image.ratio.replace(',', '.'));
                 if (ratio <= 1) {
                     var percent = 50 * (1 + (1 - ratio));
@@ -155,8 +155,11 @@ tmj.directive("cardClass", function() {
                 $(elem).parent().addClass('card one-five column initial');
                 $(elem).parent().attr('data-class', 'card one-five column initial');
             } else if (card.kind == 'video') {
-                $(elem).parent().addClass('card ' + card.size + '-five column video');
-                $(elem).parent().attr('data-class', 'card ' + card.size + '-five column video');
+                $(elem).parent().addClass('card two-five column video');
+                $(elem).parent().attr('data-class', 'card two-five column video');
+                var percent = 35;
+                $(elem).css({ "padding": percent + "% 0" });
+                $(elem).attr('data-padding', percent + "% 0");
             }
         }
     }
