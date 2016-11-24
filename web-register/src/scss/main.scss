@@ -14,6 +14,9 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    text-rendering:  optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .clear {
@@ -157,6 +160,13 @@ section {
                         width: 100%;
                         text-transform: uppercase;
                         margin-bottom: 9px;
+                    }
+                    label.placeholder.files{
+                        margin-bottom: 0px;
+                    }
+                    label.placeholder.files+p{
+                        font-size: 13px;
+                        margin-top: 5px;
                     }
                     input,
                     textarea,
