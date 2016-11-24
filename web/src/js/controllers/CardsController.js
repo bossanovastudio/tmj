@@ -20,7 +20,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 url: API_URL + '/api/highlights.json',
             })
             .success(function(data) {
-                data.forEach(function(f) {
+                data.highlights.forEach(function(f) {
                     $scope.cardsFeatured.push(f);
                 });
             });
