@@ -280,13 +280,13 @@ div.card {
     margin-bottom: 24px;
     margin: 0 1% 20px 1%;
     opacity: 0;
-    transition: opacity 1s ease-in-out;
-    -moz-transition: opacity 1s ease-in-out;
-    -webkit-transition: opacity 1s ease-in-out;
     &.cursor {
         cursor: pointer;
     }
     &.show {
+        transition: opacity 1s ease-in-out;
+        -moz-transition: opacity 1s ease-in-out;
+        -webkit-transition: opacity 1s ease-in-out;
         opacity: 1;
     }
     &.featured {
