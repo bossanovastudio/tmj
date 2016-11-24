@@ -57,18 +57,19 @@
 
   <div id="cards-container" class="container cards">
     <% @cards.each do |card| %>
-    <div class="card show" data-class="" data-id="<%= card.id %>">
+    <div class="card column show <%= card_size(card) %>" data-class="card column <%= card_size(card) %>" data-id="<%= card.id %>">
       <div class="selected-overlay"></div>
       <div class="status-bar <%= card.status %> color"></div>
       <% if card.kind == 'image' %>
-      <div style="background-image:url('<%= card.image.url %>')" class="img">
+      <div style="background-image:url('<%= card.image.url %>'); padding: <%= card_image_size(card) %>% 0;" class="img">
         <!-- <%= image_tag "user", class: 'user-photo' %> -->
       </div>
       <% else %>
       <!-- <%= image_tag "user", class: 'user-photo' %> -->
       <% end %>
       <% if card.kind == 'video' %>
-      <div class="videoMobile"></div>
+        <div class="videoMobile"></div>
+        <%= render 'cards/youtube', video: card.video %>
       <% end %>
       <% if card.kind != 'featured' %>
       <div class="content">
