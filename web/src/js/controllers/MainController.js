@@ -9,6 +9,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
     $rootScope.pageName = 'homePage';
 
     $scope.toggle = function() {
+        $("#menu").toggleClass('open');
         $scope[toggled ? "closeMenu" : "openMenu"]();
         toggled = !toggled;
     };

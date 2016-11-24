@@ -31,10 +31,25 @@
 
 <body ng-app="tmj" ng-controller="MainController" ng-keypress="closeLightboxKey($event.keyCode)" class="{{pageName}}">
     <div class="purple-overlay"></div>
-    <div id="menu">
+    <!-- <div id="menu">
         <img src="/img/menu-desktop.svg" class="desktop" ng-click="toggle()" />
         <img src="/img/menu-mobile.svg" class="mobile" ng-click="toggle()" />
+    </div> -->
+
+    <div id="menu" ng-click="toggle()">
+      <div id="nav-icon4">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <svg width="45px" height="43px" viewBox="0 0 45 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <path class="shadow" d="M20.2244318,0.338709677 C9.24238636,0.338709677 0.340568182,9.18377419 0.340568182,20.0942903 C0.340568182,31.0048065 9.24238636,39.849871 20.2244318,39.849871 C23.1910227,39.849871 26.0055682,39.2029355 28.53375,38.0452258 C30.6010227,39.3235161 33.04125,40.0625806 35.6560227,40.0625806 C37.1839773,40.0625806 38.6519318,39.8065161 40.0217045,39.3418065 C37.8657955,37.7519032 36.2028409,35.5387742 35.3035227,32.9706774 C38.2973864,29.5124516 40.1082955,25.0137097 40.1082955,20.0942903 C40.1082955,9.18377419 31.2057955,0.338709677 20.2244318,0.338709677" id="Fill-6" fill="#FFFFFF"></path>
+          <path d="M20.2244318,0.338709677 C9.24238636,0.338709677 0.340568182,9.18377419 0.340568182,20.0942903 C0.340568182,31.0048065 9.24238636,39.849871 20.2244318,39.849871 C23.1910227,39.849871 26.0055682,39.2029355 28.53375,38.0452258 C30.6010227,39.3235161 33.04125,40.0625806 35.6560227,40.0625806 C37.1839773,40.0625806 38.6519318,39.8065161 40.0217045,39.3418065 C37.8657955,37.7519032 36.2028409,35.5387742 35.3035227,32.9706774 C38.2973864,29.5124516 40.1082955,25.0137097 40.1082955,20.0942903 C40.1082955,9.18377419 31.2057955,0.338709677 20.2244318,0.338709677 L20.2244318,0.338709677 L20.2244318,0.338709677 Z" id="Stroke-8" stroke="#000000"></path>
+        </g>
+      </svg>
     </div>
+
     <div class="sidebar">
         <!-- <img src="/img/fechar-desktop.png" class="menu desktop" ng-click="closeMenu()" />
         <img src="/img/fechar.png" class="menu mobile" ng-click="closeMenu()" /> -->
@@ -71,9 +86,18 @@
                 <div ng-if="card.kind == 'video'" class="videoIframe" ng-bind-html="card.source_url | formatVideo | trust"></div>
             </div>
             <div class="text">
-                <a ng-href="#">
-                    <img ng-click="closeLightbox()" src="/img/fechar-desktop.svg" class="close" />
-                </a>
+                <div class="close" ng-click="closeLightbox()">
+                  <div class="close-icon4">
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <svg width="45px" height="43px" viewBox="0 0 45 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <path class="shadow" d="M20.2244318,0.338709677 C9.24238636,0.338709677 0.340568182,9.18377419 0.340568182,20.0942903 C0.340568182,31.0048065 9.24238636,39.849871 20.2244318,39.849871 C23.1910227,39.849871 26.0055682,39.2029355 28.53375,38.0452258 C30.6010227,39.3235161 33.04125,40.0625806 35.6560227,40.0625806 C37.1839773,40.0625806 38.6519318,39.8065161 40.0217045,39.3418065 C37.8657955,37.7519032 36.2028409,35.5387742 35.3035227,32.9706774 C38.2973864,29.5124516 40.1082955,25.0137097 40.1082955,20.0942903 C40.1082955,9.18377419 31.2057955,0.338709677 20.2244318,0.338709677" id="Fill-6" fill="#FFFFFF"></path>
+                      <path d="M20.2244318,0.338709677 C9.24238636,0.338709677 0.340568182,9.18377419 0.340568182,20.0942903 C0.340568182,31.0048065 9.24238636,39.849871 20.2244318,39.849871 C23.1910227,39.849871 26.0055682,39.2029355 28.53375,38.0452258 C30.6010227,39.3235161 33.04125,40.0625806 35.6560227,40.0625806 C37.1839773,40.0625806 38.6519318,39.8065161 40.0217045,39.3418065 C37.8657955,37.7519032 36.2028409,35.5387742 35.3035227,32.9706774 C38.2973864,29.5124516 40.1082955,25.0137097 40.1082955,20.0942903 C40.1082955,9.18377419 31.2057955,0.338709677 20.2244318,0.338709677 L20.2244318,0.338709677 L20.2244318,0.338709677 Z" id="Stroke-8" stroke="#000000"></path>
+                    </g>
+                  </svg>
+                </div>
                 <p class="name">{{card.user.name}}</p>
                 <p class="date"><img src="/img/{{card.origin}}.png" /> {{card.posted_at | formatDate}}</p>
                 <p class="content">
@@ -90,18 +114,18 @@
     </header>
     <section ng-view></section>
     <img class="initial-loading" src="/img/loading.gif" />
-    <footer ng-if="pageName == 'home'" class="desktop">
-        <a href="#">
-            <img src="/img/rede-social-facebook.svg" />
+    <footer ng-if="pageName == 'homePage'" class="desktop">
+        <a href="#" class="social-fb">
+            <img src="/img/rede-social-facebook.svg" class="svg"/>
         </a>
-        <a href="#">
-            <img src="/img/rede-social-twitter.svg" />
+        <a href="#" class="social-tw">
+            <img src="/img/rede-social-twitter.svg" class="svg"/>
         </a>
-        <a href="#">
-            <img src="/img/rede-social-youtube.svg" />
+        <a href="#" class="social-yt">
+            <img src="/img/rede-social-youtube.svg" class="svg"/>
         </a>
-        <a href="#">
-            <img src="/img/rede-social-google.svg" />
+        <a href="#" class="social-go">
+            <img src="/img/rede-social-google.svg" class="svg"/>
         </a>
     </footer>
     <!-- libs -->
