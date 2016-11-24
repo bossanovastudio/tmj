@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122195143) do
+ActiveRecord::Schema.define(version: 20161124163659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20161122195143) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "source_url"
-    t.integer  "status",     default: 1
+    t.integer  "status"
     t.integer  "size",       default: 1
     t.index ["media_type", "media_id"], name: "index_cards_on_media_type_and_media_id", using: :btree
   end
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20161122195143) do
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
     t.string   "username",                                 null: false
+    t.integer  "role"
     t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree

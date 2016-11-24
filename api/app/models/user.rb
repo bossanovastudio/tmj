@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
           :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
   
+  enum role: { user: 1, editor: 2, moderator: 3, admin: 4 }
+  
   has_many :cards
   recommends :cards
 end
