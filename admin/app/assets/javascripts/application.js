@@ -51,6 +51,8 @@ $(document).on('turbolinks:load', function() {
 
   filterOptions.each(function(){
     var optionFilter = $(this).find('li.active').text();
+    if (optionFilter == "")
+      optionFilter = "Todos";
     $(this).siblings('.main-select').text(optionFilter);
   });
 

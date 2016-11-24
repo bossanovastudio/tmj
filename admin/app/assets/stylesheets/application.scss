@@ -295,6 +295,11 @@ html {
       a{
         margin-left: 12px;
         cursor: pointer;
+        &:active {
+          svg{
+            fill: green;
+          }
+        }
       }
 
       .select-all {
