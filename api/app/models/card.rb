@@ -5,6 +5,8 @@ class Card < ApplicationRecord
   belongs_to :media, polymorphic: true
   belongs_to :user
 
+  scope :ordered, -> { order(posted_at: 'DESC') }
+  
   def self.filter_query(params)
     options = {}
     if params.present?

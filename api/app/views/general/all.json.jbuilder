@@ -1,5 +1,5 @@
-json.highlights @highlights do |highlight|
-  json.partial! "highlights/highlight", highlight: highlight
+json.highlight do
+  json.partial! "highlights/highlight", highlight: @highlight
 end
 
 json.cards @cards do |card|
