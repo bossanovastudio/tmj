@@ -6,9 +6,9 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    pagination = pagination_params
-    
-    @cards = Card.page(pagination[:page]).per(pagination[:quantity])
+    filter = params[:filter]
+
+    @cards = Card.filter_query(filter)
   end
 
   # GET /cards/1
@@ -20,7 +20,7 @@ class CardsController < ApplicationController
   # GET /cards/1/like.json
   def like
     liked = current_user.like(@card)
-    
+
     render :show, status: :ok, location: @card
 end
 
@@ -28,26 +28,30 @@ end
   # GET /cards/1/unlike.json
   def unlike
     unliked = current_user.unlike(@card)
-    
+
     render :show, status: :ok, location: @card
   end
-  
+
+  # POST /cards/1/accept
+  # POST /cards/1/accept.json
   def accept
-    if @card.status == :pending
-      @card.update_attribute!(:status, :accepted)
-    else
-      render json: @card.errors, status: :unprocessable_entity
+    unless @card.nil?
+      @card.update_attribute(:status, :accepted)
+
+      render json: @card
     end
   end
-  
+
+  # POST /cards/1/reject
+  # POST /cards/1/reject.json
   def reject
-    if @card.status.member_of?([:pending, :accepted])
-      @card.update_attribute!(:status, :rejected)
-    else
-      render json: @card.errors, status: :unprocessable_entity
+    unless @card.nil?
+      @card.update_attribute(:status, :rejected)
+
+      render json: @card
     end
   end
-  
+
   # POST /cards
   # POST /cards.json
   def create
@@ -83,9 +87,13 @@ end
     def set_card
       @card = Card.find(params[:id])
     end
-    
+
     def pagination_params
       params.permit(:page, :quantity)
+    end
+
+    def filter_params
+      params.permit(:filter => {})
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

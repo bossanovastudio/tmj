@@ -3,8 +3,7 @@ class CardsController < ApplicationController
 
   # GET /cards
   def index
-    p params[:origin]
-    @cards = Card.find(:all, params: { origin: params[:origin], status: params[:status] })
+    @cards = Card.find(:all, params: { filter: { origin: params[:origin], status: params[:status], content: params[:content] } })
   end
 
   # GET /cards/1
@@ -46,6 +45,24 @@ class CardsController < ApplicationController
     redirect_to cards_url, notice: 'Card was successfully destroyed.'
   end
 
+  # POST /cards/accept
+  def accept
+    @cards = Card.find(:all, params: { filter: { id: bulk_params[:id] } })
+
+    @cards.each do |card|
+      card.get(:accept)
+    end
+  end
+
+  # POST /cards/reject
+  def reject
+    @cards = Card.find(:all, params: { filter: { id: bulk_params[:id] } })
+
+    @cards.each do |card|
+      card.get(:reject)
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_card
@@ -55,5 +72,9 @@ class CardsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def card_params
       params.require(:card).permit(:origin, :content, :media_id, :media_type, :posted_at)
+    end
+
+    def bulk_params
+      params.require(:card).permit(:id => [])
     end
 end

@@ -25,8 +25,7 @@ $(document).on('turbolinks:load', function() {
       filterItem = $('.btn-filter .item'),
       filterSelectAllCards = $('.filter-bar a.select-all'),
       cardsContainer = $('#cards-container'),
-      socialOptions = $('ul.social-options'),
-      statusOptions = $('ul.status-options');
+      filterOptions = $('ul.filter-options');
 
   filterItem.click(function(e){
     if ($(e.target).is('li')) {
@@ -36,23 +35,25 @@ $(document).on('turbolinks:load', function() {
       $(this).find('ul').show();
       overlay.show();
     }
-  })
+  });
 
   overlay.click(function(){
     $(this).hide();
     filterList.hide();
-  })
-
-  socialOptions.click(function(e) {
-    $(this).children('li').removeClass('active');
-    $(e.target).addClass('active');
-    $('.social .main-select').text($(e.target).text());
   });
 
-  statusOptions.click(function(e) {
+  filterOptions.click(function(e) {
+    var optionFilter = $(e.target).text();
     $(this).children('li').removeClass('active');
     $(e.target).addClass('active');
-    $('.status .main-select').text($(e.target).text());
+    $(this).siblings('.main-select').text(optionFilter);
+  });
+
+  filterOptions.each(function(){
+    var optionFilter = $(this).find('li.active').text();
+    if (optionFilter == "")
+      optionFilter = "Todos";
+    $(this).siblings('.main-select').text(optionFilter);
   });
 
   filterSelectAllCards.click(function() {
@@ -63,35 +64,79 @@ $(document).on('turbolinks:load', function() {
       cardsContainer.children('.card').removeClass('selected');
   });
 
+
+
   $('.card').click(function() {
+    $(this).toggleClass('selected');
     if (filterSelectAllCards.hasClass('active')){
       filterSelectAllCards.removeClass('active');
-      cardsContainer.children('.card').removeClass('selected');  
+    } else if ($("#cards-container .card.selected").length == $("#cards-container .card").length) {
+      filterSelectAllCards.addClass('active');
     }
-    $(this).toggleClass('selected');
   });
 
 
 
-  // $('.cards').find('.card').each(function() {
-  //   $(this).attr('style', '');
-  //   $(this).attr('class', $(this).attr('data-class'));
-  //   $(this).find('.img').css('height', 'auto');
-  //   $(this).find('.img').removeClass('no-padding');
-  //   $(this).find('.img').css('padding', $(this).attr('data-padding'));
-  // });
-  // if (!$('.cards').data('masonry')) {
-  //   $('.cards').masonry({
-  //     itemSelector: '.card',
-  //     columnWidth: '.one-five',
-  //     percentPosition: false,
-  //     gutter: 20,
-  //     transitionDuration: 0
-  //   });
-  // } else {
-  //   $('.cards').masonry('reloadItems');
-  //   $('.cards').masonry();
-  // }
+  $('.btn-status a').click(function() {
+    var cardIds = [];
+    cardsContainer.children('.card.selected').each(function () {
+      cardIds.push($(this).attr('data-id'));
+    });
+
+    var action = $(this).attr('data-action');
+
+    $.ajax({
+      url: '/cards/' + action,
+      method: 'POST',
+      data: {
+        card: {id: cardIds}
+      },
+      success: function(data) {
+        console.log(data);
+        location.reload();
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    })
+  });
+
+  $('input.search').on('keyup', function(){
+    var context = $(this).val().toLowerCase();
+    cardsContainer.children('.card').each(function(){
+      var contentText = $(this).find('.content p.text').text().toLowerCase();
+      if (contentText.indexOf(context) != -1)
+        $(this).show();
+      else
+        $(this).hide();
+    })
+    $('.cards').masonry('reloadItems');
+    $('.cards').masonry();
+  });
+
+
+  $('.cards').find('.card').each(function() {
+    $(this).attr('style', '');
+    $(this).css('opacity', 1);
+    $(this).attr('class', $(this).attr('data-class'));
+    $(this).find('.img').css('height', 'auto');
+  });
+
+  setTimeout(function(){
+    if (!$('.cards').data('masonry')) {
+      $('.cards').masonry({
+        itemSelector: '.card',
+        columnWidth: '.one-five',
+        percentPosition: false,
+        gutter: 20,
+        transitionDuration: 0
+      });
+    } else {
+      $('.cards').masonry('reloadItems');
+      $('.cards').masonry();
+    }
+  }, 200)
+
 });
 
 function resizeAdminBottomContent() {

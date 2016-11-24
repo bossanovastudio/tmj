@@ -43,9 +43,14 @@ var organizeCards = function(newValue, oldValue) {
             var h = newValue.h - 320;
             card.find('.img').css({ "height": h });
             card.each(function(i, c) {
+                var setHeight;
+                if ($(c).hasClass('featured') || $(c).hasClass('initial')) {
+                    setHeight = $(c).css({ "height": h + (h / 3) * 2 + 40 });
+                }
                 if ($(c).hasClass('featured')) {
                     $(c).attr('class', 'card featured ng-scope');
-                    $(c).css({ "height": h + (h / 3) * 2 + 40 });
+                } else if ($(c).hasClass('initial')) {
+                    $(c).attr('class', 'card initial ng-scope');
                 } else if ($(c).hasClass('video')) {
                     $(c).attr('class', 'card video ng-scope');
                     //$(c).find('.img').css({ "height": 0 });
@@ -146,6 +151,9 @@ tmj.directive("cardClass", function() {
             } else if (card.kind == 'featured') {
                 $(elem).parent().addClass('card ' + card.size + '-five column featured');
                 $(elem).parent().attr('data-class', 'card ' + card.size + '-five column featured');
+            } else if (card.kind == 'initial') {
+                $(elem).parent().addClass('card one-five column initial');
+                $(elem).parent().attr('data-class', 'card one-five column initial');
             } else if (card.kind == 'video') {
                 $(elem).parent().addClass('card ' + card.size + '-five column video');
                 $(elem).parent().attr('data-class', 'card ' + card.size + '-five column video');

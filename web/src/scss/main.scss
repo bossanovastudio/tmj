@@ -1,6 +1,6 @@
 @import 'reset.scss';
 @import 'grid.scss';
-@import 'https://fonts.googleapis.com/css?family=Lato:300,500,700';
+@import 'https://fonts.googleapis.com/css?family=Lato:300,400,700';
 @font-face {
     font-family: 'KomikaTitle';
     src: url('/fonts/KomikaTitle-webfont.eot');
@@ -14,6 +14,9 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    text-rendering:  optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 html {
@@ -272,7 +275,7 @@ p.date {
 }
 
 div.card {
-    background-color: #d8d8d8;
+    background-color: #fff;
     position: relative;
     margin-bottom: 24px;
     margin: 0 1% 20px 1%;
@@ -350,7 +353,7 @@ div.card {
         font-family: Lato;
         font-size: 13px;
         text-align: center;
-        color: #000000;
+        color: rgba(0, 0, 0, 0.81);;
         word-wrap: break-word;
         margin-top: 0;
         margin-bottom: 0;
@@ -358,7 +361,7 @@ div.card {
     p.read-more {
         display: inline;
         width: auto;
-        color: #000;
+        color: rgba(0, 0, 0, 0.81);
         font-weight: 700;
         font-size: 13px;
         cursor: pointer;
@@ -372,7 +375,7 @@ div.card {
         }
     }
     .close {
-        position: absolute;
+        position: fixed;
         right: 20px;
         top: 20px;
         z-index: 99;
@@ -803,7 +806,7 @@ footer {
         }
     }
     div.card {
-        opacity: 1;
+        opacity: 0;
         .close {
             right: 10px;
             top: 10px;
@@ -811,9 +814,57 @@ footer {
             padding: 9px;
             border-radius: 50%;
         }
+        &.openMobile{
+            overflow: auto;
+            padding-bottom: 60px;
+            div.img{
+                background-position: top center;
+                background-size: 100%;
+            }
+            p.share{
+                margin: 0;
+                background: #fff;
+                padding: 15px;
+                left: 0;
+                height: auto;
+                display: inline-block;
+            }
+            div.shareBox{
+                position: fixed;
+            }
+        }
+        &.show{
+            opacity: 1;
+        }
         &.featured {
             p {
                 font-size: 31px;
+            }
+        }
+        &.initial {
+            background: transparent;
+            .img {
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                > div{
+                    text-align: center;
+                    position: relative;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    p{
+                        font-size: 30px;
+                        font-family: KomikaTitle;
+                        color: #fff;
+                        margin: 5px;
+                    }
+                    div{
+                        p{
+                            color: #000;
+                            display: inline;
+                        }
+                    }
+                }
             }
         }
         .img {

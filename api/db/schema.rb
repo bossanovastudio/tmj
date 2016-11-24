@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121200629) do
+ActiveRecord::Schema.define(version: 20161122195143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20161121200629) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "source_url"
-    t.integer  "status"
+    t.integer  "status",     default: 1
     t.integer  "size",       default: 1
     t.index ["media_type", "media_id"], name: "index_cards_on_media_type_and_media_id", using: :btree
   end
@@ -89,8 +89,11 @@ ActiveRecord::Schema.define(version: 20161121200629) do
   create_table "videos", force: :cascade do |t|
     t.string   "url"
     t.integer  "origin"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "thumbnail"
+    t.integer  "width",      default: 1, null: false
+    t.integer  "height",     default: 1, null: false
   end
 
 end

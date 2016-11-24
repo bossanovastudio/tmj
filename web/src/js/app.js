@@ -10,9 +10,9 @@ tmj
                 templateUrl: '/pages/home.html',
                 controller: 'HomeController'
             })
-            .when('/personagem/geek', {
-                templateUrl: '/pages/geek.html',
-                controller: 'GeekController'
+            .when('/personagem/ramona', {
+                templateUrl: '/pages/ramona.html',
+                controller: 'RamonaController'
             })
             .when('/detalhe/card/:id', {
                 templateUrl: '/pages/home.html',
@@ -60,7 +60,7 @@ tmj.filter('cropText', function() {
             if (card.kind == 'text') {
                 maxLength = $(window).width() > 480 ? 100 : 300
             } else {
-                maxLength = $(window).width() > 480 ? 100 : 200;
+                maxLength = $(window).width() > 480 ? 100 : 100;
             }
             var trimmedString = card.content.substr(0, maxLength);
             if (trimmedString.length == card.content.length) {

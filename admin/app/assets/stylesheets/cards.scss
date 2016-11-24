@@ -1,3 +1,8 @@
+// #cards-container {
+//   padding: 0;
+//   width: auto;
+// }
+
 div.card {
   background-color: #d8d8d8;
   position: relative;
@@ -47,7 +52,20 @@ div.card {
       z-index: 3;
     }
   }
+  .status-bar {
+    width: 100%;
+    height: 15px;
 
+    &.pending {
+      height: 0;
+    }
+    &.rejected {
+      background-color: #fe2842;
+    }
+    &.accepted {
+      background-color: #4bc182;
+    }
+  }
   img.user-photo {
     position: absolute;
     left: 50%;
@@ -70,13 +88,28 @@ div.card {
   }
   div.content {
     background: #ffffff;
-    padding: 36px 18px 12px 18px;
+    padding: 15px 18px 15px 18px;
     text-align: center;
+    .name{
+      font-family: KomikaTitle;
+    }
+    .date{
+      font-family: Lato;
+      font-weight: 300;
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 0.3px;
+      text-align: center;
+      color: #9b9b9b;
+      margin-top: 0;
+      img{
+        display: inline-block;
+        vertical-align: text-bottom;
+        margin-right: 3px;
+      }
+    }
   }
   div.img {
-    //TODO remove
-    padding: 28.125% 0px;
-
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;

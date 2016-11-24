@@ -7,15 +7,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope.SIZE = 20;
     $scope.END = false;
 
-    $scope.VIDEOS = [
-        'https://www.youtube.com/watch?v=ZdBY7qEQDjc',
-        'https://www.youtube.com/watch?v=F1gjyTLq2lU',
-        'https://www.youtube.com/watch?v=w_Dut12rQdA',
-        'https://vimeo.com/151437857',
-        'https://vimeo.com/90695670',
-        'https://vimeo.com/95656929'
-    ]
-
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
     $scope.count = 0;
@@ -48,26 +39,15 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     $scope.END = true;
                     $('.cards').removeClass('loading');
                 } else {
+                    if ($scope.PAGE == 1 && isMobileDevice) {
+                        $scope.initialCard('posts');
+                    }
                     $scope.cards.push({
                         id: (parseInt(Math.random() * 999999) + 1),
                         kind: 'featured',
                         url: '/img/featured_background.png',
                         size: ['four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four', 'five', 'four'][$scope.count++],
                         content: 'Seja sua própria heroína. Somos todas #donasdarua'
-                    });
-                    $scope.cards.push({
-                        id: (parseInt(Math.random() * 999999) + 1),
-                        kind: 'video',
-                        url: $scope.VIDEOS[3],
-                        image: {
-                            url: 'https://i.vimeocdn.com/video/551181496.jpg?mw=900&mh=506',
-                            width: 900,
-                            height: 506,
-                            ratio: "1,778"
-                        },
-                        content: 'Seja sua própria heroína. Somos todas #donasdarua',
-                        size: 'two',
-                        posted_at: '2016-11-03T12:38:43.000Z'
                     });
                     data.cards.forEach(function(card) {
                         $scope.cards.push(card);
@@ -148,7 +128,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         if (walk != -(size * ($('.card').width() + 20))) {
             $(e).animate({
                 left: walk
-            }, 250);
+            }, 1000, 'easeOutElastic');
         } else {
             if (!e.hasClass('mobile')) {
                 $scope.PAGE++;
@@ -157,7 +137,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             if (walk != -((size + 1) * ($('.card').width() + 20))) {
                 $(e).animate({
                     left: walk
-                }, 250);
+                }, 1000, 'easeOutElastic');
             }
         }
         $scope.lazyLoad(false);
@@ -174,11 +154,17 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         }
         $(e).animate({
             left: walk
-        }, 250);
+        }, 1000, 'easeOutElastic');
     }
-
     var distanceTop = 0;
+    var cardPage = 1;
     $scope.swipeUp = function() {
+        if (distanceTop == 0) {
+            cardPage++;
+        }
+        if (cardPage == $('.cards').length) {
+            $('.arrowBottom').fadeOut();
+        }
         distanceTop = -$(window).height();
         $('.cards').each(function(i, e) {
             var top = parseInt($(this).css('top').replace('px'));
@@ -191,6 +177,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
     $scope.swipeDown = function() {
         distanceTop = $(window).height();
+        $('.arrowBottom').fadeIn();
         $('.cards').each(function(i, e) {
             var top = parseInt($(this).css('top').replace('px'));
             if (i == 0 && top == 0) {
@@ -204,33 +191,12 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         if (content.kind == "featured") {
             $location.path(content.source_url);
         } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('originalPost') && !elem.hasClass('shareButton')) {
-            //REMOVE THIS IF WHEN THE VIDEO IS IMPLEMENTED ON THE API
-            if (content.kind == 'video') {
-                id = 26;
-            }
             $http({
                     method: 'get',
                     url: API_URL + '/api/cards/' + id + '.json',
                 })
                 .success(function(data) {
                     $rootScope.card = data;
-
-                    if (content.kind == 'video') {
-                        $rootScope.card = {
-                            id: (parseInt(Math.random() * 999999) + 1),
-                            kind: 'video',
-                            url: $scope.VIDEOS[3],
-                            image: {
-                                url: 'https://i.vimeocdn.com/video/551181496.jpg?mw=900&mh=506',
-                                width: 900,
-                                height: 506,
-                                ratio: "1,778"
-                            },
-                            content: 'Seja sua própria heroína. Somos todas #donasdarua',
-                            size: 'two',
-                            posted_at: '2016-11-03T12:38:43.000Z'
-                        }
-                    }
 
                     if (isMobileDevice) {
                         var card = $(elem).closest('.card').clone();
@@ -253,12 +219,12 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             height: '100%'
                         }, 200);
 
-
                         setTimeout(function() {
                             $('.card').last().find('.videoMobile').show(0);
                             $('.card').last().find('.heart').attr('src', '/img/like.png').width(24);
                             $('.card').last().find('.arrow').attr('src', '/img/share.png').width(24);
                             $('.card').last().find('.read-more').remove();
+                            $('.card').last().addClass('openMobile');
 
                             if ($('.card').last().hasClass('text')) {
                                 $('.card').last().find('.content').css({
@@ -270,21 +236,24 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                                     overflow: 'auto'
                                 });
                             } else {
-                                $('.card').last().find('.img, .content').animate({
-                                    height: "50%"
+                                var h = $scope.imageHeightMobile();
+                                $('.card').last().find('.img').animate({
+                                    height: h
+                                }, 300);
+                                $('.card').last().find('.content').animate({
+                                    height: 'auto'
                                 }, 300);
                                 $('.card').last().find('.text').css({
-                                    height: '45%',
+                                    height: 'auto',
                                     overflow: 'auto'
                                 });
                             }
 
                             $('.card').last().find('.text').text(content.content);
                             $('.card').last().find('.share').css({
-                                position: 'absolute',
+                                position: 'fixed',
                                 bottom: 0,
-                                width: '90%',
-                                'margin-bottom': 10
+                                width: '100%'
                             });
                             var close = $compile('<img class="close" ng-click="close($event)" src="/img/fechar.png" />')($scope);
                             $('.card').last().append(close);
@@ -309,12 +278,27 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         $scope.openCard({}, $routeParams.id, $rootScope.card);
     }
 
+    $scope.imageHeightMobile = function() {
+        var w = $(window);
+        var ratio;
+        if ($rootScope.card.image) {
+
+                ratio = $rootScope.card.image.height / $rootScope.card.image.width;
+
+            console.log( ratio )
+            return w.width() * ratio;
+        }
+    }
+
     $scope.close = function($event) {
         var elem = angular.element($event.target);
         var card = $(elem).closest('.card');
         card.fadeOut(300, function() {
             $(this).remove();
         })
+        if (isMobileDevice) {
+            $('.card').removeClass('openMobile');
+        }
     }
 
     $scope.likeCard = function($event, id) {
@@ -342,6 +326,20 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     heart.parent().addClass('liked');
                 });
         }
+    }
+
+    $scope.initialCard = function(filterType) {
+        var cardContent;
+        if (filterType == "posts") cardContent = "Posts";
+        $scope.cards.push({
+            id: (parseInt(Math.random() * 999999) + 1),
+            kind: 'initial',
+            icon: {
+                url: '/img/initial_' + filterType + '.svg'
+            },
+            count: 64,
+            content: cardContent
+        });
     }
 
     $scope.textSize = !isMobileDevice ? 100 : 200;
