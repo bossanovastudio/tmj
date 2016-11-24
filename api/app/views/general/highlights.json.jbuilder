@@ -1,3 +1,3 @@
-json.cards @highlights do |highlight|
+json.highlights @highlights do |highlight|
   json.partial! "highlights/highlight", highlight: highlight
 end

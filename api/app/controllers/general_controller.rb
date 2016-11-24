@@ -7,7 +7,7 @@ class GeneralController < ApplicationController
   end
   
   def highlights
-    @highlight = Highlight.all
+    @highlights = Highlight.all
   end
   
   private
