@@ -119,6 +119,21 @@ tmj.directive("cardClass", function() {
                     $(elem).parent().addClass('cursor');
                 }
             }
+
+            var maxLength;
+            if (card.kind == 'text') {
+                maxLength = !isMobileDevice ? 100 : 400;
+            } else {
+                maxLength = !isMobileDevice ? 100 : 70;
+            }
+            if (card.content) {
+                if (card.content.length > maxLength) {
+                    $(elem).parent().find('.read-more').show();
+                } else {
+                    $(elem).parent().find('.read-more').hide();
+                }
+            }
+
             if (card.kind == 'image') {
                 var ratio = parseFloat(card.image.ratio.replace(',', '.'));
                 if (ratio <= 1) {

@@ -337,8 +337,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         });
     }
 
-    $scope.textSize = !isMobileDevice ? 100 : 200;
-
     $scope._throttleTimer = null;
     $scope._throttleDelay = 100;
 

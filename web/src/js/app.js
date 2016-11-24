@@ -58,9 +58,9 @@ tmj.filter('cropText', function() {
         if (card.content !== null) {
             var maxLength = 0;
             if (card.kind == 'text') {
-                maxLength = $(window).width() > 480 ? 100 : 300
+                maxLength = !isMobileDevice ? 100 : 400;
             } else {
-                maxLength = $(window).width() > 480 ? 100 : 100;
+                maxLength = !isMobileDevice ? 100 : 70;
             }
             var trimmedString = card.content.substr(0, maxLength);
             if (trimmedString.length == card.content.length) {
