@@ -7,8 +7,6 @@ module CrawlerParser
     def run
       card = self.send(@post.social_media, @post)
       
-      p card_kind
-      
       if card_kind == 'Image'
         card.media_type = card_kind
         card.media_id   = self.send('image', self.image_url)
@@ -57,6 +55,10 @@ module CrawlerParser
       card.content    = post.content.message
       card.source_url = "https://facebook.com/" + post.social_uuid if post.social_uuid
       card.posted_at  = post.content.created_time
+      card.social_user = {
+        id: post.content.user.fetch('from', {}).fetch('id', ''),
+        username: post.content.user.fetch('from', {}).fetch('name', '')
+      }
 
       card
     end
@@ -67,6 +69,10 @@ module CrawlerParser
       card.content    = post.content.text
       card.source_url = "https://twitter.com/statuses/" + post.social_uuid if post.social_uuid
       card.posted_at  = post.content.created_at
+      card.social_user = {
+        id: post.content.user.fetch('id', ''),
+        username: post.content.user.fetch('screen_name', '')
+      }
 
       card
     end
@@ -77,6 +83,10 @@ module CrawlerParser
       card.content    = post.content.title
       card.source_url = "https://www.youtube.com/watch?v=" + post.social_uuid if post.social_uuid
       card.posted_at  = post.content.publishedAt
+      card.social_user = {
+        id: post.content.channelId,
+        username: post.content.channelTitle
+      }
 
       card
     end

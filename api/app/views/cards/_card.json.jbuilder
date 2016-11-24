@@ -27,6 +27,11 @@ if card.user
     json.name   card.user.name
     json.avatar card.user.avatar.url
   end
+else
+  json.user do
+    json.id     card.social_user.fetch('id', '')
+    json.name   card.social_user.fetch('username', '')
+  end
 end
 
 json.status     card.status
