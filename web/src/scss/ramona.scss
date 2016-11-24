@@ -65,6 +65,8 @@ body.ramonaPage {
             }
             .follow {
                 display: block;
+                width: auto;
+                height: auto;
                 text-decoration: none;
                 background: #ffffff;
                 border: 1px solid #000000;
@@ -77,10 +79,20 @@ body.ramonaPage {
                 text-align: center;
                 color: #000000;
                 width: 127px;
-                padding: 5px 0px;
                 -webkit-box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
                 -moz-box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
                 box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
+                overflow: hidden;
+                transition-duration: 0.2s;
+                margin: 0px;
+                padding: 9px 20px;
+                &:hover{
+                    -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+                    -moz-box-shadow:  0px 0px 0px 0px rgba(0,0,0,1);
+                    box-shadow:  0px 0px 0x 0px rgba(0,0,0,1);
+                    transition-duration: 0.2s;
+                    transform: translate(3px, 4px)
+                }
             }
         }
         .about {
