@@ -53,7 +53,7 @@ header {
     transition-duration: 0.2s;
     cursor: pointer;
     display: inline-block;
- 
+
   #nav-icon4 {
     width: 18px;
     height: 18px;
@@ -109,7 +109,7 @@ header {
         -o-transform-origin: left center;
         transform-origin: left center;
       }
-      
+
     }
   }
   &.open #nav-icon4 span:nth-child(1) {
@@ -848,7 +848,7 @@ div.card {
                         -o-transform: rotate(-45deg);
                         transform: rotate(-45deg);
                     }
-                  
+
                 }
             }
             &:hover{
@@ -937,7 +937,7 @@ footer {
         fill: #FFF;
         transition-duration: 0.01s;
       }
-      
+
       &:hover {
         -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
         -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
@@ -1006,7 +1006,7 @@ footer {
         overflow: hidden;
     }
     header {
-        height: 61px;
+        height: 75px;
         padding: 0px;
     }
     section {
@@ -1079,7 +1079,7 @@ footer {
             background: transparent;
             .img {
                 position: relative;
-                top: 50%;
+                top: 40%;
                 transform: translateY(-50%);
                 > div{
                     text-align: center;
@@ -1109,7 +1109,7 @@ footer {
     #menu {
         position: absolute;
         left: 7%;
-        top: 23px;
+        top: 2%;
         filter: none;
         svg{
             display: none;
