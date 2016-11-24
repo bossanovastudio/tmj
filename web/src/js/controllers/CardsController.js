@@ -10,9 +10,20 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
     $scope.count = 0;
+    $scope.cardsFeatured = [];
 
     if (!isMobileDevice) {
         $('.cards.mobile').remove();
+    } else {
+        $http({
+                method: 'get',
+                url: API_URL + '/api/highlights.json',
+            })
+            .success(function(data) {
+                data.forEach(function(f) {
+                    $scope.cardsFeatured.push(f);
+                });
+            });
     }
 
     $scope.loadCards = function(p) {
