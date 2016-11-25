@@ -1077,6 +1077,7 @@ footer {
         top: 0px;
         height: 100%;
         overflow: hidden;
+
         &:after {
             display: none;
         }
@@ -1117,9 +1118,6 @@ footer {
             div.shareBox{
                 position: fixed;
             }
-        }
-        &.show{
-            opacity: 1;
         }
         &.featured {
             p {

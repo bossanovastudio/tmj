@@ -87,6 +87,11 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         }
     }
 
+    $(".sidebar ul li").on('click', function() {
+        $scope.closeMenu();
+        $scope.toggle();
+    })
+
     $("body").click(function(e) {
         if (e.target.className !== "shareBox" && e.target.className.indexOf('share') === -1 && e.target.className !== "arrow") {
             $(".shareBox").removeClass('show');
