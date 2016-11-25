@@ -115,14 +115,12 @@ tmj.directive("cardClass", function() {
         },
         link: function(scope, elem, attr) {
             var card = scope.ngClasses;
-
-            var maxLength;
+            var maxLength= 0;
             if (card.kind == 'text') {
                 maxLength = !isMobileDevice ? 100 : 400;
             } else {
                 maxLength = !isMobileDevice ? 100 : 70;
             }
-
             if( card.content ) {
                 if (card.content.length > maxLength || card.kind !== 'text') {
                     $(elem).parent().addClass('cursor');
