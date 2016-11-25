@@ -312,7 +312,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         }, 1);
 
                     } else {
-                        if ($rootScope.card.kind == 'image' || $rootScope.card.content.length > 100 || $rootScope.card.kind == 'video') {
+                        if ($rootScope.card.kind == 'image' || $rootScope.card.content.length > 300 || $rootScope.card.kind == 'video') {
                             $('body').css({ overflow: "hidden" });
                             $location.path("/detalhe/card/" + $rootScope.card.id, false);
                             var lightbox = angular.element(document.querySelector('.lightbox'));
