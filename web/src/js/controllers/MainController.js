@@ -96,11 +96,11 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         }
     });
     $scope.closeLightbox = function() {
-        $location.path( $rootScope.previousURL, false);
-        $('.lightbox').removeClass("animate");
-        $('.lightbox .detail').removeClass("animate");
-        $('body').css({ overflow: "auto"});
-    }
+            $location.path( $rootScope.previousURL, false);
+            $('.lightbox').removeClass("animate");
+            $('.lightbox .detail').removeClass("animate");
+            $('body').css({ overflow: "auto"});
+        }
     $scope.closeLightboxClick = function($event) {
         var e = angular.element($event.target);
         e = $(e);

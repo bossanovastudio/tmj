@@ -110,13 +110,16 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
 
     $scope.lazyLoad = function(desktop) {
-        if (desktop) {
-            $("div.img").not('.lazyloaded').each(function(i, e) {
-                $(e).lazyload({
-                    effect: "fadeIn"
-                });
-                $(e).addClass('lazyloaded');
-            });
+    if (desktop) {
+        $(".card").not('.animate').each(function(i, e) {
+            $(e).addClass('animate');
+        });
+
+        $("div.img").not('.lazyloaded').each(function(i, e) {
+            $(e).lazyload();
+            $(e).addClass('lazyloaded');
+            $(e).css({ "background-image": "url(" + $(this).data('original') + ")" });
+        });
         } else {
             $("div.img").each(function(i, e) {
                 $(this).css({ "background-image": "url(" + $(this).data('original') + ")" });
