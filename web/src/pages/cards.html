@@ -1,4 +1,5 @@
-<div ng-controller="CardsController">
+<div class="card-container" ng-controller="CardsController">
+    <img class="initial-loading" src="/img/loading.gif" />
     <div resize ng-if="ready && pageName == 'homePage'" class="container cards mobile" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()" data-page="1" data-slug="all">
         <div ng-repeat="card in cardsFeatured track by card.id" ng-click="openCard($event, card.id, card)" organize-cards data-class="" data-id="{{card.id}}">
             <div card-class ng-classes="card" data-original="{{card.image.url}}" class="img"></div>
