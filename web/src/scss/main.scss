@@ -384,6 +384,7 @@ p.date {
     perspective: 1300px;
     .card {
         transform-style: preserve-3d;
+        opacity: 0;
         &.animate {
             opacity: 1;
             animation: fallPerspective .6s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
