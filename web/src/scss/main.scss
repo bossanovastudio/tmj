@@ -954,6 +954,7 @@ footer {
     bottom: 40px;
     width: 38px;
     a {
+      border: 1px solid #231F1F;
       width: 33px;
       height: 33px;
       overflow: hidden;
@@ -1012,6 +1013,9 @@ footer {
       &:hover:before {
         left: -15px;
         top: -15px;
+      }
+      svg {
+        margin: -1px;
       }
     }
 }
