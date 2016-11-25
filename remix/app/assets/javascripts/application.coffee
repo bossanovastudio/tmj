@@ -64,6 +64,7 @@ $('.remix-container').each ->
 
       $composer.find('.artboard .empty').hide()
 
+  # gallery swipe
   $landing.find('.gallery').swipe {
     swipeLeft: (event, direction, duration, fingerCount, fingerData, currentDirection) ->
       width = $(this).find('.gallery-item').first().outerWidth(true)

@@ -60,7 +60,8 @@
   }
   .toolbox {
     @include clearfix;
-    padding: 15px 20px 15px;
+    margin-top: 5px;
+    padding: 10px 20px 15px;
     position: relative;
     text-align: center;
     .toolbox-item {
@@ -75,30 +76,38 @@
           width: 0;
           height: 0;
           border-style: solid;
-          border-width: 0 5px 10px 5px;
+          border-width: 0 12px 24px 12px;
           border-color: transparent transparent #FFF transparent;
 
           content: '';
           display: none;
-          margin: 5px 0 0 -5px;
+          margin: 5px 0 0 -12px;
           position: absolute;
           left: 50%;
           top: 100%;
         }
       }
       .popup {
-        background-color: #FFF;
         display: none;
         left: 0;
-        padding: 10px;
+        padding: 0 10px;
         position: absolute;
         top: 100%;
         width: 100%;
+        .popup-holder {
+          background-color: #FFF;
+          border-radius: $border-radius-small;
+          padding: 10px;
+        }
       }
       &.category {
         opacity: 1;
         .popup {
-          padding: 2px;
+          padding: 0;
+          .popup-holder {
+            border-radius: 0;
+            padding: 2px;
+          }
           .categories, .pictures {
             @include clearfix;
             > div {
@@ -160,13 +169,28 @@
     margin-left: -($grid-gutter-width / 2);
     margin-right: -($grid-gutter-width / 2);
     .toolbox {
-      .toolbox-item.category {
-        .toggler {
-          display: none;
+      .toolbox-item {
+        &.category {
+          .toggler {
+            display: none;
+          }
+          .popup {
+            margin-top: -70px;
+            z-index: 10;
+          }
         }
-        .popup {
-          margin-top: -70px;
-          z-index: 10;
+        &.ballons, &.stickers {
+          .toggler:after {
+            border-width: 24px 12px 0 12px;
+            border-color: #FFF transparent transparent transparent;
+
+            bottom: 100%;
+            top: auto;
+          }
+          .popup {
+            bottom: 100%;
+            top: auto;
+          }
         }
       }
     }
@@ -182,6 +206,7 @@
     }
     .toolbox {
       @include make-sm-column(6);
+      padding-bottom: 25px;
       padding-right: 132px;
       .toolbox-item {
         width: percentage(1 / 6);
