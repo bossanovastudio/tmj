@@ -97,9 +97,16 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
     });
     $scope.closeLightbox = function() {
             $location.path( $rootScope.previousURL, false);
-            $('.lightbox').removeClass("animate");
-            $('.lightbox .detail').removeClass("animate");
-            $('body').css({ overflow: "auto"});
+            $('.lightbox').removeClass("show");
+            $('.lightbox .detail').removeClass("show");
+            $('.lightbox').addClass("hide");
+            $('.lightbox .detail').addClass("hide");
+            setTimeout(function () {
+              $('lightbox').css({ "display": "none" });
+              $('body').css({ overflow: "auto"});
+              $('.lightbox').removeClass("hide");
+              $('.lightbox .detail').removeClass("hide");
+            }, 300);
         }
     $scope.closeLightboxClick = function($event) {
         var e = angular.element($event.target);

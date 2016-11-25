@@ -782,6 +782,14 @@ div.card {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+@keyframes hideLightbox {
+    from { transform: translate(-50%, -50%); }
+    to { transform: translate(-50%, 400px);}
+}
+@keyframes hideOverlay {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
 .lightbox {
     position: fixed;
     right: 0px;
@@ -790,9 +798,13 @@ div.card {
     height: 100%;
     display: none;
     background-color: rgba(74, 74, 74, 0.6);
-    &.animate{
+    &.show{
         display: block;
         animation: showOverlay .2s linear forwards;
+    }
+    &.hide{
+        display: block;
+        animation: hideOverlay .2s linear forwards;
     }
     .detail {
         background: #ffffff;
@@ -802,8 +814,11 @@ div.card {
         transform: translate(-50%, -50%);
         max-width: 440px;
         width: auto;
-        &.animate{
+        &.show{
             animation: showLightbox .3s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+        }
+        &.hide{
+            animation: hideLightbox .3s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
         }
         .preview {
             width: 60%;

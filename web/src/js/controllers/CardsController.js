@@ -295,8 +295,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             var lightboxDetail = angular.element(document.querySelector('.lightbox .detail'));
 
                             // lightbox.fadeIn();
-                            lightbox.addClass('animate');
-                            lightboxDetail.addClass('animate');
+                            lightbox.addClass('show');
+                            lightboxDetail.addClass('show');
                         }
                     }
                 });
