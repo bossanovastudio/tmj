@@ -308,9 +308,15 @@ div.shareBox {
     -webkit-transition: all 0.3s ease-in-out;
     a {
         outline: none;
+        display: inline-block;
+        margin-left: 10px;
+        opacity: 0;
+        &.animate{
+            opacity: 1;
+            animation: enterSocial .4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
     }
     img {
-        margin-left: 10px;
         float: left;
         width: 20px;
         height: 20px;
@@ -320,6 +326,18 @@ div.shareBox {
         opacity: 1;
         z-index: 9;
     }
+    .content-item-box {
+        position: relative;
+        display: block;
+        width: 107%;
+        height: 20px;
+        overflow: hidden;
+    }
+}
+
+@keyframes enterSocial {
+    from { transform: translateX(100px) rotate(360deg);}
+    to { transform: translateX(0px) rotate(0deg); }
 }
 
 div.shareBox:after {
@@ -367,6 +385,7 @@ p.date {
     .card {
         transform-style: preserve-3d;
         &.animate {
+            opacity: 1;
             animation: fallPerspective .6s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
         }
     }
@@ -388,8 +407,8 @@ p.date {
     }
 }
 @keyframes fallPerspective {
-    from { transform: translateZ(50px) translateY(100px) rotateX(-10deg); opacity: 0; }
-    to { transform: translateZ(0px) translateY(0px) rotateX(0deg); opacity: 1; }
+    from { transform: translateZ(50px) translateY(100px) rotateX(-10deg);}
+    to { transform: translateZ(0px) translateY(0px) rotateX(0deg); }
 }
 
 div.card {

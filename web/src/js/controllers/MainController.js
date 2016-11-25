@@ -62,16 +62,19 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
 
         if (card.length > 0 && card.find('.shareBox').hasClass('show')) {
             card.find('.shareBox').removeClass('show');
+            $('.shareBox a').removeClass('animate');
             setTimeout(function() {
                 card.find('.shareBox').hide();
             }, 300);
         } else if (card.length == 0 && $('.lightbox .shareBox').hasClass('show')) {
             $('.lightbox .shareBox').removeClass('show');
+            $('.shareBox a').removeClass('animate');
             setTimeout(function() {
                 $('.lightbox .shareBox').hide();
             }, 300);
         } else {
             $(".shareBox").removeClass('show');
+            $('.shareBox a').removeClass('animate');
             $(".shareBox").hide();
             setTimeout(function() {
                 $('.card').css({ "z-index": 0 });
@@ -79,9 +82,17 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                     card.find('.shareBox').show();
                     card.css({ "z-index": 9 });
                     card.find('.shareBox').addClass('show');
+                    card.find('.shareBox a').each(function(i){
+                        var t = $(this);
+                        setTimeout(function(){ t.addClass('animate'); }, (i+1) * 50);
+                    });
                 } else {
                     $('.lightbox .shareBox').show();
                     $('.lightbox .shareBox').addClass('show');
+                    $('.shareBox a').each(function(i){
+                        var t = $(this);
+                        setTimeout(function(){ t.addClass('animate'); }, (i+1) * 50);
+                    });
                 }
             }, 100)
         }
@@ -95,6 +106,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
     $("body").click(function(e) {
         if (e.target.className !== "shareBox" && e.target.className.indexOf('share') === -1 && e.target.className !== "arrow") {
             $(".shareBox").removeClass('show');
+            $('.shareBox a').removeClass('animate');
             setTimeout(function() {
                 $(".shareBox").hide();
             }, 200);
