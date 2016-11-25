@@ -213,9 +213,7 @@ body.ramonaPage {
         }
     }
     @media only screen and (max-device-width: 550px) {
-        body.ramonaPage{
-            background-image: url(/img/bg_ramona_mobile.png);
-        }
+
         .container.geek {
             width: 100% !important;
             height: 100% !important;
@@ -418,6 +416,11 @@ body.ramonaPage {
 
             }
         }
+    }
+}
+@media only screen and (max-device-width: 550px) {
+    body.ramonaPage{
+        background-image: url(/img/bg_ramona_mobile.png);
     }
 }
 @keyframes enterRamonaSocial {
