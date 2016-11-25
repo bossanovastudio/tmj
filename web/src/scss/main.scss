@@ -495,7 +495,8 @@ div.card {
         margin-bottom: 0;
     }
     p.read-more {
-        display: inline;
+        display: inline-block !important;
+        position: relative;
         width: auto;
         color: rgba(0, 0, 0, 0.81);
         font-weight: 700;
@@ -505,17 +506,32 @@ div.card {
         transition-duration: 0.1s;
         padding: 1px 6px;
         display: none;
-        &:hover {
-            color: #fff;
+        z-index: 99;
+        overflow: hidden;
+         &:before {
+            content: "";
+            position: absolute;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
             background: #ff5050;
-            transition-duration: 0.1s;
-        }
+            bottom: 0;
+            left: -100px;
+            right: 0;
+            top: 15px;
+            z-index: 1;
+            -webkit-transition: all 0.2s ease-in;
+          }
+          &:hover:before {
+            left: 0px;
+          }
+
     }
 
     &.cursor {
         cursor: pointer;
         p.read-more {
-            display: inline;
+            display: inline-block;
         }
     }
     .close {

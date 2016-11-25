@@ -112,12 +112,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
     $scope.lazyLoad = function(desktop) {
     if (desktop) {
-        $(".card").not('.animate').each(function(i, e) {
-            $(e).addClass('animate');
-            $('.social-editor li').each(function(i){
-                var t = $(this);
-                setTimeout(function(){ t.addClass('animate'); }, (i+1) * 50);
-            });
+        $(".card").not('.animated').each(function(i, e) {
+            $(e).addClass('animate animated');
+            setTimeout(function(){
+                $(e).removeClass('animate');
+            },500)
         });
 
         $("div.img").not('.lazyloaded').each(function(i, e) {
@@ -187,9 +186,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
     var distanceTop = 0;
     var cardPage = 1;
-    var lineCount = 0;
     $scope.swipeUp = function() {
-        lineCount++;
         if (distanceTop == 0) {
             cardPage++;
         }

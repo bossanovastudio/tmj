@@ -114,7 +114,7 @@
             </a>
         </footer>
     </div>
-    <div class="overlay" ng-click="closeMenu()"></div>
+    <div class="overlay" ng-click="closeMenu(); toggle()"></div>
     <div class="lightbox" ng-click="closeLightboxClick($event)">
         <div class="detail content {{card.kind=='image' || card.kind=='video' ? 'image' : ''}}">
             <div class="preview" style="background-image:url('{{card.image.url}}')">
