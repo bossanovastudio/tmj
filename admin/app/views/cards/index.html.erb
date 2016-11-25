@@ -81,8 +81,10 @@
   <p id="notice"><%= notice %></p>
 
   <div id="cards-container" class="container cards">
-    <% @cards.each do |card| %>
-    <div class="card column show <%= card_size(card) %>" data-class="card column <%= card_size(card) %>" data-id="<%= card.id %>">
+    <%= form_for Card.new, remote: true do |f| %>
+      <% @cards.each do |card| %>
+    <div class="card column show <%= card_size(card) %>" data-class="card column <%= card_size(card) %>">
+    <input type="checkbox" name="card[id][]" value="<%= card.id %>" />
       <div class="selected-overlay"></div>
       <div class="status-bar <%= card.status %> color"></div>
       <% if card.kind == 'image' %>
@@ -108,6 +110,7 @@
       <% end %>
     </div>
     <% end %>
+   <% end %>
   </div>
   <div class="card one-five column"></div>
 

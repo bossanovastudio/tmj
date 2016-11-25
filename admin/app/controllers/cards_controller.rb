@@ -52,6 +52,7 @@ class CardsController < ApplicationController
     @cards.each do |card|
       card.get(:accept)
     end
+    redirect_to cards_url
   end
 
   # POST /cards/reject
@@ -61,6 +62,7 @@ class CardsController < ApplicationController
     @cards.each do |card|
       card.get(:reject)
     end
+    redirect_to cards_url
   end
 
   private
