@@ -40,12 +40,13 @@ var organizeCards = function(newValue, oldValue) {
             card.eq(0).css({
                 "margin-left": 40
             });
-            var h = newValue.h - 240;
+            var h = newValue.h - 260;
             card.find('.img').css({ "height": h });
             card.each(function(i, c) {
-                var setHeight;
-                if ($(c).hasClass('featured') || $(c).hasClass('initial')) {
-                    setHeight = $(c).css({ "height": h + (h / 3) * 2 + 40 });
+                if ($(c).hasClass('featured')) {
+                    $(c).css({ "height": h + (h / 3) * 2 + 40 });
+                } else if ($(c).hasClass('initial')) {
+                    $(c).css({ "height":'100%'});
                 }
                 if ($(c).hasClass('featured')) {
                     $(c).attr('class', 'card featured ng-scope');
