@@ -2,6 +2,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
     $scope.ready = false;
     $scope.cards = [];
+    $scope.cards_recommended = [];
 
     $scope.PAGE = 1;
     $scope.SIZE = 20;
@@ -26,13 +27,22 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             });
     }
 
-    $scope.loadCards = function(p) {
+    $scope.loadCards = function(p, slug, array, icon) {
+        if (!slug) {
+            slug = 'all'
+        }
+        if (!array) {
+            array = $scope.cards;
+        }
+        if (!icon) {
+            icon = 'posts';
+        }
         if ($scope.PAGE > 1) {
             $('.cards').addClass('loading');
         }
         $http({
                 method: 'get',
-                url: API_URL + '/api/all/' + p + '/' + $scope.SIZE + '.json',
+                url: API_URL + '/api/' + slug + '/' + p + '/' + $scope.SIZE + '.json',
             })
             .success(function(data) {
                 if (data.cards.length == 0) {
@@ -40,14 +50,14 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     $('.cards').removeClass('loading');
                 } else {
                     if ($scope.PAGE == 1 && isMobileDevice) {
-                        $scope.initialCard('posts');
+                        $scope.initialCard(array, icon, data.total ? data.total : 0);
                     }
                     if (data.highlight && !isMobileDevice) {
                         data.highlight.id = data.highlight.id * 999999;
-                        $scope.cards.push(data.highlight);
+                        array.push(data.highlight);
                     }
                     data.cards.forEach(function(card) {
-                        $scope.cards.push(card);
+                        array.push(card);
                     });
                     $scope.ready = true;
                     if (!isMobileDevice) {
@@ -94,7 +104,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 }
             });
     }
-    $scope.loadCards($scope.PAGE);
+    $scope.loadCards($scope.PAGE, 'all', $scope.cards, 'posts');
+    if (isMobileDevice) {
+        $scope.loadCards($scope.PAGE, 'all', $scope.cards_recommended, 'recommendation');
+    }
 
     $scope.lazyLoad = function(desktop) {
         if (desktop) {
@@ -323,16 +336,17 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         }
     }
 
-    $scope.initialCard = function(filterType) {
+    $scope.initialCard = function(array, filterType, total) {
         var cardContent;
         if (filterType == "posts") cardContent = "Posts";
-        $scope.cards.push({
+        if (filterType == "recommendation") cardContent = "Recomendações";
+        array.push({
             id: (parseInt(Math.random() * 999999) + 1),
             kind: 'initial',
             icon: {
                 url: '/img/initial_' + filterType + '.svg'
             },
-            count: 64,
+            count: total,
             content: cardContent
         });
     }

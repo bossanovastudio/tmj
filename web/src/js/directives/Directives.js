@@ -131,23 +131,6 @@ tmj.directive("cardClass", function() {
                 }
             }
 
-            // var maxLength;
-            // if (card.kind == 'text') {
-            //     maxLength = !isMobileDevice ? 100 : 400;
-            // } else {
-            //     maxLength = !isMobileDevice ? 100 : 70;
-            // }
-
-            // if (card.content) {
-            //     if (card.content.length > maxLength) {
-            //         console.log('maior');
-            //         $(elem).parent().addClass('hide-more');
-            //     } else {
-            //         console.log('menor');
-            //         $(elem).parent().removeClass('hide-more');
-            //     }
-            // }
-
             if (card.kind == 'image') {
                 var ratio = parseFloat(card.image.ratio.replace(',', '.'));
                 if (ratio <= 1) {

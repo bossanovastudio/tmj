@@ -38,6 +38,31 @@
             <p ng-if="card.kind == 'featured'">{{card.content}}</p>
         </div>
     </div>
+    <div resize ng-if="ready && pageName != 'homePage'" class="container cards" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
+        <div ng-repeat="card in cards_recommended track by card.id" ng-click="openCard($event, card.id, card)" organize-cards data-class="" data-id="{{card.id}}">
+            <div ng-if="card.kind!='video'" card-class ng-classes="card" data-original="{{card.image.url}}" class="img">
+                <div ng-if="card.kind == 'initial'">
+                    <p>{{card.content}}</p>
+                    <div>
+                        <img src="{{card.icon.url}}" />
+                        <p>{{card.count}}</p>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="card.kind=='video'" card-class ng-classes="card" data-original="{{card.video.thumbnail}}" class="img">
+                <div class="videoMobile" ng-bind-html="card.source_url | formatVideo | trust"></div>
+            </div>
+            <div ng-if="card.kind != 'featured' && card.kind != 'initial'" class="content">
+                <p class="name">{{card.user.name}}</p>
+                <p class="date">
+                    <a target="_blank" ng-href="{{card.source_url}}"><img class="originalPost" src="/img/{{card.origin}}.svg" /></a> {{card.posted_at | formatDate}}</p>
+                <p class="text">{{card | cropText}}</p>
+                <p class="read-more">Leia mais</p>
+                <div ng-include src="'/pages/share.html'"></div>
+            </div>
+            <p ng-if="card.kind == 'featured'">{{card.content}}</p>
+        </div>
+    </div>
     <img src="/img/seta.png" class="arrowBottom mobile" />
     <div class="card one-five column"></div>
 </div>
