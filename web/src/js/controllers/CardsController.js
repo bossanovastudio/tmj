@@ -49,7 +49,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             .success(function(data) {
                 if (data.cards.length == 0) {
                     $scope.END = true;
-                    $('.cards').removeClass('loading');
+                    if(!isMobileDevice){
+                        $('.cards').removeClass('loading');
+                    }
                 } else {
                     if ($scope.PAGE == 1 && isMobileDevice && $rootScope.pageName != 'homePage') {
                         $scope.initialCard(array, icon, data.total ? data.total : 0);
