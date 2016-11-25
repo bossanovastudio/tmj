@@ -113,6 +113,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     if (desktop) {
         $(".card").not('.animate').each(function(i, e) {
             $(e).addClass('animate');
+            $('.social-editor li').each(function(i){
+                var t = $(this);
+                setTimeout(function(){ t.addClass('animate'); }, (i+1) * 50);
+            });
         });
 
         $("div.img").not('.lazyloaded').each(function(i, e) {
