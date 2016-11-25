@@ -289,7 +289,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             $('body').css({ overflow: "hidden" });
                             $location.path("/detalhe/card/" + $rootScope.card.id, false);
                             var lightbox = angular.element(document.querySelector('.lightbox'));
-                            lightbox.fadeIn();
+                            var lightboxDetail = angular.element(document.querySelector('.lightbox .detail'));
+
+                            // lightbox.fadeIn();
+                            lightbox.addClass('animate');
+                            lightboxDetail.addClass('animate');
                         }
                     }
                 });

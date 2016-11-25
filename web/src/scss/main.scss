@@ -762,7 +762,14 @@ div.card {
         }
     }
 }
-
+@keyframes showLightbox {
+    from { transform: translate(-50%, 400px);}
+    to { transform: translate(-50%, -50%); }
+}
+@keyframes showOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 .lightbox {
     position: fixed;
     right: 0px;
@@ -771,6 +778,10 @@ div.card {
     height: 100%;
     display: none;
     background-color: rgba(74, 74, 74, 0.6);
+    &.animate{
+        display: block;
+        animation: showOverlay .2s linear forwards;
+    }
     .detail {
         background: #ffffff;
         position: absolute;
@@ -779,6 +790,9 @@ div.card {
         transform: translate(-50%, -50%);
         max-width: 440px;
         width: auto;
+        &.animate{
+            animation: showLightbox .3s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+        }
         .preview {
             width: 60%;
             height: 481px;

@@ -87,18 +87,19 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         }
     }
 
-    // $("body").click(function(e) {
-    //     if (e.target.className !== "shareBox" && e.target.className.indexOf('share') === -1 && e.target.className !== "arrow") {
-    //         $(".shareBox").removeClass('show');
-    //         setTimeout(function() {
-    //             $(".shareBox").hide();
-    //         }, 200);
-    //     }
-    // });
+    $("body").click(function(e) {
+        if (e.target.className !== "shareBox" && e.target.className.indexOf('share') === -1 && e.target.className !== "arrow") {
+            $(".shareBox").removeClass('show');
+            setTimeout(function() {
+                $(".shareBox").hide();
+            }, 200);
+        }
+    });
     $scope.closeLightbox = function() {
         $location.path( $rootScope.previousURL, false);
-        $('.lightbox').fadeOut();
-        $('body').css({ overflow: "auto" });
+        $('.lightbox').removeClass("animate");
+        $('.lightbox .detail').removeClass("animate");
+        $('body').css({ overflow: "auto"});
     }
     $scope.closeLightboxClick = function($event) {
         var e = angular.element($event.target);
