@@ -100,6 +100,12 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             }
                             $('.cards').find('.card').addClass('show');
                         }, 1000);
+                        setTimeout(function() {
+                            $('.social-editor li').each(function(i){
+                                var t = $(this);
+                                setTimeout(function(){ t.addClass('animate'); }, (i+1) * 50);
+                            });
+                        }, 1600);
                     } else {
                         setTimeout(function() {
                             $('.cards').removeClass('loading');

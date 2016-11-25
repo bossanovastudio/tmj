@@ -24,6 +24,10 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         sidebar.addClass('open');
         var html = angular.element(document.querySelector('html'));
         html.css({ 'overflow': 'hidden' });
+        $(".sidebar li").each(function(i){
+            var t = $(this);
+            setTimeout(function(){ t.addClass('animate'); }, (i+1) * 50);
+        });
     }
     $scope.closeMenu = function() {
         var overlay = angular.element(document.querySelector('.overlay'));
@@ -36,6 +40,9 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         sidebar.removeClass('open');
         var html = angular.element(document.querySelector('html'));
         html.css({ 'overflow': 'auto' });
+        setTimeout(function(){
+            $(".sidebar li").removeClass("animate")
+        },500);
     }
     $scope.likeCard = function($event, id) {
         var elem = $(angular.element($event.target)).closest('.card');

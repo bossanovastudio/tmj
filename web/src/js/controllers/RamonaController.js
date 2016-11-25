@@ -14,11 +14,4 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
         });
     }
 
-    setTimeout(function() {
-        $('.social-editor li').each(function(i){
-            var t = $(this);
-            setTimeout(function(){ t.addClass('animate'); }, (i+1) * 50);
-        });
-    }, 1000);
-
 });
