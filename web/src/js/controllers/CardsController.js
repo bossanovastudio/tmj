@@ -38,7 +38,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             icon = 'posts';
         }
         if ($scope.PAGE > 1) {
-            $('.cards').eq($scope.PAGE - 1).addClass('loading');
+            if(!isMobileDevice){
+                $('.cards').eq($scope.PAGE - 1).addClass('loading');
+            }
         }
         $http({
                 method: 'get',
