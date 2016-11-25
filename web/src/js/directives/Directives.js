@@ -117,7 +117,7 @@ tmj.directive("cardClass", function() {
             var card = scope.ngClasses;
             var maxLength= 0;
             if (card.kind == 'text') {
-                maxLength = !isMobileDevice ? 100 : 400;
+                maxLength = !isMobileDevice ? 300 : 400;
             } else {
                 maxLength = !isMobileDevice ? 100 : 70;
             }
