@@ -5,6 +5,13 @@ body.ramonaPage {
     }
     .container.ramona {
         height: auto !important;
+        opacity: 0;
+        &.show{
+            transition: opacity 1s ease-in-out;
+            -moz-transition: opacity 1s ease-in-out;
+            -webkit-transition: opacity 1s ease-in-out;
+            opacity: 1;
+        }
     }
     .author {
         margin-bottom: 87px;
@@ -175,9 +182,6 @@ body.ramonaPage {
         }
         .container{
             margin: 0 auto !important;
-        }
-        .card-container{
-            position: relative;
         }
         .author{
             text-align: center;
