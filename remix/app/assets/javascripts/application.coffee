@@ -1,6 +1,12 @@
 #= require 'jquery'
 #= require 'jquery-ujs'
 #= require 'jquery-touchswipe'
+#= require 'jquery-bridget'
+#= require 'get-size'
+#= require 'ev-emitter'
+#= require 'unipointer'
+#= require 'unidragger'
+#= require 'draggabilly'
 
 API_URL = 'http://' + window.location.hostname + ':3000'
 
@@ -73,6 +79,9 @@ $('.remix-container').each ->
         class: 'image'
 
       $composer.find('.artboard .canvas').append $image
+      $image.draggabilly {
+        containment: true
+      }
 
   # gallery swipe
   $landing.find('.gallery').swipe {
