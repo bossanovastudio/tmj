@@ -42,7 +42,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     if ($scope.PAGE == 1 && isMobileDevice) {
                         $scope.initialCard('posts');
                     }
-                    if (data.highlight) {
+                    if (data.highlight && !isMobileDevice) {
                         data.highlight.id = data.highlight.id * 999999;
                         $scope.cards.push(data.highlight);
                     }

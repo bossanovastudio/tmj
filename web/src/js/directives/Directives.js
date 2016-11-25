@@ -115,11 +115,6 @@ tmj.directive("cardClass", function() {
         },
         link: function(scope, elem, attr) {
             var card = scope.ngClasses;
-            if( card.content ) {
-                if (card.content.length > 100 || card.kind !== 'text') {
-                    $(elem).parent().addClass('cursor');
-                }
-            }
 
             var maxLength;
             if (card.kind == 'text') {
@@ -127,13 +122,31 @@ tmj.directive("cardClass", function() {
             } else {
                 maxLength = !isMobileDevice ? 100 : 70;
             }
-            if (card.content) {
-                if (card.content.length > maxLength) {
-                    $(elem).parent().find('.read-more').show();
+
+            if( card.content ) {
+                if (card.content.length > maxLength || card.kind !== 'text') {
+                    $(elem).parent().addClass('cursor');
                 } else {
-                    $(elem).parent().find('.read-more').hide();
+                    $(elem).parent().removeClass('cursor');
                 }
             }
+
+            // var maxLength;
+            // if (card.kind == 'text') {
+            //     maxLength = !isMobileDevice ? 100 : 400;
+            // } else {
+            //     maxLength = !isMobileDevice ? 100 : 70;
+            // }
+
+            // if (card.content) {
+            //     if (card.content.length > maxLength) {
+            //         console.log('maior');
+            //         $(elem).parent().addClass('hide-more');
+            //     } else {
+            //         console.log('menor');
+            //         $(elem).parent().removeClass('hide-more');
+            //     }
+            // }
 
             if (card.kind == 'image') {
                 var ratio = parseFloat(card.image.ratio.replace(',', '.'));

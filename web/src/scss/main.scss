@@ -386,9 +386,7 @@ div.card {
     margin-bottom: 24px;
     margin: 0 1% 20px 1%;
     opacity: 0;
-    &.cursor {
-        cursor: pointer;
-    }
+
     &.show {
         transition: opacity 1s ease-in-out;
         -moz-transition: opacity 1s ease-in-out;
@@ -474,10 +472,18 @@ div.card {
         margin: 5px 0 0 0;
         transition-duration: 0.1s;
         padding: 1px 6px;
+        display: none;
         &:hover {
             color: #fff;
             background: #ff5050;
             transition-duration: 0.1s;
+        }
+    }
+
+    &.cursor {
+        cursor: pointer;
+        p.read-more {
+            display: inline;
         }
     }
     .close {
