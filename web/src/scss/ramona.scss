@@ -1,5 +1,6 @@
 body.ramonaPage {
     background-image: url(/img/ramona_bg.png);
+
     .initial-loading{
         top: 40%;
     }
@@ -420,7 +421,7 @@ body.ramonaPage {
 }
 @media only screen and (max-device-width: 550px) {
     body.ramonaPage{
-        background-image: url(/img/bg_ramona_mobile.png);
+        background-image: url(/img/bg_ramona_mobile_alta.png);
     }
 }
 @keyframes enterRamonaSocial {
