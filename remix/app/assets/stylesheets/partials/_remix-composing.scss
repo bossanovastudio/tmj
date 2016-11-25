@@ -97,6 +97,8 @@
         .popup-holder {
           background-color: #FFF;
           border-radius: $border-radius-small;
+          max-height: 300px;
+          overflow: auto;
           padding: 10px;
         }
       }
@@ -190,6 +192,12 @@
           .popup {
             bottom: 100%;
             top: auto;
+          }
+          .options {
+            @include clearfix;
+            .option-item {
+              float: left;
+            }
           }
         }
       }

@@ -64,6 +64,16 @@ $('.remix-container').each ->
 
       $composer.find('.artboard .empty').hide()
 
+    # sets picture element to the artboard and hides empty message
+    'add-image': (event, src) ->
+      $image = $('<img>')
+      $image.attr
+        src: src
+        alt: ''
+        class: 'image'
+
+      $composer.find('.artboard .canvas').append $image
+
   # gallery swipe
   $landing.find('.gallery').swipe {
     swipeLeft: (event, direction, duration, fingerCount, fingerData, currentDirection) ->
@@ -108,3 +118,6 @@ $('.remix-container').each ->
     if $remix.hasClass('can-compose')
       $(this).closest('.toolbox-item').toggleClass('on').siblings().removeClass('on')
       $remix.removeClass('can-choose-picture')
+
+  $composer.find('.toolbox-item').filter('.ballons, .stickers').find('.option-item').click ->
+    $remix.trigger 'add-image', $(this).data('src')

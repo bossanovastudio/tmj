@@ -51,51 +51,51 @@
                     <%= image_tag "icon-camera", alt: 'Enviar foto' %>
                   </div>
                   <div>
-                    <%= image_tag "remix-category-1" %>
+                    <%= image_tag "fake/category-1" %>
                   </div>
                   <div>
-                    <%= image_tag "remix-category-1" %>
+                    <%= image_tag "fake/category-1" %>
                   </div>
                   <div>
-                    <%= image_tag "remix-category-1" %>
+                    <%= image_tag "fake/category-1" %>
                   </div>
                   <div>
-                    <%= image_tag "remix-category-1" %>
+                    <%= image_tag "fake/category-1" %>
                   </div>
                   <div>
-                    <%= image_tag "remix-category-1" %>
+                    <%= image_tag "fake/category-1" %>
                   </div>
                   <div>
-                    <%= image_tag "remix-category-1" %>
+                    <%= image_tag "fake/category-1" %>
                   </div>
                   <div>
-                    <%= image_tag "remix-category-1" %>
+                    <%= image_tag "fake/category-1" %>
                   </div>
                 </div>
                 <div class="pictures">
                   <div class="go-back">
                     <%= image_tag "icon-arrow-left" %>
                   </div>
-                  <div data-picture-src="<%= image_url "remix-category-1-1" %>">
-                    <%= image_tag "remix-category-1-1" %>
+                  <div data-picture-src="<%= image_url "fake/category-1-1" %>">
+                    <%= image_tag "fake/category-1-1" %>
                   </div>
-                  <div data-picture-src="<%= image_url "remix-category-1-2" %>">
-                    <%= image_tag "remix-category-1-2" %>
+                  <div data-picture-src="<%= image_url "fake/category-1-2" %>">
+                    <%= image_tag "fake/category-1-2" %>
                   </div>
-                  <div data-picture-src="<%= image_url "remix-category-1-3" %>">
-                    <%= image_tag "remix-category-1-3" %>
+                  <div data-picture-src="<%= image_url "fake/category-1-3" %>">
+                    <%= image_tag "fake/category-1-3" %>
                   </div>
-                  <div data-picture-src="<%= image_url "remix-category-1-4" %>">
-                    <%= image_tag "remix-category-1-4" %>
+                  <div data-picture-src="<%= image_url "fake/category-1-4" %>">
+                    <%= image_tag "fake/category-1-4" %>
                   </div>
-                  <div data-picture-src="<%= image_url "remix-category-1-5" %>">
-                    <%= image_tag "remix-category-1-5" %>
+                  <div data-picture-src="<%= image_url "fake/category-1-5" %>">
+                    <%= image_tag "fake/category-1-5" %>
                   </div>
-                  <div data-picture-src="<%= image_url "remix-category-1-6" %>">
-                    <%= image_tag "remix-category-1-6" %>
+                  <div data-picture-src="<%= image_url "fake/category-1-6" %>">
+                    <%= image_tag "fake/category-1-6" %>
                   </div>
-                  <div data-picture-src="<%= image_url "remix-category-1-7" %>">
-                    <%= image_tag "remix-category-1-7" %>
+                  <div data-picture-src="<%= image_url "fake/category-1-7" %>">
+                    <%= image_tag "fake/category-1-7" %>
                   </div>
                 </div>
               </div>
@@ -126,8 +126,12 @@
               <%= image_tag "icon-ballon", alt: 'Balões' %>
             </button>
             <div class="popup">
-              <div class="popup-holder">
-                options
+              <div class="popup-holder options">
+                <% 14.times do |i| %>
+                <div class="option-item" data-src="<%= image_url "fake/balao-" + (i+1).to_s %>">
+                  <%= image_tag "fake/balao-" + (i+1).to_s %>
+                </div>
+                <% end %>
               </div>
             </div>
           </div>
@@ -136,8 +140,12 @@
               <%= image_tag "icon-smile", alt: 'Stickers' %>
             </button>
             <div class="popup">
-              <div class="popup-holder">
-                options
+              <div class="popup-holder options">
+                <% 14.times do |i| %>
+                <div class="option-item" data-src="<%= image_url "fake/sticker-" + (i+1).to_s %>">
+                  <%= image_tag "fake/sticker-" + (i+1).to_s %>
+                </div>
+                <% end %>
               </div>
             </div>
           </div>
