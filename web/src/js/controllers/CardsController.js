@@ -92,6 +92,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         setTimeout(function() {
                             if ($('.initial-loading').is(':visible')) {
                                 $('.initial-loading').hide();
+                                if (isMobileDevice) {
+                                    $('.cards').addClass('show');
+                                }
                             }
                             $('.cards').find('.card').addClass('show');
                         }, 1000);
