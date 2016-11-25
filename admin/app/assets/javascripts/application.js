@@ -83,25 +83,10 @@ $(document).on('turbolinks:load', function() {
     cardsContainer.children('.card.selected').each(function () {
       cardIds.push($(this).attr('data-id'));
     });
-
+    $('.card').css({opacity: 0.3});
     var action = $(this).attr('data-action');
     $('#new_card').attr('action', '/cards/' + action);
     $('#new_card')[0].submit();
-
-    // $.ajax({
-    //   url: '/cards/' + action,
-    //   method: 'POST',
-    //   data: {
-    //     card: {id: cardIds}
-    //   },
-    //   success: function(data) {
-    //     console.log(data);
-    //     location.reload();
-    //   },
-    //   error: function(data) {
-    //     console.log(data);
-    //   }
-    // })
   });
 
   $('input.search').on('keyup', function(){
