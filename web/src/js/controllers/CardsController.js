@@ -126,7 +126,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 $(e).addClass('animate animated');
                 setTimeout(function() {
                     $(e).removeClass('animate');
-                }, 500)
+                }, 700)
             });
 
             $("div.img").not('.lazyloaded').each(function(i, e) {
