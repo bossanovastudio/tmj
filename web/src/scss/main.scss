@@ -246,7 +246,7 @@ header {
                 background-size: 100%;
             }
             &.purple {
-                background: url(/img/ramona.png) center center no-repeat;
+                background: url(/img/ramona_desktop.png) center center no-repeat;
                 background-size: 100%;
             }
             &.pink {
@@ -1218,6 +1218,10 @@ footer {
                     letter-spacing: 0.6px;
                     text-align: center;
                     padding: 17px 0px;
+                }
+                &.purple {
+                    background: url(/img/ramona_desktop.png) center center no-repeat;
+                    background-size: 100%;
                 }
             }
         }
