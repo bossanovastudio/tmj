@@ -186,7 +186,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
     var distanceTop = 0;
     var cardPage = 1;
+    var lineCount = 0;
     $scope.swipeUp = function() {
+        lineCount++;
         if (distanceTop == 0) {
             cardPage++;
         }
