@@ -64,34 +64,54 @@ body.ramonaPage {
                 color: #000000;
             }
             .follow {
-                display: block;
-                width: auto;
-                height: auto;
-                text-decoration: none;
-                background: #ffffff;
-                border: 1px solid #000000;
                 font-family: KomikaTitle;
                 font-size: 19px;
                 font-weight: normal;
                 font-style: normal;
                 font-stretch: normal;
                 letter-spacing: 0.6px;
-                text-align: center;
-                color: #000000;
-                width: 127px;
-                -webkit-box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
-                -moz-box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
-                box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
+                text-decoration: none;
+                border: 2px solid #000;
+                width: auto;
+                height: auto;
                 overflow: hidden;
+                -webkit-box-shadow: 5px 5px 0px 0px rgba(0,0,0,1);
+                -moz-box-shadow:  5px 5px 0px 0px rgba(0,0,0,1);
+                box-shadow:  5px 5px 5x 0px rgba(0,0,0,1);
                 transition-duration: 0.2s;
+                position: relative;
+                display: inline-block;
+                color: #000;
+                text-align: center;
                 margin: 0px;
                 padding: 9px 20px;
+                background-color: #fff;
                 &:hover{
                     -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
                     -moz-box-shadow:  0px 0px 0px 0px rgba(0,0,0,1);
                     box-shadow:  0px 0px 0x 0px rgba(0,0,0,1);
                     transition-duration: 0.2s;
                     transform: translate(3px, 4px)
+                }
+                &:before {
+                    content: "";
+                    position: absolute;
+                    border-radius: 100%;
+                    -moz-border-radius: 33px 33px 0 0;
+                    overflow: hidden;
+                    width: 200%;
+                    height: 200%;
+                    background: #f1f1f1;
+                    bottom: 0;
+                    left: -200%;
+                    right: 0;
+                    top: -200%;
+                    z-index: -1;
+                    -webkit-transition: all 0.2s ease-in;
+                }
+                &:hover:before {
+                    left: -50%;
+                    top: -50%;
                 }
             }
         }
