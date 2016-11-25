@@ -1,5 +1,5 @@
 <div ng-controller="CardsController">
-    <div resize ng-if="ready && pageName == 'homePage'" class="container cards mobile" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
+    <div resize ng-if="ready && pageName == 'homePage'" class="container cards mobile" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()" data-page="1" data-slug="all">
         <div ng-repeat="card in cardsFeatured track by card.id" ng-click="openCard($event, card.id, card)" organize-cards data-class="" data-id="{{card.id}}">
             <div card-class ng-classes="card" data-original="{{card.image.url}}" class="img"></div>
             <div ng-if="card.kind != 'featured'" class="content">
@@ -13,7 +13,7 @@
             <p ng-if="card.kind == 'featured'">{{card.content}}</p>
         </div>
     </div>
-    <div resize ng-if="ready" class="container cards" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
+    <div resize ng-if="ready" class="container cards" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()" data-page="1" data-slug="posts">
         <div ng-repeat="card in cards track by card.id" ng-click="openCard($event, card.id, card)" organize-cards data-class="" data-id="{{card.id}}">
             <div ng-if="card.kind!='video'" card-class ng-classes="card" data-original="{{card.image.url}}" class="img">
                 <div ng-if="card.kind == 'initial'">
@@ -38,7 +38,7 @@
             <p ng-if="card.kind == 'featured'">{{card.content}}</p>
         </div>
     </div>
-    <div resize ng-if="ready && pageName != 'homePage'" class="container cards" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
+    <div resize ng-if="ready && pageName != 'homePage'" class="container cards" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()" data-page="1" data-slug="recommendation">
         <div ng-repeat="card in cards_recommended track by card.id" ng-click="openCard($event, card.id, card)" organize-cards data-class="" data-id="{{card.id}}">
             <div ng-if="card.kind!='video'" card-class ng-classes="card" data-original="{{card.image.url}}" class="img">
                 <div ng-if="card.kind == 'initial'">

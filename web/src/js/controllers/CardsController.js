@@ -130,6 +130,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         if (!e.hasClass('container')) {
             e = $(e).closest('.container');
         }
+        var page = $(e).data('page');
+        var slug = $(e).data('slug');
         var walk = parseInt(e.css('left').replace('px')) - ($('.card').width() + 20);
         var size = e.find('.card').length;
         if (!e.hasClass('mobile')) {
@@ -141,8 +143,17 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             }, 250, 'easeOutQuint');
         } else {
             if (!e.hasClass('mobile')) {
+                page++;
                 $scope.PAGE++;
-                $scope.loadCards($scope.PAGE);
+                // temporary
+                slug = 'all';
+                if ($(e).data('slug') == 'posts') {
+                    $scope.loadCards(page, slug, $scope.cards);
+                } else {
+                    $scope.loadCards(page, slug, $scope.cards_recommended);
+                }
+
+                $(e).data('page', page);
             }
             if (walk != -((size + 1) * ($('.card').width() + 20))) {
                 $(e).animate({
