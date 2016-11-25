@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Admin TMJ</title>
+  <title>Administrador TMJ</title>
   <%= stylesheet_link_tag "application"%>
   <%= javascript_include_tag "application", 'data-turbolinks-track': 'reload' %>
   <%= csrf_meta_tags %>
@@ -20,12 +20,6 @@
 
   <div class="sidebar">
     <ul class="item-list">
-      <li>
-        <%= link_to root_path do %>
-        <%= image_tag "dashboard.svg" %>
-        <p>Dashboard</p>
-        <% end %>
-      </li>
       <li class="active">
         <%= link_to root_path do %>
         <%= image_tag "cards.svg" %>
@@ -35,25 +29,7 @@
           <li class="active">
             <%= link_to "Moderar cards", "/cards" %>
           </li>
-          <li>
-            <%= link_to "Destaques", root_path %>
-          </li>
-          <li>
-            <%= link_to "Upload card", root_path%>
-          </li>
         </ul>
-      </li>
-      <li>
-        <%= link_to root_path do %>
-        <%= image_tag "usuarios.svg" %>
-        <p>Usuários</p>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to root_path do %>
-        <%= image_tag "pontuacao.svg" %>
-        <p>Pontuação</p>
-        <% end %>
       </li>
     </ul>
   </div>

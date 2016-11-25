@@ -77,7 +77,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                 $('.card').css({ "z-index": 0 });
                 if (card.length > 0) {
                     card.find('.shareBox').show();
-                    card.css({ "z-index": 999 });
+                    card.css({ "z-index": 9 });
                     card.find('.shareBox').addClass('show');
                 } else {
                     $('.lightbox .shareBox').show();
@@ -92,7 +92,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
             $(".shareBox").removeClass('show');
             setTimeout(function() {
                 $(".shareBox").hide();
-            }, 300);
+            }, 200);
         }
     });
     $scope.closeLightbox = function() {
