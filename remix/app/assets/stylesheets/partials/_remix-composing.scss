@@ -129,6 +129,14 @@
           }
         }
       }
+      &.ballons, &.stickers {
+        .options {
+          @include clearfix;
+          .option-item {
+            float: left;
+          }
+        }
+      }
       &.on {
         .toggler:after {
           display: block;
@@ -192,12 +200,6 @@
           .popup {
             bottom: 100%;
             top: auto;
-          }
-          .options {
-            @include clearfix;
-            .option-item {
-              float: left;
-            }
           }
         }
       }
