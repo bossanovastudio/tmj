@@ -6,7 +6,7 @@ var organizeCards = function(newValue, oldValue) {
             "margin": "0 auto 50px auto",
             "padding": 0
         });
-        $('html, body, section').css({overflow: 'auto'});
+        $('html').css({overflow: 'auto'});
         if (newValue.w < 550) {
             $('.cards').find('.card').each(function() {
                 $(this).attr('style', '');
