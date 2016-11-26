@@ -81,17 +81,25 @@ $(document).on('turbolinks:load', function() {
     $('.btn-status a').click(function() {
         if ($(this).hasClass('select-all')) {
             if (selected) {
-              $('.card').removeClass('selected').find('input').prop('checked', false);
-              selected = false;
+                $('.card').removeClass('selected').find('input').prop('checked', false);
+                selected = false;
             } else {
-              $('.card').addClass('selected').find('input').prop('checked', true);
-              selected = true;
+                $('.card').addClass('selected').find('input').prop('checked', true);
+                selected = true;
             }
         } else {
-            $('.card').css({ opacity: 0.3 });
-            var action = $(this).attr('data-action');
-            $('#new_card').attr('action', '/cards/' + action);
-            $('#new_card')[0].submit();
+            var valid = false;
+            $('.card').each(function(i, c) {
+                if ($(this).find('input').prop('checked')) {
+                    valid = true;
+                }
+            });
+            if (valid) {
+                $('.card').css({ opacity: 0.3 });
+                var action = $(this).attr('data-action');
+                $('#new_card').attr('action', '/cards/' + action);
+                $('#new_card')[0].submit();
+            }
         }
     });
 
