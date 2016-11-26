@@ -77,10 +77,16 @@ $(document).on('turbolinks:load', function() {
     });
 
 
-
+    var selected = false;
     $('.btn-status a').click(function() {
         if ($(this).hasClass('select-all')) {
-            $('.card').addClass('selected').find('input').prop('checked', true);
+            if (selected) {
+              $('.card').removeClass('selected').find('input').prop('checked', false);
+              selected = false;
+            } else {
+              $('.card').addClass('selected').find('input').prop('checked', true);
+              selected = true;
+            }
         } else {
             $('.card').css({ opacity: 0.3 });
             var action = $(this).attr('data-action');
