@@ -18,117 +18,117 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
-  resizeAdminBottomContent();
+    resizeAdminBottomContent();
 
-  var overlay = $('#overlay'),
-      filterList = $('.btn-filter .item ul'),
-      filterItem = $('.btn-filter .item'),
-      filterSelectAllCards = $('.filter-bar a.select-all'),
-      cardsContainer = $('#cards-container'),
-      filterOptions = $('ul.filter-options');
+    var overlay = $('#overlay'),
+        filterList = $('.btn-filter .item ul'),
+        filterItem = $('.btn-filter .item'),
+        filterSelectAllCards = $('.filter-bar a.select-all'),
+        cardsContainer = $('#cards-container'),
+        filterOptions = $('ul.filter-options');
 
-  filterItem.click(function(e){
-    if ($(e.target).is('li')) {
-      overlay.hide();
-      $(this).find('ul').hide();
-    } else {
-      $(this).find('ul').show();
-      overlay.show();
-    }
-  });
-
-  overlay.click(function(){
-    $(this).hide();
-    filterList.hide();
-  });
-
-  filterOptions.click(function(e) {
-    var optionFilter = $(e.target).text();
-    $(this).children('li').removeClass('active');
-    $(e.target).addClass('active');
-    $(this).siblings('.main-select').text(optionFilter);
-  });
-
-  filterOptions.each(function(){
-    var optionFilter = $(this).find('li.active').text();
-    if (optionFilter == "")
-      optionFilter = "Todos";
-    $(this).siblings('.main-select').text(optionFilter);
-  });
-
-  filterSelectAllCards.click(function() {
-    $(this).toggleClass('active');
-    if ($(this).hasClass('active'))
-      cardsContainer.children('.card').addClass('selected');
-    else
-      cardsContainer.children('.card').removeClass('selected');
-  });
-
-
-
-  $('.card').click(function() {
-    $(this).toggleClass('selected');
-    $(this).find('input').prop("checked", !$(this).find('input').prop("checked"));
-    if (filterSelectAllCards.hasClass('active')){
-      filterSelectAllCards.removeClass('active');
-    } else if ($("#cards-container .card.selected").length == $("#cards-container .card").length) {
-      filterSelectAllCards.addClass('active');
-    }
-  });
-
-
-
-  $('.btn-status a').click(function() {
-    var cardIds = [];
-    cardsContainer.children('.card.selected').each(function () {
-      cardIds.push($(this).attr('data-id'));
+    filterItem.click(function(e) {
+        if ($(e.target).is('li')) {
+            overlay.hide();
+            $(this).find('ul').hide();
+        } else {
+            $(this).find('ul').show();
+            overlay.show();
+        }
     });
-    $('.card').css({opacity: 0.3});
-    var action = $(this).attr('data-action');
-    $('#new_card').attr('action', '/cards/' + action);
-    $('#new_card')[0].submit();
-  });
 
-  $('input.search').on('keyup', function(){
-    var context = $(this).val().toLowerCase();
-    cardsContainer.children('.card').each(function(){
-      var contentText = $(this).find('.content p.text').text().toLowerCase();
-      if (contentText.indexOf(context) != -1)
-        $(this).show();
-      else
+    overlay.click(function() {
         $(this).hide();
-    })
-    $('.cards').masonry('reloadItems');
-    $('.cards').masonry();
-  });
+        filterList.hide();
+    });
+
+    filterOptions.click(function(e) {
+        var optionFilter = $(e.target).text();
+        $(this).children('li').removeClass('active');
+        $(e.target).addClass('active');
+        $(this).siblings('.main-select').text(optionFilter);
+    });
+
+    filterOptions.each(function() {
+        var optionFilter = $(this).find('li.active').text();
+        if (optionFilter == "")
+            optionFilter = "Todos";
+        $(this).siblings('.main-select').text(optionFilter);
+    });
+
+    filterSelectAllCards.click(function() {
+        $(this).toggleClass('active');
+        if ($(this).hasClass('active'))
+            cardsContainer.children('.card').addClass('selected');
+        else
+            cardsContainer.children('.card').removeClass('selected');
+    });
 
 
-  $('.cards').find('.card').each(function() {
-    $(this).attr('style', '');
-    $(this).css('opacity', 1);
-    $(this).attr('class', $(this).attr('data-class'));
-    $(this).find('.img').css('height', 'auto');
-  });
 
-  setTimeout(function(){
-    if (!$('.cards').data('masonry')) {
-      $('.cards').masonry({
-        itemSelector: '.card',
-        columnWidth: '.one-five',
-        percentPosition: false,
-        gutter: 20,
-        transitionDuration: 0
-      });
-    } else {
-      $('.cards').masonry('reloadItems');
-      $('.cards').masonry();
-    }
-  }, 200)
+    $('.card').click(function() {
+        $(this).toggleClass('selected');
+        $(this).find('input').prop("checked", !$(this).find('input').prop("checked"));
+        if (filterSelectAllCards.hasClass('active')) {
+            filterSelectAllCards.removeClass('active');
+        } else if ($("#cards-container .card.selected").length == $("#cards-container .card").length) {
+            filterSelectAllCards.addClass('active');
+        }
+    });
+
+
+
+    $('.btn-status a').click(function() {
+        if ($(this).hasClass('select-all')) {
+            $('.card').addClass('selected').find('input').prop('checked', true);
+        } else {
+            $('.card').css({ opacity: 0.3 });
+            var action = $(this).attr('data-action');
+            $('#new_card').attr('action', '/cards/' + action);
+            $('#new_card')[0].submit();
+        }
+    });
+
+    $('input.search').on('keyup', function() {
+        var context = $(this).val().toLowerCase();
+        cardsContainer.children('.card').each(function() {
+            var contentText = $(this).find('.content p.text').text().toLowerCase();
+            if (contentText.indexOf(context) != -1)
+                $(this).show();
+            else
+                $(this).hide();
+        })
+        $('.cards').masonry('reloadItems');
+        $('.cards').masonry();
+    });
+
+
+    $('.cards').find('.card').each(function() {
+        $(this).attr('style', '');
+        $(this).css('opacity', 1);
+        $(this).attr('class', $(this).attr('data-class'));
+        $(this).find('.img').css('height', 'auto');
+    });
+
+    setTimeout(function() {
+        if (!$('.cards').data('masonry')) {
+            $('.cards').masonry({
+                itemSelector: '.card',
+                columnWidth: '.one-five',
+                percentPosition: false,
+                gutter: 20,
+                transitionDuration: 0
+            });
+        } else {
+            $('.cards').masonry('reloadItems');
+            $('.cards').masonry();
+        }
+    }, 200)
 
 });
 
 function resizeAdminBottomContent() {
-  $('.admin-content .bottom-content').css('height', $('.admin-content').height() - 200);
+    $('.admin-content .bottom-content').css('height', $('.admin-content').height() - 200);
 };
 
 // On window resize
