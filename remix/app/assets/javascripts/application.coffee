@@ -49,7 +49,23 @@ $('.remix-container').each ->
     # share state: can share the generated image to networks
     'share': ->
       $(this).removeClass('can-compose can-publish').addClass('can-share')
+
       # todo: save image
+      output = {
+        elements: []
+      }
+
+      $composer.find('.artboard .canvas > *').each ->
+        output.elements.push {
+          type: $(this).attr('class')
+          x: $(this).position().left
+          y: $(this).position().top
+          z: $(this).index()
+          w: $(this).width()
+          h: $(this).height()
+        }
+
+      console.log 'output json', output
 
     # finish state
     'finish': ->
