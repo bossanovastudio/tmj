@@ -61,6 +61,7 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
 
     $scope.advanceForm = function() {
         if ($scope.validForm()) {
+            $('.overlay').fadeOut();
             var currentForm = $('.form.active');
             currentForm.animate({
                 left: "-150%"
