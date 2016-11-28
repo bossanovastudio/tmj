@@ -33,3 +33,8 @@ tmj.config(function($routeProvider, $locationProvider, $httpProvider) {
             }, 1);
         })
     });
+
+function overlay() {
+	el = document.querySelector(".overlay");
+	el.classList.add('hidden');
+}
