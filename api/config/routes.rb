@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     get '/all/(:page)/(:quantity)', to: 'general#all', defaults: { page: 1, quantity: 10 }
     get '/highlights', to: 'general#highlights'
     
+    post '/register', to: 'castings#create'
+    
     resources :cards do
       member do
         get 'like'

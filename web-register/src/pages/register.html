@@ -1,3 +1,14 @@
+<div class="twelve columns overlay">
+    <div class="container">
+        <div class="twelve columns logo">
+            <img src="/img/logo.svg" />
+        </div>
+        <p class="intro">Quer fazer parte da Turma mais famosa do Brasil? Inscreva-se para a seleção!</p>
+        <div class="videowrapper">
+          <iframe src="https://www.youtube.com/embed/mvbMv-8lo5A" frameborder="0" allowfullscreen></iframe>
+        </div>        
+    </div>
+</div>
 <div class="six columns left">
     <div class="container">
         <div class="twelve columns logo">
@@ -27,13 +38,6 @@
     <div class="twelve columns forms">
         <div class="container holder">
             <div class="form active">
-                <div class="intro">
-                    <div class="twelve columns logo">
-                        <img src="/img/logo.svg" />
-                    </div>
-                    <p class="intro">Quer fazer parte da Turma mais famosa do Brasil? Inscreva-se para a seleção!</p>
-                    <iframe src="https://www.youtube.com/embed/mvbMv-8lo5A" frameborder="0" allowfullscreen></iframe>
-                </div>
                 <p class="title">SOBRE O CANDIDATO</p>
                 <div class="field simple twelve columns">
                     <label class="placeholder" for="name">Nome Completo</label>
@@ -78,19 +82,19 @@
                     <label for="video" class="placeholder files">FOTOS</label>
                     <p>Mande-nos uma foto de rosto, uma de corpo inteiro e uma da cintura para cima</p>
                     <div class="file twelve columns">
-                        <input type="file" id="face" file-on-change="changedFile">
+                        <input type="file" id="photo_face" file-on-change="changedFile" accept="image/*">
                         <label class="eight columns">ROSTO</label>
                         <button ng-click="selectFile($event)" type="text" class="four columns">ESCOLHER ARQUIVO</button>
                     </div>
                     <div class="clear"></div>
                     <div class="file twelve columns">
-                        <input type="file" id="body" file-on-change="changedFile">
+                        <input type="file" id="photo_body" file-on-change="changedFile" accept="image/*">
                         <label class="eight columns">CORPO</label>
                         <button ng-click="selectFile($event)" type="text" class="four columns">ESCOLHER ARQUIVO</button>
                     </div>
                     <div class="clear"></div>
                     <div class="file twelve columns">
-                        <input type="file" id="upperbody" file-on-change="changedFile">
+                        <input type="file" id="photo_upperbody" file-on-change="changedFile" accept="image/*">
                         <label class="eight columns">CINTURA</label>
                         <button ng-click="selectFile($event)" type="text" class="four columns">ESCOLHER ARQUIVO</button>
                     </div>

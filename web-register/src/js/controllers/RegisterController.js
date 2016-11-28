@@ -4,9 +4,10 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
 
     //temporary
     // $('.form.active').removeClass('active');
-    // $('.form').eq(3).addClass('active');
+    // $('.form').eq(1).addClass('active');
     //temporary
 
+    $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
     $('.form.active').css({ left: 0 });
 
     $scope.validForm = function() {
@@ -60,10 +61,11 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
 
     $scope.advanceForm = function() {
         if ($scope.validForm()) {
+            $('.overlay').fadeOut();
             var currentForm = $('.form.active');
             currentForm.animate({
                 left: "-150%"
-            }, 1000, function() {
+            }, 500, function() {
                 var index = $('.form.active').index();
                 if (index < 3) {
                     var newForm = $('.form').eq(index + 1);
@@ -71,25 +73,33 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
                     newForm.addClass('active');
                     newForm.animate({
                         left: 0
-                    });
+                    }, 500);
                     $('.step').removeClass('active');
                     $('.step').eq(newForm.index()).addClass('active');
+                    $('.forms').animate({scrollTop:0});
                 }
             });
         }
     }
 
     $scope.sendForm = function() {
-        // (send this to the moon).then => {
-        $scope.advanceForm();
-        //}
+        $http({
+                method: 'POST',
+                data: $.param($scope.form),
+                url: API_URL + '/api/register.json',
+            })
+            .then(function(data) {
+                $scope.advanceForm();
+            }, function(data) {
+                console.log(data);
+            });
     }
 
     $scope.returnForm = function() {
         var currentForm = $('.form.active');
         currentForm.animate({
             left: "150%"
-        }, 1000, function() {
+        }, 500, function() {
             var index = $('.form.active').index();
             if (index > 0) {
                 var newForm = $('.form').eq(index - 1);
@@ -97,7 +107,7 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
                 newForm.addClass('active');
                 newForm.animate({
                     left: 0
-                });
+                }, 500);
                 $('.step').removeClass('active');
                 $('.step').eq(newForm.index()).addClass('active');
             }
@@ -111,11 +121,22 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
     }
 
     $scope.changedFile = function(event) {
-        var files = event.target.files;
-        var e = angular.element(event.target);
-        var h = $(e).closest('.file');
-        h.find('label').text(files[0].name).css({ color: "#ffffff" });
-        console.log(files);
+        var field = event.target;
+        var file = field.files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function() {
+            var base64 = reader.result;
+            if ($(field).attr('id') == 'photo_face') {
+                $scope.form.photo_face = base64;
+            } else if ($(field).attr('id') == 'photo_body') {
+                $scope.form.photo_body = base64;
+            } else if ($(field).attr('id') == 'photo_upperbody') {
+                $scope.form.photo_upperbody = base64;
+            }
+        };
+        var h = $(field).closest('.file');
+        h.find('label').text(file.name).css({ color: "#ffffff" });
     };
 
     $scope.checkField = function(event) {
@@ -123,10 +144,12 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
         var choice = $(e).closest('.boolean');
         var input = $(e).find('input');
         $(input).prop('checked', true);
-        if (input.attr('value') == "1") {
+        if ($(input).attr('value') == "1") {
             $(choice).addClass('active');
+            $scope.form[$(input).attr('name')] = true;
         } else {
             $(choice).removeClass('active');
+            $scope.form[$(input).attr('name')] = false;
         }
         $(choice).find('.option').removeClass('active');
         $(e).addClass('active');

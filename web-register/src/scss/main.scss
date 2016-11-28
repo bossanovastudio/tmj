@@ -44,7 +44,12 @@ section {
     height: 100%;
 }
 
-.left {
+.overlay {
+  display: none;
+  text-align: center;
+}
+
+.left, .overlay {
     background: #d9d9db url(/img/bg1.png) no-repeat center top fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -68,6 +73,24 @@ section {
         width: 100%;
         height: 280px;
         margin: 0 0 10%;
+    }
+    button.shadow {
+        display: block;
+        text-decoration: none;
+        background: #ffffff;
+        border: 1px solid #000000;
+        font-family: KomikaTitle;
+        font-size: 19px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        letter-spacing: 0.6px;
+        text-align: center;
+        color: #000000;
+        padding: 5px 0px;
+        -webkit-box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
+        -moz-box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
+        box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
     }
 }
 
@@ -277,6 +300,11 @@ section {
                             text-align: center;
                             color: #000000;
                             cursor: pointer;
+                            -webkit-transition: all 0.2s ease-in;
+                            &:hover {
+                                background: #f1f1f1;
+                                -webkit-transition: all 0.2s ease-in;
+                              }
                         }
                         input {
                             display: none;
@@ -299,11 +327,43 @@ section {
                         font-stretch: normal;
                         letter-spacing: 0.6px;
                         text-align: center;
+                        cursor: pointer;
                         color: #000000;
                         padding: 5px 0px;
                         -webkit-box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
                         -moz-box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
                         box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
+                        overflow: hidden;
+                        position: relative;
+                        -webkit-transition: all 0.2s ease-in;
+                        &:hover{
+                            -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+                            -moz-box-shadow:  0px 0px 0px 0px rgba(0,0,0,1);
+                            box-shadow:  0px 0px 0x 0px rgba(0,0,0,1);
+                            transition-duration: 0.2s;
+                            transform: translate(3px, 4px);
+                            // background: transparent;
+                          }
+                          &:before {
+                            content: "";
+                            position: absolute;
+                            border-radius: 100%;
+                            -moz-border-radius: 33px 33px 0 0;
+                            overflow: hidden;
+                            width: 200%;
+                            height: 200%;
+                            background: #f1f1f1;
+                            bottom: 0;
+                            left: -200%;
+                            right: 0;
+                            top: -200%;
+                            z-index: -1;
+                            -webkit-transition: all 0.2s ease-in;
+                          }
+                          &:hover:before {
+                            left: -50%;
+                            top: -50%;
+                          }
                     }
                     &.boolean {
                         .option {
@@ -323,6 +383,11 @@ section {
                             -moz-transition: border 1s ease-out;
                             -o-transition: border 1s ease-out;
                             transition: border 1s ease-out;
+                            -webkit-transition: all 0.2s ease-in;
+                            &:hover {
+                                background: rgba(255,255,255,0.3);
+                                -webkit-transition: all 0.2s ease-in;
+                            }
                             &.error {
                                 border: solid 1px #da001b;
                             }
@@ -416,6 +481,39 @@ section {
 @media (max-width: 1050px) {
     .left {
         display: none;
+    }
+    .overlay.hidden {
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s 5s, opacity 0.3s linear;
+      display:none;
+    }
+    .overlay {
+      visibility: visible;
+      height: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+      position: inherit;
+      top: 0;
+      z-index: 99999;
+      display: block;
+      p.intro {
+        font-size: 20px;
+        letter-spacing: 0.7px;
+      }
+      .videowrapper {
+        position: relative;
+      	padding-bottom: 56.25%; /* 16:9 */
+      	padding-top: 25px;
+      	height: 0;
+        iframe {
+          position: absolute;
+        	top: 0;
+        	left: 0;
+        	width: 100%;
+        	height: 100%;
+        }
+      }
     }
     .right {
         .intro {
