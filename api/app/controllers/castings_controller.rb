@@ -5,6 +5,8 @@ class CastingsController < ApplicationController
     @casting = Casting.new(casting_params)
 
     if @casting.save
+      CastingMailer.register_successful(@casting).deliver_later
+      
       render :show, status: :created
     else
       render json: @casting.errors, status: :unprocessable_entity
