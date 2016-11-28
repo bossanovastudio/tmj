@@ -98,6 +98,10 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
         }
     }
 
+    setTimeout(function() {
+        $('#newsletter').prop('checked', true);
+    }, 1000);
+
     $scope.returnForm = function() {
         var currentForm = $('.form.active');
         currentForm.animate({
