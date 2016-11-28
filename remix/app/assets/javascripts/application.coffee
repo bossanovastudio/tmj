@@ -94,7 +94,7 @@ $('.remix-container').each ->
       $(this).animate({ scrollLeft: ('-=' + width) }, 200)
   }
 
-  $landing.find('.new').click ->
+  $remix.find('.create-new').click ->
     $remix.trigger 'init'
 
   $composer.find('.cancel').click ->

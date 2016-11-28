@@ -160,9 +160,10 @@
     p {
       font-family: 'KomikaTitle';
       font-size: 15px;
-      margin: 20px auto;
       text-align: center;
-      width: 60%;
+      &.call {
+        margin: 20px 0;
+      }
     }
     .networks {
       font-size: 0;
@@ -172,6 +173,15 @@
       a {
         display: inline-block;
         margin: 0 5px;
+      }
+    }
+    .start-over {
+      display: none;
+      p {
+        margin-top: 40px;
+      }
+      .create-new {
+        margin-top: 40px;
       }
     }
   }
@@ -224,6 +234,12 @@
     }
     .share {
       @include make-sm-column(6);
+      p {
+        font-size: 21px;
+      }
+      .start-over {
+        display: block;
+      }
     }
   }
 }

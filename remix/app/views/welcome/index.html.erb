@@ -6,7 +6,7 @@
         <p class="intro">Aqui você pode criar suas artes a partir de imagens da turma! Divirta-se!</p>
       </section>
       <section class="remix-landing">
-        <button type="button" class="btn btn-default new">Criar um novo</button>
+        <button type="button" class="btn btn-default create-new">Criar um novo</button>
         <div class="gallery">
           <div class="gallery-holder">
             <% 10.times do %>
@@ -162,7 +162,10 @@
           <button class="btn btn-default publish">Publicar</button>
         </div>
         <div class="share">
-          <p>Escolha uma rede social para compartilhar sua arte!</p>
+          <p class="call">
+            Sua arte foi postada!<br>
+            Escolha uma rede social para compartilhar!
+          </p>
           <div class="networks">
             <%= link_to '#' do %>
               <%= image_tag "icon-facebook", alt: 'Facebook' %>
@@ -176,6 +179,12 @@
             <%= link_to '#' do %>
               <%= image_tag "icon-tumblr", alt: 'Tumblr' %>
             <% end %>
+          </div>
+          <div class="start-over">
+            <p>
+              ou<br>
+              <button type="button" class="btn btn-default create-new">Criar um novo</button>
+            </p>
           </div>
         </div>
       </section>
