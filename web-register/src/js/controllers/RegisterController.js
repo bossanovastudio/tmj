@@ -1,10 +1,11 @@
 tmj.controller('RegisterController', function($rootScope, $location, $scope, $http, $sce, $compile, $routeParams) {
     $scope.form = {};
+    $scope.form.newsletter = '1';
 
 
     //temporary
-    // $('.form.active').removeClass('active');
-    // $('.form').eq(1).addClass('active');
+    $('.form.active').removeClass('active');
+    $('.form').eq(2).addClass('active');
     //temporary
 
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
@@ -46,7 +47,7 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
                         $(f).find('.contentField').removeClass('error');
                     }
                 }
-            } else if ($(f).hasClass('terms')) {
+            } else if ($(f).hasClass('termsValidate')) {
                 var value = $(f).find('input:checked').val();
                 if (!value) {
                     $(f).find('.placeholder').addClass('error');
@@ -76,24 +77,30 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
                     }, 500);
                     $('.step').removeClass('active');
                     $('.step').eq(newForm.index()).addClass('active');
-                    $('.forms').animate({scrollTop:0});
+                    $('.forms').animate({ scrollTop: 0 });
                 }
             });
         }
     }
 
     $scope.sendForm = function() {
-        $http({
-                method: 'POST',
-                data: $.param($scope.form),
-                url: API_URL + '/api/register.json',
-            })
-            .then(function(data) {
-                $scope.advanceForm();
-            }, function(data) {
-                console.log(data);
-            });
+        if ($scope.validForm()) {
+            $http({
+                    method: 'POST',
+                    data: $.param($scope.form),
+                    url: API_URL + '/api/register.json',
+                })
+                .then(function(data) {
+                    $scope.advanceForm();
+                }, function(data) {
+                    console.log(data);
+                });
+        }
     }
+
+    setTimeout(function() {
+        $('#newsletter').prop('checked', true);
+    }, 1000);
 
     $scope.returnForm = function() {
         var currentForm = $('.form.active');
