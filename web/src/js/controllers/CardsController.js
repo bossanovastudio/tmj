@@ -49,7 +49,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             .success(function(data) {
                 if (data.cards.length == 0) {
                     $scope.END = true;
-                    if(!isMobileDevice){
+                    if (!isMobileDevice) {
                         $('.cards').removeClass('loading');
                     }
                 } else {
@@ -101,9 +101,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             $('.cards').find('.card').addClass('show');
                         }, 1000);
                         setTimeout(function() {
-                            $('.social-editor li').each(function(i){
+                            $('.social-editor li').each(function(i) {
                                 var t = $(this);
-                                setTimeout(function(){ t.addClass('animate'); }, (i+1) * 50);
+                                setTimeout(function() { t.addClass('animate'); }, (i + 1) * 50);
                             });
                         }, 1600);
                     } else {
@@ -114,6 +114,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     }
                 }
             });
+        $rootScope.track('load', 'cards', 'content');
     }
     $scope.loadCards($scope.PAGE, 'all', $scope.cards, 'posts');
     if (isMobileDevice) {
@@ -189,6 +190,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             }
             $scope.lazyLoad(false);
         }
+        $rootScope.track('swipe', 'cards', 'left');
     }
     $scope.swipeRight = function($event) {
         var e = angular.element($event.target);
@@ -203,6 +205,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         $(e).animate({
             left: walk
         }, 250, 'easeOutBack');
+        $rootScope.track('swipe', 'cards', 'right');
     }
     var distanceTop = 0;
     var cardPage = 1;
@@ -222,6 +225,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             $(this).animate({ top: top + distanceTop });
         });
         $scope.lazyLoad(false);
+        $rootScope.track('swipe', 'cards', 'up');
     }
     $scope.swipeDown = function() {
         distanceTop = $(window).height();
@@ -233,11 +237,13 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             }
             $(this).animate({ top: top + distanceTop });
         });
+        $rootScope.track('swipe', 'cards', 'down');
     }
     $scope.openCard = function($event, id, content) {
         var elem = angular.element($event.target);
         if (content.kind == "featured") {
             $location.path(content.source_url);
+            $rootScope.track('click', 'featured', 'open');
         } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('originalPost') && !elem.hasClass('shareButton')) {
             $http({
                     method: 'get',
@@ -245,6 +251,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 })
                 .success(function(data) {
                     $rootScope.card = data;
+                    $rootScope.track('click', 'cards', 'open');
 
                     if (isMobileDevice) {
                         var card = $(elem).closest('.card').clone();
@@ -349,6 +356,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         if (isMobileDevice) {
             $('.card').removeClass('openMobile');
         }
+        $rootScope.track('click', 'cards', 'close');
     }
 
     $scope.likeCard = function($event, id) {
@@ -376,6 +384,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     heart.parent().addClass('liked');
                 });
         }
+        $rootScope.track('click', 'cards', 'like');
     }
 
     $scope.initialCard = function(array, filterType, total) {

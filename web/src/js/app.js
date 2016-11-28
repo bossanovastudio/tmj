@@ -2,7 +2,28 @@ var API_URL = "@@replace_api_grunt";
 var SITE_URL = window.location.protocol + '//' + window.location.host;
 var isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-var tmj = angular.module('tmj', ['ngTouch', 'ngRoute', 'ngAnimate', 'ngCookies', 'ngResource', 'swipe']);
+(function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+ga('create', 'UA-88003802-1', 'auto');
+
+var tmj = angular.module('tmj', [
+    'ngTouch',
+    'ngRoute',
+    'ngAnimate',
+    'ngCookies',
+    'ngResource',
+    'swipe'
+]);
 tmj
     .config(function($routeProvider, $locationProvider, $httpProvider) {
         $routeProvider
@@ -38,13 +59,14 @@ tmj
             sidebar.removeClass('open');
         })
     })
-    .run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {
+    .run(['$route', '$rootScope', '$location', function($route, $rootScope, $location) {
+        ga('send', 'pageview', { page: $location.url() });
         var original = $location.path;
         $rootScope.previousURL = $location.$$path;
-        $location.path = function (path, reload) {
+        $location.path = function(path, reload) {
             if (reload === false) {
                 var lastRoute = $route.current;
-                var un = $rootScope.$on('$locationChangeSuccess', function () {
+                var un = $rootScope.$on('$locationChangeSuccess', function() {
                     $route.current = lastRoute;
                     un();
                 });
@@ -52,96 +74,3 @@ tmj
             return original.apply($location, [path]);
         };
     }]);
-
-tmj.filter('cropText', function() {
-    return function(card) {
-        if (card.content !== null) {
-            var maxLength = 0;
-            if (card.kind == 'text') {
-                maxLength = !isMobileDevice ? 300 : 400;
-            } else {
-                maxLength = !isMobileDevice ? 100 : 70;
-            }
-            var trimmedString = card.content.substr(0, maxLength);
-            if (trimmedString.length == card.content.length) {
-                return card.content;
-            }
-            return trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" "))) + ' ...';
-        }
-    };
-});
-
-tmj.filter('formatDate', function() {
-    return function(input) {
-        if (!input) {
-            return '';
-        }
-        var year = input.substring(0, 4);
-        var monthNames = ["jan", "fev", "mar", "abr", "mai", "jun",
-            "jul", "ago", "set", "out", "nov", "dez"
-        ];
-        var month = input.substring(5, 7);
-        var day = input.substring(8, 10);
-        var hour = input.substring(11, 13);
-        var minute = input.substring(14, 16);
-
-        return day + ' ' + monthNames[month - 1] + ' ' + year + ', ' + hour + 'h' + minute;
-    };
-});
-
-tmj.filter('formatVideo', function() {
-    return function(input) {
-        if (!input) {
-            return '';
-        }
-        var url = input;
-        url.match(/(http:|https:|)\/\/(player.|www.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com))\/(video\/|embed\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(\&\S+)?/);
-        if (RegExp.$3.indexOf('youtu') > -1) {
-            url = 'https://www.youtube.com/embed/' + RegExp.$6;
-        } else if (RegExp.$3.indexOf('vimeo') > -1) {
-            url = 'https://player.vimeo.com/video/' + RegExp.$6;
-        }
-        return '<iframe src="' + url + '" frameborder="0" allowfullscreen></iframe>';
-    };
-});
-
-tmj.filter("trust", ['$sce', function($sce) {
-    return function(htmlCode) {
-        return $sce.trustAsHtml(htmlCode);
-    }
-}]);
-/*
- * Replace all SVG images with inline SVG
- */
-jQuery('img.svg').each(function(){
-    var $img = jQuery(this);
-    var imgID = $img.attr('id');
-    var imgClass = $img.attr('class');
-    var imgURL = $img.attr('src');
-
-    jQuery.get(imgURL, function(data) {
-        // Get the SVG tag, ignore the rest
-        var $svg = jQuery(data).find('svg');
-
-        // Add replaced image's ID to the new SVG
-        if(typeof imgID !== 'undefined') {
-            $svg = $svg.attr('id', imgID);
-        }
-        // Add replaced image's classes to the new SVG
-        if(typeof imgClass !== 'undefined') {
-            $svg = $svg.attr('class', imgClass+' replaced-svg');
-        }
-
-        // Remove any invalid XML tags as per http://validator.w3.org
-        $svg = $svg.removeAttr('xmlns:a');
-
-        // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
-        if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
-            $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
-        }
-
-        // Replace image with new SVG
-        $img.replaceWith($svg);
-
-    }, 'xml');
-});

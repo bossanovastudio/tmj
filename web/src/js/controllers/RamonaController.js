@@ -12,6 +12,7 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
             }
             $(this).animate({ top: top + distanceTop });
         });
+        $rootScope.track('swipe', 'cards', 'up');
     }
 
 });
