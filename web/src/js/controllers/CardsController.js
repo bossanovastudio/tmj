@@ -155,41 +155,46 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             var slug = $(e).data('slug');
             var walk = parseInt(e.css('left').replace('px')) - ($('.card').width() + 20);
             var size = e.find('.card').length;
-            if (!e.hasClass('mobile')) {
-                size = size - 1;
-            }
-            if (walk != -(size * ($('.card').width() + 20))) {
-                $(e).animate({
-                    left: walk
-                }, 250, 'easeOutBack', function() {
-                    console.log(running);
-                    running = false;
-                });
-            } else {
-                if (!e.hasClass('mobile')) {
-                    page++;
-                    $scope.PAGE++;
-                    // temporary
-                    slug = 'all';
-                    if ($(e).data('slug') == 'posts') {
-                        $scope.loadCards(page, slug, $scope.cards);
-                    } else {
-                        $scope.loadCards(page, slug, $scope.cards_recommended);
-                    }
 
-                    $(e).data('page', page);
-                }
-                if (walk != -((size + 1) * ($('.card').width() + 20))) {
+            if (!e.hasClass('mobile')) {
+                //size = size - 1;
+                if (walk != -(size * ($('.card').width() + 20))) {
                     $(e).animate({
                         left: walk
                     }, 250, 'easeOutBack', function() {
                         console.log(running);
                         running = false;
                     });
+                } else {
+                    if (!e.hasClass('mobile')) {
+                        page++;
+                        $scope.PAGE++;
+                        // temporary
+                        slug = 'all';
+                        if ($(e).data('slug') == 'posts') {
+                            $scope.loadCards(page, slug, $scope.cards);
+                        } else {
+                            $scope.loadCards(page, slug, $scope.cards_recommended);
+                        }
+                        $(e).data('page', page);
+                    }
+                    running = false;
+                }
+            } else {
+                if (walk != -(size * ($('.card').width() + 20))) {
+                    $(e).animate({
+                        left: walk
+                    }, 250, 'easeOutBack', function() {
+                        console.log(running);
+                        running = false;
+                    });
+                } else {
+                    running = false;
                 }
             }
             $scope.lazyLoad(false);
         }
+        console.log(running);
         $rootScope.track('swipe', 'cards', 'left');
     }
     $scope.swipeRight = function($event) {
