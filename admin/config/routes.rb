@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :highlights
+
   resources :cards do
     collection do
       post :accept

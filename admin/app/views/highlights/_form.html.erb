@@ -1,0 +1,15 @@
+<%= simple_form_for(@highlight) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :content %>
+    <%= f.association :media %>
+    <%= f.input :posted_at %>
+    <%= f.input :source_url %>
+    <%= f.input :size %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
