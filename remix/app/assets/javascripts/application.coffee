@@ -2,6 +2,7 @@
 #= require 'jquery-ujs'
 #= require 'jquery-touchswipe'
 #= require 'jquery-ui'
+#= require 'jqueryui-touch-punch'
 
 API_URL = 'http://' + window.location.hostname + ':3000'
 
