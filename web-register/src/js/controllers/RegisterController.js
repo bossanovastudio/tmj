@@ -64,7 +64,7 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
             var currentForm = $('.form.active');
             currentForm.animate({
                 left: "-150%"
-            }, 1000, function() {
+            }, 500, function() {
                 var index = $('.form.active').index();
                 if (index < 3) {
                     var newForm = $('.form').eq(index + 1);
@@ -72,7 +72,7 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
                     newForm.addClass('active');
                     newForm.animate({
                         left: 0
-                    });
+                    }, 500);
                     $('.step').removeClass('active');
                     $('.step').eq(newForm.index()).addClass('active');
                 }
@@ -97,7 +97,7 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
         var currentForm = $('.form.active');
         currentForm.animate({
             left: "150%"
-        }, 1000, function() {
+        }, 500, function() {
             var index = $('.form.active').index();
             if (index > 0) {
                 var newForm = $('.form').eq(index - 1);
@@ -105,7 +105,7 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
                 newForm.addClass('active');
                 newForm.animate({
                     left: 0
-                });
+                }, 500);
                 $('.step').removeClass('active');
                 $('.step').eq(newForm.index()).addClass('active');
             }
