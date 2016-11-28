@@ -277,8 +277,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
                         setTimeout(function() {
                             $('.card').last().find('.videoMobile').show(0);
-                            $('.card').last().find('.heart').attr('src', '/img/like.png').width(24);
-                            $('.card').last().find('.arrow').attr('src', '/img/share.png').width(24);
+                            $('.card').last().find('.heart').attr('src', '/img/like.svg').width(24);
+                            $('.card').last().find('.arrow').attr('src', '/img/share.svg').width(24);
                             $('.card').last().find('.read-more').remove();
                             $('.card').last().addClass('openMobile');
 
@@ -311,7 +311,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                                 bottom: 0,
                                 width: '100%'
                             });
-                            var close = $compile('<img class="close" ng-click="close($event)" src="/img/fechar.png" />')($scope);
+                            var close = $compile('<img class="close" ng-click="close($event)" src="/img/fechar.svg" />')($scope);
                             $('.card').last().append(close);
                             $('.card').last().find('.close').css({
                                 display: 'block'
@@ -372,13 +372,13 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     })
                 })
                 .then(function(data) {
-                    heart.attr('src', '/img/liked.png');
+                    heart.attr('src', '/img/liked.svg');
                     count++;
                     heart.parent().find('.counter').html('&nbsp;' + count);
                     heart.parent().addClass('liked');
                 }, function(data) {
                     //remove that and parse error
-                    heart.attr('src', '/img/liked.png');
+                    heart.attr('src', '/img/liked.svg');
                     count++;
                     heart.parent().find('.counter').html('&nbsp;' + count);
                     heart.parent().addClass('liked');
