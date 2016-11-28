@@ -36,7 +36,7 @@
         top: 0;
         width: 100%;
       }
-      * {
+      > * {
         position: absolute;
         top: 0;
         left: 0;
@@ -44,6 +44,31 @@
       .picture {
         height: 100%;
         width: 100%;
+      }
+      .image {
+        img {
+          width: 100%;
+        }
+        .remove {
+          background-color: #000;
+          border-radius: 100%;
+          color: #FFF;
+          display: none;
+          font-size: 12px;
+          line-height: 20px;
+          position: absolute;
+          right: -10px;
+          text-align: center;
+          top: -10px;
+          width: 20px;
+          z-index: 100;
+        }
+        &:focus, &.focus {
+          outline: 1px solid #000;
+          .remove {
+            display: block;
+          }
+        }
       }
     }
     .empty {

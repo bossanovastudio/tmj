@@ -19,8 +19,6 @@
     "jquery": "^3.1.1",
     "jquery-ujs": "^1.2.2",
     "bootstrap-sass": "^3.3.7",
-    "jquery-touchswipe": "^1.6.18",
-    "draggabilly": "^2.1.1",
-    "jquery-bridget": "^2.0.1"
+    "jquery-touchswipe": "^1.6.18"
   }
 }

@@ -1,12 +1,7 @@
 #= require 'jquery'
 #= require 'jquery-ujs'
 #= require 'jquery-touchswipe'
-#= require 'jquery-bridget'
-#= require 'get-size'
-#= require 'ev-emitter'
-#= require 'unipointer'
-#= require 'unidragger'
-#= require 'draggabilly'
+#= require 'jquery-ui'
 
 API_URL = 'http://' + window.location.hostname + ':3000'
 
@@ -88,16 +83,48 @@ $('.remix-container').each ->
 
     # sets picture element to the artboard and hides empty message
     'add-image': (event, src) ->
-      $image = $('<img>')
-      $image.attr
-        src: src
-        alt: ''
-        class: 'image'
+      $element = $('<div>').attr { class: 'image' }
 
-      $composer.find('.artboard .canvas').append $image
-      $image.draggabilly {
-        containment: true
-      }
+      $('<img>').attr { src: src, alt: '' }
+      .appendTo $element
+
+      $('<button>').attr { type: 'button', class: 'remove' }
+      .html '&times;'
+      .appendTo $element
+
+
+      $composer.find('.artboard .canvas').append $element
+
+      $element
+        .draggable {
+          containment: 'parent'
+          disabled: true
+        }
+        .resizable {
+          aspectRatio: true
+          containment: 'parent'
+          disabled: true
+        }
+        .on {
+          click: (event) ->
+            event.stopPropagation()
+            $(this)
+              .addClass('focus')
+              .draggable('enable')
+              .resizable('enable')
+              .siblings('.image').trigger('blur')
+
+          blur: ->
+            $(this)
+              .removeClass('focus')
+              .draggable('disable')
+              .resizable('disable')
+        }
+        .find('.remove').on 'click', ->
+          $(this).parent().remove()
+
+  $('body').click ->
+    $composer.find('.artboard .canvas .image').trigger('blur')
 
   # gallery swipe
   $landing.find('.gallery').swipe {
@@ -126,8 +153,6 @@ $('.remix-container').each ->
     $remix.trigger 'finish'
 
   $composer.find('.toolbox .categories > div').click ->
-    $(this).closest('.toolbox-item')
-
     # todo: check take-photo class
     $remix.trigger 'choose-picture'
 
