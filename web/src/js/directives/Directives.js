@@ -44,7 +44,7 @@ var organizeCards = function(newValue, oldValue) {
             card.find('.img').css({ "height": h });
             card.each(function(i, c) {
                 if ($(c).hasClass('featured')) {
-                    $(c).css({ "height": h + (h / 3) * 2 + 40 });
+                    $(c).css({ "height": newValue.h - 100 });
                 } else if ($(c).hasClass('initial')) {
                     $(c).css({ "height":'100%'});
                 }
