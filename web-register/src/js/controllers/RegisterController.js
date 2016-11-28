@@ -76,6 +76,7 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
                     }, 500);
                     $('.step').removeClass('active');
                     $('.step').eq(newForm.index()).addClass('active');
+                    $('.forms').animate({scrollTop:0});
                 }
             });
         }
@@ -85,7 +86,7 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
         $http({
                 method: 'POST',
                 data: $.param($scope.form),
-                url: '/api/register',
+                url: API_URL + '/api/register.json',
             })
             .then(function(data) {
                 $scope.advanceForm();
