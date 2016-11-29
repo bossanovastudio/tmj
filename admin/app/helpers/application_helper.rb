@@ -61,7 +61,7 @@ module ApplicationHelper
     if ratio <= 1.0
       percent = 50.0 * (1.0 + (1.0 - ratio))
     else
-      percent = 50 * (card.image.height / card.image.width)
+      percent = 50.0 * (card.image.height.to_f / card.image.width.to_f)
     end
   end
 
