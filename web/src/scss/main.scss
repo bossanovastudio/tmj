@@ -400,58 +400,63 @@ p.date {
     }
 }
 
-.cards-loading{
-  width: 100%;
-  position: relative;
-  display: none;
-  text-align: center;
-  bottom: 20px;
-  &.show{
-    display: inline-block;
-  }
-  span{
-    content: '';
-    display: inline-block;
-    width: 10.5px;
-    height: 11.5px;
-    background-color: #000;
-    border-radius: 10px;
-    margin: 5px;
-
-    &:nth-child(1){
-      animation: loadingBounce 0.8s ease-in-out  infinite;
+.cards-loading {
+    width: 100%;
+    position: relative;
+    display: none;
+    text-align: center;
+    bottom: 20px;
+    &.show {
+        display: inline-block;
     }
-    &:nth-child(2){
-      animation: loadingBounce 0.8s ease-in-out 0.15s infinite;
+    span {
+        content: '';
+        display: inline-block;
+        width: 10.5px;
+        height: 11.5px;
+        background-color: #000;
+        border-radius: 10px;
+        margin: 5px;
+        &:nth-child(1) {
+            animation: loadingBounce 0.8s ease-in-out infinite;
+        }
+        &:nth-child(2) {
+            animation: loadingBounce 0.8s ease-in-out 0.15s infinite;
+        }
+        &:nth-child(3) {
+            animation: loadingBounce 0.8s ease-in-out 0.30s infinite;
+        }
     }
-    &:nth-child(3){
-      animation: loadingBounce 0.8s ease-in-out 0.30s infinite;
-    }
-  }
 }
 
-@keyframes loadingBounce{
-  0%, 100%{
-    -webkit-transform: translateY(10px);
-    -ms-transform: translateY(10px);
-    -o-transform: translateY(10px);
-    transform: translateY(10px);
-    -ms-transform: scale(1.2, 0.7); /* IE 9 */
-    -webkit-transform: scale(1.2, 0.7); /* Safari */
-    transform: scale(1.2, 0.7);
-  }
-  25%, 75%{
-    -webkit-transform: translateY(0px);
-    -ms-transform: translateY(0px);
-    -o-transform: translateY(0px);
-    transform: translateY(0px);
-  }
-  49%, 50%, 51%{
-    -webkit-transform: translateY(-20px);
-    -ms-transform: translateY(-20px);
-    -o-transform: translateY(-20px);
-    transform: translateY(-20px);
-  }
+@keyframes loadingBounce {
+    0%,
+    100% {
+        -webkit-transform: translateY(10px);
+        -ms-transform: translateY(10px);
+        -o-transform: translateY(10px);
+        transform: translateY(10px);
+        -ms-transform: scale(1.2, 0.7);
+        /* IE 9 */
+        -webkit-transform: scale(1.2, 0.7);
+        /* Safari */
+        transform: scale(1.2, 0.7);
+    }
+    25%,
+    75% {
+        -webkit-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+        -o-transform: translateY(0px);
+        transform: translateY(0px);
+    }
+    49%,
+    50%,
+    51% {
+        -webkit-transform: translateY(-20px);
+        -ms-transform: translateY(-20px);
+        -o-transform: translateY(-20px);
+        transform: translateY(-20px);
+    }
 }
 
 .cards {
@@ -670,7 +675,7 @@ div.card {
     position: absolute;
     height: 100%;
     width: 100%;
-    background: rgba(0,0,0,0.8) url(/img/loading_nuvem.gif) center center no-repeat;
+    background: rgba(0, 0, 0, 0.8) url(/img/loading_nuvem.gif) center center no-repeat;
     z-index: 9999;
 }
 
@@ -992,21 +997,21 @@ div.card {
             height: 46px;
             right: -20px;
             top: -20px;
-            -webkit-filter: drop-shadow( 3px 3px 0px #000 );
-            filter: drop-shadow( 3px 3px 0px #000 );
+            -webkit-filter: drop-shadow( 3px 3px 0px #000);
+            filter: drop-shadow( 3px 3px 0px #000);
             cursor: pointer;
             transition-duration: 0s;
             animation-duration: .3s;
             animation-timing-function: ease-in-out;
             animation-fill-mode: forwards;
             animation-iteration-count: infinite;
-            &.pow{
+            &.pow {
                 width: 85px;
                 height: 96px;
                 right: -42px;
                 top: -45px;
                 -webkit-animation-play-state: paused;
-                    animation-play-state: paused;
+                animation-play-state: paused;
             }
             .close-icon4 {
                 width: 18px;
@@ -1015,7 +1020,7 @@ div.card {
                 top: 16px;
                 left: 14px;
                 cursor: pointer;
-                &.pow{
+                &.pow {
                     display: none;
                 }
                 span {
@@ -1053,36 +1058,35 @@ div.card {
                 transform: translate(3px, 3px);
                 animation-name: jittery;
                 &:active {
-                    -webkit-animation-play-state: paused; /* Safari 4.0 - 8.0 */
+                    -webkit-animation-play-state: paused;
+                    /* Safari 4.0 - 8.0 */
                     animation-play-state: paused;
                 }
             }
-            &:active{
+            &:active {
                 width: 85px;
                 height: 96px;
                 right: -42px;
                 top: -45px;
                 transition-duration: 0s;
-                .close-icon4{
+                .close-icon4 {
                     display: none;
                 }
-                img.link{
-                    &.pow{
+                img.link {
+                    &.pow {
                         display: none;
                     }
                 }
-                img.active{
+                img.active {
                     opacity: 0;
                     display: none;
-                    &.pow{
+                    &.pow {
                         display: block;
                         width: 100%;
                         opacity: 1;
                     }
                 }
-
             }
-
         }
         &.image {
             width: 80%;
@@ -1365,6 +1369,10 @@ footer {
         svg {
             display: none;
         }
+        #nav-icon4 {
+            top: 0px;
+            left: 0px;
+        }
     }
     .sidebar {
         width: 100%;
@@ -1440,8 +1448,6 @@ footer {
         }
     }
 }
-
-
 
 .initial-loading {
     position: absolute;
@@ -1682,58 +1688,63 @@ p.date {
     }
 }
 
-.cards-loading{
-  width: 100%;
-  position: relative;
-  display: none;
-  text-align: center;
-  bottom: 20px;
-  &.show{
-    display: inline-block;
-  }
-  span{
-    content: '';
-    display: inline-block;
-    width: 10.5px;
-    height: 11.5px;
-    background-color: #000;
-    border-radius: 10px;
-    margin: 5px;
-
-    &:nth-child(1){
-      animation: loadingBounce 0.8s ease-in-out  infinite;
+.cards-loading {
+    width: 100%;
+    position: relative;
+    display: none;
+    text-align: center;
+    bottom: 20px;
+    &.show {
+        display: inline-block;
     }
-    &:nth-child(2){
-      animation: loadingBounce 0.8s ease-in-out 0.15s infinite;
+    span {
+        content: '';
+        display: inline-block;
+        width: 10.5px;
+        height: 11.5px;
+        background-color: #000;
+        border-radius: 10px;
+        margin: 5px;
+        &:nth-child(1) {
+            animation: loadingBounce 0.8s ease-in-out infinite;
+        }
+        &:nth-child(2) {
+            animation: loadingBounce 0.8s ease-in-out 0.15s infinite;
+        }
+        &:nth-child(3) {
+            animation: loadingBounce 0.8s ease-in-out 0.30s infinite;
+        }
     }
-    &:nth-child(3){
-      animation: loadingBounce 0.8s ease-in-out 0.30s infinite;
-    }
-  }
 }
 
-@keyframes loadingBounce{
-  0%, 100%{
-    -webkit-transform: translateY(10px);
-    -ms-transform: translateY(10px);
-    -o-transform: translateY(10px);
-    transform: translateY(10px);
-    -ms-transform: scale(1.2, 0.7); /* IE 9 */
-    -webkit-transform: scale(1.2, 0.7); /* Safari */
-    transform: scale(1.2, 0.7);
-  }
-  25%, 75%{
-    -webkit-transform: translateY(0px);
-    -ms-transform: translateY(0px);
-    -o-transform: translateY(0px);
-    transform: translateY(0px);
-  }
-  49%, 50%, 51%{
-    -webkit-transform: translateY(-20px);
-    -ms-transform: translateY(-20px);
-    -o-transform: translateY(-20px);
-    transform: translateY(-20px);
-  }
+@keyframes loadingBounce {
+    0%,
+    100% {
+        -webkit-transform: translateY(10px);
+        -ms-transform: translateY(10px);
+        -o-transform: translateY(10px);
+        transform: translateY(10px);
+        -ms-transform: scale(1.2, 0.7);
+        /* IE 9 */
+        -webkit-transform: scale(1.2, 0.7);
+        /* Safari */
+        transform: scale(1.2, 0.7);
+    }
+    25%,
+    75% {
+        -webkit-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+        -o-transform: translateY(0px);
+        transform: translateY(0px);
+    }
+    49%,
+    50%,
+    51% {
+        -webkit-transform: translateY(-20px);
+        -ms-transform: translateY(-20px);
+        -o-transform: translateY(-20px);
+        transform: translateY(-20px);
+    }
 }
 
 .cards {
@@ -2265,21 +2276,21 @@ div.card {
             height: 46px;
             right: -20px;
             top: -20px;
-            -webkit-filter: drop-shadow( 3px 3px 0px #000 );
-            filter: drop-shadow( 3px 3px 0px #000 );
+            -webkit-filter: drop-shadow( 3px 3px 0px #000);
+            filter: drop-shadow( 3px 3px 0px #000);
             cursor: pointer;
             transition-duration: 0s;
             animation-duration: .3s;
             animation-timing-function: ease-in-out;
             animation-fill-mode: forwards;
             animation-iteration-count: infinite;
-            &.pow{
+            &.pow {
                 width: 85px;
                 height: 96px;
                 right: -42px;
                 top: -45px;
                 -webkit-animation-play-state: paused;
-                    animation-play-state: paused;
+                animation-play-state: paused;
             }
             .close-icon4 {
                 width: 18px;
@@ -2288,7 +2299,7 @@ div.card {
                 top: 16px;
                 left: 14px;
                 cursor: pointer;
-                &.pow{
+                &.pow {
                     display: none;
                 }
                 span {
@@ -2316,46 +2327,47 @@ div.card {
                 }
             }
             &:hover {
-                -webkit-filter: drop-shadow( 0px 0px 0px #000 );
-                filter: drop-shadow( 0px 0px 0px #000 );
-                -ms-transform: translate(3px, 3px); /* IE 9 */
-                -webkit-transform: translate(3px, 3px); /* Safari */
+                -webkit-filter: drop-shadow( 0px 0px 0px #000);
+                filter: drop-shadow( 0px 0px 0px #000);
+                -ms-transform: translate(3px, 3px);
+                /* IE 9 */
+                -webkit-transform: translate(3px, 3px);
+                /* Safari */
                 transform: translate(3px, 3px);
                 animation-name: jittery;
                 &:active {
-                    -webkit-animation-play-state: paused; /* Safari 4.0 - 8.0 */
+                    -webkit-animation-play-state: paused;
+                    /* Safari 4.0 - 8.0 */
                     animation-play-state: paused;
                 }
             }
-            &:active{
+            &:active {
                 width: 85px;
                 height: 96px;
                 right: -42px;
                 top: -45px;
-                .close-icon4{
+                .close-icon4 {
                     display: none;
                 }
-                img.link{
+                img.link {
                     display: none;
                 }
-                img.active{
+                img.active {
                     display: block;
                     width: 100%;
                     opacity: 1;
                 }
-
             }
-
         }
-        img.link{
-            &.pow{
+        img.link {
+            &.pow {
                 display: none;
             }
         }
-        img.active{
+        img.active {
             opacity: 0;
             display: none;
-            &.pow{
+            &.pow {
                 display: block;
                 width: 100%;
                 opacity: 1;
