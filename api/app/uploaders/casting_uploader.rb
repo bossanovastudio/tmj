@@ -1,5 +1,5 @@
 class CastingUploader < CarrierWave::Uploader::Base
-  include CarrierWave::MiniMagick
+  include CarrierWave::RMagick
 
   storage :fog
   process convert: 'png'

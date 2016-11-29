@@ -1,5 +1,5 @@
 class ImageUploader < CarrierWave::Uploader::Base
-  include CarrierWave::MiniMagick
+  include CarrierWave::RMagick
 
   storage :fog
   process :store_dimensions
@@ -30,7 +30,9 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def store_dimensions
     if file && model
-      model.width, model.height = ::MiniMagick::Image.open(file.file)[:dimensions]
+      image = ::Magick::Image.read(file.file).first
+      model.width = image.columns
+      model.height = image.rows
     end
   end
 end
