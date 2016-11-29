@@ -40,7 +40,7 @@ header {
     text-align: right;
     position: relative;
     z-index: 1;
-    margin-bottom: 25px;
+    margin-bottom: 40px;
     transition: all 0.3s ease-in-out;
 
     &.animate{
@@ -249,25 +249,35 @@ section{
         left: 0px;
         right: 0px;
         li {
-            background-size: auto 100%;
             opacity: 1;
             &.red {
                 background: url(/img/tudo_sobre_tmj.png) center center no-repeat;
+                background-size: auto 100%;
+
             }
             &.orange {
                 background: url(/img/remix.png) center center no-repeat;
+                background-size: auto 100%;
+
             }
             &.yellow {
                 background: url(/img/feito_por_voce.png) center center no-repeat;
+                background-size: auto 100%;
+
             }
             &.purple {
                 background: url(/img/ramona_desktop.png) center center no-repeat;
+                background-size: auto 100%;
+
             }
             &.pink {
                 background: url(/img/denise.png) center center no-repeat;
+                background-size: auto 100%;
+
             }
             &.blue {
                 background: url(/img/geek.png) center center no-repeat;
+                background-size: auto 100%;
             }
             a {
                 font-family: KomikaTitle;
