@@ -35,7 +35,7 @@ body {
 }
 
 header {
-    height: 105px;
+    height: 136px;
     display: block;
     padding-top: 35px;
     text-align: right;
@@ -58,8 +58,8 @@ header {
         width: 18px;
         height: 18px;
         position: absolute;
-        top: 0px;
-        left: 0px;
+        top: 13px;
+        left: 11px;
         -webkit-transform: rotate(0deg);
         -moz-transform: rotate(0deg);
         -o-transform: rotate(0deg);
@@ -1252,6 +1252,10 @@ footer {
         filter: none;
         svg {
             display: none;
+        }
+        #nav-icon4 {
+            top: 0px;
+            left: 0px;
         }
     }
     .sidebar {
