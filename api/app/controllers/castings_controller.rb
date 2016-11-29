@@ -5,7 +5,7 @@ class CastingsController < ApplicationController
     @casting = Casting.new(casting_params)
 
     if @casting.save
-      CastingMailer.register_successful(@casting).deliver_later
+      CastingMailer.register_successful(@casting).deliver_now
       
       render :show, status: :created
     else
