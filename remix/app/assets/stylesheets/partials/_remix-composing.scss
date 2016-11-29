@@ -130,7 +130,6 @@
       &.category {
         opacity: 1;
         .popup {
-          padding: 0;
           .popup-holder {
             border-radius: 0;
             padding: 2px;
@@ -158,7 +157,13 @@
         .options {
           @include clearfix;
           .option-item {
+            cursor: pointer;
             float: left;
+            height: 60px;
+            padding: 5px;
+            img {
+              max-height: 100%;
+            }
           }
         }
       }
@@ -221,6 +226,8 @@
           }
           .popup {
             margin-top: -70px;
+            padding-left: 0;
+            padding-right: 0;
             z-index: 10;
           }
         }
