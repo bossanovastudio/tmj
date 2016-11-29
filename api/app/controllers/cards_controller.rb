@@ -80,7 +80,13 @@ end
       render json: @card.errors, status: :unprocessable_entity
     end
   end
-
+  
+  # GET /cards/total
+  # GET /cards/total.json
+  def total
+    @total_cards = Card.count
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_card

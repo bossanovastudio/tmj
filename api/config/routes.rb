@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       
       collection do
         get ':page/:quantity', to: 'cards#index', defaults: { page: 1, quantity: 10 }
+        get :total
       end
     end
     

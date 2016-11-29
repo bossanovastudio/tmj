@@ -1,0 +1,1 @@
+json.cards @total_cards
