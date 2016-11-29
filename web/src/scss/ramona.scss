@@ -21,7 +21,7 @@ body.ramonaPage {
         flex-wrap: nowrap;
         .columns{
             order: 2;
-            flex-grow: 3;
+            flex-grow: 7;
         }
         .box-avatar{
             min-width: 230px;
@@ -152,6 +152,11 @@ body.ramonaPage {
             }
         }
         .about {
+            width: 100%;
+            float: left;
+            div{
+                max-width: 578px;
+            }
             .summary {
                 font-family: Lato;
                 font-size: 17px;
