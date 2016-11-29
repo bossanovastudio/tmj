@@ -141,10 +141,8 @@ tmj.directive("cardClass", function() {
             }
             if (card.content) {
                 if (card.content.length > maxLength || card.kind !== 'text') {
-                    console.log($(elem).parent(), card.content, 'true');
                     $(elem).parent().addClass('cursor');
                 } else {
-                    console.log($(elem).parent(), card.content, 'false');
                     $(elem).parent().removeClass('cursor');
                 }
             }
