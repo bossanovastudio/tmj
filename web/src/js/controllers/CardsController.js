@@ -164,7 +164,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 if (walk != -(size * ($('.card').width() + 20))) {
                     $(e).animate({
                         left: walk
-                    }, 250, 'easeOutBack', function() {
+                    }, 250, 'easeOutExpo', function() {
                         console.log(running);
                         running = false;
                     });
@@ -187,7 +187,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 if (walk != -(size * ($('.card').width() + 20))) {
                     $(e).animate({
                         left: walk
-                    }, 250, 'easeOutBack', function() {
+                    }, 250, 'easeOutExpo', function() {
                         console.log(running);
                         running = false;
                     });
@@ -212,7 +212,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         }
         $(e).animate({
             left: walk
-        }, 250, 'easeOutBack');
+        }, 250, 'easeOutExpo');
         $rootScope.track('swipe', 'cards', 'right');
     }
     var distanceTop = 0;
