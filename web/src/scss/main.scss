@@ -1063,6 +1063,12 @@ div.card {
         padding-left: 0px;
         background: #bdbdbd;
         height: 40px;
+        &:after{
+            margin-bottom: -1px;
+        }
+        img{
+            height: 21px;
+        }
     }
 }
 
