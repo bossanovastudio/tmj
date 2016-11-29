@@ -445,11 +445,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         }, $scope._throttleDelay);
     }
 
-    $scope.socialMediaShareLink = '';
-    $scope.openSharePopup = function(link, cardID) {
-      $scope.socialMediaShareLink = link + $rootScope.SITE_URL + '/detalhe/card/' + cardID;
+    $rootScope.socialMediaShareLink = '';
+    $rootScope.openSharePopup = function(link, cardID) {
+      $rootScope.socialMediaShareLink = link + $rootScope.SITE_URL + '/detalhe/card/' + cardID;
 
-      window.open($scope.socialMediaShareLink,"","width=600,height=500");
+      window.open($rootScope.socialMediaShareLink,"","width=600,height=500");
     }
 
     $(document).ready(function() {

@@ -171,7 +171,10 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
     $scope.closeLightboxClick = function($event) {
         var e = angular.element($event.target);
         e = $(e);
-        if (!e.hasClass('preview') && !e.hasClass('detail') && !e.hasClass('share') && !e.hasClass('arrow') && !e.hasClass('content')) {
+        if (!e.hasClass('preview') && !e.hasClass('detail') && !e.hasClass('share')
+              && !e.hasClass('arrow') && !e.hasClass('content') && !e.hasClass('hr')
+              && !e.hasClass('item-share') && !e.hasClass('shareBox')
+              && !e.hasClass('content-item-box') && !e.hasClass('shareButton')) {
             $scope.closeLightbox();
         }
     }
