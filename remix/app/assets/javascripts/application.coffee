@@ -181,3 +181,4 @@ $('.remix-container').each ->
 
   $composer.find('.toolbox-item').filter('.ballons, .stickers').find('.option-item').click ->
     $remix.trigger 'add-image', $(this).data('src')
+    $(this).closest('.toolbox-item').removeClass('on')
