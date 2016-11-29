@@ -348,6 +348,10 @@ div.shareBox {
         width: 107%;
         height: 20px;
         overflow: hidden;
+
+        a {
+          cursor: pointer;
+        }
     }
 }
 
@@ -479,6 +483,11 @@ div.card {
     margin-bottom: 24px;
     margin: 0 1% 20px 1%;
     opacity: 0;
+    &:hover {
+       p.read-more:before {
+         left: 0;
+       }
+     }
     &.show {
         transition: opacity 1s ease-in-out;
         -moz-transition: opacity 1s ease-in-out;
@@ -979,7 +988,8 @@ div.card {
             text-align: left !important;
         }
         p.content {
-            overflow: auto;
+            overflow-y: auto;
+            overflow-x: hidden;
             max-height: 400px;
             font-size: 16px;
             line-height: 20px;
