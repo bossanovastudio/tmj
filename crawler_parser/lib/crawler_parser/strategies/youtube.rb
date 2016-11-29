@@ -12,7 +12,8 @@ module CrawlerParser
       card.content    = @post.content.title
       card.source_url = "https://www.youtube.com/watch?v=" + @post.social_uuid if @post.social_uuid
       card.posted_at  = @post.content.publishedAt
-     
+      card.social_uid = @post.content.channelId
+      
       card.social_user = {
         id: @post.content.channelId,
         username: @post.content.channelTitle

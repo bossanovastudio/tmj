@@ -12,6 +12,8 @@ module CrawlerParser
       card.content    = @post.content.text
       card.source_url = "https://twitter.com/statuses/" + @post.social_uuid if @post.social_uuid
       card.posted_at  = @post.content.created_at
+      card.social_uid = @post.content.user.fetch('id', '')
+      
       card.social_user = {
         id: @post.content.user.fetch('id', ''),
         username: @post.content.user.fetch('screen_name', '')

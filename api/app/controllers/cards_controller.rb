@@ -101,6 +101,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
-      params.require(:card).permit(:user_id, :origin, :source_url, :content, :media_id, :media_type, :posted_at, :social_user => [:id, :username])
+      params.require(:card).permit(:user_id, :origin, :source_url, :content, :media_id, :media_type, :posted_at, :social_uid, :social_user => [:id, :username])
     end
 end

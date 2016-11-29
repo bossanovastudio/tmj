@@ -12,6 +12,7 @@ module CrawlerParser
       card.content    = @post.content.message
       card.source_url = "https://facebook.com/" + @post.social_uuid if @post.social_uuid
       card.posted_at  = @post.content.created_time
+      card.social_uid = @post.content.user.fetch('from', {}).fetch('id', '')
       
       card.social_user = {
         id: @post.content.user.fetch('from', {}).fetch('id', ''),

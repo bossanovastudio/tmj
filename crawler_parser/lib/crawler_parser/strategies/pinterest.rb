@@ -13,6 +13,7 @@ module CrawlerParser
       card.content    = @post.content.note
       card.source_url = @post.content.url
       card.posted_at  = @post.content.created_at
+      card.social_uid = @post.content.creator.fetch('id', '')
 
       card.social_user = {
         id: @post.content.creator.fetch('id', ''),

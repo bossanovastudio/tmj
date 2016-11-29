@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   mount_uploader :image, AvatarUploader
   
   has_many :cards
+  has_many :providers
   recommends :cards
   
   def email_required?
