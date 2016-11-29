@@ -40,6 +40,7 @@ header {
     text-align: right;
     position: relative;
     z-index: 1;
+    margin-bottom: 25px;
 }
 
 #menu {
@@ -415,7 +416,7 @@ p.date {
      background-color: #000;
      border-radius: 10px;
      margin: 5px;
-     
+
      &:nth-child(1){
        animation: loadingBounce 0.8s ease-in-out  infinite;
      }
@@ -427,7 +428,7 @@ p.date {
      }
    }
  }
- 
+
  @keyframes loadingBounce{
    0%, 100%{
      -webkit-transform: translateY(10px);
