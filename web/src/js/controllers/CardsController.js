@@ -41,6 +41,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             if (!isMobileDevice) {
                 // $('.cards').eq($scope.PAGE - 1).addClass('loading');
                 $('.cards-loading').addClass('show');
+            } else {
+                $('.dark-overlay').fadeIn();
             }
         }
         $http({
@@ -48,6 +50,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 url: API_URL + '/api/' + slug + '/' + p + '/' + $scope.SIZE + '.json',
             })
             .success(function(data) {
+                if (isMobileDevice) {
+                    $('.dark-overlay').fadeOut();
+                }
                 if (data.cards.length == 0) {
                     $scope.END = true;
                     if (!isMobileDevice) {
@@ -115,6 +120,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             $('.cards').find('.card').addClass('show');
                         }, 1000);
                     }
+                    // setTimeout(function() {
+                    //     $('.content p.text').linkify({
+                    //         target: "_blank"
+                    //     });
+                    // }, 1000);
                 }
             });
         $rootScope.track('load', 'cards', 'content');
@@ -343,6 +353,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             lightboxDetail.addClass('show');
                         }
                     }
+                    setTimeout(function() {
+                        $('p.content').linkify({
+                            target: "_blank"
+                        });
+                    }, 500);
                 });
         }
     }

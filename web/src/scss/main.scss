@@ -1261,6 +1261,10 @@ footer {
     display: none;
 }
 
+.content p.text a, p.content a {
+    color: #888888 !important;
+}
+
 @media only screen and (max-device-width: 480px) {
     html,
     body {
