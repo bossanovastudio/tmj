@@ -42,30 +42,6 @@ $(document).on('turbolinks:load', function() {
         filterList.hide();
     });
 
-    filterOptions.click(function(e) {
-        var optionFilter = $(e.target).text();
-        $(this).children('li').removeClass('active');
-        $(e.target).addClass('active');
-        $(this).siblings('.main-select').text(optionFilter);
-    });
-
-    filterOptions.each(function() {
-        var optionFilter = $(this).find('li.active').text();
-        if (optionFilter == "")
-            optionFilter = "Todos";
-        $(this).siblings('.main-select').text(optionFilter);
-    });
-
-    filterSelectAllCards.click(function() {
-        $(this).toggleClass('active');
-        if ($(this).hasClass('active'))
-            cardsContainer.children('.card').addClass('selected');
-        else
-            cardsContainer.children('.card').removeClass('selected');
-    });
-
-
-
     $('.card').click(function() {
         $(this).toggleClass('selected');
         $(this).find('input').prop("checked", !$(this).find('input').prop("checked"));
@@ -76,15 +52,16 @@ $(document).on('turbolinks:load', function() {
         }
     });
 
-
     var selected = false;
     $('.btn-status a').click(function() {
         if ($(this).hasClass('select-all')) {
             if (selected) {
                 $('.card').removeClass('selected').find('input').prop('checked', false);
+                filterSelectAllCards.removeClass('active');
                 selected = false;
             } else {
                 $('.card').addClass('selected').find('input').prop('checked', true);
+                filterSelectAllCards.addClass('active');
                 selected = true;
             }
         } else {
@@ -116,7 +93,6 @@ $(document).on('turbolinks:load', function() {
         $('.cards').masonry();
     });
 
-
     $('.cards').find('.card').each(function() {
         $(this).attr('style', '');
         $(this).css('opacity', 1);
@@ -125,7 +101,6 @@ $(document).on('turbolinks:load', function() {
     });
 
     setTimeout(initMasonry(), 200);
-
 });
 
 function initMasonry() {
