@@ -253,11 +253,17 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             $location.path(content.source_url);
             $rootScope.track('click', 'featured', 'open');
         } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('originalPost') && !elem.hasClass('shareButton')) {
+            if (isMobileDevice) {
+                $('.dark-overlay').fadeIn();
+            }
             $http({
                     method: 'get',
                     url: API_URL + '/api/cards/' + id + '.json',
                 })
                 .success(function(data) {
+                    if (isMobileDevice) {
+                        $('.dark-overlay').fadeOut();
+                    }
                     $rootScope.card = data;
                     $rootScope.track('click', 'cards', 'open');
 
