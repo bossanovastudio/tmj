@@ -325,7 +325,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
                     } else {
                         if (force || $rootScope.card.kind == 'image' || $rootScope.card.content.length > 300 || $rootScope.card.kind == 'video') {
-                            $('body').css({ overflow: "hidden" });
+                            setTimeout(function() {
+                                $('html').css({ overflow: "hidden" });
+                            }, 1000);
                             $location.path("/detalhe/card/" + $rootScope.card.id, false);
                             var lightbox = angular.element(document.querySelector('.lightbox'));
                             var lightboxDetail = angular.element(document.querySelector('.lightbox .detail'));
