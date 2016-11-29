@@ -116,6 +116,10 @@ $('.remix-container').each ->
         .resizable {
           aspectRatio: true
           containment: 'parent'
+          handles: 'se, sw'
+          classes:
+            'ui-resizable-se': ''
+            'ui-resizable-sw': ''
         }
         .on {
           'remix:select-element': ->

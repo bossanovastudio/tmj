@@ -49,6 +49,22 @@
         img {
           width: 100%;
         }
+        .ui-resizable-se,
+        .ui-resizable-sw {
+          background-color: rgba(255, 0, 0, 0.1);
+          height: 20%;
+          min-height: 20px;
+          min-width: 20px;
+          width: 20%;
+        }
+        .ui-resizable-se {
+          bottom: 1px;
+          right: 1px;
+        }
+        .ui-resizable-sw {
+          bottom: 1px;
+          left: 1px;
+        }
         .remove {
           background-color: #000;
           border-radius: 100%;
