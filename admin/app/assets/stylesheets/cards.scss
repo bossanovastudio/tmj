@@ -203,32 +203,44 @@ div.card {
     }
 }
 
-.pagination {
-  list-style: none;
-  margin: 0 auto;
-  
-  li {
-    color: #666;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    float: left;
-    border: 1px solid #666;
-    border-radius: 5px;
-    text-align: center;
-    padding: 5px;
-    margin: 0 5px 10px 0;
-    
-    a {
-      color: #000;
-    }
-    
-    &:hover {
-      background-color: #666;
-    }
-    
-    &.active {
-      background-color: #666;
+#paginate-container{
+  width: 100%;
+  height: 40px;
+
+  .pagination {
+    display: table;
+    list-style: none;
+    margin: 0 auto;
+
+    li {
+      color: #666;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      float: left;
+      border: 1px solid #727272;
+      border-radius: 20px;
+      text-align: center;
+      padding: 4px;
+      margin: 0 5px 10px 0;
+
+      a {
+        color: #000;
+      }
+
+      &:hover {
+        background-color: #727272;
+        color: #ffffff;
+      }
+
+      &.active {
+        background-color: #727272;
+        color: #ffffff;
+
+        span {
+          font-weight: 600;
+        }
+      }
     }
   }
 }

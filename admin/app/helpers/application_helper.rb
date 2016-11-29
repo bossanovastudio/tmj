@@ -8,14 +8,18 @@ module ApplicationHelper
     html = "<ul class='pagination'>"
 
     Range.new(1, pages).each do |n|
-      if n == page
-        html += "<li class='active'>"
-      else
-        html += "<li>"
-      end
+      html += link_to paginate_cards_path(n, quantity) do
+        if n == page
+          link = "<li class='active'>"
+        else
+          link = "<li>"
+        end
 
-      html += link_to n, paginate_cards_path(n, quantity)
-      html += "</li>"
+        link += "<span>#{n}</span>"
+        link += "</li>"
+
+        link.html_safe
+      end
     end
 
     html += "</ul>"
