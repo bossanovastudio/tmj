@@ -9,7 +9,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
     $rootScope.pageName = 'homePage';
 
     $rootScope.track = function(action, label, value) {
-        console.log(action, label, value);
+        //console.log(action, label, value);
         ga('send', {
             hitType: 'event',
             eventCategory: 'User interaction',
@@ -17,7 +17,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
             eventLabel: label,
             eventValue: value,
             hitCallback: function() {
-                console.log('tracked', action, label, value);
+                //console.log('tracked', action, label, value);
             }
         });
     }
