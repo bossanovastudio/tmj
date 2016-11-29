@@ -233,7 +233,6 @@ header {
         left: 0px;
         right: 0px;
         li {
-            opacity: 0;
             &.red {
                 background: url(/img/tudo_sobre_tmj.png) center center no-repeat;
                 background-size: 100%;
@@ -268,7 +267,9 @@ header {
                 padding: 25px 97px;
             }
             &.animate {
-                animation: itensMenu .4s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+                a{
+                    animation: itensMenu .4s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+                }
             }
         }
     }
@@ -485,11 +486,6 @@ div.card {
     margin-bottom: 24px;
     margin: 0 1% 20px 1%;
     opacity: 0;
-    &:hover {
-      p.read-more:before {
-        left: 0;
-      }
-    }
     &.show {
         transition: opacity 1s ease-in-out;
         -moz-transition: opacity 1s ease-in-out;
@@ -980,8 +976,7 @@ div.card {
             text-align: left !important;
         }
         p.content {
-            overflow-y: auto;
-            overflow-x: hidden;
+            overflow: auto;
             max-height: 400px;
             font-size: 16px;
             line-height: 20px;
@@ -1007,10 +1002,6 @@ div.card {
             filter: drop-shadow( 3px 3px 0px #000);
             cursor: pointer;
             transition-duration: 0s;
-            animation-duration: .3s;
-            animation-timing-function: ease-in-out;
-            animation-fill-mode: forwards;
-            animation-iteration-count: infinite;
             &.pow {
                 width: 85px;
                 height: 96px;
@@ -1062,7 +1053,6 @@ div.card {
                 -webkit-transform: translate(3px, 3px);
                 /* Safari */
                 transform: translate(3px, 3px);
-                animation-name: jittery;
                 &:active {
                     -webkit-animation-play-state: paused;
                     /* Safari 4.0 - 8.0 */
@@ -1117,45 +1107,6 @@ div.card {
         padding-left: 0px;
         background: #bdbdbd;
         height: 40px;
-        &:after{
-            margin-bottom: -1px;
-        }
-        img{
-            height: 21px;
-        }
-    }
-}
-
-@keyframes jittery {
-    10% {
-        transform: translate(0px, 0px) scale(1.01, 1.01);
-    }
-    20% {
-        transform: translate(1px, -1px) scale(1, 1);
-    }
-    30% {
-        transform: translate(0px, 0px) scale(1.01, 1.01);
-    }
-    40% {
-        transform: translate(-1px, 1px) scale(1, 1);
-    }
-    50% {
-        transform: translate(0px, 0px) scale(1, 1);
-    }
-    60% {
-        transform: translate(-1px, -1px) scale(1.01, 1.01);
-    }
-    70% {
-        transform: translate(0px, 0px) scale(1, 1);
-    }
-    80% {
-        transform: translate(1px, 1px) scale(.99, .99);
-    }
-    90% {
-        transform: translate(1px, 0px) scale(1, 1);
-    }
-    100% {
-        transform: translate(0px, -1px) scale(.99, .99);
     }
 }
 
@@ -1533,7 +1484,6 @@ footer {
         left: 0px;
         right: 0px;
         li {
-            opacity: 0;
             &.red {
                 background: url(/img/tudo_sobre_tmj.png) center center no-repeat;
                 background-size: 100%;
@@ -1566,9 +1516,6 @@ footer {
                 text-decoration: none;
                 display: block;
                 padding: 25px 97px;
-            }
-            &.animate {
-                animation: itensMenu .4s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
             }
         }
     }
@@ -1859,6 +1806,7 @@ div.card {
         font-size: 13px;
         text-align: center;
         color: rgba(0, 0, 0, 0.81);
+        ;
         word-wrap: break-word;
         margin-top: 0;
         margin-bottom: 0;
@@ -2265,8 +2213,7 @@ div.card {
             text-align: left !important;
         }
         p.content {
-            overflow-y: auto;
-            overflow-x: hidden;
+            overflow: auto;
             max-height: 400px;
             font-size: 16px;
             line-height: 20px;
@@ -2292,10 +2239,6 @@ div.card {
             filter: drop-shadow( 3px 3px 0px #000);
             cursor: pointer;
             transition-duration: 0s;
-            animation-duration: .3s;
-            animation-timing-function: ease-in-out;
-            animation-fill-mode: forwards;
-            animation-iteration-count: infinite;
             &.pow {
                 width: 85px;
                 height: 96px;
@@ -2346,7 +2289,6 @@ div.card {
                 -webkit-transform: translate(3px, 3px);
                 /* Safari */
                 transform: translate(3px, 3px);
-                animation-name: jittery;
                 &:active {
                     -webkit-animation-play-state: paused;
                     /* Safari 4.0 - 8.0 */
@@ -2408,39 +2350,6 @@ div.card {
         padding-left: 0px;
         background: #bdbdbd;
         height: 40px;
-    }
-}
-
-@keyframes jittery {
-    10% {
-        transform: translate(0px, 0px) scale(1.01, 1.01);
-    }
-    20% {
-        transform: translate(1px, -1px) scale(1, 1);
-    }
-    30% {
-        transform: translate(0px, 0px) scale(1.01, 1.01);
-    }
-    40% {
-        transform: translate(-1px, 1px) scale(1, 1);
-    }
-    50% {
-        transform: translate(0px, 0px) scale(1, 1);
-    }
-    60% {
-        transform: translate(-1px, -1px) scale(1.01, 1.01);
-    }
-    70% {
-        transform: translate(0px, 0px) scale(1, 1);
-    }
-    80% {
-        transform: translate(1px, 1px) scale(.99, .99);
-    }
-    90% {
-        transform: translate(1px, 0px) scale(1, 1);
-    }
-    100% {
-        transform: translate(0px, -1px) scale(.99, .99);
     }
 }
 
