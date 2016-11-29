@@ -556,6 +556,25 @@ div.card {
             padding: 0 !important;
         }
     }
+    div.video {
+      .video-overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
+        opacity: 0.4;
+      }
+      svg {
+        position: relative;
+        fill: #ffffff;
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        display: block;
+      }
+    }
     img.userPhoto {
         position: absolute;
         left: 50%;
