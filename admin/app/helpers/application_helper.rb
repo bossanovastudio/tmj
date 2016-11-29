@@ -8,7 +8,7 @@ module ApplicationHelper
     html = "<ul class='pagination'>"
 
     Range.new(1, pages).each do |n|
-      html += link_to paginate_cards_path(n, quantity) do
+      html += link_to paginate_cards_path(n, quantity, status: params[:status], origin: params[:origin]) do
         if n == page
           link = "<li class='active'>"
         else
