@@ -4,8 +4,8 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
 
 
     //temporary
-    $('.form.active').removeClass('active');
-    $('.form').eq(2).addClass('active');
+    // $('.form.active').removeClass('active');
+    // $('.form').eq(2).addClass('active');
     //temporary
 
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
