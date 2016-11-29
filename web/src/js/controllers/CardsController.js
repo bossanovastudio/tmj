@@ -244,7 +244,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         });
         $rootScope.track('swipe', 'cards', 'down');
     }
-    $scope.openCard = function($event, id, content) {
+    $scope.openCard = function($event, id, content, force) {
         var elem = angular.element($event.target);
         if (content.kind == "featured") {
             $location.path(content.source_url);
@@ -324,7 +324,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         }, 1);
 
                     } else {
-                        if ($rootScope.card.kind == 'image' || $rootScope.card.content.length > 300 || $rootScope.card.kind == 'video') {
+                        if (force || $rootScope.card.kind == 'image' || $rootScope.card.content.length > 300 || $rootScope.card.kind == 'video') {
                             $('body').css({ overflow: "hidden" });
                             $location.path("/detalhe/card/" + $rootScope.card.id, false);
                             var lightbox = angular.element(document.querySelector('.lightbox'));
@@ -349,7 +349,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
 
     if ($routeParams.id) {
-        $scope.openCard({}, $routeParams.id, $rootScope.card);
+        $scope.openCard({}, $routeParams.id, $rootScope.card, true);
     }
 
     $scope.close = function($event) {
