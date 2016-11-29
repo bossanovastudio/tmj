@@ -9,10 +9,10 @@ module CrawlerSocialnetwork
 
     def run
       begin
-        @twitter.tweets '#turmadamonicajovem'
-        @facebook.timeline 'revistaturmadamonicajovem'
-        @youtube.channel 'UCekYMr9EQSauMefFzMTrpSg'
-        @pinterest.profile 'ATyVVvsSMywB5qUMpw2cqM2fclgFFIpb4l6oJfhDlSbqhyAsBgAAAAA'
+        @twitter.user 'revistadaturma'
+        @facebook.timeline 'TurmadaMonicaJovemBrasil'
+        @youtube.channel 'revistaturmajovem', true
+        # @pinterest.profile ''
       rescue => e
         $logger.error(e)
       end

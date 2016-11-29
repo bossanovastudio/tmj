@@ -144,6 +144,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
             setTimeout(function() {
                 $('lightbox').css({ "display": "none" });
                 $('body').css({ overflow: "auto" });
+                $('html').css({ overflow: "auto" });
                 $('.lightbox').removeClass("hide");
                 $('.lightbox .detail').removeClass("hide");
             }, 300);

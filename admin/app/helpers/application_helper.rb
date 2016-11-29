@@ -1,4 +1,28 @@
 module ApplicationHelper
+  def paginate(actual=nil)
+    total_cards = Card.get(:total)['cards']
+    quantity = (params[:quantity].nil? && 20) || params[:quantity]
+    page = (params[:page].nil? && 1) || params[:page].to_i
+    pages = (total_cards.to_f / quantity.to_f).ceil
+
+    html = "<ul class='pagination'>"
+
+    Range.new(1, pages).each do |n|
+      if n == page
+        html += "<li class='active'>"
+      else
+        html += "<li>"
+      end
+
+      html += link_to n, paginate_cards_path(n, quantity)
+      html += "</li>"
+    end
+
+    html += "</ul>"
+
+    html.html_safe
+  end
+
   def query_string(key, value)
     permitted_params = [:origin, :status, :content]
     active_params = params.permit(*permitted_params).to_h.slice(*permitted_params)

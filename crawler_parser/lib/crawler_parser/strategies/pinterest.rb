@@ -1,3 +1,4 @@
+require 'pp'
 module CrawlerParser
   class Pinterest
     include Common
@@ -15,16 +16,11 @@ module CrawlerParser
 
       card.social_user = {
         id: @post.content.creator.fetch('id', ''),
-        username: @post.content.creator.fetch('url', '').match(/(https|http):\/\/www.pinterest.com\/([a-zA-Z0-9.]*)\//)[1]
+        username: @post.content.creator.fetch('url', '').match(/(https|http):\/\/www.pinterest.com\/([a-zA-Z0-9.]*)\//)[2]
       }
       
-      if @post.kind == :image
-        card.media_type = 'Image'
-        card.media_id = self.image(self.image_url)
-      elsif @post.kind == 'Video'
-        card.media_type = 'Video'
-        card.media_id = self.video(self.video_url, @post.social_media, self.image_url)
-      end
+      card.media_type = 'Image'
+      card.media_id = self.image(self.image_url)
       
       unless card.save
         $logger.error('Error saving card: #{card.inspect}')
@@ -32,8 +28,10 @@ module CrawlerParser
     end
     
     def image_url
-      if @post.content.image.fetch('original', {}).fetch('type', '') == 'photo'
-        @post.content.image.fetch('original', {}).fetch('url', nil)
+      if @post.content.respond_to?('media')
+        if @post.content.media.fetch('type', '') == 'image'
+          @post.content.image.fetch('original', {}).fetch('url', nil)
+        end
       end
     end
   end

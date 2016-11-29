@@ -3,6 +3,19 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="description" content="Fique por dentro de toda novidade sobre o filme da Turma da Mônica Jovem muito mais!.">
+    <meta name="keywords" content="TMJ,turma,monica,jovem,cascao,cebolinha,magali">
+    <meta name="author" content="D3 Estudio">
+
+    <link rel="apple-touch-icon" sizes="120x120" href="/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/img/favicons/favicons-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/img/favicons/favicons-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/img/favicons/safari-pinned-tab.svg" color="#ff0000">
+    <meta name="theme-color" content="#c7c7c9">
+    <meta charset="UTF-8">
+    <title>Turma da Mônica Jovem</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta itemprop="name" content="">
@@ -29,7 +42,7 @@
     <link rel="stylesheet" href="/css/ramona.css" type="text/css">
 </head>
 
-<body ng-app="tmj" ng-controller="MainController" ng-keypress="closeLightboxKey($event.keyCode)" class="{{pageName}}">
+<body ng-app="tmj" ng-controller="MainController" ng-keypress="closeLightboxKey($event.keyCode)" ng-keydown="closeLightboxKey($event.keyCode)" class="{{pageName}}">
     <div class="purple-overlay"></div>
     <!-- <div id="menu">
         <img src="/img/menu-desktop.svg" class="desktop" ng-click="toggle()" />
@@ -64,8 +77,9 @@
             <!-- <li class="pink" ng-click="toggle()"><a ng-href="/personagem/denise" target="_self">DENISE</a></li> -->
             <!-- <li class="blue" ng-click="toggle()"><a ng-href="/personagem/geek" target="_self">GEEK</a></li> -->
         </ul>
+
         <footer class="mobile">
-            <a href="#" class="social-fb">
+            <a target="_blank" href="https://www.facebook.com/TurmadaMonicaJovemBrasil/?fref=ts" class="social-fb">
                 <svg width="38px" height="37px" viewBox="0 0 38 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <!-- Generator: sketchtool 40 (33762) - http://www.bohemiancoding.com/sketch -->
                     <title>B01E23F3-790C-4EC8-86F3-F087EC4B7938</title>
@@ -80,7 +94,7 @@
                     </g>
                 </svg>
             </a>
-            <a href="#" class="social-tw">
+            <a target="_blank" href="https://twitter.com/revistadaturma" class="social-tw">
                 <svg width="38px" height="36px" viewBox="0 0 38 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g id="Styleguide" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                         <polygon id="Fill-2" fill="" points="0.411111111 33.1030667 32.4777778 33.1030667 32.4777778 1.22553699 0.411111111 1.22553699"></polygon>
@@ -91,7 +105,7 @@
                     </g>
                 </svg>
             </a>
-            <a href="#" class="social-yt">
+            <a target="_blank" href="https://www.youtube.com/user/revistaturmajovem" class="social-yt">
                 <svg width="34px" height="34px" viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                       <polygon id="Fill-2" points="0.4 33.1 32.5 33.1 32.5 1.2 0.4 1.2"></polygon>
@@ -100,7 +114,7 @@
                     </g>
                 </svg>
             </a>
-            <a href="#" class="social-go">
+            <!-- <a href="#" class="social-go">
                 <svg width="38px" height="37px" viewBox="0 0 38 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g id="Styleguide" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                         <polygon id="Fill-2" fill="" points="0.411111111 33.1030667 32.4777778 33.1030667 32.4777778 1.22553699 0.411111111 1.22553699"></polygon>
@@ -111,7 +125,7 @@
                         </g>
                     </g>
                 </svg>
-            </a>
+            </a> -->
         </footer>
     </div>
     <div class="overlay" ng-click="closeMenu(); toggle()"></div>
@@ -145,22 +159,22 @@
         </div>
     </div>
     <header>
-        <p class="container"></p>
+        <p class="container desktop" style="text-align: center"><img src="/img/logo.svg" height="84" /></p>
     </header>
     <section ng-view></section>
     <footer ng-if="pageName == 'homePage'" class="desktop">
-        <a href="#" class="social-fb">
-            <img src="/img/rede-social-facebook.svg" class="svg"/>
+        <a href="https://www.facebook.com/TurmadaMonicaJovemBrasil/?fref=ts" target="_blank" class="social-fb">
+            <img src="/img/rede-social-facebook.svg" target="_blank" class="svg"/>
         </a>
-        <a href="#" class="social-tw">
+        <a href="https://twitter.com/revistadaturma" target="_blank" class="social-tw">
             <img src="/img/rede-social-twitter.svg" class="svg"/>
         </a>
-        <a href="#" class="social-yt">
+        <a href="https://www.youtube.com/user/revistaturmajovem" class="social-yt" target="_blank" >
             <img src="/img/rede-social-youtube.svg" class="svg"/>
         </a>
-        <a href="#" class="social-go">
-            <img src="/img/rede-social-google.svg" class="svg"/>
-        </a>
+        <!-- <a href="#" class="social-go" target="_blank" >
+            <img src="/img/rede-social-google.svg"class="svg"/>
+        </a> -->
     </footer>
     <!-- libs -->
     <script src="/js/libs/external/retina.js"></script>

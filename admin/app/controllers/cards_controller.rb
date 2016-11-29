@@ -3,7 +3,8 @@ class CardsController < ApplicationController
 
   # GET /cards
   def index
-    @cards = Card.find(:all, params: { filter: { origin: params[:origin], status: params[:status], content: params[:content] } })
+    @total_cards = Card.get(:total)
+    @cards = Card.find(:all, params: { filter: { origin: params[:origin], status: params[:status], content: params[:content] }, page: params[:page], quantity: params[:quantity] })
   end
 
   # GET /cards/1
