@@ -1,6 +1,7 @@
 <div class="card-container" ng-controller="CardsController">
     <img class="initial-loading" src="/img/loading.gif" />
     <div resize ng-if="ready && pageName == 'homePage'" class="container cards mobile" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()" data-page="1" data-slug="all">
+        <div class="card" style="height: 90% !important; background: none !important"><img style="left: 50%; margin-left: -90px; margin-top: -60px; position: absolute; top: 50%;" src="/img/logo.svg" height="84" /></div>
         <div ng-repeat="card in cardsFeatured track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}" style="background-image: {{card.url}}">
             <div card-class ng-classes="card" data-original="{{card.image.url}}" class="img">{{card.url}}</div>
             <div ng-if="card.kind != 'featured'" class="content">
@@ -68,7 +69,7 @@
     <div class="card one-five column"></div>
 </div>
 <div class="cards-loading">
-  <span></span>
-  <span></span>
-  <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
 </div>
