@@ -139,16 +139,17 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         }
     });
     $scope.closeLightbox = function() {
+        $location.path($rootScope.previousURL, false);
         $('.close').addClass('pow');
         $('.close .active').addClass('pow');
         $('.close .link').addClass('pow');
         $('.close .close-icon4').addClass('pow');
         setTimeout(function(){
-            $location.path($rootScope.previousURL, false);
             if ($(".lightbox").hasClass("show")) {
                 setTimeout(function() {
                     $('lightbox').css({ "display": "none" });
                     $('body').css({ overflow: "auto" });
+                    $('html').css({ overflow: "auto" });
                     $('.lightbox').removeClass("hide");
                     $('.lightbox .detail').removeClass("hide");
                 }, 300);
@@ -157,7 +158,6 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                 $('.lightbox').addClass("hide");
                 $('.lightbox .detail').addClass("hide");
             }
-            $rootScope.track('click', 'lightbox', 'close');
         },300);
         setTimeout(function(){
             $('.close').removeClass('pow');
@@ -165,6 +165,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
             $('.close .link').removeClass('pow');
             $('.close .close-icon4').removeClass('pow');
         },500);
+        $rootScope.track('click', 'lightbox', 'close');
     }
     $scope.closeLightboxClick = function($event) {
         var e = angular.element($event.target);

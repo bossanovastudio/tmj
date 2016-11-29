@@ -985,7 +985,6 @@ div.card {
             top: -20px;
             -webkit-filter: drop-shadow( 3px 3px 0px #000 );
             filter: drop-shadow( 3px 3px 0px #000 );
-            transition-duration: 0.2s;
             cursor: pointer;
             transition-duration: 0s;
             animation-duration: .3s;
@@ -1054,6 +1053,7 @@ div.card {
                 height: 96px;
                 right: -42px;
                 top: -45px;
+                transition-duration: 0s;
                 .close-icon4{
                     display: none;
                 }
