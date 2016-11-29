@@ -84,7 +84,9 @@ end
   # GET /cards/total
   # GET /cards/total.json
   def total
-    @total_cards = Card.count
+    filter = params[:filter]
+    
+    @total_cards = Card.filter_query(filter).count
   end
   
   private

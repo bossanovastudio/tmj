@@ -1,6 +1,6 @@
 module ApplicationHelper
   def paginate(actual=nil)
-    total_cards = Card.get(:total)['cards']
+    total_cards = Card.get(:total, filter: { origin: params[:origin], status: params[:status], content: params[:content] })['cards']
     quantity = (params[:quantity].nil? && 20) || params[:quantity]
     page = (params[:page].nil? && 1) || params[:page].to_i
     pages = (total_cards.to_f / quantity.to_f).ceil
