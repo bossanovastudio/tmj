@@ -1082,50 +1082,15 @@ div.card {
             &:hover {
                 -webkit-filter: drop-shadow( 0px 0px 0px #000);
                 filter: drop-shadow( 0px 0px 0px #000);
-                transition-duration: 0.2s;
+                // transition-duration: 0.2s;
                 -ms-transform: translate(3px, 3px);
                 /* IE 9 */
                 -webkit-transform: translate(3px, 3px);
                 /* Safari */
                 transform: translate(3px, 3px);
-                &:active{
-                    transition-duration: 0s;
-                    .close-icon4{
-                        display: none;
-                    }
-                    img.link{
-                        display: none;
-                    }
-                    img.active{
-                        opacity: 1;
-                        display: block;
-                        width: 100%;
-                    }
-                }
+
             }
-            &:active{
-                width: 85px;
-                height: 96px;
-                right: -42px;
-                top: -45px;
-                .close-icon4{
-                    display: none;
-                }
-                img.link{
-                    &.pow{
-                        display: none;
-                    }
-                }
-                img.active{
-                    opacity: 1;
-                    display: block;
-                    &.pow{
-                        display: block;
-                        width: 100%;
-                        opacity: 1;
-                    }
-                }
-            }
+
             img.link{
                 &.pow{
                     display: none;
