@@ -986,7 +986,6 @@ div.card {
         }
         .close {
             position: absolute;
-            transition-duration: 0.2s;
             cursor: pointer;
             width: 45px;
             height: 46px;
@@ -994,20 +993,13 @@ div.card {
             top: -20px;
             -webkit-filter: drop-shadow( 3px 3px 0px #000 );
             filter: drop-shadow( 3px 3px 0px #000 );
-              transition-duration: 0.2s;
-              cursor: pointer;
+            cursor: pointer;
             transition-duration: 0s;
-            animation-duration: .3s;
-            animation-timing-function: ease-in-out;
-            animation-fill-mode: forwards;
-            animation-iteration-count: infinite;
             &.pow{
                 width: 85px;
                 height: 96px;
                 right: -42px;
                 top: -45px;
-                -webkit-animation-play-state: paused;
-                    animation-play-state: paused;
             }
             .close-icon4 {
                 width: 18px;
@@ -1052,6 +1044,20 @@ div.card {
                 -webkit-transform: translate(3px, 3px);
                 /* Safari */
                 transform: translate(3px, 3px);
+                &:active{
+                    transition-duration: 0s;
+                    .close-icon4{
+                        display: none;
+                    }
+                    img.link{
+                        display: none;
+                    }
+                    img.active{
+                        opacity: 1;
+                        display: block;
+                        width: 100%;
+                    }
+                }
             }
             &:active{
                 width: 85px;
