@@ -41,6 +41,22 @@ header {
     position: relative;
     z-index: 1;
     margin-bottom: 25px;
+    transition: all 0.3s ease-in-out;
+
+    &.animate{
+        transform: translateX(100px);
+        transition: all 0.3s ease-in-out;
+
+    }
+}
+section{
+    transition: all 0.3s ease-in-out;
+
+    &.animate{
+        transform: translateX(100px);
+        transition: all 0.3s ease-in-out;
+
+    }
 }
 
 #menu {
@@ -197,7 +213,7 @@ header {
     position: fixed;
     left: 0px;
     z-index: 100;
-    width: 500px;
+    width: 400px;
     transform: translateX(-500px);
     height: 100%;
     background: url(/img/bg-pattern.png) no-repeat center top;
@@ -233,30 +249,25 @@ header {
         left: 0px;
         right: 0px;
         li {
-            opacity: 0;
+            background-size: auto 100%;
+            opacity: 1;
             &.red {
                 background: url(/img/tudo_sobre_tmj.png) center center no-repeat;
-                background-size: 100%;
             }
             &.orange {
                 background: url(/img/remix.png) center center no-repeat;
-                background-size: 100%;
             }
             &.yellow {
                 background: url(/img/feito_por_voce.png) center center no-repeat;
-                background-size: 100%;
             }
             &.purple {
                 background: url(/img/ramona_desktop.png) center center no-repeat;
-                background-size: 100%;
             }
             &.pink {
                 background: url(/img/denise.png) center center no-repeat;
-                background-size: 100%;
             }
             &.blue {
                 background: url(/img/geek.png) center center no-repeat;
-                background-size: 100%;
             }
             a {
                 font-family: KomikaTitle;
@@ -268,7 +279,9 @@ header {
                 padding: 25px 97px;
             }
             &.animate {
-                animation: itensMenu .4s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+                a {
+                    animation: itensMenu .4s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+                }
             }
         }
     }
@@ -1380,8 +1393,8 @@ footer {
             display: none;
         }
         #nav-icon4 {
-            top: 0px;
-            left: 0px;
+            top: 5px;
+            left: -5px;
         }
     }
     .sidebar {
@@ -1442,6 +1455,8 @@ footer {
         right: auto;
         bottom: auto;
         width: 100%;
+        top: 10px;
+
         a {
             vertical-align: top;
             top: 26px;

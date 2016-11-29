@@ -34,9 +34,11 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         sidebar.addClass('open');
         var html = angular.element(document.querySelector('html'));
         html.css({ 'overflow': 'hidden' });
+        $("header").addClass('animate');
+        $("section").addClass('animate');
         $(".sidebar li").each(function(i) {
             var t = $(this);
-            setTimeout(function() { t.addClass('animate'); }, (i + 1) * 50);
+            setTimeout(function() { t.addClass('animate'); }, (i + 1) * 25);
         });
         $rootScope.track('click', 'menu', 'open');
     }
@@ -51,6 +53,8 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         sidebar.removeClass('open');
         var html = angular.element(document.querySelector('html'));
         html.css({ 'overflow': 'auto' });
+        $("header").removeClass('animate');
+        $("section").removeClass('animate');
         setTimeout(function() {
             $(".sidebar li").removeClass("animate")
         }, 500);
