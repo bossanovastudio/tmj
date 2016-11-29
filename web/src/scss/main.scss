@@ -454,14 +454,6 @@ p.date {
 
 .cards {
     list-style: none;
-    perspective: 1300px;
-    .card {
-        transform-style: preserve-3d;
-        &.animate {
-            opacity: 1;
-            animation: fallPerspective .6s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
-        }
-    }
     &:after {
         content: '';
         z-index: 9;
@@ -477,15 +469,6 @@ p.date {
             background: url(/img/pag_loading.gif);
             background-size: cover;
         }
-    }
-}
-
-@keyframes fallPerspective {
-    from {
-        transform: translateZ(50px) translateY(100px) rotateX(-10deg);
-    }
-    to {
-        transform: translateZ(0px) translateY(0px) rotateX(0deg);
     }
 }
 
