@@ -189,7 +189,7 @@ $('.remix-container').each ->
       $(this).closest('.toolbox-item').toggleClass('on').siblings().removeClass('on')
       $remix.removeClass('can-choose-picture')
 
-  $composer.find('.toolbox-item').filter('.ballons, .stickers').find('.option-item').click (event) ->
+  $composer.find('.toolbox-item-elements .elements-item').click (event) ->
     event.stopPropagation()
     $remix
       .trigger('add-image', $(this).data('src'))

@@ -169,26 +169,26 @@
           }
         }
       }
-      &.ballons, &.stickers {
-        .options {
-          @include clearfix;
-          .option-item {
-            cursor: pointer;
-            float: left;
-            height: 60px;
-            padding: 5px;
-            img {
-              max-height: 100%;
-            }
-          }
-        }
-      }
       &.on {
         .toggler:after {
           display: block;
         }
         .popup {
           display: block;
+        }
+      }
+    }
+    .toolbox-item-elements {
+      .elements {
+        @include clearfix;
+        .elements-item {
+          cursor: pointer;
+          float: left;
+          height: 60px;
+          padding: 5px;
+          img {
+            max-height: 100%;
+          }
         }
       }
     }
@@ -247,18 +247,18 @@
             z-index: 10;
           }
         }
-        &.ballons, &.stickers {
-          .toggler:after {
-            border-width: 24px 12px 0 12px;
-            border-color: #FFF transparent transparent transparent;
+      }
+      .toolbox-item-elements {
+        .toggler:after {
+          border-width: 24px 12px 0 12px;
+          border-color: #FFF transparent transparent transparent;
 
-            bottom: 100%;
-            top: auto;
-          }
-          .popup {
-            bottom: 100%;
-            top: auto;
-          }
+          bottom: 100%;
+          top: auto;
+        }
+        .popup {
+          bottom: 100%;
+          top: auto;
         }
       }
     }

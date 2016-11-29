@@ -121,28 +121,28 @@
               </div>
             </div>
           </div>
-          <div class="toolbox-item ballons">
+          <div class="toolbox-item toolbox-item-elements ballons">
             <button type="button" class="toggler" title="Balões">
               <%= image_tag "icon-ballon", alt: 'Balões' %>
             </button>
             <div class="popup">
-              <div class="popup-holder options">
+              <div class="popup-holder elements">
                 <% 14.times do |i| %>
-                <div class="option-item" data-src="<%= image_url "fake/balao-" + (i+1).to_s %>">
+                <div class="elements-item" data-src="<%= image_url "fake/balao-" + (i+1).to_s %>">
                   <%= image_tag "fake/balao-" + (i+1).to_s %>
                 </div>
                 <% end %>
               </div>
             </div>
           </div>
-          <div class="toolbox-item stickers">
+          <div class="toolbox-item toolbox-item-elements stickers">
             <button type="button" class="toggler" title="Stickers">
               <%= image_tag "icon-smile", alt: 'Stickers' %>
             </button>
             <div class="popup">
-              <div class="popup-holder options">
+              <div class="popup-holder elements">
                 <% 14.times do |i| %>
-                <div class="option-item" data-src="<%= image_url "fake/sticker-" + (i+1).to_s %>">
+                <div class="elements-item" data-src="<%= image_url "fake/sticker-" + (i+1).to_s %>">
                   <%= image_tag "fake/sticker-" + (i+1).to_s %>
                 </div>
                 <% end %>
