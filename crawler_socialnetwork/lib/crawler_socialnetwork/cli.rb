@@ -12,7 +12,7 @@ module CrawlerSocialnetwork
         @twitter.user 'revistadaturma'
         @facebook.timeline 'TurmadaMonicaJovemBrasil'
         @youtube.channel 'revistaturmajovem', true
-        # @pinterest.profile ''
+        @pinterest.profile 'AWPUOpt6ygJugqlnzdUuNw07dfB-FIuTMID9YAtDl7PBEwAv_gAAAAA'
       rescue => e
         $logger.error(e)
       end
