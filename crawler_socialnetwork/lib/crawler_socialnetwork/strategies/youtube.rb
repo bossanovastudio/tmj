@@ -11,17 +11,21 @@ module CrawlerSocialnetwork
       @youtube = @conn.discovered_api('youtube', 'v3')
     end
     
-    def channel(channel_id = nil)
+    def channel(channel_id, is_user = false)
       raise RuntimeError unless channel_id
       
-      # channel_response = @conn.execute!(
-      #   api_method: @youtube.channels.list,
-      #   parameters: {
-      #     part: 'contentDetails',
-      #     forUsername: user_id
-      #   }
-      # )
-
+      if is_user
+        channel_response = @conn.execute!(
+          api_method: @youtube.channels.list,
+          parameters: {
+            part: 'contentDetails',
+            forUsername: channel_id
+          }
+        )
+        
+        channel_id = channel_response.data.items.first.id
+      end
+      
       videos = @conn.execute!(
         api_method: @youtube.search.list,
         parameters: {
