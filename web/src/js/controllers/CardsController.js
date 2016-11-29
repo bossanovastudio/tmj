@@ -39,7 +39,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         }
         if ($scope.PAGE > 1) {
             if (!isMobileDevice) {
-                $('.cards').eq($scope.PAGE - 1).addClass('loading');
+                // $('.cards').eq($scope.PAGE - 1).addClass('loading');
+                $('.cards-loading').addClass('show');
             }
         }
         $http({
@@ -50,7 +51,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 if (data.cards.length == 0) {
                     $scope.END = true;
                     if (!isMobileDevice) {
-                        $('.cards').removeClass('loading');
+                        // $('.cards').removeClass('loading');
+                        $('.cards-loading').removeClass('show');
                     }
                 } else {
                     if ($scope.PAGE == 1 && isMobileDevice && $rootScope.pageName != 'homePage') {
@@ -109,6 +111,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     } else {
                         setTimeout(function() {
                             $('.cards').removeClass('loading');
+                            $('.cards-loading').removeClass('show');
                             $('.cards').find('.card').addClass('show');
                         }, 1000);
                     }
