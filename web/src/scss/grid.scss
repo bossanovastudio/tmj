@@ -11,6 +11,19 @@
   float: left;
   box-sizing: border-box; }
 
+.vertical-container {
+  @media only screen and (max-width: 780px) {
+    height: 100%;
+    display: table;
+  }
+}
+.vertical-content {
+  @media only screen and (max-width: 780px) {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
 /* For devices larger than 400px */
 @media (min-width: 400px) {
   .container {
