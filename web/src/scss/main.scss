@@ -986,19 +986,39 @@ div.card {
         }
         .close {
             position: absolute;
-            right: -22px;
-            top: -22px;
-            -webkit-filter: drop-shadow( 3px 3px 0px #000);
-            filter: drop-shadow( 3px 3px 0px #000);
             transition-duration: 0.2s;
             cursor: pointer;
+            width: 45px;
+            height: 46px;
+            right: -20px;
+            top: -20px;
+            -webkit-filter: drop-shadow( 3px 3px 0px #000 );
+            filter: drop-shadow( 3px 3px 0px #000 );
+              transition-duration: 0.2s;
+              cursor: pointer;
+            transition-duration: 0s;
+            animation-duration: .3s;
+            animation-timing-function: ease-in-out;
+            animation-fill-mode: forwards;
+            animation-iteration-count: infinite;
+            &.pow{
+                width: 85px;
+                height: 96px;
+                right: -42px;
+                top: -45px;
+                -webkit-animation-play-state: paused;
+                    animation-play-state: paused;
+            }
             .close-icon4 {
                 width: 18px;
                 height: 18px;
                 position: absolute;
-                top: 14px;
-                left: 12px;
+                top: 16px;
+                left: 14px;
                 cursor: pointer;
+                &.pow{
+                    display: none;
+                }
                 span {
                     display: block;
                     position: absolute;
@@ -1033,20 +1053,42 @@ div.card {
                 /* Safari */
                 transform: translate(3px, 3px);
             }
-            &:hover span {
-                width: 100% !important;
-                background-color: #000;
-                -webkit-transition: 0.2s;
-                -moz-transition: 0.2s;
-                -o-transition: 0.2s;
-                transition: 0.2s;
+            &:active{
+                width: 85px;
+                height: 96px;
+                right: -42px;
+                top: -45px;
+                .close-icon4{
+                    display: none;
+                }
+                img.link{
+                    &.pow{
+                        display: none;
+                    }
+                }
+                img.active{
+                    opacity: 1;
+                    display: block;
+                    &.pow{
+                        display: block;
+                        width: 100%;
+                        opacity: 1;
+                    }
+                }
             }
-            &:hover #Fill-6 {
-                fill: #f1f1f1;
-                -webkit-transition: 0.2s;
-                -moz-transition: 0.2s;
-                -o-transition: 0.2s;
-                transition: 0.2s;
+            img.link{
+                &.pow{
+                    display: none;
+                }
+            }
+            img.active{
+                opacity: 0;
+                display: none;
+                &.pow{
+                    display: block;
+                    width: 100%;
+                    opacity: 1;
+                }
             }
         }
         &.image {
