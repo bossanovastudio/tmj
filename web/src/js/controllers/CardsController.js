@@ -165,7 +165,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     $(e).animate({
                         left: walk
                     }, 250, 'easeOutExpo', function() {
-                        console.log(running);
                         running = false;
                     });
                 } else {
@@ -188,7 +187,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     $(e).animate({
                         left: walk
                     }, 250, 'easeOutExpo', function() {
-                        console.log(running);
                         running = false;
                     });
                 } else {
@@ -197,7 +195,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             }
             $scope.lazyLoad(false);
         }
-        console.log(running);
         $rootScope.track('swipe', 'cards', 'left');
     }
     $scope.swipeRight = function($event) {
