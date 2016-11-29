@@ -96,45 +96,51 @@ $('.remix-container').each ->
       $element = $('<div>').attr { class: 'image' }
 
       $('<img>').attr { src: src, alt: '' }
-      .appendTo $element
+        .appendTo $element
 
       $('<button>').attr { type: 'button', class: 'remove' }
-      .html '&times;'
-      .appendTo $element
+        .html '&times;'
+        .on 'click', ->
+          $(this).parent().remove()
+        .appendTo $element
 
-
+      # appends element to last
       $composer.find('.artboard .canvas').append $element
 
+      # applies drag and resize abilities. select, deselect and click events too
       $element
+        .addClass('focus')
         .draggable {
           containment: 'parent'
-          disabled: true
         }
         .resizable {
           aspectRatio: true
           containment: 'parent'
-          disabled: true
         }
         .on {
-          click: (event) ->
-            event.stopPropagation()
+          'remix:select-element': ->
             $(this)
               .addClass('focus')
               .draggable('enable')
               .resizable('enable')
-              .siblings('.image').trigger('blur')
+              .siblings('.image').trigger('remix:deselect-element')
 
-          blur: ->
+          'remix:deselect-element': ->
             $(this)
               .removeClass('focus')
               .draggable('disable')
               .resizable('disable')
+
+          click: (event) ->
+            event.stopPropagation()
+            $(this).trigger('remix:select-element')
         }
-        .find('.remove').on 'click', ->
-          $(this).parent().remove()
+
+      # stores last used element
+      $remix.data('last-element', $element)
 
   $('body').click ->
-    $composer.find('.artboard .canvas .image').trigger('blur')
+    $composer.find('.artboard .canvas .image').trigger('remix:deselect-element')
 
   # gallery swipe
   $landing.find('.gallery').swipe {
@@ -179,6 +185,10 @@ $('.remix-container').each ->
       $(this).closest('.toolbox-item').toggleClass('on').siblings().removeClass('on')
       $remix.removeClass('can-choose-picture')
 
-  $composer.find('.toolbox-item').filter('.ballons, .stickers').find('.option-item').click ->
-    $remix.trigger 'add-image', $(this).data('src')
+  $composer.find('.toolbox-item').filter('.ballons, .stickers').find('.option-item').click (event) ->
+    event.stopPropagation()
+    $remix
+      .trigger('add-image', $(this).data('src'))
+      .data('last-element').trigger('remix:select-element')
+
     $(this).closest('.toolbox-item').removeClass('on')
