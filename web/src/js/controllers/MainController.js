@@ -144,6 +144,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         $('.close .active').addClass('pow');
         $('.close .link').addClass('pow');
         $('.close .close-icon4').addClass('pow');
+        $location.path($rootScope.previousURL, false);
         setTimeout(function(){
             if ($(".lightbox").hasClass("show")) {
                 setTimeout(function() {
