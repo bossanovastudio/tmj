@@ -430,6 +430,13 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         }, $scope._throttleDelay);
     }
 
+    $scope.socialMediaShareLink = '';
+    $scope.openSharePopup = function(link, cardID) {
+      $scope.socialMediaShareLink = link + $rootScope.SITE_URL + '/detalhe/card/' + cardID;
+
+      window.open($scope.socialMediaShareLink,"","width=600,height=500");
+    }
+
     $(document).ready(function() {
         $(window).off('scroll', $scope.ScrollHandler).on('scroll', $scope.ScrollHandler);
     });

@@ -9,13 +9,16 @@
 </p>
 <div class="shareBox">
     <div class="content-item-box">
-        <a class="item-share" target="_blank" ng-href="https://www.facebook.com/sharer/sharer.php?u={{SITE_URL}}/detalhe/card/{{card.id}}">
+        <a class="item-share" target="popup"
+           ng-click="openSharePopup('https://www.facebook.com/sharer/sharer.php?u=', card.id)">
             <img class="shareButton" src="/img/facebook-remix.svg" />
         </a>
-        <a class="item-share" target="_blank" ng-href="https://twitter.com/home?status={{SITE_URL}}/detalhe/card/{{card.id}}">
+        <a class="item-share" target="popup"
+            ng-click="openSharePopup('https://twitter.com/home?status=', card.id)">
             <img class="shareButton" src="/img/twitter-remix.svg" />
         </a>
-        <a class="item-share" target="_blank" ng-href="http://www.tumblr.com/share/link?url={{SITE_URL}}/detalhe/card/{{card.id}}">
+        <a class="item-share" target="popup"
+            ng-click="openSharePopup('http://www.tumblr.com/share/link?url=', card.id)">
             <img class="shareButton" src="/img/tumblr-remix.svg" />
         </a>
     </div>
