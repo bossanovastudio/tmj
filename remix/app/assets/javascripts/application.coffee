@@ -186,9 +186,26 @@ $('.remix-container').each ->
   # toggles between tools
   $composer.find('.toolbox .toggler').click ->
     if $remix.hasClass('can-compose')
-      $(this).closest('.toolbox-item').toggleClass('on').siblings().removeClass('on')
+      $(this).closest('.toolbox-item').trigger('remix:toolbox-click')
       $remix.removeClass('can-choose-picture')
 
+  # toolbox item color
+  $composer.find('.toolbox-item-color').on 'remix:toolbox-click', ->
+    colors = ['black', 'purple', 'lightblue', 'lightgreen', 'red', 'yellow']
+    colorIndex = $remix.data('color-index') || 0
+    if colorIndex >= colors.length
+      colorIndex = 0
+
+    $composer.find('.artboard .canvas').css('background-color', colors[colorIndex])
+    $remix.data('color-index', colorIndex+1)
+
+  # toolbox item popup
+  $composer.find('.toolbox-item-popup').on 'remix:toolbox-click', ->
+    $(this).closest('.toolbox-item')
+      .toggleClass('on')
+      .siblings().removeClass('on')
+
+  # toolbox item elements item
   $composer.find('.toolbox-item-elements .elements-item').click (event) ->
     event.stopPropagation()
     $remix
