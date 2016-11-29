@@ -100,7 +100,7 @@ $(document).on('turbolinks:load', function() {
         $(this).find('.img').css('height', 'auto');
     });
 
-    setTimeout(initMasonry(), 200);
+    setTimeout(function() { initMasonry(); }, 1000);
 });
 
 function initMasonry() {
