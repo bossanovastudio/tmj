@@ -4,6 +4,8 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
     $rootScope.card = {};
     $rootScope.card.posted_at = "";
     $rootScope.card.liked = false;
+    $rootScope.cardIsOpen = false;
+
     var toggled;
 
     $rootScope.pageName = 'homePage';
@@ -141,6 +143,8 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         }
     });
     $scope.closeLightbox = function() {
+        $rootScope.cardIsOpen = false;
+
         $location.path($rootScope.previousURL, false);
         $('.close').addClass('pow');
         $('.close .active').addClass('pow');
@@ -173,6 +177,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         $rootScope.track('click', 'lightbox', 'close');
     }
     $scope.closeLightboxClick = function($event) {
+        $rootScope.cardIsOpen = false;
         var e = angular.element($event.target);
         e = $(e);
         if (!e.hasClass('preview') && !e.hasClass('detail') && !e.hasClass('share') && !e.hasClass('arrow') && !e.hasClass('content') && !e.hasClass('hr') && !e.hasClass('item-share') && !e.hasClass('shareBox') && !e.hasClass('content-item-box') && !e.hasClass('shareButton')) {
@@ -180,6 +185,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         }
     }
     $scope.closeLightboxKey = function(keyCode) {
+        $rootScope.cardIsOpen = false;
         if (parseInt(keyCode) == 27) {
             $scope.closeLightbox();
         }

@@ -265,12 +265,14 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
     $scope.openCard = function($event, id, content, force) {
         var elem = angular.element($event.target);
+        $rootScope.cardIsOpen = true;
         if (content.kind == "featured") {
             $location.path(content.source_url);
             $rootScope.track('click', 'featured', 'open');
         } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('originalPost') && !elem.hasClass('shareButton')) {
             if (isMobileDevice) {
                 $('.dark-overlay').fadeIn();
+
             }
             $http({
                     method: 'get',
@@ -371,7 +373,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         // });
                     }, 500);
                 });
-        }
+              }
     }
 
     $scope.imageHeightMobile = function() {
@@ -388,6 +390,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
 
     $scope.close = function($event) {
+        $rootScope.cardIsOpen = false;
+        
         var elem = angular.element($event.target);
         var card = $(elem).closest('.card');
         card.fadeOut(300, function() {

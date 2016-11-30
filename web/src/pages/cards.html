@@ -18,10 +18,10 @@
                     </div>
                 </div>
             </div>
-            <div ng-if="card.kind=='video'" card-class ng-classes="card" data-original="{{card.video.thumbnail}}" class="img video vertical-container">
+            <div ng-if="card.kind=='video'" card-class ng-classes="card" data-original="{{card.video.thumbnail}}" class="img video">
                 <div class="videoMobile" ng-bind-html="card.source_url | formatVideo | trust"></div>
-                <div class="video-overlay"></div>
-                <div class="vertical-content">
+                <div ng-show="!cardIsOpen" class="video-overlay"></div>
+                <div ng-show="!cardIsOpen" class="vertical-content">
                   <svg viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                           <g transform="translate(-858.000000, -482.000000)">
