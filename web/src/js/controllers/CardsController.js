@@ -7,6 +7,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope.PAGE = 1;
     $scope.SIZE = 20;
     $scope.END = false;
+    $rootScope.isCardsLoaded = false;
 
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
@@ -56,6 +57,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 // if (isMobileDevice) {
                 //     $('.dark-overlay').fadeOut();
                 // }
+                $rootScope.isCardsLoaded = true;
+
                 if (data.cards.length == 0) {
                     $scope.END = true;
                     if (!isMobileDevice) {
@@ -102,27 +105,26 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             }, 500);
                         }
                     }
-                    if ($scope.PAGE == 1) {
-                        setTimeout(function() {
-                            if ($('.initial-loading').is(':visible')) {
-                                $('.initial-loading').hide();
-                                $('.cards').addClass('show');
-                            }
-                            $('.cards').find('.card').addClass('show');
-                        }, 1000);
-                        setTimeout(function() {
-                            $('.social-editor li').each(function(i) {
-                                var t = $(this);
-                                setTimeout(function() { t.addClass('animate'); }, (i + 1) * 50);
-                            });
-                        }, 1600);
-                    } else {
-                        setTimeout(function() {
-                            $('.cards').removeClass('loading');
-                            $('.cards-loading').removeClass('show');
-                            $('.cards').find('.card').addClass('show');
-                        }, 1000);
-                    }
+                    // if ($scope.PAGE == 1) {
+                    //     setTimeout(function() {
+                    //         if ($('.initial-loading').is(':visible')) {
+                    //             $('.cards').addClass('show');
+                    //         }
+                    //         $('.cards').find('.card').addClass('show');
+                    //     }, 1000);
+                    //     setTimeout(function() {
+                    //         $('.social-editor li').each(function(i) {
+                    //             var t = $(this);
+                    //             setTimeout(function() { t.addClass('animate'); }, (i + 1) * 50);
+                    //         });
+                    //     }, 1600);
+                    // } else {
+                    //     setTimeout(function() {
+                    //         $('.cards').removeClass('loading');
+                    //         $('.cards-loading').removeClass('show');
+                    //         $('.cards').find('.card').addClass('show');
+                    //     }, 1000);
+                    // }
                     // setTimeout(function() {
                     //     $('.content p.text').linkify({
                     //         target: "_blank"
