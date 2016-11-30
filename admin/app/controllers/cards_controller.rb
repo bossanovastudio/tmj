@@ -4,6 +4,7 @@ class CardsController < ApplicationController
   # GET /cards
   def index
     @status = params.fetch(:status, nil)
+    @origin = params.fetch(:origin, nil)
     @cards = Card.find(:all, params: {
         filter: {
             origin: params[:origin],
@@ -61,7 +62,8 @@ class CardsController < ApplicationController
     @cards.each do |card|
       card.get(:accept)
     end
-    redirect_to cards_url
+
+    redirect_with_filters
   end
 
   # POST /cards/reject
@@ -71,7 +73,8 @@ class CardsController < ApplicationController
     @cards.each do |card|
       card.get(:reject)
     end
-    redirect_to cards_url
+
+    redirect_with_filters
   end
 
   private
@@ -87,5 +90,13 @@ class CardsController < ApplicationController
 
     def bulk_params
       params.require(:card).permit(:id => [])
+    end
+
+    def redirect_with_filters
+      redirect = {}
+      redirect[:status] = params[:status_filter] unless params[:status_filter].empty?
+      redirect[:origin] = params[:origin_filter] unless params[:origin_filter].empty?
+
+      redirect_to root_url(redirect)
     end
 end
