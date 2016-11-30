@@ -11,8 +11,10 @@ class GeneralController < ApplicationController
   end
 
   def editors
+    pagination = pagination_params
+    
     user = User.editors.where(username: params[:id]).first
-    @cards = user.cards
+    @cards = user.cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1).approved
   end
 
   private
