@@ -287,6 +287,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         var contentHTML = $compile(card.html())($scope);
                         card.html(contentHTML);
                         $('body').append(card);
+                        $('section').css({ overflow: "hidden !important" });
                         card.animate({
                             left: 0,
                             top: 0,
@@ -382,6 +383,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             $(this).remove();
         })
         if (isMobileDevice) {
+            $('section').css({ overflow: "visible !important" });
             $('.card').removeClass('openMobile');
         }
         $rootScope.track('click', 'cards', 'close');
@@ -434,22 +436,24 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope._throttleDelay = 100;
 
     $scope.ScrollHandler = function(e) {
-        clearTimeout($scope._throttleTimer);
-        $scope._throttleTimer = setTimeout(function() {
-            if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-                $scope.PAGE++;
-                if (!$scope.END) {
-                    $scope.loadCards($scope.PAGE);
+        if (!isMobileDevice) {
+            clearTimeout($scope._throttleTimer);
+            $scope._throttleTimer = setTimeout(function() {
+                if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                    $scope.PAGE++;
+                    if (!$scope.END) {
+                        $scope.loadCards($scope.PAGE);
+                    }
                 }
-            }
-        }, $scope._throttleDelay);
+            }, $scope._throttleDelay);
+        }
     }
 
     $rootScope.socialMediaShareLink = '';
     $rootScope.openSharePopup = function(link, cardID) {
-      $rootScope.socialMediaShareLink = link + $rootScope.SITE_URL + '/detalhe/card/' + cardID;
+        $rootScope.socialMediaShareLink = link + $rootScope.SITE_URL + '/detalhe/card/' + cardID;
 
-      window.open($rootScope.socialMediaShareLink,"","width=600,height=500");
+        window.open($rootScope.socialMediaShareLink, "", "width=600,height=500");
     }
 
     $(document).ready(function() {
