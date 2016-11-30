@@ -199,7 +199,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                 container = $(this);
             }
         });
-        if (container && !container.hasClass('animated')) {
+        if (container && !container.hasClass('animated') && container.find('.initial').length > 0) {
             setTimeout(function() {
                 var e = container;
                 var walk = $('.card').width() + 20;
