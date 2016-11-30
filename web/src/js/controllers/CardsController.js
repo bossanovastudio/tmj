@@ -43,18 +43,19 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             if (!isMobileDevice) {
                 // $('.cards').eq($scope.PAGE - 1).addClass('loading');
                 $('.cards-loading').addClass('show');
-            } else {
-                $('.dark-overlay').fadeIn();
             }
+            // else {
+                //$('.dark-overlay').fadeIn();
+            //}
         }
         $http({
                 method: 'get',
                 url: API_URL + '/api/' + slug + '/' + p + '/' + $scope.SIZE + '.json',
             })
             .success(function(data) {
-                if (isMobileDevice) {
-                    $('.dark-overlay').fadeOut();
-                }
+                // if (isMobileDevice) {
+                //     $('.dark-overlay').fadeOut();
+                // }
                 if (data.cards.length == 0) {
                     $scope.END = true;
                     if (!isMobileDevice) {
@@ -173,13 +174,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
             if (!e.hasClass('mobile')) {
                 //size = size - 1;
-                if (walk != -(size * ($('.card').width() + 20))) {
-                    $(e).animate({
-                        left: walk
-                    }, 250, 'easeOutExpo', function() {
-                        running = false;
-                    });
-                } else {
+                if (walk == -((size-2) * ($('.card').width() + 20))) {
                     if (!e.hasClass('mobile')) {
                         page++;
                         $scope.PAGE++;
@@ -192,6 +187,14 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         }
                         $(e).data('page', page);
                     }
+                }
+                if (walk != -(size * ($('.card').width() + 20))) {
+                    $(e).animate({
+                        left: walk
+                    }, 250, 'easeOutExpo', function() {
+                        running = false;
+                    });
+                } else {
                     running = false;
                 }
             } else {
@@ -373,7 +376,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         // });
                     }, 500);
                 });
-              }
+        }
     }
 
     $scope.imageHeightMobile = function() {
@@ -391,7 +394,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
     $scope.close = function($event) {
         $rootScope.cardIsOpen = false;
-        
+
         var elem = angular.element($event.target);
         var card = $(elem).closest('.card');
         card.fadeOut(300, function() {
