@@ -31,6 +31,7 @@ body {
     -o-background-size: cover;
     background-size: cover;
     min-height: 100%;
+    min-width: 600px;
 }
 
 header {
@@ -42,20 +43,18 @@ header {
     z-index: 1;
     margin-bottom: 40px;
     transition: all 0.3s ease-in-out;
-
-    &.animate{
+    &.animate {
         transform: translateX(100px);
         transition: all 0.3s ease-in-out;
     }
 }
-section{
+
+section {
     transition: all 0.3s ease-in-out;
     overflow: hidden;
-
-    &.animate{
+    &.animate {
         transform: translateX(100px);
         transition: all 0.3s ease-in-out;
-
     }
 }
 
@@ -128,7 +127,7 @@ section{
             }
         }
     }
-    .shadow-menu{
+    .shadow-menu {
         position: absolute;
         top: 0;
         left: 0;
@@ -159,7 +158,7 @@ section{
         left: 3px;
         width: 100%;
     }
-    &:hover .content-icon-menu{
+    &:hover .content-icon-menu {
         // -webkit-filter: drop-shadow( 0px 0px 0px #000);
         // filter: drop-shadow( 0px 0px 0px #000);
         transition-duration: 0.2s;
@@ -169,7 +168,7 @@ section{
         /* Safari */
         transform: translate(3px, 3px);
     }
-    &:hover .shadow-menu{
+    &:hover .shadow-menu {
         opacity: 0;
         transition-duration: 0.2s;
     }
@@ -266,27 +265,22 @@ section{
             &.red {
                 background: url(/img/tudo_sobre_tmj.png) center center no-repeat;
                 background-size: auto 100%;
-
             }
             &.orange {
                 background: url(/img/remix.png) center center no-repeat;
                 background-size: auto 100%;
-
             }
             &.yellow {
                 background: url(/img/feito_por_voce.png) center center no-repeat;
                 background-size: auto 100%;
-
             }
             &.purple {
                 background: url(/img/ramona_desktop.png) center center no-repeat;
                 background-size: auto 100%;
-
             }
             &.pink {
                 background: url(/img/denise.png) center center no-repeat;
                 background-size: auto 100%;
-
             }
             &.blue {
                 background: url(/img/geek.png) center center no-repeat;
@@ -384,9 +378,8 @@ div.shareBox {
         width: 107%;
         height: 20px;
         overflow: hidden;
-
         a {
-          cursor: pointer;
+            cursor: pointer;
         }
     }
 }
@@ -439,59 +432,65 @@ p.date {
         margin-right: 3px;
     }
 }
-.cards-loading{
-   width: 100%;
-   position: relative;
-   display: none;
-   text-align: center;
-   bottom: 20px;
-   &.show{
-     display: inline-block;
-   }
-   span{
-     content: '';
-     display: inline-block;
-     width: 10.5px;
-     height: 11.5px;
-     background-color: #000;
-     border-radius: 10px;
-     margin: 5px;
 
-     &:nth-child(1){
-       animation: loadingBounce 0.8s ease-in-out  infinite;
-     }
-     &:nth-child(2){
-       animation: loadingBounce 0.8s ease-in-out 0.15s infinite;
-     }
-     &:nth-child(3){
-       animation: loadingBounce 0.8s ease-in-out 0.30s infinite;
-     }
-   }
- }
+.cards-loading {
+    width: 100%;
+    position: relative;
+    display: none;
+    text-align: center;
+    bottom: 20px;
+    &.show {
+        display: inline-block;
+    }
+    span {
+        content: '';
+        display: inline-block;
+        width: 10.5px;
+        height: 11.5px;
+        background-color: #000;
+        border-radius: 10px;
+        margin: 5px;
+        &:nth-child(1) {
+            animation: loadingBounce 0.8s ease-in-out infinite;
+        }
+        &:nth-child(2) {
+            animation: loadingBounce 0.8s ease-in-out 0.15s infinite;
+        }
+        &:nth-child(3) {
+            animation: loadingBounce 0.8s ease-in-out 0.30s infinite;
+        }
+    }
+}
 
- @keyframes loadingBounce{
-   0%, 100%{
-     -webkit-transform: translateY(10px);
-     -ms-transform: translateY(10px);
-     -o-transform: translateY(10px);
-     transform: translateY(10px);
-     -ms-transform: scale(1.2, 0.7); /* IE 9 */
-     -webkit-transform: scale(1.2, 0.7); /* Safari */
-     transform: scale(1.2, 0.7);
-   }
-   25%, 75%{
-     -webkit-transform: translateY(0px);
-     -ms-transform: translateY(0px);
-     -o-transform: translateY(0px);
-     transform: translateY(0px);
-   }
-   49%, 50%, 51%{
-     -webkit-transform: translateY(-20px);
-     -ms-transform: translateY(-20px);
-     -o-transform: translateY(-20px);
-     transform: translateY(-20px);
-   }
- }
+@keyframes loadingBounce {
+    0%,
+    100% {
+        -webkit-transform: translateY(10px);
+        -ms-transform: translateY(10px);
+        -o-transform: translateY(10px);
+        transform: translateY(10px);
+        -ms-transform: scale(1.2, 0.7);
+        /* IE 9 */
+        -webkit-transform: scale(1.2, 0.7);
+        /* Safari */
+        transform: scale(1.2, 0.7);
+    }
+    25%,
+    75% {
+        -webkit-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+        -o-transform: translateY(0px);
+        transform: translateY(0px);
+    }
+    49%,
+    50%,
+    51% {
+        -webkit-transform: translateY(-20px);
+        -ms-transform: translateY(-20px);
+        -o-transform: translateY(-20px);
+        transform: translateY(-20px);
+    }
+}
 
 .cards {
     list-style: none;
@@ -520,10 +519,10 @@ div.card {
     margin: 0 1% 20px 1%;
     opacity: 0;
     &:hover {
-       p.read-more:before {
-         left: 0;
-       }
-     }
+        p.read-more:before {
+            left: 0;
+        }
+    }
     &.show {
         transition: opacity 1s ease-in-out;
         -moz-transition: opacity 1s ease-in-out;
@@ -570,23 +569,23 @@ div.card {
         }
     }
     div.video {
-      .video-overlay {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #000000;
-        opacity: 0.4;
-      }
-      svg {
-        position: relative;
-        fill: #ffffff;
-        width: 60px;
-        height: 60px;
-        margin: 0 auto;
-        display: block;
-      }
+        .video-overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            opacity: 0.4;
+        }
+        svg {
+            position: relative;
+            fill: #ffffff;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto;
+            display: block;
+        }
     }
     img.userPhoto {
         position: absolute;
@@ -735,14 +734,14 @@ div.card {
 }
 
 #share-container {
-  background-color: #ffffff;
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  margin-left: -250px;
-  width: 500px;
-  height: 400px;
-  z-index: 3;
+    background-color: #ffffff;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    margin-left: -250px;
+    width: 500px;
+    height: 400px;
+    z-index: 3;
 }
 
 .container.login {
@@ -1065,11 +1064,11 @@ div.card {
             height: 46px;
             right: -20px;
             top: -20px;
-            -webkit-filter: drop-shadow( 3px 3px 0px #000 );
-            filter: drop-shadow( 3px 3px 0px #000 );
+            -webkit-filter: drop-shadow( 3px 3px 0px #000);
+            filter: drop-shadow( 3px 3px 0px #000);
             cursor: pointer;
             transition-duration: 0s;
-            &.pow{
+            &.pow {
                 width: 85px;
                 height: 96px;
                 right: -42px;
@@ -1082,7 +1081,7 @@ div.card {
                 top: 16px;
                 left: 14px;
                 cursor: pointer;
-                &.pow{
+                &.pow {
                     display: none;
                 }
                 span {
@@ -1118,18 +1117,16 @@ div.card {
                 -webkit-transform: translate(3px, 3px);
                 /* Safari */
                 transform: translate(3px, 3px);
-
             }
-
-            img.link{
-                &.pow{
+            img.link {
+                &.pow {
                     display: none;
                 }
             }
-            img.active{
+            img.active {
                 opacity: 0;
                 display: none;
-                &.pow{
+                &.pow {
                     display: block;
                     width: 100%;
                     opacity: 1;
@@ -1159,10 +1156,10 @@ div.card {
         padding-left: 0px;
         background: #bdbdbd;
         height: 40px;
-        &:after{
+        &:after {
             margin-bottom: -1px;
         }
-        img{
+        img {
             height: 21px;
         }
     }
@@ -1238,7 +1235,7 @@ footer {
             margin: -1px;
         }
     }
-    &.animate{
+    &.animate {
         transform: translateX(100px);
         transition: all 0.3s ease-in-out;
     }
@@ -1284,7 +1281,8 @@ footer {
     display: none;
 }
 
-.content p.text a, p.content a {
+.content p.text a,
+p.content a {
     color: #888888 !important;
 }
 
@@ -1292,6 +1290,7 @@ footer {
     html,
     body {
         overflow: hidden;
+        min-width: 100%;
     }
     header {
         height: 75px;
@@ -1427,22 +1426,18 @@ footer {
                 &.red {
                     background: url(/img/tudo_sobre_tmj.png) center center no-repeat;
                     background-size: 100%;
-
                 }
                 &.orange {
                     background: url(/img/remix.png) center center no-repeat;
                     background-size: 100%;
-
                 }
                 &.yellow {
                     background: url(/img/feito_por_voce.png) center center no-repeat;
                     background-size: 100%;
-
                 }
                 &.pink {
                     background: url(/img/denise.png) center center no-repeat;
                     background-size: 100%;
-
                 }
                 &.blue {
                     background: url(/img/geek.png) center center no-repeat;
@@ -1491,7 +1486,6 @@ footer {
         bottom: auto;
         width: 100%;
         top: 10px;
-
         a {
             vertical-align: top;
             top: 26px;

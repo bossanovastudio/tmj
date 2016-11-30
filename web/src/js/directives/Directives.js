@@ -7,27 +7,28 @@ var organizeCards = function(newValue, oldValue) {
             "padding": 0
         });
         $('html').css({ overflow: 'auto' });
-        if (newValue.w < 550) {
-            $('.cards').find('.card').each(function() {
-                $(this).attr('style', '');
-                $(this).attr('class', $(this).attr('data-class'));
-                $(this).find('.img').css('height', 'auto');
-                $(this).find('.img').removeClass('no-padding');
-                $(this).find('.img').css('padding', $(this).attr('data-padding'));
-            });
-            if (!$('.cards').data('masonry')) {
-                $('.cards').masonry({
-                    itemSelector: '.card',
-                    columnWidth: '.one-five',
-                    percentPosition: false,
-                    gutter: 20,
-                    transitionDuration: 0
-                });
-            } else {
-                $('.cards').masonry('reloadItems');
-                $('.cards').masonry();
-            }
-        }
+        // this is not needed anymore
+        // if (newValue.w < 550) {
+        //     $('.cards').find('.card').each(function() {
+        //         $(this).attr('style', '');
+        //         $(this).attr('class', $(this).attr('data-class'));
+        //         $(this).find('.img').css('height', 'auto');
+        //         $(this).find('.img').removeClass('no-padding');
+        //         $(this).find('.img').css('padding', $(this).attr('data-padding'));
+        //     });
+        //     if (!$('.cards').data('masonry')) {
+        //         $('.cards').masonry({
+        //             itemSelector: '.card',
+        //             columnWidth: '.one-five',
+        //             percentPosition: false,
+        //             gutter: 20,
+        //             transitionDuration: 0
+        //         });
+        //     } else {
+        //         $('.cards').masonry('reloadItems');
+        //         $('.cards').masonry();
+        //     }
+        // }
     } else if (isMobileDevice) {
         if ($('.cards').data('masonry')) {
             $('.cards').masonry('destroy');
