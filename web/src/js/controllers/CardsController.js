@@ -231,9 +231,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     var cardPage = 1;
 
     $scope.swipeUp = function() {
-        if (distanceTop == 0) {
+        if (distanceTop == 0 && cardPage < $('.cards').length -1) {
             cardPage++;
         }
+        
         if (cardPage == $('.cards').length -1) {
             $('.arrowBottom').fadeOut();
         }
