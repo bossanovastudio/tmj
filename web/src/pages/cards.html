@@ -39,7 +39,11 @@
             <div ng-if="card.kind != 'featured' && card.kind != 'initial'" class="content">
                 <p class="name">{{card.user.name}}</p>
                 <p class="date">
-                    <a target="_blank" ng-href="{{card.source_url}}"><img class="originalPost" src="/img/{{card.origin}}.svg" /></a> {{card.posted_at | formatDate}}</p>
+                  <a target="_blank" ng-href="{{card.source_url}}">
+                    <img class="originalPost" src="/img/{{card.origin}}.svg" />
+                    {{card.posted_at | formatDate}}
+                  </a>
+                </p>
                 <p class="text">{{card | cropText}}</p>
                 <p class="read-more">Veja mais</p>
                 <div ng-include src="'/pages/share.html'"></div>
@@ -64,7 +68,11 @@
             <div ng-if="card.kind != 'featured' && card.kind != 'initial'" class="content">
                 <p class="name">{{card.user.name}}</p>
                 <p class="date">
-                    <a target="_blank" ng-href="{{card.source_url}}"><img class="originalPost" src="/img/{{card.origin}}.svg" /></a> {{card.posted_at | formatDate}}</p>
+                  <a target="_blank" ng-href="{{card.source_url}}">
+                    <img class="originalPost" src="/img/{{card.origin}}.svg" />
+                    {{card.posted_at | formatDate}}
+                  </a>
+                </p>
                 <p class="text">{{card | cropText}}</p>
                 <p class="read-more">Veja mais</p>
                 <div ng-include src="'/pages/share.html'"></div>
