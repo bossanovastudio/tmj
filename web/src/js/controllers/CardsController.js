@@ -7,7 +7,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope.PAGE = 1;
     $scope.SIZE = 20;
     $scope.END = false;
-    $rootScope.isCardsLoaded = false;
 
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
@@ -57,8 +56,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 // if (isMobileDevice) {
                 //     $('.dark-overlay').fadeOut();
                 // }
-                $rootScope.isCardsLoaded = true;
-
                 if (data.cards.length == 0) {
                     $scope.END = true;
                     if (!isMobileDevice) {
@@ -108,6 +105,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     if ($scope.PAGE == 1) {
                         setTimeout(function() {
                             if ($('.initial-loading').is(':visible')) {
+                                $('.initial-loading').hide();
                                 $('.cards').addClass('show');
                             }
                             $('.cards').find('.card').addClass('show');
@@ -134,10 +132,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             });
         $rootScope.track('load', 'cards', 'content');
     }
-    $scope.loadCards($scope.PAGE, 'all', $scope.cards, 'posts');
-    if (isMobileDevice) {
-        $scope.loadCards($scope.PAGE, 'all', $scope.cards_recommended, 'recommendation');
-    }
+    $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName : 'all', $scope.cards, 'posts');
+    // THIS MUST BE USED FOR RECOMMENDED CARDS
+    // if (isMobileDevice) {
+    //     $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName+'/recommendation' : 'all', $scope.cards_recommended, 'recommendation');
+    // }
 
     $scope.lazyLoad = function(desktop) {
         if (desktop) {
@@ -180,9 +179,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     if (!e.hasClass('mobile')) {
                         page++;
                         $scope.PAGE++;
-                        // temporary
-                        slug = 'all';
-                        if ($(e).data('slug') == 'posts') {
+                        if ($(e).data('slug') != 'recommended' ) {
                             $scope.loadCards(page, slug, $scope.cards);
                         } else {
                             $scope.loadCards(page, slug, $scope.cards_recommended);
@@ -233,10 +230,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     var cardPage = 1;
 
     $scope.swipeUp = function() {
-        if (distanceTop == 0 && cardPage < $('.cards').length -1) {
+        if (distanceTop == 0) {
             cardPage++;
         }
-
         if (cardPage == $('.cards').length -1) {
             $('.arrowBottom').fadeOut();
         }
@@ -287,9 +283,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     // if (isMobileDevice) {
                     //     $('.dark-overlay').hide();
                     // }
-                    console.log(data);
                     $rootScope.card = data;
-                    console.log($rootScope.card);
                     $rootScope.track('click', 'cards', 'open');
 
                     if (isMobileDevice) {

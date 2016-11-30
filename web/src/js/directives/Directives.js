@@ -147,7 +147,9 @@ tmj.directive("cardClass", function() {
                     $(elem).parent().removeClass('cursor');
                 }
             }
-
+            if (card.user && card.user.role == 'editor' && !isMobileDevice) {
+                $(elem).parent().addClass(card.user.username);
+            }
             if (card.kind == 'image') {
                 var ratio = parseFloat(card.image.ratio.replace(',', '.'));
                 if (ratio <= 1) {
