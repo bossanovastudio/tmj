@@ -77,4 +77,6 @@ group :development do
 
   # Meta package that requires several pry extensions.
   gem 'pry-meta'
+
+  gem 'annotate'
 end
