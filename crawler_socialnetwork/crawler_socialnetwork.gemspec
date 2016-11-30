@@ -34,6 +34,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "google-api-client", "~>0.8.6"
   spec.add_runtime_dependency "pinterest-api", "~>0.2.2"
   spec.add_runtime_dependency 'httparty', '~> 0.14.0'
+  spec.add_runtime_dependency "tumblr_client", "~>0.8.5"
 
   spec.add_development_dependency "bundler", "~> 1.12"
   spec.add_development_dependency "rake", "~> 10.0"

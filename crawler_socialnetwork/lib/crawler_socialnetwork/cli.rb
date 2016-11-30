@@ -6,6 +6,7 @@ module CrawlerSocialnetwork
       @youtube   = CrawlerSocialnetwork::Youtube.new
       @pinterest = CrawlerSocialnetwork::Pinterest.new
       @instagram = CrawlerSocialnetwork::Instagram.new
+      @tumblr  = CrawlerSocialnetwork::Tumblr.new
     end
 
     def run
@@ -43,6 +44,8 @@ module CrawlerSocialnetwork
           @instagram.hashtag hashtag
           @twitter.search hashtag
         end
+        
+        @tumblr.search 'lunetalunatica.tumblr.com'
       rescue => e
         $logger.error(e)
       end
