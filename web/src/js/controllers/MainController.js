@@ -5,6 +5,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
     $rootScope.card.posted_at = "";
     $rootScope.card.liked = false;
     $rootScope.cardIsOpen = false;
+    $rootScope.locationURL = window.location.host;
 
     var toggled;
 
