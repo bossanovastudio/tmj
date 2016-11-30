@@ -165,6 +165,8 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
             $('.close .active').removeClass('pow');
             $('.close .link').removeClass('pow');
             $('.close .close-icon4').removeClass('pow');
+            $rootScope.card = null;
+            $('.videoIframe').html('');
         },500);
         $rootScope.track('click', 'lightbox', 'close');
     }
