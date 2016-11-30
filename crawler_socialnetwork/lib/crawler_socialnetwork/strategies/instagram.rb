@@ -18,7 +18,10 @@ module CrawlerSocialnetwork
     def hashtag(tag)
       begin
         data = JSON.parse(self.class.get("/explore/tags/#{tag}", { query: { __a: 1 } }).body)
-        process_json_result(data['tag']['media']['nodes'] + data['tag']['top_posts']['nodes'])
+        data = (data['tag']['media']['nodes'] + data['tag']['top_posts']['nodes'])
+          .collect { |p| p['code'] }
+          .collect { |code| JSON.parse(self.class.get("/p/#{code}", { query: { __a: 1 } }).body)['media'] }
+        process_json_result(data)
       rescue Exception => ex
         $logger.error("Error acquiring Instagram data for hashtag #{tag}: #{ex}")
       end
