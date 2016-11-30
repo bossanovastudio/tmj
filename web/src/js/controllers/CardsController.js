@@ -234,7 +234,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         if (distanceTop == 0) {
             cardPage++;
         }
-        if (cardPage == $('.cards').length) {
+        if (cardPage == $('.cards').length -1) {
             $('.arrowBottom').fadeOut();
         }
         distanceTop = -$(window).height();

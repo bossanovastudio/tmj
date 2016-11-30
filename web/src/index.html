@@ -152,7 +152,11 @@
                   <img src="/img/poof_simples.svg" class="active" alt="">
                 </div>
                 <p class="name">{{card.user.name}}</p>
-                <p class="date"><a target="_blank" ng-href="{{card.source_url}}"><img src="/img/{{card.origin}}.svg" /></a> {{card.posted_at | formatDate}}</p>
+                <p class="date">
+                  <a target="_blank" ng-href="{{card.source_url}}">
+                    <img src="/img/{{card.origin}}.svg" />
+                    {{card.posted_at | formatDate}}
+                  </a></p>
                 <p class="content">
                     {{card.content}}
                 </p>
