@@ -342,8 +342,7 @@ div.shareBox {
     position: absolute;
     right: 14px;
     bottom: -30px;
-    padding: 10px;
-    padding-left: 0px;
+    padding: 10px 10px 10px 0;
     background: #bdbdbd;
     height: 40px;
     opacity: 0;
@@ -376,8 +375,9 @@ div.shareBox {
     .content-item-box {
         position: relative;
         display: block;
-        width: 107%;
         height: 20px;
+        padding-right: 10px;
+        margin-right: -10px;
         overflow: hidden;
         a {
             cursor: pointer;
