@@ -201,7 +201,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                     left: -walk
                 }, 250, 'easeOutExpo');
                 container.addClass('animated');
-            }, 500);
+            }, 200);
         }
     };
 
