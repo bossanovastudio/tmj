@@ -11,7 +11,7 @@ module CrawlerParser
       card.origin     = 'tumblr'
       card.content    = @post.content.summary
       card.source_url = @post.content.short_url
-      card.posted_at  = DateTime.strptime(@post.content.timestamp, '%s')
+      card.posted_at  = DateTime.strptime(@post.content.timestamp.to_s, '%s')
       card.social_uid = @post.content.blog_name
       
       card.social_user = {
