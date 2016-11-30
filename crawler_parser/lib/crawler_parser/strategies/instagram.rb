@@ -25,14 +25,14 @@ module CrawlerParser
       card.origin = 'instagram'
       card.media_type = 'Image'
       card.media_id = self.image(data.images['standard_resolution']['url'])
-      card.content = data.caption['text']
+      card.content = data.caption['text'] unless data.caption.nil?
       card.source_url = data.link
-      card.posted_at = DateTime.strptime(data.caption['created_time'].to_s,'%s')
-      card.social_uid = data.caption['from']['id']
+      card.posted_at = DateTime.strptime(data.created_time.to_s,'%s')
+      card.social_uid = data.user['id']
 
       card.social_user = {
-              id: data.caption['from']['id'],
-        username: data.caption['from']['username'],
+              id: data.user['id'],
+        username: data.user['username'],
       }
       return card
     end
