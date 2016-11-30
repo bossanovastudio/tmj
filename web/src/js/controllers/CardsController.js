@@ -13,7 +13,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope.count = 0;
     $scope.cardsFeatured = [];
 
-    $scope.isMobileDevice = isMobileDevice;
+    $scope.isMobile = isMobileDevice;
 
     if (!isMobileDevice) {
         $('.cards.mobile').remove();
