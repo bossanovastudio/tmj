@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   scope '/api' do
     mount_devise_token_auth_for 'User', at: 'auth'
     
+    get '/ramona/(:page)/(:quantity)', to: 'general#editors', id: :ramona, defaults: { page: 1, quantity: 10 }
     get '/all/(:page)/(:quantity)', to: 'general#all', defaults: { page: 1, quantity: 10 }
+    
     get '/highlights', to: 'general#highlights'
     
     post '/register', to: 'castings#create'

@@ -23,9 +23,11 @@ end
 
 if card.user
   json.user do
-    json.id     card.user.id
-    json.name   card.user.name
-    json.avatar card.user.avatar.url
+    json.id       card.user.id
+    json.username card.user.username
+    json.name     card.user.name
+    json.role     card.user.role
+    json.avatar   card.user.image.url
   end
 elsif card.social_user
   json.user do

@@ -35,12 +35,13 @@ class User < ActiveRecord::Base
   # include DeviseTokenAuth::Concerns::User
   
   enum role: { user: 1, editor: 2, moderator: 3, admin: 4 }
+  scope :editors, -> { where(role: :editor) }
   
   # Uploader
   mount_uploader :image, AvatarUploader
   
-  has_many :cards
   has_many :providers
+  has_many :cards, through: :providers
   recommends :cards
   
   def email_required?

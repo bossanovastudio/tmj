@@ -10,6 +10,11 @@ class GeneralController < ApplicationController
     @highlights = Highlight.all
   end
   
+  def editors
+    user = User.editors.where(username: params[:id]).first
+    @cards = user.cards
+  end
+  
   private
     def pagination_params
       params.permit(:page, :quantity)
