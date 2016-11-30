@@ -13,7 +13,7 @@ require "crawler_socialnetwork/version"
 require "crawler_socialnetwork/strategies/facebook"
 require "crawler_socialnetwork/strategies/twitter"
 require "crawler_socialnetwork/strategies/youtube"
-require "crawler_socialnetwork/strategies/pinterest"m
+require "crawler_socialnetwork/strategies/pinterest"
 require "crawler_socialnetwork/strategies/instagram"
 require "crawler_socialnetwork/strategies/tumblr"
 
