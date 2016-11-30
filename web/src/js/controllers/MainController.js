@@ -147,7 +147,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         $('.close .link').addClass('pow');
         $('.close .close-icon4').addClass('pow');
         $location.path($rootScope.previousURL, false);
-        setTimeout(function(){
+        setTimeout(function() {
             if ($(".lightbox").hasClass("show")) {
                 setTimeout(function() {
                     $('lightbox').css({ "display": "none" });
@@ -161,24 +161,21 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                 $('.lightbox').addClass("hide");
                 $('.lightbox .detail').addClass("hide");
             }
-        },300);
-        setTimeout(function(){
+        }, 300);
+        setTimeout(function() {
             $('.close').removeClass('pow');
             $('.close .active').removeClass('pow');
             $('.close .link').removeClass('pow');
             $('.close .close-icon4').removeClass('pow');
             $rootScope.card = null;
             $('.videoIframe').html('');
-        },500);
+        }, 500);
         $rootScope.track('click', 'lightbox', 'close');
     }
     $scope.closeLightboxClick = function($event) {
         var e = angular.element($event.target);
         e = $(e);
-        if (!e.hasClass('preview') && !e.hasClass('detail') && !e.hasClass('share')
-              && !e.hasClass('arrow') && !e.hasClass('content') && !e.hasClass('hr')
-              && !e.hasClass('item-share') && !e.hasClass('shareBox')
-              && !e.hasClass('content-item-box') && !e.hasClass('shareButton')) {
+        if (!e.hasClass('preview') && !e.hasClass('detail') && !e.hasClass('share') && !e.hasClass('arrow') && !e.hasClass('content') && !e.hasClass('hr') && !e.hasClass('item-share') && !e.hasClass('shareBox') && !e.hasClass('content-item-box') && !e.hasClass('shareButton')) {
             $scope.closeLightbox();
         }
     }
@@ -187,5 +184,25 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
             $scope.closeLightbox();
         }
     }
+
+    $rootScope.animateInitial = function() {
+        var container = null;
+        $('.cards').each(function(i, e) {
+            var top = parseInt($(this).css('top').replace('px'));
+            if (top == 0) {
+                container = $(this);
+            }
+        });
+        if (container && !container.hasClass('animated')) {
+            setTimeout(function() {
+                var e = container;
+                var walk = $('.card').width() + 20;
+                $(e).animate({
+                    left: -walk
+                }, 250, 'easeOutExpo');
+                container.addClass('animated');
+            }, 500);
+        }
+    };
 
 });

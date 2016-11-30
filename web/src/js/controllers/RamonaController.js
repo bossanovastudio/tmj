@@ -10,8 +10,11 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
             if (i == 0 && top == (($('.cards').length - 1) * distanceTop)) {
                 distanceTop = 0;
             }
-            $(this).animate({ top: top + distanceTop });
+            $(this).animate({ top: top + distanceTop }, 500, 'easeOutExpo');
         });
+        setTimeout(function() {
+            $rootScope.animateInitial();
+        }, 1000);
         $rootScope.track('swipe', 'cards', 'up');
     }
 
