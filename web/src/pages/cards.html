@@ -2,21 +2,13 @@
     <img class="initial-loading" src="/img/loading.gif" />
     <div resize ng-if="ready && pageName == 'homePage'" class="container cards mobile" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()" data-page="1" data-slug="all">
         <div class="card" style="height: 90% !important; background: none !important"><img style="left: 50%; margin-left: -90px; margin-top: -60px; position: absolute; top: 50%;" src="/img/logo.svg" height="84" /></div>
-        <div ng-repeat="card in cardsFeatured track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}" style="background-image: {{card.url}}">
-            <div card-class ng-classes="card" data-original="{{card.image.url}}" class="img"></div>
-            <div ng-if="card.kind != 'featured'" class="content">
-                <p class="name">{{card.user.name}}</p>
-                <p class="date">
-                    <a target="_blank" ng-href="{{card.source_url}}"><img class="originalPost" src="/img/{{card.origin}}.svg" /></a> {{card.posted_at | formatDate}}</p>
-                <p class="text">{{card | cropText}}</p>
-                <p class="read-more">Veja mais</p>
-                <div ng-include src="'/pages/share.html'"></div>
-            </div>
+        <div ng-repeat="card in cardsFeatured track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}" style="background-image: {{isMobileDevice ? card.mobile_url : card.url}}">
+            <div card-class ng-classes="card" class="img"></div>
             <p ng-if="card.kind == 'featured'">{{card.content}}</p>
         </div>
     </div>
     <div resize ng-if="ready" class="container cards" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()" data-page="1" data-slug="posts">
-        <div ng-repeat="card in cards track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}" style="background-image: url({{card.kind=='featured' ? card.url : ''}})">
+        <div ng-repeat="card in cards track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}" style="background-image: url({{card.kind=='featured' ? (isMobileDevice ? card.mobile_url : card.url) : ''}})">
             <div ng-if="card.kind!='video'" card-class ng-classes="card" data-original="{{card.image.url}}" class="img">
                 <div ng-if="card.kind == 'initial'">
                     <p>{{card.content}}</p>
