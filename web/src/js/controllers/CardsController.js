@@ -283,7 +283,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 })
                 .success(function(data) {
                     if (isMobileDevice) {
-                        $('.dark-overlay').fadeOut();
+                        $('.dark-overlay').hide();
                     }
                     console.log(data);
                     $rootScope.card = data;
