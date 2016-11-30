@@ -12,3 +12,4 @@ if highlight.mobile_media
 end
 
 json.posted_at  highlight.posted_at
+json.index      highlight.index

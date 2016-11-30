@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130205041) do
+ActiveRecord::Schema.define(version: 20161130230038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20161130205041) do
     t.integer  "size",              default: 1
     t.integer  "mobile_media_id"
     t.string   "mobile_media_type"
+    t.integer  "index",             default: 0
     t.index ["media_type", "media_id"], name: "index_highlights_on_media_type_and_media_id", using: :btree
   end
 
