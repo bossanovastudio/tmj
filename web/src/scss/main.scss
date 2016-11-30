@@ -371,7 +371,7 @@ div.shareBox {
     &.show {
         bottom: -37px;
         opacity: 1;
-        z-index: 9;
+        z-index: 99;
     }
     .content-item-box {
         position: relative;
@@ -632,7 +632,7 @@ div.card {
         transition-duration: 0.1s;
         padding: 1px 6px;
         display: none;
-        z-index: 99;
+        z-index: 9;
         overflow: hidden;
         &:before {
             content: "";
