@@ -105,26 +105,26 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             }, 500);
                         }
                     }
-                    // if ($scope.PAGE == 1) {
-                    //     setTimeout(function() {
-                    //         if ($('.initial-loading').is(':visible')) {
-                    //             $('.cards').addClass('show');
-                    //         }
-                    //         $('.cards').find('.card').addClass('show');
-                    //     }, 1000);
-                    //     setTimeout(function() {
-                    //         $('.social-editor li').each(function(i) {
-                    //             var t = $(this);
-                    //             setTimeout(function() { t.addClass('animate'); }, (i + 1) * 50);
-                    //         });
-                    //     }, 1600);
-                    // } else {
-                    //     setTimeout(function() {
-                    //         $('.cards').removeClass('loading');
-                    //         $('.cards-loading').removeClass('show');
-                    //         $('.cards').find('.card').addClass('show');
-                    //     }, 1000);
-                    // }
+                    if ($scope.PAGE == 1) {
+                        setTimeout(function() {
+                            if ($('.initial-loading').is(':visible')) {
+                                $('.cards').addClass('show');
+                            }
+                            $('.cards').find('.card').addClass('show');
+                        }, 1000);
+                        setTimeout(function() {
+                            $('.social-editor li').each(function(i) {
+                                var t = $(this);
+                                setTimeout(function() { t.addClass('animate'); }, (i + 1) * 50);
+                            });
+                        }, 1600);
+                    } else {
+                        setTimeout(function() {
+                            $('.cards').removeClass('loading');
+                            $('.cards-loading').removeClass('show');
+                            $('.cards').find('.card').addClass('show');
+                        }, 1000);
+                    }
                     // setTimeout(function() {
                     //     $('.content p.text').linkify({
                     //         target: "_blank"
@@ -287,7 +287,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     // if (isMobileDevice) {
                     //     $('.dark-overlay').hide();
                     // }
+                    console.log(data);
                     $rootScope.card = data;
+                    console.log($rootScope.card);
                     $rootScope.track('click', 'cards', 'open');
 
                     if (isMobileDevice) {
