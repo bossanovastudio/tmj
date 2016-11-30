@@ -190,14 +190,26 @@ $('.remix-container').each ->
       $remix.removeClass('can-choose-picture')
 
   # toolbox item color
-  $composer.find('.toolbox-item-color').on 'remix:toolbox-click', ->
+  $composer.find('.toolbox-item-colors').on 'remix:toolbox-click', ->
     colors = ['black', 'purple', 'lightblue', 'lightgreen', 'red', 'yellow']
-    colorIndex = $remix.data('color-index') || 0
-    if colorIndex >= colors.length
-      colorIndex = 0
+    index = $remix.data('colors-index') || 0
+    if index >= colors.length
+      index = 0
 
-    $composer.find('.artboard .canvas').css('background-color', colors[colorIndex])
-    $remix.data('color-index', colorIndex+1)
+    $composer.find('.artboard .canvas').css('background-color', colors[index])
+    $remix.data('colors-index', index+1)
+
+  # toolbox item effects
+  $composer.find('.toolbox-item-effects').on 'remix:toolbox-click', ->
+    effects = ['grayscale', 'sepia', 'saturate', '']
+    index = $remix.data('effects-index') || 0
+    if index >= effects.length
+      index = 0
+
+    $composer.find('.artboard .canvas .picture')
+      .removeClass(effects.join(' '))
+      .addClass(effects[index])
+    $remix.data('effects-index', index+1)
 
   # toolbox item popup
   $composer.find('.toolbox-item-popup').on 'remix:toolbox-click', ->

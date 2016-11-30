@@ -44,6 +44,18 @@
       .picture {
         height: 100%;
         width: 100%;
+        &.grayscale {
+          -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+        }
+        &.sepia {
+          -webkit-filter: sepia(100%);
+          filter: sepia(100%);
+        }
+        &.saturate {
+          -webkit-filter: saturate(800%);
+          filter: saturate(800%);
+        }
       }
       .image {
         img {
