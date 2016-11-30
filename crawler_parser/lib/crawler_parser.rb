@@ -18,6 +18,7 @@ require "crawler_parser/strategies/facebook"
 require "crawler_parser/strategies/youtube"
 require "crawler_parser/strategies/pinterest"
 require "crawler_parser/strategies/tumblr"
+require "crawler_parser/strategies/instagram"
 
 require "crawler_parser/parser"
 require "crawler_parser/cli"
