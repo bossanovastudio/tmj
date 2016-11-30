@@ -234,7 +234,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         if (distanceTop == 0 && cardPage < $('.cards').length -1) {
             cardPage++;
         }
-        
+
         if (cardPage == $('.cards').length -1) {
             $('.arrowBottom').fadeOut();
         }
@@ -285,9 +285,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     // if (isMobileDevice) {
                     //     $('.dark-overlay').hide();
                     // }
-                    console.log(data);
                     $rootScope.card = data;
-                    console.log($rootScope.card);
                     $rootScope.track('click', 'cards', 'open');
 
                     if (isMobileDevice) {
