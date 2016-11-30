@@ -570,6 +570,13 @@ div.card {
         }
     }
     div.video {
+        display: table;
+        width: 100%;
+
+        .vertical-content {
+          display: table-cell;
+          vertical-align: middle;
+        }
         .video-overlay {
             position: absolute;
             left: 0;
