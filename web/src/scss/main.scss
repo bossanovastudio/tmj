@@ -1303,13 +1303,13 @@ p.content a {
         top: 10%;
         width: 100%;
         height: 90%;
-        overflow: hidden !important;
+        overflow: visible !important;
     }
     .initial-loading {
         width: 150px;
     }
     .editor {
-        font-size: 20px;
+        font-size: 20px !important;
     }
     .cards {
         position: absolute;
