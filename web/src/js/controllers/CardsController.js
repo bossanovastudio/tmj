@@ -280,7 +280,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     if (isMobileDevice) {
                         $('.dark-overlay').fadeOut();
                     }
+                    console.log(data);
                     $rootScope.card = data;
+                    console.log($rootScope.card);
                     $rootScope.track('click', 'cards', 'open');
 
                     if (isMobileDevice) {
@@ -364,9 +366,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         }
                     }
                     setTimeout(function() {
-                        $('p.content').linkify({
-                            target: "_blank"
-                        });
+                        // $('p.content').linkify({
+                        //     target: "_blank"
+                        // });
                     }, 500);
                 });
         }
