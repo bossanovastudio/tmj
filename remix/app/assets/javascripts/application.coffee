@@ -31,6 +31,7 @@ $('.remix-container').each ->
         .filter('.category').addClass('on')
 
       # removes all elements from artboard and display empty message
+      $composer.find('.artboard .canvas').removeAttr('style')
       $composer.find('.artboard .canvas *').remove()
       $composer.find('.artboard .empty').show()
 
