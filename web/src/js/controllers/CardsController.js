@@ -226,6 +226,14 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
     var distanceTop = 0;
     var cardPage = 1;
+
+    $scope.animateInitial = function() {
+        $('.cards').each(function(i, e) {
+            var top = parseInt($(this).css('top').replace('px'));
+            console.log(top);
+        });
+    };
+
     $scope.swipeUp = function() {
         if (distanceTop == 0) {
             cardPage++;
@@ -239,7 +247,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             if (i == 0 && top == (($('.cards').length - 1) * distanceTop)) {
                 distanceTop = 0;
             }
-            $(this).animate({ top: top + distanceTop });
+            $(this).animate({ top: top + distanceTop }, 500, 'easeOutExpo', function() {
+                $scope.animateInitial();
+            });
         });
         $scope.lazyLoad(false);
         $rootScope.track('swipe', 'cards', 'up');
@@ -252,7 +262,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             if (i == 0 && top == 0) {
                 distanceTop = 0;
             }
-            $(this).animate({ top: top + distanceTop });
+            $(this).animate({ top: top + distanceTop }, 500, 'easeOutExpo', function() {
+                $scope.animateInitial();
+            });
         });
         $rootScope.track('swipe', 'cards', 'down');
     }
@@ -461,4 +473,5 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $(document).ready(function() {
         $(window).off('scroll', $scope.ScrollHandler).on('scroll', $scope.ScrollHandler);
     });
+
 });
