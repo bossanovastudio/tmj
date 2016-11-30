@@ -21,5 +21,10 @@
             ng-click="openSharePopup('http://www.tumblr.com/share/link?url=', card.id)">
             <img class="shareButton" src="/img/tumblr-remix.svg" />
         </a>
+        <a class="item-share notSafari" ngclipboard data-clipboard-text="{{card.source_url}}" ngclipboard-success="onClipboardSuccess(e);">
+            <img class="shareButton" src="/img/copy-link.svg" />
+        </a>
     </div>
+    <p class="tooltip-clip sucess">Copiado!</p>
+    <p class="tooltip-clip errror">Falhou! :(</p>
 </div>

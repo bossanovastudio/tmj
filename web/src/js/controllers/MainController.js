@@ -10,6 +10,20 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
 
     $rootScope.pageName = 'homePage';
 
+    // You can still access the clipboard.js event
+    $rootScope.onClipboardSuccess = function(e) {
+        $(".tooltip-clip.sucess").addClass('show');
+        setTimeout(function(){
+            $(".tooltip-clip.sucess").removeClass('show');
+        },700);
+    };
+    $rootScope.onError = function(e) {
+        $(".tooltip-clip.error").addClass('show');
+        setTimeout(function(){
+            $(".tooltip-clip.error").removeClass('show');
+        },700);
+    };
+
     $rootScope.track = function(action, label, value) {
         ga('send', {
             hitType: 'event',
