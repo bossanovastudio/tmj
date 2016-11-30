@@ -46,7 +46,6 @@ header {
     &.animate{
         transform: translateX(100px);
         transition: all 0.3s ease-in-out;
-
     }
 }
 section{
@@ -1160,6 +1159,7 @@ footer {
     right: 40px;
     bottom: 40px;
     width: 38px;
+    transition: all 0.3s ease-in-out;
     a {
         border: 1px solid #231F1F;
         width: 33px;
@@ -1223,6 +1223,10 @@ footer {
         svg {
             margin: -1px;
         }
+    }
+    &.animate{
+        transform: translateX(100px);
+        transition: all 0.3s ease-in-out;
     }
 }
 

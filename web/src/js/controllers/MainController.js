@@ -36,6 +36,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         html.css({ 'overflow': 'hidden' });
         $("header").addClass('animate');
         $("section").addClass('animate');
+        $("footer.desktop").addClass('animate');
         $(".sidebar li").each(function(i) {
             var t = $(this);
             setTimeout(function() { t.addClass('animate'); }, (i + 1) * 25);
@@ -55,6 +56,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         html.css({ 'overflow': 'auto' });
         $("header").removeClass('animate');
         $("section").removeClass('animate');
+        $("footer.desktop").removeClass('animate');
         setTimeout(function() {
             $(".sidebar li").removeClass("animate")
         }, 500);
