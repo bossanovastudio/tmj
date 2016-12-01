@@ -24,17 +24,9 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
             $(".tooltip-clip.error").removeClass('show');
         },700);
     };
-
     $rootScope.track = function(action, label, value) {
-        ga('send', {
-            hitType: 'event',
-            eventCategory: 'User interaction',
-            eventAction: action,
-            eventLabel: label,
-            eventValue: value
-        });
+        ga('send', 'event', 'User interaction', action, label);
     }
-
     $scope.toggle = function() {
         $("#menu").toggleClass('open');
         $scope[toggled ? "closeMenu" : "openMenu"]();
