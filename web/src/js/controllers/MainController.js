@@ -17,21 +17,25 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         setTimeout(function(){
             $(".tooltip-clip.sucess").removeClass('show');
         },700);
-    };
+    }
+
     $rootScope.onError = function(e) {
         $(".tooltip-clip.error").addClass('show');
         setTimeout(function(){
             $(".tooltip-clip.error").removeClass('show');
         },700);
-    };
+    }
+
     $rootScope.track = function(action, label, value) {
         ga('send', 'event', 'User interaction', action, label);
     }
+
     $scope.toggle = function() {
         $("#menu").toggleClass('open');
         $scope[toggled ? "closeMenu" : "openMenu"]();
         toggled = !toggled;
-    };
+    }
+
     $scope.openMenu = function() {
         var overlay = angular.element(document.querySelector('.overlay'));
         overlay.addClass('open');
@@ -52,6 +56,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         });
         $rootScope.track('click', 'menu', 'open');
     }
+
     $scope.closeMenu = function() {
         var overlay = angular.element(document.querySelector('.overlay'));
         overlay.removeClass('open');
@@ -71,6 +76,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         }, 500);
         $rootScope.track('click', 'menu', 'close');
     }
+
     $scope.likeCard = function($event, id) {
         var elem = $(angular.element($event.target)).closest('.card');
         var heart = elem.find('.heart');
@@ -91,6 +97,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         }
         $rootScope.track('click', 'card', 'like');
     }
+
     $scope.openShare = function($event) {
         var elem = angular.element($event.target);
         var card = $(elem).closest('.card');
@@ -149,6 +156,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
             }, 200);
         }
     });
+
     $scope.closeLightbox = function() {
         $rootScope.cardIsOpen = false;
 
@@ -183,6 +191,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         }, 500);
         $rootScope.track('click', 'lightbox', 'close');
     }
+
     $scope.closeLightboxClick = function($event) {
         $rootScope.cardIsOpen = false;
         var e = angular.element($event.target);
@@ -191,6 +200,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
             $scope.closeLightbox();
         }
     }
+
     $scope.closeLightboxKey = function(keyCode) {
         $rootScope.cardIsOpen = false;
         if (parseInt(keyCode) == 27) {
@@ -216,6 +226,6 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                 container.addClass('animated');
             }, 200);
         }
-    };
+    }
 
-});
+})

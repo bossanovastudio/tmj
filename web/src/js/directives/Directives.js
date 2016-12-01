@@ -11,9 +11,7 @@ var organizeCards = function(newValue, oldValue, rs) {
         if ($('.cards').data('masonry')) {
             $('.cards').masonry('destroy');
         }
-        //$('html, body, section').css({overflow: 'hidden'});
         $('.cards').each(function(i, e) {
-            //$(e).css({top: i*$(window).height()});
             var card = $(this).find('.card');
             card.width(newValue.w - 80);
             card.eq(0).css({
@@ -117,10 +115,7 @@ tmj.directive("cardClass", function($rootScope) {
                 }
             }
             if (card.user && card.user.role == 'editor') {
-                if(isMobileDevice && $rootScope.pageName == 'homePage') {
-                  $(elem).parent().addClass(card.user.username);
-                }
-                if(!isMobileDevice && $rootScope.pageName == 'homePage') {
+                if((isMobileDevice && $rootScope.pageName == 'homePage') || (!isMobileDevice && $rootScope.pageName == 'homePage')) {
                   $(elem).parent().addClass(card.user.username);
                 }
                 $(elem).parent().addClass(card.user.role);

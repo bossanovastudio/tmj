@@ -3,6 +3,7 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
     $rootScope.pageName = 'ramona';
 
     var distanceTop = 0;
+
     $scope.swipeUp = function() {
         distanceTop = -$(window).height();
         $('.cards').each(function(i, e) {
