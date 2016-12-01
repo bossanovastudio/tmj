@@ -102,6 +102,16 @@ div.card {
     text-align: center;
     .name{
       font-family: KomikaTitle;
+      &.user {
+        font-family: Lato;
+        font-size: 11px;
+        margin-top: 0;
+        letter-spacing: 0px;
+        text-align: center;
+        color: #000000;
+        margin-bottom: 3px;
+        font-weight: 700;
+      }
     }
     .date{
       font-family: Lato;
