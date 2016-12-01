@@ -719,6 +719,13 @@ div.card {
             }
         }
     }
+    &.editor {
+      p.name {
+          font-family: KomikaTitle;
+          font-size: 16px;
+          font-weight: 400;
+      }
+    }
     &.noimage {
         .text {
             font-size: 20px;
