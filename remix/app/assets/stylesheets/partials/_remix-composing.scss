@@ -1,3 +1,56 @@
+%text-styles {
+  &.g1 {
+    background-color: #000;
+    padding: 10px;
+    span, input {
+      color: #FFF;
+      font-family: 'KomikaTitle';
+      font-size: 24px;
+    }
+  }
+  &.g2 {
+    background-color: #000;
+    padding: 10px;
+    span, input {
+      color: #FFF;
+      font-family: 'Bangers';
+      font-size: 24px;
+    }
+  }
+  &.m1 {
+    background-color: #000;
+    padding: 5px;
+    span, input {
+      color: #FFF;
+      font-family: 'KomikaTitle';
+      font-size: 18px;
+    }
+  }
+  &.m2 {
+    background-color: #000;
+    padding: 5px;
+    span, input {
+      color: #FFF;
+      font-family: 'Bangers';
+      font-size: 18px;
+    }
+  }
+  &.p1 {
+    span, input {
+      color: #000;
+      font-family: 'KomikaTitle';
+      font-size: 12px;
+    }
+  }
+  &.p2 {
+    span, input {
+      color: #000;
+      font-family: Bangers;
+      font-size: 12px;
+    }
+  }
+}
+
 .remix-composing {
   display: none;
   position: relative;
@@ -77,6 +130,20 @@
           bottom: 1px;
           left: 1px;
         }
+      }
+      .text {
+        @extend %text-styles;
+        input {
+          background-color: transparent;
+          border: none;
+          padding: 0;
+          width: 100%;
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+      .image, .text {
         .remove {
           background-color: #000;
           border-radius: 100%;
@@ -116,13 +183,14 @@
     margin-top: 5px;
     padding: 10px 20px 15px;
     position: relative;
-    text-align: center;
     .toolbox-item {
       float: left;
       opacity: 0.5;
       width: percentage(1 / 5);
       .toggler {
+        display: block;
         line-height: 40px;
+        margin: 0 auto;
         padding: 0 5px;
         position: relative;
       }
@@ -204,6 +272,53 @@
           padding: 5px;
           img {
             max-height: 100%;
+          }
+        }
+      }
+    }
+    .toolbox-item-texts {
+      .options {
+        position: relative;
+        .color-palette {
+          height: 100%;
+          left: 0;
+          position: absolute;
+          padding: 10px 0;
+          top: 0;
+          .holder {
+            border-right: 1px solid #979797;
+            height: 100%;
+            padding: 0 10px;
+            text-align: center;
+            width: 61px;
+            img {
+              margin-top: 5px;
+            }
+          }
+          // .palette-item {
+          //   border-radius: 100%;
+          //   height: 16px;
+          //   position: absolute;
+          //   width: 16px;
+          //   &:nth-child(1) {
+          //     left: 12px;
+          //   }
+          //   &:nth-child(2) {
+          //     left: 14px;
+          //     top: 8px;
+          //   }
+          // }
+        }
+        .styles {
+          padding-left: 10px + 40px + 10px;
+          .styles-item {
+            cursor: pointer;
+            display: inline-block;
+            line-height: 1;
+            margin: 0 10px;
+            text-align: center;
+            vertical-align: middle;
+            @extend %text-styles;
           }
         }
       }

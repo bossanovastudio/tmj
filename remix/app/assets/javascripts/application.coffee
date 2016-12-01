@@ -7,6 +7,7 @@
 #= require 'jquery-ui/ui/disable-selection'
 #= require 'jquery-ui/ui/scroll-parent'
 #= require 'jquery-ui/ui/safe-active-element'
+#= require 'jquery-ui/ui/safe-blur'
 #= require 'jquery-ui/ui/widget'
 #= require 'jquery-ui/ui/widgets/mouse'
 #= require 'jquery-ui/ui/widgets/resizable'
@@ -110,11 +111,12 @@ $('.remix-container').each ->
 
       # applies drag and resize abilities. select, deselect and click events too
       $element
-        .addClass('focus')
         .draggable {
+          disable: true
           containment: 'parent'
         }
         .resizable {
+          disable: true
           aspectRatio: true
           containment: 'parent'
           handles: 'se, sw'
@@ -135,6 +137,51 @@ $('.remix-container').each ->
               .removeClass('focus')
               .draggable('disable')
               .resizable('disable')
+
+          click: (event) ->
+            event.stopPropagation()
+            $(this).trigger('remix:select-element')
+        }
+
+      # stores last used element
+      $remix.data('last-element', $element)
+
+    'add-text': (event, cssClass) ->
+      $element = $('<span>').attr { class: 'text ' + cssClass }
+
+      $('<input>').attr
+        type: 'text'
+        size: 1
+      .on 'keyup', (evt) ->
+        $(this).attr('size', this.value.length || 1)
+      .appendTo $element
+
+      $('<button>').attr { type: 'button', class: 'remove' }
+        .html '&times;'
+        .on 'click', ->
+          $(this).parent().remove()
+        .appendTo $element
+
+      # appends element to last and trigger input focus
+      $composer.find('.artboard .canvas').append $element
+      $element.find('input').trigger('focus')
+
+      $element
+        .draggable {
+          disable: true
+          containment: 'parent'
+        }
+        .on {
+          'remix:select-element': ->
+            $(this)
+              .addClass('focus')
+              .draggable('enable')
+              .siblings('.image').trigger('remix:deselect-element')
+
+          'remix:deselect-element': ->
+            $(this)
+              .removeClass('focus')
+              .draggable('disable')
 
           click: (event) ->
             event.stopPropagation()
@@ -226,3 +273,8 @@ $('.remix-container').each ->
       .data('last-element').trigger('remix:select-element')
 
     $(this).closest('.toolbox-item').removeClass('on')
+
+  $composer.find('.toolbox-item-texts .styles-item').click (event) ->
+    $remix
+      .trigger('add-text', $(this).data('class'))
+      .data('last-element').trigger('remix:select-element')
