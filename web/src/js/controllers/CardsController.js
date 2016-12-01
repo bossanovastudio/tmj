@@ -7,6 +7,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope.PAGE = 1;
     $scope.SIZE = 20;
     $scope.END = false;
+    $rootScope.isCardsLoaded = false;
 
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
@@ -56,6 +57,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 // if (isMobileDevice) {
                 //     $('.dark-overlay').fadeOut();
                 // }
+                $rootScope.isCardsLoaded = true;
+
                 if (data.cards.length == 0) {
                     $scope.END = true;
                     if (!isMobileDevice) {
@@ -105,7 +108,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     if ($scope.PAGE == 1) {
                         setTimeout(function() {
                             if ($('.initial-loading').is(':visible')) {
-                                $('.initial-loading').hide();
                                 $('.cards').addClass('show');
                             }
                             $('.cards').find('.card').addClass('show');
@@ -230,7 +232,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     var cardPage = 1;
 
     $scope.swipeUp = function() {
-        if (distanceTop == 0) {
+        if (distanceTop == 0 && cardPage < $('.cards').length -1) {
             cardPage++;
         }
         if (cardPage == $('.cards').length -1) {
