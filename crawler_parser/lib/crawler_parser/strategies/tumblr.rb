@@ -9,7 +9,14 @@ module CrawlerParser
     def run
       card = Card.new
       card.origin     = 'tumblr'
-      card.content    = @post.content.summary
+      
+      if @post.content.respond_to? 'body'
+        card.content    = "<strong>#{@post.content.summary}</strong>"
+        card.content    += @post.content.body.gsub(/<[^>]*>/ui,'')
+      else
+        card.content    = @post.content.summary
+      end
+      
       card.source_url = @post.content.short_url
       card.posted_at  = DateTime.strptime(@post.content.timestamp.to_s, '%s')
       card.social_uid = @post.content.blog_name
