@@ -25,7 +25,7 @@ html {
 }
 
 body {
-    background: #d9d9db url(/img/bg.png) no-repeat center center fixed;
+    background: #d9d9db url(/img/bg.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -229,8 +229,8 @@ section {
     width: 400px;
     transform: translateX(-500px);
     height: 100%;
-    background: url(/img/bg-pattern.png) center top;
-    background-size: 100%;
+    background: url(/img/bg.jpg) center top;
+    background-size: cover;
     -webkit-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
     -moz-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
     -ms-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
