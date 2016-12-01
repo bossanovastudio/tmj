@@ -2,13 +2,12 @@
     <a ng-click="likeCard($event, card.id)" class="{{card.liked ? 'liked' : ''}} ng-hide" ng-href="#">
         <img class="heart" src="{{card.liked ? '/img/liked.svg' : '/img/like.svg'}}"><span class="counter">&nbsp;{{card.likes ? card.likes : 0}}</span>
     </a>
-    <a ng-if="card.user.role!='editor'" ng-click="openShare($event)" ng-href="#" ng-init="imgsrc='/img/share.svg'" ng-mouseover="imgsrc='/img/share-rollover.svg'" ng-mouseout="imgsrc='/img/share.svg'">
+    <a ng-if="card.user.role!='editor' || pageName != 'homePage' || isMobile" ng-click="openShare($event)" ng-href="#" ng-init="imgsrc='/img/share.svg'" ng-mouseover="imgsrc='/img/share-rollover.svg'" ng-mouseout="imgsrc='/img/share.svg'">
         <img class="arrow" ng-src="{{imgsrc}}">
     </a>
-    <a ng-if="card.user.role=='editor'" ng-click="openShare($event)" ng-href="#" ng-init="imgsrc='/img/share-editor.svg'" ng-mouseover="imgsrc='/img/share-rollover-editor.svg'" ng-mouseout="imgsrc='/img/share-editor.svg'">
+    <a ng-if="card.user.role=='editor' && pageName == 'homePage' && !isMobile" ng-click="openShare($event)" ng-href="#" ng-init="imgsrc='/img/share-editor.svg'" ng-mouseover="imgsrc='/img/share-rollover-editor.svg'" ng-mouseout="imgsrc='/img/share-editor.svg'">
         <img class="arrow" ng-src="{{imgsrc}}">
     </a>
-
 </p>
 <div class="shareBox">
     <div class="content-item-box">
