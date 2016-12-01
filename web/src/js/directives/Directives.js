@@ -125,7 +125,7 @@ tmj.directive('organizeCards', function() {
     };
 })
 
-tmj.directive("cardClass", function() {
+tmj.directive("cardClass", function($rootScope) {
     return {
         restrict: 'EA',
         replace: false,
@@ -147,7 +147,7 @@ tmj.directive("cardClass", function() {
                     $(elem).parent().removeClass('cursor');
                 }
             }
-            if (card.user && card.user.role == 'editor' && !isMobileDevice) {
+            if (card.user && card.user.role == 'editor' && !isMobileDevice && $rootScope.pageName == 'homePage') {
                 $(elem).parent().addClass(card.user.username);
             }
             if (card.kind == 'image') {
