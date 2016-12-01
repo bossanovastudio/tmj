@@ -11,7 +11,7 @@ module CrawlerParser
       card.origin     = 'tumblr'
       
       if @post.content.respond_to? 'body'
-        card.content    = "<strong>#{@post.content.summary}</strong>"
+        card.content    = "#{@post.content.summary} - "
         card.content    += @post.content.body.gsub(/<[^>]*>/ui,'')
       else
         card.content    = @post.content.summary
