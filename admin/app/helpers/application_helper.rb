@@ -1,6 +1,6 @@
 module ApplicationHelper
   def paginate(actual=nil)
-    total_cards = Card.get(:total)['cards']
+    total_cards = Card.get(:total, filter: { origin: params[:origin], status: params[:status], content: params[:content] })['cards']
     quantity = (params[:quantity].nil? && 20) || params[:quantity]
     page = (params[:page].nil? && 1) || params[:page].to_i
     pages = (total_cards.to_f / quantity.to_f).ceil
@@ -8,14 +8,18 @@ module ApplicationHelper
     html = "<ul class='pagination'>"
 
     Range.new(1, pages).each do |n|
-      if n == page
-        html += "<li class='active'>"
-      else
-        html += "<li>"
-      end
+      html += link_to paginate_cards_path(n, quantity, status: params[:status], origin: params[:origin]) do
+        if n == page
+          link = "<li class='active'>"
+        else
+          link = "<li>"
+        end
 
-      html += link_to n, paginate_cards_path(n, quantity)
-      html += "</li>"
+        link += "<span>#{n}</span>"
+        link += "</li>"
+
+        link.html_safe
+      end
     end
 
     html += "</ul>"
@@ -57,7 +61,7 @@ module ApplicationHelper
     if ratio <= 1.0
       percent = 50.0 * (1.0 + (1.0 - ratio))
     else
-      percent = 50 * (card.image.height / card.image.width)
+      percent = 50.0 * (card.image.height.to_f / card.image.width.to_f)
     end
   end
 

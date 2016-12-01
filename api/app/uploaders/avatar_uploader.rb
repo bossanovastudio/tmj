@@ -1,5 +1,5 @@
 class AvatarUploader < CarrierWave::Uploader::Base
-  include CarrierWave::MiniMagick
+  include CarrierWave::RMagick
 
   storage :fog
 

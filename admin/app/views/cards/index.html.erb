@@ -5,8 +5,8 @@
   <div class="filter-bar">
     <div class="btn-filter">
       <div class="status item">
-        <div class="main-select st-sel">Todos</div>
-        <%- status = { "" => "Todos", pending: "Pendentes", rejected: "Negados", accepted: "Aprovados" } %>
+        <%- status = { :"" => "Todos", pending: "Pendentes", rejected: "Negados", accepted: "Aprovados" } %>
+        <div class="main-select st-sel"><%= status[params.fetch(:status, "").to_sym] %></div>
         <ul class="status-options filter-options">
           <% status.each do |key, value| %>
             <%= link_to cards_path + query_string(:status, key) do %>
@@ -19,8 +19,8 @@
       </div>
 
       <div class="social item">
-        <div class="main-select so-sel">Todos</div>
-        <%- social = { "" => "Todos", facebook: "Facebook", twitter: "Twitter", youtube: "Youtube", instagram: "Instagram" }%>
+        <%- social = { :"" => "Todos", facebook: "Facebook", twitter: "Twitter", youtube: "Youtube", instagram: "Instagram", pinterest: "Pinterest", tumblr: "Tumblr" }%>
+        <div class="main-select so-sel"><%= social[params.fetch(:origin, "").to_sym] %></div>
         <ul class="social-options filter-options">
           <% social.each do |key, value| %>
             <%= link_to cards_path + query_string(:origin, key) do%>
@@ -32,9 +32,11 @@
         </ul>
       </div>
 
+      <!--
       <form>
         <input class="search" type=search name=search placeholder="Buscar">
       </form>
+        -->
     </div>
 
     <div class="btn-status">
@@ -77,14 +79,17 @@
   </div>
 </div>
 <div class="bottom-content">
-
   <p id="notice"><%= notice %></p>
 
   <div id="cards-container" class="container cards">
     <%= form_for Card.new, remote: true do |f| %>
+    <input type="hidden" name="status_filter" value="<%= @status %>" />
+    <input type="hidden" name="origin_filter" value="<%= @origin %>" />
+    <input type="hidden" name="page" value="<%= @page %>" />
+    <input type="hidden" name="quantity" value="<%= @quantity %>" />
       <% @cards.each do |card| %>
-    <div class="card column show <%= card_size(card) %>" data-class="card column <%= card_size(card) %>">
-    <input type="checkbox" name="card[id][]" value="<%= card.id %>" />
+    <div class="card column show <%= card_size(card) %> <%= card.user.username if card.user.role == 'editor' %> " data-card-kind="<%= card.kind %>" data-card-origin="<%= card.origin %>" data-class="card column <%= card_size(card) %> <%= card.user.username if card.user.role == 'editor' %>">
+      <input type="checkbox" name="card[id][]" value="<%= card.id %>" />
       <div class="selected-overlay"></div>
       <div class="status-bar <%= card.status %> color"></div>
       <% if card.kind == 'image' %>
@@ -111,9 +116,13 @@
     </div>
     <% end %>
    <% end %>
-  </div>
   <div class="card one-five column"></div>
-  <%= paginate %>
+  </div>
+
+
+  <div id="paginate-container">
+    <%= paginate %>
+  </div>
 
   <!-- <%= link_to 'NEW CARD', new_card_path %> -->
 

@@ -7,11 +7,14 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope.PAGE = 1;
     $scope.SIZE = 20;
     $scope.END = false;
+    $rootScope.isCardsLoaded = false;
 
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
     $scope.count = 0;
     $scope.cardsFeatured = [];
+
+    $scope.isMobile = isMobileDevice;
 
     if (!isMobileDevice) {
         $('.cards.mobile').remove();
@@ -42,12 +45,20 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 // $('.cards').eq($scope.PAGE - 1).addClass('loading');
                 $('.cards-loading').addClass('show');
             }
+            // else {
+            //$('.dark-overlay').fadeIn();
+            //}
         }
         $http({
                 method: 'get',
                 url: API_URL + '/api/' + slug + '/' + p + '/' + $scope.SIZE + '.json',
             })
             .success(function(data) {
+                // if (isMobileDevice) {
+                //     $('.dark-overlay').fadeOut();
+                // }
+                $rootScope.isCardsLoaded = true;
+
                 if (data.cards.length == 0) {
                     $scope.END = true;
                     if (!isMobileDevice) {
@@ -58,11 +69,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     if ($scope.PAGE == 1 && isMobileDevice && $rootScope.pageName != 'homePage') {
                         $scope.initialCard(array, icon, data.total ? data.total : 0);
                     }
-                    if (data.highlight && !isMobileDevice) {
-                        data.highlight.id = data.highlight.id * 999999;
-                        array.push(data.highlight);
-                    }
-                    data.cards.forEach(function(card) {
+                    data.cards.forEach(function(card, i) {
+                        if (!isMobileDevice && data.highlight && data.highlight.index == i) {
+                            array.push(data.highlight);
+                        }
                         array.push(card);
                     });
                     $scope.ready = true;
@@ -97,7 +107,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     if ($scope.PAGE == 1) {
                         setTimeout(function() {
                             if ($('.initial-loading').is(':visible')) {
-                                $('.initial-loading').hide();
                                 $('.cards').addClass('show');
                             }
                             $('.cards').find('.card').addClass('show');
@@ -115,14 +124,20 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             $('.cards').find('.card').addClass('show');
                         }, 1000);
                     }
+                    // setTimeout(function() {
+                    //     $('.content p.text').linkify({
+                    //         target: "_blank"
+                    //     });
+                    // }, 1000);
                 }
             });
         $rootScope.track('load', 'cards', 'content');
     }
-    $scope.loadCards($scope.PAGE, 'all', $scope.cards, 'posts');
-    if (isMobileDevice) {
-        $scope.loadCards($scope.PAGE, 'all', $scope.cards_recommended, 'recommendation');
-    }
+    $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName : 'all', $scope.cards, 'posts');
+    // THIS MUST BE USED FOR RECOMMENDED CARDS
+    // if (isMobileDevice) {
+    //     $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName+'/recommendation' : 'all', $scope.cards_recommended, 'recommendation');
+    // }
 
     $scope.lazyLoad = function(desktop) {
         if (desktop) {
@@ -161,34 +176,32 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
             if (!e.hasClass('mobile')) {
                 //size = size - 1;
-                if (walk != -(size * ($('.card').width() + 20))) {
-                    $(e).animate({
-                        left: walk
-                    }, 250, 'easeOutBack', function() {
-                        console.log(running);
-                        running = false;
-                    });
-                } else {
+                if (walk == -((size - 2) * ($('.card').width() + 20))) {
                     if (!e.hasClass('mobile')) {
                         page++;
                         $scope.PAGE++;
-                        // temporary
-                        slug = 'all';
-                        if ($(e).data('slug') == 'posts') {
+                        if ($(e).data('slug') != 'recommended') {
                             $scope.loadCards(page, slug, $scope.cards);
                         } else {
                             $scope.loadCards(page, slug, $scope.cards_recommended);
                         }
                         $(e).data('page', page);
                     }
+                }
+                if (walk != -(size * ($('.card').width() + 20))) {
+                    $(e).animate({
+                        left: walk
+                    }, 250, 'easeOutExpo', function() {
+                        running = false;
+                    });
+                } else {
                     running = false;
                 }
             } else {
                 if (walk != -(size * ($('.card').width() + 20))) {
                     $(e).animate({
                         left: walk
-                    }, 250, 'easeOutBack', function() {
-                        console.log(running);
+                    }, 250, 'easeOutExpo', function() {
                         running = false;
                     });
                 } else {
@@ -197,7 +210,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             }
             $scope.lazyLoad(false);
         }
-        console.log(running);
         $rootScope.track('swipe', 'cards', 'left');
     }
     $scope.swipeRight = function($event) {
@@ -212,16 +224,17 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         }
         $(e).animate({
             left: walk
-        }, 250, 'easeOutBack');
+        }, 250, 'easeOutExpo');
         $rootScope.track('swipe', 'cards', 'right');
     }
     var distanceTop = 0;
     var cardPage = 1;
+
     $scope.swipeUp = function() {
-        if (distanceTop == 0) {
+        if (distanceTop == 0 && cardPage < $('.cards').length -1) {
             cardPage++;
         }
-        if (cardPage == $('.cards').length) {
+        if (cardPage == $('.cards').length - 1) {
             $('.arrowBottom').fadeOut();
         }
         distanceTop = -$(window).height();
@@ -230,9 +243,12 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             if (i == 0 && top == (($('.cards').length - 1) * distanceTop)) {
                 distanceTop = 0;
             }
-            $(this).animate({ top: top + distanceTop });
+            $(this).animate({ top: top + distanceTop }, 500, 'easeOutExpo');
         });
         $scope.lazyLoad(false);
+        setTimeout(function() {
+            $rootScope.animateInitial();
+        }, 1000);
         $rootScope.track('swipe', 'cards', 'up');
     }
     $scope.swipeDown = function() {
@@ -243,21 +259,31 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             if (i == 0 && top == 0) {
                 distanceTop = 0;
             }
-            $(this).animate({ top: top + distanceTop });
+            $(this).animate({ top: top + distanceTop }, 500, 'easeOutExpo');
         });
+        setTimeout(function() {
+            $rootScope.animateInitial();
+        }, 1000);
         $rootScope.track('swipe', 'cards', 'down');
     }
     $scope.openCard = function($event, id, content, force) {
         var elem = angular.element($event.target);
+        $rootScope.cardIsOpen = true;
         if (content.kind == "featured") {
             $location.path(content.source_url);
             $rootScope.track('click', 'featured', 'open');
         } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('originalPost') && !elem.hasClass('shareButton')) {
+            // if (isMobileDevice) {
+            //     $('.dark-overlay').fadeIn();
+            // }
             $http({
                     method: 'get',
                     url: API_URL + '/api/cards/' + id + '.json',
                 })
                 .success(function(data) {
+                    // if (isMobileDevice) {
+                    //     $('.dark-overlay').hide();
+                    // }
                     $rootScope.card = data;
                     $rootScope.track('click', 'cards', 'open');
 
@@ -274,6 +300,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         var contentHTML = $compile(card.html())($scope);
                         card.html(contentHTML);
                         $('body').append(card);
+                        $('section').css({ overflow: "hidden !important" });
                         card.animate({
                             left: 0,
                             top: 0,
@@ -340,6 +367,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             lightboxDetail.addClass('show');
                         }
                     }
+                    setTimeout(function() {
+                        // $('p.content').linkify({
+                        //     target: "_blank"
+                        // });
+                    }, 500);
                 });
         }
     }
@@ -358,12 +390,15 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
 
     $scope.close = function($event) {
+        $rootScope.cardIsOpen = false;
+
         var elem = angular.element($event.target);
         var card = $(elem).closest('.card');
         card.fadeOut(300, function() {
             $(this).remove();
         })
         if (isMobileDevice) {
+            $('section').css({ overflow: "visible !important" });
             $('.card').removeClass('openMobile');
         }
         $rootScope.track('click', 'cards', 'close');
@@ -416,18 +451,28 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope._throttleDelay = 100;
 
     $scope.ScrollHandler = function(e) {
-        clearTimeout($scope._throttleTimer);
-        $scope._throttleTimer = setTimeout(function() {
-            if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-                $scope.PAGE++;
-                if (!$scope.END) {
-                    $scope.loadCards($scope.PAGE);
+        if (!isMobileDevice) {
+            clearTimeout($scope._throttleTimer);
+            $scope._throttleTimer = setTimeout(function() {
+                if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                    $scope.PAGE++;
+                    if (!$scope.END) {
+                        $scope.loadCards($scope.PAGE);
+                    }
                 }
-            }
-        }, $scope._throttleDelay);
+            }, $scope._throttleDelay);
+        }
+    }
+
+    $rootScope.socialMediaShareLink = '';
+    $rootScope.openSharePopup = function(link, cardID) {
+        $rootScope.socialMediaShareLink = link + $rootScope.SITE_URL + '/detalhe/card/' + cardID;
+
+        window.open($rootScope.socialMediaShareLink, "", "width=600,height=500");
     }
 
     $(document).ready(function() {
         $(window).off('scroll', $scope.ScrollHandler).on('scroll', $scope.ScrollHandler);
     });
+
 });

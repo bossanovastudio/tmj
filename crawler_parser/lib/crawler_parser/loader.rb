@@ -1,7 +1,7 @@
 module CrawlerParser
   class Loader
     def initialize
-      @crawled_posts = CrawledPost.all
+      @crawled_posts = CrawledPost.unparsed
     end
 
     def each(&block)

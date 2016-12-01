@@ -22,7 +22,8 @@ var tmj = angular.module('tmj', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
-    'swipe'
+    'swipe',
+    'ngclipboard'
 ]);
 tmj
     .config(function($routeProvider, $locationProvider, $httpProvider) {

@@ -1,41 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="Fique por dentro de toda novidade sobre o filme da Turma da Mônica Jovem muito mais!.">
+    <meta name="description" content="A plataforma oficial da Turma da Mônica Jovem. Fique por dentro de tudo o que acontece no universo da turminha com as postagens e compartilhamentos dos nossos editores e também dos fãs!">
     <meta name="keywords" content="TMJ,turma,monica,jovem,cascao,cebolinha,magali">
-    <meta name="author" content="D3 Estudio">
+    <meta name="author" content="Turma da Mônica Jovem o Filme">
 
-    <link rel="apple-touch-icon" sizes="120x120" href="/img/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="/img/favicons/favicons-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/img/favicons/favicons-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/img/favicons/manifest.json">
-    <link rel="mask-icon" href="/img/favicons/safari-pinned-tab.svg" color="#ff0000">
-    <meta name="theme-color" content="#c7c7c9">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/img/manifest.json">
+    <link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#68a6ef">
+    <meta name="theme-color" content="#68a6ef">
     <meta charset="UTF-8">
-    <title>Turma da Mônica Jovem</title>
+    <title>Turma da Mônica Jovem o Filme</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta itemprop="name" content="">
-    <meta itemprop="url" content="">
-    <meta itemprop="image" content="">
-    <meta itemprop="description" content="">
+    <meta itemprop="name" content="Turma da Mônica Jovem o Filme">
+    <meta itemprop="url" content="http://tmjofilme.com.br">
+    <meta itemprop="image" content="http://staging.tmjofilme.com.br/img/TMJ-logo.jpg">
+    <meta itemprop="description" content="A plataforma oficial da Turma da Mônica Jovem. Fique por dentro de tudo o que acontece no universo da turminha com as postagens e compartilhamentos dos nossos editores e também dos fãs!">
     <base href="/">
     <!-- FACEBOOK -->
-    <meta property="og:type" content="" />
-    <meta property="og:title" content="" />
-    <meta property="og:image" content="" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Turma da Mônica Jovem o Filme" />
+    <meta property="og:image" content="http://staging.tmjofilme.com.br/img/TMJ-logo.jpg" />
     <meta property="og:image:width" content="400" />
-    <meta property="og:image:height" content="400" />
-    <meta property="og:site_name" content="" />
-    <meta property="og:description" content="" />
+    <meta property="og:image:height" content="300" />
+    <meta property="og:site_name" content="Turma da Mônica Jovem" />
+    <meta property="og:description" content="A plataforma oficial da Turma da Mônica Jovem. Fique por dentro de tudo o que acontece no universo da turminha com as postagens e compartilhamentos dos nossos editores e também dos fãs!" />
     <!-- TWITTER -->
-    <meta name="twitter:card" content="" />
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:description" content="" />
-    <meta name="twitter:image:src" content="" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Turma da Mônica Jovem o Filme" />
+    <meta name="twitter:description" content="A plataforma oficial da Turma da Mônica Jovem. Fique por dentro de tudo o que acontece no universo da turminha com as postagens e compartilhamentos dos nossos editores e também dos fãs!" />
+    <meta name="twitter:image:src" content="http://staging.tmjofilme.com.br/img/TMJ-logo.jpg" />
     <!-- CSS -->
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="stylesheet" href="/css/main.css" type="text/css">
@@ -44,23 +43,32 @@
 
 <body ng-app="tmj" ng-controller="MainController" ng-keypress="closeLightboxKey($event.keyCode)" ng-keydown="closeLightboxKey($event.keyCode)" class="{{pageName}}">
     <div class="purple-overlay"></div>
+    <div class="dark-overlay"></div>
     <!-- <div id="menu">
         <img src="/img/menu-desktop.svg" class="desktop" ng-click="toggle()" />
         <img src="/img/menu-mobile.svg" class="mobile" ng-click="toggle()" />
     </div> -->
 
     <div id="menu" ng-click="toggle()">
-      <div id="nav-icon4">
-        <span></span>
-        <span></span>
-        <span></span>
+        <div class="content-icon-menu">
+          <div id="nav-icon4">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <svg class="icon-menu" width="45px" height="43px" viewBox="0 0 45 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <path class="shadow" d="M20.2244318,0.338709677 C9.24238636,0.338709677 0.340568182,9.18377419 0.340568182,20.0942903 C0.340568182,31.0048065 9.24238636,39.849871 20.2244318,39.849871 C23.1910227,39.849871 26.0055682,39.2029355 28.53375,38.0452258 C30.6010227,39.3235161 33.04125,40.0625806 35.6560227,40.0625806 C37.1839773,40.0625806 38.6519318,39.8065161 40.0217045,39.3418065 C37.8657955,37.7519032 36.2028409,35.5387742 35.3035227,32.9706774 C38.2973864,29.5124516 40.1082955,25.0137097 40.1082955,20.0942903 C40.1082955,9.18377419 31.2057955,0.338709677 20.2244318,0.338709677" id="Fill-6" fill="#FFFFFF"></path>
+              <path d="M20.2244318,0.338709677 C9.24238636,0.338709677 0.340568182,9.18377419 0.340568182,20.0942903 C0.340568182,31.0048065 9.24238636,39.849871 20.2244318,39.849871 C23.1910227,39.849871 26.0055682,39.2029355 28.53375,38.0452258 C30.6010227,39.3235161 33.04125,40.0625806 35.6560227,40.0625806 C37.1839773,40.0625806 38.6519318,39.8065161 40.0217045,39.3418065 C37.8657955,37.7519032 36.2028409,35.5387742 35.3035227,32.9706774 C38.2973864,29.5124516 40.1082955,25.0137097 40.1082955,20.0942903 C40.1082955,9.18377419 31.2057955,0.338709677 20.2244318,0.338709677 L20.2244318,0.338709677 L20.2244318,0.338709677 Z" id="Stroke-8" stroke="#000000"></path>
+            </g>
+          </svg>
       </div>
-      <svg width="45px" height="43px" viewBox="0 0 45 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <svg class="shadow-menu" width="44px" height="42px" viewBox="0 0 44 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <path class="shadow" d="M20.2244318,0.338709677 C9.24238636,0.338709677 0.340568182,9.18377419 0.340568182,20.0942903 C0.340568182,31.0048065 9.24238636,39.849871 20.2244318,39.849871 C23.1910227,39.849871 26.0055682,39.2029355 28.53375,38.0452258 C30.6010227,39.3235161 33.04125,40.0625806 35.6560227,40.0625806 C37.1839773,40.0625806 38.6519318,39.8065161 40.0217045,39.3418065 C37.8657955,37.7519032 36.2028409,35.5387742 35.3035227,32.9706774 C38.2973864,29.5124516 40.1082955,25.0137097 40.1082955,20.0942903 C40.1082955,9.18377419 31.2057955,0.338709677 20.2244318,0.338709677" id="Fill-6" fill="#FFFFFF"></path>
-          <path d="M20.2244318,0.338709677 C9.24238636,0.338709677 0.340568182,9.18377419 0.340568182,20.0942903 C0.340568182,31.0048065 9.24238636,39.849871 20.2244318,39.849871 C23.1910227,39.849871 26.0055682,39.2029355 28.53375,38.0452258 C30.6010227,39.3235161 33.04125,40.0625806 35.6560227,40.0625806 C37.1839773,40.0625806 38.6519318,39.8065161 40.0217045,39.3418065 C37.8657955,37.7519032 36.2028409,35.5387742 35.3035227,32.9706774 C38.2973864,29.5124516 40.1082955,25.0137097 40.1082955,20.0942903 C40.1082955,9.18377419 31.2057955,0.338709677 20.2244318,0.338709677 L20.2244318,0.338709677 L20.2244318,0.338709677 Z" id="Stroke-8" stroke="#000000"></path>
+            <path d="M20.2244318,0.338709677 C9.24238636,0.338709677 0.340568182,9.18377419 0.340568182,20.0942903 C0.340568182,31.0048065 9.24238636,39.849871 20.2244318,39.849871 C23.1910227,39.849871 26.0055682,39.2029355 28.53375,38.0452258 C30.6010227,39.3235161 33.04125,40.0625806 35.6560227,40.0625806 C37.1839773,40.0625806 38.6519318,39.8065161 40.0217045,39.3418065 C37.8657955,37.7519032 36.2028409,35.5387742 35.3035227,32.9706774 C38.2973864,29.5124516 40.1082955,25.0137097 40.1082955,20.0942903 C40.1082955,9.18377419 31.2057955,0.338709677 20.2244318,0.338709677" id="Fill-6" fill="#FFFFFF"></path>
+            <path d="M23.8225909,1.69436129 C12.8405455,1.69436129 3.93872727,10.5394258 3.93872727,21.4499419 C3.93872727,32.3604581 12.8405455,41.2055226 23.8225909,41.2055226 C26.7891818,41.2055226 29.6037273,40.5585871 32.1319091,39.4008774 C34.1991818,40.6791677 36.6394091,41.4182323 39.2541818,41.4182323 C40.7821364,41.4182323 42.2500909,41.1621677 43.6198636,40.6974581 C41.4639545,39.1075548 39.801,36.8944258 38.9016818,34.326329 C41.8955455,30.8681032 43.7064545,26.3693613 43.7064545,21.4499419 C43.7064545,10.5394258 34.8039545,1.69436129 23.8225909,1.69436129" id="Fill-1" fill="#000000"></path>
         </g>
-      </svg>
+    </svg>
     </div>
 
     <div class="sidebar">
@@ -130,7 +138,7 @@
     </div>
     <div class="overlay" ng-click="closeMenu(); toggle()"></div>
     <div class="lightbox" ng-click="closeLightboxClick($event)">
-        <div class="detail content {{card.kind=='image' || card.kind=='video' ? 'image' : ''}}">
+        <div class="detail content {{card.kind=='image' || card.kind=='video' ? 'image' : ''}} {{card.user.role == 'editor' && pageName =='homePage' ? card.user.username : ''}}">
             <div class="preview" style="background-image:url('{{card.image.url}}')">
                 <div ng-if="card.kind == 'video'" class="videoIframe" ng-bind-html="card.source_url | formatVideo | trust"></div>
             </div>
@@ -140,15 +148,16 @@
                     <span></span>
                     <span></span>
                   </div>
-                  <svg width="45px" height="43px" viewBox="0 0 45 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                      <path class="shadow" d="M20.2244318,0.338709677 C9.24238636,0.338709677 0.340568182,9.18377419 0.340568182,20.0942903 C0.340568182,31.0048065 9.24238636,39.849871 20.2244318,39.849871 C23.1910227,39.849871 26.0055682,39.2029355 28.53375,38.0452258 C30.6010227,39.3235161 33.04125,40.0625806 35.6560227,40.0625806 C37.1839773,40.0625806 38.6519318,39.8065161 40.0217045,39.3418065 C37.8657955,37.7519032 36.2028409,35.5387742 35.3035227,32.9706774 C38.2973864,29.5124516 40.1082955,25.0137097 40.1082955,20.0942903 C40.1082955,9.18377419 31.2057955,0.338709677 20.2244318,0.338709677" id="Fill-6" fill="#FFFFFF"></path>
-                      <path d="M20.2244318,0.338709677 C9.24238636,0.338709677 0.340568182,9.18377419 0.340568182,20.0942903 C0.340568182,31.0048065 9.24238636,39.849871 20.2244318,39.849871 C23.1910227,39.849871 26.0055682,39.2029355 28.53375,38.0452258 C30.6010227,39.3235161 33.04125,40.0625806 35.6560227,40.0625806 C37.1839773,40.0625806 38.6519318,39.8065161 40.0217045,39.3418065 C37.8657955,37.7519032 36.2028409,35.5387742 35.3035227,32.9706774 C38.2973864,29.5124516 40.1082955,25.0137097 40.1082955,20.0942903 C40.1082955,9.18377419 31.2057955,0.338709677 20.2244318,0.338709677 L20.2244318,0.338709677 L20.2244318,0.338709677 Z" id="Stroke-8" stroke="#000000"></path>
-                    </g>
-                  </svg>
+                  <img src="/img/balao_simples3.svg" class="link" alt="">
+                  <img src="/img/poof_simples.svg" class="active" alt="">
                 </div>
+                <img ng-if="card.user.role == 'editor'" src="{{card.user.avatar}}" class="userPhoto" />
                 <p class="name">{{card.user.name}}</p>
-                <p class="date"><img src="/img/{{card.origin}}.svg" /> {{card.posted_at | formatDate}}</p>
+                <p class="date">
+                  <a target="_blank" ng-href="{{card.source_url}}">
+                    <img src="/img/{{card.origin}}.svg" />
+                    {{card.posted_at | formatDate}}
+                  </a></p>
                 <p class="content">
                     {{card.content}}
                 </p>
@@ -159,7 +168,7 @@
         </div>
     </div>
     <header>
-        <p class="container desktop" style="text-align: center"><img src="/img/logo.svg" height="84" /></p>
+        <p class="container desktop" style="text-align: center"><a ng-href="/" target="_self"><img src="/img/logo.svg" height="84" /></a></p>
     </header>
     <section ng-view></section>
     <footer ng-if="pageName == 'homePage'" class="desktop">
@@ -183,6 +192,8 @@
     <script src="/js/libs/external/masonry.js"></script>
     <script src="/js/libs/external/lazyload.js"></script>
     <script src="/js/libs/external/svg.js"></script>
+    <script src="/js/libs/external/linkify.js"></script>
+    <script src="/js/libs/external/clipboard.js"></script>
     <!-- load angular, ngRoute, ngAnimate -->
     <script src="/js/libs/angular/angular.js"></script>
     <script src="/js/libs/angular/angular-cookies.js"></script>
@@ -191,6 +202,8 @@
     <script src="/js/libs/angular/angular-touch.js"></script>
     <script src="/js/libs/angular/angular-swipe.js"></script>
     <script src="/js/libs/angular/angular-resource.js"></script>
+    <script src="/js/libs/external/ngclipboard.js"></script>
+
     <!-- main controllers -->
     <script src="/js/app.js"></script>
     <script src="/js/filters/Filters.js"></script>

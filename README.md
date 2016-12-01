@@ -31,7 +31,7 @@ docker-compose build api
 
 Para criação e migração do banco de dados:
 ```shell
-docker-compose run api rake db:create db:migrate
+docker-compose run --rm api rake db:create db:migrate
 ```
 
 #### Subindo a aplicação
@@ -51,13 +51,13 @@ docker-compose build crawler_sn
 
 Para criação e migração do banco de dados:
 ```shell
-docker-compose run crawler_sn rake db:create db:migrate
+docker-compose run --rm crawler_sn rake db:create db:migrate
 ```
 
 #### Rodando o crawler
 
 ```shell
-docker-compose run crawler_sn
+docker-compose run --rm crawler_sn
 ```
 
 ### Crawler Parser
@@ -72,7 +72,7 @@ docker-compose build crawler_parser
 #### Rodando o crawler
 
 ```shell
-docker-compose run crawler_parser
+docker-compose run --rm crawler_parser
 ```
 
 ### Web
@@ -87,7 +87,7 @@ docker-compose build web
 #### Gerando os arquivos estáticos
 
 ```shell
-cd ./web && sudo gem install sass && npm install && npm install -g grunt && grunt
+cd ./web && sudo gem install sass && npm install && sudo npm install -g grunt && grunt
 ```
 
 #### Rodando o container
@@ -95,3 +95,25 @@ cd ./web && sudo gem install sass && npm install && npm install -g grunt && grun
 ```shell
 docker-compose up web
 ```
+
+### Web Register
+
+#### Criando o ambiente
+
+Para buildar o container utilize o seguinte comando:
+```shell
+docker-compose build web-register
+```
+
+#### Gerando os arquivos estáticos
+
+```shell
+cd ./web-register && sudo gem install sass && npm install && sudo npm install -g grunt && grunt
+```
+
+#### Rodando o container
+
+```shell
+docker-compose up web-register
+```
+

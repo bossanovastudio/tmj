@@ -12,8 +12,8 @@ gem 'jbuilder', '~> 2.5'
 # FriendlyId is the “Swiss Army bulldozer” of slugging and permalink plugins for ActiveRecord
 gem 'friendly_id', github: 'norman/friendly_id'
 
-# Mini replacement for RMagick
-gem 'mini_magick'
+# Ruby bindings for ImageMagick
+gem 'rmagick'
 
 # Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
@@ -77,4 +77,6 @@ group :development do
 
   # Meta package that requires several pry extensions.
   gem 'pry-meta'
+
+  gem 'annotate'
 end

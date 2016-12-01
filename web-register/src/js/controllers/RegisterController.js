@@ -15,7 +15,7 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
         var valid = true;
         $('.form.active').find('.field').each(function(i, f) {
             if ($(f).hasClass('simple')) {
-                if ($(f).find('input, textarea, select').val().length < 1) {
+                if ($(f).find('input, textarea, select').val().length < 1 && !$(f).find('input, textarea, select').hasClass('except')) {
                     $(f).find('input, textarea, select').addClass('error');
                     valid = false;
                 } else {

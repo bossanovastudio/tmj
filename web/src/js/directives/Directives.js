@@ -6,28 +6,29 @@ var organizeCards = function(newValue, oldValue) {
             "margin": "0 auto 50px auto",
             "padding": 0
         });
-        $('html').css({overflow: 'auto'});
-        if (newValue.w < 550) {
-            $('.cards').find('.card').each(function() {
-                $(this).attr('style', '');
-                $(this).attr('class', $(this).attr('data-class'));
-                $(this).find('.img').css('height', 'auto');
-                $(this).find('.img').removeClass('no-padding');
-                $(this).find('.img').css('padding', $(this).attr('data-padding'));
-            });
-            if (!$('.cards').data('masonry')) {
-                $('.cards').masonry({
-                    itemSelector: '.card',
-                    columnWidth: '.one-five',
-                    percentPosition: false,
-                    gutter: 20,
-                    transitionDuration: 0
-                });
-            } else {
-                $('.cards').masonry('reloadItems');
-                $('.cards').masonry();
-            }
-        }
+        $('html').css({ overflow: 'auto' });
+        // this is not needed anymore
+        // if (newValue.w < 550) {
+        //     $('.cards').find('.card').each(function() {
+        //         $(this).attr('style', '');
+        //         $(this).attr('class', $(this).attr('data-class'));
+        //         $(this).find('.img').css('height', 'auto');
+        //         $(this).find('.img').removeClass('no-padding');
+        //         $(this).find('.img').css('padding', $(this).attr('data-padding'));
+        //     });
+        //     if (!$('.cards').data('masonry')) {
+        //         $('.cards').masonry({
+        //             itemSelector: '.card',
+        //             columnWidth: '.one-five',
+        //             percentPosition: false,
+        //             gutter: 20,
+        //             transitionDuration: 0
+        //         });
+        //     } else {
+        //         $('.cards').masonry('reloadItems');
+        //         $('.cards').masonry();
+        //     }
+        // }
     } else if (isMobileDevice) {
         if ($('.cards').data('masonry')) {
             $('.cards').masonry('destroy');
@@ -46,7 +47,7 @@ var organizeCards = function(newValue, oldValue) {
                 if ($(c).hasClass('featured')) {
                     $(c).css({ "height": newValue.h - 100 });
                 } else if ($(c).hasClass('initial')) {
-                    $(c).css({ "height":'100%'});
+                    $(c).css({ "height": '100%' });
                 }
                 if ($(c).hasClass('featured')) {
                     $(c).attr('class', 'card featured ng-scope');
@@ -56,9 +57,27 @@ var organizeCards = function(newValue, oldValue) {
                     $(c).attr('class', 'card video ng-scope');
                     //$(c).find('.img').css({ "height": 0 });
                 } else if ($(c).hasClass('text')) {
+
+                    // var card = scope.ngClasses;
+                    // var maxLength = 0;
+                    // if (card.kind == 'text') {
+                    //     maxLength = !isMobileDevice ? 300 : 400;
+                    // } else {
+                    //     maxLength = !isMobileDevice ? 100 : 70;
+                    // }
+                    // if (card.content) {
+                    //     if (card.content.length > maxLength || card.kind !== 'text') {
+                    //         console.log($(elem).parent(), card.content, 'true');
+                    //         $(elem).parent().addClass('cursor');
+                    //     } else {
+                    //         console.log($(elem).parent(), card.content, 'false');
+                    //         $(elem).parent().removeClass('cursor');
+                    //     }
+                    // }
+
                     $(c).attr('class', 'card text ng-scope');
                 } else {
-                    $(c).attr('class', 'card ng-scope');
+                    $(c).attr('class', 'card cursor ng-scope');
                 }
             });
             card.find('.img').addClass('no-padding');
@@ -106,7 +125,7 @@ tmj.directive('organizeCards', function() {
     };
 })
 
-tmj.directive("cardClass", function() {
+tmj.directive("cardClass", function($rootScope) {
     return {
         restrict: 'EA',
         replace: false,
@@ -115,26 +134,28 @@ tmj.directive("cardClass", function() {
         },
         link: function(scope, elem, attr) {
             var card = scope.ngClasses;
-            var maxLength= 0;
+            var maxLength = 0;
             if (card.kind == 'text') {
                 maxLength = !isMobileDevice ? 300 : 400;
             } else {
                 maxLength = !isMobileDevice ? 100 : 70;
             }
-            if( card.content ) {
+            if (card.content) {
                 if (card.content.length > maxLength || card.kind !== 'text') {
                     $(elem).parent().addClass('cursor');
                 } else {
                     $(elem).parent().removeClass('cursor');
                 }
             }
-
+            if (card.user && card.user.role == 'editor' && !isMobileDevice && $rootScope.pageName == 'homePage') {
+                $(elem).parent().addClass(card.user.username);
+            }
             if (card.kind == 'image') {
                 var ratio = parseFloat(card.image.ratio.replace(',', '.'));
                 if (ratio <= 1) {
                     var percent = 50 * (1 + (1 - ratio));
-                    $(elem).parent().addClass('card one-five column');
-                    $(elem).parent().attr('data-class', 'card one-five column');
+                    $(elem).parent().addClass('card one-five cursor column');
+                    $(elem).parent().attr('data-class', 'card one-five cursor column');
                     $(elem).css({ "padding": percent + "% 0" });
                     $(elem).attr('data-padding', percent + "% 0");
                 } else {
@@ -142,14 +163,14 @@ tmj.directive("cardClass", function() {
                     $(elem).css({ "padding": percent + "% 0" });
                     $(elem).attr('data-padding', percent + "% 0");
                     if (percent > 16) {
-                        $(elem).parent().addClass('card two-five column');
-                        $(elem).parent().attr('data-class', 'card two-five column');
+                        $(elem).parent().addClass('card two-five cursor column');
+                        $(elem).parent().attr('data-class', 'card two-five cursor column');
                     } else if (percent > 33) {
                         $(elem).parent().addClass('card three-five column');
-                        $(elem).parent().attr('data-class', 'card three-five column');
+                        $(elem).parent().attr('data-class', 'card three-five cursor column');
                     } else {
                         $(elem).parent().addClass('card one-five column');
-                        $(elem).parent().attr('data-class', 'card one-five column');
+                        $(elem).parent().attr('data-class', 'card one-five cursor column');
                     }
                 }
             } else if (card.kind == 'text') {
@@ -157,14 +178,14 @@ tmj.directive("cardClass", function() {
                 $(elem).parent().attr('data-class', 'card one-five column text');
                 $(elem).remove();
             } else if (card.kind == 'featured') {
-                $(elem).parent().addClass('card ' + card.size + '-five column featured');
-                $(elem).parent().attr('data-class', 'card ' + card.size + '-five column featured');
+                $(elem).parent().addClass('card ' + card.size + '-five cursor column featured');
+                $(elem).parent().attr('data-class', 'card ' + card.size + '-five cursor column featured');
             } else if (card.kind == 'initial') {
                 $(elem).parent().addClass('card one-five column initial');
                 $(elem).parent().attr('data-class', 'card one-five column initial');
             } else if (card.kind == 'video') {
-                $(elem).parent().addClass('card two-five column video');
-                $(elem).parent().attr('data-class', 'card two-five column video');
+                $(elem).parent().addClass('card two-five cursor column video');
+                $(elem).parent().attr('data-class', 'card two-five cursor column video');
                 $(elem).css({ "padding": 35 + "% 0" });
                 $(elem).attr('data-padding', 35 + "% 0");
             }

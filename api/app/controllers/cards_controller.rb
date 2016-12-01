@@ -84,7 +84,9 @@ end
   # GET /cards/total
   # GET /cards/total.json
   def total
-    @total_cards = Card.count
+    filter = params[:filter]
+    
+    @total_cards = Card.filter_query(filter).count
   end
   
   private
@@ -99,6 +101,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
-      params.require(:card).permit(:user_id, :origin, :source_url, :content, :media_id, :media_type, :posted_at, :social_user => [:id, :username])
+      params.require(:card).permit(:user_id, :origin, :source_url, :content, :media_id, :media_type, :posted_at, :social_uid, :social_user => [:id, :username])
     end
 end

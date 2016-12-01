@@ -1,6 +1,6 @@
 @import 'reset.scss';
 @import 'grid.scss';
-@import 'https://fonts.googleapis.com/css?family=Lato:300,400,700';
+@import 'https://fonts.googleapis.com/css?family=Lato:300,400,700,400i,700i';
 @font-face {
     font-family: 'KomikaTitle';
     src: url('/fonts/KomikaTitle-webfont.eot');
@@ -36,7 +36,9 @@ section {
     position: relative;
     height: 100%;
 }
-
+.six.columns.left {
+    overflow: auto;
+}
 .six.columns.left,
 .six.columns.right {
     position: relative;
@@ -46,7 +48,7 @@ section {
 
 .overlay {
   display: none;
-  text-align: center;
+  // text-align: center;
 }
 
 .left, .overlay {
@@ -67,7 +69,22 @@ section {
         line-height: 1.24;
         letter-spacing: 1.3px;
         color: #000000;
-        margin: 0 0 10%;
+        margin: 0;
+        // margin: 0 0 10%;
+    }
+    p.title {
+      font-size: 22px;
+      font-weight: 700;
+      font-style: italic;
+      text-indent: 15px;
+      margin-bottom: 0;
+    }
+    p.description {
+      font-style: italic;
+      font-weight: 400;
+    }
+    img.signature {
+      height: 40px;
     }
     iframe {
         width: 100%;
@@ -100,6 +117,7 @@ section {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    overflow: hidden;
     .intro {
         display: none;
     }
@@ -303,6 +321,7 @@ section {
                     textarea {
                         height: 58px;
                         border: solid 1px #ffffff;
+                        padding: 5px;
                         &.error {
                             border: solid 1px #da001b;
                         }
@@ -340,10 +359,10 @@ section {
                             text-align: center;
                             color: #000000;
                             cursor: pointer;
-                            -webkit-transition: all 0.2s ease-in;
+                            -webkit-transition: all 0.1s ease-in;
                             &:hover {
                                 background: #f1f1f1;
-                                -webkit-transition: all 0.2s ease-in;
+                                -webkit-transition: all 0.1s ease-in;
                               }
                         }
                         input {
@@ -375,12 +394,12 @@ section {
                         box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 1);
                         overflow: hidden;
                         position: relative;
-                        -webkit-transition: all 0.2s ease-in;
+                        -webkit-transition: all 0.08s ease-in;
                         &:hover{
                             -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
                             -moz-box-shadow:  0px 0px 0px 0px rgba(0,0,0,1);
-                            box-shadow:  0px 0px 0x 0px rgba(0,0,0,1);
-                            transition-duration: 0.2s;
+                            box-shadow:  0px 0px 0px 0px rgba(0,0,0,1);
+                            transition-duration: 0.08s;
                             transform: translate(3px, 4px);
                             // background: transparent;
                           }
@@ -398,7 +417,7 @@ section {
                             right: 0;
                             top: -200%;
                             z-index: -1;
-                            -webkit-transition: all 0.2s ease-in;
+                            -webkit-transition: all 0.08s ease-in;
                           }
                           &:hover:before {
                             left: -50%;
@@ -423,10 +442,10 @@ section {
                             -moz-transition: border 1s ease-out;
                             -o-transition: border 1s ease-out;
                             transition: border 1s ease-out;
-                            -webkit-transition: all 0.2s ease-in;
+                            -webkit-transition: all 0.08s ease-in;
                             &:hover {
                                 background: rgba(255,255,255,0.3);
-                                -webkit-transition: all 0.2s ease-in;
+                                -webkit-transition: all 0.08s ease-in;
                             }
                             &.error {
                                 border: solid 1px #da001b;
@@ -519,6 +538,9 @@ section {
 }
 
 @media (max-width: 1050px) {
+    section {
+      height: auto;
+    }
     .left {
         display: none;
     }
@@ -527,6 +549,11 @@ section {
       opacity: 0;
       transition: visibility 0s 5s, opacity 0.3s linear;
       display:none;
+    }
+    .logo img {
+      margin: 0 auto;
+      display: block;
+      height: 60px;
     }
     .overlay {
       visibility: visible;
@@ -540,6 +567,9 @@ section {
       p.intro {
         font-size: 20px;
         letter-spacing: 0.7px;
+      }
+      p.title {
+        font-size: 18px;
       }
       .videowrapper {
         position: relative;
@@ -563,6 +593,9 @@ section {
                 width: 30%;
                 margin: 0px;
                 float: left;
+                img {
+                  height: 60px;
+                }
             }
             p.intro {
                 float: right;
@@ -595,7 +628,7 @@ section {
         width: 30.6667%;
     }
     .container {
-        width: 80% !important;
+        width: 90% !important;
         height: auto !important;
     }
     .right .forms {

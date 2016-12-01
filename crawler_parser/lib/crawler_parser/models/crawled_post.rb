@@ -1,6 +1,6 @@
 class CrawledPost < CrawlerRecord
-  enum social_media: { facebook: 1, twitter: 2, youtube: 3, vimeo: 4, instagram: 5, pinterest: 6 }
-
+  enum social_media: { facebook: 1, twitter: 2, youtube: 3, vimeo: 4, instagram: 5, pinterest: 6, tumblr: 7 }
+  scope :unparsed, -> { where(parsed: false) }
   def content
     OpenStruct.new self.data
   end

@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161128212438) do
+ActiveRecord::Schema.define(version: 20161130230038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cards", force: :cascade do |t|
-    t.integer  "user_id"
     t.integer  "origin"
     t.text     "content"
     t.string   "media_type"
@@ -28,6 +27,7 @@ ActiveRecord::Schema.define(version: 20161128212438) do
     t.integer  "status",      default: 1
     t.integer  "size",        default: 1
     t.json     "social_user"
+    t.string   "social_uid"
     t.index ["media_type", "media_id"], name: "index_cards_on_media_type_and_media_id", using: :btree
   end
 
@@ -82,10 +82,13 @@ ActiveRecord::Schema.define(version: 20161128212438) do
     t.string   "media_type"
     t.integer  "media_id"
     t.datetime "posted_at"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "source_url"
-    t.integer  "size",       default: 1
+    t.integer  "size",              default: 1
+    t.integer  "mobile_media_id"
+    t.string   "mobile_media_type"
+    t.integer  "index",             default: 0
     t.index ["media_type", "media_id"], name: "index_highlights_on_media_type_and_media_id", using: :btree
   end
 
@@ -95,6 +98,15 @@ ActiveRecord::Schema.define(version: 20161128212438) do
     t.datetime "updated_at",             null: false
     t.integer  "width",      default: 1, null: false
     t.integer  "height",     default: 1, null: false
+  end
+
+  create_table "providers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_providers_on_user_id", using: :btree
   end
 
   create_table "social_networks", force: :cascade do |t|

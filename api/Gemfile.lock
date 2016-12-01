@@ -62,6 +62,9 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    annotate (2.7.1)
+      activerecord (>= 3.2, < 6.0)
+      rake (>= 10.4, < 12.0)
     arel (7.1.1)
     awesome_print (1.7.0)
     bcrypt (3.1.11)
@@ -135,7 +138,6 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mini_magick (4.5.1)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     minitest-rails (3.0.0)
@@ -241,6 +243,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rmagick (2.16.0)
     sinatra (1.0)
       rack (>= 1.0)
     slop (3.6.0)
@@ -275,6 +278,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   byebug
   carrierwave!
   devise
@@ -286,7 +290,6 @@ DEPENDENCIES
   kaminari
   listen (~> 3.0.5)
   mailgun_rails
-  mini_magick
   minitest-rails
   omniauth
   omniauth-facebook
@@ -299,6 +302,7 @@ DEPENDENCIES
   rails-controller-testing
   recommendable
   resque
+  rmagick
   spring
   spring-watcher-listen (~> 2.0.0)
 

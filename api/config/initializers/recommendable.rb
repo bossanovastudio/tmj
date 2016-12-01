@@ -2,7 +2,7 @@ require 'redis'
 
 Recommendable.configure do |config|
   # Recommendable's connection to Redis
-  config.redis = Redis.new(:url => ENV.fetch('REDIS_URL'))
+  config.redis = Redis.new
 
   # A prefix for all keys Recommendable uses
   config.redis_namespace = :recommendable
