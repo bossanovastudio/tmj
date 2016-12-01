@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div ng-if="card.kind != 'featured' && card.kind != 'initial'" class="content">
-                <img src="{{card.user.avatar}}" class="userPhoto {{ card.kind == 'text' ? 'noPhoto' : '' }}" />
+                <span ng-if="card.user.avatar"><img src="{{card.user.avatar}}" class="userPhoto {{ card.kind == 'text' ? 'noPhoto' : '' }}" /></span>
                 <p class="name">{{card.user.name}}</p>
                 <p class="date">
                   <a target="_blank" ng-href="{{card.source_url}}">
