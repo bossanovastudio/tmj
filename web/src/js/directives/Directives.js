@@ -145,8 +145,11 @@ tmj.directive("cardClass", function($rootScope) {
                     }
                 }
             } else if (card.kind == 'text') {
-                $(elem).parent().addClass('card one-five column text');
-                $(elem).parent().attr('data-class', 'card one-five column text');
+                if (card.content.length > maxLength/2) {
+                    $(elem).parent().addClass('card two-five column text');
+                } else {
+                    $(elem).parent().addClass('card one-five column text');
+                }
                 $(elem).remove();
             } else if (card.kind == 'featured') {
                 $(elem).parent().addClass('card ' + card.size + '-five cursor column featured');
