@@ -17,7 +17,7 @@ var organizeCards = function(newValue, oldValue, rs) {
             card.eq(0).css({
                 "margin-left": 40
             });
-            var h = newValue.h - 260;
+            var h = newValue.h - 300;
             card.find('.img').css({ "height": h });
             card.each(function(i, c) {
                 var hasClass = $(c).hasClass('ramona');
@@ -52,7 +52,8 @@ var organizeCards = function(newValue, oldValue, rs) {
                 "width": w,
                 "max-width": w,
                 "margin": 0,
-                "padding": 0
+                "padding": 0,
+                "padding-top": 80
             });
         });
     }

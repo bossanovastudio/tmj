@@ -720,11 +720,11 @@ div.card {
         }
     }
     &.editor {
-      p.name {
-          font-family: KomikaTitle;
-          font-size: 16px;
-          font-weight: 400;
-      }
+        p.name {
+            font-family: KomikaTitle;
+            font-size: 16px;
+            font-weight: 400;
+        }
     }
     &.noimage {
         .text {
@@ -1356,9 +1356,9 @@ p.content a {
     section {
         position: absolute;
         left: 0px;
-        top: 10%;
+        top: 0;
         width: 100%;
-        height: 90%;
+        height: 100%;
         overflow: hidden !important;
     }
     .initial-loading {
@@ -1373,6 +1373,14 @@ p.content a {
         top: 600px;
         height: 100%;
         overflow: hidden;
+        padding-top: 80px;
+        &.ramona {
+            background: url(/img/ramona_bg.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
         &:after {
             display: none;
         }

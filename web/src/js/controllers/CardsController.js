@@ -13,6 +13,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
     $scope.count = 0;
     $scope.cardsFeatured = [];
+    $scope.cardsRamona = [];
 
     $scope.isMobile = isMobileDevice;
 
@@ -126,6 +127,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
 
     $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName : 'all', $scope.cards, 'posts');
+    if (isMobileDevice) {
+        $scope.loadCards($scope.PAGE, 'ramona', $scope.cardsRamona, 'recommendation');
+    }
+
     // THIS MUST BE USED FOR RECOMMENDED CARDS
     // if (isMobileDevice) {
     //     $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName+'/recommendation' : 'all', $scope.cards_recommended, 'recommendation');
