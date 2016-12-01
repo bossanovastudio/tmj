@@ -149,6 +149,8 @@ tmj.directive("cardClass", function($rootScope) {
             }
             if (card.user && card.user.role == 'editor' && !isMobileDevice && $rootScope.pageName == 'homePage') {
                 $(elem).parent().addClass(card.user.username);
+            }
+            if (card.user && card.user.role == 'editor' && !isMobileDevice) {
                 $(elem).parent().addClass(card.user.role);
             }
             if (card.kind == 'image') {
