@@ -58,8 +58,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         $('.cards-loading').removeClass('show');
                     }
                 } else {
-                    if ($scope.PAGE == 1 && isMobileDevice && $rootScope.pageName != 'homePage') {
-                        $scope.initialCard(array, icon, data.total ? data.total : 0);
+                    if (($scope.PAGE == 1 && isMobileDevice && $rootScope.pageName != 'homePage') || icon == 'ramonaIcon') {
+                        $scope.initialCard(array, icon, data.total_cards ? data.total_cards : 0);
                     }
                     data.cards.forEach(function(card, i) {
                         if (!isMobileDevice && data.highlight && data.highlight.index == i) {
@@ -128,7 +128,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
     $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'), $scope.cards, 'posts');
     if (isMobileDevice) {
-        $scope.loadCards($scope.PAGE, 'ramona', $scope.cardsRamona, 'recommendation');
+        $scope.loadCards($scope.PAGE, 'ramona', $scope.cardsRamona, 'ramonaIcon');
     }
 
     // THIS MUST BE USED FOR RECOMMENDED CARDS
