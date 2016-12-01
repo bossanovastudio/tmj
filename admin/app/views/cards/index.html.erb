@@ -19,7 +19,7 @@
       </div>
 
       <div class="social item">
-        <%- social = { :"" => "Todos", facebook: "Facebook", twitter: "Twitter", youtube: "Youtube", instagram: "Instagram" }%>
+        <%- social = { :"" => "Todos", facebook: "Facebook", twitter: "Twitter", youtube: "Youtube", instagram: "Instagram", pinterest: "Pinterest", tumblr: "Tumblr" }%>
         <div class="main-select so-sel"><%= social[params.fetch(:origin, "").to_sym] %></div>
         <ul class="social-options filter-options">
           <% social.each do |key, value| %>
