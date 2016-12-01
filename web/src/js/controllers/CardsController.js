@@ -46,7 +46,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 $('.cards-loading').addClass('show');
             }
             // else {
-                //$('.dark-overlay').fadeIn();
+            //$('.dark-overlay').fadeIn();
             //}
         }
         $http({
@@ -69,11 +69,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     if ($scope.PAGE == 1 && isMobileDevice && $rootScope.pageName != 'homePage') {
                         $scope.initialCard(array, icon, data.total ? data.total : 0);
                     }
-                    if (data.highlight && !isMobileDevice) {
-                        data.highlight.id = data.highlight.id * 999999;
-                        array.push(data.highlight);
-                    }
-                    data.cards.forEach(function(card) {
+                    data.cards.forEach(function(card, i) {
+                        if (!isMobileDevice && data.highlight && data.highlight.index == i) {
+                            array.push(data.highlight);
+                        }
                         array.push(card);
                     });
                     $scope.ready = true;
@@ -177,11 +176,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
             if (!e.hasClass('mobile')) {
                 //size = size - 1;
-                if (walk == -((size-2) * ($('.card').width() + 20))) {
+                if (walk == -((size - 2) * ($('.card').width() + 20))) {
                     if (!e.hasClass('mobile')) {
                         page++;
                         $scope.PAGE++;
-                        if ($(e).data('slug') != 'recommended' ) {
+                        if ($(e).data('slug') != 'recommended') {
                             $scope.loadCards(page, slug, $scope.cards);
                         } else {
                             $scope.loadCards(page, slug, $scope.cards_recommended);
@@ -235,7 +234,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         if (distanceTop == 0 && cardPage < $('.cards').length -1) {
             cardPage++;
         }
-        if (cardPage == $('.cards').length -1) {
+        if (cardPage == $('.cards').length - 1) {
             $('.arrowBottom').fadeOut();
         }
         distanceTop = -$(window).height();
