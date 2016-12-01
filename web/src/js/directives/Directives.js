@@ -115,7 +115,8 @@ tmj.directive("cardClass", function($rootScope) {
                 }
             }
             if (card.user && card.user.role == 'editor') {
-                if((isMobileDevice && $rootScope.pageName == 'homePage') || (!isMobileDevice && $rootScope.pageName == 'homePage')) {
+                //if((isMobileDevice && $rootScope.pageName == 'homePage') || (!isMobileDevice && $rootScope.pageName == 'homePage')) {
+                if((!isMobileDevice && $rootScope.pageName == 'homePage')) {
                   $(elem).parent().addClass(card.user.username);
                 }
                 $(elem).parent().addClass(card.user.role);

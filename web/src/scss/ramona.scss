@@ -27,13 +27,26 @@ body.ramona {
             min-width: 230px;
             order: 1;
             flex-grow: 1;
+            position: relative;
             img.avatar {
                 border-radius: 100%;
+            }
+            img.avatar_hover {
+                position: absolute;
+                left: 0;
+                top: 0;
+                z-index: 2;
+                display: none;
             }
             img.badge{
                 position: absolute;
                 left: 175px;
                 top: 30px;
+            }
+            &:hover {
+                img.avatar_hover {
+                    display: block;
+                }
             }
         }
         p {
@@ -233,8 +246,12 @@ body.ramona {
                 position: relative;
             }
             .box-avatar{
-                .avatar {
+                .avatar, .avatar_hover {
                     width: 106px;
+                }
+                .avatar_hover {
+                    left: 50% !important;
+                    margin-left: -53px;
                 }
                 img.badge {
                     position: absolute;
