@@ -33,7 +33,6 @@ var organizeCards = function(newValue, oldValue, rs) {
                     $(c).attr('class', 'card initial ng-scope');
                 } else if ($(c).hasClass('video')) {
                     $(c).attr('class', 'card video ng-scope');
-                    //$(c).find('.img').css({ "height": 0 });
                 } else if ($(c).hasClass('text')) {
                     $(c).attr('class', 'card text ng-scope');
                 } else {
