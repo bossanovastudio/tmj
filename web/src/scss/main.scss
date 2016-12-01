@@ -637,7 +637,7 @@ div.card {
         padding: 18px 18px 12px 18px;
         text-align: center;
         position: relative;
-        z-index:2;
+        z-index: 2;
     }
     p.text {
         font-family: Lato;
@@ -1093,6 +1093,19 @@ div.card {
             width: 100%;
             border-bottom: solid 1px #bbbbbb;
             margin-bottom: 10px;
+        }
+        img.userPhoto {
+            width: 42px;
+            border-radius: 100%;
+            border: 2px solid #ffffff;
+            margin-right: 10px;
+            float: left;
+        }
+        &.ramona {
+            background: #b450db;
+            * {
+                color: #ffffff;
+            }
         }
         .close {
             position: absolute;

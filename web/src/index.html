@@ -138,7 +138,7 @@
     </div>
     <div class="overlay" ng-click="closeMenu(); toggle()"></div>
     <div class="lightbox" ng-click="closeLightboxClick($event)">
-        <div class="detail content {{card.kind=='image' || card.kind=='video' ? 'image' : ''}}">
+        <div class="detail content {{card.kind=='image' || card.kind=='video' ? 'image' : ''}} {{card.user.role == 'editor' ? card.user.username : ''}}">
             <div class="preview" style="background-image:url('{{card.image.url}}')">
                 <div ng-if="card.kind == 'video'" class="videoIframe" ng-bind-html="card.source_url | formatVideo | trust"></div>
             </div>
@@ -151,6 +151,7 @@
                   <img src="/img/balao_simples3.svg" class="link" alt="">
                   <img src="/img/poof_simples.svg" class="active" alt="">
                 </div>
+                <img ng-if="card.user.role == 'editor'" src="{{card.user.avatar}}" class="userPhoto" />
                 <p class="name">{{card.user.name}}</p>
                 <p class="date">
                   <a target="_blank" ng-href="{{card.source_url}}">
