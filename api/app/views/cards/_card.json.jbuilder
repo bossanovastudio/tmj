@@ -33,6 +33,7 @@ elsif card.social_user
   json.user do
     json.id     card.social_user.fetch('id', '') 
     json.name   card.social_user.fetch('username', '')
+    json.role   :user
   end
 end
 
