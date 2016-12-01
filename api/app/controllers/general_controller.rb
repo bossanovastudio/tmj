@@ -9,6 +9,12 @@ class GeneralController < ApplicationController
   def highlights
     @highlights = Highlight.all
   end
+  
+  def all_without_editors
+    pagination = pagination_params
+    @cards = Card.left_joins(:user).where({ users: { role: [1, nil] }}).approved.ordered
+    @cards_paginated = @cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1)
+  end
 
   def editors
     pagination = pagination_params

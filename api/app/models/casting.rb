@@ -63,8 +63,6 @@ class Casting < ApplicationRecord
   validates :adult_zip, presence: true
   validates :age, presence: true
   validates :birthdate, presence: true
-  validates :document_cpf, presence: true
-  validates :document_rg, presence: true
   validates :eye_color, presence: true
   validates :hair_color, presence: true
   validates :instrument_description, presence: true, if: :instrument?
