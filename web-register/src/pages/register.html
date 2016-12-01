@@ -161,11 +161,39 @@
                 <div class="clear"></div>
                 <div class="field simple four columns">
                     <label class="placeholder" for="shirt_size">Blusa</label>
-                    <input id="shirt_size" class="number except" placeholder="Tamanho" ng-model="form.shirt_size" />
+                    <select id="shirt_size" ng-model="form.shirt_size">
+                        <option value="">Selecione</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                        <option value="14">14</option>
+                        <option value="16">16</option>
+                        <option value="PP">PP</option>
+                        <option value="P">P</option>
+                        <option value="M">M</option>
+                        <option value="G">G</option>
+                        <option value="XG">XG</option>
+                    </select>
                 </div>
+                    
                 <div class="field simple four columns middle">
                     <label class="placeholder" for="pants_size">Calça</label>
-                    <input id="pants_size" class="number except" placeholder="Tamanho" ng-model="form.pants_size" />
+                    <select id="pants_size" ng-model="form.pants_size">
+                        <option value="">Selecione</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                        <option value="14">14</option>
+                        <option value="16">16</option>
+                        <option value="34">34</option>
+                        <option value="36">36</option>
+                        <option value="38">38</option>
+                        <option value="40">40</option>
+                        <option value="42">42</option>
+                        <option value="44">44</option>
+                        <option value="46">46</option>
+                        <option value="48">48</option>
+                        <option value="50">50</option>
+                    </select>
                 </div>
                 <div class="field simple four columns last">
                     <label class="placeholder" for="shoe_size">Sapato</label>
