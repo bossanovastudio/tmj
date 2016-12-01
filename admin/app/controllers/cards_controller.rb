@@ -3,8 +3,10 @@ class CardsController < ApplicationController
 
   # GET /cards
   def index
-    @status = params.fetch(:status, nil)
-    @origin = params.fetch(:origin, nil)
+    @status   = params.fetch(:status, nil)
+    @origin   = params.fetch(:origin, nil)
+    @page     = params.fetch(:page, nil)
+    @quantity = params.fetch(:quantity, nil)
     @cards = Card.find(:all, params: {
         filter: {
             origin: params[:origin],
@@ -96,7 +98,12 @@ class CardsController < ApplicationController
       redirect = {}
       redirect[:status] = params[:status_filter] unless params[:status_filter].empty?
       redirect[:origin] = params[:origin_filter] unless params[:origin_filter].empty?
-
-      redirect_to root_url(redirect)
+      redirect[:page] = params[:page] unless params[:page].empty?
+      redirect[:quantity] = params[:quantity] unless params[:quantity].empty?
+      if !params[:page].empty? && !params[:quantity].empty?
+        redirect_to paginate_cards_url(redirect)
+      else
+        redirect_to root_url(redirect)
+      end
     end
 end
