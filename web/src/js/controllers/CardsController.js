@@ -126,7 +126,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         $rootScope.track('load', 'cards', 'content');
     }
 
-    $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName : 'all', $scope.cards, 'posts');
+    $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'), $scope.cards, 'posts');
     if (isMobileDevice) {
         $scope.loadCards($scope.PAGE, 'ramona', $scope.cardsRamona, 'recommendation');
     }
