@@ -3,7 +3,7 @@ tmj.filter('cropText', function() {
         if (card.content !== null) {
             var maxLength = 0;
             if (card.kind == 'text') {
-                maxLength = !isMobileDevice ? 300 : 400;
+                maxLength = !isMobileDevice ? 300 : 299;
             } else {
                 maxLength = !isMobileDevice ? 100 : 70;
             }

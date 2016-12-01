@@ -1,4 +1,4 @@
-var organizeCards = function(newValue, oldValue) {
+var organizeCards = function(newValue, oldValue, rs) {
     if (!isMobileDevice) {
         $('.cards').css({
             "width": "80%",
@@ -7,28 +7,6 @@ var organizeCards = function(newValue, oldValue) {
             "padding": 0
         });
         $('html').css({ overflow: 'auto' });
-        // this is not needed anymore
-        // if (newValue.w < 550) {
-        //     $('.cards').find('.card').each(function() {
-        //         $(this).attr('style', '');
-        //         $(this).attr('class', $(this).attr('data-class'));
-        //         $(this).find('.img').css('height', 'auto');
-        //         $(this).find('.img').removeClass('no-padding');
-        //         $(this).find('.img').css('padding', $(this).attr('data-padding'));
-        //     });
-        //     if (!$('.cards').data('masonry')) {
-        //         $('.cards').masonry({
-        //             itemSelector: '.card',
-        //             columnWidth: '.one-five',
-        //             percentPosition: false,
-        //             gutter: 20,
-        //             transitionDuration: 0
-        //         });
-        //     } else {
-        //         $('.cards').masonry('reloadItems');
-        //         $('.cards').masonry();
-        //     }
-        // }
     } else if (isMobileDevice) {
         if ($('.cards').data('masonry')) {
             $('.cards').masonry('destroy');
@@ -44,6 +22,8 @@ var organizeCards = function(newValue, oldValue) {
             var h = newValue.h - 260;
             card.find('.img').css({ "height": h });
             card.each(function(i, c) {
+                var hasClass = $(c).hasClass('ramona');
+                var hasEditor = $(c).hasClass('editor');
                 if ($(c).hasClass('featured')) {
                     $(c).css({ "height": newValue.h - 100 });
                 } else if ($(c).hasClass('initial')) {
@@ -57,27 +37,15 @@ var organizeCards = function(newValue, oldValue) {
                     $(c).attr('class', 'card video ng-scope');
                     //$(c).find('.img').css({ "height": 0 });
                 } else if ($(c).hasClass('text')) {
-
-                    // var card = scope.ngClasses;
-                    // var maxLength = 0;
-                    // if (card.kind == 'text') {
-                    //     maxLength = !isMobileDevice ? 300 : 400;
-                    // } else {
-                    //     maxLength = !isMobileDevice ? 100 : 70;
-                    // }
-                    // if (card.content) {
-                    //     if (card.content.length > maxLength || card.kind !== 'text') {
-                    //         console.log($(elem).parent(), card.content, 'true');
-                    //         $(elem).parent().addClass('cursor');
-                    //     } else {
-                    //         console.log($(elem).parent(), card.content, 'false');
-                    //         $(elem).parent().removeClass('cursor');
-                    //     }
-                    // }
-
                     $(c).attr('class', 'card text ng-scope');
                 } else {
                     $(c).attr('class', 'card cursor ng-scope');
+                }
+                if(hasClass && rs == 'homePage') {
+                  $(c).addClass('ramona');
+                }
+                if(hasEditor) {
+                  $(c).addClass('editor');
                 }
             });
             card.find('.img').addClass('no-padding');
@@ -93,13 +61,14 @@ var organizeCards = function(newValue, oldValue) {
     }
 }
 
-tmj.directive('resize', function($window) {
+tmj.directive('resize', function($window, $rootScope) {
     return function(scope, element, attr) {
         var w = angular.element($window);
         scope.$watch(function() {
             return {
                 'h': w.height(),
-                'w': w.width()
+                'w': w.width(),
+                'rs': $rootScope.pageName
             };
         }, organizeCards, true);
         w.bind('resize', function() {
@@ -108,7 +77,7 @@ tmj.directive('resize', function($window) {
     }
 });
 
-tmj.directive('organizeCards', function() {
+tmj.directive('organizeCards', function($rootScope) {
     return function(scope, element, attrs) {
         if (scope.$last) {
             setTimeout(function() {
@@ -119,7 +88,7 @@ tmj.directive('organizeCards', function() {
                 }, {
                     'h': w.height(),
                     'w': w.width()
-                })
+                }, $rootScope.pageName);
             }, 1);
         }
     };
@@ -136,7 +105,7 @@ tmj.directive("cardClass", function($rootScope) {
             var card = scope.ngClasses;
             var maxLength = 0;
             if (card.kind == 'text') {
-                maxLength = !isMobileDevice ? 300 : 400;
+                maxLength = !isMobileDevice ? 300 : 299;
             } else {
                 maxLength = !isMobileDevice ? 100 : 70;
             }
@@ -147,10 +116,13 @@ tmj.directive("cardClass", function($rootScope) {
                     $(elem).parent().removeClass('cursor');
                 }
             }
-            if (card.user && card.user.role == 'editor' && !isMobileDevice && $rootScope.pageName == 'homePage') {
-                $(elem).parent().addClass(card.user.username);
-            }
-            if (card.user && card.user.role == 'editor' && !isMobileDevice) {
+            if (card.user && card.user.role == 'editor') {
+                if(isMobileDevice && $rootScope.pageName == 'homePage') {
+                  $(elem).parent().addClass(card.user.username);
+                }
+                if(!isMobileDevice && $rootScope.pageName == 'homePage') {
+                  $(elem).parent().addClass(card.user.username);
+                }
                 $(elem).parent().addClass(card.user.role);
             }
             if (card.kind == 'image') {
