@@ -41,8 +41,8 @@
                 <p class="name">{{card.user.name}}</p>
                 <p class="date">
                     <a target="_blank" ng-href="{{card.source_url}}">
-                        <img ng-if="card.user.role!='editor'" class="originalPost" src="/img/{{card.origin}}.svg" />
-                        <img ng-if="card.user.role=='editor'" class="originalPost" src="/img/{{card.origin}}-editor.svg" /> {{card.posted_at | formatDate}}
+                        <img ng-if="card.user.role!='editor' || pageName != 'homePage' || isMobile" class="originalPost" src="/img/{{card.origin}}.svg" />
+                        <img ng-if="card.user.role=='editor' && pageName == 'homePage' && !isMobile" class="originalPost" src="/img/{{card.origin}}-editor.svg" /> {{card.posted_at | formatDate}}
                     </a>
                 </p>
                 <p class="text">{{card | cropText}}</p>
