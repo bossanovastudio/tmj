@@ -229,7 +229,7 @@ div.card {
   .pagination {
     display: table;
     list-style: none;
-    margin: 0 auto;
+    margin: 20px auto 30px auto;
 
     li {
       color: #666;
@@ -259,6 +259,16 @@ div.card {
         span {
           font-weight: 600;
         }
+      }
+
+      &.separator {
+        border: none;
+        background-color: transparent;
+        color: #666;
+        font-size: 20px;
+        line-height: 10px;
+        letter-spacing: 3px;
+        text-align: center;
       }
     }
   }

@@ -7,24 +7,45 @@ module ApplicationHelper
 
     html = "<ul class='pagination'>"
 
-    Range.new(1, pages).each do |n|
-      html += link_to paginate_cards_path(n, quantity, status: params[:status], origin: params[:origin]) do
-        if n == page
-          link = "<li class='active'>"
-        else
-          link = "<li>"
-        end
+    pages_range = 1..pages
+    visible_pages = calculate_visible_range(page, pages_range)
+    elipsis = '<li class="separator"><span>...</span></li>'.html_safe
 
-        link += "<span>#{n}</span>"
-        link += "</li>"
-
-        link.html_safe
-      end
-    end
-
+    # Inject first page if not visible
+    html += link_to_pagination_page(pages_range.first, page, quantity) unless visible_pages.include? pages_range.first
+    html += elipsis if page > 3
+    html += visible_pages.collect { |n| link_to_pagination_page(n, page, quantity) }.join('').html_safe
+    # html += elipsis if
+    # Inject first page if not visible
+    html += elipsis if pages - visible_pages.last > 1
+    html += link_to_pagination_page(pages_range.last, page, quantity) unless visible_pages.include? pages_range.last
     html += "</ul>"
-
     html.html_safe
+  end
+
+  def link_to_pagination_page(n, page, quantity)
+    link_to paginate_cards_path(n, quantity, status: params[:status], origin: params[:origin]) do
+      if n == page
+        link = "<li class='active'>"
+      else
+        link = "<li>"
+      end
+
+      link += "<span>#{n}</span>"
+      link += "</li>"
+
+      link.html_safe
+    end
+  end
+
+  def calculate_visible_range(current, range)
+    if current > 2
+        to_drop = current - 2
+        to_drop = range.count - 3 if range.count - to_drop < 3
+        range = range.drop(to_drop)
+    end
+    range = range.take(3) if range.count > 3
+    range
   end
 
   def query_string(key, value)
