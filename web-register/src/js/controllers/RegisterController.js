@@ -89,6 +89,7 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
                 }
             }
         });
+        console.log(valid);
         return valid;
     }
 
@@ -117,6 +118,7 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
 
     $scope.sendForm = function() {
         if ($scope.validForm()) {
+            $('.dark-overlay').fadeIn();
             $http({
                     method: 'POST',
                     data: $.param($scope.form),
@@ -124,8 +126,10 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
                 })
                 .then(function(data) {
                     $scope.advanceForm();
+                    $('.dark-overlay').fadeOut();
                 }, function(data) {
                     console.log(data);
+                    $('.dark-overlay').fadeOut();
                 });
         }
     }
