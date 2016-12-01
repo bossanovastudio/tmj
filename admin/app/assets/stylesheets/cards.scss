@@ -18,6 +18,14 @@ div.card {
   &.show {
     opacity: 1;
   }
+  &.ramona {
+    .content {
+      background-color: #b450db;
+      p {
+        color: #ffffff !important;
+      }
+    }
+  }
   &.featured {
     cursor: pointer;
     height: 300px;
