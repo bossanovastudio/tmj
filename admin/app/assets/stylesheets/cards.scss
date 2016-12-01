@@ -236,12 +236,12 @@ div.card {
       display: inline-block;
       width: 30px;
       height: 30px;
-      float: left;
+      float: none;
       border: 1px solid #727272;
       border-radius: 20px;
       text-align: center;
       padding: 4px;
-      margin: 0 5px 10px 0;
+      margin: 0 2px;
 
       a {
         color: #000;
@@ -262,13 +262,17 @@ div.card {
       }
 
       &.separator {
+        line-height: 0;
         border: none;
         background-color: transparent;
         color: #666;
-        font-size: 20px;
-        line-height: 10px;
+        font-size: 24px;
         letter-spacing: 3px;
         text-align: center;
+        vertical-align: top;
+        span{
+            vertical-align: middle;
+        }
       }
     }
   }
