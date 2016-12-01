@@ -30,8 +30,6 @@
             <a ng-href="http://staging.tmjofilme.com.br/" target="_self"><img src="/img/logo.svg"/></a>
         </div>
         <p class="intro">Quer fazer parte da Turma mais famosa do Brasil? Inscreva-se para a seleção!</p>
-        <!-- <iframe src="https://www.youtube.com/embed/mvbMv-8lo5A" frameborder="0" allowfullscreen></iframe> -->
-
         <p class="title">Fala,</p>
         <img class="signature" src="/img/signature.png"/>
         <br>
@@ -175,7 +173,7 @@
                         <option value="XG">XG</option>
                     </select>
                 </div>
-                    
+
                 <div class="field simple four columns middle">
                     <label class="placeholder" for="pants_size">Calça</label>
                     <select id="pants_size" ng-model="form.pants_size">
@@ -390,7 +388,7 @@
                 <div class="field box twelve columns terms termsValidate">
                     <div class="twelve columns">
                         <input type="checkbox" id="accept_terms" name="accept_terms" value="1" ng-model="form.accept_terms" />
-                        <label class="placeholder" for="accept_terms"><span>Li e aceito os <a href="">Termos e condições</a></label>
+                        <label class="placeholder" for="accept_terms"><span>Li e aceito os <a ng-href="/pages/termos.pdf" target="_blank">Termos e condições</a></label>
                     </div>
                 </div>
                 <div class="clear"></div>
