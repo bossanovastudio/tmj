@@ -11,9 +11,9 @@ module CrawlerSocialnetwork
 
     def run
       begin
-        @twitter.user 'revistadaturma'
         @facebook.timeline 'TurmadaMonicaJovemBrasil'
         @youtube.channel 'revistaturmajovem', true
+        @tumblr.search 'lunetalunatica.tumblr.com'
         @pinterest.profile 'AWPUOpt6ygJugqlnzdUuNw07dfB-FIuTMID9YAtDl7PBEwAv_gAAAAA'
         [
           '_turmadamonica_',
@@ -30,7 +30,9 @@ module CrawlerSocialnetwork
           'cebola20',
           'tmj_4050',
         ].each { |u| @instagram.profile u }
-
+        
+        @twitter.user 'revistadaturma'
+        
         [
           'turmadamonicaccxp',
           'mspnaccxp',
@@ -42,8 +44,6 @@ module CrawlerSocialnetwork
           @instagram.hashtag hashtag
           @twitter.search hashtag
         end
-        
-        @tumblr.search 'lunetalunatica.tumblr.com'
       rescue => e
         $logger.error(e)
       end
