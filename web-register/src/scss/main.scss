@@ -33,7 +33,7 @@ section {
 
 .dark-overlay {
     display: none;
-    position: absolute;
+    position: fixed;
     height: 100%;
     width: 100%;
     background: rgba(0, 0, 0, 0.8) url(/img/loading_nuvem.gif) center center no-repeat;
@@ -642,7 +642,7 @@ section {
         width: 100%;
         height: auto;
         position: relative;
-        min-height: 100%;
+        min-height: 100vh;
     }
     .four.columns.mobile {
         width: 32.9%;
