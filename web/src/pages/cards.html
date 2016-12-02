@@ -45,7 +45,7 @@
                         <img ng-if="card.user.role=='editor' && pageName == 'homePage' && !isMobile" class="originalPost" src="/img/{{card.origin}}-editor.svg" /> {{card.posted_at | formatDate}}
                     </a>
                 </p>
-                <p class="text">{{card | cropText}}</p>
+                <p class="text" ng-bind-html="card | cropText | trust"></p>
                 <p class="read-more">Veja mais</p>
                 <div ng-include src="'/pages/share.html'"></div>
             </div>

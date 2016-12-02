@@ -159,9 +159,7 @@
                     <img src="/img/{{card.origin}}.svg" />
                     {{card.posted_at | formatDate}}
                   </a></p>
-                <p class="content">
-                    {{card.content}}
-                </p>
+                <p class="text" ng-bind-html="card.content | trust"></p>
                 <div class="hr"></div>
                 <div ng-include src="'/pages/share.html'"></div>
                 <div class="clear"></div>
