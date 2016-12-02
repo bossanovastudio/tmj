@@ -1,13 +1,12 @@
 body.ramona {
     background-image: url(/img/ramona_bg.png);
-
-    .initial-loading{
+    .initial-loading {
         top: 40%;
     }
     .container.ramona-card {
         height: auto !important;
         opacity: 0;
-        &.show{
+        &.show {
             transition: opacity 1s ease-in-out;
             -moz-transition: opacity 1s ease-in-out;
             -webkit-transition: opacity 1s ease-in-out;
@@ -19,11 +18,11 @@ body.ramona {
         margin-top: 47px;
         display: flex;
         flex-wrap: nowrap;
-        .columns{
+        .columns {
             order: 2;
             flex-grow: 7;
         }
-        .box-avatar{
+        .box-avatar {
             min-width: 230px;
             order: 1;
             flex-grow: 1;
@@ -38,7 +37,7 @@ body.ramona {
                 z-index: 2;
                 display: none;
             }
-            img.badge{
+            img.badge {
                 position: absolute;
                 left: 175px;
                 top: 30px;
@@ -84,7 +83,7 @@ body.ramona {
         }
         .profile {
             display: flex;
-            .box-profile{
+            .box-profile {
                 width: auto;
                 margin-right: 40px;
                 .editor {
@@ -125,9 +124,9 @@ body.ramona {
                 width: auto;
                 height: auto;
                 overflow: hidden;
-                -webkit-box-shadow: 5px 5px 0px 0px rgba(0,0,0,1);
-                -moz-box-shadow:  5px 5px 0px 0px rgba(0,0,0,1);
-                box-shadow:  5px 5px 5x 0px rgba(0,0,0,1);
+                -webkit-box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
+                -moz-box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
+                box-shadow: 5px 5px 5x 0px rgba(0, 0, 0, 1);
                 transition-duration: 0.2s;
                 position: relative;
                 color: #000;
@@ -135,10 +134,10 @@ body.ramona {
                 margin: 0px;
                 padding: 9px 20px;
                 background-color: #fff;
-                &:hover{
-                    -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
-                    -moz-box-shadow:  0px 0px 0px 0px rgba(0,0,0,1);
-                    box-shadow:  0px 0px 0x 0px rgba(0,0,0,1);
+                &:hover {
+                    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+                    -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+                    box-shadow: 0px 0px 0x 0px rgba(0, 0, 0, 1);
                     transition-duration: 0.2s;
                     transform: translate(3px, 4px)
                 }
@@ -167,7 +166,7 @@ body.ramona {
         .about {
             width: 100%;
             float: left;
-            div{
+            div {
                 max-width: 578px;
             }
             .summary {
@@ -180,14 +179,14 @@ body.ramona {
                 margin: 10px 0px 30px 0px;
             }
         }
-        .social{
+        .social {
             float: left;
-            .social-editor{
-                li{
+            .social-editor {
+                li {
                     opacity: 0;
                     vertical-align: top;
                     margin-bottom: 9px;
-                    &.animate{
+                    &.animate {
                         opacity: 1;
                         animation: enterRamonaSocial .4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
                     }
@@ -196,19 +195,19 @@ body.ramona {
         }
     }
     @media only screen and (max-width: 780px) {
-        .initial-loading{
+        .initial-loading {
             //display: none;
         }
-        .container{
+        .container {
             margin: 0 auto !important;
         }
-        .author{
+        .author {
             text-align: center;
             display: block;
-            .social{
+            .social {
                 float: none;
             }
-            .box-avatar{
+            .box-avatar {
                 position: relative;
                 width: auto;
                 display: inline-block;
@@ -217,22 +216,21 @@ body.ramona {
                 width: 100%;
                 float: none;
             }
-            .followers{
+            .followers {
                 margin: 0 auto;
             }
-            .profile{
+            .profile {
                 display: block;
-                .box-profile{
+                .box-profile {
                     margin-right: 0;
                 }
-                .follow{
+                .follow {
                     margin: 10px auto;
                 }
             }
         }
     }
     @media only screen and (max-device-width: 550px) {
-
         .container.geek {
             width: 100% !important;
             height: 100% !important;
@@ -245,8 +243,9 @@ body.ramona {
                 margin: 0 auto;
                 position: relative;
             }
-            .box-avatar{
-                .avatar, .avatar_hover {
+            .box-avatar {
+                .avatar,
+                .avatar_hover {
                     width: 106px;
                 }
                 .avatar_hover {
@@ -260,15 +259,15 @@ body.ramona {
                     width: 26px;
                 }
             }
-            .three{
+            .three {
                 .follow {
                     margin: 10px auto;
                     font-size: 15px;
                     width: 80px;
                 }
             }
-            .profile{
-                .follow{
+            .profile {
+                .follow {
                     padding: 4px 17px;
                 }
             }
@@ -292,59 +291,58 @@ body.ramona {
                 .two {
                     width: 20%;
                 }
-                .social-editor{
-                  list-style: none;
-                  margin: 0;
-                  padding: 0;
-                  li{
-                    position: relative;
-                    overflow: hidden;
-                    width: 32px;
-                    height: 32px;
-                    margin: 0 4px 4px;
-                    background-color: #000;
-                    border-radius: 30px;
-                    display: inline-block;
-                    cursor: pointer;
-                    -webkit-transition: 0.2s;
-                    -moz-transition: 0.2s;
-                    -o-transition: 0.2s;
-                    transition: 0.2s;
-                    a{
-                      img{
-                        max-width: 100%;
-                        height: auto;
-                      }
+                .social-editor {
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+                    li {
+                        position: relative;
+                        overflow: hidden;
+                        width: 32px;
+                        height: 32px;
+                        margin: 0 4px 4px;
+                        background-color: #000;
+                        border-radius: 30px;
+                        display: inline-block;
+                        cursor: pointer;
+                        -webkit-transition: 0.2s;
+                        -moz-transition: 0.2s;
+                        -o-transition: 0.2s;
+                        transition: 0.2s;
+                        a {
+                            img {
+                                max-width: 100%;
+                                height: auto;
+                            }
+                        }
+                        &:before {
+                            content: "";
+                            position: absolute;
+                            border-radius: 33px;
+                            -moz-border-radius: 33px 33px 0 0;
+                            overflow: hidden;
+                            width: 66px;
+                            height: 66px;
+                            bottom: 0;
+                            left: -66px;
+                            right: 0;
+                            top: -66px;
+                            z-index: -1;
+                            -webkit-transition: all 0.2s ease-in;
+                        }
+                        &:hover:before {
+                            left: -15px;
+                            top: -15px;
+                            -webkit-transition: all 0.2s ease-in;
+                        }
+                        &:hover {
+                            background: transparent;
+                            -webkit-transition: 0.1s;
+                            -moz-transition: 0.1s;
+                            -o-transition: 0.1s;
+                            transition: 0.1s;
+                        }
                     }
-                    &:before {
-                      content: "";
-                      position: absolute;
-                      border-radius: 33px;
-                      -moz-border-radius: 33px 33px 0 0;
-                      overflow: hidden;
-                      width: 66px;
-                      height: 66px;
-                      bottom: 0;
-                      left: -66px;
-                      right: 0;
-                      top: -66px;
-                      z-index: -1;
-                      -webkit-transition: all 0.2s ease-in;
-                    }
-                    &:hover:before {
-                      left: -15px;
-                      top: -15px;
-                      -webkit-transition: all 0.2s ease-in;
-                    }
-                    &:hover {
-                      background: transparent;
-                      -webkit-transition: 0.1s;
-                      -moz-transition: 0.1s;
-                      -o-transition: 0.1s;
-                      transition: 0.1s;
-                    }
-                  }
-
                 }
             }
             .followers {
@@ -384,69 +382,77 @@ body.ramona {
             .two.columns {
                 width: 45px;
             }
-            .social-editor{
-              list-style: none;
-              margin: 0;
-              padding: 0;
-              li{
-                position: relative;
-                overflow: hidden;
-                width: 32px;
-                height: 32px;
-                margin-right: 15px;
-                background-color: #000;
-                border-radius: 30px;
-                display: inline-block;
-                cursor: pointer;
-                -webkit-transition: 0.2s;
-                -moz-transition: 0.2s;
-                -o-transition: 0.2s;
-                transition: 0.2s;
-                a{
-                  img{
-                    max-width: 100%;
-                    height: auto;
-                  }
+            .social-editor {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                li {
+                    position: relative;
+                    overflow: hidden;
+                    width: 32px;
+                    height: 32px;
+                    margin-right: 15px;
+                    background-color: #000;
+                    border-radius: 30px;
+                    display: inline-block;
+                    cursor: pointer;
+                    -webkit-transition: 0.2s;
+                    -moz-transition: 0.2s;
+                    -o-transition: 0.2s;
+                    transition: 0.2s;
+                    a {
+                        img {
+                            max-width: 100%;
+                            height: auto;
+                        }
+                    }
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        border-radius: 33px;
+                        -moz-border-radius: 33px 33px 0 0;
+                        overflow: hidden;
+                        width: 66px;
+                        height: 66px;
+                        bottom: 0;
+                        left: -66px;
+                        right: 0;
+                        top: -66px;
+                        z-index: -1;
+                        -webkit-transition: all 0.2s ease-in;
+                    }
+                    &:hover:before {
+                        left: -15px;
+                        top: -15px;
+                        -webkit-transition: all 0.2s ease-in;
+                    }
+                    &:hover {
+                        background: transparent;
+                        -webkit-transition: 0.1s;
+                        -moz-transition: 0.1s;
+                        -o-transition: 0.1s;
+                        transition: 0.1s;
+                    }
                 }
-                &:before {
-                  content: "";
-                  position: absolute;
-                  border-radius: 33px;
-                  -moz-border-radius: 33px 33px 0 0;
-                  overflow: hidden;
-                  width: 66px;
-                  height: 66px;
-                  bottom: 0;
-                  left: -66px;
-                  right: 0;
-                  top: -66px;
-                  z-index: -1;
-                  -webkit-transition: all 0.2s ease-in;
-                }
-                &:hover:before {
-                  left: -15px;
-                  top: -15px;
-                  -webkit-transition: all 0.2s ease-in;
-                }
-                &:hover {
-                  background: transparent;
-                  -webkit-transition: 0.1s;
-                  -moz-transition: 0.1s;
-                  -o-transition: 0.1s;
-                  transition: 0.1s;
-                }
-              }
-
             }
         }
     }
 }
+
 @media only screen and (max-device-width: 550px) {
-    body.ramonaPage{
+    body.ramona {
         background-image: url(/img/bg_ramona_mobile_alta.png);
+        .cards {
+            padding-top: 20% !important;
+        }
     }
 }
+
 @keyframes enterRamonaSocial {
-    from { transform: translateX(100px) rotate(360deg);}
-    to { transform: translateX(0px) rotate(0deg); }
+    from {
+        transform: translateX(100px) rotate(360deg);
+    }
+    to {
+        transform: translateX(0px) rotate(0deg);
+    }
 }
