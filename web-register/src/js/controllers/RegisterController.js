@@ -45,7 +45,8 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
                 // CPF
                 if ($(f).find('#document_cpf, #adult_document_cpf').length > 0) {
                     var field = $(f).find('#document_cpf, #adult_document_cpf');
-                    if (!$scope.validateCPF(field.val())) {
+                    var cpf = field.val();
+                    if (cpf.length > 0 && !$scope.validateCPF(field.val())) {
                         field.addClass('error');
                         valid = false;
                     } else {
