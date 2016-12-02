@@ -32,12 +32,10 @@ module CrawlerSocialnetwork
         ].each { |u| @instagram.profile u }
 
         [
-          'turmadamonica',
           'turmadamonicaccxp',
           'mspnaccxp',
           'tmj100',
           'turmadamonicajovem',
-          'mauriciodesousa',
           'tmjofilme',
           'turmadamonicajovemofilme',
         ].each do |hashtag|
