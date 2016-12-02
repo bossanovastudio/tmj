@@ -148,7 +148,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
     })
 
     $("body").click(function(e) {
-        if (e.target.className !== "shareBox" && e.target.className.indexOf('share') === -1 && e.target.className !== "arrow") {
+        if (e.target.className !== "shareBox" && $(".shareBox").has(e.target).length == 0 && e.target.className !== "arrow") {
             $(".shareBox").removeClass('show');
             $('.shareBox a').removeClass('animate');
             setTimeout(function() {
