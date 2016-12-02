@@ -274,7 +274,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         var elem = angular.element($event.target);
         $rootScope.cardIsOpen = true;
         if (content.kind == "featured") {
-            $location.path(content.source_url);
+            $(window).open(content.source_url);
             $rootScope.track('click', 'featured', 'open');
         } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('originalPost') && !elem.hasClass('shareButton')) {
             $http({
