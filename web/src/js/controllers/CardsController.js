@@ -227,14 +227,13 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
 
     var distanceTop = 0;
-    var cardPage = 1;
+    var cardPage = 2;
 
     $scope.swipeUp = function() {
-        if (distanceTop == 0 && cardPage < $('.cards').length - 1) {
-            cardPage++;
-        }
-        if (cardPage == $('.cards').length - 1) {
+        if (cardPage == $('.cards').length) {
             $('.arrowBottom').fadeOut();
+        } else {
+            cardPage++;
         }
         distanceTop = -$(window).height();
         $('.cards').each(function(i, e) {
@@ -254,6 +253,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope.swipeDown = function() {
         distanceTop = $(window).height();
         $('.arrowBottom').fadeIn();
+        cardPage--;
+        if (cardPage < 2) {
+            cardPage = 2;
+        }
         $('.cards').each(function(i, e) {
             var top = parseInt($(this).css('top').replace('px'));
             if (i == 0 && top == 0) {
