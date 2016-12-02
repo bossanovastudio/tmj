@@ -2,6 +2,7 @@ json.id         highlight.id
 json.content    highlight.content
 json.kind       'featured'
 json.size       highlight.size
+json.source_url highlight.source_url
 
 if highlight.media
   json.url    highlight.media.file.url
