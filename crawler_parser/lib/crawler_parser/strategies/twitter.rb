@@ -10,7 +10,7 @@ module CrawlerParser
       card = Card.new
       card.origin     = 'twitter'
       card.content    = @post.content.text
-      card.source_url = "https://twitter.com/statuses/" + @post.social_uuid if @post.social_uuid
+      card.source_url = "https://twitter.com/" + @post.content.user.fetch('screen_name') +"/status/" + @post.social_uuid if @post.social_uuid && @post.content.user.fetch('screen_name', false)
       card.posted_at  = @post.content.created_at
       card.social_uid = @post.content.user.fetch('id', '')
       
