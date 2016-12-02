@@ -198,7 +198,7 @@ section {
                     }
                 }
                 .field {
-                    margin-bottom: 22px;
+                    margin-bottom: 18px;
                     label.placeholder {
                         font-family: Lato;
                         font-size: 11px;
@@ -515,7 +515,7 @@ section {
                     }
                     &.advance {
                         margin-top: 46px;
-                        padding-bottom: 100px;
+                        padding-bottom: 0px;
                     }
                     &.middle {
                         margin: 0 3.95%;
@@ -552,9 +552,9 @@ section {
     .left, .overlay{
         background: #d9d9db url(/img/bg1.jpg) no-repeat center top;
     }
-    .right {
-        background: #d9d9db url(/img/bg2.jpg) no-repeat center top;
-    }
+    // .right {
+    //     background: #d9d9db url(/img/bg2.jpg) no-repeat center top fixe;
+    // }
     section {
       height: auto;
     }
@@ -658,6 +658,12 @@ section {
         top: auto;
         right: auto;
         overflow: auto;
+        .field{
+            margin-bottom: 22px;
+            &.advance {
+                padding-bottom: 100px;
+            }
+        }
     }
     .right .forms .container .form .field.last {
         float: left;
@@ -670,4 +676,5 @@ section {
     .right .forms .container .form .field.boolean .complement {
         margin-top: 22px;
     }
+
 }
