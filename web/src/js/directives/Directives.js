@@ -17,7 +17,7 @@ var organizeCards = function(newValue, oldValue, rs) {
             card.eq(0).css({
                 "margin-left": 40
             });
-            var h = newValue.h - 350;
+            var h = newValue.h - 400;
             card.find('.img').css({ "height": h });
             card.each(function(i, c) {
                 var hasClass = $(c).hasClass('ramona');
