@@ -119,10 +119,14 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
             $('.shareBox a').removeClass('animate');
             $(".shareBox").hide();
             setTimeout(function() {
-                $('.card').css({ "z-index": 0 });
+                if (!isMobileDevice) {
+                    $('.card').css({ "z-index": 0 });
+                }
                 if (card.length > 0) {
                     card.find('.shareBox').show();
-                    card.css({ "z-index": 9 });
+                    if (!isMobileDevice) {
+                        card.css({ "z-index": 9 });
+                    }
                     card.find('.shareBox').addClass('show');
                     card.find('.shareBox a').each(function(i) {
                         var t = $(this);
