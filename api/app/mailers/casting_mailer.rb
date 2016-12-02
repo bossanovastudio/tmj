@@ -1,5 +1,5 @@
 class CastingMailer < ApplicationMailer
-  default from: 'casting@tmjofilme.com.br'
+  default from: '"TMJ - Participe" <casting@tmjofilme.com.br>'
 
     def register_successful(casting)
       @casting = casting
