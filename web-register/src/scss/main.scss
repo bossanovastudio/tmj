@@ -549,6 +549,12 @@ section {
 }
 
 @media (max-width: 1050px) {
+    .left, .overlay{
+        background: #d9d9db url(/img/bg1.jpg) no-repeat center top;
+    }
+    .right {
+        background: #d9d9db url(/img/bg2.jpg) no-repeat center top;
+    }
     section {
       height: auto;
     }

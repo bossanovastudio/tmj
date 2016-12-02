@@ -1385,6 +1385,10 @@ p.content a {
         overflow: hidden;
         min-width: 100%;
     }
+    body{
+        background: #d9d9db url(/img/bg_mobile.jpg) no-repeat center center;
+        background-size: cover;
+    }
     header {
         height: 75px;
         padding: 0px;
@@ -1522,7 +1526,7 @@ p.content a {
                     padding: 17px 0px;
                 }
                 &.purple {
-                    background: url(/img/ramona_desktop.png) center center no-repeat;
+                    background: url(/img/ramona_menu.png) center center no-repeat;
                     background-size: 100%;
                 }
                 &.red {
