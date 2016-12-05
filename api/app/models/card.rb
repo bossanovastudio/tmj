@@ -28,7 +28,8 @@ class Card < ApplicationRecord
 
   scope :ordered, -> { order(posted_at: 'DESC') }
   scope :approved, -> { where(status: :accepted) }
-  
+  scope :not_rejected, -> { where.not(status: :rejected) }
+
   def self.filter_query(params)
     options = {}
     if params.present?
