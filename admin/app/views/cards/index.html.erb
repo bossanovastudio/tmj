@@ -32,19 +32,19 @@
         </ul>
       </div>
 
-      <!-- <div class="editors item">
-        <%- social = { :"" => "Todos", editors: "Editores" }%>
-        <div class="main-select so-sel"><%= social[params.fetch(:origin, "").to_sym] %></div>
+      <div class="editors item">
+        <%- role = { :"" => "Todos", ramona: "Ramona" }%>
+        <div class="main-select so-sel"><%= role[params.fetch(:role, "").to_sym] %></div>
         <ul class="editors-options filter-options">
           <% social.each do |key, value| %>
-            <%= link_to cards_path + query_string(:origin, key) do %>
-            <li class="<%= ((params[:origin] == key.to_s) && "active") || "" %>" value='<%= key %>'>
+            <%= link_to cards_path + query_string(:role, key) do %>
+            <li class="<%= ((params[:role] == key.to_s) && "active") || "" %>" value='<%= key %>'>
               <%= value %>
             </li>
             <% end %>
           <% end %>
         </ul>
-      </div> -->
+      </div>
         <form>
             <input type="hidden" name="status_filter" value="<%= @status %>" />
             <input type="hidden" name="origin_filter" value="<%= @origin %>" />

@@ -226,7 +226,7 @@ html {
         float: left;
         margin-right: 11px;
       }
-      .status, .social{
+      .item {
         position: relative;
         float: left;
         cursor: pointer;
@@ -267,7 +267,7 @@ html {
     form {
       float: left;
       input[type=search] {
-        width: 244px;
+        width: 225px;
         height: 28.5px;
         padding: 7px 9px;            /* Overridden by padding: 1px; */
         border: none;
