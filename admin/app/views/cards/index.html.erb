@@ -45,14 +45,13 @@
           <% end %>
         </ul>
       </div> -->
-
-      <form>
-        <input type="hidden" name="status_filter" value="<%= @status %>" />
-        <input type="hidden" name="origin_filter" value="<%= @origin %>" />
-        <input type="hidden" name="page" value="<%= @page %>" />
-        <input type="hidden" name="quantity" value="<%= @quantity %>" />
-        <input class="search" type="search" name="search" placeholder="Buscar">
-      </form>
+        <form>
+            <input type="hidden" name="status_filter" value="<%= @status %>" />
+            <input type="hidden" name="origin_filter" value="<%= @origin %>" />
+            <input type="hidden" name="page" value="<%= @page %>" />
+            <input type="hidden" name="quantity" value="<%= @quantity %>" />
+            <input class="search" type="search" name="search" placeholder="Buscar">
+        </form>
     </div>
 
     <div class="btn-status">
