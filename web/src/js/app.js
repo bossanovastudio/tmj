@@ -1,6 +1,6 @@
 var API_URL = "@@replace_api_grunt";
 var SITE_URL = window.location.protocol + '//' + window.location.host;
-var isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+var isMobileDevice = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 (function(i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r;
