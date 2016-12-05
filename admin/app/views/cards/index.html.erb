@@ -46,11 +46,13 @@
         </ul>
       </div> -->
 
-      <!--
       <form>
-        <input class="search" type=search name=search placeholder="Buscar">
+        <input type="hidden" name="status_filter" value="<%= @status %>" />
+        <input type="hidden" name="origin_filter" value="<%= @origin %>" />
+        <input type="hidden" name="page" value="<%= @page %>" />
+        <input type="hidden" name="quantity" value="<%= @quantity %>" />
+        <input class="search" type="search" name="search" placeholder="Buscar">
       </form>
-        -->
     </div>
 
     <div class="btn-status">
@@ -97,10 +99,10 @@
 
   <div id="cards-container" class="container cards">
     <%= form_for Card.new, remote: true do |f| %>
-    <input type="hidden" name="status_filter" value="<%= @status %>" />
-    <input type="hidden" name="origin_filter" value="<%= @origin %>" />
-    <input type="hidden" name="page" value="<%= @page %>" />
-    <input type="hidden" name="quantity" value="<%= @quantity %>" />
+        <input type="hidden" name="status_filter" value="<%= @status %>" />
+        <input type="hidden" name="origin_filter" value="<%= @origin %>" />
+        <input type="hidden" name="page" value="<%= @page %>" />
+        <input type="hidden" name="quantity" value="<%= @quantity %>" />
       <% @cards.each do |card| %>
     <div class="card column show <%= card_size(card) %> <%= card.user.username if card.user.role == 'editor' %> " data-card-kind="<%= card.kind %>" data-card-origin="<%= card.origin %>" data-class="card column <%= card_size(card) %> <%= card.user.username if card.user.role == 'editor' %>">
       <input type="checkbox" name="card[id][]" value="<%= card.id %>" />
