@@ -43,6 +43,10 @@ tmj
             .when('/login', {
                 templateUrl: '/pages/login.html',
                 controller: 'LoginController'
+            })
+            .when('/register', {
+                templateUrl: '/pages/register.html',
+                controller: 'LoginController'
             });
 
         $routeProvider
