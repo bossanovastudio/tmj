@@ -1,8 +1,7 @@
 tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $compile, $routeParams) {
         
     $('.initial-loading').hide(0);
-    $('.purple-overlay').show();
-
+    
     $scope.passwords = [{
 		id: 0,
 		value: 'mon',
