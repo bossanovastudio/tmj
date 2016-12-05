@@ -195,6 +195,9 @@ body.ramona {
         }
     }
     @media only screen and (max-width: 780px) {
+        .vertical-container{
+            width: 100%;
+        }
         .initial-loading {
             //display: none;
         }
@@ -211,6 +214,10 @@ body.ramona {
                 position: relative;
                 width: auto;
                 display: inline-block;
+                img.avatar_hover{
+                    left: 50%;
+                    transform: translate(-50%);
+                }
             }
             .columns {
                 width: 100%;
@@ -247,10 +254,6 @@ body.ramona {
                 .avatar,
                 .avatar_hover {
                     width: 106px;
-                }
-                .avatar_hover {
-                    left: 50% !important;
-                    margin-left: -53px;
                 }
                 img.badge {
                     position: absolute;
