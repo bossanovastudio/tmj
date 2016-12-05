@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
   
   # Uploader
   mount_uploader :image, AvatarUploader
+  mount_uploader :mask, MaskUploader
   
   has_many :providers
   has_many :cards, through: :providers

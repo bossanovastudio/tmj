@@ -28,6 +28,7 @@ if card.user
     json.name     card.user.name
     json.role     card.user.role
     json.avatar   card.user.image.url
+    json.mask     card.user.mask.url
   end
 elsif card.social_user
   json.user do
