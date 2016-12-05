@@ -286,6 +286,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 .success(function(data) {
                     $rootScope.card = data;
                     $rootScope.track('click', 'cards', 'open');
+                    $location.path("/detalhe/card/" + $rootScope.card.id, false);
+
                     if (isMobileDevice) {
                         var card = $(elem).closest('.card').clone();
                         card.css({
@@ -352,7 +354,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             setTimeout(function() {
                                 $('html').css({ overflow: "hidden" });
                             }, 1000);
-                            $location.path("/detalhe/card/" + $rootScope.card.id, false);
                             var lightbox = angular.element(document.querySelector('.lightbox'));
                             var lightboxDetail = angular.element(document.querySelector('.lightbox .detail'));
                             lightbox.addClass('show');
@@ -392,6 +393,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             $('section').css({ overflow: "visible !important" });
             $('.card').removeClass('openMobile');
         }
+        $location.path($rootScope.previousURL, false);
         $rootScope.track('click', 'cards', 'close');
     }
 

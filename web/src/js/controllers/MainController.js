@@ -164,7 +164,6 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
     $scope.closeLightbox = function() {
         $rootScope.cardIsOpen = false;
 
-        $location.path($rootScope.previousURL, false);
         $('.close').addClass('pow');
         $('.close .active').addClass('pow');
         $('.close .link').addClass('pow');
