@@ -450,7 +450,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
                     $scope.PAGE++;
                     if (!$scope.END) {
-                        $scope.loadCards($scope.PAGE);
+                        $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'));
                     }
                 }
             }, $scope._throttleDelay);
