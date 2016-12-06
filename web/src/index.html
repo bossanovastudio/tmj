@@ -42,7 +42,10 @@
 </head>
 
 <body ng-app="tmj" ng-controller="MainController" ng-keypress="closeLightboxKey($event.keyCode)" ng-keydown="closeLightboxKey($event.keyCode)" class="{{pageName}}">
-    <img src="/img/bg.jpg" id="bg" alt="">
+    <img ng-if="pageName == 'homePage' && !isMobileDevice" src="/img/bg.jpg" id="bg" alt="">
+    <img ng-if="pageName == 'homePage' && isMobileDevice" src="/img/bg_mobile.jpg" id="bg" alt="">
+    <img ng-if="pageName == 'ramona' && !isMobileDevice" src="/img/bg_ramona.jpg" id="bg" alt="">
+    <img ng-if="pageName == 'ramona' && isMobileDevice" src="/img/bg_ramona_mobile.jpg" id="bg" alt="">
     <div class="purple-overlay"></div>
     <div class="dark-overlay"></div>
     <!-- <div id="menu">

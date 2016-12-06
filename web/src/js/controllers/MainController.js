@@ -6,6 +6,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
     $rootScope.card.liked = false;
     $rootScope.cardIsOpen = false;
     $rootScope.locationURL = window.location.host;
+    $rootScope.isMobileDevice = isMobileDevice;
 
     var toggled;
 
