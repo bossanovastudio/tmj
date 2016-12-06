@@ -17,10 +17,10 @@ class CastingsController < ApplicationController
   # GET /castings/download.json
   # GET /castings/download.csv
   def download
-    data = Casting.all.map(&:attributes)
+    data = Casting.all
     respond_with do |format|
       format.json  { render json: data }
-      format.csv { render csv: data }
+      format.csv { render csv: data, except: [:created_at, :updated_at, :newsletter] }
     end
   end
 
