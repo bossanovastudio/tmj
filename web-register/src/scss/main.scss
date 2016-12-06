@@ -62,7 +62,7 @@ section {
 }
 
 .left, .overlay {
-    background: #d9d9db url(/img/bg1.jpg) no-repeat center top fixed;
+    background: #d9d9db url(/img/bg_gray.jpg) no-repeat center top fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -122,7 +122,7 @@ section {
 }
 
 .right {
-    background: #d9d9db url(/img/bg2.jpg) no-repeat center top fixed;
+    background: #d9d9db url(/img/bg.jpg) no-repeat center top fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -550,10 +550,10 @@ section {
 
 @media (max-width: 1050px) {
     .left, .overlay{
-        background: #d9d9db url(/img/bg1.jpg) no-repeat center top;
+        background: #d9d9db url(/img/bg_gray.jpg) no-repeat center top;
     }
     // .right {
-    //     background: #d9d9db url(/img/bg2.jpg) no-repeat center top fixe;
+    //     background: #d9d9db url(/img/bg.jpg) no-repeat center top fixe;
     // }
     section {
       height: auto;
