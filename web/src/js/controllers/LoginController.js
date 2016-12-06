@@ -1,5 +1,6 @@
 tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $compile, $routeParams) {
-        
+   
+    $rootScope.pageName = 'login';
     $('.initial-loading').hide(0);
     
     $scope.passwords = [{
@@ -85,11 +86,12 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
 		if ($scope.numClick == 1){
 			$('.after').css({ "left": 55 });
 		} else if ($scope.numClick == 2){
-			$('.after').css({ "left": 95 });
-		} else{
-			$('.after').css({ "left": 10 });
+			$('.after').css({ "left": 105 });
+		} else if ($scope.numClick == 3){
+			$('.after').css({ "left": 150 });
+		}else{
 			$scope.numClick = 0;
-	        $scope.open = !$scope.open;
+			$scope.open = !$scope.open;
 		}
 	}
 
