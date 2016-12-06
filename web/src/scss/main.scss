@@ -65,6 +65,16 @@ section {
   height: 100%;
 }
 
+#bg-placeholder {
+  background-color: #809ED4;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
 #menu {
     position: fixed;
     left: 38px;

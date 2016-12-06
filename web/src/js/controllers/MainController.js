@@ -8,6 +8,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
     $rootScope.locationURL = window.location.host;
     $rootScope.isMobileDevice = isMobileDevice;
     $rootScope.documentReady = false;
+    $rootScope.pageIsLoading = true;
 
     var toggled;
 
@@ -235,6 +236,10 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
 
     angular.element(document).ready(function () {
         $rootScope.documentReady = true;
+
+        setTimeout(function() {
+          $rootScope.pageIsLoading = false;
+        }, 500);
     });
 
 })
