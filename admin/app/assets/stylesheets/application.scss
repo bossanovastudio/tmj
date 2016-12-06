@@ -142,7 +142,7 @@ html {
       text-transform: uppercase;
       letter-spacing: 0.9px;
       position: relative;
-      margin: 34px 0;
+      margin: 15px 0;
       transition-duration: 0.2s;
 
       span {
@@ -362,4 +362,5 @@ html {
 }
 
 @import 'cards';
+@import 'casting';
 @import 'highlights';
