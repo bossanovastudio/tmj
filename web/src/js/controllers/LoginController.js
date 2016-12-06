@@ -1,8 +1,8 @@
 tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $compile, $routeParams) {
-        
+   
+    $rootScope.pageName = 'login';
     $('.initial-loading').hide(0);
-    $('.purple-overlay').show();
-
+    
     $scope.passwords = [{
 		id: 0,
 		value: 'mon',
@@ -64,19 +64,30 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
 		img: '/img/nimbus.png'
 	}];
 
-	$scope.passwordChoise = [];
+	$scope.passwordChoise = [{
+		img: 'img/pass-silhuete.svg' 
+	},
+	{
+		img: 'img/pass-silhuete.svg' 
+	},
+	{
+		img: 'img/pass-silhuete.svg' 
+	},
+	{
+		img: 'img/pass-silhuete.svg'	
+	}];
 	$scope.numClick = 0;
 
 	$scope.open = false;
     $scope.togglePassword = function () {
         $scope.open = !$scope.open;
-
         if ($scope.open) {
+	        $('.overlay-pass').css({"display": "block"});
         	$scope.passwordChoise.length = 0;
 			$('.after').css({ "left": 10 });
 			$scope.numClick = 0;
         } else {
-
+	        $('.overlay-pass').css({"display": "none"});
         }
     };
     
@@ -86,11 +97,13 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
 		if ($scope.numClick == 1){
 			$('.after').css({ "left": 55 });
 		} else if ($scope.numClick == 2){
-			$('.after').css({ "left": 95 });
-		} else{
-			$('.after').css({ "left": 10 });
+			$('.after').css({ "left": 105 });
+		} else if ($scope.numClick == 3){
+			$('.after').css({ "left": 150 });
+		}else{
 			$scope.numClick = 0;
-	        $scope.open = !$scope.open;
+			$scope.open = !$scope.open;
+	        $('.overlay-pass').css({"display": "none"});
 		}
 	}
 

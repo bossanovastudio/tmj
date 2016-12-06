@@ -26,6 +26,9 @@ html {
 
 body {
     background: #809ED4;
+    &.login{
+        background-image: url(/img/bg_login.jpg);
+    }
 }
 
 header {
@@ -825,10 +828,18 @@ div.card {
     height: 400px;
     z-index: 3;
 }
-
+.overlay-pass{
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    z-index: 2;
+    display: none;
+}
 .container.login {
-    height: 100%;
+    height: auto;
     min-height: 100%;
+    padding: 10px 0;
+    overflow: auto;
     /* habilita o flex nos filhos diretos */
     display: -ms-flex;
     display: -webkit-flex;
@@ -846,9 +857,9 @@ div.card {
         height: auto;
         h1.title {
             font-family: KomikaTitle;
-            font-size: 30px;
+            font-size: 25px;
             letter-spacing: 1.2px;
-            margin: 19px 0;
+            margin: 25px 0;
             color: #000;
         }
         h2 {
@@ -856,10 +867,12 @@ div.card {
             font-family: KomikaTitle;
             font-size: 18px;
             letter-spacing: 0.6px;
+            margin: 10px 0;
         }
         button.btn {
             width: 100%;
             height: 33px;
+            overflow: hidden;
             outline: none;
             border: 1px solid #000;
             -webkit-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
@@ -873,6 +886,9 @@ div.card {
                 background-color: #4a90e2;
                 color: #fff;
                 position: relative;
+                &:before{
+                    background: #376aa7;
+                }
                 &:after {
                     content: '';
                     width: 6px;
@@ -884,11 +900,46 @@ div.card {
                 }
             }
             &.btn-submit {
-                margin-top: 31px;
+                margin-top: 15px;
                 background-color: #fff;
+                position: relative;
+                &:before{
+                    background: #f1f1f1;
+                }
+            }
+            &:hover{
+                -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+                -moz-box-shadow:  0px 0px 0px 0px rgba(0,0,0,1);
+                box-shadow:  0px 0px 0px 0px rgba(0,0,0,1);
+                transition-duration: 0.08s;
+                transform: translate(3px, 4px);
+                // background: transparent;
+            }
+            &:before {
+                content: "";
+                position: absolute;
+                border-radius: 100%;
+                -moz-border-radius: 33px 33px 0 0;
+                overflow: hidden;
+                width: 200%;
+                height: 200%;
+                bottom: 0;
+                left: -200%;
+                right: 0;
+                top: -200%;
+                z-index: -1;
+                -webkit-transition: all 0.08s ease-in;
+            }
+            &:hover:before {
+                left: -50%;
+                top: -50%;
             }
         }
         form {
+            label{
+                font-size: 12px;
+                text-transform: uppercase;
+            }
             position: relative;
             .form-group label {
                 position: relative;
@@ -896,13 +947,13 @@ div.card {
                 letter-spacing: 0.3px;
             }
             .user label {
-                padding-left: 20px;
+                padding-left: 24px;
                 &:after {
                     content: '';
                     width: 14px;
                     height: 13px;
                     position: absolute;
-                    top: 3px;
+                    top: 0px;
                     left: 0px;
                     background: no-repeat url(/img/apelido-icon.svg);
                 }
@@ -914,39 +965,60 @@ div.card {
                     width: 10px;
                     height: 12px;
                     position: absolute;
-                    top: 3px;
+                    top: 0px;
                     left: 0px;
                     background: no-repeat url(/img/senha-icon.svg);
+                }
+            }
+            .mail label {
+                padding-left: 25px;
+                &:after {
+                    content: '';
+                    width: 15px;
+                    height: 12px;
+                    position: absolute;
+                    top: 3px;
+                    left: 0px;
+                    background: no-repeat url(/img/mail-icon.svg);
                 }
             }
             input {
                 background-color: transparent;
                 border: none;
                 border-bottom: 1px #fff solid;
+                border-radius: 0;
                 width: 100%;
                 letter-spacing: 0.4px;
                 color: #ffffff;
                 font-weight: bold;
                 letter-spacing: 0.4px;
                 font-size: 16px;
-                margin-bottom: 34px;
-                padding: 7px 0 4px 0;
+                margin-bottom: 20px;
+                padding: 5px 0 4px 0;
                 &:focus {
                     outline: none;
                 }
                 &::-webkit-input-placeholder {
+                    font-size: 13px;
                     opacity: 1;
                 }
                 &:-moz-placeholder {
+                    font-size: 13px;
                     /* Firefox 18- */
                     opacity: 1;
                 }
                 &::-moz-placeholder {
+                    font-size: 13px;
                     /* Firefox 19+ */
                     opacity: 1;
                 }
                 &:-ms-input-placeholder {
+                    font-size: 13px;
                     opacity: 1;
+                }
+                &.error {
+                    color: #da001b; 
+                    border-color: #da001b;  
                 }
             }
             .input-pass {
@@ -955,12 +1027,26 @@ div.card {
                 padding: 0;
                 width: 100%;
                 margin: 12px 0 0 0;
+                height: auto;
+                overflow: hidden;
                 li {
                     width: 43px;
                     height: 43px;
                     border: solid 1px #fff;
                     cursor: pointer;
                     display: inline-block;
+                    position: relative;
+                    float: left;
+                    margin-right: 5px;
+                }
+                &.register li{
+                    background: url(img/pass-silhuete.png)
+                }
+                &.error {
+                    li{
+                        color: #da001b; 
+                        border-color: #da001b;
+                    }
                 }
             }
             .link-pass {
@@ -968,22 +1054,45 @@ div.card {
                 border: none;
                 color: #fff;
                 font-weight: bold;
-                font-size: 13px;
+                font-size: 12px;
+                transition-duration: 0.2s;
+                    &:hover{
+                        color: #d0d0d0;
+                        transition-duration: 0.2s;
+                    }
+            }
+            .label-pass {
+                text-decoration: none;
+                border: none;
+                color: #fff;
+                font-weight: bold;
+                font-size: 12px;
+                margin: 5px 0;
             }
             .link-cadastro {
                 color: #000;
-                text-align: center;
-                margin-top: 50px;
+                margin-top: 30px;
+                font-size: 14px;
+                text-align: left;
                 a {
                     text-decoration: none;
                     font-weight: bold;
                     border: none;
                     color: #000;
+                    transition-duration: 0.2s;
+                    &:hover{
+                        color: #3e3e3e;
+                        transition-duration: 0.2s;
+                    }
                 }
             }
             .pass-box {
                 position: absolute;
                 top: -50px;
+                z-index: 9;
+                &.register{
+                    top: 0px;
+                }
                 ul {
                     width: 100%;
                     height: 117px;
@@ -1392,6 +1501,12 @@ p.content a {
     }
     body{
         background-size: cover;
+        &.login{
+            background-image: url(/img/bg_login_mobile.jpg);
+            section{
+                overflow: auto;
+            }
+        }
     }
     header {
         height: 75px;
@@ -1403,7 +1518,7 @@ p.content a {
         top: 0;
         width: 100%;
         height: 100%;
-        overflow: hidden !important;
+        overflow: hidden;
     }
     .initial-loading {
         height: 95px;
