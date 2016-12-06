@@ -64,7 +64,18 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
 		img: '/img/nimbus.png'
 	}];
 
-	$scope.passwordChoise = [];
+	$scope.passwordChoise = [{
+		img: 'img/pass-silhuete.svg' 
+	},
+	{
+		img: 'img/pass-silhuete.svg' 
+	},
+	{
+		img: 'img/pass-silhuete.svg' 
+	},
+	{
+		img: 'img/pass-silhuete.svg'	
+	}];
 	$scope.numClick = 0;
 
 	$scope.open = false;
