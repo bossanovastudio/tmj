@@ -7,11 +7,13 @@ class CardsController < ApplicationController
     @origin   = params.fetch(:origin, nil)
     @page     = params.fetch(:page, nil)
     @quantity = params.fetch(:quantity, nil)
+    @role = params.fetch(:role, nil)
     @cards = Card.find(:all, params: {
         filter: {
             origin: params[:origin],
             status: params[:status],
             content: params[:content],
+            role: params[:role],
         },
         page: params[:page],
         quantity: params[:quantity]
@@ -98,6 +100,7 @@ class CardsController < ApplicationController
       redirect = {}
       redirect[:status] = params[:status_filter] unless params[:status_filter].empty?
       redirect[:origin] = params[:origin_filter] unless params[:origin_filter].empty?
+      redirect[:role] = params[:role_filter] unless params[:role_filter].empty?
       redirect[:page] = params[:page] unless params[:page].empty?
       redirect[:quantity] = params[:quantity] unless params[:quantity].empty?
       if !params[:page].empty? && !params[:quantity].empty?

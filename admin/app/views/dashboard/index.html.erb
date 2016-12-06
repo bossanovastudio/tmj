@@ -1,23 +1,25 @@
-<div class="row">
-  <% @cards.each do |card| %>
-  <% if card.content %>
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <% if card.respond_to? 'image' %>
-      <img src="<%= card.image.url %>" alt="<%= card.content %>">
-      <% end %>
-      <div class="caption">
-        <p><%= card.content %></p>
-        <p>
-          <% if card.origin == 1 %>
-          <a href="#" class="btn btn-primary" role="button">Facebook</a>
-          <% else %>
-          <a href="#" class="btn btn-default" role="button">Twitter</a>
-          <% end %>
-        </p>
+<section id="dashboard">
+  <div class="row">
+    <% @cards.each do |card| %>
+    <% if card.content %>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <% if card.respond_to? 'image' %>
+        <img src="<%= card.image.url %>" alt="<%= card.content %>">
+        <% end %>
+        <div class="caption">
+          <p><%= card.content %></p>
+          <p>
+            <% if card.origin == 1 %>
+            <a href="#" class="btn btn-primary" role="button">Facebook</a>
+            <% else %>
+            <a href="#" class="btn btn-default" role="button">Twitter</a>
+            <% end %>
+          </p>
+        </div>
       </div>
     </div>
+    <% end %>
+    <% end %>
   </div>
-  <% end %>
-  <% end %>
-</div>
+</section>

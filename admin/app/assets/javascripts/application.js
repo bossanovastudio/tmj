@@ -18,7 +18,7 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
-    resizeAdminBottomContent();
+    resizeAdminContent();
 
     var overlay = $('#overlay'),
         filterList = $('.btn-filter .item ul'),
@@ -118,8 +118,9 @@ function initMasonry() {
   }
 }
 
-function resizeAdminBottomContent() {
-    $('.admin-content .bottom-content').css('height', $('.admin-content').height() - 200);
+function resizeAdminContent() {
+    $('section .bottom-content').css('height', $('.admin-content').height() - 200);
+    $('section .content').css('height', $(window).height() - 138);
 };
 
 // On window resize

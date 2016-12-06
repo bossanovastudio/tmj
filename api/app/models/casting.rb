@@ -75,7 +75,7 @@ class Casting < ApplicationRecord
   validates :sport_description, presence: true, if: :sport?
   validates :theater_description, presence: true, if: :theater?
   validates :video, presence: true
-  
+
   # Uploader
   mount_uploader :photo_face, CastingUploader
   mount_uploader :photo_body, CastingUploader
