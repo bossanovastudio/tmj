@@ -3,7 +3,7 @@
     <h1 class="title">Casting</h1>
   </div>
   <div class="content">
-    <%= link_to "http://api.staging.tmjofilme.com.br/api/castings/download.json", {target:"_blank"} do%>
+    <%= link_to ENV.fetch('API_URL') + "castings/download.json", {target:"_blank"} do %>
       <div class="download">
         <svg viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <g stroke="none" stroke-width="1" fill-rule="evenodd">
@@ -22,7 +22,7 @@
       </div>
     <% end %>
 
-    <%= link_to "http://api.staging.tmjofilme.com.br/api/castings/download.csv", {target:"_blank"} do%>
+    <%= link_to ENV.fetch('API_URL') + "castings/download.csv", {target:"_blank"} do %>
       <div class="download">
         <svg viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <g stroke="none" stroke-width="1" fill-rule="evenodd">
