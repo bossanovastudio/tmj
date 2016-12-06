@@ -135,6 +135,8 @@ html {
   .item-list {
     width: 100%;
     padding-left: 52px;
+    margin-top: 80px;
+
     li {
       opacity: 0.5;
       text-transform: uppercase;
@@ -142,15 +144,29 @@ html {
       position: relative;
       margin: 34px 0;
       transition-duration: 0.2s;
-      img {
+
+      span {
+        line-height: 60px;
+      }
+
+      svg {
         width: 20px;
         height: 20px;
         border: none;
-        float: left;
         margin-right: 10px;
+
+        &.casting-icon {
+          width: 24px;
+          height: 24px;
+          margin-right: 7px;
+        }
       }
+
       &.active {
         opacity: 1;
+        a {
+          font-weight: 600;
+        }
       }
       &:hover{
         opacity: 1;
@@ -346,3 +362,4 @@ html {
 }
 
 @import 'cards';
+@import 'highlights';
