@@ -81,13 +81,13 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
 	$scope.open = false;
     $scope.togglePassword = function () {
         $scope.open = !$scope.open;
-
         if ($scope.open) {
+	        $('.overlay-pass').css({"display": "block"});
         	$scope.passwordChoise.length = 0;
 			$('.after').css({ "left": 10 });
 			$scope.numClick = 0;
         } else {
-
+	        $('.overlay-pass').css({"display": "none"});
         }
     };
     
@@ -103,6 +103,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
 		}else{
 			$scope.numClick = 0;
 			$scope.open = !$scope.open;
+	        $('.overlay-pass').css({"display": "none"});
 		}
 	}
 

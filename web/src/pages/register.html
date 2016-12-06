@@ -1,3 +1,4 @@
+<div class="overlay-pass" ng-click="togglePassword()"></div>
 <div class="container login">
 	<div class="content-box">
 		<h1 class="title">Cadastrar</h1>
@@ -31,8 +32,8 @@
 	            		<input type="hidden" name="pass-3" value="{{passwordChoise[3].value}}"/>
 	            	</li>
 	            </ul>
-	            <p class="link-pass">Selecione três personagens <br>para compor sua senha</p>
-	            <div class="pass-box hide" ng-class="{show: open, hide: !open}">
+	            <p class="label-pass">Selecione três personagens <br>para compor sua senha</p>
+	            <div class="pass-box register hide" ng-class="{show: open, hide: !open}">
 	            	<ul>
 	            		<li ng-repeat="pass in passwords" ng-click="addToPasswordChoise(pass)">
 	            			<img src="{{pass.img}}" alt="{{pass.name}}">
