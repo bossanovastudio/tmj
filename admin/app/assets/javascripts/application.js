@@ -18,9 +18,9 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
-    resizeAdminBottomContent();
+    resizeAdminContent();
 
-    var overlay = $('#overlay'),
+    var overlay = $('.overlay'),
         filterList = $('.btn-filter .item ul'),
         filterItem = $('.btn-filter .item'),
         filterSelectAllCards = $('.filter-bar a.select-all'),
@@ -83,7 +83,7 @@ $(document).on('turbolinks:load', function() {
     $('input.search').on('keyup', function() {
         var context = $(this).val().toLowerCase();
         cardsContainer.find('.card').each(function() {
-            var contentText = $(this).find('.content p.text').text().toLowerCase();
+            var contentText = $(this).find('.card-content p.text').text().toLowerCase();
             if (contentText.indexOf(context) != -1)
                 $(this).show();
             else
@@ -118,11 +118,12 @@ function initMasonry() {
   }
 }
 
-function resizeAdminBottomContent() {
-    $('.admin-content .bottom-content').css('height', $('.admin-content').height() - 200);
+function resizeAdminContent() {
+    $('section .bottom-content').css('height', $('.admin-content').height() - 200);
+    $('section .content').css('height', $(window).height() - 138);
 };
 
 // On window resize
 $(window).resize(function() {
-    resizeAdminBottomContent();
+    resizeAdminContent();
 });

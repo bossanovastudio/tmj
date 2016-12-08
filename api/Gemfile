@@ -54,6 +54,9 @@ gem 'mailgun_rails'
 # A recommendation engine using Likes and Dislikes for your Ruby/Redis application.
 gem 'recommendable'
 
+# Adds a custom CSV renderer to Rails applications
+gem 'render_csv', '~> 2.0'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 

@@ -89,4 +89,8 @@ module ApplicationHelper
   def youtube_id(url)
     url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i)[1]
   end
+
+  def active_class(path)
+    request.path =~ /#{path}/ ? 'active' : nil
+  end
 end

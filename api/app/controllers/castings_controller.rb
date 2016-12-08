@@ -1,4 +1,5 @@
-class CastingsController < ApplicationController  
+class CastingsController < ApplicationController
+  respond_to :csv, :json, only: :download
   # POST /castings
   # POST /castings.json
   def create
@@ -6,10 +7,20 @@ class CastingsController < ApplicationController
 
     if @casting.save
       CastingMailer.register_successful(@casting).deliver_now
-      
+
       render :show, status: :created
     else
       render json: @casting.errors, status: :unprocessable_entity
+    end
+  end
+
+  # GET /castings/download.json
+  # GET /castings/download.csv
+  def download
+    data = Casting.all
+    respond_with do |format|
+      format.json  { render json: data }
+      format.csv { render csv: data, except: [:created_at, :updated_at, :newsletter] }
     end
   end
 
@@ -22,18 +33,18 @@ class CastingsController < ApplicationController
       the_params[:photo_upperbody] = change_img_params(the_params[:photo_upperbody]) unless the_params[:photo_upperbody].nil?
       the_params
     end
-    
+
     def change_img_params(img)
       begin
         Base64.decode64(img) #To check if thats a base64 string
         if img
-          img = file_decode(img.split(',')[1],"") 
+          img = file_decode(img.split(',')[1],"")
         end
       rescue Exception => e
         img
       end
     end
-    
+
     def file_decode(base, filename)
       file = Tempfile.new([file_base_name(filename), file_extn_name(filename)])
       file.binmode

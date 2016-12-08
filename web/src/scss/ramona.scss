@@ -1,5 +1,11 @@
 body.ramona {
-    background-image: url(/img/ramona_bg.png);
+    background: #CE87EA url(/img/bg_ramona.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100%;
+    min-width: 600px;
     .initial-loading {
         top: 40%;
     }
@@ -195,6 +201,9 @@ body.ramona {
         }
     }
     @media only screen and (max-width: 780px) {
+        .vertical-container{
+            width: 100%;
+        }
         .initial-loading {
             //display: none;
         }
@@ -211,6 +220,10 @@ body.ramona {
                 position: relative;
                 width: auto;
                 display: inline-block;
+                img.avatar_hover{
+                    left: 50%;
+                    transform: translate(-50%);
+                }
             }
             .columns {
                 width: 100%;
@@ -231,6 +244,10 @@ body.ramona {
         }
     }
     @media only screen and (max-device-width: 550px) {
+        background-image: url(/img/bg_ramona_mobile.jpg);
+        background-size: cover;
+        min-width: 100%;
+
         .container.geek {
             width: 100% !important;
             height: 100% !important;
@@ -247,10 +264,6 @@ body.ramona {
                 .avatar,
                 .avatar_hover {
                     width: 106px;
-                }
-                .avatar_hover {
-                    left: 50% !important;
-                    margin-left: -53px;
                 }
                 img.badge {
                     position: absolute;
@@ -441,7 +454,6 @@ body.ramona {
 
 @media only screen and (max-device-width: 550px) {
     body.ramona {
-        background-image: url(/img/bg_ramona_mobile.png);
         .cards {
             padding-top: 55px !important;
         }

@@ -7,11 +7,13 @@ class CardsController < ApplicationController
     @origin   = params.fetch(:origin, nil)
     @page     = params.fetch(:page, nil)
     @quantity = params.fetch(:quantity, nil)
+    @role = params.fetch(:role, nil)
     @cards = Card.find(:all, params: {
         filter: {
             origin: params[:origin],
             status: params[:status],
             content: params[:content],
+            role: params[:role],
         },
         page: params[:page],
         quantity: params[:quantity]

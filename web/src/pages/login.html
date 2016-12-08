@@ -1,3 +1,4 @@
+<div class="overlay-pass" ng-click="togglePassword()"></div>
 <div class="container login">
 	<div class="content-box">
 		<h1 class="title">Minha Área</h1>
@@ -18,8 +19,13 @@
 	            	</li>
 	            	<li ng-click="togglePassword()" style="background:url('{{passwordChoise[1].img}}'); background-size: cover;">
 	            		<input type="hidden" name="pass-2" value="{{passwordChoise[1].value}}"/>
+	            	</li>
 	            	<li ng-click="togglePassword()" style="background:url('{{passwordChoise[2].img}}'); background-size: cover;">
 	            		<input type="hidden" name="pass-3" value="{{passwordChoise[2].value}}"/>
+	            	</li>
+	            	<li ng-click="togglePassword()" style="background:url('{{passwordChoise[3].img}}'); background-size: cover;">
+	            		<input type="hidden" name="pass-3" value="{{passwordChoise[3].value}}"/>
+	            	</li>
 	            </ul>
 	            <a href="#" class="link-pass">Esqueceu a senha?</a>
 	            <div class="pass-box hide" ng-class="{show: open, hide: !open}">

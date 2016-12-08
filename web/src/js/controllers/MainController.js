@@ -6,6 +6,9 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
     $rootScope.card.liked = false;
     $rootScope.cardIsOpen = false;
     $rootScope.locationURL = window.location.host;
+    $rootScope.isMobileDevice = isMobileDevice;
+    $rootScope.documentReady = false;
+    $rootScope.pageIsLoading = true;
 
     var toggled;
 
@@ -164,7 +167,6 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
     $scope.closeLightbox = function() {
         $rootScope.cardIsOpen = false;
 
-        $location.path($rootScope.previousURL, false);
         $('.close').addClass('pow');
         $('.close .active').addClass('pow');
         $('.close .link').addClass('pow');
@@ -231,5 +233,13 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
             }, 200);
         }
     }
+
+    angular.element(document).ready(function () {
+        $rootScope.documentReady = true;
+
+        setTimeout(function() {
+          $rootScope.pageIsLoading = false;
+        }, 500);
+    });
 
 })
