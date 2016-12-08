@@ -116,7 +116,7 @@
       <%= render 'cards/youtube', video: card.video %>
       <% end %>
       <% if card.kind != 'featured' %>
-      <div class="content">
+      <div class="card-content">
         <% if card.user.role == 'editor' %>
         <img class="user-photo <%= 'negative-margin' if card.kind == 'video' || card.kind == 'image' %>" src="<%=card.user.avatar%>"/>
         <% end %>
