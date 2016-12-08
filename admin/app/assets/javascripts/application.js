@@ -125,5 +125,5 @@ function resizeAdminContent() {
 
 // On window resize
 $(window).resize(function() {
-    resizeAdminBottomContent();
+    resizeAdminContent();
 });
