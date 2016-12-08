@@ -20,7 +20,7 @@
 $(document).on('turbolinks:load', function() {
     resizeAdminContent();
 
-    var overlay = $('#overlay'),
+    var overlay = $('.overlay'),
         filterList = $('.btn-filter .item ul'),
         filterItem = $('.btn-filter .item'),
         filterSelectAllCards = $('.filter-bar a.select-all'),
