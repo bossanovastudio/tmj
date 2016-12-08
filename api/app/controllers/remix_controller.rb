@@ -17,7 +17,7 @@ class RemixController < ApplicationController
   end
 
   def stickers
-    @stickers = Remix::Sticker.where(kind: params[:kind]).order(id: :desc)
+    @stickers = Remix::Sticker.where(kind: params.fetch(:kind, :speech_balloon).to_sym).order(id: :desc)
   end
 
   def create
