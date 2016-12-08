@@ -25,7 +25,13 @@ html {
 }
 
 body {
-    background: #809ED4;
+    background: #809ED4 url(/img/bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100%;
+    min-width: 600px;
     &.login{
         background-image: url(/img/bg_login.jpg);
     }
@@ -53,26 +59,6 @@ section {
         transform: translateX(100px);
         transition: all 0.3s ease-in-out;
     }
-}
-
-#bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: -50px;
-  min-width: 100%;
-  min-height: 100%;
-  height: 100%;
-}
-
-#bg-placeholder {
-  background-color: #809ED4;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
 }
 
 #menu {
@@ -1544,10 +1530,7 @@ p.content a {
         padding-top: 80px;
         margin-top: -5% !important;
         &.ramona {
-            background: url(/img/ramona_bg.png) no-repeat center center fixed;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
+            background: url(/img/bg_ramona_mobile.jpg) no-repeat center center fixed;
             background-size: cover;
         }
         &:after {

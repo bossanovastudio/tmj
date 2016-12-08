@@ -1,5 +1,11 @@
 body.ramona {
-    background-color: #CE87EA;
+    background: #CE87EA url(/img/bg_ramona.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100%;
+    min-width: 600px;
     .initial-loading {
         top: 40%;
     }
@@ -238,6 +244,10 @@ body.ramona {
         }
     }
     @media only screen and (max-device-width: 550px) {
+        background-image: url(/img/bg_ramona_mobile.jpg);
+        background-size: cover;
+        min-width: 100%;
+
         .container.geek {
             width: 100% !important;
             height: 100% !important;
