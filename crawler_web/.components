@@ -1,9 +1,0 @@
----
-:orm: activerecord
-:test: none
-:mock: none
-:script: jquery
-:renderer: none
-:stylesheet: scss
-:namespace: CrawlerWeb
-:migration_format: number

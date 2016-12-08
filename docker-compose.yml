@@ -63,34 +63,29 @@ services:
       - ./env/.env
 
   crawler_sn:
-    build: crawler_socialnetwork
+    extends:
+      file: crawlers/docker-compose-base.yml
+      service: crawler-base
     volumes:
-      - ./crawler_socialnetwork:/var/app
+      - ./crawlers:/var/app
+      - /bundler
     command: bundle exec bin/crawler
-    links:
-      - db
-    env_file:
-      - ./env/.env
-
-  crawler_web:
-    build: crawler_web
-    volumes:
-      - ./crawler_web:/var/app
-    command: bundle exec puma -p 3002 -b tcp://0.0.0.0
-    ports:
-      - "3002:3002"
     links:
       - db
     env_file:
       - ./env/.env
 
   crawler_parser:
-    build: crawler_parser
+    extends:
+      file: crawlers/docker-compose-base.yml
+      service: crawler-base
     volumes:
-      - ./crawler_parser:/var/app
-    command: bundle exec bin/crawler
+      - ./crawlers:/var/app
+      - /bundler
+    command: bundle exec bin/parser
     links:
       - db
+      - api
     env_file:
       - ./env/.env
 
