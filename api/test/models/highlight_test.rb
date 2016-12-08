@@ -13,6 +13,7 @@
 #  size              :integer          default("one")
 #  mobile_media_id   :integer
 #  mobile_media_type :string
+#  index             :integer          default(0)
 #
 
 require "test_helper"

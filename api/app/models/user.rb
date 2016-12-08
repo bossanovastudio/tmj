@@ -27,6 +27,7 @@
 #  updated_at             :datetime         not null
 #  username               :string           not null
 #  role                   :integer
+#  mask                   :string
 #
 
 class User < ActiveRecord::Base
