@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     resources :remix, only: :create do
       collection do
         get :categories
-        get :images
+        get "categories/:id", action: :images
         get :backgrounds
         get :text_colors
         get :stickers
