@@ -1,0 +1,9 @@
+<section id="cards" style="margin-top: 100px;">
+    <div class="content">
+        <%= simple_form_for [:admin, @category] do |f| %>
+          <%= f.input :name, label: 'Name', error: 'Name is mandatory, please specify one' %>
+          <%= f.input :cover, label: 'Cover', error: 'Cover is mandatory, please specify one' %>
+          <%= f.button :submit %>
+        <% end %>
+    </div>
+</section>

@@ -11,6 +11,7 @@
 
 class Remix::Category < ApplicationRecord
   validates :name, presence: true
+  validates :cover, presence: true
 
   mount_uploader :cover, RemixUploader
 

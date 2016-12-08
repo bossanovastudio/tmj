@@ -1,0 +1,13 @@
+
+<section id="cards" style="margin-top: 100px;">
+    <div class="content">
+        <%= link_to "New",  new_admin_remix_sticker_path %>
+        <ul>
+            <% @stickers.each do |sticker| %>
+            <li><img src="<%= sticker.image.url %>" alt="">
+            (<%= link_to "Delete", admin_remix_sticker_path(sticker), method: :delete, remote: true %>)
+            </li>
+            <% end %>
+        </ul>
+    </div>
+</section>

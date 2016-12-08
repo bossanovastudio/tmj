@@ -27,6 +27,16 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    namespace :remix do
+      resources :background_colors, except: [:show]
+      resources :text_colors, except: [:show]
+      resources :stickers, except: [:show, :edit]
+      resources :categories, except: [:show] do
+        resources :images
+      end
+
+    end
+
     resources :cards do
       collection do
         post :accept
