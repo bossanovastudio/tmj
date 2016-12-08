@@ -12,9 +12,18 @@ Rails.application.routes.draw do
 
     get '/castings/download', to: 'castings#download'
 
-    resources :cards, only: [:create]
+    resources :cards,  only: [:create]
     resources :images, only: [:create]
     resources :videos, only: [:create]
+    resources :remix,  only: [:create] do
+      collection do
+        get :categories
+        get "categories/:id", action: :images
+        get :backgrounds
+        get :text_colors
+        get :stickers
+      end
+    end
   end
 
   namespace :admin do
@@ -29,16 +38,6 @@ Rails.application.routes.draw do
     resources :casting, only: [:index] do
       collection do
         get :download
-      end
-    end
-
-    resources :remix, only: :create do
-      collection do
-        get :categories
-        get "categories/:id", action: :images
-        get :backgrounds
-        get :text_colors
-        get :stickers
       end
     end
 
