@@ -1,0 +1,137 @@
+<section id="cards">
+  <div class="top-bar">
+    <h1 class="title"> Moderar Cards</h1>
+    <div class="overlay"></div>
+
+    <div class="filter-bar">
+      <div class="btn-filter">
+        <div class="status item">
+          <%- status = { :"" => "Todos", pending: "Pendentes", rejected: "Negados", accepted: "Aprovados" } %>
+          <div class="main-select st-sel"><%= status[params.fetch(:status, "").to_sym] %></div>
+          <ul class="status-options filter-options">
+            <% status.each do |key, value| %>
+            <%= link_to admin_cards_path + query_string(:status, key) do %>
+            <li class="<%= ((params[:status] == key.to_s) && "active") || "" %>" value='<%= key %>'>
+              <%= value %>
+            </li>
+            <% end %>
+            <% end %>
+          </ul>
+        </div>
+
+        <div class="social item">
+          <%- social = { :"" => "Todos", facebook: "Facebook", twitter: "Twitter", youtube: "Youtube", instagram: "Instagram", pinterest: "Pinterest", tumblr: "Tumblr" }%>
+          <div class="main-select so-sel"><%= social[params.fetch(:origin, "").to_sym] %></div>
+          <ul class="social-options filter-options">
+            <% social.each do |key, value| %>
+            <%= link_to admin_cards_path + query_string(:origin, key) do %>
+            <li class="<%= ((params[:origin] == key.to_s) && "active") || "" %>" value='<%= key %>'>
+              <%= value %>
+            </li>
+            <% end %>
+            <% end %>
+          </ul>
+        </div>
+
+        <!-- <div class="editors item">
+        <%- role = { :"" => "Todos", ramona: "Ramona" }%>
+        <div class="main-select so-sel"><%= role[params.fetch(:role, "").to_sym] %></div>
+        <ul class="editors-options filter-options">
+        <% social.each do |key, value| %>
+        <%= link_to admin_cards_path + query_string(:role, key) do %>
+        <li class="<%= ((params[:role] == key.to_s) && "active") || "" %>" value='<%= key %>'>
+        <%= value %>
+      </li>
+      <% end %>
+      <% end %>
+    </ul>
+  </div> -->
+  <form>
+    <input type="hidden" name="status_filter" value="<%= @status %>" />
+    <input type="hidden" name="origin_filter" value="<%= @origin %>" />
+    <input type="hidden" name="page" value="<%= @page %>" />
+    <input type="hidden" name="quantity" value="<%= @quantity %>" />
+    <input class="search" type="search" name="search" placeholder="Buscar">
+  </form>
+</div>
+
+<div class="btn-status">
+  <a class="accept" data-action="accept">
+    <svg width="33px" height="33px" viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <g id="Admin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Admin-2" transform="translate(-1192.000000, -154.000000)" stroke="#4BC182">
+          <g id="aprovar" transform="translate(1193.000000, 155.000000)">
+            <g id="Group">
+              <ellipse id="Oval-2" stroke-width="1.5" cx="15.5" cy="15.5" rx="15.5" ry="15.5"></ellipse>
+              <polyline id="Page-1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="6.06521739 15.7214674 11.5407609 21.1970109 23.2917826 9.44598913"></polyline>
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </a>
+  <a class="reject" data-action="reject">
+    <svg width="33px" height="33px" viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <g id="Admin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Admin-2" transform="translate(-1235.000000, -153.000000)" stroke="#FE2842">
+          <g id="Negar" transform="translate(1236.000000, 154.000000)">
+            <g id="Group-Copy">
+              <ellipse id="Oval-2" stroke-width="1.5" cx="15.5" cy="15.5" rx="15.5" ry="15.5"></ellipse>
+              <g id="Group-2" transform="translate(9.000000, 9.000000)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M0.711914063,0.712061924 L13.2041016,13.2031032" id="Stroke-1"></path>
+                <path d="M0.711914063,13.2030213 L13.2041016,0.711980054" id="Stroke-3"></path>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </a>
+  <a class="select-all">
+    <%= image_tag "select-all.svg", class: "select-all-img" %>
+    <%= image_tag "deselect-all.svg", class: "deselect-all-img" %>
+  </a>
+</div>
+</div>
+</div>
+<div class="bottom-content">
+  <div id="cards-container" class="container cards">
+    <%= form_for [:admin, Card.new], remote: true do |f| %>
+      <% @cards.each do |card| %>
+        <div class="card column show <%= card_size(card) %> <%= card.user.username if card.user %> " data-card-kind="<%= card.kind %>" data-card-origin="<%= card.origin %>" data-class="card column <%= card_size(card) %> <%= card.user.username if card.user %>">
+          <input type="checkbox" name="card[id][]" value="<%= card.id %>" />
+          <div class="selected-overlay"></div>
+          <div class="status-bar <%= card.status %> color"></div>
+          <% if card.kind == :image %>
+            <div style="background-image:url('<%= card.media.file.url %>'); padding: <%= card_image_size(card) %>% 0;" class="img"></div>
+          <% end %>
+          <% if card.kind == 'video' %>
+            <div class="videoMobile"></div>
+            <%= render 'cards/youtube', video: card.video %>
+          <% end %>
+          <% if card.kind != 'featured' %>
+            <div class="content">
+              <% if card.user %>
+              <img class="user-photo <%= 'negative-margin' if card.kind == 'video' || card.kind == 'image' %>" src="<%=card.user.avatar%>"/>
+              <% end %>
+              <p class="name <%= 'user' unless card.user %>"><%= card.user %></p>
+              <p class="date"><%= image_tag('social/' + card.origin + '.svg')%><%=l card.posted_at, format: '%d %h %Y, %H:%M' %></p>
+              <p class="text"><%= card.content %></p>
+            </div>
+          <% end %>
+          <% if card.kind == 'featured' %>
+            <%= card.content %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+    <div class="card one-five column"></div>
+  </div>
+
+
+  <div id="paginate-container">
+    <%= paginate @cards %>
+  </div>
+
+</div>
+<section>

@@ -1,0 +1,46 @@
+<section id="casting">
+  <div class="top-bar">
+    <h1 class="title">Casting</h1>
+  </div>
+  <div class="content">
+    <%= link_to download_admin_casting_index_path({ format: :json }), {target:"_blank"} do %>
+      <div class="download">
+        <svg viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g stroke="none" stroke-width="1" fill-rule="evenodd">
+                <g id="download-outline" transform="translate(-388.000000, -182.000000)" stroke-width="1.5">
+                    <g id="baixar_icon" transform="translate(389.000000, 183.000000)">
+                        <ellipse id="Oval-2" cx="15.5" cy="15.5" rx="15.5" ry="15.5"></ellipse>
+                        <g id="download-arrow" transform="translate(9.000000, 7.000000)" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6.5,0 L6.5,16.416" id="Stroke-1"></path>
+                            <polyline id="Stroke-3" points="12.9003333 9.87878054 6.44983314 17.412386 0 9.87878054"></polyline>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </svg>
+        <span>JSON</span>
+      </div>
+    <% end %>
+
+    <%= link_to download_admin_casting_index_path({ format: :csv }), {target:"_blank"} do %>
+      <div class="download">
+        <svg viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g stroke="none" stroke-width="1" fill-rule="evenodd">
+                <g id="download-outline" transform="translate(-388.000000, -182.000000)" stroke-width="1.5">
+                    <g id="baixar_icon" transform="translate(389.000000, 183.000000)">
+                        <ellipse id="Oval-2" cx="15.5" cy="15.5" rx="15.5" ry="15.5"></ellipse>
+                        <g id="download-arrow" transform="translate(9.000000, 7.000000)" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6.5,0 L6.5,16.416" id="Stroke-1"></path>
+                            <polyline id="Stroke-3" points="12.9003333 9.87878054 6.44983314 17.412386 0 9.87878054"></polyline>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </svg>
+        <span>CSV</span>
+      </div>
+    <% end %>
+
+
+  </div>
+</section>
