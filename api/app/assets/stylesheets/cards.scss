@@ -20,7 +20,7 @@ section#cards {
       opacity: 1;
     }
     &.ramona {
-      .content {
+      .card-content {
         background-color: #b450db;
         p {
           color: #ffffff !important;
@@ -96,7 +96,7 @@ section#cards {
         position: relative;
       }
     }
-    div.content {
+    div.card-content {
       background: #ffffff;
       padding: 15px 18px 15px 18px;
       text-align: center;
@@ -189,7 +189,7 @@ section#cards {
     }
     &.geek {
       background-color: #5bcfed;
-      .content {
+      .card-content {
         background-color: #5bcfed;
         * {
           color: #ffffff;
@@ -203,7 +203,7 @@ section#cards {
     }
     &.video {
       background: #ffffff;
-      .content {
+      .card-content {
         padding-top: 0px;
       }
       iframe {
