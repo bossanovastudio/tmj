@@ -1,4 +1,4 @@
-class RemixController < ApplicationController
+class Api::RemixController < ActionController::API
   def categories
     @categories = Remix::Category.order(:name)
   end
