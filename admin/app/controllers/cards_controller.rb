@@ -100,7 +100,6 @@ class CardsController < ApplicationController
       redirect = {}
       redirect[:status] = params[:status_filter] unless params[:status_filter].empty?
       redirect[:origin] = params[:origin_filter] unless params[:origin_filter].empty?
-      redirect[:role] = params[:role_filter] unless params[:role_filter].empty?
       redirect[:page] = params[:page] unless params[:page].empty?
       redirect[:quantity] = params[:quantity] unless params[:quantity].empty?
       if !params[:page].empty? && !params[:quantity].empty?
