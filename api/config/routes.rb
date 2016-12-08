@@ -26,6 +26,16 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :remix, only: :create do
+      collection do
+        get :categories
+        get :images
+        get :backgrounds
+        get :text_colors
+        get :stickers
+      end
+    end
+
     resources :images
     resources :videos
   end

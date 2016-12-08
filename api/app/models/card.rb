@@ -3,7 +3,6 @@
 # Table name: cards
 #
 #  id          :integer          not null, primary key
-#  user_id     :integer
 #  origin      :integer
 #  content     :text
 #  media_type  :string

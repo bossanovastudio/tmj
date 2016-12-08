@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205135853) do
+ActiveRecord::Schema.define(version: 20161208151252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,49 @@ ActiveRecord::Schema.define(version: 20161205135853) do
     t.index ["user_id"], name: "index_providers_on_user_id", using: :btree
   end
 
+  create_table "remix_background_colors", force: :cascade do |t|
+    t.string   "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "remix_categories", force: :cascade do |t|
+    t.string   "cover"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "remix_images", force: :cascade do |t|
+    t.integer  "remix_category_id"
+    t.string   "image"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["remix_category_id"], name: "index_remix_images_on_remix_category_id", using: :btree
+  end
+
+  create_table "remix_stickers", force: :cascade do |t|
+    t.string   "image"
+    t.integer  "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "remix_text_colors", force: :cascade do |t|
+    t.string   "foreground"
+    t.string   "background"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "remix_user_images", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_remix_user_images_on_user_id", using: :btree
+  end
+
   create_table "social_networks", force: :cascade do |t|
     t.string   "name"
     t.integer  "origin"
@@ -157,4 +200,6 @@ ActiveRecord::Schema.define(version: 20161205135853) do
     t.integer  "height",     default: 1, null: false
   end
 
+  add_foreign_key "remix_images", "remix_categories"
+  add_foreign_key "remix_user_images", "users"
 end
