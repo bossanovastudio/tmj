@@ -37,7 +37,7 @@ class Card < ApplicationRecord
       end
     end
     if options.present?
-      where(options)
+      joins(:provider).where(options)
     else
        all  ## or nil if you don't want to show any records in view
     end

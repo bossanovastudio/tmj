@@ -7,6 +7,7 @@ class Admin::CardsController < ApplicationController
   def index
     pagination = pagination_params
     filter = filter_params
+
     @cards = Card.filter_query(filter).page(pagination[:page]).per(pagination[:quantity]).ordered
     @editors = {"": "Todos"}.merge(User.editors.pluck(:id, :name).to_h)
   end
@@ -83,7 +84,7 @@ class Admin::CardsController < ApplicationController
     end
 
     def filter_params
-      params.permit(:origin, :status, :search, :user_id)
+      params.permit(:origin, :status, :search, 'providers.user_id')
     end
 
     def bulk_params
