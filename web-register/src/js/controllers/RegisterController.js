@@ -125,7 +125,7 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
             $http({
                     method: 'POST',
                     data: $.param($scope.form),
-                    url: API_URL + '/api/register.json',
+                    url: API_URL + 'register.json',
                 })
                 .then(function(data) {
                     $scope.advanceForm();
