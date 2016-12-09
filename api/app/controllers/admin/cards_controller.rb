@@ -8,6 +8,7 @@ class Admin::CardsController < ApplicationController
     pagination = pagination_params
     filter = filter_params
     @cards = Card.filter_query(filter).page(pagination[:page]).per(pagination[:quantity]).ordered
+    @editors = {"": "Todos"}.merge(User.editors.pluck(:id, :name).to_h)
   end
 
   # GET /cards/1
@@ -62,15 +63,15 @@ class Admin::CardsController < ApplicationController
     @card.destroy
     redirect_to cards_url, notice: 'Card was successfully destroyed.'
   end
-  
+
   # GET /cards/total
   # GET /cards/total.json
   def total
     filter = params[:filter]
-    
+
     @total_cards = Card.filter_query(filter).count
   end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_card
@@ -80,15 +81,15 @@ class Admin::CardsController < ApplicationController
     def pagination_params
       params.permit(:page, :quantity)
     end
-    
+
     def filter_params
-      params.permit(:origin, :status, :search)
+      params.permit(:origin, :status, :search, :user_id)
     end
-    
+
     def bulk_params
       params.require(:card).permit(:id => [])
     end
-    
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
       params.require(:card).permit(:user_id, :origin, :source_url, :content, :media_id, :media_type, :posted_at, :social_uid, :social_user => [:id, :username])

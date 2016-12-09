@@ -34,12 +34,11 @@
         </div>
 
         <div class="editors item">
-          <%- role = { :"" => "Todos", ramona: "Ramona" }%>
-          <div class="main-select so-sel"><%= role[params.fetch(:role, "").to_sym] %></div>
+          <div class="main-select so-sel"><%= @editors[params.fetch(:editor_id, "").to_sym] %></div>
           <ul class="editors-options filter-options">
-            <% role.each do |key, value| %>
-            <%= link_to admin_cards_path + query_string(:role, key) do %>
-            <li class="<%= ((params[:role] == key.to_s) && "active") || "" %>" value='<%= key %>'>
+            <% @editors.each do |key, value| %>
+            <%= link_to admin_cards_path + query_string(:editor_id, key) do %>
+            <li class="<%= ((params[:editor_id] == key.to_s) && "active") || "" %>" value='<%= key %>'>
               <%= value %>
             </li>
             <% end %>
@@ -51,7 +50,7 @@
     <input type="hidden" name="origin_filter" value="<%= @origin %>" />
     <input type="hidden" name="page" value="<%= @page %>" />
     <input type="hidden" name="quantity" value="<%= @quantity %>" />
-    <input type="hidden" name="role" value="<%= @role %>" />
+    <input type="hidden" name="editor_id" value="<%= @editor_id %>" />
     <input class="search" type="search" name="search" placeholder="Buscar">
   </form>
 </div>
