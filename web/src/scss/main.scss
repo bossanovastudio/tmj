@@ -847,6 +847,9 @@ div.card {
     -ms-justify-content: center;
     -webkit-justify-content: center;
     justify-content: center;
+    &.recover{
+        padding-top: 50px;
+    }
     .content-box {
         width: 251px;
         height: auto;
@@ -1087,6 +1090,9 @@ div.card {
                 z-index: 9;
                 &.register{
                     top: 0px;
+                }
+                &.recover{
+                    top: -130px;
                 }
                 ul {
                     width: 100%;
