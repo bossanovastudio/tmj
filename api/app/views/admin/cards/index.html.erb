@@ -34,9 +34,10 @@
         </div>
 
         <div class="editors item">
-          <div class="main-select so-sel"><%= @editors[params.fetch("providers.user_id", "").to_sym] %></div>
+          <%- editors = { :"" => "Todos"}.merge(Hash[User.editors.pluck(:id, :name).to_h.map{|(k,v)| [k.to_s.to_sym,v]}]) %>
+          <div class="main-select so-sel"><%= editors[params.fetch("providers.user_id").to_sym] %></div>
           <ul class="editors-options filter-options">
-            <% @editors.each do |key, value| %>
+            <% editors.each do |key, value| %>
             <%= link_to admin_cards_path + query_string("providers.user_id", key) do %>
             <li class="<%= ((params["providers.user_id"] == key.to_s) && "active") || "" %>" value='<%= key %>'>
               <%= value %>
@@ -50,8 +51,7 @@
     <input type="hidden" name="origin_filter" value="<%= @origin %>" />
     <input type="hidden" name="page" value="<%= @page %>" />
     <input type="hidden" name="quantity" value="<%= @quantity %>" />
-    <input type="hidden" name="editor_id" value="<%= @editor_id %>" />
-    <input class="search" type="search" name="search" placeholder="Buscar">
+    <!-- <input class="search" type="search" name="search" placeholder="Buscar"> -->
   </form>
 </div>
 
@@ -111,10 +111,14 @@
           <% end %>
           <% if card.kind != 'featured' %>
             <div class="card-content">
-              <% if card.user && card.user.respond_to?(:avatar) %>
-              <img class="user-photo <%= 'negative-margin' if card.kind == 'video' || card.kind == 'image' %>" src="<%=card.user.avatar%>"/>
+              <% if card.user %>
+                <% if card.user.respond_to?(:avatar) %>
+                  <img class="user-photo <%= 'negative-margin' if card.kind == 'video' || card.kind == 'image' %>" src="<%=card.user.avatar%>"/>
+                <% end %>
+                <p class="name <%= 'user' unless card.user %>"><%= card.user.username %></p>
+              <% else %>
+                <p class="name <%= 'user' unless card.user %>"><%= card.social_user.fetch('username') %></p>
               <% end %>
-              <p class="name <%= 'user' unless card.user %>"><%= card.user %></p>
               <p class="date"><%= image_tag('social/' + card.origin + '.svg')%><%=l card.posted_at, format: '%d %h %Y, %H:%M' %></p>
               <p class="text"><%= card.content %></p>
             </div>

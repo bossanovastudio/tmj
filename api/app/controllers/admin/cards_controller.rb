@@ -9,7 +9,6 @@ class Admin::CardsController < ApplicationController
     filter = filter_params
 
     @cards = Card.filter_query(filter).page(pagination[:page]).per(pagination[:quantity]).ordered
-    @editors = {"": "Todos"}.merge(User.editors.pluck(:id, :name).to_h)
   end
 
   # GET /cards/1
