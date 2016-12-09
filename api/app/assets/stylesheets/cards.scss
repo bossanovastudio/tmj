@@ -232,7 +232,8 @@ section#cards {
       list-style: none;
       margin: 20px auto 30px auto;
 
-      span {
+      li {
+        cursor: pointer;
         color: #666;
         display: inline-block;
         width: 30px;
