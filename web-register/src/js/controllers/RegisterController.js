@@ -119,18 +119,22 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
 
     $scope.sendForm = function() {
         if ($scope.validForm()) {
+            var btn = $("#btn-send");
+            btn.attr('disabled', 'disabled');
             $('.dark-overlay').fadeIn();
             $http({
                     method: 'POST',
                     data: $.param($scope.form),
-                    url: API_URL + '/api/register.json',
+                    url: API_URL + 'register.json',
                 })
                 .then(function(data) {
                     $scope.advanceForm();
                     $('.dark-overlay').fadeOut();
+                    btn.removeAttr('disabled');
                 }, function(data) {
                     console.log(data);
                     $('.dark-overlay').fadeOut();
+                    btn.removeAttr('disabled');
                 });
         }
     }

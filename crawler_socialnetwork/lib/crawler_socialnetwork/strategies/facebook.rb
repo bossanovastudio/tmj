@@ -12,21 +12,30 @@ module CrawlerSocialnetwork
     def timeline(user_id=nil)
       raise RuntimeError unless user_id
 
-      feed = @graph.get_connections(user_id, "feed")
+      begin
+        feed = @graph.get_connections(user_id, "feed")
+      rescue Exception => e
+        $logger.error("Error processing feed #{user_id}: #{e}")
+        return
+      end
 
       feed.each do |post|
-        unless CrawledPost.find_by_social_uuid(post['id'])
-          post['user']        = @graph.get_object("/#{post['id']}?fields=from")
-          post['attachments'] = @graph.get_object("/#{post['id']}/attachments")
+        begin
+          unless CrawledPost.find_by_social_uuid(post['id'])
+            post['user']        = @graph.get_object("/#{post['id']}?fields=from")
+            post['attachments'] = @graph.get_object("/#{post['id']}/attachments")
 
-          crawled_post = CrawledPost.new
-          crawled_post.social_media = :facebook
-          crawled_post.social_uuid  = post['id']
-          crawled_post.data = post
+            crawled_post = CrawledPost.new
+            crawled_post.social_media = :facebook
+            crawled_post.social_uuid  = post['id']
+            crawled_post.data = post
 
-          unless crawled_post.save
-            $logger.error('Error saving post: #{post.inspect}')
+            unless crawled_post.save
+              $logger.error("Error saving post: #{post.inspect}")
+            end
           end
+        rescue Exception => e
+          $logger.error("Error processing post: #{post.inspect} -> #{e}")
         end
       end
     end
