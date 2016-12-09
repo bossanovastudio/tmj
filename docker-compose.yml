@@ -20,13 +20,13 @@ services:
     env_file:
       - ./env/.env
 
-  admin_web:
-    image: nginx:latest
-    volumes:
-      - ./admin_web/dist:/usr/share/nginx/html
-      - ./admin_web/nginx:/etc/nginx/conf.d
-    ports:
-      - "8082:8080"
+  # admin_web:
+  #   image: nginx:latest
+  #   volumes:
+  #     - ./admin_web/dist:/usr/share/nginx/html
+  #     - ./admin_web/nginx:/etc/nginx/conf.d
+  #   ports:
+  #     - "8082:8080"
 
   web-register:
     image: nginx:latest
@@ -36,17 +36,17 @@ services:
     ports:
       - "8083:8080"
 
-  admin:
-    build: admin
-    volumes:
-      - ./admin:/var/www/app
-    command: bundle exec rails s -p 3001 -b 0.0.0.0 -P/dev/null
-    ports:
-      - "3001:3001"
-    links:
-      - db
-    env_file:
-      - ./env/.env
+  # admin:
+  #   build: admin
+  #   volumes:
+  #     - ./admin:/var/www/app
+  #   command: bundle exec rails s -p 3001 -b 0.0.0.0 -P/dev/null
+  #   ports:
+  #     - "3001:3001"
+  #   links:
+  #     - db
+  #   env_file:
+  #     - ./env/.env
 
   api:
     build: api
