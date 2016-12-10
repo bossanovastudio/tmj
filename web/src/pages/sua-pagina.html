@@ -1,0 +1,64 @@
+<div class="overlay-pass" ng-click="togglePassword()"></div>
+<div class="container">
+    <div class="four columns left">
+        <input type="file" id="photo_face" file-on-change="changedFile" accept="image/*">
+        <div ng-click="selectFile($event)" type="text" class="box-avatar">
+          <img class="avatar" width="200" src="/img/ramona_novo.png" />
+          <div class="avatar_hover"></div>
+        </div>
+    </div>
+    <div class="four columns offset">
+        <form name="profileForm">
+            <div class="form-group bio">
+                <label for="username">bio</label>
+                <br>
+                <textarea name="bio" class="form-control" cols="1" rows="4"></textarea>
+            </div>
+            <div class="form-group checksocial">
+                <label><input type="radio" name="SGender" ng-change="RadioChange('Male')" ng-model="Gender" value="Male" /> Male </label>
+                <label><input type="radio" name="SGender" ng-change="RadioChange('Female')" ng-model="Gender" value="Female" /> Female </label>
+            </div> 
+            <div class="form-group user">
+                <label for="username">Nome de usuário</label>
+                <br>
+                <input type="text" name="username" class="form-control" placeholder="insira seu apelido"/>
+            </div>
+            <div class="form-group mail">
+                <label for="username">E-mail do Responsável</label>
+                <br>
+                <input type="text" name="email" class="form-control" placeholder="insira o e-mail"/>
+            </div>
+            <div class="form-group pass">
+                <label for="password">Nova Senha</label>
+                <br>
+                <ul class="input-pass register">
+                    <li ng-click="togglePassword()" style="background:url('{{passwordChoise[0].img}}'); background-size: cover;">
+                        <input type="hidden" name="pass-1" value="{{passwordChoise[0].value}}"/>
+                    </li>
+                    <li ng-click="togglePassword()" style="background:url('{{passwordChoise[1].img}}'); background-size: cover;">
+                        <input type="hidden" name="pass-2" value="{{passwordChoise[1].value}}"/>
+                    </li>
+                    <li ng-click="togglePassword()" style="background:url('{{passwordChoise[2].img}}'); background-size: cover;">
+                        <input type="hidden" name="pass-3" value="{{passwordChoise[2].value}}"/>
+                    </li>
+                    <li ng-click="togglePassword()" style="background:url('{{passwordChoise[3].img}}'); background-size: cover;">
+                        <input type="hidden" name="pass-3" value="{{passwordChoise[3].value}}"/>
+                    </li>
+                </ul>
+                <div class="pass-box register hide" ng-class="{show: open, hide: !open}">
+                    <ul>
+                        <li ng-repeat="pass in passwords" ng-click="addToPasswordChoise(pass)">
+                            <img src="{{pass.img}}" alt="{{pass.name}}">
+                        </li>
+                    </ul>
+                    <div class="after"></div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-submit">Entrar</button>
+            </div>
+        </form>
+    </div>
+    <div class="four columns right">
+    </div>
+</div>
