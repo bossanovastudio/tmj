@@ -1,0 +1,27 @@
+<%= simple_form_for [:admin, @highlight], html: { class: 'form', multipart: true } do |f| %>
+  <div class="left">
+    <div class="field">
+      <%= f.input :source_url, label: 'link' %>
+    </div>
+    <div class="field">
+      <%= f.input :content, label: 'texto (se houver)', as: :text %>
+    </div>
+  </div>
+  <div class="right">
+    <div class="field">
+      <label>tamanho destaque</label>
+      <div class="sizes">
+        <%= f.collection_radio_buttons :size, [['two', '2'], ['three', '3'], ['four', '4'], ['five', '5']], :first, :last %>
+      </div>
+    </div>
+    <div class="field">
+      <%= f.input :published %>
+    </div>
+    <div class="field">
+      <%= f.input :desktop_img, as: :file, label: 'Desktop Image' %>
+    </div>
+    <div class="field">
+      <%= f.input :mobile_img, as: :file, label: 'Mobile Image' %>
+    </div>
+  </div>
+<% end %>

@@ -27,32 +27,6 @@
     <div class="title">
       NOVO DESTAQUE
     </div>
-    <form class="form">
-      <div class="left">
-        <div class="field">
-          <label>link</label>
-          <input value="http://"></input>
-        </div>
-        <div class="field">
-          <label>texto (se houver)</label>
-          <textarea rows="3"></textarea>
-        </div>
-      </div>
-      <div class="right">
-        <div class="field">
-          <label>tamanho destaque</label>
-          <div class="sizes">
-            <input type='radio' id='radio-2' checked='checked' name='radio'>
-            <label for='radio-2'>2</label>
-            <input type='radio' id='radio-3' name='radio'>
-            <label for='radio-3'>3</label>
-            <input type='radio' id='radio-4' name='radio'>
-            <label for='radio-4'>4</label>
-            <input type='radio' id='radio-5' name='radio'>
-            <label for='radio-5'>5</label>
-          </div>
-        </div>
-      </div>
-    </form>
+    <%= render partial: 'form' %>
   </div>
 </section>
