@@ -1,4 +1,5 @@
 tmj.controller('EditUserController', function($rootScope, $location, $scope, $http, $sce, $compile, $routeParams) {
+    $rootScope.pageName = 'edit-user';
 
     $scope.selectFile = function(event) {
         var e = angular.element(event.target);
@@ -127,23 +128,6 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             $('.overlay-pass').css({"display": "none"});
         }
     }
-    
-    // $scope.checkField = function(event) {
-    //     var e = angular.element(event.target);
-    //     var choice = $(e).closest('.checksocial');
-    //     var input = $(e).find('input');
-    //     $(input).prop('checked', true);
-    //     if ($(input).attr('value') == "1") {
-    //         $(choice).addClass('active');
-    //         $scope.form[$(input).attr('name')] = true;
-    //     } else {
-    //         $(choice).removeClass('active');
-    //         $scope.form[$(input).attr('name')] = false;
-    //     }
-    //     $(choice).find('.option').removeClass('active');
-    //     $(e).addClass('active');
-    // }
-    
 
 });
 

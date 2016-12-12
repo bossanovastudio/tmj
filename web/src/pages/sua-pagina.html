@@ -1,11 +1,18 @@
 <div class="overlay-pass" ng-click="togglePassword()"></div>
 <div class="container">
     <div class="four columns left">
-        <input type="file" id="photo_face" file-on-change="changedFile" accept="image/*">
         <div ng-click="selectFile($event)" type="text" class="box-avatar">
-          <img class="avatar" width="200" src="/img/ramona_novo.png" />
+          <img class="avatar" width="200" src="/img/perfil_penado.svg" />
           <div class="avatar_hover"></div>
         </div>
+        
+       <!--  <div class="card-image">
+            <input ng-hide="card.image64 || card.newImage" type="file" fileread="card.newImage" />
+            <img ng-hide="card.image64 || card.newImage" src="/img/perfil_penado.svg" alt="">
+
+            <img ng-if="card.image64" ng-src="data:image/png;base64,{{ card.image64 }}" alt="" ng-click="card.image64 = undefined">
+            <img ng-if="card.newImage" ng-src="{{ card.newImage }}" alt="" ng-click="card.newImage = undefined">
+        </div> -->
     </div>
     <div class="four columns offset">
         <form name="profileForm">
@@ -14,10 +21,64 @@
                 <br>
                 <textarea name="bio" class="form-control" cols="1" rows="4"></textarea>
             </div>
-            <div class="form-group checksocial">
-                <label><input type="radio" name="SGender" ng-change="RadioChange('Male')" ng-model="Gender" value="Male" /> Male </label>
-                <label><input type="radio" name="SGender" ng-change="RadioChange('Female')" ng-model="Gender" value="Female" /> Female </label>
-            </div> 
+            <ul class="form-group checksocial">
+                <li>
+                    <div class="switch">
+                      <img src="/img/pinterest-profile.svg" alt="" class="img-social">
+                      <input id="cmn-toggle-pin" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                      <label for="cmn-toggle-pin"></label>
+                    </div>
+                </li>
+                <li>
+                    <div class="switch">
+                      <img src="/img/facebook-profile.svg" alt="" class="img-social">
+                      <input id="cmn-toggle-fb" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                      <label for="cmn-toggle-fb"></label>
+                    </div>
+                </li>
+                <li>
+                    <div class="switch">
+                      <img src="/img/instagram-profile.svg" alt="" class="img-social">
+                      <input id="cmn-toggle-insta" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                      <label for="cmn-toggle-insta"></label>
+                    </div>
+                </li>
+                <li>
+                    <div class="switch">
+                      <img src="/img/vimeo-profile.svg" alt="" class="img-social">
+                      <input id="cmn-toggle-vimeo" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                      <label for="cmn-toggle-vimeo"></label>
+                    </div>
+                </li>
+                <li>
+                    <div class="switch">
+                      <img src="/img/tumblr-profile.svg" alt="" class="img-social">
+                      <input id="cmn-toggle-tumblr" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                      <label for="cmn-toggle-tumblr"></label>
+                    </div>
+                </li>
+                <li>
+                    <div class="switch">
+                      <img src="/img/twitter-profile.svg" alt="" class="img-social">
+                      <input id="cmn-toggle-twitter" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                      <label for="cmn-toggle-twitter"></label>
+                    </div>
+                </li>
+                <li>
+                    <div class="switch">
+                      <img src="/img/google-profile.svg" alt="" class="img-social">
+                      <input id="cmn-toggle-google" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                      <label for="cmn-toggle-google"></label>
+                    </div>
+                </li>
+                <li>
+                    <div class="switch">
+                      <img src="/img/youtube-profile.svg" alt="" class="img-social">
+                      <input id="cmn-toggle-youtube" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                      <label for="cmn-toggle-youtube"></label>
+                    </div>
+                </li>
+            </ul> 
             <div class="form-group user">
                 <label for="username">Nome de usuário</label>
                 <br>
@@ -57,6 +118,8 @@
             <div class="form-actions">
                 <button type="submit" class="btn btn-submit">Entrar</button>
             </div>
+            <p class="link-delete">Não quer mais fazer parte? <a href="#"> Deletar conta</a></p>
+
         </form>
     </div>
     <div class="four columns right">
