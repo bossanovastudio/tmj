@@ -1,36 +1,36 @@
 <div class="overlay-pass" ng-click="togglePassword()"></div>
 <div class="container login">
 	<div class="content-box">
-		<h1 class="title">Minha Área</h1>
-		<button class=" btn btn-fb">Entrar com Facebook</button>
+		<h1 class="title">{{msg}}</h1>
+		<a ng-href="/user/auth/facebook" target="_self"><button class="btn btn-fb">Entrar com Facebook</button></a>
 		<h2>ou</h2>
 		<form name="profileForm">
 	        <div class="form-group user">
 	            <label for="username">Apelido</label>
 	            <br>
-	            <input type="text" name="username" class="form-control" placeholder="insira seu apelido"/>
+	            <input type="text" name="username" ng-model="form.username" class="form-control" placeholder="insira seu apelido"/>
 	        </div>
 	        <div class="form-group pass">
 	            <label for="password">Senha</label>
 	            <br>
 	            <ul class="input-pass">
-	            	<li ng-click="togglePassword()" style="background:url('{{passwordChoise[0].img}}'); background-size: cover;">
-	            		<input type="hidden" name="pass-1" value="{{passwordChoise[0].value}}"/>
+	            	<li ng-click="togglePassword()" style="background:url('{{passwordChoice[0].img}}'); background-size: cover;">
+	            		<input type="hidden" name="pass-1" value="{{passwordChoice[0].value}}"/>
 	            	</li>
-	            	<li ng-click="togglePassword()" style="background:url('{{passwordChoise[1].img}}'); background-size: cover;">
-	            		<input type="hidden" name="pass-2" value="{{passwordChoise[1].value}}"/>
+	            	<li ng-click="togglePassword()" style="background:url('{{passwordChoice[1].img}}'); background-size: cover;">
+	            		<input type="hidden" name="pass-2" value="{{passwordChoice[1].value}}"/>
 	            	</li>
-	            	<li ng-click="togglePassword()" style="background:url('{{passwordChoise[2].img}}'); background-size: cover;">
-	            		<input type="hidden" name="pass-3" value="{{passwordChoise[2].value}}"/>
+	            	<li ng-click="togglePassword()" style="background:url('{{passwordChoice[2].img}}'); background-size: cover;">
+	            		<input type="hidden" name="pass-3" value="{{passwordChoice[2].value}}"/>
 	            	</li>
-	            	<li ng-click="togglePassword()" style="background:url('{{passwordChoise[3].img}}'); background-size: cover;">
-	            		<input type="hidden" name="pass-3" value="{{passwordChoise[3].value}}"/>
+	            	<li ng-click="togglePassword()" style="background:url('{{passwordChoice[3].img}}'); background-size: cover;">
+	            		<input type="hidden" name="pass-3" value="{{passwordChoice[3].value}}"/>
 	            	</li>
 	            </ul>
-	            <a href="#" class="link-pass">Esqueceu a senha?</a>
+	            <a ng-href="/recuperar-senha" class="link-pass">Esqueceu a senha?</a>
 	            <div class="pass-box hide" ng-class="{show: open, hide: !open}">
 	            	<ul>
-	            		<li ng-repeat="pass in passwords" ng-click="addToPasswordChoise(pass)">
+	            		<li ng-repeat="pass in passwords" ng-click="addToPasswordChoice(pass)">
 	            			<img src="{{pass.img}}" alt="{{pass.name}}">
 	            		</li>
 	            	</ul>
@@ -38,9 +38,9 @@
 	            </div>
 	        </div>
 	        <div class="form-actions">
-	            <button type="submit" class="btn btn-submit">Entrar</button>
+	            <button type="button" ng-click="login()" class="btn btn-submit">Entrar</button>
 	        </div>
-	        <p class="link-cadastro">É novo aqui? <a href="#"> Cadastre-se</a></p>
+	        <p class="link-cadastro">É novo aqui? <a ng-href="/cadastro"> Cadastre-se</a></p>
     	</form>
 	</div>
 </div>
