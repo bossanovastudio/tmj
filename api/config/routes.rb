@@ -51,6 +51,14 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :highlights, only: [:index] do
+      collection do
+        post :accept
+        post :reject
+        get :total
+      end
+    end
+
     resources :images
     resources :videos
 
