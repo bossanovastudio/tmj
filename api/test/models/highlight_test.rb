@@ -2,18 +2,17 @@
 #
 # Table name: highlights
 #
-#  id                :integer          not null, primary key
-#  content           :text
-#  media_type        :string
-#  media_id          :integer
-#  posted_at         :datetime
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  source_url        :string
-#  size              :integer          default("one")
-#  mobile_media_id   :integer
-#  mobile_media_type :string
-#  index             :integer          default(0)
+#  id               :integer          not null, primary key
+#  content          :text
+#  posted_at        :datetime
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  source_url       :string
+#  size             :integer          default("one")
+#  index            :integer          default(0)
+#  published        :boolean
+#  desktop_image_id :integer
+#  mobile_image_id  :integer
 #
 
 require "test_helper"
