@@ -1,4 +1,7 @@
-section#highlights {
+section#highlights, section#highlights-new {
+  $btn_width: 40px;
+  $btn_height: 40px;
+
   .add-icon {
     height: 35px;
     width: 35px;
@@ -10,6 +13,100 @@ section#highlights {
       }
       .stroke {
         stroke: #ffffff;
+      }
+    }
+  }
+
+
+  .content {
+    width: 100%;
+    height: 300px;
+    padding: 40px 30px;
+    background-color: #eaeaea;
+
+    .title {
+      font-weight: 600;
+      color: #68a6ef;
+      font-size: 20px;
+    }
+
+    .form {
+      .field {
+        margin-top: 15px;
+      }
+
+      label {
+        text-transform: uppercase;
+        font-size: 13px;
+        line-height: 24px;
+        font-weight: 600;
+      }
+      input, textarea {
+        width: 100%;
+        resize: none;
+        border: 1px solid #000000;
+        background-color: #dddddd;
+        padding: 10px;
+        font-size: 14px;
+      }
+      textarea {
+        font-size: 18px;
+      }
+
+      .left {
+        float: left;
+        width: 45%;
+      }
+
+      .right {
+        float: left;
+        width: 45%;
+        margin-left: 8%;
+
+        .sizes {
+          margin-left: 16px;
+        }
+
+        input[type='radio']{
+          display: none;
+        }
+
+        input[type='radio'] + label{
+          letter-spacing: 0;
+          width: $btn_width;
+          height: $btn_height;
+          z-index: 1;
+          margin: 10px 40px 10px 0;
+          width: $btn_width;
+          height: $btn_height;
+          line-height: $btn_height * 1.3;
+          position: relative;
+          font-size: 18px;
+          letter-spacing: .1em;
+
+          &:after {
+            border: 1px solid #3e3e3e;
+            z-index: 2;
+            content: '';
+            cursor: pointer;
+            top: -38%;
+            margin-left: 50%;
+            left: -$btn_width/1.85;
+            width: $btn_width;
+            height: $btn_height;
+            display: block;
+            position: absolute;
+          }
+        }
+        a.active, a.active:hover, input[type='radio']:checked + label{
+          color: #ffffff;
+
+          &:after {
+            background-color: #68a6ef;
+            z-index: -1;
+            border-color: #68a6ef;
+          }
+        }
       }
     }
   }

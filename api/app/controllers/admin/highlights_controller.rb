@@ -7,15 +7,19 @@ class Admin::HighlightsController < ApplicationController
   # GET /highlights.json
   def index
     pagination = pagination_params
-    
+
     @highlights = Highlight.page(pagination[:page]).per(pagination[:quantity])
+  end
+
+  def new
+    @highlight = Highlight.new
   end
 
   # GET /highlights/1
   # GET /highlights/1.json
   def show
   end
-  
+
   # POST /highlights
   # POST /highlights.json
   def create
@@ -51,7 +55,7 @@ class Admin::HighlightsController < ApplicationController
     def set_highlight
       @highlight = Highlight.find(params[:id])
     end
-    
+
     def pagination_params
       params.permit(:page, :quantity)
     end

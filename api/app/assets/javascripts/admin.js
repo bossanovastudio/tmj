@@ -119,8 +119,8 @@ function initMasonry() {
 }
 
 function resizeAdminContent() {
-    $('section .bottom-content').css('height', $('.admin-content').height() - 200);
-    $('section .content').css('height', $(window).height() - 138);
+    $('section .bottom-content').css('height', $('.admin-content').height() - 205);
+    $('section .content').css('height', $(window).height() - 205);
 };
 
 // On window resize
