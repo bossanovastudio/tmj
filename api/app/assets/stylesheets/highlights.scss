@@ -1,3 +1,16 @@
 section#highlights {
-  
+  .add-icon {
+    height: 35px;
+    width: 35px;
+    cursor: pointer;
+
+    &:hover {
+      #bg {
+        fill: #68A6EF;
+      }
+      .stroke {
+        stroke: #ffffff;
+      }
+    }
+  }
 }

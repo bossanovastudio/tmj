@@ -23,7 +23,7 @@ $(document).on('turbolinks:load', function() {
     var overlay = $('.overlay'),
         filterList = $('.btn-filter .item ul'),
         filterItem = $('.btn-filter .item'),
-        filterSelectAllCards = $('.filter-bar a.select-all'),
+        filterSelectAllCards = $('.action-bar a.select-all'),
         cardsContainer = $('#cards-container'),
         filterOptions = $('ul.filter-options');
 

@@ -211,7 +211,7 @@ html {
     background-color: #fff;
     margin: 0;
   }
-  .filter-bar {
+  .action-bar {
     height: 64px;
     background-color: #f1f1f1;
     border-bottom: 1px solid #fff;
@@ -219,12 +219,11 @@ html {
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-
     -ms-flex-align: center;
     -webkit-align-items: center;
     -webkit-box-align: center;
-
     align-items: center;
+
     .btn-filter {
       position: relative;
       margin-left: 0;
