@@ -19,4 +19,6 @@ class Highlight < ApplicationRecord
   enum size: { one: 1, two: 2, three: 3, four: 4, five: 5 }
   belongs_to :desktop_image, class_name: "Image"
   belongs_to :mobile_image, class_name: "Image"
+
+  scope :published, -> { where(published: true) }
 end
