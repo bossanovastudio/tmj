@@ -87,7 +87,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
             var count = parseInt(elem.find('.counter').text());
             $http({
                     method: 'GET',
-                    url: API_URL + '/api/cards/' + id + '/like'
+                    url: API_URL + 'cards/' + id + '/like'
                 })
                 .then(function(data) {
                     heart.attr('src', '/img/liked.png');
