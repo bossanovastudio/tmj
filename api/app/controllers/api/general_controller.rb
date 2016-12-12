@@ -2,12 +2,12 @@ class Api::GeneralController < ActionController::API
   def all
     pagination = pagination_params
 
-    @highlight = Highlight.page(pagination[:page]).per(1).first
+    @highlight = Highlight.published.page(pagination[:page]).per(1).first
     @cards = Card.page(pagination[:page]).per(pagination[:quantity].to_i - 1).approved.ordered
   end
 
   def highlights
-    @highlights = Highlight.all
+    @highlights = Highlight.published
   end
 
   def all_without_editors
