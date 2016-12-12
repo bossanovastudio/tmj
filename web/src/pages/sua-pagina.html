@@ -5,14 +5,6 @@
           <img class="avatar" width="200" src="/img/perfil_penado.svg" />
           <div class="avatar_hover"></div>
         </div>
-        
-       <!--  <div class="card-image">
-            <input ng-hide="card.image64 || card.newImage" type="file" fileread="card.newImage" />
-            <img ng-hide="card.image64 || card.newImage" src="/img/perfil_penado.svg" alt="">
-
-            <img ng-if="card.image64" ng-src="data:image/png;base64,{{ card.image64 }}" alt="" ng-click="card.image64 = undefined">
-            <img ng-if="card.newImage" ng-src="{{ card.newImage }}" alt="" ng-click="card.newImage = undefined">
-        </div> -->
     </div>
     <div class="four columns offset">
         <form name="profileForm">
@@ -93,22 +85,22 @@
                 <label for="password">Nova Senha</label>
                 <br>
                 <ul class="input-pass register">
-                    <li ng-click="togglePassword()" style="background:url('{{passwordChoise[0].img}}'); background-size: cover;">
-                        <input type="hidden" name="pass-1" value="{{passwordChoise[0].value}}"/>
+                    <li ng-click="togglePassword()" style="background:url('{{passwordChoice[0].img}}'); background-size: cover;">
+                        <input type="hidden" name="pass-1" value="{{passwordChoice[0].value}}"/>
                     </li>
-                    <li ng-click="togglePassword()" style="background:url('{{passwordChoise[1].img}}'); background-size: cover;">
-                        <input type="hidden" name="pass-2" value="{{passwordChoise[1].value}}"/>
+                    <li ng-click="togglePassword()" style="background:url('{{passwordChoice[1].img}}'); background-size: cover;">
+                        <input type="hidden" name="pass-2" value="{{passwordChoice[1].value}}"/>
                     </li>
-                    <li ng-click="togglePassword()" style="background:url('{{passwordChoise[2].img}}'); background-size: cover;">
-                        <input type="hidden" name="pass-3" value="{{passwordChoise[2].value}}"/>
+                    <li ng-click="togglePassword()" style="background:url('{{passwordChoice[2].img}}'); background-size: cover;">
+                        <input type="hidden" name="pass-3" value="{{passwordChoice[2].value}}"/>
                     </li>
-                    <li ng-click="togglePassword()" style="background:url('{{passwordChoise[3].img}}'); background-size: cover;">
-                        <input type="hidden" name="pass-3" value="{{passwordChoise[3].value}}"/>
+                    <li ng-click="togglePassword()" style="background:url('{{passwordChoice[3].img}}'); background-size: cover;">
+                        <input type="hidden" name="pass-3" value="{{passwordChoice[3].value}}"/>
                     </li>
                 </ul>
                 <div class="pass-box register hide" ng-class="{show: open, hide: !open}">
                     <ul>
-                        <li ng-repeat="pass in passwords" ng-click="addToPasswordChoise(pass)">
+                        <li ng-repeat="pass in passwords" ng-click="addToPasswordChoice(pass)">
                             <img src="{{pass.img}}" alt="{{pass.name}}">
                         </li>
                     </ul>

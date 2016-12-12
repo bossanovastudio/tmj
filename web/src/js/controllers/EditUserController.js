@@ -86,7 +86,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         img: '/img/nimbus.png'
     }];
 
-    $scope.passwordChoise = [{
+    $scope.passwordChoice = [{
         img: 'img/pass-silhuete.svg' 
     },
     {
@@ -105,7 +105,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         $scope.open = !$scope.open;
         if ($scope.open) {
             $('.overlay-pass').css({"display": "block"});
-            $scope.passwordChoise.length = 0;
+            $scope.passwordChoice.length = 0;
             $('.after').css({ "left": 10 });
             $scope.numClick = 0;
         } else {
@@ -113,9 +113,9 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         }
     };
     
-    $scope.addToPasswordChoise = function(pass) {
+    $scope.addToPasswordChoice = function(pass) {
         $scope.numClick = $scope.numClick + 1;
-        $scope.passwordChoise.push($scope.passwords[pass.id]);
+        $scope.passwordChoice.push($scope.passwords[pass.id]);
         if ($scope.numClick == 1){
             $('.after').css({ "left": 55 });
         } else if ($scope.numClick == 2){
@@ -128,6 +128,15 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             $('.overlay-pass').css({"display": "none"});
         }
     }
+    
+    $('.cmn-toggle').change(function() {
+        if (this.checked) {
+            $(this).parent('.switch').find('.img-social').css('opacity', '1');
+        } else {
+            $(this).parent('.switch').find('.img-social').css('opacity', '0.5');
+        }
+    });
+    
 
 });
 
