@@ -46,10 +46,7 @@ gem 'resque'
 gem 'devise'
 
 # Token based authentication for Rails JSON APIs.
-gem 'devise_token_auth'
-
-# Send Devise's emails in background. Supports Resque, Sidekiq, Delayed::Job and QueueClassic.
-gem 'devise-async'
+gem 'simple_token_authentication', '~> 1.0'
 
 # OmniAuth is a flexible authentication system utilizing Rack middleware
 gem 'omniauth'

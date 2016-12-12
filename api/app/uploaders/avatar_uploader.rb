@@ -12,7 +12,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
     # For Rails 3.1+ asset pipeline compatibility:
     # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
 
-    image_path "avatar_default.png"
+    ActionController::Base.helpers.image_path "avatar_default.png"
   end
 
   def extension_whitelist

@@ -31,9 +31,8 @@
 #
 
 class User < ActiveRecord::Base
-  # Include default devise modules.
+  acts_as_token_authenticatable
   devise :database_authenticatable, :registerable, :rememberable, :trackable, :omniauthable
-  # include DeviseTokenAuth::Concerns::User
   
   enum role: { user: 1, editor: 2, moderator: 3, admin: 4 }
   scope :editors, -> { where(role: :editor) }
