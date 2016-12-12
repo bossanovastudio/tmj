@@ -18,6 +18,12 @@
     border: 2px solid #000000;
     text-align: center;
 
+    @media only screen and (max-width: 650px) {
+      width: 90%;
+      margin-left: -91%;
+      left: 99%;
+    }
+
     &:after,
     &:before {
       content: '';
@@ -47,6 +53,10 @@
       font-size: 22px;
       font-family: 'KomikaTitle';
       margin: 10px;
+
+      @media only screen and (max-width: 650px) {
+        font-size: 16px;
+      }
     }
 
     .actions {
@@ -82,4 +92,6 @@
       }
     }
   }
+
+
 }
