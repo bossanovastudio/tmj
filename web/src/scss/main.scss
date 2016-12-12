@@ -1265,82 +1265,7 @@ div.card {
                 border: 2px solid #b450db;
             }
         }
-        .close {
-            position: absolute;
-            cursor: pointer;
-            width: 45px;
-            height: 46px;
-            right: -20px;
-            top: -20px;
-            -webkit-filter: drop-shadow( 3px 3px 0px #000);
-            filter: drop-shadow( 3px 3px 0px #000);
-            cursor: pointer;
-            transition-duration: 0s;
-            &.pow {
-                width: 85px;
-                height: 96px;
-                right: -42px;
-                top: -45px;
-            }
-            .close-icon4 {
-                width: 18px;
-                height: 18px;
-                position: absolute;
-                top: 16px;
-                left: 14px;
-                cursor: pointer;
-                &.pow {
-                    display: none;
-                }
-                span {
-                    display: block;
-                    position: absolute;
-                    height: 2px;
-                    background: #000;
-                    border-radius: 2px;
-                    opacity: 1;
-                    top: 6px;
-                    left: 0;
-                    width: 100%;
-                    &:nth-child(1) {
-                        -webkit-transform: rotate(45deg);
-                        -moz-transform: rotate(45deg);
-                        -o-transform: rotate(45deg);
-                        transform: rotate(45deg);
-                    }
-                    &:nth-child(2) {
-                        -webkit-transform: rotate(-45deg);
-                        -moz-transform: rotate(-45deg);
-                        -o-transform: rotate(-45deg);
-                        transform: rotate(-45deg);
-                    }
-                }
-            }
-            &:hover {
-                -webkit-filter: drop-shadow( 0px 0px 0px #000);
-                filter: drop-shadow( 0px 0px 0px #000);
-                // transition-duration: 0.2s;
-                -ms-transform: translate(3px, 3px);
-                /* IE 9 */
-                -webkit-transform: translate(3px, 3px);
-                /* Safari */
-                transform: translate(3px, 3px);
-            }
-            img.link {
-                &.pow {
-                    display: none;
-                }
-            }
-            img.active {
-                opacity: 0;
-                display: none;
-                &.pow {
-                    display: block;
-                    width: 100%;
-                    opacity: 1;
-                }
-            }
-        }
+
         &.image {
             width: 80%;
             max-width: 80%;
@@ -1372,6 +1297,87 @@ div.card {
         }
     }
 }
+
+.close {
+    position: absolute;
+    cursor: pointer;
+    width: 45px;
+    height: 46px;
+    right: -20px;
+    top: -20px;
+    -webkit-filter: drop-shadow( 3px 3px 0px #000);
+    filter: drop-shadow( 3px 3px 0px #000);
+    cursor: pointer;
+    transition-duration: 0s;
+    &.pow {
+        width: 85px;
+        height: 96px;
+        right: -42px;
+        top: -45px;
+    }
+
+    &:hover {
+        -webkit-filter: drop-shadow( 0px 0px 0px #000);
+        filter: drop-shadow( 0px 0px 0px #000);
+        // transition-duration: 0.2s;
+        -ms-transform: translate(3px, 3px);
+        /* IE 9 */
+        -webkit-transform: translate(3px, 3px);
+        /* Safari */
+        transform: translate(3px, 3px);
+    }
+    img.link {
+        &.pow {
+            display: none;
+        }
+    }
+    img.active {
+        opacity: 0;
+        display: none;
+        &.pow {
+            display: block;
+            width: 100%;
+            opacity: 1;
+        }
+    }
+
+    .close-icon4 {
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 16px;
+        left: 14px;
+        cursor: pointer;
+        &.pow {
+            display: none;
+        }
+        span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            background: #000;
+            border-radius: 2px;
+            opacity: 1;
+            top: 6px;
+            left: 0;
+            width: 100%;
+            &:nth-child(1) {
+                -webkit-transform: rotate(45deg);
+                -moz-transform: rotate(45deg);
+                -o-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+            &:nth-child(2) {
+                -webkit-transform: rotate(-45deg);
+                -moz-transform: rotate(-45deg);
+                -o-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+            }
+        }
+    }
+}
+
+
 
 footer {
     position: fixed;
@@ -1725,3 +1731,5 @@ p.content a {
         }
     }
 }
+
+@import 'popup';
