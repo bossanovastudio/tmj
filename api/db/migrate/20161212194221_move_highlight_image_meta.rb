@@ -1,17 +1,13 @@
 class MoveHighlightImageMeta < ActiveRecord::Migration[5.0]
   def up
     Highlight.all.each do |h|
-      unless h.media.nil?
-        if h.media.class == Image
-          h.desktop_image_id = h.media_id
-        end
+      unless h.media_id.nil?
+        h.desktop_image_id = h.media_id if h.media_type == "Image"
       end
 
 
-      unless h.mobile_media.nil?
-        if h.mobile_media.class == Image
-          h.mobile_image_id = h.mobile_media_id
-        end
+      unless h.mobile_media_id.nil?
+        h.mobile_image_id = h.mobile_media_id if h.mobile_media_type == "Image"
       end
       h.save!
     end
