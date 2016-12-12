@@ -36,6 +36,7 @@ module CrawlerSocialnetwork
           'UCekYMr9EQSauMefFzMTrpSg',
           'UCpf5c40cP3MoXe2T81zb4xA',
           'UCIfAeO5OrsuxczdozQ5mcag',
+          'UC2sp_4csOUc4VnmNdWxTXhQ',
         ].each { |u| @youtube.channel u }
 
         @tumblr.search 'lunetalunatica.tumblr.com'

@@ -22,7 +22,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     } else {
         $http({
                 method: 'get',
-                url: API_URL + '/api/highlights.json',
+                url: API_URL + 'highlights.json',
             })
             .success(function(data) {
                 data.highlights.forEach(function(f) {
@@ -46,7 +46,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         }
         $http({
                 method: 'get',
-                url: API_URL + '/api/' + slug + '/' + p + '/' + $scope.SIZE + '.json',
+                url: API_URL + slug + '/' + p + '/' + $scope.SIZE + '.json',
             })
             .success(function(data) {
                 $rootScope.isCardsLoaded = true;
@@ -281,7 +281,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('originalPost') && !elem.hasClass('shareButton')) {
             $http({
                     method: 'get',
-                    url: API_URL + '/api/cards/' + id + '.json',
+                    url: API_URL + 'cards/' + id + '.json',
                 })
                 .success(function(data) {
                     $rootScope.card = data;
@@ -404,7 +404,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             var count = parseInt(elem.find('.counter').text());
             $http({
                     method: 'POST',
-                    url: API_URL + '/api/cards/' + id + '/like',
+                    url: API_URL + 'cards/' + id + '/like',
                     data: $.param({
                         id: id
                     })
