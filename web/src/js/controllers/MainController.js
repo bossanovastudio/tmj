@@ -87,7 +87,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
             var count = parseInt(elem.find('.counter').text());
             $http({
                     method: 'GET',
-                    url: API_URL + '/api/cards/' + id + '/like'
+                    url: API_URL + 'cards/' + id + '/like'
                 })
                 .then(function(data) {
                     heart.attr('src', '/img/liked.png');
@@ -162,15 +162,48 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                 $(".shareBox").hide();
             }, 200);
         }
+
+        if (e.target.id == "popup") {
+          $rootScope.closePopup();
+        }
     });
+
+    function animateCloseButton() {
+      $('.close').addClass('pow');
+      $('.close .active').addClass('pow');
+      $('.close .link').addClass('pow');
+      $('.close .close-icon4').addClass('pow');
+    }
+
+    function resetCloseButton() {
+      $('.close').removeClass('pow');
+      $('.close .active').removeClass('pow');
+      $('.close .link').removeClass('pow');
+      $('.close .close-icon4').removeClass('pow');
+    }
+
+    $rootScope.openPopup = function() {
+      $("#popup").show();
+      $( "#popup .box" ).animate({ opacity: 1, top: "40%" }, 300);
+    }
+
+    $rootScope.closePopup = function() {
+      animateCloseButton();
+
+      setTimeout(function() {
+        $( "#popup .box" ).animate({ opacity: 0, top: "-10px" }, 300);
+
+        $("#popup").fadeOut();
+      }, 300);
+      setTimeout(function() {
+        resetCloseButton();
+      }, 500);
+    }
 
     $scope.closeLightbox = function() {
         $rootScope.cardIsOpen = false;
+        animateCloseButton();
 
-        $('.close').addClass('pow');
-        $('.close .active').addClass('pow');
-        $('.close .link').addClass('pow');
-        $('.close .close-icon4').addClass('pow');
         $location.path($rootScope.previousURL, false);
         setTimeout(function() {
             if ($(".lightbox").hasClass("show")) {
@@ -188,10 +221,8 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
             }
         }, 300);
         setTimeout(function() {
-            $('.close').removeClass('pow');
-            $('.close .active').removeClass('pow');
-            $('.close .link').removeClass('pow');
-            $('.close .close-icon4').removeClass('pow');
+            resetCloseButton();
+
             $rootScope.card = null;
             $('.videoIframe').html('');
         }, 500);

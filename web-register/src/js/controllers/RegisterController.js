@@ -96,6 +96,7 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
 
     $scope.advanceForm = function() {
         if ($scope.validForm()) {
+            $rootScope.track('form', 'step', 'advance');
             $('.overlay').fadeOut();
             var currentForm = $('.form.active');
             currentForm.animate({
@@ -119,18 +120,24 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
 
     $scope.sendForm = function() {
         if ($scope.validForm()) {
+            $rootScope.track('form', 'send', 'success');
+            var btn = $("#btn-send");
+            btn.attr('disabled', 'disabled');
             $('.dark-overlay').fadeIn();
             $http({
                     method: 'POST',
                     data: $.param($scope.form),
-                    url: API_URL + '/api/register.json',
+                    url: API_URL + 'register.json',
                 })
                 .then(function(data) {
                     $scope.advanceForm();
                     $('.dark-overlay').fadeOut();
+                    btn.removeAttr('disabled');
                 }, function(data) {
+                    $rootScope.track('form', 'send', 'error');
                     console.log(data);
                     $('.dark-overlay').fadeOut();
+                    btn.removeAttr('disabled');
                 });
         }
     }
@@ -140,6 +147,7 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
     }, 1000);
 
     $scope.returnForm = function() {
+        $rootScope.track('form', 'step', 'back');
         var currentForm = $('.form.active');
         currentForm.animate({
             left: "150%"

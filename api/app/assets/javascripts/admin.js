@@ -83,7 +83,7 @@ $(document).on('turbolinks:load', function() {
     $('input.search').on('keyup', function() {
         var context = $(this).val().toLowerCase();
         cardsContainer.find('.card').each(function() {
-            var contentText = $(this).find('.content p.text').text().toLowerCase();
+            var contentText = $(this).find('.card-content p.text').text().toLowerCase();
             if (contentText.indexOf(context) != -1)
                 $(this).show();
             else

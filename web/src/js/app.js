@@ -44,9 +44,17 @@ tmj
                 templateUrl: '/pages/login.html',
                 controller: 'LoginController'
             })
-            .when('/register', {
-                templateUrl: '/pages/register.html',
+            .when('/cadastro', {
+                templateUrl: '/pages/cadastro.html',
                 controller: 'LoginController'
+            })
+            .when('/recuperar-senha', {
+                templateUrl: '/pages/recuperar-senha.html',
+                controller: 'LoginController'
+            })
+            .when('/sua-pagina', {
+                templateUrl: '/pages/sua-pagina.html',
+                controller: 'EditUserController'
             });
 
         $routeProvider
