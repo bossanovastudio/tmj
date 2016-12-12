@@ -164,13 +164,26 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         }
     });
 
+    function animateCloseButton() {
+      $('.close').addClass('pow');
+      $('.close .active').addClass('pow');
+      $('.close .link').addClass('pow');
+      $('.close .close-icon4').addClass('pow');
+    }
+
+    $rootScope.closePopup = function() {
+      animateCloseButton();
+
+      $( "#popup .box" ).animate({ opacity: 0, top: "-10px" }, 300);
+      setTimeout(function() {
+        $("#popup").fadeOut();
+      }, 300);
+    }
+
     $scope.closeLightbox = function() {
         $rootScope.cardIsOpen = false;
+        animateCloseButton();
 
-        $('.close').addClass('pow');
-        $('.close .active').addClass('pow');
-        $('.close .link').addClass('pow');
-        $('.close .close-icon4').addClass('pow');
         $location.path($rootScope.previousURL, false);
         setTimeout(function() {
             if ($(".lightbox").hasClass("show")) {
