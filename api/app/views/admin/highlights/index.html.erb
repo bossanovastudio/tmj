@@ -18,6 +18,10 @@
     </div>
   </div>
   <div class="content">
-
+  <% @highlights.each do |h| %>
+    <img src="<%= h.desktop_image.file_url %>" />
+    <%= link_to "Edit", edit_admin_highlight_path(h) %>
+    <br>
+  <% end %>
   </div>
 </section>

@@ -1,5 +1,5 @@
 class Admin::HighlightsController < ApplicationController
-  before_action :set_highlight, only: [:show, :update, :destroy]
+  before_action :set_highlight, only: [:show, :update, :destroy, :edit]
   before_action :authenticate_user!, only: [:like, :unlike]
   # before_action :authenticate_admin!, only: [:index, :show, :create, :update, :destroy]
 
@@ -34,13 +34,19 @@ class Admin::HighlightsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   # PATCH/PUT /highlights/1
   # PATCH/PUT /highlights/1.json
   def update
-    if @highlight.update(highlight_params)
-      render :show, status: :ok, location: @highlight
+    @highlight.assign_attributes(highlight_params)
+    @highlight.build_desktop_image(file: params[:highlight][:desktop_img]) if params[:highlight][:desktop_img]
+    @highlight.build_mobile_image(file: params[:highlight][:desktop_img]) if params[:highlight][:mobile_img]
+    if @highlight.save
+      redirect_to action: :index
     else
-      render json: @highlight.errors, status: :unprocessable_entity
+      render :edit
     end
   end
 
