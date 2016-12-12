@@ -51,6 +51,10 @@ tmj
             .when('/recuperar-senha', {
                 templateUrl: '/pages/recuperar-senha.html',
                 controller: 'LoginController'
+            })
+            .when('/sua-pagina', {
+                templateUrl: '/pages/sua-pagina.html',
+                controller: 'EditUserController'
             });
 
         $routeProvider
