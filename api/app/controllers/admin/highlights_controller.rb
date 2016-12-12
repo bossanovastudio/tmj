@@ -24,8 +24,8 @@ class Admin::HighlightsController < ApplicationController
   # POST /highlights.json
   def create
     @highlight = Highlight.new(highlight_params)
-    @highlight.build_desktop_image(file: params[:desktop_img])
-    @highlight.build_mobile_image(file: params[:mobile_img])
+    @highlight.build_desktop_image(file: params[:highlight][:desktop_img])
+    @highlight.build_mobile_image(file: params[:highlight][:mobile_img])
 
     if @highlight.save
       redirect_to action: :index
@@ -64,6 +64,6 @@ class Admin::HighlightsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def highlight_params
-      params.require(:highlight).permit(:source_url, :content, :media, :mobile_media, :size, :published)
+      params.require(:highlight).permit(:source_url, :content, :size, :published)
     end
 end
