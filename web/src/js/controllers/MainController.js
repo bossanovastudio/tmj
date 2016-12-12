@@ -162,6 +162,10 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                 $(".shareBox").hide();
             }, 200);
         }
+
+        if (e.target.id == "popup") {
+          $rootScope.closePopup();
+        }
     });
 
     function animateCloseButton() {
@@ -171,13 +175,29 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
       $('.close .close-icon4').addClass('pow');
     }
 
+    function resetCloseButton() {
+      $('.close').removeClass('pow');
+      $('.close .active').removeClass('pow');
+      $('.close .link').removeClass('pow');
+      $('.close .close-icon4').removeClass('pow');
+    }
+
+    $rootScope.openPopup = function() {
+      $("#popup").show();
+      $( "#popup .box" ).animate({ opacity: 1, top: "40%" }, 300);
+    }
+
     $rootScope.closePopup = function() {
       animateCloseButton();
 
-      $( "#popup .box" ).animate({ opacity: 0, top: "-10px" }, 300);
       setTimeout(function() {
+        $( "#popup .box" ).animate({ opacity: 0, top: "-10px" }, 300);
+
         $("#popup").fadeOut();
       }, 300);
+      setTimeout(function() {
+        resetCloseButton();
+      }, 500);
     }
 
     $scope.closeLightbox = function() {
@@ -201,10 +221,8 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
             }
         }, 300);
         setTimeout(function() {
-            $('.close').removeClass('pow');
-            $('.close .active').removeClass('pow');
-            $('.close .link').removeClass('pow');
-            $('.close .close-icon4').removeClass('pow');
+            resetCloseButton();
+
             $rootScope.card = null;
             $('.videoIframe').html('');
         }, 500);
