@@ -40,6 +40,9 @@ body {
     &.login {
         background-image: asset-url('site/bg_login.jpg');
     }
+    &.edit-user{
+        background-image: asset-url('site/bg_login.jpg');
+    }
 }
 
 header {
