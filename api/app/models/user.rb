@@ -45,7 +45,16 @@ class User < ActiveRecord::Base
   has_many :cards, through: :providers
   recommends :cards
 
+  after_create :send_welcome_email
+
   def email_required?
     false
   end
+
+  private
+    def send_welcome_email
+      return true unless email || email.empty?
+      UsersMailer.welcome(self).deliver_now
+    end
+
 end
