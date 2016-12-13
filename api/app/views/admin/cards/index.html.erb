@@ -34,26 +34,18 @@
             </ul>
           </div>
 
-          <div class="editors item">
-            <%- editors = { :"" => "Todos"}.merge(Hash[User.editors.pluck(:id, :name).to_h.map{|(k,v)| [k.to_s.to_sym,v]}]) %>
-            <div class="main-select so-sel"><%= editors[params.fetch("providers.user_id", "").to_sym] %></div>
-            <ul class="editors-options filter-options">
-              <% editors.each do |key, value| %>
-              <%= link_to admin_cards_path + query_string("providers.user_id", key) do %>
-              <li class="<%= ((params["providers.user_id"] == key.to_s) && "active") || "" %>" value='<%= key %>'>
-                <%= value %>
-              </li>
-              <% end %>
-              <% end %>
-            </ul>
-          </div>
-          <form>
-            <input type="hidden" name="status_filter" value="<%= @status %>" />
-            <input type="hidden" name="origin_filter" value="<%= @origin %>" />
-            <input type="hidden" name="page" value="<%= @page %>" />
-            <input type="hidden" name="quantity" value="<%= @quantity %>" />
-            <!-- <input class="search" type="search" name="search" placeholder="Buscar"> -->
-          </form>
+        <div class="editors item">
+          <%- editors = { :"" => "Todos"}.merge(Hash[User.editors.pluck(:id, :username).to_h.map{|(k,v)| [k.to_s.to_sym,v]}]) %>
+          <div class="main-select so-sel"><%= editors[params.fetch("providers.user_id", "").to_sym] %></div>
+          <ul class="editors-options filter-options">
+            <% editors.each do |key, value| %>
+            <%= link_to admin_cards_path + query_string("providers.user_id", key) do %>
+            <li class="<%= ((params["providers.user_id"] == key.to_s) && "active") || "" %>" value='<%= key %>'>
+              <%= value %>
+            </li>
+            <% end %>
+            <% end %>
+          </ul>
         </div>
       </div>
 
