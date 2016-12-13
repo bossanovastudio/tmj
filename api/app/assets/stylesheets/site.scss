@@ -234,7 +234,7 @@ section {
     position: fixed;
     left: 0px;
     z-index: 100;
-    width: 400px;
+    width: 420px;
     transform: translateX(-500px);
     height: 100%;
     background: asset-url('site/bg_gray.jpg') center top;
@@ -295,14 +295,63 @@ section {
                 background: asset-url('site/participe.png') center center no-repeat;
                 background-size: auto 100%;
             }
+            &.menu-login {
+              width: 100%;
+              height: 121px;
+              background: linear-gradient(104deg, rgba(48,35,174,0.5), rgba(200,109,215,0.5));
+              margin-bottom: 20px;
+              color: #000000;
+              font-size: 30px;
+              letter-spacing: 1px;
+              text-decoration: none;
+              display: block;
+              padding: 25px 0 25px 35px;
+
+              img {
+                float: left;
+              }
+              span {
+                font-family: KomikaTitle;
+                float: left;
+                margin: 15px;
+              }
+              a {
+                font-size: 18px;
+                float: right;
+                font-family: KomikaTitle;
+                background-color: #ffffff;
+                color: #000000;
+                width: 80px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                padding: 0;
+                margin: 15px 35px 15px 0;
+                -webkit-box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+                -moz-box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+                box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+                border: 1px solid #000000;
+
+                &:hover {
+                  transition-duration: 0.2s;
+                  transform: translate(2px, 2px);
+                  -webkit-box-shadow: none;
+                  -moz-box-shadow: none;
+                  box-shadow: none;
+                  background-color: #f1f1f1;
+                }
+              }
+            }
+
             a {
+                cursor: pointer;
                 font-family: KomikaTitle;
                 font-size: 30px;
                 letter-spacing: 1px;
                 color: #ffffff;
                 text-decoration: none;
                 display: block;
-                padding: 25px 97px;
+                padding: 25px 0 25px 35px;
             }
             &.animate {
                 a {
@@ -1714,6 +1763,18 @@ p.content a {
                 &.blue {
                     background: asset-url('site/participe.png') center center no-repeat;
                     background-size: 100%;
+                }
+                &.menu-login {
+                  width: 100%;
+                  padding: 25px 0 25px 20px;
+
+                  span {
+                    font-size: 17px;
+                    margin: 25px 15px;
+                  }
+                  a {
+                    margin: 15px 25px 15px 0
+                  }
                 }
             }
         }

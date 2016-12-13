@@ -73,13 +73,20 @@
             <img src="<%=asset_url('site/botao-entrar.png')%>" />
         </a>
         <ul>
-            <li class="red" ng-click="toggle()"><a ng-href="/" target="_self">HOME</a></li>
-            <li class="purple" ng-click="toggle()"><a ng-href="/personagem/ramona" target="_self">RAMONA</a></li>
-            <li class="blue" ng-click="toggle()"><a ng-href="/participe" target="_blank">PARTICIPE</a></li>
-            <!-- <li class="orange" ng-click="toggle()"><a ng-href="/remix" target="_self">REMIX</a></li> -->
-            <!-- <li class="yellow" ng-click="toggle()"><a ng-href="/feito-por-voce" target="_self">FEITO POR VOCÊ</a></li> -->
-            <!-- <li class="pink" ng-click="toggle()"><a ng-href="/personagem/denise" target="_self">DENISE</a></li> -->
-            <!-- <li class="blue" ng-click="toggle()"><a ng-href="/personagem/geek" target="_self">GEEK</a></li> -->
+          <li class="menu-login" ng-click="login()" ng-controller="LoginController">
+              <img src="<%=asset_url('site/user-picture.svg')%>" class="link" alt="">
+              <span>MINHA ÁREA</span>
+              <a>
+                ENTRAR
+              </a>
+          </li>
+          <li class="red" ng-click="toggle()"><a ng-href="/" target="_self">HOME</a></li>
+          <li class="purple" ng-click="toggle()"><a ng-href="/personagem/ramona" target="_self">RAMONA</a></li>
+          <li class="blue" ng-click="toggle()"><a ng-href="/participe" target="_blank">PARTICIPE</a></li>
+          <!-- <li class="orange" ng-click="toggle()"><a ng-href="/remix" target="_self">REMIX</a></li> -->
+          <!-- <li class="yellow" ng-click="toggle()"><a ng-href="/feito-por-voce" target="_self">FEITO POR VOCÊ</a></li> -->
+          <!-- <li class="pink" ng-click="toggle()"><a ng-href="/personagem/denise" target="_self">DENISE</a></li> -->
+          <!-- <li class="blue" ng-click="toggle()"><a ng-href="/personagem/geek" target="_self">GEEK</a></li> -->
         </ul>
 
         <footer class="mobile">
