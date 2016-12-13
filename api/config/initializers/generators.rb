@@ -1,6 +1,6 @@
 Rails.application.config.generators do |g|
   g.test_framework      :minitest, spec: false, fixture: false
-  g.template_engine     :jbuilder
+  g.template_engine     :erb
   g.helper              false
   g.stylesheets         false
   g.javascripts         false

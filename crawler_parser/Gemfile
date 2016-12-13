@@ -1,6 +1,0 @@
-source 'https://rubygems.org'
-
-# Specify your gem's dependencies in crawler_parser.gemspec
-gemspec
-
-gem 'activeresource', github: 'rails/activeresource'

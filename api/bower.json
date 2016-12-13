@@ -1,0 +1,27 @@
+{
+  "name": "tmj-remix",
+  "description": "TMJ Remix app",
+  "main": "",
+  "authors": [
+    "Rafael F. Silva <rafaelfsilva1@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/d3estudio/tmj",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "jquery-touchswipe": "^1.6.18",
+    "jquery-ui": "^1.12.1",
+    "jqueryui-touch-punch": "*",
+    "html2canvas": "^0.4.1",
+    "jquery-ui-rotatable": "^1.0.1",
+    "mustache.js": "mustache#^2.3.0"
+  }
+}

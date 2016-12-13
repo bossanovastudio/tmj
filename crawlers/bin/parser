@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+require "bundler/setup"
+Bundler.setup
+
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+require "optparse"
+require "./lib/crawlers"
+
+opts = OptionParser.new do |opts|
+  opts.banner = "Crawled Data Parser"
+  opts.define_head "Usage: parser [options]"
+  opts.separator ""
+  opts.separator "Examples:"
+  opts.separator "  bundle exec parser"
+  opts.separator ""
+  opts.separator "Options:"
+
+  opts.on_tail("-?", "--help", "Show this message") do
+    puts opts
+    exit
+  end
+
+  opts.on_tail("-v", "--version", "Show version") do
+    puts Crawlers::Parser::VERSION.to_markdown
+    exit
+  end
+end
+opts.parse!
+
+@cli = Crawlers::Parser::CLI.new
+@cli.run

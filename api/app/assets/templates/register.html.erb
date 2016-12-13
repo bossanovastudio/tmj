@@ -1,0 +1,410 @@
+<div class="twelve columns overlay">
+    <div class="container">
+        <div class="twelve columns logo">
+            <a ng-href="/" target="_self"><img src="<%=asset_url('register/logo.svg')%>"/></a>
+        </div>
+        <p class="intro">Quer fazer parte da Turma mais famosa do Brasil? Inscreva-se para a seleção!</p>
+        <!-- <div class="videowrapper">
+            <iframe src="https://www.youtube.com/embed/mvbMv-8lo5A" frameborder="0" allowfullscreen></iframe>
+        </div> -->
+
+        <p class="title">Fala,</p>
+        <img class="signature" src="<%=asset_url('register/signature.png')%>"/>
+        <br>
+        <p class="description">
+          Viver um personagem da turma mais querida do Brasil. Parece ficção, mas é verdade. Eu tô aqui
+          pra dividir a minha felicidade em ver a Turma da Mônica Jovem ganhando vida, com pessoas reais!
+          <br><br>
+          É claro que isso é um baita desafio e pra fazer esse sonho acontecer, a gente precisa de todos vocês.
+          E é por isso que tá aberta uma convocação para que qualquer jovem de até 17 anos, que more no
+          Estado de São Paulo, viva um personagem da Turma da Mônica Jovem no cinema. Basta ter alguma experiência
+          como ator, mesmo que seja no teatro da escola. É só preencher seus dados abaixo e se inscrever pra seleção!
+          <br><br>
+          Então é isso. Te vejo na telona?
+        </p>
+    </div>
+</div>
+<div class="six columns left">
+    <div class="container">
+        <div class="twelve columns logo">
+            <a ng-href="/" target="_self"><img src="<%=asset_url('register/logo.svg')%>"/></a>
+        </div>
+        <p class="intro">Quer fazer parte da Turma mais famosa do Brasil? Inscreva-se para a seleção!</p>
+        <p class="title">Fala,</p>
+        <img class="signature" src="<%=asset_url('register/signature.png')%>"/>
+        <br>
+        <p class="description">
+          Viver um personagem da turma mais querida do Brasil. Parece ficção, mas é verdade. Eu tô aqui
+          pra dividir a minha felicidade em ver a Turma da Mônica Jovem ganhando vida, com pessoas reais!
+          <br><br>
+          É claro que isso é um baita desafio e pra fazer esse sonho acontecer, a gente precisa de todos vocês.
+          E é por isso que tá aberta uma convocação para que qualquer jovem de até 17 anos, que more no
+          Estado de São Paulo, viva um personagem da Turma da Mônica Jovem no cinema. Basta ter alguma experiência
+          como ator, mesmo que seja no teatro da escola. É só preencher seus dados ao lado e se inscrever pra seleção!
+          <br><br>
+          Então é isso. Te vejo na telona?
+        </p>
+    </div>
+</div>
+<div class="six columns right">
+    <div class="container mobile">
+        <div class="twelve columns steps">
+            <div class="four columns mobile step active">
+                <div>1</div>
+                <p>SOBRE O <br>CANDIDATO</p>
+            </div>
+            <div class="four columns mobile step">
+                <div>2</div>
+                <p>INFORMAÇÕES <br>COMPLEMENTARES</p>
+            </div>
+            <div class="four columns mobile step">
+                <div>3</div>
+                <p>DADOS DO <br>RESPONSÁVEL</p>
+            </div>
+        </div>
+    </div>
+    <div class="twelve columns forms">
+        <div class="container holder">
+            <div class="form active">
+                <p class="title">SOBRE O CANDIDATO</p>
+                <div class="field simple twelve columns">
+                    <label class="placeholder" for="name">Nome Completo</label>
+                    <input id="name" ng-model="form.name" />
+                </div>
+                <div class="clear"></div>
+                <div class="field simple six columns">
+                    <label class="placeholder" for="age">Idade</label>
+                    <input id="age" class="number" ng-model="form.age" />
+                </div>
+                <div class="field simple six columns last">
+                    <label class="placeholder" for="birthdate">Data de nascimento</label>
+                    <input id="birthdate" class="date" ng-model="form.birthdate" />
+                </div>
+                <div class="clear"></div>
+                <div class="field simple six columns">
+                    <label class="placeholder" for="document_rg">RG</label>
+                    <input id="document_rg" ng-model="form.document_rg" class="except" />
+                </div>
+                <div class="field simple six columns last">
+                    <label class="placeholder" for="document_cpf">CPF</label>
+                    <input id="document_cpf" class="cpf" ng-model="form.document_cpf" class="except" />
+                </div>
+                <div class="clear"></div>
+                <p class="title space">APRESENTAÇÃO DO CANDIDATO</p>
+                <div class="field simple twelve columns">
+                    <label for="video" class="placeholder files">VIDEO</label>
+                    <p>Fale seu nome, idade, de onde você é, explicando qual a sua relação com atuação e com a Turma da Mônica Jovem
+                        <br>
+                        <b>O vídeo deve estar no youtube ou vimeo, privado com senha ou não listado na busca.</b>
+                    </p>
+                    <div class="field simple twelve columns">
+                        <input id="video" ng-model="form.video" placeholder="https://" />
+                    </div>
+                    <div class="clear"></div>
+                    <div class="field simple six columns">
+                        <label class="placeholder" for="videopassword">Senha do vídeo (Se houver)</label>
+                        <input id="videopassword" class="except" ng-model="form.videopassword" />
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="field twelve columns files">
+                    <label for="video" class="placeholder files">FOTOS</label>
+                    <p>Mande-nos uma foto de rosto, uma de corpo inteiro e uma da cintura para cima</p>
+                    <div class="file twelve columns">
+                        <input type="file" id="photo_face" file-on-change="changedFile" accept="image/*">
+                        <label class="eight columns">ROSTO</label>
+                        <button ng-click="selectFile($event)" type="text" class="four columns">ESCOLHER ARQUIVO</button>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="file twelve columns">
+                        <input type="file" id="photo_body" file-on-change="changedFile" accept="image/*">
+                        <label class="eight columns">CORPO</label>
+                        <button ng-click="selectFile($event)" type="text" class="four columns">ESCOLHER ARQUIVO</button>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="file twelve columns">
+                        <input type="file" id="photo_upperbody" file-on-change="changedFile" accept="image/*">
+                        <label class="eight columns">CINTURA</label>
+                        <button ng-click="selectFile($event)" type="text" class="four columns">ESCOLHER ARQUIVO</button>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="field twelve columns advance">
+                    <button ng-click="advanceForm()" type="text" class="twelve columns shadow">PRÓXIMO</button>
+                </div>
+            </div>
+            <div class="form">
+                <p class="title">INFORMAÇÕES COMPLEMENTARES DO CANDIDATO</p>
+                <div class="field simple four columns">
+                    <label class="placeholder" for="height">Altura</label>
+                    <input id="height" class="except" ng-model="form.height" />
+                </div>
+                <div class="field simple four columns middle">
+                    <label class="placeholder" for="weight">Peso</label>
+                    <input id="weight" class="except" ng-model="form.weight" />
+                </div>
+                <div class="clear"></div>
+                <div class="field simple four columns">
+                    <label class="placeholder" for="eye_color">Cor dos olhos</label>
+                    <input id="eye_color" ng-model="form.eye_color" />
+                </div>
+                <div class="field simple four columns middle">
+                    <label class="placeholder" for="hair_color">Cor do cabelo</label>
+                    <input id="hair_color" ng-model="form.hair_color" />
+                </div>
+                <div class="field simple four columns last">
+                    <label class="placeholder" for="skin_color">Cor da pele</label>
+                    <input id="skin_color" ng-model="form.skin_color" />
+                </div>
+                <div class="clear"></div>
+                <div class="field simple four columns">
+                    <label class="placeholder" for="shirt_size">Blusa</label>
+                    <select id="shirt_size" ng-model="form.shirt_size">
+                        <option value="">Selecione</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                        <option value="14">14</option>
+                        <option value="16">16</option>
+                        <option value="PP">PP</option>
+                        <option value="P">P</option>
+                        <option value="M">M</option>
+                        <option value="G">G</option>
+                        <option value="XG">XG</option>
+                    </select>
+                </div>
+
+                <div class="field simple four columns middle">
+                    <label class="placeholder" for="pants_size">Calça</label>
+                    <select id="pants_size" ng-model="form.pants_size">
+                        <option value="">Selecione</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                        <option value="14">14</option>
+                        <option value="16">16</option>
+                        <option value="34">34</option>
+                        <option value="36">36</option>
+                        <option value="38">38</option>
+                        <option value="40">40</option>
+                        <option value="42">42</option>
+                        <option value="44">44</option>
+                        <option value="46">46</option>
+                        <option value="48">48</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                <div class="field simple four columns last">
+                    <label class="placeholder" for="shoe_size">Sapato</label>
+                    <input id="shoe_size" class="number except" placeholder="Tamanho" ng-model="form.shoe_size" />
+                </div>
+                <div class="clear"></div>
+                <div class="field twelve columns boolean">
+                    <div class="five columns question">
+                        <label class="placeholder">Você canta?</label>
+                        <div class="four columns option" ng-click="checkField($event)">SIM
+                            <input type="radio" name="singer" value="1" ng-model="form.singer" />
+                        </div>
+                        <div class="four columns option" ng-click="checkField($event)">NÃO
+                            <input type="radio" name="singer" value="0" ng-model="form.singer" />
+                        </div>
+                        <input type="hidden" class="contentField" value="empty" />
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="field twelve columns boolean">
+                    <div class="five columns question">
+                        <label class="placeholder">Toca algum instrumento?</label>
+                        <div class="four columns option" ng-click="checkField($event)">SIM
+                            <input type="radio" name="instrument" value="1" ng-model="form.instrument" />
+                        </div>
+                        <div class="four columns option" ng-click="checkField($event)">NÃO
+                            <input type="radio" name="instrument" value="0" ng-model="form.instrument" />
+                        </div>
+                    </div>
+                    <div class="five columns complement">
+                        <label class="placeholder">Qual?</label>
+                        <div class="twelve columns value">
+                            <input class="contentField" ng-model="form.instrument_description" />
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="field twelve columns boolean">
+                    <div class="five columns question">
+                        <label class="placeholder">Pratica algum esporte?</label>
+                        <div class="four columns option" ng-click="checkField($event)">SIM
+                            <input type="radio" name="sport" value="1" ng-model="form.sport" />
+                        </div>
+                        <div class="four columns option" ng-click="checkField($event)">NÃO
+                            <input type="radio" name="sport" value="0" ng-model="form.sport" />
+                        </div>
+                    </div>
+                    <div class="five columns complement">
+                        <label class="placeholder">Qual?</label>
+                        <div class="twelve columns value">
+                            <input class="contentField" ng-model="form.sport_description" />
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="field twelve columns boolean">
+                    <div class="five columns question">
+                        <label class="placeholder">Ja fez aula de teatro?</label>
+                        <div class="four columns option" ng-click="checkField($event)">SIM
+                            <input type="radio" name="theater" value="1" ng-model="form.theater" />
+                        </div>
+                        <div class="four columns option" ng-click="checkField($event)">NÃO
+                            <input type="radio" name="theater" value="0" ng-model="form.theater" />
+                        </div>
+                    </div>
+                    <div class="five columns complement">
+                        <label class="placeholder">Por quanto tempo e onde?</label>
+                        <div class="twelve columns value">
+                            <input class="contentField" ng-model="form.theater_description" />
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="field twelve columns boolean">
+                    <div class="five columns question">
+                        <label class="placeholder">Ja teve alguma experiência com atuação?</label>
+                        <div class="four columns option" ng-click="checkField($event)">SIM
+                            <input type="radio" name="performance" value="1" ng-model="form.performance" />
+                        </div>
+                        <div class="four columns option" ng-click="checkField($event)">NÃO
+                            <input type="radio" name="performance" value="0" ng-model="form.performance" />
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="twelve columns complement space">
+                        <label class="placeholder">Por quanto tempo e onde?</label>
+                    </div>
+                    <div class="twelve columns value">
+                        <textarea class="contentField" ng-model="form.performance_description"></textarea>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="field twelve columns advance">
+                    <div class="field six columns">
+                        <button ng-click="returnForm()" type="text" class="twelve columns shadow">VOLTAR</button>
+                    </div>
+                    <div class="field six columns last">
+                        <button ng-click="advanceForm()" type="text" class="twelve columns shadow">PRÓXIMO</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form">
+                <p class="title">SOBRE O RESPONSÁVEL</p>
+                <div class="field simple twelve columns">
+                    <label class="placeholder" for="adult_name">Nome</label>
+                    <input id="adult_name" ng-model="form.adult_name" />
+                </div>
+                <div class="field simple six columns">
+                    <label class="placeholder" for="adult_birthdate">Data de nascimento</label>
+                    <input id="adult_birthdate" class="date" ng-model="form.adult_birthdate" />
+                </div>
+                <div class="clear"></div>
+                <div class="field simple six columns">
+                    <label class="placeholder" for="adult_cellphone">Celular</label>
+                    <input id="adult_cellphone" class="phone" ng-model="form.adult_cellphone" />
+                </div>
+                <div class="field simple six columns last">
+                    <label class="placeholder" for="adult_phone">Telefone fixo</label>
+                    <input id="adult_phone" class="phone except" ng-model="form.adult_phone" />
+                </div>
+                <div class="clear"></div>
+                <div class="field simple twelve columns">
+                    <label class="placeholder" for="adult_email">Email</label>
+                    <input id="adult_email" ng-model="form.adult_email" />
+                </div>
+                <div class="clear"></div>
+                <div class="field simple twelve columns">
+                    <label class="placeholder" for="adult_address">Endereço</label>
+                    <input id="adult_address" ng-model="form.adult_address" />
+                </div>
+                <div class="clear"></div>
+                <div class="field simple six columns">
+                    <label class="placeholder" for="adult_neighborhood">BAIRRO</label>
+                    <input id="adult_neighborhood" ng-model="form.adult_neighborhood" />
+                </div>
+                <div class="field simple six columns last">
+                    <label class="placeholder" for="adult_city">CIDADE</label>
+                    <input id="adult_city" ng-model="form.adult_city" />
+                </div>
+                <div class="clear"></div>
+                <div class="field simple four columns">
+                    <label class="placeholder" for="adult_state">ESTADO</label>
+                    <select id="adult_state" ng-model="form.adult_state">
+                        <option value="">Selecione</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espirito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                </div>
+                <div class="field simple four columns middle">
+                    <label class="placeholder" for="adult_zip">CEP</label>
+                    <input id="adult_zip" class="zip" ng-model="form.adult_zip" />
+                </div>
+                <div class="clear"></div>
+                <div class="field simple six columns">
+                    <label class="placeholder" for="adult_document_rg">RG</label>
+                    <input id="adult_document_rg" ng-model="form.adult_document_rg" />
+                </div>
+                <div class="field simple six columns last">
+                    <label class="placeholder" for="adult_document_cpf">CPF</label>
+                    <input id="adult_document_cpf" class="cpf" ng-model="form.adult_document_cpf" />
+                </div>
+                <div class="clear"></div>
+                <div class="field box twelve columns terms">
+                    <div class="twelve columns">
+                        <input type="checkbox" id="newsletter" name="newsletter" value="1" ng-model="form.newsletter" checked="checked" />
+                        <label class="placeholder" for="newsletter"><span>Aceito receber informações sobre Turma da Mônica Jovem o Filme</label>
+                    </div>
+                </div>
+                <div class="field box twelve columns terms termsValidate">
+                    <div class="twelve columns">
+                        <input type="checkbox" id="accept_terms" name="accept_terms" value="1" ng-model="form.accept_terms" />
+                        <label class="placeholder" for="accept_terms"><span>Li e aceito os <a ng-href="/pages/termos.pdf" target="_blank">Termos e condições</a></label>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="field twelve columns advance">
+                    <div class="field six columns">
+                        <button ng-click="returnForm()" type="text" class="twelve columns shadow">VOLTAR</button>
+                    </div>
+                    <div class="field six columns last">
+                        <button ng-click="sendForm()" type="text" id="btn-send" class="twelve columns shadow">ENVIAR</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form finish">
+                <img src="<%=asset_url('register/success.svg')%>" />
+                <h1>INSCRIÇÃO REALIZADA <br />COM SUCESSO!</h1>
+            </div>
+        </div>
+    </div>
+</div>

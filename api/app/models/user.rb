@@ -27,25 +27,34 @@
 #  updated_at             :datetime         not null
 #  username               :string           not null
 #  role                   :integer
+#  mask                   :string
 #
 
 class User < ActiveRecord::Base
-  # Include default devise modules.
-  devise :database_authenticatable, :registerable, :rememberable, :trackable, :omniauthable
-  # include DeviseTokenAuth::Concerns::User
-  
+  acts_as_token_authenticatable
+  devise :database_authenticatable, :registerable, :rememberable, :trackable, :omniauthable, :recoverable
+
   enum role: { user: 1, editor: 2, moderator: 3, admin: 4 }
   scope :editors, -> { where(role: :editor) }
-  
+
   # Uploader
   mount_uploader :image, AvatarUploader
   mount_uploader :mask, MaskUploader
-  
+
   has_many :providers
   has_many :cards, through: :providers
   recommends :cards
-  
+
+  after_create :send_welcome_email
+
   def email_required?
     false
   end
+
+  private
+    def send_welcome_email
+      return true unless email || email.empty?
+      UsersMailer.welcome(self).deliver_now
+    end
+
 end

@@ -1,0 +1,68 @@
+<section id="highlights">
+  <div class="top-bar">
+    <h1 class="title">Destaques</h1>
+    <div class="action-bar">
+      <%= link_to new_admin_highlight_path do %>
+      <svg class="add-icon" viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g id="border" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g transform="translate(-372.000000, -154.000000)" stroke="#68A6EF" stroke-width="1.5">
+            <g transform="translate(373.000000, 155.000000)">
+              <ellipse id="bg" cx="15.5" cy="15.5" rx="15.5" ry="15.5"></ellipse>
+              <path d="M6.61923478,15.5313913 L24.443713,15.5313913" class="stroke" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M15.531887,24.4432174 L15.531887,6.61956522" class="stroke" stroke-linecap="round" stroke-linejoin="round"></path>
+            </g>
+          </g>
+        </g>
+      </svg>
+      <% end %>
+    </div>
+  </div>
+  <div class="bottom-content">
+    <% @highlights.each do |h| %>
+    <div class="highlight <%= h.size %> <%= 'published' if h.published %>" style="background-image: url('<%= h.desktop_image.file_url %>')">
+      <div>
+        <%= link_to edit_admin_highlight_path(h), class: "edit" do %>
+        <svg viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Admin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Admin-Destaques-1" transform="translate(-529.000000, -296.000000)">
+              <g id="editar" transform="translate(529.000000, 296.000000)">
+                <circle id="bg" fill="#FFFFFF" cx="17" cy="17" r="17"></circle>
+                <g id="Page-1" transform="translate(8.000000, 8.000000)" stroke="#000000" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon class="stroke" points="1.0325697 11.8523314 11.0332061 1.86850286 15.9884485 6.81593143 5.98111515 16.8064457"></polygon>
+                  <path class="stroke" d="M3.61383939,14.4363086 L13.6180818,4.44888" id="Stroke-3"></path>
+                  <g transform="translate(0.000000, 0.434057)">
+                    <polyline class="stroke" points="1.0325697 11.4182743 0.386569697 17.1001029 5.98111515 16.3723886"></polyline>
+                    <path class="stroke" d="M15.9543455,6.40548 C16.5663455,5.77496571 16.9434364,4.91559429 16.9434364,3.96828 C16.9434364,2.03405143 15.3727394,0.465994286 13.4352545,0.465994286 C12.4940727,0.465994286 11.6394364,0.83628 11.0094061,1.43850857" id="Stroke-6"></path>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </svg>
+        <% end %>
+        <a class="drag">
+          <svg viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="Admin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="Admin-Destaques-1" transform="translate(-576.000000, -296.000000)">
+                      <g id="drag" transform="translate(576.000000, 296.000000)">
+                          <g id="editar-copy" fill="#FFFFFF">
+                              <circle id="bg" cx="17" cy="17" r="17"></circle>
+                          </g>
+                          <g id="Page-1" transform="translate(8.000000, 8.000000)" stroke="#231F1F" stroke-linecap="round" stroke-linejoin="round">
+                              <path class="stroke" d="M9.46667692,1.48843077 L9.46667692,17.6150462" id="Stroke-1"></path>
+                              <polyline class="stroke" points="6.95604615 3.45376154 9.46696923 0.730915385 11.9778923 3.45376154"></polyline>
+                              <polyline class="stroke" points="11.9773077 15.4801769 9.46638462 18.2030231 6.95546154 15.4801769"></polyline>
+                              <path class="stroke" d="M17.4466769,9.46696923 L1.3186,9.46696923" id="Stroke-7"></path>
+                              <polyline class="stroke" points="15.4798846 6.95633846 18.2027308 9.46726154 15.4798846 11.9781846"></polyline>
+                              <polyline class="stroke" points="3.45361538 11.9776 0.730769231 9.46667692 3.45361538 6.95575385"></polyline>
+                          </g>
+                      </g>
+                  </g>
+              </g>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</section>

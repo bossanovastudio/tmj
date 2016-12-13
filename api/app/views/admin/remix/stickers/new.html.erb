@@ -1,0 +1,9 @@
+<section id="cards" style="margin-top: 100px;">
+    <div class="content">
+        <%= simple_form_for [:admin, @sticker] do |f| %>
+          <%= f.input :image, label: 'Image', error: 'Image is mandatory, please specify one' %>
+          <%= f.input :kind, label: 'Kind', error: 'Kind is mandatory, please specify one' %>
+          <%= f.button :submit %>
+        <% end %>
+    </div>
+</section>
