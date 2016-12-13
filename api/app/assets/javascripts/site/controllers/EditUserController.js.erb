@@ -1,13 +1,34 @@
 tmj.controller('EditUserController', function($rootScope, $location, $scope, $http, $sce, $compile, $routeParams) {
+
+    if (!storage.get('user')) {
+        $location.path('/login');
+    }
+
     $rootScope.pageName = 'edit-user';
 
     $scope.form = {};
+    $scope.user = storage.get('user');
 
-    $scope.selectFile = function(event) {
-        var e = angular.element(event.target);
-        var h = $(e).closest('.file');
-        h.find('input').trigger('click');
-    }
+    // $http.get("/user/edit.json", {
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'X-User-username': $scope.user.username,
+    //             'X-User-token': $scope.user.authentication_token,
+    //         }
+    //     })
+    //     .then(function(response) {
+    //         console.log(response);
+    //     }, function(response) {
+    //         console.log(response);
+    //     });
+
+    $scope.form.username = $scope.form.username;
+    $scope.form.email = $scope.form.email;
+
+    $('body').on('click','.box-avatar', function() {
+        $('#photo').trigger('click');
+    });
+
     $scope.changedFile = function(event) {
         var field = event.target;
         var file = field.files[0];
@@ -15,16 +36,9 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         reader.readAsDataURL(file);
         reader.onload = function() {
             var base64 = reader.result;
-            if ($(field).attr('id') == 'photo_face') {
-                $scope.form.photo_face = base64;
-            } else if ($(field).attr('id') == 'photo_body') {
-                $scope.form.photo_body = base64;
-            } else if ($(field).attr('id') == 'photo_upperbody') {
-                $scope.form.photo_upperbody = base64;
-            }
+            $('.avatar').attr('src', base64);
+            $scope.form.image = base64;
         };
-        var h = $(field).closest('.file');
-        h.find('label').text(file.name).css({ color: "#ffffff" });
     };
 
     $scope.passwords = [{
@@ -89,16 +103,17 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
     }];
 
     $scope.passwordChoice = [{
-        img: '<%= asset_url('site/pass-silhuete.svg') %>'
-    },
-    {
-        img: '<%= asset_url('site/pass-silhuete.svg') %>'
-    },
-    {
-        img: '<%= asset_url('site/pass-silhuete.svg') %>'
-    },
-    {
-        img: '<%= asset_url('site/pass-silhuete.svg') %>'
+        img: '<%= asset_url('site/pass-silhuete.svg') %>',
+        value: 0
+    }, {
+        img: '<%= asset_url('site/pass-silhuete.svg') %>',
+        value: 0
+    }, {
+        img: '<%= asset_url('site/pass-silhuete.svg') %>',
+        value: 0
+    }, {
+        img: '<%= asset_url('site/pass-silhuete.svg') %>',
+        value: 0
     }];
     $scope.numClick = 0;
 
@@ -131,37 +146,44 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         }
     }
 
-    $scope.form.social = {};
+    //$scope.form.social = {};
 
     $scope.save = function() {
+        console.log('opa');
         $scope.form.password = $scope.passwordChoice.map(function(p) {
             return p.value;
         }).join('');
 
         if (!$scope.form.username || $scope.form.username.length < 1) {
-            //$scope.msg_register = 'Preencha seu apelido';
+            $scope.msg_update = 'Preencha seu apelido';
             return false;
         } else if (!$scope.form.email || $scope.form.email.length < 1) {
-            //$scope.msg_register = 'Email inválido';
+            $scope.msg_update = 'Email inválido';
             return false;
-        } else if (!$scope.form.bio || $scope.form.bio.length < 1) {
-            //$scope.msg_register = 'Email inválido';
-            return false;
-        } else if ($scope.form.password.length != 12) {
-            //$scope.msg_register = 'Senha inválida';
+        } else if ($scope.form.password.length != 12 && $scope.form.password != '0000') {
+            $scope.msg_update = 'Senha inválida';
             return false;
         }
-        //$scope.msg_register = 'Cadastrar';
-        $http.post("/user.json", {
+
+        if ($scope.form.password == '0000') {
+            $scope.form.password = null;
+        }
+
+        $scope.msg_update = 'Aguarde';
+        $http.put("/user.json", {
                 user: $scope.form
             }, {
-                headers: { 'Content-Type': 'application/json' }
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-User-username': $scope.user.username,
+                    'X-User-token': $scope.user.authentication_token,
+                }
             })
             .then(function(response) {
-                //$scope.msg_register = 'Obrigado.';
+                $scope.msg_update = 'Atualizado com sucesso.';
                 $location.path('/sua-pagina');
             }, function(response) {
-                //$scope.msg_register = response.error;
+                $scope.msg_update = response.error;
             });
     }
 
