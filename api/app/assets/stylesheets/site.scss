@@ -896,12 +896,13 @@ div.card {
             font-size: 14px;
             letter-spacing: 0.5px;
             cursor: pointer;
+            margin-bottom: 10px;
             &.btn-fb {
-                background-color: #4a90e2;
+                background-color: #4A90E2;
                 color: #fff;
                 position: relative;
                 &:before {
-                    background: #376aa7;
+                    background: #3B75B9;
                 }
                 &:after {
                     content: '';
@@ -911,6 +912,40 @@ div.card {
                     top: 10px;
                     left: 17px;
                     background-image: asset-url('site/facebook-form.svg');
+                }
+            }
+            &.btn-twitter {
+                background-color: #61C5FF;
+                color: #fff;
+                position: relative;
+                &:before {
+                    background: #48A7DE;
+                }
+                &:after {
+                    content: '';
+                    width: 14px;
+                    height: 12px;
+                    position: absolute;
+                    top: 10px;
+                    left: 17px;
+                    background-image: asset-url('site/twitter-form.svg');
+                }
+            }
+            &.btn-tumblr {
+                background-color: #3EBFCB;
+                color: #fff;
+                position: relative;
+                &:before {
+                    background: #1DA8B4;
+                }
+                &:after {
+                    content: '';
+                    width: 8px;
+                    height: 12px;
+                    position: absolute;
+                    top: 10px;
+                    left: 17px;
+                    background-image: asset-url('site/tumblr-form.svg');
                 }
             }
             &.btn-submit {
@@ -1102,11 +1137,8 @@ div.card {
             }
             .pass-box {
                 position: absolute;
-                top: -50px;
+                top: -130px;
                 z-index: 9;
-                &.register {
-                    top: 0px;
-                }
                 &.recover {
                     top: -130px;
                 }
