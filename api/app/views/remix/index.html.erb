@@ -10,18 +10,18 @@
         <button type="button" class="cancel">&times;</button>
         <div class="actions">
           <button type="button" class="next">
-            <%= image_tag "icon-arrow-right", alt: 'Próximo' %>
+            <%= image_tag "remix/icon-arrow-right", alt: 'Próximo' %>
           </button>
           <button type="button" class="publish">Salvar</button>
           <button type="button" class="create-new">Criar um novo</button>
           <button type="button" class="start-over">
-            <%= image_tag "icon-eraser", alt: 'Começar novamente' %>
+            <%= image_tag "remix/icon-eraser", alt: 'Começar novamente' %>
           </button>
           <a href="#" target="_blank" download class="download">
-            <%= image_tag "icon-arrow-down", alt: 'Baixar' %>
+            <%= image_tag "remix/icon-arrow-down", alt: 'Baixar' %>
           </a>
           <button type="button" class="remove">
-            <%= image_tag "icon-trash", alt: 'Remover' %>
+            <%= image_tag "remix/icon-trash", alt: 'Remover' %>
           </button>
         </div>
         <div class="artboard">
@@ -31,14 +31,14 @@
         <div class="toolbox">
           <div class="toolbox-item toolbox-item-popup category on">
             <button type="button" class="toggler" title="Categoria">
-              <%= image_tag "icon-image", alt: 'Categoria' %>
+              <%= image_tag "remix/icon-image", alt: 'Categoria' %>
             </button>
             <div class="popup">
               <div class="popup-holder">
                 <div class="categories">
                   <div class="item take-photo">
                     <div>
-                      <%= image_tag "icon-camera", alt: 'Enviar foto' %>
+                      <%= image_tag "remix/icon-camera", alt: 'Enviar foto' %>
                       <input type="file">
                     </div>
                   </div>
@@ -46,7 +46,7 @@
                 <div class="pictures">
                   <div class="item go-back">
                     <div>
-                      <%= image_tag "icon-arrow-left" %>
+                      <%= image_tag "remix/icon-arrow-left" %>
                     </div>
                   </div>
                 </div>
@@ -55,17 +55,17 @@
           </div>
           <div class="toolbox-item toolbox-item-colors color">
             <button type="button" class="toggler" title="Aquarela">
-              <%= image_tag "icon-watercolor", alt: 'Aquarela' %>
+              <%= image_tag "remix/icon-watercolor", alt: 'Aquarela' %>
             </button>
           </div>
           <div class="toolbox-item toolbox-item-effects effects">
             <button type="button" class="toggler" title="Efeitos">
-              <%= image_tag "icon-magic-wand", alt: 'Efeitos' %>
+              <%= image_tag "remix/icon-magic-wand", alt: 'Efeitos' %>
             </button>
           </div>
           <div class="toolbox-item toolbox-item-popup toolbox-item-popup-above toolbox-item-elements balloons">
             <button type="button" class="toggler" title="Balões">
-              <%= image_tag "icon-balloon", alt: 'Balões' %>
+              <%= image_tag "remix/icon-balloon", alt: 'Balões' %>
             </button>
             <div class="popup">
               <div class="popup-holder elements">
@@ -81,7 +81,7 @@
           </div>
           <div class="toolbox-item toolbox-item-popup toolbox-item-popup-above toolbox-item-elements stickers">
             <button type="button" class="toggler" title="Stickers">
-              <%= image_tag "icon-smile", alt: 'Stickers' %>
+              <%= image_tag "remix/icon-smile", alt: 'Stickers' %>
             </button>
             <div class="popup">
               <div class="popup-holder elements">
@@ -97,7 +97,7 @@
           </div>
           <div class="toolbox-item toolbox-item-popup toolbox-item-popup-above toolbox-item-texts">
             <button type="button" class="toggler" title="Texto">
-              <%= image_tag "icon-typography", alt: 'Texto' %>
+              <%= image_tag "remix/icon-typography", alt: 'Texto' %>
             </button>
             <div class="popup">
               <div class="popup-holder options">
@@ -110,7 +110,7 @@
                       <div class="palette-item" style="background-color:#27AAE1;"></div>
                       <div class="palette-item" style="background-color:#92278F;"></div>
                       <div class="palette-item" style="background-color:#231F20;"></div> -->
-                      <%= image_tag "icon-color-palette", alt: 'Paleta de cores' %>
+                      <%= image_tag "remix/icon-color-palette", alt: 'Paleta de cores' %>
                     </button>
                   </div>
                 </div>
@@ -168,13 +168,13 @@
             <%= image_tag "http://placehold.it/220x220/c" + (rand(9).to_s) + "c" + (rand(9).to_s) + "c"  + (rand(9).to_s), { :class => "picture" } %>
             <div class="actions">
               <button type="button" class="remove" title="Remover">
-                <%= image_tag "icon-trash", alt: 'Remover' %>
+                <%= image_tag "remix/icon-trash", alt: 'Remover' %>
               </button>
               <a href="<%= image_url "http://placehold.it/220x220" %>" target="_blank" download class="download" title="Baixar">
-                <%= image_tag "icon-arrow-down", alt: 'Baixar' %>
+                <%= image_tag "remix/icon-arrow-down", alt: 'Baixar' %>
               </a>
               <button type="button" class="share" title="Compartilhar">
-                <%= image_tag "icon-reply", alt: 'Compartilhar' %>
+                <%= image_tag "remix/icon-reply", alt: 'Compartilhar' %>
               </button>
             </div>
           </div>
