@@ -1,0 +1,19 @@
+<svg width="34px" height="34px" viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Admin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Admin-Destaques-1" transform="translate(-576.000000, -296.000000)">
+            <g id="drag" transform="translate(576.000000, 296.000000)">
+                <g id="editar-copy" fill="#FFFFFF">
+                    <circle id="Oval" cx="17" cy="17" r="17"></circle>
+                </g>
+                <g id="Page-1" transform="translate(8.000000, 8.000000)" stroke="#231F1F" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9.46667692,1.48843077 L9.46667692,17.6150462" id="Stroke-1"></path>
+                    <polyline id="Stroke-3" points="6.95604615 3.45376154 9.46696923 0.730915385 11.9778923 3.45376154"></polyline>
+                    <polyline id="Stroke-5" points="11.9773077 15.4801769 9.46638462 18.2030231 6.95546154 15.4801769"></polyline>
+                    <path d="M17.4466769,9.46696923 L1.3186,9.46696923" id="Stroke-7"></path>
+                    <polyline id="Stroke-9" points="15.4798846 6.95633846 18.2027308 9.46726154 15.4798846 11.9781846"></polyline>
+                    <polyline id="Stroke-11" points="3.45361538 11.9776 0.730769231 9.46667692 3.45361538 6.95575385"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
