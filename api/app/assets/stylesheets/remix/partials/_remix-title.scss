@@ -1,0 +1,32 @@
+.remix-title {
+  h2 {
+    font-family: 'KomikaTitle';
+    font-size: 32px;
+    margin-top: 20px;
+  }
+  .intro {
+    margin: 20px 0;
+    font-size: 15px;
+  }
+  @include mq-from-sm {
+    .create-new {
+      display: none;
+    }
+  }
+}
+
+// States
+.remix-container {
+  &.initial {
+    .remix-title .create-new {
+      display: none;
+    }
+  }
+  @include mq-only-xs {
+    &.initial {
+      .remix-title {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,18 +1,6 @@
 version: '2'
 services:
 
-  remix:
-    build: remix
-    volumes:
-      - ./remix:/var/www/app
-    command: bundle exec rails s -b 0.0.0.0 -P/dev/null
-    ports:
-      - "8081:3000"
-    links:
-      - db
-    env_file:
-      - ./env/.env
-
   api:
     build: api
     volumes:

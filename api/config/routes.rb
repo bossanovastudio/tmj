@@ -48,6 +48,10 @@ Rails.application.routes.draw do
     resources :casting, only: [:index] do
       collection do
         get :download
+        get "categories/:id", action: :images
+        get :backgrounds
+        get :text_colors
+        get :stickers
       end
     end
 
@@ -60,6 +64,8 @@ Rails.application.routes.draw do
   end
 
   get "/participe" => 'welcome#register'
+  get "/remix" => 'remix#index'
+  
   root to: 'welcome#index'
   get "*path" => 'welcome#index'
 end
