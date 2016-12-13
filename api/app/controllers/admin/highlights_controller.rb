@@ -8,7 +8,7 @@ class Admin::HighlightsController < ApplicationController
   def index
     pagination = pagination_params
 
-    @highlights = Highlight.page(pagination[:page]).per(pagination[:quantity])
+    @highlights = Highlight.ordered_by_index.page(pagination[:page]).per(pagination[:quantity])
   end
 
   def new

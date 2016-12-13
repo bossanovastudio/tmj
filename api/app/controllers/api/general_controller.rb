@@ -2,7 +2,7 @@ class Api::GeneralController < ApplicationController
   def all
     pagination = pagination_params
 
-    @highlight = Highlight.published.page(pagination[:page]).per(1).first
+    @highlight = Highlight.ordered_by_index.published.page(pagination[:page]).per(1).first
     @cards = Card.page(pagination[:page]).per(pagination[:quantity].to_i - 1).approved.ordered
   end
 
