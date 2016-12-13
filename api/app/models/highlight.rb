@@ -21,6 +21,7 @@ class Highlight < ApplicationRecord
   belongs_to :mobile_image, class_name: "Image"
 
   scope :published, -> { where(published: true) }
+  before_validation :ensure_index
 
   def self.move_to_index(id, new_index)
     to_move = Highlight.find(id)
@@ -33,4 +34,14 @@ class Highlight < ApplicationRecord
       to_move.save!
     end
   end
+
+  private
+    def ensure_index
+      h = Highlight.all.order(index: :desc).first
+      unless h
+        self.index = 1
+      else
+        self.index = h.index + 1
+      end
+    end
 end
