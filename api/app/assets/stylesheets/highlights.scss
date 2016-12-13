@@ -18,6 +18,10 @@ section#highlights, section#highlights-new {
   }
 
   .bottom-content {
+    #sortable {
+      max-width: 930px;
+    }
+
     li {
       list-style: none;
     }
