@@ -37,6 +37,7 @@ class Highlight < ApplicationRecord
 
   private
     def ensure_index
+      return true if index != 0 && !index.nil?
       h = Highlight.all.order(index: :desc).first
       unless h
         self.index = 1
