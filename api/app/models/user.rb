@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
 
   private
     def send_welcome_email
-      return true unless email || email.empty?
+      return true unless email
       UsersMailer.welcome(self).deliver_now
     end
 
