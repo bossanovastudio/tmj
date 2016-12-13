@@ -1,0 +1,59 @@
+.btn {
+  cursor: pointer;
+  font-family: 'KomikaTitle';
+  font-size: 16px;
+  line-height: 18px;
+  padding: 10px 15px;
+  img {
+    max-height: 18px;
+    max-width: 18px;
+    vertical-align: middle;
+  }
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.btn-xs {
+  padding: 5px 10px;
+}
+
+.btn-default {
+  background-color: #FFF;
+  border: 1px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  margin-bottom: 4px;
+  margin-right: 4px;
+}
+
+.btn-social {
+  border: 1px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  margin-bottom: 4px;
+}
+
+.btn-facebook {
+  background-color: $color-facebook;
+  color: #FFF;
+}
+
+.btn-twitter {
+  background-color: $color-twitter;
+  color: #FFF;
+}
+
+.btn-tumblr {
+  background-color: $color-tumblr;
+  color: #FFF;
+}
+
+@include mq-from-sm {
+  .btn {
+    line-height: 20px;
+    font-size: 18px;
+    img {
+      max-height: 20px;
+      max-width: 20px;
+    }
+  }
+}

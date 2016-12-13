@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Fique por dentro de tudo o que acontece no universo da turminha com as postagens e compartilhamentos dos nossos editores dos fãs!">
+    <meta name="keywords" content="TMJ,turma,monica,jovem,cascao,cebolinha,magali,filme">
+    <meta name="author" content="Turma da Mônica Jovem o Filme">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="<%= asset_url('site/apple-touch-icon.png') %>">
+    <link rel="icon" type="image/png" href="<%=asset_url('site/favicon-32x32.png')%>" sizes="32x32">
+    <link rel="icon" type="image/png" href="<%=asset_url('site/favicon-16x16.png')%>" sizes="16x16">
+    <link rel="manifest" href="<%=asset_url('site/manifest.json')%>">
+    <link rel="mask-icon" href="<%=asset_url('site/safari-pinned-tab.svg')%>" color="#68a6ef">
+    <meta name="theme-color" content="#68a6ef">
+    <meta charset="UTF-8">
+    <title>Turma da Mônica Jovem o Filme</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta itemprop="name" content="Turma da Mônica Jovem o Filme">
+    <meta itemprop="url" content="http://tmjofilme.com.br">
+    <meta itemprop="image" content="http://tmjofilme.com.br/img/TMJ-logo.jpg">
+    <meta itemprop="description" content="Fique por dentro de tudo o que acontece no universo da turminha com as postagens e compartilhamentos dos nossos editores dos fãs!">
+    <base href="/">
+    <!-- FACEBOOK -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Turma da Mônica Jovem o Filme" />
+    <meta property="og:image" content="http://tmjofilme.com.br/img/TMJ-logo.jpg" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="300" />
+    <meta property="og:site_name" content="Turma da Mônica Jovem" />
+    <meta property="og:description" content="Fique por dentro de tudo o que acontece no universo da turminha com as postagens e compartilhamentos dos nossos editores dos fãs!" />
+    <!-- TWITTER -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Turma da Mônica Jovem o Filme" />
+    <meta name="twitter:description" content="Fique por dentro de tudo o que acontece no universo da turminha com as postagens e compartilhamentos dos nossos editores dos fãs!" />
+    <meta name="twitter:image:src" content="http://tmjofilme.com.br/img/TMJ-logo.jpg" />
+    <!-- CSS -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <%= stylesheet_link_tag 'site' %>
+
+</head>
+
+<body ng-app="tmj" ng-controller="MainController" ng-keypress="closeLightboxKey($event.keyCode)" ng-keydown="closeLightboxKey($event.keyCode)" class="{{pageName}}">
+    <div class="dark-overlay"></div>
+    <ng-include src="'<%= asset_url('_popup.html')%>'"></ng-include>
+
+    <div id="menu" class="menu-container" ng-click="toggle()">
+        <div class="content-icon-menu">
+          <div id="nav-icon4" class="menu-lines">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <svg class="icon-menu" width="45px" height="43px" viewBox="0 0 45 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <path class="shadow" d="M20.2244318,0.338709677 C9.24238636,0.338709677 0.340568182,9.18377419 0.340568182,20.0942903 C0.340568182,31.0048065 9.24238636,39.849871 20.2244318,39.849871 C23.1910227,39.849871 26.0055682,39.2029355 28.53375,38.0452258 C30.6010227,39.3235161 33.04125,40.0625806 35.6560227,40.0625806 C37.1839773,40.0625806 38.6519318,39.8065161 40.0217045,39.3418065 C37.8657955,37.7519032 36.2028409,35.5387742 35.3035227,32.9706774 C38.2973864,29.5124516 40.1082955,25.0137097 40.1082955,20.0942903 C40.1082955,9.18377419 31.2057955,0.338709677 20.2244318,0.338709677" id="Fill-6" fill="#FFFFFF"></path>
+              <path d="M20.2244318,0.338709677 C9.24238636,0.338709677 0.340568182,9.18377419 0.340568182,20.0942903 C0.340568182,31.0048065 9.24238636,39.849871 20.2244318,39.849871 C23.1910227,39.849871 26.0055682,39.2029355 28.53375,38.0452258 C30.6010227,39.3235161 33.04125,40.0625806 35.6560227,40.0625806 C37.1839773,40.0625806 38.6519318,39.8065161 40.0217045,39.3418065 C37.8657955,37.7519032 36.2028409,35.5387742 35.3035227,32.9706774 C38.2973864,29.5124516 40.1082955,25.0137097 40.1082955,20.0942903 C40.1082955,9.18377419 31.2057955,0.338709677 20.2244318,0.338709677 L20.2244318,0.338709677 L20.2244318,0.338709677 Z" id="Stroke-8" stroke="#000000"></path>
+            </g>
+          </svg>
+      </div>
+      <svg class="shadow-menu" width="44px" height="42px" viewBox="0 0 44 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <path d="M20.2244318,0.338709677 C9.24238636,0.338709677 0.340568182,9.18377419 0.340568182,20.0942903 C0.340568182,31.0048065 9.24238636,39.849871 20.2244318,39.849871 C23.1910227,39.849871 26.0055682,39.2029355 28.53375,38.0452258 C30.6010227,39.3235161 33.04125,40.0625806 35.6560227,40.0625806 C37.1839773,40.0625806 38.6519318,39.8065161 40.0217045,39.3418065 C37.8657955,37.7519032 36.2028409,35.5387742 35.3035227,32.9706774 C38.2973864,29.5124516 40.1082955,25.0137097 40.1082955,20.0942903 C40.1082955,9.18377419 31.2057955,0.338709677 20.2244318,0.338709677" id="Fill-6" fill="#FFFFFF"></path>
+            <path d="M23.8225909,1.69436129 C12.8405455,1.69436129 3.93872727,10.5394258 3.93872727,21.4499419 C3.93872727,32.3604581 12.8405455,41.2055226 23.8225909,41.2055226 C26.7891818,41.2055226 29.6037273,40.5585871 32.1319091,39.4008774 C34.1991818,40.6791677 36.6394091,41.4182323 39.2541818,41.4182323 C40.7821364,41.4182323 42.2500909,41.1621677 43.6198636,40.6974581 C41.4639545,39.1075548 39.801,36.8944258 38.9016818,34.326329 C41.8955455,30.8681032 43.7064545,26.3693613 43.7064545,21.4499419 C43.7064545,10.5394258 34.8039545,1.69436129 23.8225909,1.69436129" id="Fill-1" fill="#000000"></path>
+        </g>
+      </svg>
+    </div>
+
+    <div class="sidebar">
+        <a ng-href="login" class="mobile login ng-hide">
+            <img src="<%=asset_url('site/botao-entrar.png')%>" />
+        </a>
+        <ul>
+            <li class="red" ng-click="toggle()"><a ng-href="/" target="_self">HOME</a></li>
+            <li class="purple" ng-click="toggle()"><a ng-href="/personagem/ramona" target="_self">RAMONA</a></li>
+            <li class="blue" ng-click="toggle()"><a ng-href="/participe" target="_blank">PARTICIPE</a></li>
+            <!-- <li class="orange" ng-click="toggle()"><a ng-href="/remix" target="_self">REMIX</a></li> -->
+            <!-- <li class="yellow" ng-click="toggle()"><a ng-href="/feito-por-voce" target="_self">FEITO POR VOCÊ</a></li> -->
+            <!-- <li class="pink" ng-click="toggle()"><a ng-href="/personagem/denise" target="_self">DENISE</a></li> -->
+            <!-- <li class="blue" ng-click="toggle()"><a ng-href="/personagem/geek" target="_self">GEEK</a></li> -->
+        </ul>
+
+        <footer class="mobile">
+            <a target="_blank" href="https://www.facebook.com/revistaturmadamonicajovem/" class="social-fb">
+                <svg width="38px" height="37px" viewBox="0 0 38 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g id="Styleguide" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <polygon id="Fill-2" fill="" points="0.411111111 33.1030667 32.4777778 33.1030667 32.4777778 1.22553699 0.411111111 1.22553699"></polygon>
+                        <g id="Group-6" transform="translate(0.000000, 0.617427)">
+                            <polygon id="Stroke-3" stroke="" fill="" points="0.411111111 32.4856393 32.4777778 32.4856393 32.4777778 0.608926941 0.411111111 0.608926941"></polygon>
+                            <path class="social-fb-icon" d="M18.8376867,10.49929 L21.3701311,10.49929 L21.3701311,6.78115753 L18.3928644,6.78115753 L18.3928644,6.79423516 C14.7865978,6.92092466 14.04742,8.9365137 13.9824644,11.0534543 L13.9750644,11.0534543 L13.9750644,12.9104772 L11.5190867,12.9104772 L11.5190867,16.5517785 L13.9750644,16.5517785 L13.9750644,26.3125913 L17.6758867,26.3125913 L17.6758867,16.5517785 L20.7082422,16.5517785 L21.2936644,12.9104772 L17.6775311,12.9104772 L17.6775311,11.7882534 C17.6775311,11.0730708 18.1560644,10.49929 18.8376867,10.49929" id="Fill-5" fill="#231F1F"></path>
+                        </g>
+                    </g>
+                </svg>
+            </a>
+            <a target="_blank" href="https://twitter.com/revistadaturma" class="social-tw">
+                <svg width="38px" height="36px" viewBox="0 0 38 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g id="Styleguide" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <polygon id="Fill-2" fill="" points="0.411111111 33.1030667 32.4777778 33.1030667 32.4777778 1.22553699 0.411111111 1.22553699"></polygon>
+                        <g id="Group-6" transform="translate(0.000000, 0.617427)">
+                            <polygon id="Stroke-3" stroke="" fill="" points="0.411111111 32.4856393 32.4777778 32.4856393 32.4777778 0.608926941 0.411111111 0.608926941"></polygon>
+                            <path class="social-tw-icon" d="M23.7322111,12.8324201 C23.7379667,12.9918037 23.7412556,13.1544566 23.7412556,13.3179269 C23.7412556,18.2539132 19.9615,23.9459498 13.0466111,23.9459498 C10.9236333,23.9459498 8.94783333,23.330484 7.28447778,22.2671096 C7.57965556,22.3022557 7.87812222,22.3210548 8.1807,22.3210548 C9.94354444,22.3210548 11.5625,21.7243881 12.8501,20.7214977 C11.2056556,20.689621 9.81856667,19.6107169 9.34003333,18.125589 C9.56778889,18.1705434 9.80212222,18.1926119 10.0463222,18.1926119 C10.3867222,18.1926119 10.7205444,18.1484749 11.0354556,18.0618356 C9.31701111,17.7201826 8.01954444,16.2105342 8.01954444,14.4001005 C8.01954444,14.3837534 8.01954444,14.3682237 8.02283333,14.3518767 C8.52685556,14.6330457 9.10898889,14.798968 9.72565556,14.8177671 C8.71678889,14.1508082 8.05161111,13.0048813 8.05161111,11.7085616 C8.05161111,11.0252557 8.23825556,10.3836347 8.55974444,9.83110502 C10.4122111,12.0918995 13.1847444,13.5794795 16.3059,13.7355936 C16.2417667,13.4609635 16.2097,13.1773425 16.2097,12.8830959 C16.2097,10.8209178 17.8927889,9.14779909 19.9680778,9.14779909 C21.0501222,9.14779909 22.0261,9.60142922 22.7101889,10.3256027 C23.5677667,10.1596804 24.3743667,9.84990411 25.1003889,9.41915982 C24.8175444,10.293726 24.2230778,11.0252557 23.4460778,11.4878767 C24.2074556,11.3987854 24.9334778,11.1977169 25.6044111,10.9010183 C25.1036778,11.6480776 24.4639889,12.3052283 23.7322111,12.8324201" id="Fill-5" fill="#231F1F"></path>
+                        </g>
+                    </g>
+                </svg>
+            </a>
+            <a target="_blank" href="https://www.youtube.com/user/turmadamonicaTV" class="social-yt">
+                <svg width="34px" height="34px" viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <polygon id="Fill-2" points="0.4 33.1 32.5 33.1 32.5 1.2 0.4 1.2"></polygon>
+                      <polygon id="Stroke-3" stroke="" points="0.4 32.5 32.5 32.5 32.5 0.6 0.4 0.6"></polygon>
+                      <path class="social-yt-icon" d="M26.1,12.4 C25.4,11.6 24.1,11.2 21.7,11.2 L12.8,11.2 C10.3,11.2 9,11.6 8.3,12.4 C7.6,13.3 7.6,14.5 7.6,16.2 L7.6,19.5 C7.6,22.9 8.4,24.6 12.8,24.6 L21.7,24.6 C23.8,24.6 25,24.3 25.8,23.6 C26.6,22.9 26.9,21.6 26.9,19.5 L26.9,16.2 C26.9,14.5 26.8,13.2 26.1,12.4 L26.1,12.4 Z M19.6,18.5 L15.6,20.6 C15.5,20.6 15.4,20.7 15.3,20.7 C15.2,20.7 15.1,20.7 15,20.6 C14.8,20.5 14.7,20.3 14.7,20.1 L14.7,15.9 C14.7,15.7 14.8,15.5 15,15.4 C15.2,15.3 15.4,15.3 15.6,15.4 L19.6,17.5 C19.8,17.6 19.9,17.8 19.9,18 C19.9,18.2 19.8,18.4 19.6,18.5 L19.6,18.5 Z" id="Shape" fill="#231F1F"></path>
+                    </g>
+                </svg>
+            </a>
+        </footer>
+    </div>
+    <div class="overlay" ng-click="closeMenu(); toggle()"></div>
+    <div class="lightbox" ng-click="closeLightboxClick($event)">
+        <div class="detail content {{card.kind=='image' || card.kind=='video' ? 'image' : ''}} {{card.user.role == 'editor' && pageName =='homePage' ? card.user.username : ''}}">
+            <div class="preview" style="background-image:url('{{card.image.url}}')">
+                <div ng-if="card.kind == 'video'" class="videoIframe" ng-bind-html="card.source_url | formatVideo | trust"></div>
+            </div>
+            <div class="text">
+                <div class="close" ng-click="closeLightbox()">
+                  <div class="close-icon4">
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <img src="<%=asset_url('site/balao_simples3.svg')%>" class="link" alt="">
+                  <img src="<%=asset_url('site/poof_simples.svg')%>" class="active" alt="">
+                </div>
+                <img ng-if="card.user.role == 'editor'" src="{{card.user.avatar}}" class="userPhoto" />
+                <p class="name">{{card.user.name}}</p>
+                <p class="date">
+                  <a target="_blank" ng-href="{{card.source_url}}">
+                    <img src="<%=asset_url('site/{{card.origin}}.svg')%>" />
+                    {{card.posted_at | formatDate}}
+                  </a></p>
+                <p class="content" ng-bind-html="card.content | trust"></p>
+                <div class="hr"></div>
+                <div ng-include src="'<%= asset_url('share.html')%>'"></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <header>
+        <p class="container desktop" style="text-align: center"><a ng-href="/" target="_self"><img src="<%=asset_url('site/logo.svg')%>" height="84" /></a></p>
+    </header>
+    <section ng-view></section>
+    <footer class="desktop">
+        <a href="https://www.facebook.com/revistaturmadamonicajovem/" target="_blank" class="social-fb">
+            <img src="<%=asset_url('site/rede-social-facebook.svg')%>" target="_blank" class="svg"/>
+        </a>
+        <a href="https://twitter.com/revistadaturma" target="_blank" class="social-tw">
+            <img src="<%=asset_url('site/rede-social-twitter.svg')%>" class="svg"/>
+        </a>
+        <a href="https://www.youtube.com/user/turmadamonicaTV" class="social-yt" target="_blank" >
+            <img src="<%=asset_url('site/rede-social-youtube.svg')%>" class="svg"/>
+        </a>
+    </footer>
+    <!-- libs -->
+
+    <%= javascript_include_tag 'site' %>
+
+</body>
+
+</html>

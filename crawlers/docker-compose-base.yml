@@ -1,0 +1,8 @@
+version: "2"
+services:
+  crawler-base:
+    build: .
+    volumes:
+      - .:/var/app
+    env_file:
+      - ../env/.env

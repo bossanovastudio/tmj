@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="apple-touch-icon" sizes="180x180" href="<%= image_path('favicons/apple-touch-icon.png') %>">
+  <link rel="icon" type="image/png" href="<%= image_path('favicons/favicon-32x32.png') %>" sizes="32x32">
+  <link rel="icon" type="image/png" href="<%= image_path('favicons/favicon-16x16.png') %>" sizes="16x16">
+  <link rel="manifest" href="<%= image_path('favicons/manifest.json') %>">
+  <link rel="mask-icon" href="<%= image_path('favicons/safari-pinned-tab.svg') %>" color="#ff0000">
+  <meta name="theme-color" content="#c7c7c9">
+  <meta charset="UTF-8">
+  <title>Administrador TMJ</title>
+
+  <%= stylesheet_link_tag "admin"%>
+  <%= csrf_meta_tags %>
+</head>
+<body id="admin">
+  <div class="menu">
+    <%= link_to "ADMIN TMJ", root_path, class: "title-admin" %>
+    <!--
+    <div class="user">
+      <span>Robson C.</span>
+      <div class="dropdown-content">
+        <a href="#">Sair</a>
+      </div>
+    </div>
+    -->
+  </div>
+
+  <div class="sidebar">
+    <ul class="item-list">
+      <li>
+        <%= link_to admin_cards_path, class: "#{active_class('cards')}" do %>
+        <svg class="cards-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
+          <polygon points="0.5 25.71 25.56 25.71 25.56 0.5 0.5 0.5 0.5 25.71" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round"/>
+          <path d="M.5,11.37H25.57" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round"/>
+          <path d="M4.69,16.44h15.7" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round"/>
+          <path d="M4.69,20.49h15.7" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round"/>
+        </svg>
+        <span>Cards</span>
+        <% end %>
+        <ul class="subitem-list">
+          <li>
+            <%= link_to "Moderar cards", admin_cards_path, class: "#{active_class('cards')}" %>
+          </li>
+          <li>
+            <%= link_to "Destaques", admin_highlights_path, class: "#{active_class('highlights')}" %>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <%= link_to admin_casting_index_path, class: "#{active_class('casting')}" do %>
+        <svg class="casting-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
+            <g id="Admin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Admin-Casting" transform="translate(-51.000000, -260.000000)" fill="#FFFFFF">
+                    <g id="casting_icon" transform="translate(51.000000, 260.000000)">
+                        <g id="Group-8" transform="translate(0.000000, 0.350560)">
+                            <path d="M19.7174769,17.81836 L5.59901538,17.81836 C5.32763077,17.81836 5.10886154,18.03956 5.10886154,18.31396 C5.10886154,18.5874267 5.32763077,18.80956 5.59901538,18.80956 L19.7174769,18.80956 C19.9879385,18.80956 20.2076308,18.5874267 20.2076308,18.31396 C20.2076308,18.03956 19.9879385,17.81836 19.7174769,17.81836" id="Fill-1"></path>
+                            <path d="M19.7174769,21.7175467 L5.59901538,21.7175467 C5.32763077,21.7175467 5.10886154,21.9387467 5.10886154,22.2131467 C5.10886154,22.4866133 5.32763077,22.7087467 5.59901538,22.7087467 L19.7174769,22.7087467 C19.9879385,22.7087467 20.2076308,22.4866133 20.2076308,22.2131467 C20.2076308,21.9387467 19.9879385,21.7175467 19.7174769,21.7175467" id="Fill-3"></path>
+                            <g id="Group-7">
+                                <path d="M22.3785231,13.6247067 L18.9760615,13.6247067 L21.4969846,11.07764 L22.3785231,11.07764 L22.3785231,13.6247067 Z M2.9376,26.01284 L22.3785231,26.01284 L22.3785231,14.6159067 L2.9376,14.6159067 L2.9376,26.01284 Z M2.02652308,7.52724 L2.86836923,7.26404 L6.02067692,8.94497333 L2.77144615,9.96137333 L2.02652308,7.52724 Z M7.21698462,5.90417333 L10.3692923,7.58510667 L7.34621538,8.53057333 L4.19390769,6.84870667 L7.21698462,5.90417333 Z M11.5646769,4.54430667 L14.7179077,6.22524 L11.6939077,7.17070667 L8.5416,5.48884 L11.5646769,4.54430667 Z M15.9132923,3.18350667 L19.0656,4.86537333 L16.0425231,5.81177333 L12.8902154,4.12897333 L15.9132923,3.18350667 Z M20.5988308,1.71910667 L21.3437538,4.15417333 L20.3902154,4.45190667 L17.2379077,2.77004 L20.5988308,1.71910667 Z M6.45636923,11.07764 L3.93636923,13.6247067 L2.9376,13.6247067 L2.9376,11.07764 L6.45636923,11.07764 Z M11.0080615,11.07764 L8.48713846,13.6247067 L5.32190769,13.6247067 L7.84283077,11.07764 L11.0080615,11.07764 Z M15.5588308,11.07764 L13.0388308,13.6247067 L9.8736,13.6247067 L12.3945231,11.07764 L15.5588308,11.07764 Z M20.1096,11.07764 L17.5905231,13.6247067 L14.4252923,13.6247067 L16.9452923,11.07764 L20.1096,11.07764 Z M22.8677538,10.0855067 L5.69206154,10.0855067 L22.1016,4.95404 C22.3600615,4.87377333 22.5049846,4.59564 22.4246769,4.33430667 L21.3908308,0.95284 C21.3529846,0.82684 21.2662154,0.722306667 21.1508308,0.660706667 C21.0363692,0.599106667 20.9016,0.58604 20.7779077,0.62524 L1.26867692,6.72550667 C1.01021538,6.80670667 0.864369231,7.08390667 0.944676923,7.34524 L1.95729231,10.6557733 L1.95729231,26.5093733 C1.95729231,26.78284 2.17698462,27.0049733 2.44744615,27.0049733 L22.8677538,27.0049733 C23.1391385,27.0049733 23.3588308,26.78284 23.3588308,26.5093733 L23.3588308,10.5811067 C23.3588308,10.3067067 23.1391385,10.0855067 22.8677538,10.0855067 L22.8677538,10.0855067 Z" id="Fill-5"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </svg>
+        <span>Casting</span>
+        <% end %>
+      </li>
+      <li>
+        <span>Remix</span>
+        <ul>
+          <li><%= link_to "Background Colors", admin_remix_background_colors_path %></li>
+          <li><%= link_to "Text Colors",  admin_remix_text_colors_path  %></li>
+          <li><%= link_to "Stickers",  admin_remix_stickers_path   %></li>
+          <li><%= link_to "Categories",  admin_remix_categories_path   %></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="admin-content scrollbar">
+    <%= yield %>
+  </div>
+  <%= javascript_include_tag "admin", 'data-turbolinks-track': 'reload' %>
+</body>
+</html>

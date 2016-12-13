@@ -1,0 +1,21 @@
+source 'https://rubygems.org'
+
+gem "twitter", "~>5.15.0"
+gem "koala", "~>2.5.0rc1"
+gem "pg", "~> 0.18"
+gem "activerecord", "~> 5.0.0"
+gem 'activeresource', github: 'rails/activeresource'
+gem "google-api-client", "~>0.8.6"
+gem "pinterest-api", "~>0.2.2"
+gem 'httparty', '~> 0.14.0'
+gem "tumblr_client", "~>0.8.5"
+gem "video_info", "~> 2.6.1"
+
+group :development do
+  gem "bundler", "~> 1.12"
+  gem "rake", "~> 10.0"
+  gem "minitest", "~> 5.0"
+  gem "dotenv", "~> 2.1.1"
+  gem "pry-meta"
+  gem "byebug"
+end

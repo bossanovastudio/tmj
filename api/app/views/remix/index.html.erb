@@ -1,0 +1,186 @@
+<div role="main">
+  <div class="container">
+    <div class="remix-container">
+      <section class="remix-title">
+        <h2>Remix</h2>
+        <p class="intro">Aqui você pode criar suas artes a partir de imagens da turma! Divirta-se!</p>
+        <button type="button" class="btn btn-default create-new">Criar um novo</button>
+      </section>
+      <section class="remix-composer">
+        <button type="button" class="cancel">&times;</button>
+        <div class="actions">
+          <button type="button" class="next">
+            <%= image_tag "remix/icon-arrow-right", alt: 'Próximo' %>
+          </button>
+          <button type="button" class="publish">Salvar</button>
+          <button type="button" class="create-new">Criar um novo</button>
+          <button type="button" class="start-over">
+            <%= image_tag "remix/icon-eraser", alt: 'Começar novamente' %>
+          </button>
+          <a href="#" target="_blank" download class="download">
+            <%= image_tag "remix/icon-arrow-down", alt: 'Baixar' %>
+          </a>
+          <button type="button" class="remove">
+            <%= image_tag "remix/icon-trash", alt: 'Remover' %>
+          </button>
+        </div>
+        <div class="artboard">
+          <div class="remix-canvas"></div>
+          <div class="empty">Escolha uma categoria</div>
+        </div>
+        <div class="toolbox">
+          <div class="toolbox-item toolbox-item-popup category on">
+            <button type="button" class="toggler" title="Categoria">
+              <%= image_tag "remix/icon-image", alt: 'Categoria' %>
+            </button>
+            <div class="popup">
+              <div class="popup-holder">
+                <div class="categories">
+                  <div class="item take-photo">
+                    <div>
+                      <%= image_tag "remix/icon-camera", alt: 'Enviar foto' %>
+                      <input type="file">
+                    </div>
+                  </div>
+                </div>
+                <div class="pictures">
+                  <div class="item go-back">
+                    <div>
+                      <%= image_tag "remix/icon-arrow-left" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="toolbox-item toolbox-item-colors color">
+            <button type="button" class="toggler" title="Aquarela">
+              <%= image_tag "remix/icon-watercolor", alt: 'Aquarela' %>
+            </button>
+          </div>
+          <div class="toolbox-item toolbox-item-effects effects">
+            <button type="button" class="toggler" title="Efeitos">
+              <%= image_tag "remix/icon-magic-wand", alt: 'Efeitos' %>
+            </button>
+          </div>
+          <div class="toolbox-item toolbox-item-popup toolbox-item-popup-above toolbox-item-elements balloons">
+            <button type="button" class="toggler" title="Balões">
+              <%= image_tag "remix/icon-balloon", alt: 'Balões' %>
+            </button>
+            <div class="popup">
+              <div class="popup-holder elements">
+                <!-- FAKE DATA -->
+                <!-- <% 14.times do |i| %>
+                <div class="elements-item" data-src="<%= image_url "fake/balao-" + (i+1).to_s %>">
+                  <%= image_tag "fake/balao-" + (i+1).to_s %>
+                </div>
+                <% end %> -->
+                <!-- END FAKE DATA -->
+              </div>
+            </div>
+          </div>
+          <div class="toolbox-item toolbox-item-popup toolbox-item-popup-above toolbox-item-elements stickers">
+            <button type="button" class="toggler" title="Stickers">
+              <%= image_tag "remix/icon-smile", alt: 'Stickers' %>
+            </button>
+            <div class="popup">
+              <div class="popup-holder elements">
+                <!-- FAKE DATA -->
+                <!-- <% 14.times do |i| %>
+                <div class="elements-item" data-src="<%= image_url "fake/sticker-" + (i+1).to_s %>">
+                  <%= image_tag "fake/sticker-" + (i+1).to_s %>
+                </div>
+                <% end %> -->
+                <!-- END FAKE DATA -->
+              </div>
+            </div>
+          </div>
+          <div class="toolbox-item toolbox-item-popup toolbox-item-popup-above toolbox-item-texts">
+            <button type="button" class="toggler" title="Texto">
+              <%= image_tag "remix/icon-typography", alt: 'Texto' %>
+            </button>
+            <div class="popup">
+              <div class="popup-holder options">
+                <div class="color-palette">
+                  <div class="holder">
+                    <button type="button">
+                      <!-- <div class="palette-item" style="background-color:#FBB040;"></div>
+                      <div class="palette-item" style="background-color:#8DC63F;"></div>
+                      <div class="palette-item" style="background-color:#00A79D;"></div>
+                      <div class="palette-item" style="background-color:#27AAE1;"></div>
+                      <div class="palette-item" style="background-color:#92278F;"></div>
+                      <div class="palette-item" style="background-color:#231F20;"></div> -->
+                      <%= image_tag "remix/icon-color-palette", alt: 'Paleta de cores' %>
+                    </button>
+                  </div>
+                </div>
+                <div class="styles">
+                  <div class="styles-item g1" data-class="g1">
+                    <span>G1</span>
+                  </div>
+                  <div class="styles-item g2" data-class="g2">
+                    <span>G2</span>
+                  </div>
+                  <div class="styles-item m1" data-class="m1">
+                    <span>M1</span>
+                  </div>
+                  <div class="styles-item m2" data-class="m2">
+                    <span>M2</span>
+                  </div>
+                  <div class="styles-item p1" data-class="p1">
+                    <span>P1</span>
+                  </div>
+                  <div class="styles-item p2" data-class="p2">
+                    <span>P2</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="btn btn-xs btn-default publish">Salvar</a>
+        </div>
+        <div class="share">
+          <p class="call">
+            Uau, seu remix ficou lindo!<br>
+            Compartilhe para aparecer na Home!
+          </p>
+          <div class="networks">
+            <%= link_to 'https://www.facebook.com/sharer/sharer.php?u=http://4.bp.blogspot.com/-B2AzEfwZqBA/UgVzf2P-PgI/AAAAAAAAAo8/qaVej64l6kY/s1600/Imagens-em-png-Queroimagem.com+(539).png', { :class => "btn btn-social btn-facebook", :target => "_blank" } do %>
+              <%= image_tag "icon-facebook", alt: 'Facebook' %>
+              Compartilhar no Facebook
+            <% end %>
+            <%= link_to 'https://twitter.com/intent/tweet?text=Remix http://4.bp.blogspot.com/-B2AzEfwZqBA/UgVzf2P-PgI/AAAAAAAAAo8/qaVej64l6kY/s1600/Imagens-em-png-Queroimagem.com+(539).png', { :class => "btn btn-social btn-twitter", :target => "_blank" } do %>
+              <%= image_tag "icon-twitter", alt: 'Twitter' %>
+              Compartilhar no Twitter
+            <% end %>
+            <%= link_to 'http://www.tumblr.com/share/link?url=http://4.bp.blogspot.com/-B2AzEfwZqBA/UgVzf2P-PgI/AAAAAAAAAo8/qaVej64l6kY/s1600/Imagens-em-png-Queroimagem.com+(539).png', { :class => "btn btn-social btn-tumblr", :target => "_blank" } do %>
+              <%= image_tag "icon-tumblr", alt: 'Tumblr' %>
+              Compartilhar no Tumblr
+            <% end %>
+          </div>
+        </div>
+      </section>
+      <section class="remix-gallery">
+        <div class="gallery-holder">
+          <div class="gallery-item-new"></div>
+          <% 5.times do |i| %>
+          <div class="gallery-item" data-id="<%= i.to_s %>">
+            <%= image_tag "http://placehold.it/220x220/c" + (rand(9).to_s) + "c" + (rand(9).to_s) + "c"  + (rand(9).to_s), { :class => "picture" } %>
+            <div class="actions">
+              <button type="button" class="remove" title="Remover">
+                <%= image_tag "remix/icon-trash", alt: 'Remover' %>
+              </button>
+              <a href="<%= image_url "http://placehold.it/220x220" %>" target="_blank" download class="download" title="Baixar">
+                <%= image_tag "remix/icon-arrow-down", alt: 'Baixar' %>
+              </a>
+              <button type="button" class="share" title="Compartilhar">
+                <%= image_tag "remix/icon-reply", alt: 'Compartilhar' %>
+              </button>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

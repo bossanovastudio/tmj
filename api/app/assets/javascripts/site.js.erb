@@ -1,0 +1,121 @@
+//= require 'external/retina.js'
+//= require 'external/jquery.js'
+//= require 'external/easing.js'
+//= require 'external/masonry.js'
+//= require 'external/lazyload.js'
+//= require 'external/svg.js'
+//= require 'external/linkify.js'
+//= require 'external/clipboard.js'
+//= require 'external/storage.js'
+
+//= require 'angular/angular.js'
+//= require 'angular/angular-cookies.js'
+//= require 'angular/angular-route.js'
+//= require 'angular/angular-animate.js'
+//= require 'angular/angular-touch.js'
+//= require 'angular/angular-swipe.js'
+//= require 'angular/angular-resource.js'
+//= require 'external/ngclipboard.js'
+
+//= require_self
+
+//= require 'site/filters/Filters.js'
+//= require 'site/controllers/MainController.js'
+//= require 'site/controllers/HomeController.js'
+//= require 'site/controllers/LoginController.js'
+//= require 'site/controllers/CardsController.js'
+//= require 'site/controllers/RamonaController.js'
+//= require 'site/controllers/EditUserController.js'
+//= require 'site/directives/Directives.js'
+
+var storage = $.jStorage;
+
+var API_URL = "/api/";
+var SITE_URL = window.location.protocol + '//' + window.location.host;
+var isMobileDevice = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+(function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+ga('create', 'UA-88003802-1', 'auto');
+
+var tmj = angular.module('tmj', [
+    'ngTouch',
+    'ngRoute',
+    'ngAnimate',
+    'ngCookies',
+    'ngResource',
+    'swipe',
+    'ngclipboard'
+]);
+tmj
+    .config(function($routeProvider, $locationProvider, $httpProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: '<%=asset_url("home.html")%>',
+                controller: 'HomeController'
+            })
+            .when('/personagem/ramona', {
+                templateUrl: '<%=asset_url("ramona.html")%>',
+                controller: 'RamonaController'
+            })
+            .when('/detalhe/card/:id', {
+                templateUrl: '<%=asset_url("home.html")%>',
+                controller: 'HomeController'
+            })
+            .when('/login', {
+                templateUrl: '<%=asset_url("login.html")%>',
+                controller: 'LoginController'
+            })
+            .when('/cadastro', {
+                templateUrl: '<%=asset_url("cadastro.html")%>',
+                controller: 'LoginController'
+            })
+            .when('/recuperar-senha', {
+                templateUrl: '<%=asset_url("recuperar-senha.html")%>',
+                controller: 'LoginController'
+            })
+            .when('/sua-pagina', {
+                templateUrl: '<%=asset_url("sua-pagina.html")%>',
+                controller: 'EditUserController'
+            });
+
+        $routeProvider
+            .otherwise({
+                redirectTo: "/"
+            });
+
+        $locationProvider.html5Mode(true);
+    })
+    .run(function($rootScope, $location) {
+        $rootScope.$on('$routeChangeStart', function() {
+            var overlay = $('.overlay');
+            overlay.removeClass('open');
+            var sidebar = $('.sidebar');
+            sidebar.removeClass('open');
+        })
+    })
+    .run(['$route', '$rootScope', '$location', function($route, $rootScope, $location) {
+        ga('send', 'pageview', { page: $location.url() });
+        var original = $location.path;
+        $rootScope.previousURL = $location.$$path;
+        $location.path = function(path, reload) {
+            if (reload === false) {
+                var lastRoute = $route.current;
+                var un = $rootScope.$on('$locationChangeSuccess', function() {
+                    $route.current = lastRoute;
+                    un();
+                });
+            }
+            return original.apply($location, [path]);
+        };
+    }]);
