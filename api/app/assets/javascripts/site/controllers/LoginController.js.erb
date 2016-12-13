@@ -124,8 +124,10 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             })
             .then(function(response) {
                 $scope.msg = 'Obrigado.';
-                $location.path('/');
+                storage.set('user', response.data);
+                $location.path('/sua-pagina');
             }, function(response) {
+                storage.deleteKey('user');
                 $scope.msg = response.data.error;
             });
     }
@@ -154,8 +156,10 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             })
             .then(function(response) {
                 $scope.msg_register = 'Obrigado.';
+                storage.set('user', response.data);
                 $location.path('/sua-pagina');
             }, function(response) {
+                storage.deleteKey('user');
                 $scope.msg_register = response.error;
             });
     }

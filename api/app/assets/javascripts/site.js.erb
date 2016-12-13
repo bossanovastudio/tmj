@@ -6,6 +6,7 @@
 //= require 'external/svg.js'
 //= require 'external/linkify.js'
 //= require 'external/clipboard.js'
+//= require 'external/storage.js'
 
 //= require 'angular/angular.js'
 //= require 'angular/angular-cookies.js'
@@ -26,6 +27,8 @@
 //= require 'site/controllers/RamonaController.js'
 //= require 'site/controllers/EditUserController.js'
 //= require 'site/directives/Directives.js'
+
+var storage = $.jStorage;
 
 var API_URL = "/api/";
 var SITE_URL = window.location.protocol + '//' + window.location.host;
