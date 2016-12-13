@@ -1,4 +1,4 @@
-tmj.controller('EditUserController', function($rootScope, $location, $scope, $http, $sce, $compile, $routeParams, $window) {
+tmj.controller('EditUserController', function($rootScope, $location, $scope, $http, $sce, $compile, $routeParams) {
     $rootScope.pageName = 'edit-user';
 
     $scope.form = {};
@@ -132,9 +132,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
     }
 
     $scope.form.social = {};
-    $scope.back = function(){
-        $window.history.back()
-    }
+
     $scope.save = function() {
         $scope.form.password = $scope.passwordChoice.map(function(p) {
             return p.value;

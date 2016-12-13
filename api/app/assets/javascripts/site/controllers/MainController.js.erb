@@ -38,9 +38,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         $scope[toggled ? "closeMenu" : "openMenu"]();
         toggled = !toggled;
     }
-    $scope.back = function(){
-        $window.history.back();
-    }
+
     $scope.openMenu = function() {
         var overlay = angular.element(document.querySelector('.overlay'));
         overlay.addClass('open');
