@@ -140,8 +140,8 @@
             }
             input.cmn-toggle-round + label:before {
               right: 1px;
-              background: #000000 url('site/toggle-ativado.svg') 10px 10px no-repeat,  /* On top,    like z-index: 4; */
-                url('site/toggle-desativado.svg') 35px 9px no-repeat,
+              background: #000000 url('site/toggle-on.svg') 10px 10px no-repeat,  /* On top,    like z-index: 4; */
+                url('site/toggle-off.svg') 35px 9px no-repeat,
               ;
               background-color: #000;
               // background: #000000 no-repeat asset-url('site/bg-toggle.svg');
