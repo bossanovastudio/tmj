@@ -109,8 +109,6 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             return p.value;
         }).join('');
 
-        console.log($scope.form);
-
         if (!$scope.form.username || $scope.form.username.length < 1) {
             $scope.msg = 'Preencha seu apelido';
             return false;
@@ -156,7 +154,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             })
             .then(function(response) {
                 $scope.msg_register = 'Obrigado.';
-                $location.path('/');
+                $location.path('/sua-pagina');
             }, function(response) {
                 $scope.msg_register = response.error;
             });

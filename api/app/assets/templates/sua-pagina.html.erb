@@ -2,7 +2,7 @@
 <div class="container">
     <div class="four columns left">
         <div ng-click="selectFile($event)" type="text" class="box-avatar">
-          <img class="avatar" width="200" src="/img/profile_default.svg" />
+          <img class="avatar" width="200" src="<%= asset_url('site/profile_default.svg') %>" />
           <div class="avatar_hover"></div>
         </div>
     </div>
@@ -11,75 +11,75 @@
             <div class="form-group bio">
                 <label for="username">bio</label>
                 <br>
-                <textarea name="bio" class="form-control" cols="1" rows="4"></textarea>
+                <textarea name="bio" class="form-control" cols="1" ng-model="form.bio" rows="4"></textarea>
             </div>
             <ul class="form-group checksocial">
                 <li>
                     <div class="switch">
-                      <img src="/img/pinterest-profile.svg" alt="" class="img-social">
-                      <input id="cmn-toggle-pin" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                      <img src="<%= asset_url('site/pinterest-profile.svg') %>" alt="" class="img-social">
+                      <input id="cmn-toggle-pin" class="cmn-toggle cmn-toggle-round" value="1" name="pinterest" type="checkbox">
                       <label for="cmn-toggle-pin"></label>
                     </div>
                 </li>
                 <li>
                     <div class="switch">
-                      <img src="/img/facebook-profile.svg" alt="" class="img-social">
-                      <input id="cmn-toggle-fb" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                      <img src="<%= asset_url('site/facebook-profile.svg') %>" alt="" class="img-social">
+                      <input id="cmn-toggle-fb" class="cmn-toggle cmn-toggle-round" value="1" name="facebook" type="checkbox">
                       <label for="cmn-toggle-fb"></label>
                     </div>
                 </li>
                 <li>
                     <div class="switch">
-                      <img src="/img/instagram-profile.svg" alt="" class="img-social">
-                      <input id="cmn-toggle-insta" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                      <img src="<%= asset_url('site/instagram-profile.svg') %>" alt="" class="img-social">
+                      <input id="cmn-toggle-insta" class="cmn-toggle cmn-toggle-round" value="1" name="instagram" type="checkbox">
                       <label for="cmn-toggle-insta"></label>
                     </div>
                 </li>
                 <li>
                     <div class="switch">
-                      <img src="/img/vimeo-profile.svg" alt="" class="img-social">
-                      <input id="cmn-toggle-vimeo" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                      <img src="<%= asset_url('site/vimeo-profile.svg') %>" alt="" class="img-social">
+                      <input id="cmn-toggle-vimeo" class="cmn-toggle cmn-toggle-round" value="1" name="vimeo" type="checkbox">
                       <label for="cmn-toggle-vimeo"></label>
                     </div>
                 </li>
                 <li>
                     <div class="switch">
-                      <img src="/img/tumblr-profile.svg" alt="" class="img-social">
-                      <input id="cmn-toggle-tumblr" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                      <img src="<%= asset_url('site/tumblr-profile.svg') %>" alt="" class="img-social">
+                      <input id="cmn-toggle-tumblr" class="cmn-toggle cmn-toggle-round" value="1" name="tumblr" type="checkbox">
                       <label for="cmn-toggle-tumblr"></label>
                     </div>
                 </li>
                 <li>
                     <div class="switch">
-                      <img src="/img/twitter-profile.svg" alt="" class="img-social">
-                      <input id="cmn-toggle-twitter" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                      <img src="<%= asset_url('site/twitter-profile.svg') %>" alt="" class="img-social">
+                      <input id="cmn-toggle-twitter" class="cmn-toggle cmn-toggle-round" value="1" name="twitter" type="checkbox">
                       <label for="cmn-toggle-twitter"></label>
                     </div>
                 </li>
                 <li>
                     <div class="switch">
-                      <img src="/img/google-profile.svg" alt="" class="img-social">
-                      <input id="cmn-toggle-google" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                      <img src="<%= asset_url('site/google-profile.svg') %>" alt="" class="img-social">
+                      <input id="cmn-toggle-google" class="cmn-toggle cmn-toggle-round" value="1" name="google" type="checkbox">
                       <label for="cmn-toggle-google"></label>
                     </div>
                 </li>
                 <li>
                     <div class="switch">
-                      <img src="/img/youtube-profile.svg" alt="" class="img-social">
-                      <input id="cmn-toggle-youtube" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                      <img src="<%= asset_url('site/youtube-profile.svg') %>" alt="" class="img-social">
+                      <input id="cmn-toggle-youtube" class="cmn-toggle cmn-toggle-round" value="1" name="youtube" type="checkbox">
                       <label for="cmn-toggle-youtube"></label>
                     </div>
                 </li>
-            </ul> 
+            </ul>
             <div class="form-group user">
                 <label for="username">Nome de usuário</label>
                 <br>
-                <input type="text" name="username" class="form-control" placeholder="insira seu apelido"/>
+                <input type="text" ng-model="form.username" name="username" class="form-control" placeholder="insira seu apelido"/>
             </div>
             <div class="form-group mail">
                 <label for="username">E-mail do Responsável</label>
                 <br>
-                <input type="text" name="email" class="form-control" placeholder="insira o e-mail"/>
+                <input type="text" name="email" ng-model="form.email" class="form-control" placeholder="insira o e-mail"/>
             </div>
             <div class="form-group pass">
                 <label for="password">Nova Senha</label>
@@ -108,7 +108,7 @@
                 </div>
             </div>
             <div class="form-actions">
-                <button type="submit" class="btn btn-submit">Entrar</button>
+                <button type="button" ng-click="save()" class="btn btn-submit">Salvar</button>
             </div>
             <p class="link-delete">Não quer mais fazer parte? <a href="#"> Deletar conta</a></p>
 
