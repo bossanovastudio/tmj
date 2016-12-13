@@ -21,4 +21,16 @@ class Highlight < ApplicationRecord
   belongs_to :mobile_image, class_name: "Image"
 
   scope :published, -> { where(published: true) }
+
+  def self.move_to_index(id, new_index)
+    to_move = Highlight.find(id)
+    Highlight.transaction do
+      Highlight.where('index >= ?', new_index).each do |h|
+        h.index += 1
+        h.save!
+      end
+      to_move.index = new_index
+      to_move.save!
+    end
+  end
 end

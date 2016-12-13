@@ -55,7 +55,9 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :highlights
+    resources :highlights do
+      post 'move', on: :member
+    end
 
     resources :images
     resources :videos
