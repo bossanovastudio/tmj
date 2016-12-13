@@ -21,7 +21,7 @@
     <% @highlights.each do |h| %>
     <ul id="sortable">
       <li class="ui-state-default">
-        <div class="highlight <%= h.size %> <%= 'published' if h.published %>" style="background-image: url('<%= h.desktop_image.file_url %>')">
+        <div class="highlight <%= h.size %> <%= 'published' if h.published %>" style="background-image: url('<%= h.desktop_image.file_url %>')" data-highlight-id="<%= h.id %>">
           <div>
             <%= link_to edit_admin_highlight_path(h), class: "edit" do %>
             <svg viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

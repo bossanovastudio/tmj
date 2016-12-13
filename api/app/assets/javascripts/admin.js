@@ -109,7 +109,12 @@ $(document).on('turbolinks:load', function() {
         }
     });
 
-    $("#highlights .bottom-content").sortable();
+    $("#highlights .bottom-content").sortable({
+      stop: function(event, ui) {
+        var elem = $(ui.item);
+        $.post("/admin/highlights/" + elem.find('[data-highlight-id]').attr('data-highlight-id') + "/move", { to: elem.index() + 1 });
+      }
+    });
 
     setTimeout(function() { initMasonry(); }, 1000);
 });
