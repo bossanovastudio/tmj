@@ -1,4 +1,21 @@
-var API_URL = "@@replace_api_grunt";
+//= require 'external/jquery.js'
+//= require 'external/mask.js'
+
+//= require 'angular/angular.js'
+//= require 'angular/angular-cookies.js'
+//= require 'angular/angular-route.js'
+//= require 'angular/angular-animate.js'
+//= require 'angular/angular-touch.js'
+//= require 'angular/angular-swipe.js'
+//= require 'angular/angular-resource.js'
+
+//= require_self
+
+//= require 'register/controllers/MainController.js'
+//= require 'register/controllers/RegisterController.js'
+//= require 'register/directives/Directives.js'
+
+var API_URL = "/api/";
 var isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 (function(i, s, o, g, r, a, m) {
@@ -18,8 +35,8 @@ ga('create', 'UA-88003802-1', 'auto');
 var tmj = angular.module('tmj', ['ngTouch', 'ngRoute', 'ngAnimate', 'ngCookies', 'ngResource', 'swipe']);
 tmj.config(function($routeProvider, $locationProvider, $httpProvider) {
         $routeProvider
-            .when('/', {
-                templateUrl: '/pages/register.html',
+            .when('/participe', {
+                templateUrl: '<%=asset_url("register.html")%>',
                 controller: 'RegisterController'
             });
         $routeProvider

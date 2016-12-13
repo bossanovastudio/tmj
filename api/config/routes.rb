@@ -59,6 +59,7 @@ Rails.application.routes.draw do
     root to: 'cards#index'
   end
 
+  get "/participe" => 'welcome#register'
   root to: 'welcome#index'
   get "*path" => 'welcome#index'
 end
