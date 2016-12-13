@@ -1,10 +1,11 @@
 <div class="overlay-pass" ng-click="togglePassword()"></div>
 <div class="container">
     <div class="four columns left">
-        <div ng-click="selectFile($event)" type="text" class="box-avatar">
+        <div ng-click="selectFile()" class="box-avatar">
           <img class="avatar" width="200" src="<%= asset_url('site/profile_default.svg') %>" />
           <div class="avatar_hover"></div>
         </div>
+        <input type="file" id="photo" style="display: none" file-on-change="changedFile" accept="image/*">
     </div>
     <div class="four columns offset">
         <form name="profileForm">
@@ -108,6 +109,7 @@
                 </div>
             </div>
             <div class="form-actions">
+                {{msg_update}}
                 <button type="button" ng-click="save()" class="btn btn-submit">Salvar</button>
             </div>
             <p class="link-delete">Não quer mais fazer parte? <a href="#"> Deletar conta</a></p>
