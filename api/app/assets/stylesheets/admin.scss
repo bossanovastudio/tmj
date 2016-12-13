@@ -215,16 +215,16 @@ html {
   }
   .action-bar {
     height: 64px;
+    width: 100%;
     background-color: #f1f1f1;
     border-bottom: 1px solid #fff;
     padding: 0 42px;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    align-items: center;
+    display: table;
+
+    &>div {
+      display: table-cell;
+      vertical-align: middle;
+    }
 
     .btn-filter {
       position: relative;
@@ -360,4 +360,14 @@ html {
   left: 0;
   top: 0;
   z-index: 3;
+}
+
+.align-left {
+  float: left;
+}
+.align-right {
+  float: right;
+}
+.hidden {
+  display: none;
 }

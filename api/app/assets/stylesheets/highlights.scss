@@ -2,24 +2,49 @@ section#highlights, section#highlights-new {
   $btn_width: 40px;
   $btn_height: 40px;
 
-  .add-icon {
-    height: 35px;
-    width: 35px;
-    cursor: pointer;
+  .top-bar {
+    svg {
+      cursor: pointer;
+      height: 35px;
+      width: 35px;
+    }
 
-    &:hover {
-      #bg {
-        fill: #68A6EF;
+    .add-icon {
+      &:hover {
+        #bg {
+          fill: #68A6EF;
+        }
+        .stroke {
+          stroke: #ffffff;
+        }
       }
-      .stroke {
-        stroke: #ffffff;
+    }
+    .delete-icon {
+      &:hover {
+        #bg {
+          fill: #4a4a4a;
+        }
+        .stroke {
+          stroke: #ffffff;
+        }
+      }
+    }
+    .save-icon {
+      &:hover {
+        #bg {
+          fill: #4bc182;
+        }
+        .stroke {
+          stroke: #ffffff;
+        }
       }
     }
   }
 
+
   .bottom-content {
     #sortable {
-      max-width: 930px;
+      max-width: 830px;
     }
 
     li {
