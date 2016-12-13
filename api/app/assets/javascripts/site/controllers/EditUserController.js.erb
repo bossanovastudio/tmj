@@ -22,8 +22,8 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
     //         console.log(response);
     //     });
 
-    $scope.form.username = $scope.form.username;
-    $scope.form.email = $scope.form.email;
+    $scope.form.username = $scope.user.username;
+    $scope.form.email = $scope.user.email;
 
     $('body').on('click','.box-avatar', function() {
         $('#photo').trigger('click');
@@ -40,6 +40,8 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             $scope.form.image = base64;
         };
     };
+
+    $('.avatar').attr('src', $scope.user.image.url);
 
     $scope.passwords = [{
         id: 0,
