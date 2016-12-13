@@ -1,4 +1,4 @@
-class Api::ImagesController < ActionController::API
+class Api::ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create

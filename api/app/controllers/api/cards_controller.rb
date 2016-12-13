@@ -1,4 +1,4 @@
-class Api::CardsController < ActionController::API
+class Api::CardsController < ApplicationController
   before_action :set_card, only: [:like, :unlike]
   before_action :authenticate_user!, only: [:like, :unlike]
   # before_action :authenticate_admin!, only: [:index, :show, :accept, :reject, :create, :update, :destroy]
