@@ -2,7 +2,7 @@
   <div class="vertical-content">
     <div ng-class="{show : isCardsLoaded}" class="container cards ramona-card animated">
       <div class="author">
-        <div class="box-avatar">
+        <div class="box-avatar-user">
           <img class="badge" src="<%=asset_url('site/ramona-badge.svg')%>" />
           <img class="avatar" width="200" src="<%=asset_url('site/ramona_novo.png')%>" />
           <img class="avatar_hover" width="200" src="<%=asset_url('site/ramona_hover.png')%>" />
@@ -14,6 +14,10 @@
               <p class="position">Editor TMJ</p>
             </div>
             <a ng-href="#" ng-click="followUser()" class="follow">SEGUIR</a>
+            <div class="followers">
+              <img src="<%=asset_url('site/icon-followers.svg')%>" alt="" class="icon">
+              <p class="number">2.4k</p>
+            </div>
           </div>
           <div class="about">
             <div class="twelve columns">
@@ -35,10 +39,23 @@
               <!-- <li class="social-twitch"><a href="#" target="_blank"><img src="/img/twitch-profile.svg" alt="" /></a></li> -->
             </ul>
           </div>
-        </div>
-        <div class="followers">
-          <p class="number">3456</p>
-          <p class="description">Seguidores</p>
+          <div class="recommendation">
+            <div class="label">Recomendações</div>
+            <ul>
+              <li class="ramona">
+                <img src="<%=asset_url('site/icone-ramona.svg')%>" alt="">
+                <p class="number">5</p>
+              </li>
+              <li class="geek">
+                <img src="<%=asset_url('site/icone-geek.svg')%>" alt="">
+                <p class="number">5</p>
+              </li>
+              <li class="denise">
+                <img src="<%=asset_url('site/icone-denise.svg')%>" alt="">
+                <p class="number">5</p>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
