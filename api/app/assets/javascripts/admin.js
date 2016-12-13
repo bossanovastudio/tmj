@@ -12,7 +12,13 @@
 //
 //= require jquery
 //= require jquery-ujs
-//= require jquery-ui
+//= require jquery-ui/ui/version
+//= require jquery-ui/ui/plugin
+//= require jquery-ui/ui/data
+//= require jquery-ui/ui/scroll-parent
+//= require jquery-ui/ui/widget
+//= require jquery-ui/ui/widgets/mouse
+//= require jquery-ui/ui/widgets/sortable
 //= require masonry.pkgd
 //= require turbolinks
 //= require bootstrap
