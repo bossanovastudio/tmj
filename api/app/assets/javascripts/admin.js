@@ -20,6 +20,7 @@
 
 $(document).on('turbolinks:load', function() {
     resizeAdminContent();
+    updateStatusToggle();
 
     var overlay = $('.overlay'),
         filterList = $('.btn-filter .item ul'),
@@ -102,11 +103,7 @@ $(document).on('turbolinks:load', function() {
     });
 
     $(".checkbox input[type='checkbox']").change(function() {
-        if (this.checked) {
-            $(".slider").addClass('checked');
-        } else {
-            $(".slider").removeClass('checked');
-        }
+        updateStatusToggle();
     });
 
     $("#highlights .bottom-content").sortable({
@@ -131,6 +128,14 @@ function initMasonry() {
   } else {
       $('.cards').masonry('reloadItems');
       $('.cards').masonry();
+  }
+}
+
+function updateStatusToggle() {
+  if ($(".checkbox input[type='checkbox']").prop("checked") == true) {
+      $(".slider").addClass('checked');
+  } else {
+      $(".slider").removeClass('checked');
   }
 }
 
