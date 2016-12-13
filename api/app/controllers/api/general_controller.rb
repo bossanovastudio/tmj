@@ -1,4 +1,4 @@
-class Api::GeneralController < ActionController::API
+class Api::GeneralController < ApplicationController
   def all
     pagination = pagination_params
 
