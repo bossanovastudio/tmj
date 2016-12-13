@@ -13,4 +13,4 @@ if highlight.mobile_image
 end
 
 json.posted_at  highlight.posted_at
-json.index      highlight.index
+json.index      0

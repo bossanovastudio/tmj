@@ -21,12 +21,13 @@ class Highlight < ApplicationRecord
   belongs_to :mobile_image, class_name: "Image"
 
   scope :published, -> { where(published: true) }
+  scope :ordered_by_index, -> { order(:index) }
   before_validation :ensure_index
 
   def self.move_to_index(id, new_index)
     to_move = Highlight.find(id)
     Highlight.transaction do
-      Highlight.where('index >= ?', new_index).each do |h|
+      Highlight.where('index >= ?', new_index).order(:index).each do |h|
         h.index += 1
         h.save!
       end

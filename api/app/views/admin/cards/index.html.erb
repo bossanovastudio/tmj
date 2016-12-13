@@ -4,35 +4,35 @@
     <div class="overlay"></div>
 
     <div class="action-bar">
-      <div class="btn-filter">
-        <div class="status item">
-          <%- status = { :"" => "Todos", pending: "Pendentes", rejected: "Negados", accepted: "Aprovados" } %>
-          <div class="main-select st-sel"><%= status[params.fetch(:status, "").to_sym] %></div>
-          <ul class="status-options filter-options">
-            <% status.each do |key, value| %>
-            <%= link_to admin_cards_path + query_string(:status, key) do %>
-            <li class="<%= ((params[:status] == key.to_s) && "active") || "" %>" value='<%= key %>'>
-              <%= value %>
-            </li>
-            <% end %>
-            <% end %>
-          </ul>
-        </div>
+      <div>
+        <div class="btn-filter">
+          <div class="status item">
+            <%- status = { :"" => "Todos", pending: "Pendentes", rejected: "Negados", accepted: "Aprovados" } %>
+            <div class="main-select st-sel"><%= status[params.fetch(:status, "").to_sym] %></div>
+            <ul class="status-options filter-options">
+              <% status.each do |key, value| %>
+              <%= link_to admin_cards_path + query_string(:status, key) do %>
+              <li class="<%= ((params[:status] == key.to_s) && "active") || "" %>" value='<%= key %>'>
+                <%= value %>
+              </li>
+              <% end %>
+              <% end %>
+            </ul>
+          </div>
 
-        <div class="social item">
-          <%- social = { :"" => "Todos", facebook: "Facebook", twitter: "Twitter", youtube: "Youtube", instagram: "Instagram", pinterest: "Pinterest", tumblr: "Tumblr" }%>
-          <div class="main-select so-sel"><%= social[params.fetch(:origin, "").to_sym] %></div>
-          <ul class="social-options filter-options">
-            <% social.each do |key, value| %>
-            <%= link_to admin_cards_path + query_string(:origin, key) do %>
-            <li class="<%= ((params[:origin] == key.to_s) && "active") || "" %>" value='<%= key %>'>
-              <%= value %>
-            </li>
-            <% end %>
-            <% end %>
-          </ul>
-        </div>
-
+          <div class="social item">
+            <%- social = { :"" => "Todos", facebook: "Facebook", twitter: "Twitter", youtube: "Youtube", instagram: "Instagram", pinterest: "Pinterest", tumblr: "Tumblr" }%>
+            <div class="main-select so-sel"><%= social[params.fetch(:origin, "").to_sym] %></div>
+            <ul class="social-options filter-options">
+              <% social.each do |key, value| %>
+              <%= link_to admin_cards_path + query_string(:origin, key) do %>
+              <li class="<%= ((params[:origin] == key.to_s) && "active") || "" %>" value='<%= key %>'>
+                <%= value %>
+              </li>
+              <% end %>
+              <% end %>
+            </ul>
+          </div>
         <div class="editors item">
           <%- editors = { :"" => "Todos"}.merge(Hash[User.editors.pluck(:id, :username).to_h.map{|(k,v)| [k.to_s.to_sym,v]}]) %>
           <div class="main-select so-sel"><%= editors[params.fetch("providers.user_id", "").to_sym] %></div>
@@ -46,13 +46,6 @@
             <% end %>
           </ul>
         </div>
-        <form>
-          <input type="hidden" name="status_filter" value="<%= @status %>" />
-          <input type="hidden" name="origin_filter" value="<%= @origin %>" />
-          <input type="hidden" name="page" value="<%= @page %>" />
-          <input type="hidden" name="quantity" value="<%= @quantity %>" />
-          <!-- <input class="search" type="search" name="search" placeholder="Buscar"> -->
-        </form>
       </div>
 
       <div class="btn-status">

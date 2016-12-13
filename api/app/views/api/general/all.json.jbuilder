@@ -1,6 +1,6 @@
 if @highlight
   json.highlight do
-    json.partial! "api/highlights/highlight", highlight: @highlight
+    json.partial! "admin/highlights/highlight", highlight: @highlight
   end
 end
 
