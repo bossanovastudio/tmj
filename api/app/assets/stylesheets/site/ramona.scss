@@ -194,6 +194,53 @@ body.ramona {
                 }
             }
         }
+        .recommendation{
+            position: absolute;
+            right: 20px;
+            top: 0px;
+            text-align: center;
+            .label{
+                font-family: KomikaTitle;
+                font-size: 19px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                letter-spacing: 0.6px;
+                color: #ffffff;
+                margin-bottom: 12px;
+            }
+            ul{
+                width: 65px;
+                padding: 0px;
+                margin: 0 auto;
+                li{
+                    list-style: none;
+                    width: 150px;
+                    display: inline-block;
+                    margin-bottom: 12px;
+                    img{
+                        float: left;
+                        margin-right: 10px;
+                    }
+                    .number{
+                        float: left;
+                        font-family: KomikaTitle;
+                        font-size: 20px;
+                        font-weight: normal;
+                        font-style: normal;
+                        font-stretch: normal;
+                        letter-spacing: 0.2px;
+                        color: #000000;
+                    }
+                    &.denise{
+                        display: none;
+                    }
+                    &.geek{
+                        display: none;
+                    }
+                }
+            }
+        }
     }
     @media only screen and (max-width: 780px) {
         .vertical-container{
@@ -243,6 +290,7 @@ body.ramona {
                 }
             }
         }
+
     }
     @media only screen and (max-device-width: 550px) {
         background-image: asset-url('site/bg_ramona_mobile.jpg');
@@ -296,7 +344,7 @@ body.ramona {
                     text-align: center;
                     color: #000000;
                     padding: 0px 20px;
-                    margin: 10px 0px 20px 0px;
+                    margin: 10px 0px 10px 0px;
                 }
             }
             .social {
@@ -358,6 +406,11 @@ body.ramona {
                         }
                     }
                 }
+            }
+            .recommendation{
+                position: relative;
+                right: 0;
+                margin-top: 25px;
             }
             * {
                 text-align: center;
