@@ -28,9 +28,15 @@ class Admin::HighlightsController < ApplicationController
     @highlight.build_mobile_image(file: params[:highlight][:mobile_img])
 
     if @highlight.save
-      redirect_to action: :index
+      respond_to do |format|
+        format.html { redirect_to action: :index }
+        format.json { render json: { id: @highlight.id }}
+      end
     else
-      render :new
+      respond_to do |format|
+        format.html { render :new }
+        format.json { render json: @highlight.errors }
+      end
     end
   end
 

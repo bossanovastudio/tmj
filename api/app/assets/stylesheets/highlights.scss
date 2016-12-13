@@ -29,6 +29,16 @@ section#highlights, section#highlights-new {
         }
       }
     }
+    .preview-icon {
+      &:hover {
+        #bg {
+          fill: #4a4a4a;
+        }
+        .stroke {
+          stroke: #ffffff;
+        }
+      }
+    }
     .save-icon {
       &:hover {
         #bg {
