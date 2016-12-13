@@ -1,14 +1,14 @@
 
 <section id="cards" style="margin-top: 100px;">
-    <div class="content">
-        <%= link_to "New",  new_admin_remix_background_color_path %>
-        <ul>
-            <% @backgrounds.each do |bg| %>
-            <li><%= bg.color %> (
-                <%= link_to "Edit",  edit_admin_remix_background_color_path(bg) %> |
-                <%= link_to "Delete", admin_remix_background_color_path(bg), method: :delete, remote: true %>)
-            </li>
-            <% end %>
-        </ul>
-    </div>
+  <div class="content">
+    <%= link_to "New",  new_admin_remix_background_color_path %>
+    <ul>
+      <% @backgrounds.each do |bg| %>
+      <li><%= bg.color %> (
+        <%= link_to "Edit",  edit_admin_remix_background_color_path(bg) %> |
+        <%= link_to "Delete", admin_remix_background_color_path(bg), method: :delete, remote: true %>)
+      </li>
+      <% end %>
+    </ul>
+  </div>
 </section>

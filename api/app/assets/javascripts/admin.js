@@ -12,13 +12,21 @@
 //
 //= require jquery
 //= require jquery-ujs
+//= require jquery-ui/ui/version
+//= require jquery-ui/ui/plugin
+//= require jquery-ui/ui/data
+//= require jquery-ui/ui/scroll-parent
+//= require jquery-ui/ui/widget
+//= require jquery-ui/ui/widgets/mouse
+//= require jquery-ui/ui/widgets/sortable
 //= require masonry.pkgd
 //= require turbolinks
 //= require bootstrap
-//= require_tree .
+//= require_self
 
 $(document).on('turbolinks:load', function() {
     resizeAdminContent();
+    updateStatusToggle();
 
     var overlay = $('.overlay'),
         filterList = $('.btn-filter .item ul'),
@@ -100,6 +108,17 @@ $(document).on('turbolinks:load', function() {
         $(this).find('.img').css('height', 'auto');
     });
 
+    $(".checkbox input[type='checkbox']").change(function() {
+        updateStatusToggle();
+    });
+
+    $("#highlights .bottom-content").sortable({
+      stop: function(event, ui) {
+        var elem = $(ui.item);
+        $.post("/admin/highlights/" + elem.find('[data-highlight-id]').attr('data-highlight-id') + "/move", { to: elem.index() + 1 });
+      }
+    });
+
     setTimeout(function() { initMasonry(); }, 1000);
 });
 
@@ -115,6 +134,14 @@ function initMasonry() {
   } else {
       $('.cards').masonry('reloadItems');
       $('.cards').masonry();
+  }
+}
+
+function updateStatusToggle() {
+  if ($(".checkbox input[type='checkbox']").prop("checked") == true) {
+      $(".slider").addClass('checked');
+  } else {
+      $(".slider").removeClass('checked');
   }
 }
 

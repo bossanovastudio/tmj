@@ -5,6 +5,8 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
 
     $scope.form = {};
 
+    $scope.form.code = $location.search().code;
+
     $scope.passwords = [{
         id: 0,
         value: 'mon',
@@ -161,6 +163,29 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             }, function(response) {
                 storage.deleteKey('user');
                 $scope.msg_register = response.error;
+            });
+    }
+
+    $scope.msg_recover = 'Cadastrar nova senha.';
+
+    $scope.recoverPass = function() {
+        $scope.form.password = $scope.passwordChoice.map(function(p) {
+            return p.value;
+        }).join('');
+        if ($scope.form.password.length != 12) {
+            $scope.msg_recover = 'Senha inválida';
+            return false;
+        }
+        $scope.msg_recover = 'Aguarde.';
+        $http.post("/user/password.json", {
+                user: $scope.form
+            }, {
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(function(response) {
+                $scope.msg_recover = 'Senha resetada com sucesso.';
+            }, function(response) {
+                $scope.msg_recover = response.error;
             });
     }
 

@@ -1,3 +1,3 @@
 json.highlights @highlights do |highlight|
-  json.partial! "highlights/highlight", highlight: highlight
+  json.partial! "api/highlights/highlight", highlight: highlight
 end

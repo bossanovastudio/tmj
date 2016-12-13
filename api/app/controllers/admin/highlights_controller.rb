@@ -8,7 +8,7 @@ class Admin::HighlightsController < ApplicationController
   def index
     pagination = pagination_params
 
-    @highlights = Highlight.page(pagination[:page]).per(pagination[:quantity])
+    @highlights = Highlight.ordered_by_index.page(pagination[:page]).per(pagination[:quantity])
   end
 
   def new
@@ -28,9 +28,15 @@ class Admin::HighlightsController < ApplicationController
     @highlight.build_mobile_image(file: params[:highlight][:mobile_img])
 
     if @highlight.save
-      redirect_to action: :index
+      respond_to do |format|
+        format.html { redirect_to action: :index }
+        format.json { render json: { id: @highlight.id }}
+      end
     else
-      render :new
+      respond_to do |format|
+        format.html { render :new }
+        format.json { render json: @highlight.errors }
+      end
     end
   end
 

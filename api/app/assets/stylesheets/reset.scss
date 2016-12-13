@@ -304,6 +304,10 @@ html [type="button"], /* 1 */
   -webkit-appearance: button; /* 2 */
 }
 
+a {
+  -webkit-appearance: none !important;
+}
+
 /**
  * Remove the inner border and padding in Firefox.
  */
