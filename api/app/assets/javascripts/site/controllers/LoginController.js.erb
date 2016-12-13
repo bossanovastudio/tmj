@@ -177,7 +177,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             return false;
         }
         $scope.msg_recover = 'Aguarde.';
-        $http.post("/user.json", {
+        $http.post("/user/password.json", {
                 user: $scope.form
             }, {
                 headers: { 'Content-Type': 'application/json' }
