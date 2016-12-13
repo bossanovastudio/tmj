@@ -12,10 +12,11 @@
 //
 //= require jquery
 //= require jquery-ujs
+//= require jquery-ui
 //= require masonry.pkgd
 //= require turbolinks
 //= require bootstrap
-//= require_tree .
+//= require_self
 
 $(document).on('turbolinks:load', function() {
     resizeAdminContent();
@@ -99,6 +100,16 @@ $(document).on('turbolinks:load', function() {
         $(this).attr('class', $(this).attr('data-class'));
         $(this).find('.img').css('height', 'auto');
     });
+
+    $(".checkbox input[type='checkbox']").change(function() {
+        if (this.checked) {
+            $(".slider").addClass('checked');
+        } else {
+            $(".slider").removeClass('checked');
+        }
+    });
+
+    $("#highlights .bottom-content").sortable();
 
     setTimeout(function() { initMasonry(); }, 1000);
 });
