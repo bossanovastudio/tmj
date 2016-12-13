@@ -25,7 +25,7 @@ if card.user
   json.user do
     json.id       card.user.id
     json.username card.user.username
-    json.name     card.user.name
+    json.name     card.user.username
     json.role     card.user.role
     json.avatar   card.user.image.url
     json.mask     card.user.mask.url

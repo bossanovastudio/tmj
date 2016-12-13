@@ -28,7 +28,7 @@ body.ramona {
             order: 2;
             flex-grow: 7;
         }
-        .box-avatar {
+        .box-avatar-user{
             min-width: 230px;
             order: 1;
             flex-grow: 1;
@@ -58,40 +58,35 @@ body.ramona {
             margin: 0;
         }
         .followers {
-            display: none;
+            display: inline-block;
             padding: 0 30px;
-            border: solid 1px #ffffff;
+            margin-top: 18px;
             vertical-align: top;
             order: 3;
             align-self: flex-start;
             p.number {
-                font-family: KomikaTitle;
-                font-size: 37px;
-                font-weight: normal;
-                font-style: normal;
-                font-stretch: normal;
-                letter-spacing: 1.2px;
-                text-align: center;
-                color: #ffffff;
-                margin-top: 5px;
-            }
-            p.description {
                 font-family: Lato;
-                font-size: 13px;
+                font-size: 17px;
                 font-weight: normal;
                 font-style: normal;
                 font-stretch: normal;
-                letter-spacing: 0.4px;
-                text-align: center;
+                letter-spacing: 0.6px;
                 color: #ffffff;
-                margin-bottom: 15px;
+                float: right;
+                margin-left: 4px;
+            }            
+            img.icon{
+                display: block;
+                width: 31px;
+                height: 29px;
+                float: left;
             }
         }
         .profile {
             display: flex;
             .box-profile {
                 width: auto;
-                margin-right: 40px;
+                margin-right: 25px;
                 .editor {
                     font-family: KomikaTitle;
                     font-size: 29px;
@@ -113,7 +108,7 @@ body.ramona {
             }
             .follow {
                 align-self: flex-start;
-                display: none;
+                display: inline-block;
                 width: auto;
                 height: auto;
                 text-decoration: none;
@@ -130,22 +125,22 @@ body.ramona {
                 width: auto;
                 height: auto;
                 overflow: hidden;
-                -webkit-box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
-                -moz-box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
-                box-shadow: 5px 5px 5x 0px rgba(0, 0, 0, 1);
+                -webkit-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+                -moz-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+                box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
                 transition-duration: 0.2s;
                 position: relative;
                 color: #000;
                 text-align: center;
-                margin: 0px;
-                padding: 9px 20px;
+                margin: 12px 0 0 0;
+                padding: 3px 20px;
                 background-color: #fff;
                 &:hover {
                     -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
                     -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
-                    box-shadow: 0px 0px 0x 0px rgba(0, 0, 0, 1);
+                    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
                     transition-duration: 0.2s;
-                    transform: translate(3px, 4px)
+                    transform: translate(2px, 2px)
                 }
                 &:before {
                     content: "";
@@ -216,7 +211,7 @@ body.ramona {
             .social {
                 float: none;
             }
-            .box-avatar {
+            .box-avatar-user {
                 position: relative;
                 width: auto;
                 display: inline-block;
@@ -231,13 +226,19 @@ body.ramona {
             }
             .followers {
                 margin: 0 auto;
+                position: absolute;
+                top: 66px;
+                right: 15px;
+                width: 132px;
             }
             .profile {
                 display: block;
+                position: relative;
                 .box-profile {
                     margin-right: 0;
                 }
                 .follow {
+                    display: table;
                     margin: 10px auto;
                 }
             }
@@ -260,7 +261,7 @@ body.ramona {
                 margin: 0 auto;
                 position: relative;
             }
-            .box-avatar {
+            .box-avatar-user {
                 .avatar,
                 .avatar_hover {
                     width: 106px;
@@ -281,7 +282,7 @@ body.ramona {
             }
             .profile {
                 .follow {
-                    padding: 4px 17px;
+                    padding: 7px 20px;
                 }
             }
             .about {
@@ -356,32 +357,6 @@ body.ramona {
                             transition: 0.1s;
                         }
                     }
-                }
-            }
-            .followers {
-                margin: 0 auto;
-                width: auto;
-                margin-top: 20px;
-                p.number {
-                    font-family: KomikaTitle;
-                    font-size: 23px;
-                    font-weight: normal;
-                    font-style: normal;
-                    font-stretch: normal;
-                    letter-spacing: 0.8px;
-                    text-align: center;
-                    color: #ffffff;
-                }
-                p.description {
-                    font-family: Lato;
-                    font-size: 11px;
-                    font-weight: bold;
-                    font-style: normal;
-                    font-stretch: normal;
-                    letter-spacing: 0.4px;
-                    text-align: center;
-                    color: #ffffff;
-                    margin-bottom: 10px;
                 }
             }
             * {
