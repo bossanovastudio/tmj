@@ -32,19 +32,19 @@
 
 class User < ActiveRecord::Base
   acts_as_token_authenticatable
-  devise :database_authenticatable, :registerable, :rememberable, :trackable, :omniauthable
-  
+  devise :database_authenticatable, :registerable, :rememberable, :trackable, :omniauthable, :recoverable
+
   enum role: { user: 1, editor: 2, moderator: 3, admin: 4 }
   scope :editors, -> { where(role: :editor) }
-  
+
   # Uploader
   mount_uploader :image, AvatarUploader
   mount_uploader :mask, MaskUploader
-  
+
   has_many :providers
   has_many :cards, through: :providers
   recommends :cards
-  
+
   def email_required?
     false
   end
