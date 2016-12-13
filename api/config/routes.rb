@@ -59,5 +59,6 @@ Rails.application.routes.draw do
     root to: 'cards#index'
   end
 
-  root :to => proc { |env| [ 200, {}, ['.'] ] }
+  root to: 'welcome#index'
+  get "*path" => 'welcome#index'
 end

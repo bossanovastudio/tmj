@@ -43,9 +43,9 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         var overlay = angular.element(document.querySelector('.overlay'));
         overlay.addClass('open');
         var desktop = angular.element(document.querySelector('.desktop'));
-        desktop.attr('src', '/img/fechar-desktop.svg');
+        desktop.attr('src', '<%= asset_url('site/fechar-desktop.svg')%>');
         var mobile = angular.element(document.querySelector('.mobile'));
-        mobile.attr('src', '/img/fechar-mobile.svg');
+        mobile.attr('src', '<%= asset_url('site/fechar-mobile.svg')%>');
         var sidebar = angular.element(document.querySelector('.sidebar'));
         sidebar.addClass('open');
         var html = angular.element(document.querySelector('html'));
@@ -64,9 +64,9 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         var overlay = angular.element(document.querySelector('.overlay'));
         overlay.removeClass('open');
         var desktop = angular.element(document.querySelector('.desktop'));
-        desktop.attr('src', '/img/menu-desktop.svg');
+        desktop.attr('src', '<%= asset_url('site/menu-desktop.svg')%>');
         var mobile = angular.element(document.querySelector('.mobile'));
-        mobile.attr('src', '/img/menu-mobile.svg');
+        mobile.attr('src', '<%= asset_url('site/menu-mobile.svg')%>');
         var sidebar = angular.element(document.querySelector('.sidebar'));
         sidebar.removeClass('open');
         var html = angular.element(document.querySelector('html'));
@@ -90,7 +90,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                     url: API_URL + 'cards/' + id + '/like'
                 })
                 .then(function(data) {
-                    heart.attr('src', '/img/liked.png');
+                    heart.attr('src', '<%= asset_url('site/liked.svg')%>');
                     count++;
                     heart.parent().find('.counter').html('&nbsp;' + count);
                     heart.parent().addClass('liked');

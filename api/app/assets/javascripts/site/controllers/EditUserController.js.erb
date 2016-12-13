@@ -29,74 +29,74 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         id: 0,
         value: 'mon',
         name: 'monica',
-        img: '/img/monica.png'
+        img: '<%= asset_url('site/monica.png') %>'
     },
     {
         id: 1,
         value: 'ceb',
         name: 'cebola',
-        img: '/img/cebola.png'
+        img: '<%= asset_url('site/cebola.png') %>'
     },
     {
         id: 2,
         value: 'cas',
         name: 'cascao',
-        img: '/img/cascao.png'
+        img: '<%= asset_url('site/cascao.png') %>'
     },
     {
         id: 3,
         value: 'mag',
         name: 'magali',
-        img: '/img/magali.png'
+        img: '<%= asset_url('site/magali.png') %>'
     },
     {
         id: 4,
         value: 'mar',
         name: 'marina',
-        img: '/img/marina.png'
+        img: '<%= asset_url('site/marina.png') %>'
     },
     {
         id: 5,
         value: 'den',
         name: 'denise',
-        img: '/img/denisejovem.png'
+        img: '<%= asset_url('site/denisejovem.png') %>'
     },
     {
         id: 6,
         value: 'xav',
         name: 'xaveco',
-        img: '/img/xaveco.png'
+        img: '<%= asset_url('site/xaveco.png') %>'
     },
     {
         id: 7,
         value: 'car',
         name: 'carmen',
-        img: '/img/carmen.png'
+        img: '<%= asset_url('site/carmen.png') %>'
     },
     {
         id: 8,
         value: 'doc',
         name: 'docontra',
-        img: '/img/docontra.png'
+        img: '<%= asset_url('site/docontra.png') %>'
     },
     {
         id: 9,
         value: 'nim',
         name: 'nimbus',
-        img: '/img/nimbus.png'
+        img: '<%= asset_url('site/nimbus.png') %>'
     }];
 
     $scope.passwordChoice = [{
-        img: 'img/pass-silhuete.svg' 
+        img: '<%= asset_url('site/pass-silhuete.svg') %>'
     },
     {
-        img: 'img/pass-silhuete.svg' 
+        img: '<%= asset_url('site/pass-silhuete.svg') %>'
     },
     {
-        img: 'img/pass-silhuete.svg' 
+        img: '<%= asset_url('site/pass-silhuete.svg') %>'
     },
     {
-        img: 'img/pass-silhuete.svg'    
+        img: '<%= asset_url('site/pass-silhuete.svg') %>'
     }];
     $scope.numClick = 0;
 
@@ -112,7 +112,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             $('.overlay-pass').css({"display": "none"});
         }
     };
-    
+
     $scope.addToPasswordChoice = function(pass) {
         $scope.numClick = $scope.numClick + 1;
         $scope.passwordChoice.push($scope.passwords[pass.id]);
@@ -128,7 +128,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             $('.overlay-pass').css({"display": "none"});
         }
     }
-    
+
     $('.cmn-toggle').change(function() {
         if (this.checked) {
             $(this).parent('.switch').find('.img-social').css('opacity', '1');
@@ -136,7 +136,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             $(this).parent('.switch').find('.img-social').css('opacity', '0.5');
         }
     });
-    
+
 
 });
 

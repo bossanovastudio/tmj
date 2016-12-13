@@ -6,11 +6,11 @@
     <meta name="keywords" content="TMJ,turma,monica,jovem,cascao,cebolinha,magali,filme">
     <meta name="author" content="Turma da Mônica Jovem o Filme">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/img/manifest.json">
-    <link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#68a6ef">
+    <link rel="apple-touch-icon" sizes="180x180" href="<%=asset_url('site/apple-touch-icon.png')%>">
+    <link rel="icon" type="image/png" href="<%=asset_url('site/favicon-32x32.png')%>" sizes="32x32">
+    <link rel="icon" type="image/png" href="<%=asset_url('site/favicon-16x16.png')%>" sizes="16x16">
+    <link rel="manifest" href="<%=asset_url('site/manifest.json')%>">
+    <link rel="mask-icon" href="<%=asset_url('site/safari-pinned-tab.svg')%>" color="#68a6ef">
     <meta name="theme-color" content="#68a6ef">
     <meta charset="UTF-8">
     <title>Turma da Mônica Jovem o Filme</title>
@@ -37,19 +37,14 @@
     <meta name="twitter:image:src" content="http://tmjofilme.com.br/img/TMJ-logo.jpg" />
     <!-- CSS -->
     <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/css/main.css" type="text/css">
-    <link rel="stylesheet" href="/css/ramona.css" type="text/css">
-    <link rel="stylesheet" href="/css/user-editor.css" type="text/css">
+
+    <%= stylesheet_link_tag 'site' %>
+
 </head>
 
 <body ng-app="tmj" ng-controller="MainController" ng-keypress="closeLightboxKey($event.keyCode)" ng-keydown="closeLightboxKey($event.keyCode)" class="{{pageName}}">
     <div class="dark-overlay"></div>
-    <!-- <div id="menu">
-        <img src="/img/menu-desktop.svg" class="desktop" ng-click="toggle()" />
-        <img src="/img/menu-mobile.svg" class="mobile" ng-click="toggle()" />
-    </div> -->
-
-    <ng-include src="'/pages/_popup.html'"></ng-include>
+    <ng-include src="'<%= asset_url('_popup.html')%>'"></ng-include>
 
     <div id="menu" class="menu-container" ng-click="toggle()">
         <div class="content-icon-menu">
@@ -74,10 +69,8 @@
     </div>
 
     <div class="sidebar">
-        <!-- <img src="/img/fechar-desktop.png" class="menu desktop" ng-click="closeMenu()" />
-        <img src="/img/fechar.png" class="menu mobile" ng-click="closeMenu()" /> -->
         <a ng-href="login" class="mobile login ng-hide">
-            <img src="/img/botao-entrar.png" />
+            <img src="<%=asset_url('site/botao-entrar.png')%>" />
         </a>
         <ul>
             <li class="red" ng-click="toggle()"><a ng-href="/" target="_self">HOME</a></li>
@@ -121,18 +114,6 @@
                     </g>
                 </svg>
             </a>
-            <!-- <a href="#" class="social-go">
-                <svg width="38px" height="37px" viewBox="0 0 38 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <g id="Styleguide" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                        <polygon id="Fill-2" fill="" points="0.411111111 33.1030667 32.4777778 33.1030667 32.4777778 1.22553699 0.411111111 1.22553699"></polygon>
-                        <g id="Group-7" transform="translate(0.000000, 0.617427)">
-                            <polygon id="Stroke-3" stroke="" fill="" points="0.411111111 32.4856393 32.4777778 32.4856393 32.4777778 0.608926941 0.411111111 0.608926941"></polygon>
-                            <path class="social-go-icon" d="M12.9741733,18.5902534 L16.5549511,18.5902534 C15.9267733,20.3565502 14.2239511,21.6226279 12.2308844,21.6087329 C9.81355111,21.5907511 7.81390667,19.6675228 7.72017333,17.2661438 C7.61904,14.6914863 9.69679556,12.5647374 12.2654178,12.5647374 C13.4395511,12.5647374 14.5109067,13.0093767 15.3191511,13.737637 C15.5107289,13.9109155 15.8017956,13.9117329 15.9900844,13.7360023 L17.3048178,12.5050708 C17.5111956,12.3129932 17.5111956,11.9876872 17.3064622,11.7947922 C16.02544,10.5883813 14.3061733,9.83560046 12.4109511,9.79963699 C8.36890667,9.72035388 4.96161778,13.0150982 4.93366222,17.034016 C4.90488444,21.0839932 8.19870667,24.375468 12.2654178,24.375468 C16.1767289,24.375468 19.3710622,21.3308333 19.5856622,17.496637 C19.5905956,17.4484132 19.5947067,15.8235183 19.5947067,15.8235183 L12.9741733,15.8235183 C12.70284,15.8235183 12.4824844,16.0425685 12.4824844,16.3122945 L12.4824844,18.1014772 C12.4824844,18.3712032 12.70284,18.5902534 12.9741733,18.5902534" id="Fill-5" fill="#231F1F"></path>
-                            <path class="social-go-icon" d="M25.6618022,15.986253 L25.6618022,14.2371205 C25.6618022,14.0009059 25.4694022,13.8096457 25.2309578,13.8096457 L23.7509578,13.8096457 C23.5125133,13.8096457 23.3201133,14.0009059 23.3201133,14.2371205 L23.3201133,15.986253 L21.56138,15.986253 C21.3229356,15.986253 21.1305356,16.1775132 21.1305356,16.4145452 L21.1305356,17.8857781 C21.1305356,18.1219927 21.3229356,18.3140703 21.56138,18.3140703 L23.3201133,18.3140703 L23.3201133,20.0623854 C23.3201133,20.2994174 23.5125133,20.4906776 23.7509578,20.4906776 L25.2309578,20.4906776 C25.4694022,20.4906776 25.6618022,20.2994174 25.6618022,20.0623854 L25.6618022,18.3140703 L27.4213578,18.3140703 C27.65898,18.3140703 27.85138,18.1219927 27.85138,17.8857781 L27.85138,16.4145452 C27.85138,16.1775132 27.65898,15.986253 27.4213578,15.986253 L25.6618022,15.986253 Z" id="Fill-6" fill="#231F1F"></path>
-                        </g>
-                    </g>
-                </svg>
-            </a> -->
         </footer>
     </div>
     <div class="overlay" ng-click="closeMenu(); toggle()"></div>
@@ -147,70 +128,42 @@
                     <span></span>
                     <span></span>
                   </div>
-                  <img src="/img/balao_simples3.svg" class="link" alt="">
-                  <img src="/img/poof_simples.svg" class="active" alt="">
+                  <img src="<%=asset_url('site/balao_simples3.svg')%>" class="link" alt="">
+                  <img src="<%=asset_url('site/poof_simples.svg')%>" class="active" alt="">
                 </div>
                 <img ng-if="card.user.role == 'editor'" src="{{card.user.avatar}}" class="userPhoto" />
                 <p class="name">{{card.user.name}}</p>
                 <p class="date">
                   <a target="_blank" ng-href="{{card.source_url}}">
-                    <img src="/img/{{card.origin}}.svg" />
+                    <img src="<%=asset_url('site/{{card.origin}}.svg')%>" />
                     {{card.posted_at | formatDate}}
                   </a></p>
                 <p class="content" ng-bind-html="card.content | trust"></p>
                 <div class="hr"></div>
-                <div ng-include src="'/pages/share.html'"></div>
+                <div ng-include src="'<%= asset_url('share.html')%>'"></div>
                 <div class="clear"></div>
             </div>
         </div>
     </div>
     <header>
-        <p class="container desktop" style="text-align: center"><a ng-href="/" target="_self"><img src="/img/logo.svg" height="84" /></a></p>
+        <p class="container desktop" style="text-align: center"><a ng-href="/" target="_self"><img src="<%=asset_url('site/logo.svg')%>" height="84" /></a></p>
     </header>
     <section ng-view></section>
     <footer class="desktop">
         <a href="https://www.facebook.com/revistaturmadamonicajovem/" target="_blank" class="social-fb">
-            <img src="/img/rede-social-facebook.svg" target="_blank" class="svg"/>
+            <img src="<%=asset_url('site/rede-social-facebook.svg')%>" target="_blank" class="svg"/>
         </a>
         <a href="https://twitter.com/revistadaturma" target="_blank" class="social-tw">
-            <img src="/img/rede-social-twitter.svg" class="svg"/>
+            <img src="<%=asset_url('site/rede-social-twitter.svg')%>" class="svg"/>
         </a>
         <a href="https://www.youtube.com/user/turmadamonicaTV" class="social-yt" target="_blank" >
-            <img src="/img/rede-social-youtube.svg" class="svg"/>
+            <img src="<%=asset_url('site/rede-social-youtube.svg')%>" class="svg"/>
         </a>
-        <!-- <a href="#" class="social-go" target="_blank" >
-            <img src="/img/rede-social-google.svg"class="svg"/>
-        </a> -->
     </footer>
     <!-- libs -->
-    <script src="/js/libs/external/retina.js"></script>
-    <script src="/js/libs/external/jquery.js"></script>
-    <script src="/js/libs/external/easing.js"></script>
-    <script src="/js/libs/external/masonry.js"></script>
-    <script src="/js/libs/external/lazyload.js"></script>
-    <script src="/js/libs/external/svg.js"></script>
-    <script src="/js/libs/external/linkify.js"></script>
-    <script src="/js/libs/external/clipboard.js"></script>
-    <!-- load angular, ngRoute, ngAnimate -->
-    <script src="/js/libs/angular/angular.js"></script>
-    <script src="/js/libs/angular/angular-cookies.js"></script>
-    <script src="/js/libs/angular/angular-route.js"></script>
-    <script src="/js/libs/angular/angular-animate.js"></script>
-    <script src="/js/libs/angular/angular-touch.js"></script>
-    <script src="/js/libs/angular/angular-swipe.js"></script>
-    <script src="/js/libs/angular/angular-resource.js"></script>
-    <script src="/js/libs/external/ngclipboard.js"></script>
 
-    <!-- main controllers -->
-    <script src="/js/app.js"></script>
-    <script src="/js/filters/Filters.js"></script>
-    <script src="/js/controllers/MainController.js"></script>
-    <script src="/js/controllers/HomeController.js"></script>
-    <script src="/js/controllers/LoginController.js"></script>
-    <script src="/js/controllers/CardsController.js"></script>
-    <script src="/js/controllers/RamonaController.js"></script>
-    <script src="/js/controllers/EditUserController.js"></script>
-    <script src="/js/directives/Directives.js"></script>
+    <%= javascript_include_tag 'site' %>
+
 </body>
 
 </html>

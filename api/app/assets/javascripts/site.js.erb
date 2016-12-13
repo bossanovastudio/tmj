@@ -1,4 +1,33 @@
-var API_URL = "@@replace_api_grunt";
+//= require 'external/retina.js'
+//= require 'external/jquery.js'
+//= require 'external/easing.js'
+//= require 'external/masonry.js'
+//= require 'external/lazyload.js'
+//= require 'external/svg.js'
+//= require 'external/linkify.js'
+//= require 'external/clipboard.js'
+
+//= require 'angular/angular.js'
+//= require 'angular/angular-cookies.js'
+//= require 'angular/angular-route.js'
+//= require 'angular/angular-animate.js'
+//= require 'angular/angular-touch.js'
+//= require 'angular/angular-swipe.js'
+//= require 'angular/angular-resource.js'
+//= require 'external/ngclipboard.js'
+
+//= require_self
+
+//= require 'site/filters/Filters.js'
+//= require 'site/controllers/MainController.js'
+//= require 'site/controllers/HomeController.js'
+//= require 'site/controllers/LoginController.js'
+//= require 'site/controllers/CardsController.js'
+//= require 'site/controllers/RamonaController.js'
+//= require 'site/controllers/EditUserController.js'
+//= require 'site/directives/Directives.js'
+
+var API_URL = "/api/";
 var SITE_URL = window.location.protocol + '//' + window.location.host;
 var isMobileDevice = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
@@ -29,31 +58,31 @@ tmj
     .config(function($routeProvider, $locationProvider, $httpProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: '/pages/home.html',
+                templateUrl: '<%=asset_url("home.html")%>',
                 controller: 'HomeController'
             })
             .when('/personagem/ramona', {
-                templateUrl: '/pages/ramona.html',
+                templateUrl: '<%=asset_url("ramona.html")%>',
                 controller: 'RamonaController'
             })
             .when('/detalhe/card/:id', {
-                templateUrl: '/pages/home.html',
+                templateUrl: '<%=asset_url("home.html")%>',
                 controller: 'HomeController'
             })
             .when('/login', {
-                templateUrl: '/pages/login.html',
+                templateUrl: '<%=asset_url("login.html")%>',
                 controller: 'LoginController'
             })
             .when('/cadastro', {
-                templateUrl: '/pages/cadastro.html',
+                templateUrl: '<%=asset_url("cadastro.html")%>',
                 controller: 'LoginController'
             })
             .when('/recuperar-senha', {
-                templateUrl: '/pages/recuperar-senha.html',
+                templateUrl: '<%=asset_url("recuperar-senha.html")%>',
                 controller: 'LoginController'
             })
             .when('/sua-pagina', {
-                templateUrl: '/pages/sua-pagina.html',
+                templateUrl: '<%=asset_url("sua-pagina.html")%>',
                 controller: 'EditUserController'
             });
 

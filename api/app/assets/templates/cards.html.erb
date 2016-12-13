@@ -1,7 +1,7 @@
 <div class="card-container" ng-controller="CardsController">
-    <img ng-show="!isCardsLoaded" class="initial-loading" src="/img/loading.gif" />
+    <img ng-show="!isCardsLoaded" class="initial-loading" src="<%= asset_url('site/loading.gif') %>" />
     <div resize ng-if="ready && pageName == 'homePage'" class="container cards mobile" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()" data-page="1">
-        <div class="card" style="height: 90% !important; background: none !important"><img style="left: 50%; margin-left: -90px; margin-top: -60px; position: absolute; top: 50%;" src="/img/logo.svg" height="84" /></div>
+        <div class="card" style="height: 90% !important; background: none !important"><img style="left: 50%; margin-left: -90px; margin-top: -60px; position: absolute; top: 50%;" src="<%= asset_url('site/logo.svg') %>" height="84" /></div>
         <div ng-repeat="card in cardsFeatured track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}" style="background-image: url('{{isMobile ? card.mobile_url : card.url}}')">
             <div card-class ng-classes="card" class="img"></div>
             <p ng-if="card.kind == 'featured'">{{card.content}}</p>
@@ -41,13 +41,13 @@
                 <p class="name">{{card.user.name}}</p>
                 <p class="date">
                     <a target="_blank" ng-href="{{card.source_url}}">
-                        <img ng-if="card.user.role!='editor' || pageName != 'homePage' || isMobile" class="originalPost" src="/img/{{card.origin}}.svg" />
-                        <img ng-if="card.user.role=='editor' && pageName == 'homePage' && !isMobile" class="originalPost" src="/img/{{card.origin}}-editor.svg" /> {{card.posted_at | formatDate}}
+                        <img ng-if="card.user.role!='editor' || pageName != 'homePage' || isMobile" class="originalPost" src="/assets/site/{{card.origin}}.svg" />
+                        <img ng-if="card.user.role=='editor' && pageName == 'homePage' && !isMobile" class="originalPost" src="/assets/site/{{card.origin}}-editor.svg" /> {{card.posted_at | formatDate}}
                     </a>
                 </p>
                 <p class="text" ng-bind-html="card | cropText | trust"></p>
                 <p class="read-more">Veja mais</p>
-                <div ng-include src="'/pages/share.html'"></div>
+                <div ng-include src="'<%= asset_url('share.html')%>'"></div>
             </div>
             <p ng-if="card.kind == 'featured'">{{card.content}}</p>
         </div>
@@ -57,8 +57,8 @@
             <div ng-if="card.kind!='video'" card-class ng-classes="card" data-original="{{card.image.url}}" class="img">
                 <div ng-if="card.kind == 'initial'" class="ramonaInitial">
                     <p style="font-family: KomikaTitle; font-size: 30px; font-weight: normal; font-style: normal; font-stretch: normal; letter-spacing: 0.8px; text-align: center; color: #000000; position: absolute; top: 50%; margin-top: -90px; width: 100%;">RAMONA</p>
-                    <img src="/img/ramona-badge.svg" width="54" style="position: absolute; left: 50%; top: 50%; margin-left: -19px; margin-top: -165px;">
-                    <img src="/img/ramona_novo.png" width="200" style="position: absolute; left: 50%; top: 50%; margin-left: -78px; width: 160px; border-radius: 100%;" />
+                    <img src="<%= asset_url('site/ramona-badge.svg') %>" width="54" style="position: absolute; left: 50%; top: 50%; margin-left: -19px; margin-top: -165px;">
+                    <img src="<%= asset_url('site/ramona_novo.png') %>" width="200" style="position: absolute; left: 50%; top: 50%; margin-left: -78px; width: 160px; border-radius: 100%;" />
                 </div>
             </div>
             <div ng-if="card.kind=='video'" card-class ng-classes="card" data-original="{{card.video.thumbnail}}" class="img video">
@@ -84,12 +84,12 @@
                 <p class="name">{{card.user.name}}</p>
                 <p class="date">
                     <a target="_blank" ng-href="{{card.source_url}}">
-                        <img class="originalPost" src="/img/{{card.origin}}.svg" /> {{card.posted_at | formatDate}}
+                        <img class="originalPost" src="/assets/site/{{card.origin}}.svg" /> {{card.posted_at | formatDate}}
                     </a>
                 </p>
                 <p class="text">{{card | cropText}}</p>
                 <p class="read-more">Veja mais</p>
-                <div ng-include src="'/pages/share.html'"></div>
+                <div ng-include src="'<%= asset_url('share.html')%>'"></div>
             </div>
         </div>
     </div>
@@ -117,12 +117,12 @@
                 </p>
                 <p class="text">{{card | cropText}}</p>
                 <p class="read-more">Veja mais</p>
-                <div ng-include src="'/pages/share.html'"></div>
+                <div ng-include src="'<%= asset_url('share.html')%>'"></div>
             </div>
             <p ng-if="card.kind == 'featured'">{{card.content}}</p>
         </div>
     </div> -->
-    <img src="/img/seta.svg" class="arrowBottom mobile" />
+    <img src="<%= asset_url('site/seta.svg') %>" class="arrowBottom mobile" />
     <div class="card one-five column"></div>
 </div>
 <div class="cards-loading">

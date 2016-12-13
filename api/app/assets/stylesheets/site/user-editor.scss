@@ -18,7 +18,7 @@
         order: 1;
         flex-grow: 1;
         position: relative;
-        cursor: pointer;    
+        cursor: pointer;
         margin-left: 40%;
         img.avatar {
             border-radius: 100%;
@@ -55,7 +55,7 @@
                 left: 45%;
                 height: 22px;
                 width: 22px;
-                background: url(/img/edit-icon.svg);
+                background: asset-url('site/edit-icon.svg');
                 visibility: none;
             }
         }
@@ -81,7 +81,7 @@
                     position: absolute;
                     top: 0px;
                     left: 0px;
-                    background: no-repeat url(/img/bio-icon.svg);
+                    background: no-repeat asset-url('site/bio-icon.svg');
                 }
             }
             textarea{
@@ -140,7 +140,7 @@
             }
             input.cmn-toggle-round + label:before {
               right: 1px;
-              background: #000000 no-repeat url(/img/bg-toggle.svg);
+              background: #000000 no-repeat asset-url('site/bg-toggle.svg');
               background-size: 83%;
               background-position: 4.5px 7px;
               border-radius: 2px;
@@ -172,7 +172,7 @@
                 position: absolute;
                 top: 0px;
                 left: 0px;
-                background: no-repeat url(/img/apelido-icon.svg);
+                background: no-repeat asset-url('site/apelido-icon.svg');
             }
         }
         .pass {
@@ -186,7 +186,7 @@
                     position: absolute;
                     top: 0px;
                     left: 0px;
-                    background: no-repeat url(/img/senha-icon.svg);
+                    background: no-repeat asset-url('site/senha-icon.svg');
                 }
             }
         }
@@ -199,7 +199,7 @@
                 position: absolute;
                 top: 3px;
                 left: 0px;
-                background: no-repeat url(/img/mail-icon.svg);
+                background: no-repeat asset-url('site/mail-icon.svg');
             }
         }
         input {
@@ -260,7 +260,7 @@
                 margin-right: 5px;
             }
             &.register li{
-                background: url(img/pass-silhuete.png)
+                background: asset-url('site/pass-silhuete.png')
             }
             &.error {
                 li{
@@ -350,7 +350,7 @@
                 height: 25.4px;
                 top: -20px;
                 left: 10px;
-                background: no-repeat url(/img/arrow-login.svg)
+                background: no-repeat asset-url('site/arrow-login.svg')
             }
             &.show {
                 display: block;
@@ -387,7 +387,7 @@
                 position: absolute;
                 top: 10px;
                 left: 17px;
-                background-image: url(/img/facebook-form.svg);
+                background-image: asset-url('site/facebook-form.svg');
             }
         }
         &.btn-submit {
@@ -436,7 +436,7 @@
 }
 
 @media (max-width: 900px) {
-    .four.columns { 
+    .four.columns {
         width: 98%;
         float: none;
         padding: 0 20%;
@@ -453,7 +453,7 @@
     .edit-user header{
         margin-top: 20px;
     }
-    .four.columns { 
+    .four.columns {
         padding: 0;
     }
     .edit-user section{
@@ -481,7 +481,7 @@
             left: 45%;
             height: 22px;
             width: 22px;
-            background: url(/img/edit-icon.svg);
+            background: asset-url('site/edit-icon.svg');
             visibility: none;
         }
     }

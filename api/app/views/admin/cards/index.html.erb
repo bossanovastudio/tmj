@@ -103,7 +103,7 @@
         <div class="selected-overlay"></div>
         <div class="status-bar <%= card.status %> color"></div>
         <% if card.kind == :image %>
-        <div style="background-image:url('<%= card.media.file.url %>'); padding: <%= card_image_size(card) %>% 0;" class="img"></div>
+        <div style="background-image:url('<%= card.media.file.url if card.media %>'); padding: <%= card_image_size(card) if card.media %>% 0;" class="img"></div>
         <% end %>
         <% if card.kind == 'video' %>
         <div class="videoMobile"></div>
