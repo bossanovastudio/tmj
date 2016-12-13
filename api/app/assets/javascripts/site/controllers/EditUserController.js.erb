@@ -1,4 +1,5 @@
-tmj.controller('EditUserController', function($rootScope, $location, $scope, $http, $sce, $compile, $routeParams) {
+
+tmj.controller('EditUserController', function($rootScope, $location, $scope, $http, $sce, $compile, $routeParams, $window) {
 
     if (!storage.get('user')) {
         $location.path('/login');
@@ -148,6 +149,9 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         }
     }
 
+    $scope.back = function(){
+        $window.history.back()
+    }
     //$scope.form.social = {};
 
     $scope.save = function() {
