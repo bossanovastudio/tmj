@@ -33,7 +33,6 @@
               <% end %>
             </ul>
           </div>
-
         <div class="editors item">
           <%- editors = { :"" => "Todos"}.merge(Hash[User.editors.pluck(:id, :username).to_h.map{|(k,v)| [k.to_s.to_sym,v]}]) %>
           <div class="main-select so-sel"><%= editors[params.fetch("providers.user_id", "").to_sym] %></div>
