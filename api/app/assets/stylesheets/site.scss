@@ -705,6 +705,14 @@ div.card {
             font-size: 19px;
         }
     }
+    &.remixlike {
+      background: asset-url('site/faixa_remix.png') #d8d8d8 center top no-repeat;
+      padding-top: 30px;
+    }
+    &.ramonalike {
+      background: asset-url('site/faixa_ramona.png') #d8d8d8 center top no-repeat;
+      padding-top: 30px;
+    }
     &.geeklike {
         background: asset-url('site/faixa_geek.png') #d8d8d8 center top no-repeat;
         padding-top: 30px;
