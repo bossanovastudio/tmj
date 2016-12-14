@@ -14,6 +14,13 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
 
     $rootScope.pageName = 'homePage';
 
+    $rootScope.user = storage.get("user");
+
+    $rootScope.logout = function() {
+        storage.deleteKey('user');
+        $rootScope.user = null;
+    }
+
     // You can still access the clipboard.js event
     $rootScope.onClipboardSuccess = function(e) {
         $(".tooltip-clip.sucess").addClass('show');
