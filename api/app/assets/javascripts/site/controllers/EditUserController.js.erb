@@ -24,7 +24,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             $scope.user.image = response.data.image;
             $scope.user.providers = {};
             response.data.providers.forEach(function(p) {
-                $scope.user.providers[p.name] = true;
+                $scope.user.providers[p.name] = p.uid;
             });
             $('.avatar').attr('src', $scope.user.image);
             $scope.form.bio = $scope.user.bio;
