@@ -16,6 +16,7 @@
 #= require 'jquery-ui-rotatable/jquery.ui.rotatable'
 #= require 'html2canvas'
 #= require 'mustache.js/mustache'
+#= require 'bluebird'
 
 API_URL = '/api/remix'
 DATA_BGS = []
@@ -106,6 +107,9 @@ getCategories = ->
 
 getCategory = (id) ->
   getApiData { entity: 'categories', id: id }
+  .done (data) ->
+    return data.map (item) ->
+      return $.extend item, { category_id: id }
 
 getBackgrounds = (id) ->
   getApiData { entity: 'backgrounds' }
@@ -125,69 +129,86 @@ $('.remix-container').each ->
   $gallery = $remix.find('.remix-gallery')
   $composer = $remix.find('.remix-composer')
   $canvas = $composer.find('.remix-canvas')
+  $loader = $remix.find('.remix-loader')
 
   # ajax categories
-  getCategories().done (data) ->
+  Promise.props {
+    categories: getCategories()
+    backgrounds: getBackgrounds()
+    balloons: getBalloons()
+    stickers: getStickers()
+    text_colors: getTextColors()
+  }
+  .then (result) ->
+    result.pictures = []
+    result.categories.forEach (category) ->
+      result.pictures.push getCategory(category.id)
+
+    return Promise.all result.pictures
+    .then (pictures) ->
+      result.pictures = pictures
+
+      return result
+  .then (result) ->
+    # categories
+    html = ''
     template = '<div class="item" data-id="{{ id }}"><div><img src="{{ &url }}" alt="{{ name }}"></div></div>'
-    templatesub = '<div class="item" data-category-id="{{ category_id }}" data-picture-src="{{ &url }}"><div><img src="{{ &url }}" alt=""></div></div>'
     Mustache.parse template
-    Mustache.parse templatesub
 
-    data.forEach (category) ->
-      # ajax category
-      getCategory(category.id).done (datasub) ->
-        htmlsub = ''
+    result.categories.forEach (category) ->
+      html += Mustache.render template, category
 
-        datasub.forEach (image) ->
-          image.category_id = category.id
-          htmlsub += Mustache.render templatesub, image
+    $composer.find('.toolbox-item.category .categories').append(html)
 
-        $composer.find('.toolbox-item.category .pictures').append(htmlsub)
+    # pictures
+    html = ''
+    template = '<div class="item" data-category-id="{{ category_id }}" data-picture-src="{{ &url }}"><div><img src="{{ &url }}" alt=""></div></div>'
+    Mustache.parse template
 
-      html = Mustache.render template, category
-      $composer.find('.toolbox-item.category .categories').append(html)
+    result.pictures.forEach (category) ->
+      category.forEach (picture) ->
+        html += Mustache.render template, picture
 
-  # ajax bgs
-  getBackgrounds().done (data) ->
-    if data?
-      data = data.filter (bg) ->
+    $composer.find('.toolbox-item.category .pictures').append(html)
+
+    # backgrounds
+    if result.backgrounds?
+      DATA_BGS = result.backgrounds.filter (bg) ->
         return (bg.color != '#FFFFFF' && bg.color != '#FFF')
-    else
-      data = []
 
-    data.push { color: '#FFFFFF' }
+    DATA_BGS.push { color: '#FFFFFF' }
 
-    DATA_BGS = data
-
-  # ajax balloons
-  getBalloons().done (data) ->
+    # balloons
+    html = ''
     template = '<div class="elements-item" data-src="{{ &url }}"><img src="{{ &url }}" alt=""></div>'
     Mustache.parse template
 
-    data.forEach (balloon) ->
-      html = Mustache.render template, balloon
-      $composer.find('.toolbox-item.balloons .elements').append(html)
+    result.balloons.forEach (balloon) ->
+      html += Mustache.render template, balloon
 
-  # ajax stickers
-  getStickers().done (data) ->
+    $composer.find('.toolbox-item.balloons .elements').append(html)
+
+    # stickers
+    html = ''
     template = '<div class="elements-item" data-src="{{ &url }}"><img src="{{ &url }}" alt=""></div>'
     Mustache.parse template
 
-    data.forEach (sticker) ->
-      html = Mustache.render template, sticker
-      $composer.find('.toolbox-item.stickers .elements').append(html)
+    result.stickers.forEach (sticker) ->
+      html += Mustache.render template, sticker
 
-  # ajax text colors
-  getTextColors().done (data) ->
-    if data?
-      data = data.filter (color) ->
+    $composer.find('.toolbox-item.stickers .elements').append(html)
+
+    # text colors
+    if result.text_colors?
+      DATA_TXT_COLORS = result.text_colors.filter (color) ->
         return (color.background != '#000000' && color.background != '#000')
-    else
-      data = []
 
-    data.push { foreground: '#000000', background: '#000000' }
+    DATA_TXT_COLORS.push { foreground: '#000000', background: '#000000' }
 
-    DATA_TXT_COLORS = data
+    # hides loading
+    $loader.fadeOut 400, ->
+      $(this).remove()
+
 
   $remix.on
     'reset': ->
