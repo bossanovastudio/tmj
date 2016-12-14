@@ -63,9 +63,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         $scope.initialCard(array, icon, data.total_cards ? data.total_cards : 0);
                     }
                     data.data.cards.forEach(function(card, i) {
-                        if (!isMobileDevice && data.highlight && data.highlight.index == i) {
-                            data.highlight.id *= 999999;
-                            array.push(data.highlight);
+                        if (!isMobileDevice && data.data.highlight && data.data.highlight.index == i) {
+                            data.data.highlight.id *= 999999;
+                            array.push(data.data.highlight);
                         }
                         array.push(card);
                     });
