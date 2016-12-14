@@ -53,6 +53,7 @@ section#highlights, section#highlights-new {
   }
 
   .highlight-preview {
+    max-width: 1180px;
     margin-bottom: 40px;
 
     &.desktop .highlight {
@@ -66,7 +67,7 @@ section#highlights, section#highlights-new {
 
   .highlight {
     position: relative;
-    height: 210px;
+    height: 240px;
     margin-top: 15px;
     display: table;
     background-position: center;
@@ -80,17 +81,49 @@ section#highlights, section#highlights-new {
     }
 
     &.two {
-      width: 40%
+      width: 32%
     }
     &.three {
-      width: 60%
+      width: 48%
     }
     &.four {
-      width: 80%
+      width: 64%
     }
     &.five {
-      width: 100%
+      width: 80%
     }
+
+    @media (max-width: 1300px) {
+      &.two {
+        width: 36%
+      }
+      &.three {
+        width: 54%
+      }
+      &.four {
+        width: 72%
+      }
+      &.five {
+        width: 90%
+      }
+    }
+
+    @media (max-width: 1100px) {
+      &.two {
+        width: 44%
+      }
+      &.three {
+        width: 68%
+      }
+      &.four {
+        width: 88%
+      }
+      &.five {
+        width: 100%
+      }
+    }
+
+
 
   }
 
@@ -123,7 +156,7 @@ section#highlights, section#highlights-new {
         display: none;
         content: '';
         width: 100%;
-        height: 210px;
+        height: 300px;
         background-color: #68a6ef;
         position: absolute;
         left: 0;
