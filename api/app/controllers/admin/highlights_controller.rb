@@ -48,7 +48,11 @@ class Admin::HighlightsController < ApplicationController
     @highlight.build_desktop_image(file: params[:highlight][:desktop_img]) if params[:highlight][:desktop_img]
     @highlight.build_mobile_image(file: params[:highlight][:mobile_img]) if params[:highlight][:mobile_img]
     if @highlight.save
-      redirect_to action: :index
+      if params[:"input-preview"] == "1"
+        redirect_to action: :show, id: @highlight.id
+      else
+        redirect_to action: :index
+      end
     else
       render :edit
     end
