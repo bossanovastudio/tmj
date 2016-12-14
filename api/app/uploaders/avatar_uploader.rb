@@ -3,14 +3,14 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   storage :fog
   process convert: 'png'
-  
+
   def store_dir
     "avatars/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    ActionController::Base.helpers.image_path "avatar_default.png"
+    ActionController::Base.helpers.image_path "site/profile_default.svg"
   end
 
   def filename
