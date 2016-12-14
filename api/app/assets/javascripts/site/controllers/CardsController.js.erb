@@ -409,10 +409,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             var count = parseInt(elem.find('.counter').text());
             $http({
                     method: 'POST',
-                    url: API_URL + 'cards/' + id + '/like',
-                    data: $.param({
-                        id: id
-                    })
+                    url: '/api/cards/'+id+'/like.json'
                 })
                 .then(function(data) {
                     heart.attr('src', '<%= asset_url('site/liked.svg')%>');

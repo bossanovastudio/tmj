@@ -1,4 +1,4 @@
-tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $compile, $routeParams) {
+tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $compile, $routeParams, $location) {
 
     if (!storage.get('user')) {
         $location.path('/login');
