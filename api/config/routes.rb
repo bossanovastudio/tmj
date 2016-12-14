@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :user
+  devise_for :user, :controllers => { registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
   namespace :api do
     get '/ramona/(:page)/(:quantity)', to: 'general#editors', id: :ramona, defaults: { page: 1, quantity: 10 }
