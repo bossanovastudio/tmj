@@ -1,0 +1,21 @@
+<section class="remix-gallery">
+  <div class="gallery-holder">
+    <div class="gallery-item-new"></div>
+    <% 5.times do |i| %>
+    <div class="gallery-item" data-id="<%= i.to_s %>">
+      <%= image_tag "http://placehold.it/220x220/c" + (rand(9).to_s) + "c" + (rand(9).to_s) + "c"  + (rand(9).to_s), { :class => "picture" } %>
+      <div class="actions">
+        <button type="button" class="remove" title="Remover">
+          <%= image_tag "remix/icon-trash", alt: 'Remover' %>
+        </button>
+        <a href="<%= image_url "http://placehold.it/220x220" %>" target="_blank" download class="download" title="Baixar">
+          <%= image_tag "remix/icon-arrow-down", alt: 'Baixar' %>
+        </a>
+        <button type="button" class="share" title="Compartilhar">
+          <%= image_tag "remix/icon-reply", alt: 'Compartilhar' %>
+        </button>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</section>

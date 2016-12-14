@@ -17,49 +17,8 @@
 #= require 'html2canvas'
 #= require 'mustache.js/mustache'
 
-API_DATA_BGS = []
-###
-Remix::BackgroundColor.create(color: '#E36069')
-Remix::BackgroundColor.create(color: '#BF40AB')
-Remix::BackgroundColor.create(color: '#5C5BC4')
-Remix::BackgroundColor.create(color: '#4FC495')
-Remix::BackgroundColor.create(color: '#EBCE41')
-Remix::BackgroundColor.create(color: '#EF8B4F')
-Remix::BackgroundColor.create(color: '#000000')
-Remix::BackgroundColor.create(color: '#FFFFFF')
-###
-# API_DATA_BGS = [
-#   { color:'#E36069' }
-#   { color: '#BF40AB' }
-#   { color: '#5C5BC4' }
-#   { color: '#4FC495' }
-#   { color: '#EBCE41' }
-#   { color: '#EF8B4F' }
-#   { color: '#000000' }
-#   { color: '#FFFFFF' }
-# ]
-API_DATA_TXT_COLORS = []
-###
-Remix::TextColor.create(foreground: '#E36069', background: '#E36069')
-Remix::TextColor.create(foreground: '#BF40AB', background: '#BF40AB')
-Remix::TextColor.create(foreground: '#BF40AB', background: '#BF40AB')
-Remix::TextColor.create(foreground: '#5C5BC4', background: '#5C5BC4')
-Remix::TextColor.create(foreground: '#4FC495', background: '#4FC495')
-Remix::TextColor.create(foreground: '#EBCE41', background: '#EBCE41')
-Remix::TextColor.create(foreground: '#EF8B4F', background: '#EF8B4F')
-Remix::TextColor.create(foreground: '#000000', background: '#000000')
-Remix::TextColor.create(foreground: '#FFFFFF', background: '#FFFFFF')
-###
-# API_DATA_TXT_COLORS = [
-#   { background: '#E36069', foreground: '#E36069' }
-#   { background: '#BF40AB', foreground: '#BF40AB' }
-#   { background: '#5C5BC4', foreground: '#5C5BC4' }
-#   { background: '#4FC495', foreground: '#4FC495' }
-#   { background: '#EBCE41', foreground: '#EBCE41' }
-#   { background: '#EF8B4F', foreground: '#EF8B4F' }
-#   { background: '#000000', foreground: '#000000' }
-#   { background: '#FFFFFF', foreground: '#FFFFFF' }
-# ]
+DATA_BGS = []
+DATA_TXT_COLORS = []
 DATA_CSS_EFFECTS = [
   {
     '-webkit-filter': 'grayscale(1)',
@@ -141,6 +100,7 @@ $('.remix-container').each ->
     template = '<div class="item" data-id="{{ id }}"><div><img src="{{ &url }}" alt="{{ name }}"></div></div>'
     templatesub = '<div class="item" data-category-id="{{ category_id }}" data-picture-src="{{ &url }}"><div><img src="{{ &url }}" alt=""></div></div>'
     Mustache.parse template
+    Mustache.parse templatesub
 
     data.forEach (category) ->
       # ajax category
@@ -166,7 +126,7 @@ $('.remix-container').each ->
 
     data.push { color: '#FFFFFF' }
 
-    API_DATA_BGS = data
+    DATA_BGS = data
 
   # ajax balloons
   getBalloons().done (data) ->
@@ -196,7 +156,7 @@ $('.remix-container').each ->
 
     data.push { foreground: '#000000', background: '#000000' }
 
-    API_DATA_TXT_COLORS = data
+    DATA_TXT_COLORS = data
 
   $remix.on
     'reset': ->
@@ -519,15 +479,15 @@ $('.remix-container').each ->
 
   # toolbox item color
   $composer.find('.toolbox-item-colors').on 'remix:toolbox-click', ->
-    if !API_DATA_BGS.length
+    if !DATA_BGS.length
       alert 'Nenhuma cor disponível'
       return
 
     index = $remix.data('colors-index') || 0
-    if index >= API_DATA_BGS.length
+    if index >= DATA_BGS.length
       index = 0
 
-    $canvas.css('background-color', API_DATA_BGS[index].color)
+    $canvas.css('background-color', DATA_BGS[index].color)
     $remix.data('colors-index', index+1)
 
   # toolbox item effects
@@ -556,16 +516,16 @@ $('.remix-container').each ->
 
   # toolbox item texts colors
   $composer.find('.toolbox-item-texts .color-palette button').click ->
-    if !API_DATA_TXT_COLORS.length
+    if !DATA_TXT_COLORS.length
       alert 'Nenhuma cor disponível'
       return
 
     $text = $canvas.find('.text.focus')
     index = $remix.data('text-colors-index') || 0
-    if index >= API_DATA_TXT_COLORS.length
+    if index >= DATA_TXT_COLORS.length
       index = 0
     $remix.data('text-colors-index', index+1)
-    color = API_DATA_TXT_COLORS[index].background
+    color = DATA_TXT_COLORS[index].background
 
     $composer.find('.toolbox-item-texts .styles-item').each ->
       stylesObj = {
@@ -581,7 +541,7 @@ $('.remix-container').each ->
           stylesObj['box-shadow'] = '0 0 2px #000'
           stylesObj.color = '#000'
       else
-        stylesObj.color = API_DATA_TXT_COLORS[index].background
+        stylesObj.color = DATA_TXT_COLORS[index].background
 
         if color == '#FFFFFF' || color == '#FFF'
           stylesObj['text-shadow'] = '0 0 2px #000'
@@ -592,9 +552,9 @@ $('.remix-container').each ->
 
     if $text.length
       if $text.hasClass('g1') || $text.hasClass('m1') || $text.hasClass('p1')
-        $text.css('background-color', API_DATA_TXT_COLORS[index].background)
+        $text.css('background-color', DATA_TXT_COLORS[index].background)
       else
-        $text.css('color', API_DATA_TXT_COLORS[index].foreground)
+        $text.css('color', DATA_TXT_COLORS[index].foreground)
 
   # toolbox item texts styles
   $composer.find('.toolbox-item-texts .styles-item').click (event) ->

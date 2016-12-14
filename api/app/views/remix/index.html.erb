@@ -1,11 +1,7 @@
 <div role="main">
   <div class="container">
     <div class="remix-container">
-      <section class="remix-title">
-        <h2>Remix</h2>
-        <p class="intro">Aqui você pode criar suas artes a partir de imagens da turma! Divirta-se!</p>
-        <button type="button" class="btn btn-default create-new">Criar um novo</button>
-      </section>
+      <%= render "title" %>
       <section class="remix-composer">
         <button type="button" class="cancel">&times;</button>
         <div class="actions">
@@ -160,27 +156,7 @@
           </div>
         </div>
       </section>
-      <section class="remix-gallery">
-        <div class="gallery-holder">
-          <div class="gallery-item-new"></div>
-          <% 5.times do |i| %>
-          <div class="gallery-item" data-id="<%= i.to_s %>">
-            <%= image_tag "http://placehold.it/220x220/c" + (rand(9).to_s) + "c" + (rand(9).to_s) + "c"  + (rand(9).to_s), { :class => "picture" } %>
-            <div class="actions">
-              <button type="button" class="remove" title="Remover">
-                <%= image_tag "remix/icon-trash", alt: 'Remover' %>
-              </button>
-              <a href="<%= image_url "http://placehold.it/220x220" %>" target="_blank" download class="download" title="Baixar">
-                <%= image_tag "remix/icon-arrow-down", alt: 'Baixar' %>
-              </a>
-              <button type="button" class="share" title="Compartilhar">
-                <%= image_tag "remix/icon-reply", alt: 'Compartilhar' %>
-              </button>
-            </div>
-          </div>
-          <% end %>
-        </div>
-      </section>
+      <%= render "gallery" %>
     </div>
   </div>
 </div>
