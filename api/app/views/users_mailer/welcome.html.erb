@@ -295,10 +295,6 @@
   #templateHeader {
     /*@editable*/
     background-color: #5fa4d9;
-    /*@editable*/
-    border-top: 0px solid #FFFFFF;
-    /*@editable*/
-    border-bottom: 0px solid #CCCCCC;
   }
   /**
   * @tab Header
@@ -307,8 +303,6 @@
   */
 
   .headerContent {
-    /*@editable*/
-    color: #505050;
     /*@editable*/
     font-family: Helvetica;
     /*@editable*/
@@ -441,7 +435,7 @@
     /*@editable*/
     font-family: Helvetica;
     /*@editable*/
-    font-size: 10px;
+    font-size: 11px;
     /*@editable*/
     line-height: 150%;
     padding-top: 20px;
@@ -629,7 +623,7 @@
             <tr>
               <td align="center" valign="top">
                 <!-- BEGIN HEADER // -->
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateHeader">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateHeader" style="background-color: #5fa4d9;">
                   <tr>
                     <td height="20" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">
                       &nbsp;</td>
@@ -657,7 +651,8 @@
                     <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateBody" bgcolor="#FFFFFF" align="center">
                       <tbody>
                         <tr>
-                          <td valign="top" class="stripe" style="width: 20%; border-top: 60px solid #5fa4d9;">
+                          <td valign="top" class="stripe" style="width: 20%; border-top: 60px solid #5fa4d9;background: #e3e3e3;">
+                            &nbsp;
                         </td>
                         <td valign="top" class="bodyContent" mc:edit="body_content" align="center" style="text-align: center; font-size: 16px;">
                           <br><h2 style="size: 20px !important; text-align: center; font-weight: normal;">Olá <%= @user.username %>,</h2>
@@ -667,7 +662,8 @@
                           <br>
                           <br>
                           <br>
-                        </td><td valign="top" class="stripe" style="width: 20%;border-top: 60px solid #5fa4d9;">
+                        </td><td valign="top" class="stripe" style="width: 20%;border-top: 60px solid #5fa4d9;background: #e3e3e3;">
+                          &nbsp;
                       </td>
                     </tr>
 
@@ -688,12 +684,8 @@
                           <a href="https://www.facebook.com/TurmadaMonicaJovemBrasil/?fref=ts" target="_blank"><img src="http://cdn.tmjofilme.com.br/mailer/rede-social-facebook@2x.png" width="32" /></a>&nbsp;&nbsp;
                           <a href="https://twitter.com/revistadaturma" target="_blank"><img src="http://cdn.tmjofilme.com.br/mailer/rede-social-twitter@2x.png" width="32" /></a>&nbsp;&nbsp;
                           <a href="https://www.youtube.com/user/revistaturmajovem" target="_blank"><img src="http://cdn.tmjofilme.com.br/mailer/rede-social-youtube@2x.png" width="32" /></a>
+                          <br />
                           <br /> 2016 ©  bossanovagroup
-                        </td>
-                      </tr>
-                      <tr>
-                        <td valign="top" align="center" class="footerContent" style="padding-top:0px; padding-bottom:31px; margin:0 auto;" mc:edit="footer_content02">
-                          <br /> Caso não queira mais receber nossos e-mails, <a href="">clique aqui</a> para descadastrar
                         </td>
                       </tr>
                     </table>
