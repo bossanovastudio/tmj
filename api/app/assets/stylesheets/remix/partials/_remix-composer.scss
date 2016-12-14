@@ -159,11 +159,11 @@
                   width: 100%;
                 }
                 img {
-                  height: 100%;
-                  width: 100%;
+                  max-height: 100%;
+                  max-width: 100%;
                   position: absolute;
                   left: 0;
-                  top: 0;
+                  bottom: 0;
                 }
               }
               &.take-photo,
@@ -191,8 +191,18 @@
               }
             }
           }
+          .categories {
+            .item > div img {
+              height: 100%;
+              width: 100%;
+            }
+          }
           .pictures {
             display: none;
+            .item > div img {
+              transform: translateX(-50%);
+              left: 50%;
+            }
           }
         }
       }
