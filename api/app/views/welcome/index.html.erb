@@ -135,7 +135,7 @@
                 <p class="name">{{card.user.name}}</p>
                 <p class="date">
                   <a target="_blank" ng-href="{{card.source_url}}">
-                    <img src="<%=asset_url('site/{{card.origin}}.svg')%>" />
+                    <img src="/assets/site/{{card.origin}}.svg" />
                     {{card.posted_at | formatDate}}
                   </a></p>
                 <p class="content" ng-bind-html="card.content | trust"></p>
