@@ -35,7 +35,7 @@
 	            		<input type="hidden" name="pass-3" value="{{passwordChoice[3].value}}"/>
 	            	</li>
 	            </ul>
-	            <a ng-href="/recuperar-senha" class="link-pass">Esqueceu a senha?</a>
+	            <a ng-href="#" ng-click="resetPass()" class="link-pass">Esqueceu a senha?</a>
 	            <div class="pass-box hide" ng-class="{show: open, hide: !open}">
 	            	<ul>
 	            		<li ng-repeat="pass in passwords" ng-click="addToPasswordChoice(pass)">
