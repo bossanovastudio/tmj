@@ -108,15 +108,21 @@ $(document).on('turbolinks:load', function() {
         $(this).find('.img').css('height', 'auto');
     });
 
-    $(".checkbox input[type='checkbox']").change(function() {
+    $(".switch .checkbox input[type='checkbox']").change(function() {
         updateStatusToggle();
     });
 
     $("#highlights .bottom-content").sortable({
-      stop: function(event, ui) {
-        var elem = $(ui.item);
-        $.post("/admin/highlights/" + elem.find('[data-highlight-id]').attr('data-highlight-id') + "/move", { to: elem.index() + 1 });
-      }
+        stop: function(event, ui) {
+          var elem = $(ui.item);
+          $.post("/admin/highlights/" + elem.find('[data-highlight-id]').attr('data-highlight-id') + "/move", { to: elem.index() + 1 });
+        }
+    });
+
+    $('#preview-button').click(function() {
+        $('#input-preview').prop("checked", true);
+        $(".switch .checkbox input[type='checkbox']").prop("checked", false);
+        $('#highlight-form').submit();
     });
 
     setTimeout(function() { initMasonry(); }, 1000);
@@ -138,7 +144,7 @@ function initMasonry() {
 }
 
 function updateStatusToggle() {
-  if ($(".checkbox input[type='checkbox']").prop("checked") == true) {
+  if ($(".switch .checkbox input[type='checkbox']").prop("checked") == true) {
       $(".slider").addClass('checked');
   } else {
       $(".slider").removeClass('checked');
