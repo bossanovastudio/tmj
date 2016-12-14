@@ -3,6 +3,8 @@ json.origin     card.origin
 json.content    card.content
 json.kind       card.kind
 json.source_url card.source_url
+json.likes      card.liked_by_count
+json.liked      current_user.likes?(card) if current_user
 
 if card.media
   if card.kind == :image
