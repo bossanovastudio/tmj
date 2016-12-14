@@ -173,6 +173,23 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
 
     $scope.msg_recover = 'Cadastrar nova senha.';
 
+    $scope.resetPass = function() {
+        if (!$scope.form.username) {
+            console.log('Preencha seu username.');
+        } else {
+            $http.post("/user/password.json", {
+                user: $scope.form
+            }, {
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(function(response) {
+                $scope.msg_recover = 'Você recebera um email com instruções.';
+            }, function(response) {
+                $scope.msg_recover = response.error;
+            });
+        }
+    }
+
     $scope.recoverPass = function() {
         $scope.form.password = $scope.passwordChoice.map(function(p) {
             return p.value;
