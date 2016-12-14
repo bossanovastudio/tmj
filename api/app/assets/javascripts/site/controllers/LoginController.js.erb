@@ -1,5 +1,9 @@
 tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $compile, $routeParams, $location) {
 
+    if (storage.get('user')) {
+        $location.path('/sua-pagina');
+    }
+
     $rootScope.pageName = 'login';
     $('.initial-loading').hide(0);
 

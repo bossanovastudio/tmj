@@ -1,0 +1,29 @@
+tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $compile, $routeParams) {
+
+    if (!storage.get('user')) {
+        $location.path('/login');
+    }
+    $scope.user = storage.get('user');
+
+    $rootScope.pageName = $scope.user.username;
+    $('body').addClass('edit-user');
+
+
+    // var distanceTop = 0;
+
+    // $scope.swipeUp = function() {
+    //     distanceTop = -$(window).height();
+    //     $('.cards').each(function(i, e) {
+    //         var top = parseInt($(this).css('top').replace('px'));
+    //         if (i == 0 && top == (($('.cards').length - 1) * distanceTop)) {
+    //             distanceTop = 0;
+    //         }
+    //         $(this).animate({ top: top + distanceTop }, 500, 'easeOutExpo');
+    //     });
+    //     setTimeout(function() {
+    //         $rootScope.animateInitial();
+    //     }, 1000);
+    //     $rootScope.track('swipe', 'cards', 'up');
+    // }
+
+});

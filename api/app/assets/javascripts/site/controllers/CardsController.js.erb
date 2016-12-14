@@ -48,7 +48,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 method: 'get',
                 url: API_URL + slug + '/' + p + '/' + $scope.SIZE + '.json',
             })
-            .success(function(data) {
+            .then(function(data) {
                 $rootScope.isCardsLoaded = true;
 
                 if (data.cards.length == 0) {
@@ -122,6 +122,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     //     });
                     // }, 1000);
                 }
+            }, function(data) {
+                $rootScope.isCardsLoaded = true;
+                $rootScope.ready = true;
             });
         $rootScope.track('load', 'cards', 'content');
     }
