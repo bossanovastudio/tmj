@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
     get '/castings/download', to: 'castings#download'
 
-    resources :cards,  only: [:create]
+    resources :cards,  only: [:create, :show, :like, :unlike]
     resources :images, only: [:create]
     resources :videos, only: [:create]
     resources :remix,  only: [:create] do

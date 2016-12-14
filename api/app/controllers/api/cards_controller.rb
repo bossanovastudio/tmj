@@ -1,7 +1,12 @@
 class Api::CardsController < ApplicationController
-  before_action :set_card, only: [:like, :unlike]
+  before_action :set_card, only: [:show, :like, :unlike]
   before_action :authenticate_user!, only: [:like, :unlike]
   # before_action :authenticate_admin!, only: [:index, :show, :accept, :reject, :create, :update, :destroy]
+
+  # GET /cards/1
+  # GET /cards/1.json
+  def show
+  end
 
   # GET /cards/1/like
   # GET /cards/1/like.json
