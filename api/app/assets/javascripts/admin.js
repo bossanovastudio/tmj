@@ -119,6 +119,11 @@ $(document).on('turbolinks:load', function() {
         }
     });
 
+    $('.submit-highlight').click(function() {
+        $('#input-preview').val("0");
+        $('#highlight-form').submit();
+    });
+
     $('#preview-button').click(function() {
         $('#input-preview').val("1");
         $(".switch .checkbox input[type='checkbox']").prop("checked", false);
