@@ -26,6 +26,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             })
             .success(function(data) {
                 data.highlights.forEach(function(f) {
+                    f.id *= 999999;
                     $scope.cardsFeatured.push(f);
                 });
             });
@@ -63,6 +64,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     }
                     data.cards.forEach(function(card, i) {
                         if (!isMobileDevice && data.highlight && data.highlight.index == i) {
+                            data.highlight.id *= 999999;
                             array.push(data.highlight);
                         }
                         array.push(card);
