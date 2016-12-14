@@ -22,6 +22,10 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             $scope.user.username = response.data.username;
             $scope.user.email = response.data.email;
             $scope.user.image = response.data.image;
+            $scope.user.providers = {};
+            response.data.providers.forEach(function(p) {
+                $scope.user.providers[p.name] = true;
+            });
             $('.avatar').attr('src', $scope.user.image);
             $scope.form.bio = $scope.user.bio;
             $scope.form.username = $scope.user.username;
@@ -34,6 +38,19 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
     $('body').on('click','.box-avatar', function() {
         $('#photo').trigger('click');
     });
+
+    $scope.authSocial = function(sn) {
+        if ($scope.user.providers[sn]) {
+            $http.get('/user/auth/' + sn + '/remove.json', {
+                headers: {
+                    'X-User-username': $scope.user.username,
+                    'X-User-token': $scope.user.authentication_token,
+                }
+            });
+        } else {
+            window.location = '/user/auth/' + sn;
+        }
+    }
 
     $scope.changedFile = function(event) {
         var field = event.target;
