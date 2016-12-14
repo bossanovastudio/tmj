@@ -74,13 +74,17 @@
         </a> -->
         <ul>
           <li class="menu-login" ng-click="login()">
-              <img ng-if="user" src="{{user.image.url}}" class="link" alt="">
-              <img ng-if="!user" src="<%=asset_url('site/user-picture.svg')%>" class="link" alt="">
-              <span ng-if="user">{{user.username}}</span>
-              <span ng-if="!user">MINHA ÁREA</span>
-              <a ng-href="login">
-                ENTRAR
-              </a>
+            <div ng-if="user">
+              <img src="{{user.image.url}}" class="link" alt="">
+              <span>{{user.username}}</span>
+              <a ng-click="logout()"> SAIR </a>
+            </div>
+            <div ng-if="!user">
+              <img src="<%=asset_url('site/profile_default.svg')%>" class="link" alt="">
+              <span>MINHA ÁREA</span>
+              <a ng-href="login"> ENTRAR </a>
+            </div>
+
           </li>
           <li class="red" ng-click="toggle()"><a ng-href="/" target="_self">HOME</a></li>
           <li class="purple" ng-click="toggle()"><a ng-href="/personagem/ramona" target="_self">RAMONA</a></li>
