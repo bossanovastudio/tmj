@@ -17,6 +17,7 @@
 #= require 'html2canvas'
 #= require 'mustache.js/mustache'
 
+API_URL = '/api/remix'
 DATA_BGS = []
 DATA_TXT_COLORS = []
 DATA_CSS_EFFECTS = [
@@ -48,11 +49,41 @@ window.isMobile = ->
 window.isDesktop = ->
   return $(window).width() >= 768
 
+# toDataURL = (src, callback, outputFormat) ->
+#   xhr = new XMLHttpRequest()
+#   xhr.onload = ->
+#     url = URL.createObjectURL this.response
+#     img = new Image()
+#     img.crossOrigin = 'Anonymous'
+#     img.onload = ->
+#       canvas = document.createElement 'CANVAS'
+#       ctx = canvas.getContext '2d'
+#       canvas.height = this.height
+#       canvas.width = this.width
+#       ctx.drawImage this, 0, 0
+#       dataURL = canvas.toDataURL outputFormat
+#       callback dataURL
+
+#       URL.revokeObjectURL url
+#     img.src = url
+
+#     if img.complete?
+#       img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
+#       img.src = url
+
+#   xhr.open 'GET', src, true
+#   xhr.responseType = 'blob'
+#   xhr.send()
+
+# toDataURL 'http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/3/foto-3.png', (base64) ->
+#   console.log base64
+# , 'image/png'
+
 getApiData = (options) ->
   if !options || !options.entity
     return []
 
-  url = '/api/remix/' + options.entity
+  url = API_URL + '/' + options.entity
 
   if options.id
     url += '/' + options.id
@@ -215,32 +246,43 @@ $('.remix-container').each ->
       # removes selects of any element in canvas and the click event
       $canvas.find('.element').trigger('remix:deselect-element').off('click')
 
+      # generates base64 image (with canvas)
+      # docs: http://html2canvas.hertzen.com/documentation.html
+      html2canvas $canvas.get(0), {
+        useCORS: true
+        onrendered: (canvas) ->
+          base64Image = canvas.toDataURL('image/png')
+          $canvas.html('<img src="' + base64Image + '" alt="">')
+
+          # TODO: replace with true url
+          # $.ajax {
+          #   url: API_URL + '/create'
+          #   data:
+          #     image: base64Image
+          #   dataType: 'json'
+          # }
+          # .done (data) ->
+          #   $canvas.html('<img src="' + data.image_url + '" alt="">')
+          # .fail ->
+          #   alert 'Não foi possível salvar a imagem'
+      }
+
+      # BEGIN: to save in back-end, use these lines below
       # output = {
       #   elements: []
       # }
 
-      # generates base64 (with canvas)
-      # readme: https://github.com/niklasvh/html2canvas/blob/v0.4/readme.md
-      html2canvas $canvas.get(0), {
-        onrendered: (canvas) ->
-          base64Image = canvas.toDataURL('image/png')
-          # $canvas.html('<img src="' + base64Image + '" alt="">')
-          # todo: make proxy for images so we can save cross domain images
-          console.log 'image base64', base64Image
-
-          # todo: post to save
-      }
-
       # $canvas.children().each ->
       #   output.elements.push {
       #     type: $(this).attr('class')
+      #     src: $(this).attr('src')
       #     x: $(this).position().left
       #     y: $(this).position().top
       #     z: $(this).index()
       #     w: $(this).width()
       #     h: $(this).height()
       #   }
-
+      # END: to save in back-end
       # console.log 'output json', output
 
     # finish state
