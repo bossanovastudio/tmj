@@ -214,6 +214,19 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             });
     }
 
+    $scope.deleteAccount = function() {
+        if (window.confirm('Tem certeza?')) {
+            $http.delete("/user.json", {
+                headers: {
+                    'X-User-Username': $scope.user.username,
+                    'X-User-Token': $scope.user.authentication_token,
+                }
+            });
+            storage.deleteKey('user');
+            $location.path('/');
+        }
+    };
+
     $('.cmn-toggle').change(function() {
         if (this.checked) {
             $(this).parent('.switch').find('.img-social').css('opacity', '1');
