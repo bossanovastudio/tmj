@@ -3,17 +3,13 @@
     <div ng-class="{show : isCardsLoaded}" class="container cards ramona-card animated">
       <div class="author">
         <div class="box-avatar-user">
-          <img class="avatar" width="200" src="{{user.image}}" />
+          <img class="avatar" width="200" height="200" src="{{user.image.url}}" />
         </div>
         <div class="seven columns">
           <div class="profile">
             <div class="box-profile">
               <p class="editor">{{user.username}}</p>
             </div>
-            <div class="form-actions">
-                <button type="button" ng-click="save()" class="btn btn-submit">Salvar alterações</button>
-                <button type="button" ng-click="back()" class="btn btn-cancel">Cancelar edição</button>
-          </div>
           <div class="about">
             <div class="twelve columns">
               <p class="summary">
