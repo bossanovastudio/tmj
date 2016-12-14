@@ -408,17 +408,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         if (!heart.parent().hasClass('liked')) {
             var count = parseInt(elem.find('.counter').text());
             $http({
-                    method: 'POST',
+                    method: 'GET',
                     url: '/api/cards/'+id+'/like.json'
                 })
                 .then(function(data) {
-                    heart.attr('src', '<%= asset_url('site/liked.svg')%>');
-                    count++;
-                    heart.parent().find('.counter').html('&nbsp;' + count);
-                    heart.parent().addClass('liked');
-                }, function(data) {
-                    //remove that and parse error
-                    heart.attr('src', '<%= asset_url('site/liked.svg')%>');
+                    heart.attr('src', '<%= asset_url('site/like-ativo.svg')%>');
                     count++;
                     heart.parent().find('.counter').html('&nbsp;' + count);
                     heart.parent().addClass('liked');
