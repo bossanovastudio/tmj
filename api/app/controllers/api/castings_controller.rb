@@ -48,5 +48,5 @@ class CastingsController < ApplicationController
 
     def file_extn_name(file_name)
       File.extname(file_name)
-  end
+    end
 end

@@ -14,7 +14,11 @@ class Provider < ApplicationRecord
   belongs_to :user
   has_many :cards, foreign_key: 'social_uid', primary_key: 'uid'
   
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first
+  def self.create_with_omniauth(auth)
+    create(uid: auth['uid'], provider: auth['provider'])
+  end
+    
+  def self.find_with_omniauth(auth)
+     find_by(uid: auth['uid'], provider: auth['provider'])
   end
 end

@@ -3,13 +3,11 @@ class Users::OmniauthCallbacksController < ApplicationController
     omniauth_params = request.env["omniauth.auth"]
     provider = Provider.from_omniauth omniauth_params
     
-    if provider
-      sign_in provider.user
-      redirect_to root_path
-    else
-      session["devise.facebook_data"] = request.env["omniauth.auth"]
-      redirect_to '/cadastro'
+    unless provider
+      Provider.create_with_omniauth omniauth_params
     end
+    
+    redirect_to '/sua-pagina'
   end
   
   def failure
