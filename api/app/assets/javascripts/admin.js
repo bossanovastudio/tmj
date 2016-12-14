@@ -120,7 +120,7 @@ $(document).on('turbolinks:load', function() {
     });
 
     $('#preview-button').click(function() {
-        $('#input-preview').prop("checked", true);
+        $('#input-preview').val("1");
         $(".switch .checkbox input[type='checkbox']").prop("checked", false);
         $('#highlight-form').submit();
     });

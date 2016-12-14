@@ -21,11 +21,19 @@
     </div>
   </div>
   <div class="content">
-    <div class="title">
-      Desktop
-    </div>
-    <div class="title">
-      Mobile
-    </div>
+      <div class="title">
+        Desktop
+      </div>
+      <div class="highlight-preview desktop">
+        <div class="highlight <%= @highlight.size %>" style="background-image: url('<%= @highlight.desktop_image.file_url %>')" data-highlight-id="<%= @highlight.id %>">
+        </div>
+      </div>
+      <div class="title">
+        Mobile
+      </div>
+      <div class="highlight-preview mobile">
+        <div class="highlight <%= @highlight.size %>" style="background-image: url('<%= @highlight.mobile_image.file_url %>')" data-highlight-id="<%= @highlight.id %>">
+        </div>
+      </div>
   </div>
 </section>
