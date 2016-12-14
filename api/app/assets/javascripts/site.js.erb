@@ -26,6 +26,7 @@
 //= require 'site/controllers/CardsController.js'
 //= require 'site/controllers/RamonaController.js'
 //= require 'site/controllers/EditUserController.js'
+//= require 'site/controllers/ProfileController.js'
 //= require 'site/directives/Directives.js'
 
 var storage = $.jStorage;
@@ -84,9 +85,13 @@ tmj
                 templateUrl: '<%=asset_url("recuperar-senha.html")%>',
                 controller: 'LoginController'
             })
+            .when('/editar-perfil', {
+                templateUrl: '<%=asset_url("editar-perfil.html")%>',
+                controller: 'EditUserController'
+            })
             .when('/sua-pagina', {
                 templateUrl: '<%=asset_url("sua-pagina.html")%>',
-                controller: 'EditUserController'
+                controller: 'ProfileController'
             });
 
         $routeProvider

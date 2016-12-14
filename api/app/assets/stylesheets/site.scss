@@ -3,6 +3,7 @@
 //= require_self
 //= require 'site/popup'
 //= require 'site/ramona'
+//= require 'site/user'
 //= require 'site/user-editor'
 
 @import 'https://fonts.googleapis.com/css?family=Lato:300,400,700';
@@ -956,6 +957,7 @@ div.card {
             letter-spacing: 0.5px;
             cursor: pointer;
             margin-bottom: 10px;
+            transition-duration: 0.08s;
             &.btn-fb {
                 background-color: #4A90E2;
                 color: #fff;

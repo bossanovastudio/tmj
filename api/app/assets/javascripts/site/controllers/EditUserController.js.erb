@@ -1,3 +1,4 @@
+
 tmj.controller('EditUserController', function($rootScope, $location, $scope, $http, $sce, $compile, $routeParams, $window) {
 
     if (!storage.get('user')) {
@@ -9,21 +10,26 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
     $scope.form = {};
     $scope.user = storage.get('user');
 
-    // $http.get("/user/edit.json", {
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'X-User-username': $scope.user.username,
-    //             'X-User-token': $scope.user.authentication_token,
-    //         }
-    //     })
-    //     .then(function(response) {
-    //         console.log(response);
-    //     }, function(response) {
-    //         console.log(response);
-    //     });
-
-    $scope.form.username = $scope.user.username;
-    $scope.form.email = $scope.user.email;
+    $http.get("/user/edit.json", {
+            headers: {
+                'Content-Type': 'application/json',
+                'X-User-username': $scope.user.username,
+                'X-User-token': $scope.user.authentication_token,
+            }
+        })
+        .then(function(response) {
+            $scope.user.bio = response.data.bio;
+            $scope.user.username = response.data.username;
+            $scope.user.email = response.data.email;
+            $scope.user.image = response.data.image;
+            $('.avatar').attr('src', $scope.user.image);
+            $scope.form.bio = $scope.user.bio;
+            $scope.form.username = $scope.user.username;
+            $scope.form.email = $scope.user.email;
+            storage.set('user', $scope.user);
+        }, function(response) {
+            $location.path('/login');
+        });
 
     $('body').on('click','.box-avatar', function() {
         $('#photo').trigger('click');
@@ -148,8 +154,6 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         }
     }
 
-    $scope.form.social = {};
-
     $scope.back = function(){
         $window.history.back()
     }
@@ -187,7 +191,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             })
             .then(function(response) {
                 $scope.msg_update = 'Atualizado com sucesso.';
-                $location.path('/sua-pagina');
+                //$location.path('/sua-pagina');
             }, function(response) {
                 $scope.msg_update = response.error;
             });

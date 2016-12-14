@@ -1,0 +1,493 @@
+body.edit-user {
+    min-height: 100%;
+    min-width: 600px;
+    .initial-loading {
+        top: 40%;
+    }
+    .container.ramona-card {
+        height: auto !important;
+        opacity: 0;
+        &.show {
+            transition: opacity 1s ease-in-out;
+            -moz-transition: opacity 1s ease-in-out;
+            -webkit-transition: opacity 1s ease-in-out;
+            opacity: 1;
+        }
+    }
+    .author {
+        margin-bottom: 87px;
+        margin-top: 47px;
+        display: flex;
+        flex-wrap: nowrap;
+        .columns {
+            order: 2;
+            flex-grow: 7;
+        }
+        .box-avatar-user{
+            min-width: 230px;
+            order: 1;
+            flex-grow: 1;
+            position: relative;
+            img.avatar {
+                border-radius: 100%;
+            }
+            img.avatar_hover {
+                position: absolute;
+                left: 0;
+                top: 0;
+                z-index: 2;
+                display: none;
+            }
+            img.badge {
+                position: absolute;
+                left: 175px;
+                top: 30px;
+            }
+            &:hover {
+                img.avatar_hover {
+                    display: block;
+                }
+            }
+        }
+        p {
+            margin: 0;
+        }
+        .followers {
+            display: inline-block;
+            padding: 0 30px;
+            margin-top: 18px;
+            vertical-align: top;
+            order: 3;
+            align-self: flex-start;
+            p.number {
+                font-family: Lato;
+                font-size: 17px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                letter-spacing: 0.6px;
+                color: #ffffff;
+                float: right;
+                margin-left: 4px;
+            }
+            img.icon{
+                display: block;
+                width: 31px;
+                height: 29px;
+                float: left;
+            }
+        }
+        .profile {
+            display: flex;
+            .box-profile {
+                width: auto;
+                margin-right: 25px;
+                .editor {
+                    font-family: KomikaTitle;
+                    font-size: 29px;
+                    font-weight: normal;
+                    font-style: normal;
+                    font-stretch: normal;
+                    letter-spacing: 1px;
+                    color: #000000;
+                }
+                .position {
+                    font-family: KomikaTitle;
+                    font-size: 14px;
+                    font-weight: normal;
+                    font-style: normal;
+                    font-stretch: normal;
+                    letter-spacing: 0.5px;
+                    color: #000000;
+                }
+            }
+            .follow {
+                align-self: flex-start;
+                display: inline-block;
+                width: auto;
+                height: auto;
+                text-decoration: none;
+                background: #ffffff;
+                border: 1px solid #000000;
+                font-family: KomikaTitle;
+                font-size: 19px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                letter-spacing: 0.6px;
+                text-decoration: none;
+                border: 2px solid #000;
+                width: auto;
+                height: auto;
+                overflow: hidden;
+                -webkit-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+                -moz-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+                box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+                transition-duration: 0.2s;
+                position: relative;
+                color: #000;
+                text-align: center;
+                margin: 12px 0 0 0;
+                padding: 3px 20px;
+                background-color: #fff;
+                &:hover {
+                    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+                    -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+                    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+                    transition-duration: 0.2s;
+                    transform: translate(2px, 2px)
+                }
+                &:before {
+                    content: "";
+                    position: absolute;
+                    border-radius: 100%;
+                    -moz-border-radius: 33px 33px 0 0;
+                    overflow: hidden;
+                    width: 200%;
+                    height: 200%;
+                    background: #f1f1f1;
+                    bottom: 0;
+                    left: -200%;
+                    right: 0;
+                    top: -200%;
+                    z-index: -1;
+                    -webkit-transition: all 0.2s ease-in;
+                }
+                &:hover:before {
+                    left: -50%;
+                    top: -50%;
+                }
+            }
+        }
+        .about {
+            width: 100%;
+            float: left;
+            div {
+                max-width: 578px;
+            }
+            .summary {
+                font-family: Lato;
+                font-size: 17px;
+                font-style: normal;
+                font-stretch: normal;
+                letter-spacing: 0.1px;
+                color: #000000;
+                margin: 10px 0px 30px 0px;
+            }
+        }
+        .social {
+            float: left;
+            .social-editor {
+                li {
+                    opacity: 0;
+                    vertical-align: top;
+                    margin-bottom: 9px;
+                    &.animate {
+                        opacity: 1;
+                        animation: enterRamonaSocial .4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+                    }
+                }
+            }
+        }
+        .recommendation{
+            position: absolute;
+            right: 20px;
+            top: 0px;
+            text-align: center;
+            .label{
+                font-family: KomikaTitle;
+                font-size: 19px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                letter-spacing: 0.6px;
+                color: #ffffff;
+                margin-bottom: 12px;
+            }
+            ul{
+                width: 65px;
+                padding: 0px;
+                margin: 0 auto;
+                li{
+                    list-style: none;
+                    width: 150px;
+                    display: inline-block;
+                    margin-bottom: 12px;
+                    img{
+                        float: left;
+                        margin-right: 10px;
+                    }
+                    .number{
+                        float: left;
+                        font-family: KomikaTitle;
+                        font-size: 20px;
+                        font-weight: normal;
+                        font-style: normal;
+                        font-stretch: normal;
+                        letter-spacing: 0.2px;
+                        color: #000000;
+                    }
+                    &.denise{
+                        display: none;
+                    }
+                    &.geek{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 780px) {
+        .vertical-container{
+            width: 100%;
+        }
+        .initial-loading {
+            //display: none;
+        }
+        .container {
+            margin: 0 auto !important;
+        }
+        .author {
+            text-align: center;
+            display: block;
+            .social {
+                float: none;
+            }
+            .box-avatar-user {
+                position: relative;
+                width: auto;
+                display: inline-block;
+                img.avatar_hover{
+                    left: 50%;
+                    transform: translate(-50%);
+                }
+            }
+            .columns {
+                width: 100%;
+                float: none;
+            }
+            .followers {
+                margin: 0 auto;
+                position: absolute;
+                top: 66px;
+                right: 15px;
+                width: 132px;
+            }
+            .profile {
+                display: block;
+                position: relative;
+                .box-profile {
+                    margin-right: 0;
+                }
+                .follow {
+                    display: table;
+                    margin: 10px auto;
+                }
+            }
+        }
+
+    }
+    @media only screen and (max-device-width: 550px) {
+        background-image: asset-url('site/bg_ramona_mobile.jpg');
+        background-size: cover;
+        min-width: 100%;
+
+        .container.geek {
+            width: 100% !important;
+            height: 100% !important;
+        }
+        .author {
+            margin: 0px;
+            .three.columns {
+                width: 150px;
+                float: none;
+                margin: 0 auto;
+                position: relative;
+            }
+            .box-avatar-user {
+                .avatar,
+                .avatar_hover {
+                    width: 106px;
+                }
+                img.badge {
+                    position: absolute;
+                    left: 152px;
+                    top: 15px;
+                    width: 26px;
+                }
+            }
+            .three {
+                .follow {
+                    margin: 10px auto;
+                    font-size: 15px;
+                    width: 80px;
+                }
+            }
+            .profile {
+                .follow {
+                    padding: 7px 20px;
+                }
+            }
+            .about {
+                .summary {
+                    font-family: Lato;
+                    font-size: 13px;
+                    font-weight: normal;
+                    font-style: normal;
+                    font-stretch: normal;
+                    letter-spacing: 0.1px;
+                    text-align: center;
+                    color: #000000;
+                    padding: 0px 20px;
+                    margin: 10px 0px 10px 0px;
+                }
+            }
+            .social {
+                margin: 0 auto;
+                width: 80%;
+                .two {
+                    width: 20%;
+                }
+                .social-editor {
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+                    li {
+                        position: relative;
+                        overflow: hidden;
+                        width: 32px;
+                        height: 32px;
+                        margin: 0 4px 4px;
+                        background-color: #000;
+                        border-radius: 30px;
+                        display: inline-block;
+                        cursor: pointer;
+                        -webkit-transition: 0.2s;
+                        -moz-transition: 0.2s;
+                        -o-transition: 0.2s;
+                        transition: 0.2s;
+                        a {
+                            img {
+                                max-width: 100%;
+                                height: auto;
+                            }
+                        }
+                        &:before {
+                            content: "";
+                            position: absolute;
+                            border-radius: 33px;
+                            -moz-border-radius: 33px 33px 0 0;
+                            overflow: hidden;
+                            width: 66px;
+                            height: 66px;
+                            bottom: 0;
+                            left: -66px;
+                            right: 0;
+                            top: -66px;
+                            z-index: -1;
+                            -webkit-transition: all 0.2s ease-in;
+                        }
+                        &:hover:before {
+                            left: -15px;
+                            top: -15px;
+                            -webkit-transition: all 0.2s ease-in;
+                        }
+                        &:hover {
+                            background: transparent;
+                            -webkit-transition: 0.1s;
+                            -moz-transition: 0.1s;
+                            -o-transition: 0.1s;
+                            transition: 0.1s;
+                        }
+                    }
+                }
+            }
+            .recommendation{
+                position: relative;
+                right: 0;
+                margin-top: 25px;
+            }
+            * {
+                text-align: center;
+            }
+        }
+    }
+    @media only screen and (min-device-width: 550px) {
+        .social {
+            display: block;
+            .two.columns {
+                width: 45px;
+            }
+            .social-editor {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                li {
+                    position: relative;
+                    overflow: hidden;
+                    width: 32px;
+                    height: 32px;
+                    margin-right: 15px;
+                    background-color: #000;
+                    border-radius: 30px;
+                    display: inline-block;
+                    cursor: pointer;
+                    -webkit-transition: 0.2s;
+                    -moz-transition: 0.2s;
+                    -o-transition: 0.2s;
+                    transition: 0.2s;
+                    a {
+                        img {
+                            max-width: 100%;
+                            height: auto;
+                        }
+                    }
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        border-radius: 33px;
+                        -moz-border-radius: 33px 33px 0 0;
+                        overflow: hidden;
+                        width: 66px;
+                        height: 66px;
+                        bottom: 0;
+                        left: -66px;
+                        right: 0;
+                        top: -66px;
+                        z-index: -1;
+                        -webkit-transition: all 0.2s ease-in;
+                    }
+                    &:hover:before {
+                        left: -15px;
+                        top: -15px;
+                        -webkit-transition: all 0.2s ease-in;
+                    }
+                    &:hover {
+                        background: transparent;
+                        -webkit-transition: 0.1s;
+                        -moz-transition: 0.1s;
+                        -o-transition: 0.1s;
+                        transition: 0.1s;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-device-width: 550px) {
+    body.ramona {
+        .cards {
+            padding-top: 55px !important;
+        }
+    }
+}
+
+@keyframes enterRamonaSocial {
+    from {
+        transform: translateX(100px) rotate(360deg);
+    }
+    to {
+        transform: translateX(0px) rotate(0deg);
+    }
+}

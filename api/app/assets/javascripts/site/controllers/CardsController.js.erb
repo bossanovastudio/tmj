@@ -26,6 +26,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             })
             .success(function(data) {
                 data.highlights.forEach(function(f) {
+                    f.id *= 999999;
                     $scope.cardsFeatured.push(f);
                 });
             });
@@ -48,10 +49,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 method: 'get',
                 url: API_URL + slug + '/' + p + '/' + $scope.SIZE + '.json',
             })
-            .success(function(data) {
+            .then(function(data) {
                 $rootScope.isCardsLoaded = true;
 
-                if (data.cards.length == 0) {
+                if (data.data.cards.length == 0) {
                     $scope.END = true;
                     if (!isMobileDevice) {
                         // $('.cards').removeClass('loading');
@@ -61,8 +62,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     if (($scope.PAGE == 1 && isMobileDevice && $rootScope.pageName != 'homePage') || icon == 'ramonaIcon') {
                         $scope.initialCard(array, icon, data.total_cards ? data.total_cards : 0);
                     }
-                    data.cards.forEach(function(card, i) {
+                    data.data.cards.forEach(function(card, i) {
                         if (!isMobileDevice && data.highlight && data.highlight.index == i) {
+                            data.highlight.id *= 999999;
                             array.push(data.highlight);
                         }
                         array.push(card);
@@ -122,6 +124,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     //     });
                     // }, 1000);
                 }
+            }, function(data) {
+                $rootScope.isCardsLoaded = true;
+                $rootScope.ready = true;
             });
         $rootScope.track('load', 'cards', 'content');
     }

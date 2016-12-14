@@ -1,121 +1,60 @@
-<div class="overlay-pass" ng-click="togglePassword()"></div>
-<div class="container">
-    <div class="four columns left">
-        <div ng-click="selectFile()" class="box-avatar">
-          <img class="avatar" width="200" src="<%= asset_url('site/profile_default.svg') %>" />
-          <div class="avatar_hover"></div>
+<div class="vertical-container" ng-swipe-up="swipeUp()">
+  <div class="vertical-content">
+    <div ng-class="{show : isCardsLoaded}" class="container cards ramona-card animated">
+      <div class="author">
+        <div class="box-avatar-user">
+          <img class="avatar" width="200" src="{{user.image}}" />
         </div>
-        <input type="file" id="photo" style="display: none" file-on-change="changedFile" accept="image/*">
-    </div>
-    <div class="four columns offset">
-        <form name="profileForm">
-            <div class="form-group bio">
-                <label for="username">bio</label>
-                <br>
-                <textarea name="bio" class="form-control" cols="1" ng-model="form.bio" rows="4"></textarea>
-            </div>
-            <ul class="form-group checksocial">
-                <li>
-                    <div class="switch">
-                      <img src="<%= asset_url('site/pinterest-profile.svg') %>" alt="" class="img-social">
-                      <input id="cmn-toggle-pin" class="cmn-toggle cmn-toggle-round" value="1" name="pinterest" type="checkbox">
-                      <label for="cmn-toggle-pin"></label>
-                    </div>
-                </li>
-                <li>
-                    <div class="switch">
-                      <img src="<%= asset_url('site/facebook-profile.svg') %>" alt="" class="img-social">
-                      <input id="cmn-toggle-fb" class="cmn-toggle cmn-toggle-round" value="1" name="facebook" type="checkbox">
-                      <label for="cmn-toggle-fb"></label>
-                    </div>
-                </li>
-                <li>
-                    <div class="switch">
-                      <img src="<%= asset_url('site/instagram-profile.svg') %>" alt="" class="img-social">
-                      <input id="cmn-toggle-insta" class="cmn-toggle cmn-toggle-round" value="1" name="instagram" type="checkbox">
-                      <label for="cmn-toggle-insta"></label>
-                    </div>
-                </li>
-                <li>
-                    <div class="switch">
-                      <img src="<%= asset_url('site/vimeo-profile.svg') %>" alt="" class="img-social">
-                      <input id="cmn-toggle-vimeo" class="cmn-toggle cmn-toggle-round" value="1" name="vimeo" type="checkbox">
-                      <label for="cmn-toggle-vimeo"></label>
-                    </div>
-                </li>
-                <li>
-                    <div class="switch">
-                      <img src="<%= asset_url('site/tumblr-profile.svg') %>" alt="" class="img-social">
-                      <input id="cmn-toggle-tumblr" class="cmn-toggle cmn-toggle-round" value="1" name="tumblr" type="checkbox">
-                      <label for="cmn-toggle-tumblr"></label>
-                    </div>
-                </li>
-                <li>
-                    <div class="switch">
-                      <img src="<%= asset_url('site/twitter-profile.svg') %>" alt="" class="img-social">
-                      <input id="cmn-toggle-twitter" class="cmn-toggle cmn-toggle-round" value="1" name="twitter" type="checkbox">
-                      <label for="cmn-toggle-twitter"></label>
-                    </div>
-                </li>
-                <li>
-                    <div class="switch">
-                      <img src="<%= asset_url('site/google-profile.svg') %>" alt="" class="img-social">
-                      <input id="cmn-toggle-google" class="cmn-toggle cmn-toggle-round" value="1" name="google" type="checkbox">
-                      <label for="cmn-toggle-google"></label>
-                    </div>
-                </li>
-                <li>
-                    <div class="switch">
-                      <img src="<%= asset_url('site/youtube-profile.svg') %>" alt="" class="img-social">
-                      <input id="cmn-toggle-youtube" class="cmn-toggle cmn-toggle-round" value="1" name="youtube" type="checkbox">
-                      <label for="cmn-toggle-youtube"></label>
-                    </div>
-                </li>
-            </ul>
-            <div class="form-group user">
-                <label for="username">Nome de usuário</label>
-                <br>
-                <input type="text" ng-model="form.username" name="username" class="form-control" placeholder="insira seu apelido"/>
-            </div>
-            <div class="form-group mail">
-                <label for="username">E-mail do Responsável</label>
-                <br>
-                <input type="text" name="email" ng-model="form.email" class="form-control" placeholder="insira o e-mail"/>
-            </div>
-            <div class="form-group pass">
-                <label for="password">Nova Senha</label>
-                <br>
-                <ul class="input-pass register">
-                    <li ng-click="togglePassword()" style="background:url('{{passwordChoice[0].img}}'); background-size: cover;">
-                        <input type="hidden" name="pass-1" value="{{passwordChoice[0].value}}"/>
-                    </li>
-                    <li ng-click="togglePassword()" style="background:url('{{passwordChoice[1].img}}'); background-size: cover;">
-                        <input type="hidden" name="pass-2" value="{{passwordChoice[1].value}}"/>
-                    </li>
-                    <li ng-click="togglePassword()" style="background:url('{{passwordChoice[2].img}}'); background-size: cover;">
-                        <input type="hidden" name="pass-3" value="{{passwordChoice[2].value}}"/>
-                    </li>
-                    <li ng-click="togglePassword()" style="background:url('{{passwordChoice[3].img}}'); background-size: cover;">
-                        <input type="hidden" name="pass-3" value="{{passwordChoice[3].value}}"/>
-                    </li>
-                </ul>
-                <div class="pass-box register hide" ng-class="{show: open, hide: !open}">
-                    <ul>
-                        <li ng-repeat="pass in passwords" ng-click="addToPasswordChoice(pass)">
-                            <img src="{{pass.img}}" alt="{{pass.name}}">
-                        </li>
-                    </ul>
-                    <div class="after"></div>
-                </div>
+        <div class="seven columns">
+          <div class="profile">
+            <div class="box-profile">
+              <p class="editor">{{user.username}}</p>
             </div>
             <div class="form-actions">
                 <button type="button" ng-click="save()" class="btn btn-submit">Salvar alterações</button>
                 <button type="button" ng-click="back()" class="btn btn-cancel">Cancelar edição</button>
+          </div>
+          <div class="about">
+            <div class="twelve columns">
+              <p class="summary">
+                {{user.bio}}
+              </p>
             </div>
-            <p class="link-delete">Não quer mais fazer parte? <a href="#"> Deletar conta</a></p>
-
-        </form>
+          </div>
+          <div class="social">
+            <ul class="social-editor">
+              <li class="social-pi"><a href="https://br.pinterest.com/ramonatmj/" target="_blank"><img src="<%=asset_url('site/pinterest-profile.svg')%>" alt="" /></a></li>
+              <!-- <li class="social-fb"><a href="#" target="_blank"><img src="/img/facebook-profile.svg" alt="" /></a></li> -->
+              <!-- <li class="social-in"><a href="#" target="_blank"><img src="/img/instagram-profile.svg" alt="" /></a></li> -->
+              <li class="social-tu"><a href="https://lunetalunatica.tumblr.com/" target="_blank"><img src="<%=asset_url('site/tumblr-profile.svg')%>" alt="" /></a></li>
+              <!-- <li class="social-vi svg"><a href="#" target="_blank"><img src="/img/vimeo-profile.svg" alt="" /></a></li> -->
+              <!-- <li class="social-tw"><a href="#" target="_blank"><img src="/img/twitter-profile.svg" alt="" /></a></li> -->
+              <!-- <li class="social-go"><a href="#" target="_blank"><img src="/img/google-profile.svg" alt="" /></a></li> -->
+              <li class="social-yt"><a href="https://www.youtube.com/channel/UC2sp_4csOUc4VnmNdWxTXhQ" target="_blank"><img src="<%=asset_url('site/youtube-profile.svg')%>" alt="" /></a></li>
+              <!-- <li class="social-twitch"><a href="#" target="_blank"><img src="/img/twitch-profile.svg" alt="" /></a></li> -->
+            </ul>
+          </div>
+          <div class="recommendation">
+            <div class="label">Recomendações</div>
+            <ul>
+              <li class="ramona">
+                <img src="<%=asset_url('site/icone-ramona.svg')%>" alt="">
+                <p class="number">{{user.ramona_recommendations ? user.ramona_recommendations : 0}}</p>
+              </li>
+              <li class="geek">
+                <img src="<%=asset_url('site/icone-geek.svg')%>" alt="">
+                <p class="number">{{user.geek_recommendations ? user.geek_recommendations : 0}}</p>
+              </li>
+              <li class="denise">
+                <img src="<%=asset_url('site/icone-denise.svg')%>" alt="">
+                <p class="number">{{user.denise_recommendations ? user.denise_recommendations : 0}}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="four columns right">
-    </div>
+  </div>
 </div>
+<div class="clearfix"></div>
+<div ng-include src="'<%= asset_url('cards.html')%>'"></div>

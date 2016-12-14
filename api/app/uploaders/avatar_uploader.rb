@@ -3,7 +3,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   storage :fog
   process convert: 'png'
-
+  
   def store_dir
     "avatars/#{model.id}"
   end
