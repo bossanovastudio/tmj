@@ -21,6 +21,11 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         $rootScope.user = null;
     }
 
+    $rootScope.goToProfile = function() {
+        if ($rootScope.user)
+            $location.path('/sua-pagina');
+    }
+
     // You can still access the clipboard.js event
     $rootScope.onClipboardSuccess = function(e) {
         $(".tooltip-clip.sucess").addClass('show');
