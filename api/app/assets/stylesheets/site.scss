@@ -312,7 +312,10 @@ section {
               display: block;
               padding: 25px 0 25px 35px;
 
-              img {
+              .img, img {
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
                 float: left;
                 height: 70px;
                 width: 70px;
