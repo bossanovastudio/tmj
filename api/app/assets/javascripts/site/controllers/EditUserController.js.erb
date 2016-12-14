@@ -194,8 +194,8 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             }, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-User-username': $scope.user.username,
-                    'X-User-token': $scope.user.authentication_token,
+                    'X-User-Username': $scope.user.username,
+                    'X-User-Token': $scope.user.authentication_token,
                 }
             })
             .then(function(response) {
