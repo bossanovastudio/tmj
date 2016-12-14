@@ -46,6 +46,9 @@ class User < ActiveRecord::Base
   recommends :cards
 
   after_create :send_welcome_email
+  
+  # Validations
+  validates :username, presence: true, format: { with: /\A[0-9a-zA-Z]+\z/ }, length: { in: 6..16 }
 
   def update_without_password(params, *options)
     if params[:password].blank?

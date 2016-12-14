@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  devise_scope :user do
+    get '/user/auth/:provider/remove', to: 'users/omniauth_callbacks#remove'
+  end
+  
   devise_for :user, :controllers => { registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
   namespace :api do
@@ -12,7 +16,13 @@ Rails.application.routes.draw do
 
     get '/castings/download', to: 'castings#download'
 
-    resources :cards,  only: [:create, :show, :like, :unlike]
+    resources :cards,  only: [:create, :show] do
+      member do
+        get :like
+        get :unlike
+      end
+    end
+    
     resources :images, only: [:create]
     resources :videos, only: [:create]
     resources :remix,  only: [:create] do
