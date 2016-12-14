@@ -48,7 +48,7 @@ class Admin::HighlightsController < ApplicationController
   def update
     @highlight.assign_attributes(highlight_params)
     @highlight.build_desktop_image(file: params[:highlight][:desktop_img]) if params[:highlight][:desktop_img]
-    @highlight.build_mobile_image(file: params[:highlight][:desktop_img]) if params[:highlight][:mobile_img]
+    @highlight.build_mobile_image(file: params[:highlight][:mobile_img]) if params[:highlight][:mobile_img]
     if @highlight.save
       redirect_to action: :index
     else
