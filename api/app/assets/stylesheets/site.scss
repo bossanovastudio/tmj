@@ -1596,7 +1596,7 @@ footer {
 }
 
 .mobile {
-    display: none;
+    display: none !important;
 }
 
 .content p.text a,
@@ -1803,10 +1803,10 @@ p.content a {
         }
     }
     .desktop {
-        display: none;
+        display: none !important;
     }
     .mobile {
-        display: block;
+        display: block !important;
         a {
             text-decoration: none;
         }
