@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     get '/ramona/(:page)/(:quantity)', to: 'general#editors', id: :ramona, defaults: { page: 1, quantity: 10 }
+    get '/user/:username/(:page)/(:quantity)', to: 'general#users', defaults: { page: 1, quantity: 10 }
     get '/all/(:page)/(:quantity)', to: 'general#all', defaults: { page: 1, quantity: 10 }
     get '/all_without_editors/(:page)/(:quantity)', to: 'general#all_without_editors', defaults: { page: 1, quantity: 10 }
 

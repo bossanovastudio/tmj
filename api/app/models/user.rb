@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
 
   enum role: { user: 1, editor: 2, moderator: 3, admin: 4 }
   scope :editors, -> { where(role: :editor) }
+  scope :regular, -> { where(role: :user) }
 
   # Uploader
   mount_uploader :image, AvatarUploader

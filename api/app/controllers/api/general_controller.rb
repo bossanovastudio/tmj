@@ -22,6 +22,13 @@ class Api::GeneralController < ApplicationController
     @user = User.editors.where(username: params[:id]).first
     @cards = @user.cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1).not_rejected.ordered
   end
+  
+  def users
+    pagination = pagination_params
+
+    @user = User.regular.where(username: params[:id]).first
+    @cards = @user.cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1).not_rejected.ordered
+  end
 
   private
     def pagination_params
