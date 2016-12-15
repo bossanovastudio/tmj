@@ -8,4 +8,14 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
     $rootScope.pageName = $scope.user.username;
     $('body').addClass('edit-user');
 
+    if (!isMobileDevice) {
+        $('.cards').css({
+            "width": "80%",
+            "max-width": "1180px",
+            "margin": "0 auto 50px auto",
+            "padding": 0
+        });
+        $('html').css({ overflow: 'auto' });
+    }
+
 });
