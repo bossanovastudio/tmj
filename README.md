@@ -75,49 +75,7 @@ docker-compose build crawler_parser
 docker-compose run --rm crawler_parser
 ```
 
-### Web
-
-#### Criando o ambiente
-
-Para buildar o container utilize o seguinte comando:
-```shell
-docker-compose build web
-```
-
-#### Gerando os arquivos estáticos
-
-```shell
-cd ./web && sudo gem install sass && npm install && sudo npm install -g grunt && grunt
-```
-
-#### Rodando o container
-
-```shell
-docker-compose up web
-```
-
-### Web Register
-
-#### Criando o ambiente
-
-Para buildar o container utilize o seguinte comando:
-```shell
-docker-compose build web-register
-```
-
-#### Gerando os arquivos estáticos
-
-```shell
-cd ./web-register && sudo gem install sass && npm install && sudo npm install -g grunt && grunt
-```
-
-#### Rodando o container
-
-```shell
-docker-compose up web-register
-```
-
-## Popular remix com dados "fakes"
+## Acessar o terminal da API
 
 ```shell
 docker-compose exec api bash
@@ -127,7 +85,18 @@ docker-compose exec api bash
 rails c
 ```
 
-### Balões
+### Popular API com dados da Ramona
+
+```shell
+User.create({ username: 'ramona', password: '123456', role: :editor, remote_image_url: 'https://s3-sa-east-1.amazonaws.com/cdntmjofilme/avatars/1/ramona.png' })
+Provider.create({ user: User.where(username: 'ramona').first, provider: 'pinterest', uid: '840484486616463777' })
+Provider.create({ user: User.where(username: 'ramona').first, provider: 'tumblr', uid: 'lunetalunatica' })
+Provider.create({ user: User.where(username: 'ramona').first, provider: 'youtube', uid: 'UC2sp_4csOUc4VnmNdWxTXhQ' })
+```
+
+### Popular remix com dados "fakes"
+
+#### Balões
 
 ```shell
 Remix::Sticker.create(kind: :speech_balloon, image: File.open(Rails.root.join('app', 'assets', 'images', 'remix', 'fake', 'balao-1@3x.png')))
@@ -146,7 +115,7 @@ Remix::Sticker.create(kind: :speech_balloon, image: File.open(Rails.root.join('a
 Remix::Sticker.create(kind: :speech_balloon, image: File.open(Rails.root.join('app', 'assets', 'images', 'remix', 'fake', 'balao-14@3x.png')))
 ```
 
-### Categorias
+#### Categorias
 
 ```shell
 Remix::Category.create(name: 'Pessoas', cover: File.open(Rails.root.join('app', 'assets', 'images', 'remix', 'fake', 'categoria-1@3x.png')), images: [Remix::Image.create(image: File.open(Rails.root.join('app', 'assets', 'images', 'remix', 'fake', 'foto-1.png')))])
@@ -158,7 +127,7 @@ Remix::Category.create(name: 'Tirinhas', cover: File.open(Rails.root.join('app',
 Remix::Category.create(name: 'Especiais', cover: File.open(Rails.root.join('app', 'assets', 'images', 'remix', 'fake', 'categoria-7@3x.png')), images: [Remix::Image.create(image: File.open(Rails.root.join('app', 'assets', 'images', 'remix', 'fake', 'foto-7.png')))])
 ```
 
-### Stickers
+#### Stickers
 
 ```shell
 Remix::Sticker.create(kind: :common_sticker, image: File.open(Rails.root.join('app', 'assets', 'images', 'remix', 'fake', 'sticker-1@3x.png')))
@@ -177,7 +146,7 @@ Remix::Sticker.create(kind: :common_sticker, image: File.open(Rails.root.join('a
 Remix::Sticker.create(kind: :common_sticker, image: File.open(Rails.root.join('app', 'assets', 'images', 'remix', 'fake', 'sticker-14@3x.png')))
 ```
 
-### Cores de backgrounds
+#### Cores de backgrounds
 
 ```shell
 Remix::BackgroundColor.create(color: '#E36069')
@@ -190,7 +159,7 @@ Remix::BackgroundColor.create(color: '#000000')
 Remix::BackgroundColor.create(color: '#FFFFFF')
 ```
 
-### Cores de texto
+#### Cores de texto
 
 ```shell
 Remix::TextColor.create(foreground: '#E36069', background: '#E36069')
