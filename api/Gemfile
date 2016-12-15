@@ -75,6 +75,9 @@ gem 'render_csv', '~> 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 
+# Fast, Nimble PDF Writer for Ruby
+gem 'prawn'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery'
   gem 'rails-assets-jquery-ujs'
