@@ -12,7 +12,7 @@ class Users::SessionsController < Devise::SessionsController
       end
 
       sign_in(resource_name, resource)
-      render json: { user: resource }, status: :ok
+      render json: resource, status: :ok
     else
       failure
     end
