@@ -140,7 +140,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
                 window.location = '/';
             }, function(response) {
                 storage.deleteKey('user');
-                $scope.msg = response.data.error;
+                $scope.msg_username = response.data.error;
             });
     }
 
@@ -175,13 +175,16 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
                 $scope.msg_register = response.error;
             });
     }
-
     $scope.msg_recover = 'Cadastrar nova senha.';
 
     $scope.resetPass = function() {
+        $rootScope.popup_title = 'Acabamos de enviar um e-mail';
+        $rootScope.popup_confirm = 'SIM, VAI NA FÉ';
+
         if (!$scope.form.username) {
-            console.log('Preencha seu username.');
+            $scope.msg_username = 'Preencha seu apelido';
         } else {
+            $rootScope.openPopup();
             $http.post("/user/password.json", {
                 user: $scope.form
             }, {
@@ -194,7 +197,6 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             });
         }
     }
-
     $scope.recoverPass = function() {
         $scope.form.password = $scope.passwordChoice.map(function(p) {
             return p.value;
@@ -211,8 +213,10 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             })
             .then(function(response) {
                 $scope.msg_recover = 'Senha resetada com sucesso.';
+                $location.path('/login');
             }, function(response) {
                 $scope.msg_recover = response.error;
+                $scope.msg_recover = 'Falha ao resetar a sua senha.';
             });
     }
 

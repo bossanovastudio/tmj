@@ -1,9 +1,9 @@
 <div id="popup">
   <div class="box">
-    <div class="title">Tem certeza que quer limpar a cena?</div>
+    <div class="title">{{popup_title}}</div>
     <div class="actions">
-      <a ng-click="closePopup()" class="cancel">OPA, NÃO</a>
-      <a class="confirm">SIM, VAI NA FÉ</a>
+      <a ng-click="closePopup()" ng-if="popup_cancel" class="cancel">{{popup_cancel}}</a>
+      <a ng-click="closePopup()" ng-if="popup_confirm" class="confirm">{{popup_confirm}}</a>
     </div>
     <div class="close" ng-click="closePopup()">
       <div class="close-icon4">
@@ -14,5 +14,4 @@
       <img src="<%= asset_url('site/poof_simples.svg') %>" class="active poof" alt="">
     </div>
   </div>
-
 </div>
