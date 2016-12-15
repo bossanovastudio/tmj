@@ -89,7 +89,7 @@ tmj
                 templateUrl: '<%=asset_url("editar-perfil.html")%>',
                 controller: 'EditUserController'
             })
-            .when('/sua-pagina', {
+            .when('/perfil/:username', {
                 templateUrl: '<%=asset_url("sua-pagina.html")%>',
                 controller: 'ProfileController'
             });

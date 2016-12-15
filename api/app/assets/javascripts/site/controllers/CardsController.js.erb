@@ -58,6 +58,23 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     if (!isMobileDevice) {
                         // $('.cards').removeClass('loading');
                         $('.cards-loading').removeClass('show');
+                        setTimeout(function() {
+                            $('.social-editor li').each(function(i) {
+                                var t = $(this);
+                                setTimeout(function() { t.addClass('animate'); }, (i + 1) * 50);
+                            });
+                        }, 1600);
+                    } else {
+                        if ($('.cards').data('masonry')) {
+                            $('.cards').masonry('destroy');
+                        }
+                        if ($scope.PAGE == 1) {
+                            setTimeout(function() {
+                                $('.cards').each(function(i, e) {
+                                    $(e).css({ top: i * $(window).height() });
+                                });
+                            }, 500);
+                        }
                     }
                 } else {
                     if (($scope.PAGE == 1 && isMobileDevice && $rootScope.pageName != 'homePage') || icon == 'ramonaIcon') {
@@ -138,7 +155,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         $rootScope.track('load', 'cards', 'content');
     }
 
-    $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'), $scope.cards, 'posts');
+    $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? 'user/' + $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'), $scope.cards, 'posts');
     if (isMobileDevice) {
         $scope.loadCards($scope.PAGE, 'ramona', $scope.cardsRamona, 'ramonaIcon');
     }

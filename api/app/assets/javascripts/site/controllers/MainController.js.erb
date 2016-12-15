@@ -25,7 +25,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
 
     $rootScope.goToProfile = function() {
         if ($rootScope.user) {
-            window.location = '/sua-pagina';
+            window.location = '/perfil/' + $rootScope.user.username;
         }
     }
 
