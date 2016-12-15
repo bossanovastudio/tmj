@@ -1674,8 +1674,18 @@ p.content a {
         padding-top: 80px;
         margin-top: -5% !important;
         &.ramona {
-            background: asset-url('site/bg_ramona_mobile.jpg') no-repeat center center fixed;
-            background-size: cover;
+          background-color: #E88EDB;
+        }
+        #ramona-bg {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            img {
+              height: 105%;
+            }
         }
         &:after {
             display: none;

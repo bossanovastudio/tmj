@@ -1,4 +1,4 @@
-tmj.controller('CardsController', function($rootScope, $location, $scope, $http, $sce, $compile, $routeParams) {
+tmj.controller('CardsController', function($rootScope, $location, $scope, $http, $sce, $compile, $routeParams, $window) {
 
     $scope.ready = false;
     $scope.cards = [];
@@ -31,6 +31,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 });
             });
     }
+
 
     $scope.loadCards = function(p, slug, array, icon) {
         if (!slug) {
@@ -169,7 +170,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
     var running = false;
 
-    $scope.swipeLeft = function($event) {
+    $scope.swipeLeft = function($event, sectionName) {
         if (!running) {
             running = true;
             var e = angular.element($event.target);
@@ -217,11 +218,18 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 }
             }
             $scope.lazyLoad(false);
+
+            if (sectionName == 'ramona') {
+                $('#ramona-bg').css({
+                  'left': - walk
+                });
+            }
         }
         $rootScope.track('swipe', 'cards', 'left');
+
     }
 
-    $scope.swipeRight = function($event) {
+    $scope.swipeRight = function($event, sectionName) {
         var e = angular.element($event.target);
         e = $(e);
         if (!e.hasClass('container')) {
@@ -235,6 +243,12 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             left: walk
         }, 250, 'easeOutExpo');
         $rootScope.track('swipe', 'cards', 'right');
+
+        if (sectionName == 'ramona') {
+          $('#ramona-bg').css({
+              'left': - walk
+          });
+        }
     }
 
     var distanceTop = 0;

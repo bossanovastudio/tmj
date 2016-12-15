@@ -279,6 +279,10 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                     left: -walk
                 }, 250, 'easeOutExpo');
                 container.addClass('animated');
+
+                $('#ramona-bg').css({
+                    'left': walk
+                });
             }, 200);
         }
     }
