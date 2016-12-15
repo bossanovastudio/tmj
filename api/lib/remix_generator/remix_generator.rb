@@ -1,5 +1,3 @@
-require 'prawn'
-require 'prawn/measurement_extensions'
 require 'tempfile'
 require 'open-uri'
 require 'rmagick'
@@ -22,96 +20,92 @@ module RemixGenerator
   end
 
   class RemixGenerator
+    def self.test
+      inst = RemixGenerator.new([
+        { type: 'background', color: 'cc0000', src: 'http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/3/foto-1.png' },
+        { type: 'image', src: 'http://cdntmjofilme.s3.amazonaws.com/remix/remix/sticker/image/8/balao-5_3x.png', position: [10, 10], width: 222, height: 207, rotation: 90 },
+        { type: 'text', content: 'qwerty', size: 20, position: [100, 100], bg: '000000', fg: 'FFFFFF' }
+      ])
+      inst.process
+    end
+
     def initialize(steps)
       @steps = steps
+      @garbage = []
+      @canvas = Magick::ImageList.new
+      @canvas.new_image(502, 502, Magick::HatchFill.new('white', 'gray90'))
     end
 
     def process
-      p_size = [132.820833333.mm, 132.820833333.mm]
-      steps = @steps
-      garbage = []
-      doc = Prawn::Document.new(page_size: p_size, :margin => [0,0,0,0]) do
-        bounding_box [0, p_size.first], width: p_size.first, height: p_size.first do
-          steps.each do |step|
-            case step[:type]
-            when 'background'
-              fill_color step[:color]
-              fill_rectangle [0, p_size.first], p_size.first, p_size.first
-              img = RemixGenerator.imgop(step[:src], garbage) do |img|
-                case step[:effect]
-                when 'sepia'
-                  puts 'applying sepiatone'
-                  img = img.sepiatone
-                when 'grayscale'
-                  puts 'applying grayscale'
-                  img = img.quantize(256, Magick::GRAYColorspace)
-                when 'filter_2'
-                  puts 'applying filter_2'
-                  img = img.sepiatone
-                  img = img.modulate(1, 1, 2)
-                when 'filter_3'
-                  puts 'applying filter_3'
-                  img = img.contrast true
-                  img = img.sepiatone
-                  img = img.modulate(1, 1.8, 1)
-                end
-                img
-              end
-              image img, at: RemixGenerator.px_to_mm([0, 502]), height: p_size.first, width: p_size.first
-            when 'image'
-              position = RemixGenerator.px_to_mm(step[:position])
-              width = step[:width].to_i
-              height = step[:height].to_i
-              img = RemixGenerator.imgop(step[:src], garbage) do |img|
-                img.background_color = "#0000"
-                img.resize! width, height
-                img.rotate! step.fetch(:rotation, "0").to_i
-                width = RemixGenerator.px_to_mm(img.columns)
-                height = RemixGenerator.px_to_mm(img.rows)
-                img
-              end
-              image img, at: position, width: width, height: height
-            when 'text'
-              width = RemixGenerator.px_to_mm(step[:width].to_i + 6)
-              height = RemixGenerator.px_to_mm(step[:height].to_i + 10)
-              position = RemixGenerator.px_to_mm([step[:position][0].to_i + 6, step[:position][1].to_i - 5])
-              cb = TextBoxCallback.new(color: step[:bg], document: self)
-              font './vendor/assets/fonts/KomikaTitle-webfont.ttf' do
-                formatted_text_box [{ text: step[:content], size: RemixGenerator.px_to_mm(step[:size]), color: step[:fg], callback: cb }], at: position, width: width, height: height
-              end
+      @steps.each do |step|
+        case step[:type]
+        when 'background'
+          @canvas << Magick::Image.new(502, 502) { self.background_color = "##{step[:color]}" }
+          @canvas << imgop(step[:src]) do |img|
+            img.resize_to_fit!(502, 502)
+            case step[:effect]
+            when 'sepia'
+              img.sepiatone
+            when 'grayscale'
+              img.quantize(256, Magick::GRAYColorspace)
+            when 'filter_2'
+              img = img.sepiatone
+              img.modulate(1, 1, 2)
+            when 'filter_3'
+              img = img.contrast true
+              img = img.sepiatone
+              img.modulate(1, 1.8, 1)
+            else
+              img
             end
           end
+        when 'image'
+          tmp = Magick::Image.new(502, 502) { self.background_color = '#0000' }
+          position = step[:position].collect &:to_i
+          width = step[:width].to_i
+          height = step[:height].to_i
+          rotation = step[:rotation].to_i
+          ops = imgop(step[:src]) do |img|
+            img.background_color = '#0000'
+            img.resize! width, height
+            img.rotate! rotation
+          end
+          @canvas << tmp.composite(ops, position[0], position[1], Magick::OverCompositeOp)
+        when 'text'
+          position = step[:position].collect &:to_i
+          background = step[:bg] == 'transparent' ? '#0000' : "##{step[:bg]}"
+          tmp = Magick::Image.new(502, 502) { self.background_color = '#0000' }
+          text = Magick::Draw.new
+          text.font = './vendor/assets/fonts/KomikaTitle-webfont.ttf'
+          text.fill = "##{step[:fg]}"
+          text.undercolor = background
+          text.pointsize = step[:size].to_i
+          text.gravity = Magick::NorthWestGravity
+          size_info = text.get_multiline_type_metrics(step[:content])
+          rect_height = size_info.height
+          rect_width = size_info.width
+          if background != '#0000'
+            rect_height += 12
+            rect_width += 20
+
+            gc = Magick::Draw.new
+            gc.fill = background
+            gc.rectangle position[0], position[1], position[0] + rect_width, position[1] + rect_height
+            gc.draw(tmp)
+          end
+          text.annotate(tmp, size_info.width, size_info.height, position[0] + 10, position[1] + 6, step[:content])
+          @canvas << tmp
         end
       end
-
-      pdf_tmp = Tempfile.new(['tmj-remix', '.pdf'])
-      png_tmp = Tempfile.new(['tmj-remix', '.png'])
-
-      doc.render_file pdf_tmp.path
-      pdf_page = Magick::Image.read(pdf_tmp.path)[0]
-      pdf_page.scale(502, 502)
-      pdf_page.write(png_tmp.path) { self.quality = 90 }
-      garbage.each { |f| f.unlink }
-      png_tmp
+      t = Tempfile.new(['test', '.png'])
+      @canvas.flatten_images.write(t.path)
+      t
     end
 
-    def self.px_to_mm(px)
-      if px.kind_of? Array
-        px.collect { |x| px_to_mm(x) }
-      else
-        (px.to_i * 0.264583333).mm
-      end
-    end
-
-    def self.imgop(path, garbage)
-      img = Magick::ImageList.new(path)
+    def imgop(path)
+      img = Magick::ImageList.new(path).first
       ret = yield(img)
-      # img = ret if ret.kind_of? Magick::ImageList
-      img = ret
-      tmp = Tempfile.new
-      img.write(tmp.path)
-      garbage << tmp
-      tmp.path
+      ret
     end
   end
 end

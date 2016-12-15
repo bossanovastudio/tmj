@@ -132,14 +132,14 @@ window.getElements = ->
         src: $el.find('img').attr('src'),
         width: $el.find('img').width(),
         height: $el.find('img').height(),
-        position: [parseInt($el.css('left').replace('px','')), $('.picture').height() - parseInt($el.css('top').replace('px',''))]
+        position: [parseInt($el.css('left').replace('px','')), parseInt($el.css('top').replace('px',''))]
         type: 'image',
         rotation: getRotationDegrees $el
       })
     else
       elements.push({
         type: 'text',
-        position: [parseInt($el.css('left').replace('px','')), $('.picture').height() - parseInt($el.css('top').replace('px',''))]
+        position: [parseInt($el.css('left').replace('px','')), parseInt($el.css('top').replace('px',''))]
         size: $el.css('font-size').replace('px',''),
         content: $el.find('textarea').val(),
         width: $el.width(),
