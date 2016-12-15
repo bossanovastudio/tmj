@@ -183,8 +183,8 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
     $scope.msg_recover = 'Cadastrar nova senha.';
 
     $scope.resetPass = function() {
-        $rootScope.popup_title = 'Acabamos de enviar um e-mail';
-        $rootScope.popup_confirm = 'SIM, VAI NA FÉ';
+        $rootScope.popup_title = 'Acabamos de enviar um e-mail para você';
+        $rootScope.popup_confirm = 'Ok, entendi!';
 
         if (!$scope.form.username) {
             $scope.msg_username = 'Preencha seu apelido';
