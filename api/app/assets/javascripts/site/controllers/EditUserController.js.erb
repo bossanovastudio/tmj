@@ -150,7 +150,6 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         if ($scope.open) {
             if ($scope.passwordPlaceholder || position == 'first' || $scope.passwordChoice.length == 4) {
               $scope.numClick = 0;
-              $scope.passwordChoice.length = 0;
               $('.after').css({ "left": 10 });
             }
             $('.overlay-pass').css({ "display": "block" });
@@ -162,17 +161,21 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
 
     $scope.addToPasswordChoice = function(pass) {
         $scope.numClick = $scope.numClick + 1;
-        $scope.passwordChoice.push($scope.passwords[pass.id]);
-        if ($scope.numClick == 1){
+        if ($scope.numClick == 1) {
+            $scope.passwordChoice.length = 0;
+            $scope.passwordChoice.push($scope.passwords[pass.id]);
             $('.after').css({ "left": 55 });
-        } else if ($scope.numClick == 2){
+        } else if ($scope.numClick == 2) {
+            $scope.passwordChoice.push($scope.passwords[pass.id]);
             $('.after').css({ "left": 105 });
-        } else if ($scope.numClick == 3){
+        } else if ($scope.numClick == 3) {
+            $scope.passwordChoice.push($scope.passwords[pass.id]);
             $('.after').css({ "left": 150 });
-        }else{
+        } else {
+            $scope.passwordChoice.push($scope.passwords[pass.id]);
             $scope.numClick = 0;
             $scope.open = !$scope.open;
-            $('.overlay-pass').css({"display": "none"});
+            $('.overlay-pass').css({ "display": "none" });
         }
     }
 
@@ -188,12 +191,15 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
 
         if (!$scope.form.username || $scope.form.username.length < 1) {
             $scope.msg_update = 'Preencha seu apelido';
+            $scope.msg_sus_update = ''
             return false;
         } else if (!$scope.form.email || $scope.form.email.length < 1) {
             $scope.msg_update = 'Email inválido';
+            $scope.msg_sus_update = ''
             return false;
         } else if ($scope.form.password.length != 12 && $scope.form.password != '0000') {
             $scope.msg_update = 'Senha inválida';
+            $scope.msg_sus_update = ''
             return false;
         }
 
@@ -201,7 +207,8 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             $scope.form.password = null;
         }
 
-        $scope.msg_update = 'Aguarde';
+        $scope.msg_sus_update = 'Aguarde';
+        $scope.msg_update = '';
         $http.put("/user.json", {
                 user: $scope.form
             }, {
@@ -212,10 +219,12 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
                 }
             })
             .then(function(response) {
-                $scope.msg_update = 'Atualizado com sucesso.';
+                $scope.msg_sus_update = 'Atualizado com sucesso.';
+                $scope.msg_update = '';
                 //$location.path('/sua-pagina');
             }, function(response) {
                 $scope.msg_update = response.error;
+                $scope.msg_sus_update = ''
             });
     }
 
