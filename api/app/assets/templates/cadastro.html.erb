@@ -17,7 +17,7 @@
                 <label for="password">Senha</label>
                 <br>
                 <ul class="input-pass register">
-                    <li ng-click="togglePassword()" style="background:url('{{passwordChoice[0].img}}'); background-size: cover;">
+                    <li ng-click="togglePassword('first')" style="background:url('{{passwordChoice[0].img}}'); background-size: cover;">
                         <input type="hidden" name="pass-1" value="{{passwordChoice[0].value}}" />
                     </li>
                     <li ng-click="togglePassword()" style="background:url('{{passwordChoice[1].img}}'); background-size: cover;">
