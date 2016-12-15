@@ -132,7 +132,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             .then(function(response) {
                 $scope.msg = 'Obrigado.';
                 storage.set('user', response.data);
-                $location.path('/');
+                window.location = '/';
             }, function(response) {
                 storage.deleteKey('user');
                 $scope.msg = response.data.error;
