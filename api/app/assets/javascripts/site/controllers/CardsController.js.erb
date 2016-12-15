@@ -56,6 +56,12 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     $scope.END = true;
                     if (!isMobileDevice) {
                         // $('.cards').removeClass('loading');
+                        setTimeout(function() {
+                            $('.social-editor li').each(function(i) {
+                                var t = $(this);
+                                setTimeout(function() { t.addClass('animate'); }, (i + 1) * 50);
+                            });
+                        }, 1600);
                         $('.cards-loading').removeClass('show');
                     }
                 } else {

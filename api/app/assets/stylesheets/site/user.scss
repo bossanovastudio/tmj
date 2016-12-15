@@ -183,8 +183,11 @@ body.edit-user {
                     vertical-align: top;
                     margin-bottom: 9px;
                     &.animate {
-                        opacity: 1;
+                        opacity: 0.4;
                         animation: enterRamonaSocial .4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+                        &.active{
+                            opacity: 1;
+                        }
                     }
                 }
             }
@@ -457,17 +460,19 @@ body.edit-user {
                         z-index: -1;
                         -webkit-transition: all 0.2s ease-in;
                     }
-                    &:hover:before {
-                        left: -15px;
-                        top: -15px;
-                        -webkit-transition: all 0.2s ease-in;
-                    }
-                    &:hover {
-                        background: transparent;
-                        -webkit-transition: 0.1s;
-                        -moz-transition: 0.1s;
-                        -o-transition: 0.1s;
-                        transition: 0.1s;
+                    &.active{
+                        &:hover:before {
+                            left: -15px;
+                            top: -15px;
+                            -webkit-transition: all 0.2s ease-in;
+                        }
+                        &:hover {
+                            background: transparent;
+                            -webkit-transition: 0.1s;
+                            -moz-transition: 0.1s;
+                            -o-transition: 0.1s;
+                            transition: 0.1s;
+                        }
                     }
                 }
             }
