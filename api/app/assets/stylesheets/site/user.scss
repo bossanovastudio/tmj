@@ -4,7 +4,7 @@ body.edit-user {
     .initial-loading {
         top: 40%;
     }
-    .container.ramona-card {
+    .container.users {
         height: auto !important;
         opacity: 0;
         &.show {
@@ -22,6 +22,9 @@ body.edit-user {
         .columns {
             order: 2;
             flex-grow: 7;
+        }
+        .edit{
+            cursor: pointer;
         }
         .box-avatar-user{
             min-width: 230px;
@@ -184,7 +187,7 @@ body.edit-user {
                     margin-bottom: 9px;
                     &.animate {
                         opacity: 0.4;
-                        animation: enterRamonaSocial .4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+                        animation: enterUsersSocial .4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
                         &.active{
                             opacity: 1;
                         }
@@ -491,14 +494,14 @@ body.edit-user {
 }
 
 @media only screen and (max-device-width: 550px) {
-    body.ramona {
+    body.edit-user {
         .cards {
             padding-top: 55px !important;
         }
     }
 }
 
-@keyframes enterRamonaSocial {
+@keyframes enterUsersSocial {
     from {
         transform: translateX(100px) rotate(360deg);
     }

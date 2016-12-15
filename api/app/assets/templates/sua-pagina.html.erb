@@ -1,11 +1,14 @@
 <div class="vertical-container" ng-swipe-up="swipeUp()">
   <div class="vertical-content">
-    <div ng-class="{show : isCardsLoaded}" class="container cards ramona-card animated">
+    <div ng-class="{show : isCardsLoaded}" class="container cards users animated">
       <div class="author">
         <div class="box-avatar-user">
-          <img class="avatar" width="200" height="200" src="{{user.image.url}}" />
+          <img class="avatar" width="200" height="auto" src="{{user.image}}" />
         </div>
         <div class="seven columns">
+          <a ng-href="/editar-perfil" target="_self">
+            <img class="edit" src="<%=asset_url('site/edit-icon-black.svg')%>" width="auto" height="20px" />
+          </a>
           <div class="profile">
             <div class="box-profile">
               <p class="editor">{{user.username}}</p>
@@ -39,12 +42,12 @@
                 <p class="number">{{user.ramona_recommendations ? user.ramona_recommendations : 0}}</p>
               </li>
               <li class="geek">
-                <img src="<%=asset_url('site/icone-geek.svg')%>" alt="">
-                <p class="number">{{user.geek_recommendations ? user.geek_recommendations : 0}}</p>
+                <!-- <img src="<%=asset_url('site/icone-geek.svg')%>" alt="">
+                <p class="number">{{user.geek_recommendations ? user.geek_recommendations : 0}}</p> -->
               </li>
               <li class="denise">
-                <img src="<%=asset_url('site/icone-denise.svg')%>" alt="">
-                <p class="number">{{user.denise_recommendations ? user.denise_recommendations : 0}}</p>
+                <!-- <img src="<%=asset_url('site/icone-denise.svg')%>" alt="">
+                <p class="number">{{user.denise_recommendations ? user.denise_recommendations : 0}}</p> -->
               </li>
             </ul>
           </div>
