@@ -70,7 +70,7 @@ module Crawlers::Social
           @instagram.hashtag hashtag
           @twitter.search hashtag
         end
-      rescue => e
+      rescue Exception => e
         $logger.error(e)
       end
     end

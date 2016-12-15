@@ -19,6 +19,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
     $rootScope.logout = function() {
         storage.deleteKey('user');
         $rootScope.user = null;
+        $http.delete("/user/sign_out.json");
     }
 
     $rootScope.goToProfile = function() {

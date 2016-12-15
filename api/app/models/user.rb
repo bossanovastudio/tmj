@@ -31,7 +31,6 @@
 #
 
 class User < ActiveRecord::Base
-  acts_as_token_authenticatable
   devise :database_authenticatable, :registerable, :rememberable, :trackable, :omniauthable, :recoverable
 
   enum role: { user: 1, editor: 2, moderator: 3, admin: 4 }
@@ -48,7 +47,7 @@ class User < ActiveRecord::Base
   after_create :send_welcome_email
   
   # Validations
-  validates :username, presence: true, format: { with: /\A[0-9a-zA-Z]+\z/ }, length: { in: 6..16 }
+  validates :username, presence: true, uniqueness: true, format: { with: /\A[0-9a-zA-Z]+\z/ }, length: { in: 6..16 }
 
   def update_without_password(params, *options)
     if params[:password].blank?
@@ -59,6 +58,10 @@ class User < ActiveRecord::Base
     result = update_attributes(params, *options)
     clean_up_passwords
     result
+  end
+  
+  def password_required?
+    true
   end
   
   private  
