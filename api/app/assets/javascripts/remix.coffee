@@ -92,21 +92,33 @@ parseColor = (x) ->
   else
     x = x
 
-parseColorSize = (x) ->
-  x = x;
-
 parseColorTransparent = (x) ->
   if x.css('background-color') == "transparent"
     x = "transparent"
   else
     x = (x.css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join("")
 
+getRotationDegrees = (x) ->
+  matrix = x.css("-webkit-transform") || x.css("-moz-transform") || x.css("-ms-transform") || x.css("-o-transform") || x.css("transform");
+  if matrix != 'none'
+    values = matrix.split('(')[1].split(')')[0].split(',');
+    a = values[0];
+    b = values[1];
+    angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+  else
+    angle = 0
+  if angle < 0
+    angle + 360
+  else
+    angle
+
 window.getElements = ->
-  background = {
-    image: $('.picture').attr('src'),
-    color: ($('.remix-canvas').css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join("")
-  }
   elements = [];
+  elements.push({
+    type: 'background',
+    src: $('.picture').attr('src'),
+    color: ($('.remix-canvas').css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join("")
+  });
 
   $('.element').each ->
     $el = $(this);
@@ -117,6 +129,7 @@ window.getElements = ->
         height: $el.find('img').height(),
         position: [parseInt($el.css('left').replace('px','')), $('.picture').height() - parseInt($el.css('top').replace('px',''))]
         type: 'image',
+        rotation: getRotationDegrees $el
       })
     else
       elements.push({
@@ -129,8 +142,7 @@ window.getElements = ->
       })
 
   return {
-    mobile: isMobile()
-    background: background,
+    mobile: isMobile(),
     elements: elements
   }
 
