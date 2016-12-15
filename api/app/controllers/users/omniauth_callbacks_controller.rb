@@ -1,43 +1,49 @@
 class Users::OmniauthCallbacksController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:remove]
   
   def facebook
     omniauth_params = request.env["omniauth.auth"]
     provider = Provider.find_with_omniauth omniauth_params
     
-    unless provider
+    if provider  
+      sign_in provider.user
+      redirect_to root_path
+    elsif user_signed_in?
       current_user.providers.create_with_omniauth omniauth_params
+      redirect_to '/editar-perfil'
     end
-    
-    redirect_to '/editar-perfil'
   end
   
   def twitter
     omniauth_params = request.env["omniauth.auth"]
     provider = Provider.find_with_omniauth omniauth_params
     
-    unless provider
+    if provider  
+      sign_in provider.user
+      redirect_to root_path
+    elsif user_signed_in?
       current_user.providers.create_with_omniauth omniauth_params
+      redirect_to '/editar-perfil'
     end
-    
-    redirect_to '/editar-perfil'
   end
   
   def instagram
     omniauth_params = request.env["omniauth.auth"]
     provider = Provider.find_with_omniauth omniauth_params
     
-    unless provider
+    if provider  
+      sign_in provider.user
+      redirect_to root_path
+    elsif user_signed_in?
       current_user.providers.create_with_omniauth omniauth_params
+      redirect_to '/editar-perfil'
     end
-    
-    redirect_to '/editar-perfil'
   end
   
   def remove
     provider = current_user.providers.find_by(provider: params[:provider])
     
-    if provider.any?
+    if provider
       provider.destroy
     end
     

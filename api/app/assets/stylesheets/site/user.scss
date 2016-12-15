@@ -1,10 +1,10 @@
-body.edit-user {
+body.profile {
     min-height: 100%;
     min-width: 600px;
     .initial-loading {
         top: 40%;
     }
-    .container.ramona-card {
+    .container.users {
         height: auto !important;
         opacity: 0;
         &.show {
@@ -22,6 +22,9 @@ body.edit-user {
         .columns {
             order: 2;
             flex-grow: 7;
+        }
+        .edit{
+            cursor: pointer;
         }
         .box-avatar-user{
             min-width: 230px;
@@ -173,6 +176,7 @@ body.edit-user {
                 letter-spacing: 0.1px;
                 color: #000000;
                 margin: 10px 0px 30px 0px;
+                word-wrap: break-word;
             }
         }
         .social {
@@ -184,7 +188,7 @@ body.edit-user {
                     margin-bottom: 9px;
                     &.animate {
                         opacity: 0.4;
-                        animation: enterRamonaSocial .4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+                        animation: enterUsersSocial .4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
                         &.active{
                             opacity: 1;
                         }
@@ -301,7 +305,7 @@ body.edit-user {
 
     }
     @media only screen and (max-device-width: 550px) {
-        background-image: asset-url('site/bg_ramona_mobile.jpg');
+        background-image: asset-url('site/bg_mobile.jpg');
         background-size: cover;
         min-width: 100%;
 
@@ -321,6 +325,7 @@ body.edit-user {
                 .avatar,
                 .avatar_hover {
                     width: 106px;
+                    height: 106px;
                 }
                 img.badge {
                     position: absolute;
@@ -491,14 +496,14 @@ body.edit-user {
 }
 
 @media only screen and (max-device-width: 550px) {
-    body.ramona {
+    body.profile {
         .cards {
             padding-top: 55px !important;
         }
     }
 }
 
-@keyframes enterRamonaSocial {
+@keyframes enterUsersSocial {
     from {
         transform: translateX(100px) rotate(360deg);
     }

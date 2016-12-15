@@ -996,21 +996,21 @@ div.card {
                     background-image: asset-url('site/twitter-form.svg');
                 }
             }
-            &.btn-tumblr {
-                background-color: #3EBFCB;
+            &.btn-instagram {
+                background-color: #645EDA;
                 color: #fff;
                 position: relative;
                 &:before {
-                    background: #1DA8B4;
+                    background: #5A49B8;
                 }
                 &:after {
                     content: '';
-                    width: 8px;
+                    width: 12px;
                     height: 12px;
                     position: absolute;
                     top: 10px;
                     left: 17px;
-                    background-image: asset-url('site/tumblr-form.svg');
+                    background-image: asset-url('site/instagram-form.svg');
                 }
             }
             &.btn-submit {
@@ -1055,10 +1055,13 @@ div.card {
                 text-transform: uppercase;
             }
             position: relative;
-            .form-group label {
+            .form-group {
                 position: relative;
-                font-weight: bold;
-                letter-spacing: 0.3px;
+                label {
+                    position: relative;
+                    font-weight: bold;
+                    letter-spacing: 0.3px;
+                }
             }
             .user label {
                 padding-left: 24px;
@@ -1072,16 +1075,19 @@ div.card {
                     background: no-repeat asset-url('site/apelido-icon.svg');
                 }
             }
-            .pass label {
-                padding-left: 20px;
-                &:after {
-                    content: '';
-                    width: 10px;
-                    height: 12px;
-                    position: absolute;
-                    top: 0px;
-                    left: 0px;
-                    background: no-repeat asset-url('site/senha-icon.svg');
+            .pass {
+                margin-bottom: 10px;
+                    label {
+                    padding-left: 20px;
+                    &:after {
+                        content: '';
+                        width: 10px;
+                        height: 12px;
+                        position: absolute;
+                        top: 0px;
+                        left: 0px;
+                        background: no-repeat asset-url('site/senha-icon.svg');
+                    }
                 }
             }
             .mail label {
@@ -1140,6 +1146,19 @@ div.card {
             input::-moz-placeholder { font-size: 9pt; color: #fff; }
             input:-ms-input-placeholder { font-size: 9pt; color: #fff; }
             input:-moz-placeholder { font-size: 9pt; color: #fff; }
+            .error-msg{
+                position: relative;
+                top: -15px;
+                font-size: 13px;
+                color: #da001b;
+                margin: 0px;
+                &.pass{
+                    top: 0px;
+                }
+                &.pass-reset{
+                    top: 10px;
+                }
+            }
             .input-pass {
                 list-style: none;
                 display: block;
@@ -1655,8 +1674,18 @@ p.content a {
         padding-top: 80px;
         margin-top: -5% !important;
         &.ramona {
-            background: asset-url('site/bg_ramona_mobile.jpg') no-repeat center center fixed;
-            background-size: cover;
+          background-color: #E88EDB;
+        }
+        #ramona-bg {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            img {
+              height: 105%;
+            }
         }
         &:after {
             display: none;

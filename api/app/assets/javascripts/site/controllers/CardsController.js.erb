@@ -1,4 +1,4 @@
-tmj.controller('CardsController', function($rootScope, $location, $scope, $http, $sce, $compile, $routeParams) {
+tmj.controller('CardsController', function($rootScope, $location, $scope, $http, $sce, $compile, $routeParams, $window) {
 
     $scope.ready = false;
     $scope.cards = [];
@@ -32,6 +32,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             });
     }
 
+
     $scope.loadCards = function(p, slug, array, icon) {
         if (!slug) {
             slug = 'all'
@@ -56,13 +57,24 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     $scope.END = true;
                     if (!isMobileDevice) {
                         // $('.cards').removeClass('loading');
+                        $('.cards-loading').removeClass('show');
                         setTimeout(function() {
                             $('.social-editor li').each(function(i) {
                                 var t = $(this);
                                 setTimeout(function() { t.addClass('animate'); }, (i + 1) * 50);
                             });
                         }, 1600);
-                        $('.cards-loading').removeClass('show');
+                    } else {
+                        if ($('.cards').data('masonry')) {
+                            $('.cards').masonry('destroy');
+                        }
+                        if ($scope.PAGE == 1) {
+                            setTimeout(function() {
+                                $('.cards').each(function(i, e) {
+                                    $(e).css({ top: i * $(window).height() });
+                                });
+                            }, 500);
+                        }
                     }
                 } else {
                     if (($scope.PAGE == 1 && isMobileDevice && $rootScope.pageName != 'homePage') || icon == 'ramonaIcon') {
@@ -133,11 +145,17 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             }, function(data) {
                 $rootScope.isCardsLoaded = true;
                 $rootScope.ready = true;
+                setTimeout(function() {
+                    $('.social-editor li').each(function(i) {
+                        var t = $(this);
+                        setTimeout(function() { t.addClass('animate'); }, (i + 1) * 50);
+                    });
+                }, 1600);
             });
         $rootScope.track('load', 'cards', 'content');
     }
 
-    $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'), $scope.cards, 'posts');
+    $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? 'user/' + $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'), $scope.cards, 'posts');
     if (isMobileDevice) {
         $scope.loadCards($scope.PAGE, 'ramona', $scope.cardsRamona, 'ramonaIcon');
     }
@@ -169,7 +187,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
     var running = false;
 
-    $scope.swipeLeft = function($event) {
+    $scope.swipeLeft = function($event, sectionName) {
         if (!running) {
             running = true;
             var e = angular.element($event.target);
@@ -217,11 +235,18 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 }
             }
             $scope.lazyLoad(false);
+
+            if (sectionName == 'ramona') {
+                $('#ramona-bg').css({
+                  'left': - walk
+                });
+            }
         }
         $rootScope.track('swipe', 'cards', 'left');
+
     }
 
-    $scope.swipeRight = function($event) {
+    $scope.swipeRight = function($event, sectionName) {
         var e = angular.element($event.target);
         e = $(e);
         if (!e.hasClass('container')) {
@@ -235,6 +260,12 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             left: walk
         }, 250, 'easeOutExpo');
         $rootScope.track('swipe', 'cards', 'right');
+
+        if (sectionName == 'ramona') {
+          $('#ramona-bg').css({
+              'left': - walk
+          });
+        }
     }
 
     var distanceTop = 0;
@@ -411,8 +442,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope.likeCard = function($event, id) {
         var elem = $(angular.element($event.target)).closest('.card');
         var heart = elem.find('.heart');
+        var count = parseInt(elem.find('.counter').text());
         if (!heart.parent().hasClass('liked')) {
-            var count = parseInt(elem.find('.counter').text());
             $http({
                     method: 'GET',
                     url: '/api/cards/'+id+'/like.json'
@@ -423,8 +454,20 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     heart.parent().find('.counter').html('&nbsp;' + count);
                     heart.parent().addClass('liked');
                 });
+            $rootScope.track('click', 'cards', 'like');
+        } else {
+            $http({
+                    method: 'GET',
+                    url: '/api/cards/'+id+'/unlike.json'
+                })
+                .then(function(data) {
+                    heart.attr('src', '<%= asset_url('site/like.svg')%>');
+                    count--;
+                    heart.parent().find('.counter').html('&nbsp;' + count);
+                    heart.parent().removeClass('liked');
+                });
+            $rootScope.track('click', 'cards', 'unlike');
         }
-        $rootScope.track('click', 'cards', 'like');
     }
 
     $scope.initialCard = function(array, filterType, total) {

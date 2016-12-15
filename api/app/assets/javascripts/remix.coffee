@@ -480,13 +480,22 @@ $('.remix-container').each ->
           spellcheck: 'false'
         }
         .on 'input', ->
+          iOS = /iPhone|iPod|iPad/i.test(navigator.userAgent);
           $hidden = $(this).siblings('.hidden-content')
           $hidden.html(this.value.replace(/\n/g, '<br>'))
+          if iOS
+            $(this).css {
+              minWidth: 150
+              maxWidth: 150
+              width: 150
+              height: $hidden.height()
+            }
+          else
+            $(this).css {
+              width: $hidden.width() + 5
+              height: $hidden.height()
+            }
 
-          $(this).css {
-            width: $hidden.width() + 5
-            height: $hidden.height()
-          }
         .on 'mousedown', ->
           if $(this).closest('.element').hasClass('focus')
             $(this).attr('readonly', false).trigger('focus')

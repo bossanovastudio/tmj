@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
   devise_scope :user do
     get '/user/auth/:provider/remove', to: 'users/omniauth_callbacks#remove'
+    get '/user/is_signed_in', to: 'users/sessions#is_signed_in', as: 'is_signed_in'
   end
   
-  devise_for :user, :controllers => { registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :user, :controllers => { sessions: 'users/sessions', registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
   namespace :api do
-    get '/ramona/(:page)/(:quantity)', to: 'general#editors', id: :ramona, defaults: { page: 1, quantity: 10 }
+    get '/ramona/follow', to: 'general#follow', username: :ramona
+    get '/ramona/unfollow', to: 'general#unfollow', username: :ramona
+    get '/ramona/(:page)/(:quantity)', to: 'general#editors', username: :ramona, defaults: { page: 1, quantity: 10 }
+    get '/ramona/(:page)/(:quantity)', to: 'general#editors', username: :ramona, defaults: { page: 1, quantity: 10 }
+    get '/user/:username/profile', to: 'general#profile'
+    get '/user/:username/(:page)/(:quantity)', to: 'general#users', defaults: { page: 1, quantity: 10 }
     get '/all/(:page)/(:quantity)', to: 'general#all', defaults: { page: 1, quantity: 10 }
     get '/all_without_editors/(:page)/(:quantity)', to: 'general#all_without_editors', defaults: { page: 1, quantity: 10 }
 

@@ -31,11 +31,11 @@
 #
 
 class User < ActiveRecord::Base
-  acts_as_token_authenticatable
   devise :database_authenticatable, :registerable, :rememberable, :trackable, :omniauthable, :recoverable
 
   enum role: { user: 1, editor: 2, moderator: 3, admin: 4 }
   scope :editors, -> { where(role: :editor) }
+  scope :regular, -> { where(role: :user) }
 
   # Uploader
   mount_uploader :image, AvatarUploader
@@ -43,12 +43,12 @@ class User < ActiveRecord::Base
 
   has_many :providers
   has_many :cards, through: :providers
-  recommends :cards
+  recommends :cards, :users
 
   after_create :send_welcome_email
   
   # Validations
-  validates :username, presence: true, format: { with: /\A[0-9a-zA-Z]+\z/ }, length: { in: 6..16 }
+  validates :username, presence: true, uniqueness: true, format: { with: /\A[0-9a-zA-Z]+\z/ }, length: { in: 6..16 }
 
   def update_without_password(params, *options)
     if params[:password].blank?
@@ -61,7 +61,11 @@ class User < ActiveRecord::Base
     result
   end
 
-  private
+  def password_required?
+    true
+  end
+  
+  private  
     def send_welcome_email
       return true unless email
       UsersMailer.welcome(self).deliver_now
