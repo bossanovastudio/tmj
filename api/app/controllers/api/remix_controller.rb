@@ -30,6 +30,8 @@ class Api::RemixController < ApplicationController
     steps = params[:elements].keys.sort.collect { |k| params[:elements][k].to_unsafe_h.symbolize_keys }
     gen = ::RemixGenerator::RemixGenerator.new(steps)
     img = gen.process
+    puts img
+    puts current_user
     image = Remix::UserImage.new(image: img, user: current_user)
     if image.save
       render json: { share_url: remix_image_url(id: image.id), id: image.id }

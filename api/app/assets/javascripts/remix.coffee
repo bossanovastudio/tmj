@@ -21,6 +21,7 @@
 API_URL = '/api/remix'
 DATA_BGS = []
 DATA_TXT_COLORS = []
+DATA_CSS_EFFECT_NAME = ['grayscale', 'sepia', 'filter_2', 'filter_3', 'none']
 DATA_CSS_EFFECTS = [
   {
     '-webkit-filter': 'grayscale(1)',
@@ -114,10 +115,14 @@ getRotationDegrees = (x) ->
 
 window.getElements = ->
   elements = [];
+  background_effect = 'none'
+  if $('.remix-container').data('effects-index') != undefined
+    background_effect = DATA_CSS_EFFECT_NAME[$('.remix-container').data('effects-index') - 1]
   elements.push({
     type: 'background',
     src: $('.picture.canvas-background').attr('src'),
-    color: ($('.remix-canvas').css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join("")
+    color: ($('.remix-canvas').css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join(""),
+    effect: background_effect
   });
 
   $('.element').each ->
