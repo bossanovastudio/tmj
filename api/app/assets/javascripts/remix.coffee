@@ -24,22 +24,27 @@ DATA_TXT_COLORS = []
 DATA_CSS_EFFECTS = [
   {
     '-webkit-filter': 'grayscale(1)',
+    '-moz-filter': 'grayscale(1)',
     'filter': 'grayscale(1)'
   }
   {
     '-webkit-filter': 'sepia(1)',
+    '-moz-filter': 'sepia(1)',
     'filter': 'sepia(1)'
   }
   {
     '-webkit-filter': 'sepia(1) hue-rotate(200deg)',
+    '-moz-filter': 'sepia(1) hue-rotate(200deg)',
     'filter': 'sepia(1) hue-rotate(200deg)'
   }
   {
     '-webkit-filter': 'contrast(1.4) saturate(1.8) sepia(.6)',
+    '-moz-filter': 'contrast(1.4) saturate(1.8) sepia(.6)',
     'filter': 'contrast(1.4) saturate(1.8) sepia(.6)'
   }
   {
     '-webkit-filter': 'none',
+    '-moz-filter': 'none',
     'filter': 'none'
   }
 ]
@@ -152,7 +157,7 @@ $('.remix-container').each ->
   .then (result) ->
     # categories
     html = ''
-    template = '<div class="item" data-id="{{ id }}"><div><img src="{{ &url }}" alt="{{ name }}"></div></div>'
+    template = '<div class="item" data-id="{{ id }}"><div><img crossorigin="anonymous" src="{{ &url }}" alt="{{ name }}"></div></div>'
     Mustache.parse template
 
     result.categories.forEach (category) ->
@@ -162,7 +167,7 @@ $('.remix-container').each ->
 
     # pictures
     html = ''
-    template = '<div class="item" data-category-id="{{ category_id }}" data-picture-src="{{ &url }}"><div><img src="{{ &url }}" alt=""></div></div>'
+    template = '<div class="item" data-category-id="{{ category_id }}" data-picture-src="{{ &url }}"><div><img crossorigin="anonymous" src="{{ &url }}" alt=""></div></div>'
     Mustache.parse template
 
     result.pictures.forEach (category) ->
@@ -180,7 +185,7 @@ $('.remix-container').each ->
 
     # balloons
     html = ''
-    template = '<div class="elements-item" data-src="{{ &url }}"><img src="{{ &url }}" alt=""></div>'
+    template = '<div class="elements-item" data-src="{{ &url }}"><img src="{{ &url }}" alt="" crossorigin="anonymous"></div>'
     Mustache.parse template
 
     result.balloons.forEach (balloon) ->
@@ -190,7 +195,7 @@ $('.remix-container').each ->
 
     # stickers
     html = ''
-    template = '<div class="elements-item" data-src="{{ &url }}"><img src="{{ &url }}" alt=""></div>'
+    template = '<div class="elements-item" data-src="{{ &url }}"><img src="{{ &url }}" alt="" crossorigin="anonymous"></div>'
     Mustache.parse template
 
     result.stickers.forEach (sticker) ->
@@ -275,17 +280,22 @@ $('.remix-container').each ->
           base64Image = canvas.toDataURL('image/png')
           $canvas.html('<img src="' + base64Image + '" alt="">')
 
-          # TODO: replace with true url
-          # $.ajax {
-          #   url: API_URL + '/create'
-          #   data:
-          #     image: base64Image
-          #   dataType: 'json'
-          # }
-          # .done (data) ->
-          #   $canvas.html('<img src="' + data.image_url + '" alt="">')
-          # .fail ->
-          #   alert 'Não foi possível salvar a imagem'
+          $.ajax {
+            url: API_URL
+            method: 'POST'
+            data:
+              image: base64Image
+            dataType: 'json'
+          }
+          .done (data) ->
+            $canvas.html('<img src="' + data.share_url + '" alt="">')
+            $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + data.share_url)
+            $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url)
+            $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url)
+            $composer.find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
+            $('.gallery-item-new').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
+          .fail ->
+            alert 'Não foi possível salvar a imagem'
       }
 
       # BEGIN: to save in back-end, use these lines below
@@ -315,12 +325,12 @@ $('.remix-container').each ->
       $picture = $canvas.find('.picture')
 
       if !$picture.length
-        $picture = $('<div>')
+        $picture = $('<img>')
         $canvas.append $picture
 
       $picture
-        .css { 'background-image': 'url(' + src + ')' }
-        .attr { class: 'picture' }
+        # .css { 'background-image': 'url(' + src + ')' }
+        .attr { class: 'picture', src: src, crossorigin: 'anonymous' }
 
       $composer.find('.artboard .empty').hide()
 
@@ -328,7 +338,7 @@ $('.remix-container').each ->
     'add-image': (event, src) ->
       $element = $('<div>').attr { class: 'element image' }
 
-      $('<img>').attr { src: src, alt: '' }
+      $('<img>').attr { src: src, alt: '', crossOrigin: 'anonymous' }
         .appendTo $element
 
       $('<div>').attr { class: 'action remove' }
@@ -487,7 +497,13 @@ $('.remix-container').each ->
         $(this).animate({ scrollLeft: ('-=' + width) }, 100)
     }
 
-    $(this).find('.gallery-item').find('.picture, .actions .share').click ->
+    $(this).find('.gallery-item').find('.actions .share').click ->
+      $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + $image.attr('src'))
+      $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + $image.attr('src'))
+      $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + $image.attr('src'))
+
+    # $(this).find('.gallery-item').find('.picture').on click ->
+    $(this).on click: ->
       $item = $(this).closest('.gallery-item')
       $image = $(this).closest('.gallery-item').find('.picture').clone()
       $image.appendTo($canvas)
@@ -496,9 +512,28 @@ $('.remix-container').each ->
       $composer.find('.actions .download').attr('href', $image.attr('src'))
       $composer.find('.actions .remove').data('id', $item.data('id'))
       $remix.addClass('initial can-share')
+    , '.gallery-item .picture'
 
   $(window).resize ->
     $gallery.trigger 'remix:gallery-adapt'
+
+  $composer.find('.actions .remove').click ->
+    id = $(this).data('id')
+    $.ajax {
+      url: API_URL + '/delete'
+      method: 'POST'
+      data:
+        id: id
+      dataType: 'json'
+    }
+    .done (data) ->
+      $('.gallery-item[data-id=' + id + ']').remove()
+      if $('.gallery-item').length == 0
+        $('.gallery-item-new').trigger('click')
+      else
+        $('.gallery-item').last().find('.picture').trigger('click')
+    .fail ->
+      alert('Houve um problema ao remover a imagem')
 
   $remix.find('.create-new, .gallery-item-new, .start-over').click ->
     $remix.trigger 'init'
