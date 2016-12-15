@@ -6,7 +6,7 @@ class Users::SessionsController < Devise::SessionsController
     resource = User.find_for_database_authentication(username: params[:user][:username])
     return failure unless resource
 
-    if resource.valid_password?(params[:user][:password]) && resource.actived?
+    if resource.valid_password?(params[:user][:password])
       if params[:user][:remember_me]
         resource.remember_me!
       end
