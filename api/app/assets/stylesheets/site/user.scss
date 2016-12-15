@@ -240,6 +240,16 @@ body.edit-user {
             }
         }
     }
+    @media only screen and (max-width: 1080px) {
+        .author{
+            .about{
+                div{
+                    max-width: 400px;
+                    width: 70%;
+                }
+            }
+        }
+    }
     @media only screen and (max-width: 780px) {
         .vertical-container{
             width: 100%;
