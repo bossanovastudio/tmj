@@ -259,6 +259,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         $rootScope.cardIsOpen = false;
         if (parseInt(keyCode) == 27) {
             $scope.closeLightbox();
+            $rootScope.closePopup();
         }
     }
 
