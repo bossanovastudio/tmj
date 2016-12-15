@@ -4,6 +4,8 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
 
     var distanceTop = 0;
 
+    $scope.following = false;
+
     $scope.swipeUp = function() {
         distanceTop = -$(window).height();
         $('.cards').each(function(i, e) {
@@ -17,6 +19,14 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
             $rootScope.animateInitial();
         }, 1000);
         $rootScope.track('swipe', 'cards', 'up');
+    }
+
+    $scope.followUser = function() {
+        console.log('follow');
+    }
+
+    $scope.unFollowUser = function() {
+        console.log('unfollow');
     }
 
 });
