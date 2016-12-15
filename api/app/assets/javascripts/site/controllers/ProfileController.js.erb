@@ -29,7 +29,7 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
         });
 
     $rootScope.pageName = $scope.user.username;
-    $('body').addClass('edit-user');
+    $('body').addClass('profile');
 
     if (!isMobileDevice) {
         $('.cards').css({

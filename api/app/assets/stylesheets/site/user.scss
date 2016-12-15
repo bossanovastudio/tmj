@@ -1,4 +1,4 @@
-body.edit-user {
+body.profile {
     min-height: 100%;
     min-width: 600px;
     .initial-loading {
@@ -494,7 +494,7 @@ body.edit-user {
 }
 
 @media only screen and (max-device-width: 550px) {
-    body.edit-user {
+    body.profile {
         .cards {
             padding-top: 55px !important;
         }
