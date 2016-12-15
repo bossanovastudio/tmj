@@ -28,7 +28,7 @@
   <!-- CSS -->
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,700">
-  
+
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag 'remix', media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
@@ -36,5 +36,6 @@
   <%= yield %>
 
   <%= javascript_include_tag 'remix', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'remix.menu' %>
 </body>
 </html>
