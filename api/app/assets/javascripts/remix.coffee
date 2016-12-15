@@ -85,6 +85,55 @@ window.isDesktop = ->
 #   console.log base64
 # , 'image/png'
 
+parseColor = (x) ->
+  x = parseInt(x).toString(16);
+  if x.length==1
+    x = "0" + x
+  else
+    x = x
+
+parseColorSize = (x) ->
+  x = x;
+
+parseColorTransparent = (x) ->
+  if x.css('background-color') == "transparent"
+    x = "transparent"
+  else
+    x = (x.css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join("")
+
+window.getElements = ->
+  background = {
+    image: $('.picture').attr('src'),
+    color: ($('.remix-canvas').css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join("")
+  }
+  elements = [];
+
+  $('.element').each ->
+    $el = $(this);
+    if $el.hasClass('image')
+      elements.push({
+        src: $el.find('img').attr('src'),
+        width: $el.find('img').width(),
+        height: $el.find('img').height(),
+        position: [parseInt($el.css('left').replace('px','')), $('.picture').height() - parseInt($el.css('top').replace('px',''))]
+        type: 'image',
+      })
+    else
+      elements.push({
+        type: 'text',
+        position: [parseInt($el.css('left').replace('px','')), $('.picture').height() - parseInt($el.css('top').replace('px',''))]
+        size: $el.css('font-size').replace('px',''),
+        content: $el.find('textarea').val(),
+        fg: ($el.css('color').split("(")[1].split(")")[0].split(",").map parseColor).join(""),
+        bg: parseColorTransparent $el,
+      })
+
+  return {
+    mobile: isMobile()
+    background: background,
+    elements: elements
+  }
+
 getApiData = (options) ->
   if !options || !options.entity
     return []
@@ -283,8 +332,7 @@ $('.remix-container').each ->
           $.ajax {
             url: API_URL
             method: 'POST'
-            data:
-              image: base64Image
+            data: getElements()
             dataType: 'json'
           }
           .done (data) ->
