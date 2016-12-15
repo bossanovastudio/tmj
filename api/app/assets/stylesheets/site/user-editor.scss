@@ -92,6 +92,7 @@
                 }
             }
             textarea{
+                resize: none;
                 border: 1px solid #fff;
                 width: 100%;
                 resize:vertical;
@@ -506,12 +507,3 @@
         }
     }
 }
-
-
-
-
-
-
-
-
-
