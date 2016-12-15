@@ -43,7 +43,7 @@ class Users::OmniauthCallbacksController < ApplicationController
   def remove
     provider = current_user.providers.find_by(provider: params[:provider])
     
-    if provider.any?
+    if provider
       provider.destroy
     end
     
