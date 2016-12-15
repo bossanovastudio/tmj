@@ -304,7 +304,7 @@ body.profile {
 
     }
     @media only screen and (max-device-width: 550px) {
-        background-image: asset-url('site/bg_ramona_mobile.jpg');
+        background-image: asset-url('site/bg_mobile.jpg');
         background-size: cover;
         min-width: 100%;
 
@@ -324,6 +324,7 @@ body.profile {
                 .avatar,
                 .avatar_hover {
                     width: 106px;
+                    height: 106px;
                 }
                 img.badge {
                     position: absolute;
