@@ -5,6 +5,29 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
     }
     $scope.user = storage.get('user');
 
+    $http.get("/user/edit.json", {
+            headers: {
+                'Content-Type': 'application/json',
+                'X-User-username': $scope.user.username,
+                'X-User-token': $scope.user.authentication_token,
+            }
+        })
+        .then(function(response) {
+            $scope.user.bio = response.data.bio;
+            $scope.user.username = response.data.username;
+            $scope.user.email = response.data.email;
+            $scope.user.image = response.data.image;
+            $scope.user.providers = {};
+            response.data.providers.forEach(function(p) {
+                $scope.user.providers[p.name] = p.uid;
+            });
+            $('.avatar').attr('src', $scope.user.image);
+            $scope.form.bio = $scope.user.bio;
+            $scope.form.username = $scope.user.username;
+            $scope.form.email = $scope.user.email;
+            storage.set('user', $scope.user);
+        });
+
     $rootScope.pageName = $scope.user.username;
     $('body').addClass('edit-user');
 
