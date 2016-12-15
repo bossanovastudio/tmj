@@ -1155,6 +1155,9 @@ div.card {
                 &.pass{
                     top: 0px;
                 }
+                &.pass-reset{
+                    top: 10px;
+                }
             }
             .input-pass {
                 list-style: none;
