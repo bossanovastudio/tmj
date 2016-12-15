@@ -21,10 +21,9 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
             response.data.providers.forEach(function(p) {
                 $scope.user.providers[p.name] = p.uid;
             });
-            $('.avatar').attr('src', $scope.user.image);
-            $scope.form.bio = $scope.user.bio;
-            $scope.form.username = $scope.user.username;
-            $scope.form.email = $scope.user.email;
+            setTimeout(function() {
+                $('.avatar').attr('src', $scope.user.image);
+            }, 1000);
             storage.set('user', $scope.user);
         });
 
