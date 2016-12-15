@@ -425,8 +425,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope.likeCard = function($event, id) {
         var elem = $(angular.element($event.target)).closest('.card');
         var heart = elem.find('.heart');
+        var count = parseInt(elem.find('.counter').text());
         if (!heart.parent().hasClass('liked')) {
-            var count = parseInt(elem.find('.counter').text());
             $http({
                     method: 'GET',
                     url: '/api/cards/'+id+'/like.json'
@@ -437,8 +437,20 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     heart.parent().find('.counter').html('&nbsp;' + count);
                     heart.parent().addClass('liked');
                 });
+            $rootScope.track('click', 'cards', 'like');
+        } else {
+            $http({
+                    method: 'GET',
+                    url: '/api/cards/'+id+'/unlike.json'
+                })
+                .then(function(data) {
+                    heart.attr('src', '<%= asset_url('site/like.svg')%>');
+                    count--;
+                    heart.parent().find('.counter').html('&nbsp;' + count);
+                    heart.parent().removeClass('liked');
+                });
+            $rootScope.track('click', 'cards', 'unlike');
         }
-        $rootScope.track('click', 'cards', 'like');
     }
 
     $scope.initialCard = function(array, filterType, total) {
