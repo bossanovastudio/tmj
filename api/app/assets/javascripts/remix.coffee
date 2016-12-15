@@ -137,6 +137,8 @@ window.getElements = ->
         position: [parseInt($el.css('left').replace('px','')), $('.picture').height() - parseInt($el.css('top').replace('px',''))]
         size: $el.css('font-size').replace('px',''),
         content: $el.find('textarea').val(),
+        width: $el.width(),
+        height: $el.height(),
         fg: ($el.css('color').split("(")[1].split(")")[0].split(",").map parseColor).join(""),
         bg: parseColorTransparent $el,
       })
