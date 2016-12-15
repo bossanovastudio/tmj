@@ -996,21 +996,21 @@ div.card {
                     background-image: asset-url('site/twitter-form.svg');
                 }
             }
-            &.btn-tumblr {
-                background-color: #3EBFCB;
+            &.btn-instagram {
+                background-color: #645EDA;
                 color: #fff;
                 position: relative;
                 &:before {
-                    background: #1DA8B4;
+                    background: #5A49B8;
                 }
                 &:after {
                     content: '';
-                    width: 8px;
+                    width: 12px;
                     height: 12px;
                     position: absolute;
                     top: 10px;
                     left: 17px;
-                    background-image: asset-url('site/tumblr-form.svg');
+                    background-image: asset-url('site/instagram-form.svg');
                 }
             }
             &.btn-submit {
