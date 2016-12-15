@@ -1,5 +1,9 @@
 ---
 pt-BR:
+  authentication:
+    user_not_signed_in: 'Usuário não logado'
+    invalid_username_or_password: 'Usuário ou senha inválidos'
+    
   activerecord:
     errors:
       messages:
