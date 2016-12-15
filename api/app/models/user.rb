@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
 
   has_many :providers
   has_many :cards, through: :providers
-  recommends :cards
+  recommends :cards, :users
 
   after_create :send_welcome_email
   

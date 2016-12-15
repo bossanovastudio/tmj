@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   devise_for :user, :controllers => { sessions: 'users/sessions', registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
   namespace :api do
+    get '/ramona/follow', to: 'general#follow', username: :ramona
+    get '/ramona/unfollow', to: 'general#unfollow', username: :ramona
+    get '/ramona/(:page)/(:quantity)', to: 'general#editors', username: :ramona, defaults: { page: 1, quantity: 10 }
     get '/ramona/(:page)/(:quantity)', to: 'general#editors', username: :ramona, defaults: { page: 1, quantity: 10 }
     get '/user/:username/profile', to: 'general#profile'
     get '/user/:username/(:page)/(:quantity)', to: 'general#users', defaults: { page: 1, quantity: 10 }
