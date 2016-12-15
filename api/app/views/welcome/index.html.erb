@@ -75,7 +75,7 @@
         <ul>
           <li class="menu-login" ng-click="goToProfile()">
             <div ng-if="user">
-              <div class="img link" style="background-image: url('{{user.image.url}}')"></div>
+              <div class="avatar link" style="background-image: url('{{user.image}}')"></div>
               <span>{{user.username}}</span>
               <a ng-click="logout()"> SAIR </a>
             </div>
