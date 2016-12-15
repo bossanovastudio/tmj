@@ -3,22 +3,6 @@ require 'open-uri'
 require 'rmagick'
 
 module RemixGenerator
-  class TextBoxCallback
-    def initialize(options)
-      @color = options[:color]
-      @document = options[:document]
-    end
-
-    def render_behind(fragment)
-      return if @color == 'transparent'
-      original_color = @document.fill_color
-      puts fragment.top_left
-      @document.fill_color = @color
-      @document.fill_rectangle([fragment.top_left[0] - 3, fragment.top_left[1] + 5], fragment.width + 6, fragment.height + 10)
-      @document.fill_color = original_color
-    end
-  end
-
   class RemixGenerator
     def self.test
       inst = RemixGenerator.new([
