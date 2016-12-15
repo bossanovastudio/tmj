@@ -27,15 +27,16 @@ class Api::RemixController < ApplicationController
   end
 
   def create
-    puts image_params
-    image = Remix::UserImage.new(image_params)
-    image.user = current_user
-    puts image
+    steps = params[:elements].keys.sort.collect { |k| params[:elements][k].to_unsafe_h.symbolize_keys }
+    gen = ::RemixGenerator::RemixGenerator.new(steps)
+    img = gen.process
+    image = Remix::UserImage.new(image: img, user: current_user)
     if image.save
       render json: { share_url: remix_image_url(id: image.id), id: image.id }
     else
       render json: image.errors, status: :unprocessable_entity
     end
+    # img.unlink
   end
 
   private

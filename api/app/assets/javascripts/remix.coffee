@@ -116,7 +116,7 @@ window.getElements = ->
   elements = [];
   elements.push({
     type: 'background',
-    src: $('.picture').attr('src'),
+    src: $('.picture.canvas-background').attr('src'),
     color: ($('.remix-canvas').css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join("")
   });
 
@@ -338,8 +338,8 @@ $('.remix-container').each ->
       html2canvas $canvas.get(0), {
         useCORS: true
         onrendered: (canvas) ->
-          base64Image = canvas.toDataURL('image/png')
-          $canvas.html('<img src="' + base64Image + '" alt="">')
+          # base64Image = canvas.toDataURL('image/png')
+          # $canvas.html('<img src="' + base64Image + '" alt="">')
 
           $.ajax {
             url: API_URL
@@ -348,7 +348,7 @@ $('.remix-container').each ->
             dataType: 'json'
           }
           .done (data) ->
-            $canvas.html('<img src="' + data.share_url + '" alt="">')
+            # $canvas.html('<img src="' + data.share_url + '" alt="">')
             $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + data.share_url)
             $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url)
             $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url)
@@ -390,7 +390,7 @@ $('.remix-container').each ->
 
       $picture
         # .css { 'background-image': 'url(' + src + ')' }
-        .attr { class: 'picture', src: src, crossorigin: 'anonymous' }
+        .attr { class: 'picture canvas-background', src: src, crossorigin: 'anonymous' }
 
       $composer.find('.artboard .empty').hide()
 
