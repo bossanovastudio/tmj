@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
     clean_up_passwords
     result
   end
-  
+
   def password_required?
     true
   end

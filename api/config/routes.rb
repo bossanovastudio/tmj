@@ -38,6 +38,7 @@ Rails.application.routes.draw do
         get :backgrounds
         get :text_colors
         get :stickers
+        post :delete
       end
     end
   end
@@ -83,7 +84,8 @@ Rails.application.routes.draw do
 
   get "/participe" => 'welcome#register'
   get "/remix" => 'remix#index'
-  
+  get '/remix/image/:id' => 'remix#show', as: 'remix_image'
+
   root to: 'welcome#index'
   get "*path" => 'welcome#index'
 end
