@@ -250,6 +250,10 @@
                 border-color: #da001b;
             }
         }
+        input::-webkit-input-placeholder { font-size: 9pt; color: #fff; }
+        input::-moz-placeholder { font-size: 9pt; color: #fff; }
+        input:-ms-input-placeholder { font-size: 9pt; color: #fff; }
+        input:-moz-placeholder { font-size: 9pt; color: #fff; }
         .input-pass {
             list-style: none;
             display: block;

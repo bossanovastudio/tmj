@@ -1106,9 +1106,10 @@ div.card {
                 color: #ffffff;
                 font-weight: bold;
                 letter-spacing: 0.4px;
-                font-size: 16px;
+                font-size: 14px;
                 margin-bottom: 20px;
                 padding: 5px 0 4px 0;
+
                 &:focus {
                     outline: none;
                 }
@@ -1135,6 +1136,10 @@ div.card {
                     border-color: #da001b;
                 }
             }
+            input::-webkit-input-placeholder { font-size: 9pt; color: #fff; }
+            input::-moz-placeholder { font-size: 9pt; color: #fff; }
+            input:-ms-input-placeholder { font-size: 9pt; color: #fff; }
+            input:-moz-placeholder { font-size: 9pt; color: #fff; }
             .input-pass {
                 list-style: none;
                 display: block;
