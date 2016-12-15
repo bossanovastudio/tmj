@@ -1055,10 +1055,13 @@ div.card {
                 text-transform: uppercase;
             }
             position: relative;
-            .form-group label {
+            .form-group {
                 position: relative;
-                font-weight: bold;
-                letter-spacing: 0.3px;
+                label {
+                    position: relative;
+                    font-weight: bold;
+                    letter-spacing: 0.3px;
+                }
             }
             .user label {
                 padding-left: 24px;
@@ -1072,16 +1075,19 @@ div.card {
                     background: no-repeat asset-url('site/apelido-icon.svg');
                 }
             }
-            .pass label {
-                padding-left: 20px;
-                &:after {
-                    content: '';
-                    width: 10px;
-                    height: 12px;
-                    position: absolute;
-                    top: 0px;
-                    left: 0px;
-                    background: no-repeat asset-url('site/senha-icon.svg');
+            .pass {
+                margin-bottom: 10px;
+                    label {
+                    padding-left: 20px;
+                    &:after {
+                        content: '';
+                        width: 10px;
+                        height: 12px;
+                        position: absolute;
+                        top: 0px;
+                        left: 0px;
+                        background: no-repeat asset-url('site/senha-icon.svg');
+                    }
                 }
             }
             .mail label {
@@ -1140,6 +1146,16 @@ div.card {
             input::-moz-placeholder { font-size: 9pt; color: #fff; }
             input:-ms-input-placeholder { font-size: 9pt; color: #fff; }
             input:-moz-placeholder { font-size: 9pt; color: #fff; }
+            .error-msg{
+                position: relative;
+                top: -15px;
+                font-size: 13px;
+                color: #da001b;
+                margin: 0px;
+                &.pass{
+                    top: 0px;
+                }
+            }
             .input-pass {
                 list-style: none;
                 display: block;
