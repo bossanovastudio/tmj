@@ -209,7 +209,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
                 headers: { 'Content-Type': 'application/json' }
             })
             .then(function(response) {
-                $rootScope.popup_title = 'Você recebera um email com instruções';
+                $rootScope.popup_title = 'Você receberá um email com instruções';
                 $rootScope.popup_confirm = 'Ok, entendi!';
             }, function(response) {
                 $scope.msg_recover_pass = response.error;
