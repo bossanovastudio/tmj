@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
       if user_signed_in?
         super
       else
-        redirect_to '/login'
+        redirect_to "/login?redirect_url=#{request.path}"
       end
     end
 
