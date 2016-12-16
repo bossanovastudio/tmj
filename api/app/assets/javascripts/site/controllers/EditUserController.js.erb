@@ -26,7 +26,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             response.data.providers.forEach(function(p) {
                 $scope.user.providers[p.name] = p.uid;
             });
-            $('.avatar').attr('src', $scope.user.image);
+            $('.avatar').css('background-image', "url("+$scope.user.image+")");
             $scope.form.bio = $scope.user.bio;
             $scope.form.username = $scope.user.username;
             $scope.form.email = $scope.user.email;
@@ -59,12 +59,12 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         reader.readAsDataURL(file);
         reader.onload = function() {
             var base64 = reader.result;
-            $('.avatar').attr('src', base64);
+            $('.avatar').css('background-image', "url("+base64+")");
             $scope.form.image = base64;
         };
     };
 
-    $('.avatar').attr('src', $scope.user.image.url);
+    $('.avatar').css('background-image', "url("+$scope.user.image.url+")");
 
     $scope.passwords = [{
         id: 0,

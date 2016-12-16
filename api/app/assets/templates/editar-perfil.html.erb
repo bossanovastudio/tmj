@@ -2,7 +2,7 @@
 <div class="container">
     <div class="four columns left">
         <div ng-click="selectFile()" class="box-avatar">
-          <img class="avatar" width="200" height="200" src="<%= asset_url('site/profile_default.svg') %>" />
+          <div class="avatar" style="background-image: url('<%= asset_url('site/profile_default.svg') %>')" />
           <div class="avatar_hover"></div>
         </div>
         <input type="file" id="photo" style="display: none" file-on-change="changedFile" accept="image/*">
