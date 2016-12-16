@@ -121,6 +121,7 @@ window.getElements = ->
 
   return {
     mobile: isMobile(),
+    canvas_size: $('.remix-canvas').width()
     elements: elements
   }
 
@@ -370,11 +371,14 @@ $('.remix-container').each ->
                 width: 'auto'
                 height: '100%'
               }
-            $picture.css {
-              opacity: 1
-            }
           ), 100
         $picture.data({ custom: true })
+      setTimeout ( ->
+          $picture.css {
+            opacity: 1
+          }
+        ), 100
+
 
       $composer.find('.artboard .empty').hide()
 
