@@ -347,8 +347,33 @@ $('.remix-container').each ->
 
       $picture
         .attr { class: 'picture canvas-background', src: src, crossorigin: 'anonymous' }
+      $picture.css {
+        opacity: 0
+      }
 
       if src.indexOf('data') == 0
+        setTimeout ( ->
+            w = $picture.width()
+            h = $picture.height()
+            if w == h
+              $picture.css {
+                width: '100%'
+                height: '100%'
+              }
+            else if w > h
+              $picture.css {
+                width: '100%'
+                height: 'auto'
+              }
+            else
+              $picture.css {
+                width: 'auto'
+                height: '100%'
+              }
+            $picture.css {
+              opacity: 1
+            }
+          ), 100
         $picture.data({ custom: true })
 
       $composer.find('.artboard .empty').hide()
