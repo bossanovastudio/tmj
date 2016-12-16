@@ -89,19 +89,21 @@ window.getCanvasSize = () ->
   else
     size = 320
 
-
 window.getElements = ->
   elements = [];
   background_effect = 'none'
   if $('.remix-container').data('effects-index') != undefined
     background_effect = DATA_CSS_EFFECT_NAME[$('.remix-container').data('effects-index') - 1]
-  elements.push({
+  background = {
     type: 'background',
     src: $('.picture.canvas-background').attr('src'),
     color: ($('.remix-canvas').css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join(""),
-    effect: background_effect,
-    custom: $('.picture.canvas-background').data('custom')
-  });
+    custom: $('.picture.canvas-background').data('custom'),
+    effect: background_effect
+  }
+  if $('.remix-canvas').find('.pattern').attr('src') && $('.remix-canvas').find('.pattern').attr('src').length > 1
+    background.pattern = $('.remix-canvas').find('.pattern').attr('src')
+  elements.push(background);
 
   $('.element').each ->
     $el = $(this);
@@ -127,9 +129,9 @@ window.getElements = ->
       })
 
   return {
+    elements: elements,
     mobile: isMobile(),
     canvas_side: getCanvasSize()
-    elements: elements
   }
 
 getApiData = (options) ->
@@ -175,6 +177,8 @@ getStickers = (id) ->
 getTextColors = (id) ->
   getApiData { entity: 'text_colors' }
 
+getPatterns = (id) ->
+  getApiData { entity: 'patterns' }
 
 $('.remix-container').each ->
   $remix = $(this)
@@ -190,6 +194,7 @@ $('.remix-container').each ->
     balloons: getBalloons()
     stickers: getStickers()
     text_colors: getTextColors()
+    patterns: getPatterns()
   }
   .then (result) ->
     result.pictures = []
@@ -249,6 +254,16 @@ $('.remix-container').each ->
       html += Mustache.render template, sticker
 
     $composer.find('.toolbox-item.stickers .elements').append(html)
+
+    # patterns
+    html = ''
+    template = '<div class="elements-item pattern" data-src="{{ &url }}"><img src="{{ &url }}" alt="" crossorigin="anonymous"></div>'
+    Mustache.parse template
+
+    result.patterns.forEach (sticker) ->
+      html += Mustache.render template, sticker
+
+    $composer.find('.toolbox-item.patterns .elements').append(html)
 
     # text colors
     if result.text_colors?
@@ -324,11 +339,12 @@ $('.remix-container').each ->
 
       # removes selects of any element in canvas and the click event
       $canvas.find('.element').trigger('remix:deselect-element').off('click')
-
+      $elements = getElements()
+      $canvas.html('');
       $.ajax {
         url: API_URL
         method: 'POST'
-        data: getElements()
+        data: $elements
         dataType: 'json'
       }
       .done (data) ->
@@ -671,6 +687,11 @@ $('.remix-container').each ->
 
   # toolbox item elements item
   $composer.find('.toolbox-item-elements .elements').on 'click', '.elements-item', (event) ->
+    if $(this).hasClass('pattern')
+      if $('.remix-canvas').find('.pattern').length == 0
+        $('.remix-canvas').prepend('<img src="" class="pattern" style="width: 100%; height: 100%; position: absolute; z-index: 0; opacity: 0" />');
+      $('.remix-canvas').find('.pattern').attr('src', $(this).data('src')).css({opacity: 1});
+      return
     event.stopPropagation()
     $remix
       .trigger('add-image', $(this).data('src'))

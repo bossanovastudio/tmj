@@ -21,6 +21,10 @@ class Api::RemixController < ApplicationController
     @stickers = Remix::Sticker.where(kind: params.fetch(:kind, :speech_balloon).to_sym).order(id: :desc)
   end
 
+  def patterns
+    @patterns = Remix::Pattern.order(id: :desc)
+  end
+
   def delete
     item = Remix::UserImage.where(id: params[:id], user_id: current_user.id)
     item.destroy_all

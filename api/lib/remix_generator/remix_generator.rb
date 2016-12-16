@@ -5,11 +5,13 @@ require 'rmagick'
 module RemixGenerator
   class RemixGenerator
     def self.test
-      inst = RemixGenerator.new([
-        { type: 'background', color: 'cc0000', src: 'http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/3/foto-1.png' },
-        { type: 'image', src: 'http://cdntmjofilme.s3.amazonaws.com/remix/remix/sticker/image/8/balao-5_3x.png', position: [10, 10], width: 222, height: 207, rotation: 90 },
-        { type: 'text', content: 'qwerty', size: 20, position: [100, 100], bg: '000000', fg: 'FFFFFF' }
-      ])
+      inst = RemixGenerator.new({
+        steps: [
+          { type: 'background', color: 'cc0000', src: 'http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/3/foto-1.png', pattern: 'http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/3/foto-1.png' },
+          { type: 'image', src: 'http://cdntmjofilme.s3.amazonaws.com/remix/remix/sticker/image/8/balao-5_3x.png', position: [10, 10], width: 222, height: 207, rotation: 90 },
+          { type: 'text', content: 'qwerty', size: 20, position: [100, 100], bg: '000000', fg: 'FFFFFF' }
+        ]
+      })
       inst.process
     end
 
@@ -30,6 +32,9 @@ module RemixGenerator
             bin_data = step[:src].split(',')[1]
             blob = Base64.decode64(bin_data)
             step[:src] = Magick::Image.from_blob(blob).first
+          end
+          if step.key? :pattern
+            @canvas << imgop(step[:pattern]) { |img| img.resize_to_fit!(@canvas_side, @canvas_side) }
           end
           @canvas << imgop(step[:src]) do |img|
             img.resize_to_fit!(@canvas_side, @canvas_side)
@@ -93,11 +98,10 @@ module RemixGenerator
     end
 
     def imgop(path)
-      puts path.class
       img = Magick::ImageList.new(path).first if path.kind_of? String
       img = path if path.kind_of? Magick::Image
-      ret = yield(img)
-      ret
+      img = yield(img) if block_given?
+      img
     end
   end
 end
