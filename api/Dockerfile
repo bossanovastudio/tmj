@@ -1,8 +1,8 @@
 FROM ruby:2.3
 MAINTAINER jotadev@me.com
 
-RUN apt-get update
-RUN apt-get -y install \
+
+RUN apt-get update && apt-get -y install \
     autoconf \
     build-essential \
     curl \
