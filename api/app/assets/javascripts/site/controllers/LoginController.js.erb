@@ -9,6 +9,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
 
     $scope.form = {};
 
+    $scope.redirect_url = $routeParams.redirect_url;
 
     $scope.form.reset_password_token = $location.search().code;
 
@@ -138,7 +139,11 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             })
             .then(function(response) {
                 storage.set('user', response.data);
-                window.location = '/';
+                if ($scope.redirect_url) {
+                    window.location = $scope.redirect_url;
+                } else {
+                    window.location = '/';
+                }
             }, function(response) {
                 storage.deleteKey('user');
                 $scope.msg_username = response.data.error;
