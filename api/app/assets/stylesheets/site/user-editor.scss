@@ -26,11 +26,15 @@
         cursor: pointer;
         margin-left: 40%;
         border-radius: 100%;
-        img.avatar {
+        div.avatar {
+            width: 200px;
+            height: 200px;
             border-radius: 100%;
-            min-height: 200px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
-        img.avatar_hover {
+        .avatar_hover {
             position: absolute;
             left: 0;
             top: 0;
@@ -68,11 +72,28 @@
         }
     }
     form {
+        position: relative;
         label{
             font-size: 12px;
             text-transform: uppercase;
         }
-        position: relative;
+            .msg_group{
+                display: inline-block;
+                width: 100%;
+                height: 16px;
+                .error-msg{
+                    font-size: 13px;
+                    color: #da001b;
+                    text-transform: uppercase;
+                    margin: 0;
+                }
+                .sucess-msg{
+                    font-size: 13px;
+                    color: #1d7546;
+                    text-transform: uppercase;
+                    margin: 0;
+                }
+            }
         .form-group label {
             position: relative;
             font-weight: bold;
@@ -92,6 +113,7 @@
                 }
             }
             textarea{
+                resize: none;
                 border: 1px solid #fff;
                 width: 100%;
                 resize:vertical;
@@ -100,7 +122,7 @@
                 color: #ffffff;
                 font-weight: bold;
                 letter-spacing: 0.4px;
-                font-size: 16px;
+                font-size: 13px;
                 background-color: rgba(0, 0, 0, 0.25)
             }
         }
@@ -220,7 +242,7 @@
             color: #ffffff;
             font-weight: bold;
             letter-spacing: 0.4px;
-            font-size: 16px;
+            font-size: 13px;
             margin-bottom: 20px;
             padding: 5px 0 4px 0;
             &:focus {
@@ -249,6 +271,10 @@
                 border-color: #da001b;
             }
         }
+        input::-webkit-input-placeholder { font-size: 9pt; color: #fff; }
+        input::-moz-placeholder { font-size: 9pt; color: #fff; }
+        input:-ms-input-placeholder { font-size: 9pt; color: #fff; }
+        input:-moz-placeholder { font-size: 9pt; color: #fff; }
         .input-pass {
             list-style: none;
             display: block;
@@ -506,12 +532,3 @@
         }
     }
 }
-
-
-
-
-
-
-
-
-

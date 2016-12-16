@@ -1,8 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :user, :controllers => { registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_scope :user do
+    get '/user/auth/:provider/remove', to: 'users/omniauth_callbacks#remove'
+    get '/user/is_signed_in', to: 'users/sessions#is_signed_in', as: 'is_signed_in'
+  end
+
+  devise_for :user, :controllers => { sessions: 'users/sessions', registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
   namespace :api do
-    get '/ramona/(:page)/(:quantity)', to: 'general#editors', id: :ramona, defaults: { page: 1, quantity: 10 }
+    get '/ramona/follow', to: 'general#follow', username: :ramona
+    get '/ramona/unfollow', to: 'general#unfollow', username: :ramona
+    get '/ramona/(:page)/(:quantity)', to: 'general#editors', username: :ramona, defaults: { page: 1, quantity: 10 }
+    get '/ramona/(:page)/(:quantity)', to: 'general#editors', username: :ramona, defaults: { page: 1, quantity: 10 }
+    get '/user/:username/profile', to: 'general#profile'
+    get '/user/:username/(:page)/(:quantity)', to: 'general#users', defaults: { page: 1, quantity: 10 }
     get '/all/(:page)/(:quantity)', to: 'general#all', defaults: { page: 1, quantity: 10 }
     get '/all_without_editors/(:page)/(:quantity)', to: 'general#all_without_editors', defaults: { page: 1, quantity: 10 }
 
@@ -12,7 +22,13 @@ Rails.application.routes.draw do
 
     get '/castings/download', to: 'castings#download'
 
-    resources :cards,  only: [:create, :show, :like, :unlike]
+    resources :cards,  only: [:create, :show] do
+      member do
+        get :like
+        get :unlike
+      end
+    end
+
     resources :images, only: [:create]
     resources :videos, only: [:create]
     resources :remix,  only: [:create] do
@@ -22,6 +38,8 @@ Rails.application.routes.draw do
         get :backgrounds
         get :text_colors
         get :stickers
+        get :patterns
+        post :delete
       end
     end
   end
@@ -31,6 +49,7 @@ Rails.application.routes.draw do
       resources :background_colors, except: [:show]
       resources :text_colors, except: [:show]
       resources :stickers, except: [:show, :edit]
+      resources :patterns, except: [:show, :edit]
       resources :categories, except: [:show] do
         resources :images
       end
@@ -67,7 +86,8 @@ Rails.application.routes.draw do
 
   get "/participe" => 'welcome#register'
   get "/remix" => 'remix#index'
-  
+  get '/remix/image/:id' => 'remix#show', as: 'remix_image'
+
   root to: 'welcome#index'
   get "*path" => 'welcome#index'
 end

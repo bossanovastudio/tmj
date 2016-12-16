@@ -31,18 +31,17 @@ html {
 }
 
 body {
-    background: #809ED4 asset-url('site/bg.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     min-height: 100%;
     min-width: 600px;
-    &.login {
-        background-image: asset-url('site/bg_login.jpg');
+    &.profile, &.homePage {
+      background: #809ED4 asset-url('site/bg.jpg') no-repeat center center fixed;
     }
-    &.edit-user{
-        background-image: asset-url('site/bg_login.jpg');
+    &.login, &.edit-user {
+        background: #987CD0 asset-url('site/bg_login.jpg') no-repeat center center fixed;
     }
 }
 
@@ -238,7 +237,7 @@ section {
     position: fixed;
     left: 0px;
     z-index: 100;
-    width: 400px;
+    width: 420px;
     transform: translateX(-500px);
     height: 100%;
     background: asset-url('site/bg_gray.jpg') center top;
@@ -274,6 +273,7 @@ section {
         left: 0px;
         right: 0px;
         li {
+            cursor: pointer;
             opacity: 1;
             &.red {
                 background: asset-url('site/tudo_sobre_tmj.png') center center no-repeat;
@@ -299,14 +299,73 @@ section {
                 background: asset-url('site/participe.png') center center no-repeat;
                 background-size: auto 100%;
             }
-            a {
+            &.menu-login {
+              width: 100%;
+              height: 121px;
+              background: linear-gradient(104deg, rgba(48,35,174,0.5), rgba(200,109,215,0.5));
+              margin-bottom: 20px;
+              color: #000000;
+              font-size: 25px;
+              letter-spacing: 1px;
+              text-decoration: none;
+              display: block;
+              padding: 25px 0 25px 35px;
+
+              .avatar, img {
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                float: left;
+                height: 70px;
+                width: 70px;
+                border-radius: 70px;
+                -webkit-box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+                -moz-box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+                box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+                border: 1px solid #000000;
+              }
+              span {
                 font-family: KomikaTitle;
-                font-size: 30px;
+                float: left;
+                margin: 15px;
+              }
+              a {
+                font-size: 18px;
+                float: right;
+                font-family: KomikaTitle;
+                background-color: #ffffff;
+                color: #000000;
+                width: 80px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                padding: 0;
+                margin: 15px 35px 15px 0;
+                -webkit-box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+                -moz-box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+                box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+                border: 1px solid #000000;
+
+                &:hover {
+                  transition-duration: 0.2s;
+                  transform: translate(2px, 2px);
+                  -webkit-box-shadow: none;
+                  -moz-box-shadow: none;
+                  box-shadow: none;
+                  background-color: #f1f1f1;
+                }
+              }
+            }
+
+            a {
+                cursor: pointer;
+                font-family: KomikaTitle;
+                font-size: 25px;
                 letter-spacing: 1px;
                 color: #ffffff;
                 text-decoration: none;
                 display: block;
-                padding: 25px 97px;
+                padding: 25px 0 25px 35px;
             }
             &.animate {
                 a {
@@ -344,6 +403,7 @@ p.share {
         color: #bdbdbd;
         font-family: 'KomikaTitle';
         text-decoration: none;
+        float: left;
     }
     img.arrow {
         float: right;
@@ -637,6 +697,7 @@ div.card {
     img.userPhoto {
         z-index: 2;
         width: 42px;
+        height: 42px;
         border-radius: 100%;
         border: 2px solid #ffffff;
         //margin-top: -30px;
@@ -710,16 +771,16 @@ div.card {
         }
     }
     &.remixlike {
-      background: asset-url('site/faixa_remix.png') #d8d8d8 center top no-repeat;
-      padding-top: 30px;
+      background: asset-url('site/faixa_remix.png') #d8d8d8 center top no-repeat !important;
+      padding-top: 29px;
     }
     &.ramonalike {
-      background: asset-url('site/faixa_ramona.png') #d8d8d8 center top no-repeat;
-      padding-top: 30px;
+      background: asset-url('site/faixa_ramona.png') #d8d8d8 center top no-repeat !important;
+      padding-top: 29px;
     }
     &.geeklike {
-        background: asset-url('site/faixa_geek.png') #d8d8d8 center top no-repeat;
-        padding-top: 30px;
+        background: asset-url('site/faixa_geek.png') #d8d8d8 center top no-repeat !important;
+        padding-top: 29px;
     }
     &.geek {
         background-color: #5bcfed;
@@ -936,21 +997,21 @@ div.card {
                     background-image: asset-url('site/twitter-form.svg');
                 }
             }
-            &.btn-tumblr {
-                background-color: #3EBFCB;
+            &.btn-instagram {
+                background-color: #645EDA;
                 color: #fff;
                 position: relative;
                 &:before {
-                    background: #1DA8B4;
+                    background: #5A49B8;
                 }
                 &:after {
                     content: '';
-                    width: 8px;
+                    width: 12px;
                     height: 12px;
                     position: absolute;
                     top: 10px;
                     left: 17px;
-                    background-image: asset-url('site/tumblr-form.svg');
+                    background-image: asset-url('site/instagram-form.svg');
                 }
             }
             &.btn-submit {
@@ -995,10 +1056,13 @@ div.card {
                 text-transform: uppercase;
             }
             position: relative;
-            .form-group label {
+            .form-group {
                 position: relative;
-                font-weight: bold;
-                letter-spacing: 0.3px;
+                label {
+                    position: relative;
+                    font-weight: bold;
+                    letter-spacing: 0.3px;
+                }
             }
             .user label {
                 padding-left: 24px;
@@ -1012,16 +1076,19 @@ div.card {
                     background: no-repeat asset-url('site/apelido-icon.svg');
                 }
             }
-            .pass label {
-                padding-left: 20px;
-                &:after {
-                    content: '';
-                    width: 10px;
-                    height: 12px;
-                    position: absolute;
-                    top: 0px;
-                    left: 0px;
-                    background: no-repeat asset-url('site/senha-icon.svg');
+            .pass {
+                margin-bottom: 10px;
+                    label {
+                    padding-left: 20px;
+                    &:after {
+                        content: '';
+                        width: 10px;
+                        height: 12px;
+                        position: absolute;
+                        top: 0px;
+                        left: 0px;
+                        background: no-repeat asset-url('site/senha-icon.svg');
+                    }
                 }
             }
             .mail label {
@@ -1046,9 +1113,10 @@ div.card {
                 color: #ffffff;
                 font-weight: bold;
                 letter-spacing: 0.4px;
-                font-size: 16px;
+                font-size: 14px;
                 margin-bottom: 20px;
                 padding: 5px 0 4px 0;
+
                 &:focus {
                     outline: none;
                 }
@@ -1073,6 +1141,23 @@ div.card {
                 &.error {
                     color: #da001b;
                     border-color: #da001b;
+                }
+            }
+            input::-webkit-input-placeholder { font-size: 9pt; color: #fff; }
+            input::-moz-placeholder { font-size: 9pt; color: #fff; }
+            input:-ms-input-placeholder { font-size: 9pt; color: #fff; }
+            input:-moz-placeholder { font-size: 9pt; color: #fff; }
+            .error-msg{
+                position: relative;
+                top: -15px;
+                font-size: 13px;
+                color: #da001b;
+                margin: 0px;
+                &.pass{
+                    top: 0px;
+                }
+                &.pass-reset{
+                    top: 10px;
                 }
             }
             .input-pass {
@@ -1539,7 +1624,7 @@ footer {
     background: #6441a5;
 }
 
-.mobile {
+.mobile.mobile {
     display: none;
 }
 
@@ -1590,8 +1675,18 @@ p.content a {
         padding-top: 80px;
         margin-top: -5% !important;
         &.ramona {
-            background: asset-url('site/bg_ramona_mobile.jpg') no-repeat center center fixed;
-            background-size: cover;
+          background-color: #E88EDB;
+        }
+        #ramona-bg {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            img {
+              height: 105%;
+            }
         }
         &:after {
             display: none;
@@ -1720,6 +1815,23 @@ p.content a {
                     background: asset-url('site/participe.png') center center no-repeat;
                     background-size: 100%;
                 }
+                &.menu-login {
+                  width: 100%;
+                  height: 82px;
+                  padding: 15px 0 15px 20px;
+
+                  .avatar{
+                    height: 50px;
+                    width: 50px;
+                  }
+                  span {
+                    font-size: 17px;
+                    margin: 15px 15px;
+                  }
+                  a {
+                    margin: 7px 25px 7px 0;
+                  }
+                }
             }
         }
         .menu {
@@ -1735,9 +1847,9 @@ p.content a {
         }
     }
     .desktop {
-        display: none;
+        display: none !important;
     }
-    .mobile {
+    .mobile.mobile {
         display: block;
         a {
             text-decoration: none;

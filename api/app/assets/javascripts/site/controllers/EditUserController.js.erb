@@ -22,18 +22,36 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             $scope.user.username = response.data.username;
             $scope.user.email = response.data.email;
             $scope.user.image = response.data.image;
-            $('.avatar').attr('src', $scope.user.image);
+            $scope.user.providers = {};
+            response.data.providers.forEach(function(p) {
+                $scope.user.providers[p.name] = p.uid;
+            });
+            $('.avatar').css('background-image', "url("+$scope.user.image+")");
             $scope.form.bio = $scope.user.bio;
             $scope.form.username = $scope.user.username;
             $scope.form.email = $scope.user.email;
             storage.set('user', $scope.user);
         }, function(response) {
+            storage.deleteKey('user');
             $location.path('/login');
         });
 
     $('body').on('click','.box-avatar', function() {
         $('#photo').trigger('click');
     });
+
+    $scope.authSocial = function(sn) {
+        if ($scope.user.providers[sn]) {
+            $http.get('/user/auth/' + sn + '/remove.json', {
+                headers: {
+                    'X-User-username': $scope.user.username,
+                    'X-User-token': $scope.user.authentication_token,
+                }
+            });
+        } else {
+            window.location = '/user/auth/' + sn;
+        }
+    }
 
     $scope.changedFile = function(event) {
         var field = event.target;
@@ -42,12 +60,12 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         reader.readAsDataURL(file);
         reader.onload = function() {
             var base64 = reader.result;
-            $('.avatar').attr('src', base64);
+            $('.avatar').css('background-image', "url("+base64+")");
             $scope.form.image = base64;
         };
     };
 
-    $('.avatar').attr('src', $scope.user.image.url);
+    $('.avatar').css('background-image', "url("+$scope.user.image.url+")");
 
     $scope.passwords = [{
         id: 0,
@@ -126,31 +144,39 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
     $scope.numClick = 0;
 
     $scope.open = false;
-    $scope.togglePassword = function () {
+    $scope.passwordPlaceholder = true;
+
+    $scope.togglePassword = function(position) {
         $scope.open = !$scope.open;
         if ($scope.open) {
-            $('.overlay-pass').css({"display": "block"});
-            $scope.passwordChoice.length = 0;
-            $('.after').css({ "left": 10 });
-            $scope.numClick = 0;
+            if ($scope.passwordPlaceholder || position == 'first' || $scope.passwordChoice.length == 4) {
+              $scope.numClick = 0;
+              $('.after').css({ "left": 10 });
+            }
+            $('.overlay-pass').css({ "display": "block" });
         } else {
-            $('.overlay-pass').css({"display": "none"});
+            $('.overlay-pass').css({ "display": "none" });
         }
+        $scope.passwordPlaceholder = false;
     };
 
     $scope.addToPasswordChoice = function(pass) {
         $scope.numClick = $scope.numClick + 1;
-        $scope.passwordChoice.push($scope.passwords[pass.id]);
-        if ($scope.numClick == 1){
+        if ($scope.numClick == 1) {
+            $scope.passwordChoice.length = 0;
+            $scope.passwordChoice.push($scope.passwords[pass.id]);
             $('.after').css({ "left": 55 });
-        } else if ($scope.numClick == 2){
+        } else if ($scope.numClick == 2) {
+            $scope.passwordChoice.push($scope.passwords[pass.id]);
             $('.after').css({ "left": 105 });
-        } else if ($scope.numClick == 3){
+        } else if ($scope.numClick == 3) {
+            $scope.passwordChoice.push($scope.passwords[pass.id]);
             $('.after').css({ "left": 150 });
-        }else{
+        } else {
+            $scope.passwordChoice.push($scope.passwords[pass.id]);
             $scope.numClick = 0;
             $scope.open = !$scope.open;
-            $('.overlay-pass').css({"display": "none"});
+            $('.overlay-pass').css({ "display": "none" });
         }
     }
 
@@ -166,12 +192,15 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
 
         if (!$scope.form.username || $scope.form.username.length < 1) {
             $scope.msg_update = 'Preencha seu apelido';
+            $scope.msg_sus_update = ''
             return false;
         } else if (!$scope.form.email || $scope.form.email.length < 1) {
             $scope.msg_update = 'Email inválido';
+            $scope.msg_sus_update = ''
             return false;
         } else if ($scope.form.password.length != 12 && $scope.form.password != '0000') {
             $scope.msg_update = 'Senha inválida';
+            $scope.msg_sus_update = ''
             return false;
         }
 
@@ -179,7 +208,8 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             $scope.form.password = null;
         }
 
-        $scope.msg_update = 'Aguarde';
+        $scope.msg_sus_update = 'Aguarde';
+        $scope.msg_update = '';
         $http.put("/user.json", {
                 user: $scope.form
             }, {
@@ -190,12 +220,27 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
                 }
             })
             .then(function(response) {
-                $scope.msg_update = 'Atualizado com sucesso.';
+                $scope.msg_sus_update = 'Atualizado com sucesso.';
+                $scope.msg_update = '';
                 //$location.path('/sua-pagina');
             }, function(response) {
                 $scope.msg_update = response.error;
+                $scope.msg_sus_update = ''
             });
     }
+
+    $scope.deleteAccount = function() {
+        if (window.confirm('Tem certeza?')) {
+            $http.delete("/user.json", {
+                headers: {
+                    'X-User-Username': $scope.user.username,
+                    'X-User-Token': $scope.user.authentication_token,
+                }
+            });
+            storage.deleteKey('user');
+            $location.path('/');
+        }
+    };
 
     $('.cmn-toggle').change(function() {
         if (this.checked) {
@@ -207,4 +252,3 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
 
 
 });
-

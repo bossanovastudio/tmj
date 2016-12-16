@@ -28,15 +28,13 @@ class Admin::HighlightsController < ApplicationController
     @highlight.build_mobile_image(file: params[:highlight][:mobile_img])
 
     if @highlight.save
-      respond_to do |format|
-        format.html { redirect_to action: :index }
-        format.json { render json: { id: @highlight.id }}
+      if params[:"input-preview"] == "1"
+        redirect_to action: :show, id: @highlight.id
+      else
+        redirect_to action: :index
       end
     else
-      respond_to do |format|
-        format.html { render :new }
-        format.json { render json: @highlight.errors }
-      end
+      render :new
     end
   end
 
@@ -48,9 +46,13 @@ class Admin::HighlightsController < ApplicationController
   def update
     @highlight.assign_attributes(highlight_params)
     @highlight.build_desktop_image(file: params[:highlight][:desktop_img]) if params[:highlight][:desktop_img]
-    @highlight.build_mobile_image(file: params[:highlight][:desktop_img]) if params[:highlight][:mobile_img]
+    @highlight.build_mobile_image(file: params[:highlight][:mobile_img]) if params[:highlight][:mobile_img]
     if @highlight.save
-      redirect_to action: :index
+      if params[:"input-preview"] == "1"
+        redirect_to action: :show, id: @highlight.id
+      else
+        redirect_to action: :index
+      end
     else
       render :edit
     end

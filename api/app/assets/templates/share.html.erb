@@ -1,6 +1,6 @@
 <p class="share">
-    <a ng-click="likeCard($event, card.id)" class="{{card.liked ? 'liked' : ''}} ng-hide" ng-href="#">
-        <img class="heart" src="{{card.liked ? '<%= asset_url('site/liked.svg') %>' : '<%= asset_url('site/like.svg') %>'}}"><span class="counter">&nbsp;{{card.likes ? card.likes : 0}}</span>
+    <a ng-click="likeCard($event, card.id)" class="{{card.liked ? 'liked' : ''}}" ng-href="#">
+        <img class="heart" src="{{card.liked ? '<%= asset_url('site/like-ativo.svg') %>' : '<%= asset_url('site/like.svg') %>'}}"><span class="counter">&nbsp;{{card.likes ? card.likes : 0}}</span>
     </a>
     <a ng-if="card.user.role!='editor' || pageName != 'homePage' || isMobile" ng-click="openShare($event)" ng-href="#" ng-init="imgsrc='<%= asset_url('site/share.svg') %>'" ng-mouseover="imgsrc='<%= asset_url('site/share-rollover.svg') %>'" ng-mouseout="imgsrc='<%= asset_url('site/share.svg') %>'">
         <img class="arrow" ng-src="{{imgsrc}}">

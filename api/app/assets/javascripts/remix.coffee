@@ -21,25 +21,31 @@
 API_URL = '/api/remix'
 DATA_BGS = []
 DATA_TXT_COLORS = []
+DATA_CSS_EFFECT_NAME = ['grayscale', 'sepia', 'filter_2', 'filter_3', 'none']
 DATA_CSS_EFFECTS = [
   {
     '-webkit-filter': 'grayscale(1)',
+    '-moz-filter': 'grayscale(1)',
     'filter': 'grayscale(1)'
   }
   {
     '-webkit-filter': 'sepia(1)',
+    '-moz-filter': 'sepia(1)',
     'filter': 'sepia(1)'
   }
   {
     '-webkit-filter': 'sepia(1) hue-rotate(200deg)',
+    '-moz-filter': 'sepia(1) hue-rotate(200deg)',
     'filter': 'sepia(1) hue-rotate(200deg)'
   }
   {
     '-webkit-filter': 'contrast(1.4) saturate(1.8) sepia(.6)',
+    '-moz-filter': 'contrast(1.4) saturate(1.8) sepia(.6)',
     'filter': 'contrast(1.4) saturate(1.8) sepia(.6)'
   }
   {
     '-webkit-filter': 'none',
+    '-moz-filter': 'none',
     'filter': 'none'
   }
 ]
@@ -50,35 +56,83 @@ window.isMobile = ->
 window.isDesktop = ->
   return $(window).width() >= 768
 
-# toDataURL = (src, callback, outputFormat) ->
-#   xhr = new XMLHttpRequest()
-#   xhr.onload = ->
-#     url = URL.createObjectURL this.response
-#     img = new Image()
-#     img.crossOrigin = 'Anonymous'
-#     img.onload = ->
-#       canvas = document.createElement 'CANVAS'
-#       ctx = canvas.getContext '2d'
-#       canvas.height = this.height
-#       canvas.width = this.width
-#       ctx.drawImage this, 0, 0
-#       dataURL = canvas.toDataURL outputFormat
-#       callback dataURL
+parseColor = (x) ->
+  x = parseInt(x).toString(16);
+  if x.length==1
+    x = "0" + x
+  else
+    x = x
 
-#       URL.revokeObjectURL url
-#     img.src = url
+getRotationDegrees = (x) ->
+  matrix = x.css("-webkit-transform") || x.css("-moz-transform") || x.css("-ms-transform") || x.css("-o-transform") || x.css("transform");
+  if matrix != 'none'
+    values = matrix.split('(')[1].split(')')[0].split(',');
+    a = values[0];
+    b = values[1];
+    angle = Math.atan2(b, a) * (180.0 / Math.PI);
+  else
+    angle = 0
+  if angle < 0
+    angle + 360
+  else
+    angle
 
-#     if img.complete?
-#       img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
-#       img.src = url
+parseColorTransparent = (x) ->
+  if x.css('background-color') == "transparent"
+    x = "transparent"
+  else
+    x = (x.css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join("")
 
-#   xhr.open 'GET', src, true
-#   xhr.responseType = 'blob'
-#   xhr.send()
+window.getCanvasSize = () ->
+  if !isMobile()
+    size = 502
+  else
+    size = 320
 
-# toDataURL 'http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/3/foto-3.png', (base64) ->
-#   console.log base64
-# , 'image/png'
+window.getElements = ->
+  elements = [];
+  background_effect = 'none'
+  if $('.remix-container').data('effects-index') != undefined
+    background_effect = DATA_CSS_EFFECT_NAME[$('.remix-container').data('effects-index') - 1]
+  background = {
+    type: 'background',
+    src: $('.picture.canvas-background').attr('src'),
+    color: ($('.remix-canvas').css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join(""),
+    custom: $('.picture.canvas-background').data('custom'),
+    effect: background_effect
+  }
+  if $('.remix-canvas').find('.pattern').attr('src') && $('.remix-canvas').find('.pattern').attr('src').length > 1
+    background.pattern = $('.remix-canvas').find('.pattern').attr('src')
+  elements.push(background);
+
+  $('.element').each ->
+    $el = $(this);
+    if $el.hasClass('image')
+      elements.push({
+        src: $el.find('img').attr('src'),
+        width: $el.find('img').width(),
+        height: $el.find('img').height(),
+        position: [$el.offset().left - $el.parent().offset().left, $el.offset().top - $el.parent().offset().top]
+        type: 'image',
+        rotation: getRotationDegrees $el
+      })
+    else
+      elements.push({
+        type: 'text',
+        position: [$el.offset().left - $el.parent().offset().left, $el.offset().top - $el.parent().offset().top]
+        size: $el.css('font-size').replace('px',''),
+        content: $el.find('textarea').val(),
+        width: $el.width(),
+        height: $el.height(),
+        fg: ($el.css('color').split("(")[1].split(")")[0].split(",").map parseColor).join(""),
+        bg: parseColorTransparent $el,
+      })
+
+  return {
+    elements: elements,
+    mobile: isMobile(),
+    canvas_side: getCanvasSize()
+  }
 
 getApiData = (options) ->
   if !options || !options.entity
@@ -123,6 +177,8 @@ getStickers = (id) ->
 getTextColors = (id) ->
   getApiData { entity: 'text_colors' }
 
+getPatterns = (id) ->
+  getApiData { entity: 'patterns' }
 
 $('.remix-container').each ->
   $remix = $(this)
@@ -138,6 +194,7 @@ $('.remix-container').each ->
     balloons: getBalloons()
     stickers: getStickers()
     text_colors: getTextColors()
+    patterns: getPatterns()
   }
   .then (result) ->
     result.pictures = []
@@ -152,7 +209,7 @@ $('.remix-container').each ->
   .then (result) ->
     # categories
     html = ''
-    template = '<div class="item" data-id="{{ id }}"><div><img src="{{ &url }}" alt="{{ name }}"></div></div>'
+    template = '<div class="item" data-id="{{ id }}"><div><img crossorigin="anonymous" src="{{ &url }}" alt="{{ name }}"></div></div>'
     Mustache.parse template
 
     result.categories.forEach (category) ->
@@ -162,7 +219,7 @@ $('.remix-container').each ->
 
     # pictures
     html = ''
-    template = '<div class="item" data-category-id="{{ category_id }}" data-picture-src="{{ &url }}"><div><img src="{{ &url }}" alt=""></div></div>'
+    template = '<div class="item" data-category-id="{{ category_id }}" data-picture-src="{{ &url }}"><div><img crossorigin="anonymous" src="{{ &url }}" alt=""></div></div>'
     Mustache.parse template
 
     result.pictures.forEach (category) ->
@@ -180,7 +237,7 @@ $('.remix-container').each ->
 
     # balloons
     html = ''
-    template = '<div class="elements-item" data-src="{{ &url }}"><img src="{{ &url }}" alt=""></div>'
+    template = '<div class="elements-item" data-src="{{ &url }}"><img src="{{ &url }}" alt="" crossorigin="anonymous"></div>'
     Mustache.parse template
 
     result.balloons.forEach (balloon) ->
@@ -190,13 +247,23 @@ $('.remix-container').each ->
 
     # stickers
     html = ''
-    template = '<div class="elements-item" data-src="{{ &url }}"><img src="{{ &url }}" alt=""></div>'
+    template = '<div class="elements-item" data-src="{{ &url }}"><img src="{{ &url }}" alt="" crossorigin="anonymous"></div>'
     Mustache.parse template
 
     result.stickers.forEach (sticker) ->
       html += Mustache.render template, sticker
 
     $composer.find('.toolbox-item.stickers .elements').append(html)
+
+    # patterns
+    html = ''
+    template = '<div class="elements-item pattern" data-src="{{ &url }}"><img src="{{ &url }}" alt="" crossorigin="anonymous"></div>'
+    Mustache.parse template
+
+    result.patterns.forEach (sticker) ->
+      html += Mustache.render template, sticker
+
+    $composer.find('.toolbox-item.patterns .elements').append(html)
 
     # text colors
     if result.text_colors?
@@ -206,7 +273,7 @@ $('.remix-container').each ->
     DATA_TXT_COLORS.push { foreground: '#000000', background: '#000000' }
 
     # hides loading
-    $loader.fadeOut 400, ->
+    $loader.fadeOut 0, ->
       $(this).remove()
 
 
@@ -243,10 +310,16 @@ $('.remix-container').each ->
     'choose-picture': (event, id) ->
       $(this).addClass('can-choose-picture')
 
+      $composer.find('.toolbox .toolbox-item.category .pictures .item')
+        .removeClass('on')
+
       # selects the holder of picture
       $composer.find('.toolbox .toolbox-item.category .pictures .item[data-category-id="' + id + '"]')
         .addClass('on')
-        .siblings('.item').removeClass('on')
+
+      # selects the holder of picture
+      $composer.find('.toolbox .toolbox-item.category .categories .item')
+        .removeClass('on')
 
       # resets scroll for categories and pictures popup (mobile)
       $composer.find('.toolbox .toolbox-item.category .popup .popup-holder').scrollLeft(0)
@@ -266,45 +339,23 @@ $('.remix-container').each ->
 
       # removes selects of any element in canvas and the click event
       $canvas.find('.element').trigger('remix:deselect-element').off('click')
-
-      # generates base64 image (with canvas)
-      # docs: http://html2canvas.hertzen.com/documentation.html
-      html2canvas $canvas.get(0), {
-        useCORS: true
-        onrendered: (canvas) ->
-          base64Image = canvas.toDataURL('image/png')
-          $canvas.html('<img src="' + base64Image + '" alt="">')
-
-          # TODO: replace with true url
-          # $.ajax {
-          #   url: API_URL + '/create'
-          #   data:
-          #     image: base64Image
-          #   dataType: 'json'
-          # }
-          # .done (data) ->
-          #   $canvas.html('<img src="' + data.image_url + '" alt="">')
-          # .fail ->
-          #   alert 'Não foi possível salvar a imagem'
+      $elements = getElements()
+      $canvas.html('');
+      $.ajax {
+        url: API_URL
+        method: 'POST'
+        data: $elements
+        dataType: 'json'
       }
-
-      # BEGIN: to save in back-end, use these lines below
-      # output = {
-      #   elements: []
-      # }
-
-      # $canvas.children().each ->
-      #   output.elements.push {
-      #     type: $(this).attr('class')
-      #     src: $(this).attr('src')
-      #     x: $(this).position().left
-      #     y: $(this).position().top
-      #     z: $(this).index()
-      #     w: $(this).width()
-      #     h: $(this).height()
-      #   }
-      # END: to save in back-end
-      # console.log 'output json', output
+      .done (data) ->
+        $canvas.html('<img src="' + data.share_url + '" alt="" style="width: 100%;">')
+        $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + data.share_url)
+        $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url)
+        $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url)
+        $composer.find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
+        $('.gallery-item-new').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
+      .fail ->
+        alert 'Não foi possível salvar a imagem'
 
     # finish state
     'finish': ->
@@ -315,12 +366,42 @@ $('.remix-container').each ->
       $picture = $canvas.find('.picture')
 
       if !$picture.length
-        $picture = $('<div>')
+        $picture = $('<img>')
         $canvas.append $picture
 
       $picture
-        .css { 'background-image': 'url(' + src + ')' }
-        .attr { class: 'picture' }
+        .attr { class: 'picture canvas-background', src: src, crossorigin: 'anonymous' }
+      $picture.css {
+        opacity: 0
+      }
+
+      if src.indexOf('data') == 0
+        setTimeout ( ->
+            w = $picture.width()
+            h = $picture.height()
+            if w == h
+              $picture.css {
+                width: '100%'
+                height: '100%'
+              }
+            else if w > h
+              $picture.css {
+                width: '100%'
+                height: 'auto'
+              }
+            else
+              $picture.css {
+                width: 'auto'
+                height: '100%'
+              }
+          ), 100
+        $picture.data({ custom: true })
+      setTimeout ( ->
+          $picture.css {
+            opacity: 1
+          }
+        ), 100
+
 
       $composer.find('.artboard .empty').hide()
 
@@ -328,7 +409,7 @@ $('.remix-container').each ->
     'add-image': (event, src) ->
       $element = $('<div>').attr { class: 'element image' }
 
-      $('<img>').attr { src: src, alt: '' }
+      $('<img>').attr { src: src, alt: '', crossOrigin: 'anonymous' }
         .appendTo $element
 
       $('<div>').attr { class: 'action remove' }
@@ -403,13 +484,22 @@ $('.remix-container').each ->
           spellcheck: 'false'
         }
         .on 'input', ->
+          iOS = /iPhone|iPod|iPad/i.test(navigator.userAgent);
           $hidden = $(this).siblings('.hidden-content')
           $hidden.html(this.value.replace(/\n/g, '<br>'))
+          if iOS
+            $(this).css {
+              minWidth: 150
+              maxWidth: 150
+              width: 150
+              height: $hidden.height()
+            }
+          else
+            $(this).css {
+              width: $hidden.width() + 5
+              height: $hidden.height()
+            }
 
-          $(this).css {
-            width: $hidden.width() + 5
-            height: $hidden.height()
-          }
         .on 'mousedown', ->
           if $(this).closest('.element').hasClass('focus')
             $(this).attr('readonly', false).trigger('focus')
@@ -487,7 +577,13 @@ $('.remix-container').each ->
         $(this).animate({ scrollLeft: ('-=' + width) }, 100)
     }
 
-    $(this).find('.gallery-item').find('.picture, .actions .share').click ->
+    $(this).find('.gallery-item').find('.actions .share').click ->
+      $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + $image.attr('src'))
+      $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + $image.attr('src'))
+      $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + $image.attr('src'))
+
+    # $(this).find('.gallery-item').find('.picture').on click ->
+    $(this).on click: ->
       $item = $(this).closest('.gallery-item')
       $image = $(this).closest('.gallery-item').find('.picture').clone()
       $image.appendTo($canvas)
@@ -496,9 +592,31 @@ $('.remix-container').each ->
       $composer.find('.actions .download').attr('href', $image.attr('src'))
       $composer.find('.actions .remove').data('id', $item.data('id'))
       $remix.addClass('initial can-share')
+    , '.gallery-item .picture'
 
   $(window).resize ->
     $gallery.trigger 'remix:gallery-adapt'
+
+  $composer.find('.actions .remove').click ->
+    b = $(this);
+    id = $(this).data('id')
+    b.animate({opacity: 0.2});
+    $.ajax {
+      url: API_URL + '/delete'
+      method: 'POST'
+      data:
+        id: id
+      dataType: 'json'
+    }
+    .done (data) ->
+      b.animate({opacity: 1});
+      $('.gallery-item[data-id=' + id + ']').remove()
+      if $('.gallery-item').length == 0
+        $('.gallery-item-new').trigger('click')
+      else
+        $('.gallery-item').last().find('.picture').trigger('click')
+    .fail ->
+      alert('Houve um problema ao remover a imagem')
 
   $remix.find('.create-new, .gallery-item-new, .start-over').click ->
     $remix.trigger 'init'
@@ -569,6 +687,11 @@ $('.remix-container').each ->
 
   # toolbox item elements item
   $composer.find('.toolbox-item-elements .elements').on 'click', '.elements-item', (event) ->
+    if $(this).hasClass('pattern')
+      if $('.remix-canvas').find('.pattern').length == 0
+        $('.remix-canvas').prepend('<img src="" class="pattern" style="width: 100%; height: 100%; position: absolute; z-index: 0; opacity: 0" />');
+      $('.remix-canvas').find('.pattern').attr('src', $(this).data('src')).css({opacity: 1});
+      return
     event.stopPropagation()
     $remix
       .trigger('add-image', $(this).data('src'))

@@ -1,33 +1,36 @@
 <div class="vertical-container" ng-swipe-up="swipeUp()">
   <div class="vertical-content">
-    <div ng-class="{show : isCardsLoaded}" class="container cards ramona-card animated">
+    <div ng-class="{show : isCardsLoaded}" class="container cards users animated">
       <div class="author">
         <div class="box-avatar-user">
-          <img class="avatar" width="200" src="{{user.image}}" />
+          <div class="avatar" style="background-image: url('{{currentUser.image}}')"></div>
         </div>
         <div class="seven columns">
+          <a ng-if="loggedUser.username == currentUser.username" ng-href="/editar-perfil" target="_self">
+            <img class="edit" src="<%=asset_url('site/edit-icon-black.svg')%>" width="auto" height="20px" />
+          </a>
           <div class="profile">
             <div class="box-profile">
-              <p class="editor">{{user.username}}</p>
+              <p class="editor">{{currentUser.username}}</p>
             </div>
           </div>
           <div class="about">
             <div class="twelve columns">
               <p class="summary">
-                {{user.bio}}
+                {{currentUser.bio}}
               </p>
             </div>
           </div>
           <div class="social">
             <ul class="social-editor">
-              <li class="social-pi"><a href="https://br.pinterest.com/ramonatmj/" target="_blank"><img src="<%=asset_url('site/pinterest-profile.svg')%>" alt="" /></a></li>
-              <!-- <li class="social-fb"><a href="#" target="_blank"><img src="/img/facebook-profile.svg" alt="" /></a></li> -->
-              <!-- <li class="social-in"><a href="#" target="_blank"><img src="/img/instagram-profile.svg" alt="" /></a></li> -->
-              <li class="social-tu"><a href="https://lunetalunatica.tumblr.com/" target="_blank"><img src="<%=asset_url('site/tumblr-profile.svg')%>" alt="" /></a></li>
+              <!-- <li class="social-pi"><a href="https://br.pinterest.com/ramonatmj/" target="_blank"><img src="<%=asset_url('site/pinterest-profile.svg')%>" alt="" /></a></li> -->
+              <li class="social-fb {{currentUser.providers.facebook ? 'active' :''}}"><a href="{{currentUser.providers.facebook ? 'http://facebook.com/'+ currentUser.providers.facebook :'#'}}" target="{{currentUser.providers.facebook ? '_blank' :''}}"><img src="<%=asset_url('site/facebook-profile.svg')%>" alt="" /></a></li>
+              <li class="social-in {{currentUser.providers.instagram ? 'active' :''}}"><a href="{{currentUser.providers.instagram ? 'http://instagram.com/'+ currentUser.providers.instagram :'#'}}" target="{{currentUser.providers.instagram ? '_blank' :''}}"><img src="<%=asset_url('site/instagram-profile.svg')%>" alt="" /></a></li>
+              <!-- <li class="social-tu"><a href="https://lunetalunatica.tumblr.com/" target="_blank"><img src="<%=asset_url('site/tumblr-profile.svg')%>" alt="" /></a></li> -->
               <!-- <li class="social-vi svg"><a href="#" target="_blank"><img src="/img/vimeo-profile.svg" alt="" /></a></li> -->
-              <!-- <li class="social-tw"><a href="#" target="_blank"><img src="/img/twitter-profile.svg" alt="" /></a></li> -->
+              <li class="social-tw {{currentUser.providers.twitter ? 'active' :''}}"><a href="{{currentUser.providers.twitter ? 'http://twitter.com/'+ currentUser.providers.twitter :'#'}}" target="{{currentUser.providers.twitter ? '_blank' :''}}"><img src="<%=asset_url('site/twitter-profile.svg')%>" alt="" /></a></li>
               <!-- <li class="social-go"><a href="#" target="_blank"><img src="/img/google-profile.svg" alt="" /></a></li> -->
-              <li class="social-yt"><a href="https://www.youtube.com/channel/UC2sp_4csOUc4VnmNdWxTXhQ" target="_blank"><img src="<%=asset_url('site/youtube-profile.svg')%>" alt="" /></a></li>
+              <!-- <li class="social-yt"><a href="https://www.youtube.com/channel/UC2sp_4csOUc4VnmNdWxTXhQ" target="_blank"><img src="<%=asset_url('site/youtube-profile.svg')%>" alt="" /></a></li> -->
               <!-- <li class="social-twitch"><a href="#" target="_blank"><img src="/img/twitch-profile.svg" alt="" /></a></li> -->
             </ul>
           </div>
@@ -36,15 +39,15 @@
             <ul>
               <li class="ramona">
                 <img src="<%=asset_url('site/icone-ramona.svg')%>" alt="">
-                <p class="number">{{user.ramona_recommendations ? user.ramona_recommendations : 0}}</p>
+                <p class="number">{{currentUser.ramona_recommendations ? currentUser.ramona_recommendations : 0}}</p>
               </li>
               <li class="geek">
-                <img src="<%=asset_url('site/icone-geek.svg')%>" alt="">
-                <p class="number">{{user.geek_recommendations ? user.geek_recommendations : 0}}</p>
+                <!-- <img src="<%=asset_url('site/icone-geek.svg')%>" alt="">
+                <p class="number">{{currentUser.geek_recommendations ? currentUser.geek_recommendations : 0}}</p> -->
               </li>
               <li class="denise">
-                <img src="<%=asset_url('site/icone-denise.svg')%>" alt="">
-                <p class="number">{{user.denise_recommendations ? user.denise_recommendations : 0}}</p>
+                <!-- <img src="<%=asset_url('site/icone-denise.svg')%>" alt="">
+                <p class="number">{{currentUser.denise_recommendations ? currentUser.denise_recommendations : 0}}</p> -->
               </li>
             </ul>
           </div>

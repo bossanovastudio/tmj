@@ -1,4 +1,6 @@
 class Api::GeneralController < ApplicationController
+  before_action :authenticate_user!, only: [:follow, :unfollow]
+  
   def all
     pagination = pagination_params
 
@@ -19,8 +21,29 @@ class Api::GeneralController < ApplicationController
   def editors
     pagination = pagination_params
 
-    @user = User.editors.where(username: params[:id]).first
+    @user = User.editors.where(username: params[:username]).first
     @cards = @user.cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1).not_rejected.ordered
+  end
+  
+  def users
+    pagination = pagination_params
+
+    @user = User.find_by!(username: params[:username])
+    @cards = @user.cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1).approved.ordered
+  end
+  
+  def profile
+    @user = User.find_by!(username: params[:username])
+  end
+  
+  def follow
+    user = User.find_by!(username: params[:username])
+    current_user.bookmark user
+  end
+  
+  def unfollow
+    user = User.find_by!(username: params[:username])
+    current_user.unbookmark user
   end
 
   private

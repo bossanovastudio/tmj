@@ -114,6 +114,9 @@ tmj.directive("cardClass", function($rootScope) {
                     $(elem).parent().removeClass('cursor');
                 }
             }
+            if (card.recommended_by_ramona) {
+                $(elem).parent().addClass('ramonalike');
+            }
             if (card.user && card.user.role == 'editor') {
                 //if((isMobileDevice && $rootScope.pageName == 'homePage') || (!isMobileDevice && $rootScope.pageName == 'homePage')) {
                 if((!isMobileDevice && $rootScope.pageName == 'homePage')) {

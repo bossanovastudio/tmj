@@ -54,6 +54,9 @@ gem 'omniauth'
 # Facebook OAuth2 Strategy for OmniAuth
 gem 'omniauth-facebook'
 
+# Instagram OAuth2 Strategy for OmniAuth
+gem 'omniauth-instagram'
+
 # OmniAuth strategy for Twitter
 gem 'omniauth-twitter', github: 'nextglass/omniauth-twitter'
 

@@ -1,10 +1,10 @@
-body.edit-user {
+body.profile {
     min-height: 100%;
     min-width: 600px;
     .initial-loading {
         top: 40%;
     }
-    .container.ramona-card {
+    .container.users {
         height: auto !important;
         opacity: 0;
         &.show {
@@ -23,15 +23,23 @@ body.edit-user {
             order: 2;
             flex-grow: 7;
         }
+        .edit{
+            cursor: pointer;
+        }
         .box-avatar-user{
             min-width: 230px;
             order: 1;
             flex-grow: 1;
             position: relative;
-            img.avatar {
+            div.avatar {
+                width: 200px;
+                height: 200px;
                 border-radius: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
             }
-            img.avatar_hover {
+            .avatar_hover {
                 position: absolute;
                 left: 0;
                 top: 0;
@@ -44,7 +52,7 @@ body.edit-user {
                 top: 30px;
             }
             &:hover {
-                img.avatar_hover {
+                .avatar_hover {
                     display: block;
                 }
             }
@@ -173,6 +181,7 @@ body.edit-user {
                 letter-spacing: 0.1px;
                 color: #000000;
                 margin: 10px 0px 30px 0px;
+                word-wrap: break-word;
             }
         }
         .social {
@@ -183,8 +192,11 @@ body.edit-user {
                     vertical-align: top;
                     margin-bottom: 9px;
                     &.animate {
-                        opacity: 1;
-                        animation: enterRamonaSocial .4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+                        opacity: 0.4;
+                        animation: enterUsersSocial .4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+                        &.active{
+                            opacity: 1;
+                        }
                     }
                 }
             }
@@ -237,6 +249,16 @@ body.edit-user {
             }
         }
     }
+    @media only screen and (max-width: 1080px) {
+        .author{
+            .about{
+                div{
+                    max-width: 400px;
+                    width: 70%;
+                }
+            }
+        }
+    }
     @media only screen and (max-width: 780px) {
         .vertical-container{
             width: 100%;
@@ -250,6 +272,9 @@ body.edit-user {
         .author {
             text-align: center;
             display: block;
+            div{
+                width: 100%;
+            }
             .social {
                 float: none;
             }
@@ -263,7 +288,7 @@ body.edit-user {
                 }
             }
             .columns {
-                width: 100%;
+                width: 100% !important;
                 float: none;
             }
             .followers {
@@ -288,7 +313,7 @@ body.edit-user {
 
     }
     @media only screen and (max-device-width: 550px) {
-        background-image: asset-url('site/bg_ramona_mobile.jpg');
+        background-image: asset-url('site/bg_mobile.jpg');
         background-size: cover;
         min-width: 100%;
 
@@ -305,9 +330,11 @@ body.edit-user {
                 position: relative;
             }
             .box-avatar-user {
-                .avatar,
+                div.avatar,
                 .avatar_hover {
                     width: 106px;
+                    height: 106px;
+                    margin: 0 auto;
                 }
                 img.badge {
                     position: absolute;
@@ -457,17 +484,19 @@ body.edit-user {
                         z-index: -1;
                         -webkit-transition: all 0.2s ease-in;
                     }
-                    &:hover:before {
-                        left: -15px;
-                        top: -15px;
-                        -webkit-transition: all 0.2s ease-in;
-                    }
-                    &:hover {
-                        background: transparent;
-                        -webkit-transition: 0.1s;
-                        -moz-transition: 0.1s;
-                        -o-transition: 0.1s;
-                        transition: 0.1s;
+                    &.active{
+                        &:hover:before {
+                            left: -15px;
+                            top: -15px;
+                            -webkit-transition: all 0.2s ease-in;
+                        }
+                        &:hover {
+                            background: transparent;
+                            -webkit-transition: 0.1s;
+                            -moz-transition: 0.1s;
+                            -o-transition: 0.1s;
+                            transition: 0.1s;
+                        }
                     }
                 }
             }
@@ -476,14 +505,14 @@ body.edit-user {
 }
 
 @media only screen and (max-device-width: 550px) {
-    body.ramona {
+    body.profile {
         .cards {
             padding-top: 55px !important;
         }
     }
 }
 
-@keyframes enterRamonaSocial {
+@keyframes enterUsersSocial {
     from {
         transform: translateX(100px) rotate(360deg);
     }

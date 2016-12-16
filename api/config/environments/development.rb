@@ -51,4 +51,6 @@ Rails.application.configure do
     api_key: ENV.fetch('MAILGUN_API_KEY'),
     domain: ENV.fetch('MAILGUN_DOMAIN')
   }
+  
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
 end

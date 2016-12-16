@@ -1,11 +1,59 @@
-tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $compile, $routeParams) {
+tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $compile, $routeParams, $location) {
 
-    if (!storage.get('user')) {
-        $location.path('/login');
+    $scope.loggedUser = storage.get('user');
+    $scope.currentUser = {};
+
+    $http.get('/api/user/'+$routeParams.username+'/profile.json')
+        .then(function(response) {
+            $scope.currentUser.bio = response.data.bio;
+            $scope.currentUser.username = response.data.username;
+            $scope.currentUser.image = response.data.image;
+            $scope.currentUser.ramona_recommendations = response.data.ramona_recommendations;
+            $scope.currentUser.providers = {};
+            response.data.providers.forEach(function(p) {
+                $scope.currentUser.providers[p.name] = p.username;
+            });
+            setTimeout(function() {
+                $('.avatar').css('background-image', "url("+$scope.currentUser.image+")");
+            }, 1000);
+        }, function(response) {
+            window.location = '/';
+        });
+
+    $rootScope.pageName = $routeParams.username;
+
+    $('body').addClass('profile');
+
+    if (!isMobileDevice) {
+        setTimeout(function(){
+            $('.cards').css({
+                "width": "80%",
+                "max-width": "1180px",
+                "margin": "0 auto 50px auto",
+                "padding": 0
+            });
+            $('html').css({ overflow: 'auto' });
+        }, 2000)
     }
-    $scope.user = storage.get('user');
 
-    $rootScope.pageName = $scope.user.username;
-    $('body').addClass('edit-user');
+    var distanceTop = 0;
+
+    $scope.swipeUp = function() {
+        if ($('.cards .card').length == 0) {
+            return false;
+        }
+        distanceTop = -$(window).height();
+        $('.cards').each(function(i, e) {
+            var top = parseInt($(this).css('top').replace('px'));
+            if (i == 0 && top == (($('.cards').length - 1) * distanceTop)) {
+                distanceTop = 0;
+            }
+            $(this).animate({ top: top + distanceTop }, 500, 'easeOutExpo');
+        });
+        setTimeout(function() {
+            $rootScope.animateInitial();
+        }, 1000);
+        $rootScope.track('swipe', 'cards', 'up');
+    }
 
 });

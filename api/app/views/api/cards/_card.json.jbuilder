@@ -1,8 +1,11 @@
-json.id         card.id
-json.origin     card.origin
-json.content    card.content
-json.kind       card.kind
-json.source_url card.source_url
+json.id                     card.id
+json.origin                 card.origin
+json.content                card.content
+json.kind                   card.kind
+json.source_url             card.source_url
+json.likes                  card.liked_by_count
+json.liked                  current_user.likes?(card) if current_user
+json.recommended_by_ramona  User.find_by(username: 'ramona').likes?(card)
 
 if card.media
   if card.kind == :image

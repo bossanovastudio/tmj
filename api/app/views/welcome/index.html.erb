@@ -69,17 +69,29 @@
     </div>
     <button class="close-edit" ng-click="back()" ><img src="<%= asset_url('site/fechar.svg') %>" alt=""></button>
     <div class="sidebar">
-        <a ng-href="login" class="mobile login ng-hide">
+        <!-- <a ng-href="login" class="mobile login ng-hide">
             <img src="<%=asset_url('site/botao-entrar.png')%>" />
-        </a>
+        </a> -->
         <ul>
-            <li class="red" ng-click="toggle()"><a ng-href="/" target="_self">HOME</a></li>
-            <li class="purple" ng-click="toggle()"><a ng-href="/personagem/ramona" target="_self">RAMONA</a></li>
-            <li class="blue" ng-click="toggle()"><a ng-href="/participe" target="_blank">PARTICIPE</a></li>
-            <!-- <li class="orange" ng-click="toggle()"><a ng-href="/remix" target="_self">REMIX</a></li> -->
-            <!-- <li class="yellow" ng-click="toggle()"><a ng-href="/feito-por-voce" target="_self">FEITO POR VOCÊ</a></li> -->
-            <!-- <li class="pink" ng-click="toggle()"><a ng-href="/personagem/denise" target="_self">DENISE</a></li> -->
-            <!-- <li class="blue" ng-click="toggle()"><a ng-href="/personagem/geek" target="_self">GEEK</a></li> -->
+          <li class="menu-login" ng-click="goToProfile()">
+            <div ng-if="user">
+              <div class="avatar link" style="background-image: url('{{user.image.url}}')"></div>
+              <span>{{user.username}}</span>
+              <a ng-click="logout()"> SAIR </a>
+            </div>
+            <div ng-if="!user">
+              <img src="<%=asset_url('site/profile_default.svg')%>" class="link" alt="">
+              <span>MINHA ÁREA</span>
+              <a ng-href="login"> ENTRAR </a>
+            </div>
+          </li>
+          <li class="red" ng-click="toggle()"><a ng-href="/" target="_self">HOME</a></li>
+          <li class="purple" ng-click="toggle()"><a ng-href="/personagem/ramona" target="_self">RAMONA</a></li>
+          <li class="blue" ng-click="toggle()"><a ng-href="/participe" target="_blank">PARTICIPE</a></li>
+          <li class="orange" ng-click="toggle()"><a ng-href="/remix" target="_self">REMIX</a></li>
+          <!-- <li class="yellow" ng-click="toggle()"><a ng-href="/feito-por-voce" target="_self">FEITO POR VOCÊ</a></li> -->
+          <!-- <li class="pink" ng-click="toggle()"><a ng-href="/personagem/denise" target="_self">DENISE</a></li> -->
+          <!-- <li class="blue" ng-click="toggle()"><a ng-href="/personagem/geek" target="_self">GEEK</a></li> -->
         </ul>
 
         <footer class="mobile">
@@ -134,7 +146,7 @@
                 <img ng-if="card.user.role == 'editor'" src="{{card.user.avatar}}" class="userPhoto" />
                 <p class="name">{{card.user.name}}</p>
                 <p class="date">
-                  <a target="_blank" ng-href="{{card.source_url}}">
+                  <a class="date-link" target="_blank" ng-href="{{card.source_url}}">
                     <img src="/assets/site/{{card.origin}}.svg" />
                     {{card.posted_at | formatDate}}
                   </a></p>

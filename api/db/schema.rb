@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213211155) do
+ActiveRecord::Schema.define(version: 20161216183823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20161213211155) do
     t.string   "uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "username"
     t.index ["user_id"], name: "index_providers_on_user_id", using: :btree
   end
 
@@ -128,6 +129,12 @@ ActiveRecord::Schema.define(version: 20161213211155) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["remix_category_id"], name: "index_remix_images_on_remix_category_id", using: :btree
+  end
+
+  create_table "remix_patterns", force: :cascade do |t|
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "remix_stickers", force: :cascade do |t|
@@ -178,7 +185,7 @@ ActiveRecord::Schema.define(version: 20161213211155) do
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
     t.string   "username",                                       null: false
-    t.integer  "role"
+    t.integer  "role",                              default: 1
     t.string   "mask"
     t.string   "authentication_token",   limit: 30
     t.text     "bio"

@@ -1,13 +1,15 @@
 tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $compile, $routeParams, $location) {
 
     if (storage.get('user')) {
-        $location.path('/sua-pagina');
+        $location.path('/perfil/' + storage.get('user').username);
     }
 
     $rootScope.pageName = 'login';
     $('.initial-loading').hide(0);
 
     $scope.form = {};
+
+    $scope.redirect_url = $routeParams.redirect_url;
 
     $scope.form.reset_password_token = $location.search().code;
 
@@ -79,36 +81,42 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
     $scope.numClick = 0;
 
     $scope.open = false;
-    $scope.togglePassword = function() {
+    $scope.passwordPlaceholder = true;
+
+    $scope.togglePassword = function(position) {
         $scope.open = !$scope.open;
         if ($scope.open) {
+            if ($scope.passwordPlaceholder || position == 'first' || $scope.passwordChoice.length == 4) {
+              $scope.numClick = 0;
+
+              $('.after').css({ "left": 10 });
+            }
             $('.overlay-pass').css({ "display": "block" });
-            $scope.passwordChoice.length = 0;
-            $('.after').css({ "left": 10 });
-            $scope.numClick = 0;
         } else {
             $('.overlay-pass').css({ "display": "none" });
         }
+        $scope.passwordPlaceholder = false;
     };
 
     $scope.addToPasswordChoice = function(pass) {
         $scope.numClick = $scope.numClick + 1;
-        $scope.passwordChoice.push($scope.passwords[pass.id]);
         if ($scope.numClick == 1) {
+            $scope.passwordChoice.length = 0;
+            $scope.passwordChoice.push($scope.passwords[pass.id]);
             $('.after').css({ "left": 55 });
         } else if ($scope.numClick == 2) {
+            $scope.passwordChoice.push($scope.passwords[pass.id]);
             $('.after').css({ "left": 105 });
         } else if ($scope.numClick == 3) {
+            $scope.passwordChoice.push($scope.passwords[pass.id]);
             $('.after').css({ "left": 150 });
         } else {
+            $scope.passwordChoice.push($scope.passwords[pass.id]);
             $scope.numClick = 0;
             $scope.open = !$scope.open;
             $('.overlay-pass').css({ "display": "none" });
         }
     }
-
-    $scope.msg = 'Minha Área';
-    $scope.msg_register = 'Cadastrar';
 
     $scope.login = function() {
         $scope.form.password = $scope.passwordChoice.map(function(p) {
@@ -116,10 +124,13 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
         }).join('');
 
         if (!$scope.form.username || $scope.form.username.length < 1) {
-            $scope.msg = 'Preencha seu apelido';
+            $scope.msg_username = 'Preencha seu apelido';
+            $scope.msg_pass = '';
             return false;
         } else if ($scope.form.password.length != 12) {
-            $scope.msg = 'Senha inválida';
+            $scope.msg_pass = 'Senha inválida';
+            $scope.msg_username = '';
+
             return false;
         }
         $scope.msg = 'Minha Área';
@@ -129,12 +140,17 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
                 headers: { 'Content-Type': 'application/json' }
             })
             .then(function(response) {
-                $scope.msg = 'Obrigado.';
                 storage.set('user', response.data);
-                $location.path('/');
+                if ($scope.redirect_url) {
+                    window.location = $scope.redirect_url;
+                } else {
+                    window.location = '/';
+                }
             }, function(response) {
                 storage.deleteKey('user');
-                $scope.msg = response.data.error;
+                $scope.msg_username = response.data.error;
+                $scope.msg_pass = '';
+
             });
     }
 
@@ -143,70 +159,83 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             return p.value;
         }).join('');
 
-        if (!$scope.form.username || $scope.form.username.length < 1) {
-            $scope.msg_register = 'Preencha seu apelido';
+        if (!$scope.form.username || $scope.form.username.length > 16 || $scope.form.username.length < 1 || !$scope.form.username.match(/^[0-9a-zA-Z]+$/)) {
+            $scope.msg_register_username = 'Seu apelido deve conter apenas letras e números e não ser maior que 16 caracteres.';
+            $scope.msg_register_email = '';
+            $scope.msg_register_pass = '';
+
             return false;
-        } else if (!$scope.form.email || $scope.form.email.length < 1) {
-            $scope.msg_register = 'Email inválido';
+        } else if (!$scope.form.email || $scope.form.email.length < 1 || !$scope.form.email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+            $scope.msg_register_email = 'Email inválido';
+            $scope.msg_register_username = '';
+            $scope.msg_register_pass = '';
             return false;
         } else if ($scope.form.password.length != 12) {
             console.log('password');
-            $scope.msg_register = 'Senha inválida';
+            $scope.msg_register_pass = 'Senha inválida';
+            $scope.msg_register_username = '';
+            $scope.msg_register_email = '';
             return false;
         }
-        $scope.msg_register = 'Cadastrar';
         $http.post("/user.json", {
                 user: $scope.form
             }, {
                 headers: { 'Content-Type': 'application/json' }
             })
             .then(function(response) {
-                $scope.msg_register = 'Obrigado.';
                 storage.set('user', response.data);
-                $location.path('/editar-perfil');
+                $location.path('/perfil/' + storage.get('user').username);
             }, function(response) {
                 storage.deleteKey('user');
-                $scope.msg_register = response.error;
+                $scope.msg_register_username = response.error;
+                $scope.msg_register_email = '';
+                $scope.msg_register_pass = '';
             });
     }
-
     $scope.msg_recover = 'Cadastrar nova senha.';
 
     $scope.resetPass = function() {
+        $rootScope.popup_title = 'Acabamos de enviar um e-mail para você';
+        $rootScope.popup_confirm = 'Ok, entendi!';
+
         if (!$scope.form.username) {
-            console.log('Preencha seu username.');
+            $scope.msg_username = 'Preencha seu apelido';
+            $scope.msg_recover_pass = '';
         } else {
+            $rootScope.openPopup();
             $http.post("/user/password.json", {
                 user: $scope.form
             }, {
                 headers: { 'Content-Type': 'application/json' }
             })
             .then(function(response) {
-                $scope.msg_recover = 'Você recebera um email com instruções.';
+                $rootScope.popup_title = 'Você receberá um email com instruções';
+                $rootScope.popup_confirm = 'Ok, entendi!';
             }, function(response) {
-                $scope.msg_recover = response.error;
+                $scope.msg_recover_pass = response.error;
+                $scope.msg_username = '';
             });
         }
     }
-
     $scope.recoverPass = function() {
         $scope.form.password = $scope.passwordChoice.map(function(p) {
             return p.value;
         }).join('');
         if ($scope.form.password.length != 12) {
-            $scope.msg_recover = 'Senha inválida';
+            $scope.msg_recover_pass = 'Senha inválida';
             return false;
         }
-        $scope.msg_recover = 'Aguarde.';
-        $http.post("/user/password.json", {
+        $scope.msg_recover_pass = 'Aguarde';
+        $http.put("/user/password.json", {
                 user: $scope.form
             }, {
                 headers: { 'Content-Type': 'application/json' }
             })
             .then(function(response) {
-                $scope.msg_recover = 'Senha resetada com sucesso.';
+                $location.path('/login');
             }, function(response) {
-                $scope.msg_recover = response.error;
+                $scope.msg_recover_pass = response.error;
+                $scope.msg_recover_pass = 'Falha ao resetar a sua senha.';
             });
     }
 

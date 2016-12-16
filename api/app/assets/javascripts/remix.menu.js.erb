@@ -1,0 +1,42 @@
+var toggled;
+
+$('#menu').click(function() {
+    $("#menu").toggleClass('open');
+    toggled ? closeMenu() : openMenu();
+    toggled = !toggled;
+});
+
+$('.menu-login').click(function() {
+    window.location = '/sua-pagina';
+})
+
+var openMenu = function() {
+    var overlay = $('.overlay');
+    overlay.addClass('open');
+    var sidebar = $('.sidebar');
+    sidebar.addClass('open');
+    var html = $('html');
+    html.css({ 'overflow': 'hidden' });
+    $("header").addClass('animate');
+    $("section").addClass('animate');
+    $("footer.desktop").addClass('animate');
+    $(".sidebar li").each(function(i) {
+        var t = $(this);
+        setTimeout(function() { t.addClass('animate'); }, (i + 1) * 25);
+    });
+}
+
+var closeMenu = function() {
+    var overlay = $('.overlay');
+    overlay.removeClass('open');
+    var sidebar = $('.sidebar');
+    sidebar.removeClass('open');
+    var html = $('html');
+    html.css({ 'overflow': 'auto' });
+    $("header").removeClass('animate');
+    $("section").removeClass('animate');
+    $("footer.desktop").removeClass('animate');
+    setTimeout(function() {
+        $(".sidebar li").removeClass("animate")
+    }, 500);
+}
