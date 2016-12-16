@@ -3,7 +3,7 @@
     <div ng-class="{show : isCardsLoaded}" class="container cards users animated">
       <div class="author">
         <div class="box-avatar-user">
-          <img class="avatar" width="200" height="200" src="{{currentUser.image}}" />
+          <div class="avatar" style="background-image: url('{{currentUser.image}}')"></div>
         </div>
         <div class="seven columns">
           <a ng-if="loggedUser.username == currentUser.username" ng-href="/editar-perfil" target="_self">
