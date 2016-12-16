@@ -594,7 +594,9 @@ $('.remix-container').each ->
     $gallery.trigger 'remix:gallery-adapt'
 
   $composer.find('.actions .remove').click ->
+    b = $(this);
     id = $(this).data('id')
+    b.animate({opacity: 0.2});
     $.ajax {
       url: API_URL + '/delete'
       method: 'POST'
@@ -603,6 +605,7 @@ $('.remix-container').each ->
       dataType: 'json'
     }
     .done (data) ->
+      b.animate({opacity: 1});
       $('.gallery-item[data-id=' + id + ']').remove()
       if $('.gallery-item').length == 0
         $('.gallery-item-new').trigger('click')
