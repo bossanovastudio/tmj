@@ -56,36 +56,6 @@ window.isMobile = ->
 window.isDesktop = ->
   return $(window).width() >= 768
 
-# toDataURL = (src, callback, outputFormat) ->
-#   xhr = new XMLHttpRequest()
-#   xhr.onload = ->
-#     url = URL.createObjectURL this.response
-#     img = new Image()
-#     img.crossOrigin = 'Anonymous'
-#     img.onload = ->
-#       canvas = document.createElement 'CANVAS'
-#       ctx = canvas.getContext '2d'
-#       canvas.height = this.height
-#       canvas.width = this.width
-#       ctx.drawImage this, 0, 0
-#       dataURL = canvas.toDataURL outputFormat
-#       callback dataURL
-
-#       URL.revokeObjectURL url
-#     img.src = url
-
-#     if img.complete?
-#       img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
-#       img.src = url
-
-#   xhr.open 'GET', src, true
-#   xhr.responseType = 'blob'
-#   xhr.send()
-
-# toDataURL 'http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/3/foto-3.png', (base64) ->
-#   console.log base64
-# , 'image/png'
-
 parseColor = (x) ->
   x = parseInt(x).toString(16);
   if x.length==1
@@ -93,25 +63,25 @@ parseColor = (x) ->
   else
     x = x
 
-parseColorTransparent = (x) ->
-  if x.css('background-color') == "transparent"
-    x = "transparent"
-  else
-    x = (x.css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join("")
-
 getRotationDegrees = (x) ->
   matrix = x.css("-webkit-transform") || x.css("-moz-transform") || x.css("-ms-transform") || x.css("-o-transform") || x.css("transform");
   if matrix != 'none'
     values = matrix.split('(')[1].split(')')[0].split(',');
     a = values[0];
     b = values[1];
-    angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+    angle = Math.atan2(b, a) * (180.0 / Math.PI);
   else
     angle = 0
   if angle < 0
     angle + 360
   else
     angle
+
+parseColorTransparent = (x) ->
+  if x.css('background-color') == "transparent"
+    x = "transparent"
+  else
+    x = (x.css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join("")
 
 window.getElements = ->
   elements = [];
@@ -132,14 +102,14 @@ window.getElements = ->
         src: $el.find('img').attr('src'),
         width: $el.find('img').width(),
         height: $el.find('img').height(),
-        position: [parseInt($el.css('left').replace('px','')), parseInt($el.css('top').replace('px',''))]
+        position: [$el.offset().left - $el.parent().offset().left, $el.offset().top - $el.parent().offset().top]
         type: 'image',
         rotation: getRotationDegrees $el
       })
     else
       elements.push({
         type: 'text',
-        position: [parseInt($el.css('left').replace('px','')), parseInt($el.css('top').replace('px',''))]
+        position: [$el.offset().left - $el.parent().offset().left, $el.offset().top - $el.parent().offset().top]
         size: $el.css('font-size').replace('px',''),
         content: $el.find('textarea').val(),
         width: $el.width(),
@@ -340,48 +310,21 @@ $('.remix-container').each ->
       # removes selects of any element in canvas and the click event
       $canvas.find('.element').trigger('remix:deselect-element').off('click')
 
-      # generates base64 image (with canvas)
-      # docs: http://html2canvas.hertzen.com/documentation.html
-      html2canvas $canvas.get(0), {
-        useCORS: true
-        onrendered: (canvas) ->
-          # base64Image = canvas.toDataURL('image/png')
-          # $canvas.html('<img src="' + base64Image + '" alt="">')
-
-          $.ajax {
-            url: API_URL
-            method: 'POST'
-            data: getElements()
-            dataType: 'json'
-          }
-          .done (data) ->
-            # $canvas.html('<img src="' + data.share_url + '" alt="">')
-            $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + data.share_url)
-            $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url)
-            $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url)
-            $composer.find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
-            $('.gallery-item-new').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
-          .fail ->
-            alert 'Não foi possível salvar a imagem'
+      $.ajax {
+        url: API_URL
+        method: 'POST'
+        data: getElements()
+        dataType: 'json'
       }
-
-      # BEGIN: to save in back-end, use these lines below
-      # output = {
-      #   elements: []
-      # }
-
-      # $canvas.children().each ->
-      #   output.elements.push {
-      #     type: $(this).attr('class')
-      #     src: $(this).attr('src')
-      #     x: $(this).position().left
-      #     y: $(this).position().top
-      #     z: $(this).index()
-      #     w: $(this).width()
-      #     h: $(this).height()
-      #   }
-      # END: to save in back-end
-      # console.log 'output json', output
+      .done (data) ->
+        # $canvas.html('<img src="' + data.share_url + '" alt="">')
+        $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + data.share_url)
+        $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url)
+        $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url)
+        $composer.find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
+        $('.gallery-item-new').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
+      .fail ->
+        alert 'Não foi possível salvar a imagem'
 
     # finish state
     'finish': ->

@@ -51,8 +51,8 @@ module RemixGenerator
           rotation = step[:rotation].to_i
           ops = imgop(step[:src]) do |img|
             img.background_color = '#0000'
-            img.resize! width, height
             img.rotate! rotation
+            img.resize! width, height
           end
           @canvas << tmp.composite(ops, position[0], position[1], Magick::OverCompositeOp)
         when 'text'
