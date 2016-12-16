@@ -18,6 +18,7 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
+  # config.assets.digest = false
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
@@ -81,4 +82,6 @@ Rails.application.configure do
     api_key: ENV.fetch('MAILGUN_API_KEY'),
     domain: ENV.fetch('MAILGUN_DOMAIN')
   }
+  
+  config.action_mailer.default_url_options = { host: ENV.fetch('SITE_URL') }
 end

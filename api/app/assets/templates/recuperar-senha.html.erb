@@ -1,0 +1,39 @@
+<div class="overlay-pass" ng-click="togglePassword()"></div>
+<div class="container login recover">
+    <div class="content-box">
+        <h1 class="title">Cadastrar nova senha</h1>
+        <form name="profileForm">
+            <div class="form-group pass">
+                <label for="password">Nova Senha</label>
+                <br>
+                <ul class="input-pass">
+                    <li ng-click="togglePassword('first')" style="background:url('{{passwordChoice[0].img}}'); background-size: cover;">
+                        <input type="hidden" name="pass-1" value="{{passwordChoice[0].value}}"/>
+                    </li>
+                    <li ng-click="togglePassword()" style="background:url('{{passwordChoice[1].img}}'); background-size: cover;">
+                        <input type="hidden" name="pass-2" value="{{passwordChoice[1].value}}"/>
+                    </li>
+                    <li ng-click="togglePassword()" style="background:url('{{passwordChoice[2].img}}'); background-size: cover;">
+                        <input type="hidden" name="pass-3" value="{{passwordChoice[2].value}}"/>
+                    </li>
+                    <li ng-click="togglePassword()" style="background:url('{{passwordChoice[3].img}}'); background-size: cover;">
+                        <input type="hidden" name="pass-3" value="{{passwordChoice[3].value}}"/>
+                    </li>
+                </ul>
+                <div class="pass-box recover hide" ng-class="{show: open, hide: !open}">
+                    <ul>
+                        <li ng-repeat="pass in passwords" ng-click="addToPasswordChoice(pass)">
+                            <img src="{{pass.img}}" alt="{{pass.name}}">
+                        </li>
+                    </ul>
+                    <div class="after"></div>
+                </div>
+                <p class="error-msg pass-reset" ng-if="msg_recover_pass">{{msg_recover_pass}}</p>
+            </div>
+            <div class="form-actions">
+                <br>
+                <button type="button" ng-click="recoverPass()" class="btn btn-submit">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>

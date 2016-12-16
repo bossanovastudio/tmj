@@ -1,52 +1,5 @@
 version: '2'
 services:
-  web:
-    image: nginx:latest
-    volumes:
-      - ./web/dist:/usr/share/nginx/html
-      - ./web/nginx:/etc/nginx/conf.d
-    ports:
-      - "8080:8080"
-
-  remix:
-    build: remix
-    volumes:
-      - ./remix:/var/www/app
-    command: bundle exec rails s -b 0.0.0.0 -P/dev/null
-    ports:
-      - "8081:3000"
-    links:
-      - db
-    env_file:
-      - ./env/.env
-
-  admin_web:
-    image: nginx:latest
-    volumes:
-      - ./admin_web/dist:/usr/share/nginx/html
-      - ./admin_web/nginx:/etc/nginx/conf.d
-    ports:
-      - "8082:8080"
-
-  web-register:
-    image: nginx:latest
-    volumes:
-      - ./web-register/dist:/usr/share/nginx/html
-      - ./web-register/nginx:/etc/nginx/conf.d
-    ports:
-      - "8083:8080"
-
-  admin:
-    build: admin
-    volumes:
-      - ./admin:/var/www/app
-    command: bundle exec rails s -p 3001 -b 0.0.0.0 -P/dev/null
-    ports:
-      - "3001:3001"
-    links:
-      - db
-    env_file:
-      - ./env/.env
 
   api:
     build: api
@@ -63,45 +16,31 @@ services:
       - ./env/.env
 
   crawler_sn:
-    build: crawler_socialnetwork
+    extends:
+      file: crawlers/docker-compose-base.yml
+      service: crawler-base
     volumes:
-      - ./crawler_socialnetwork:/var/app
+      - ./crawlers:/var/app
+      - /bundler
     command: bundle exec bin/crawler
-    links:
-      - db
-    env_file:
-      - ./env/.env
-
-  crawler_web:
-    build: crawler_web
-    volumes:
-      - ./crawler_web:/var/app
-    command: bundle exec puma -p 3002 -b tcp://0.0.0.0
-    ports:
-      - "3002:3002"
     links:
       - db
     env_file:
       - ./env/.env
 
   crawler_parser:
-    build: crawler_parser
+    extends:
+      file: crawlers/docker-compose-base.yml
+      service: crawler-base
     volumes:
-      - ./crawler_parser:/var/app
-    command: bundle exec bin/crawler
+      - ./crawlers:/var/app
+      - /bundler
+    command: bundle exec bin/parser
     links:
       - db
+      - api
     env_file:
       - ./env/.env
-
-  # missions:
-  #   build: missions
-  #   volumes:
-  #     - ./crawler:/var/app
-  #   links:
-  #     - db
-  #   env_file:
-  #     - ./env/.env
 
   db:
     image: postgres

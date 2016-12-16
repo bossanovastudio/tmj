@@ -1,0 +1,8 @@
+<section id="cards" style="margin-top: 100px;">
+    <div class="content">
+        <%= simple_form_for @image, url: admin_remix_category_images_path do |f| %>
+          <%= f.input :image, label: 'Image', error: 'Image is mandatory, please specify one' %>
+          <%= f.button :submit %>
+        <% end %>
+    </div>
+</section>

@@ -1,0 +1,51 @@
+<div class="overlay-pass" ng-click="togglePassword()"></div>
+<div class="container login">
+    <div class="content-box">
+        <h1 class="title">Cadastrar</h1>
+        <form name="profileForm">
+            <div class="form-group user">
+                <label for="username">Apelido</label>
+                <br>
+                <input type="text" name="username" class="form-control" ng-model="form.username" placeholder="escolha um apelido" />
+                <p class="error-msg" ng-if="msg_register_username">{{msg_register_username}}</p>
+            </div>
+            <div class="form-group mail">
+                <label for="username">E-mail do Responsável</label>
+                <br>
+                <input type="text" name="email" class="form-control" ng-model="form.email" placeholder="insira o e-mail" />
+                <p class="error-msg" ng-if="msg_register_email">{{msg_register_email}}</p>
+            </div>
+            <div class="form-group pass">
+                <label for="password">Senha</label>
+                <br>
+                <ul class="input-pass register">
+                    <li ng-click="togglePassword('first')" style="background:url('{{passwordChoice[0].img}}'); background-size: cover;">
+                        <input type="hidden" name="pass-1" value="{{passwordChoice[0].value}}" />
+                    </li>
+                    <li ng-click="togglePassword()" style="background:url('{{passwordChoice[1].img}}'); background-size: cover;">
+                        <input type="hidden" name="pass-2" value="{{passwordChoice[1].value}}" />
+                    </li>
+                    <li ng-click="togglePassword()" style="background:url('{{passwordChoice[2].img}}'); background-size: cover;">
+                        <input type="hidden" name="pass-3" value="{{passwordChoice[2].value}}" />
+                    </li>
+                    <li ng-click="togglePassword()" style="background:url('{{passwordChoice[3].img}}'); background-size: cover;">
+                        <input type="hidden" name="pass-3" value="{{passwordChoice[3].value}}" />
+                    </li>
+                </ul>
+                <p class="label-pass">Escolha uma sequência de personagens para compor sua senha</p>
+                <div class="pass-box register hide" ng-class="{show: open, hide: !open}">
+                    <ul>
+                        <li ng-repeat="pass in passwords" ng-click="addToPasswordChoice(pass)">
+                            <img src="{{pass.img}}" alt="{{pass.name}}">
+                        </li>
+                    </ul>
+                    <div class="after"></div>
+                </div>
+                <p class="error-msg pass" ng-if="msg_register_pass">{{msg_register_pass}}</p>
+            </div>
+            <div class="form-actions">
+                <button type="button" ng-click="register()" class="btn btn-submit">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+</div>

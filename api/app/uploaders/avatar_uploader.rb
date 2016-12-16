@@ -2,20 +2,28 @@ class AvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
 
   storage :fog
-
+  process convert: 'png'
+  
   def store_dir
     "avatars/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    # For Rails 3.1+ asset pipeline compatibility:
-    # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
-
-    image_path "avatar_default.png"
+    ActionController::Base.helpers.image_path "site/profile_default.svg"
   end
 
-  def extension_whitelist
-    %w(jpg jpeg gif png)
+  def filename
+    "#{secure_token}.png" if original_filename.present?
+  end
+
+  def to_base64
+    Base64.encode64(open(url) { |io| io.read  }) if url
+  end
+
+  protected
+  def secure_token
+    var = :"@#{mounted_as}_secure_token"
+    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
   end
 end
