@@ -28,7 +28,7 @@ class Api::RemixController < ApplicationController
 
   def create
     steps = params[:elements].keys.sort.collect { |k| params[:elements][k].to_unsafe_h.symbolize_keys }
-    gen = ::RemixGenerator::RemixGenerator.new(steps)
+    gen = ::RemixGenerator::RemixGenerator.new(steps: steps)
     img = gen.process
     image = Remix::UserImage.new(image: img, user: current_user)
     if image.save
