@@ -49,7 +49,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
                 }
             });
         } else {
-            window.location = '/user/auth/' + sn;
+            window.open('/user/auth/' + sn, '', 'width=600,height=600');
         }
     }
 
