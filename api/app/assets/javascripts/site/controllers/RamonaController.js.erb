@@ -9,8 +9,8 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
     $http.get('/api/user/ramona/profile.json', {
         headers: {
             'Content-Type': 'application/json',
-            'X-User-username': storage.get('user').username,
-            'X-User-token': storage.get('user').authentication_token,
+            'X-User-username': storage.get('user') ? storage.get('user').username : '',
+            'X-User-token': storage.get('user') ? storage.get('user').authentication_token : '',
         }
     })
     .then(function(response) {
