@@ -128,7 +128,7 @@ window.getElements = ->
 
   return {
     mobile: isMobile(),
-    canvas_size: getCanvasSize()
+    canvas_side: getCanvasSize()
     elements: elements
   }
 

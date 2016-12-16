@@ -28,7 +28,12 @@ class Api::RemixController < ApplicationController
 
   def create
     steps = params[:elements].keys.sort.collect { |k| params[:elements][k].to_unsafe_h.symbolize_keys }
-    gen = ::RemixGenerator::RemixGenerator.new(steps: steps)
+    options = { steps: steps }
+    if params[:mobile] == "true"
+      options[:canvas_side] = params[:canvas_side].to_i
+    end
+
+    gen = ::RemixGenerator::RemixGenerator.new(options)
     img = gen.process
     image = Remix::UserImage.new(image: img, user: current_user)
     if image.save
