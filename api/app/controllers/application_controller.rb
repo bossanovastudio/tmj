@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
-    def authenticate_user!
+    def authenticate_user!(opts={})
       if user_signed_in?
         super
       else
