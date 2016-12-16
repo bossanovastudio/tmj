@@ -5,3 +5,4 @@ env/production.env
 log/
 /db
 .byebug_history
+.elasticbeanstalk
