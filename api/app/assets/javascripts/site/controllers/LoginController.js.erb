@@ -1,7 +1,7 @@
 tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $compile, $routeParams, $location) {
 
     if (storage.get('user')) {
-        $location.path('/sua-pagina');
+        $location.path('/perfil/' + storage.get('user').username);
     }
 
     $rootScope.pageName = 'login';
@@ -168,7 +168,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             })
             .then(function(response) {
                 storage.set('user', response.data);
-                $location.path('/sua-pagina');
+                $location.path('/perfil/' + storage.get('user').username);
             }, function(response) {
                 storage.deleteKey('user');
                 $scope.msg_register_username = response.error;
