@@ -13,25 +13,26 @@ module RemixGenerator
       inst.process
     end
 
-    def initialize(steps)
-      @steps = steps
+    def initialize(options = {})
+      @steps = options[:steps]
       @garbage = []
       @canvas = Magick::ImageList.new
-      @canvas.new_image(502, 502, Magick::HatchFill.new('white', 'gray90'))
+      @canvas_side = options.fetch(:canvas_side, 502)
+      @canvas.new_image(@canvas_side, @canvas_side, Magick::HatchFill.new('white', 'gray90'))
     end
 
     def process
       @steps.each do |step|
         case step[:type]
         when 'background'
-          @canvas << Magick::Image.new(502, 502) { self.background_color = "##{step[:color]}" }
+          @canvas << Magick::Image.new(@canvas_side, @canvas_side) { self.background_color = "##{step[:color]}" }
           if step[:custom]
             bin_data = step[:src].split(',')[1]
             blob = Base64.decode64(bin_data)
             step[:src] = Magick::Image.from_blob(blob).first
           end
           @canvas << imgop(step[:src]) do |img|
-            img.resize_to_fit!(502, 502)
+            img.resize_to_fit!(@canvas_side, @canvas_side)
             case step[:effect]
             when 'sepia'
               img.sepiatone
@@ -49,7 +50,7 @@ module RemixGenerator
             end
           end
         when 'image'
-          tmp = Magick::Image.new(502, 502) { self.background_color = '#0000' }
+          tmp = Magick::Image.new(@canvas_side, @canvas_side) { self.background_color = '#0000' }
           position = step[:position].collect &:to_i
           width = step[:width].to_i
           height = step[:height].to_i
@@ -63,7 +64,7 @@ module RemixGenerator
         when 'text'
           position = step[:position].collect &:to_i
           background = step[:bg] == 'transparent' ? '#0000' : "##{step[:bg]}"
-          tmp = Magick::Image.new(502, 502) { self.background_color = '#0000' }
+          tmp = Magick::Image.new(@canvas_side, @canvas_side) { self.background_color = '#0000' }
           text = Magick::Draw.new
           text.font = './vendor/assets/fonts/KomikaTitle-webfont.ttf'
           text.fill = "##{step[:fg]}"

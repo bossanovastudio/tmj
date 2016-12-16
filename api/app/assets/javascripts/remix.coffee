@@ -83,6 +83,13 @@ parseColorTransparent = (x) ->
   else
     x = (x.css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join("")
 
+window.getCanvasSize = () ->
+  if !isMobile()
+    size = 502
+  else
+    size = 320
+
+
 window.getElements = ->
   elements = [];
   background_effect = 'none'
@@ -121,6 +128,7 @@ window.getElements = ->
 
   return {
     mobile: isMobile(),
+    canvas_side: getCanvasSize()
     elements: elements
   }
 
@@ -370,11 +378,14 @@ $('.remix-container').each ->
                 width: 'auto'
                 height: '100%'
               }
-            $picture.css {
-              opacity: 1
-            }
           ), 100
         $picture.data({ custom: true })
+      setTimeout ( ->
+          $picture.css {
+            opacity: 1
+          }
+        ), 100
+
 
       $composer.find('.artboard .empty').hide()
 
