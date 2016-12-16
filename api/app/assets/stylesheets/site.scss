@@ -305,7 +305,7 @@ section {
               background: linear-gradient(104deg, rgba(48,35,174,0.5), rgba(200,109,215,0.5));
               margin-bottom: 20px;
               color: #000000;
-              font-size: 30px;
+              font-size: 25px;
               letter-spacing: 1px;
               text-decoration: none;
               display: block;
@@ -360,7 +360,7 @@ section {
             a {
                 cursor: pointer;
                 font-family: KomikaTitle;
-                font-size: 30px;
+                font-size: 25px;
                 letter-spacing: 1px;
                 color: #ffffff;
                 text-decoration: none;
@@ -1816,14 +1816,19 @@ p.content a {
                 }
                 &.menu-login {
                   width: 100%;
-                  padding: 25px 0 25px 20px;
+                  height: 82px;
+                  padding: 15px 0 15px 20px;
 
+                  .avatar{
+                    height: 50px;
+                    width: 50px;
+                  }
                   span {
                     font-size: 17px;
-                    margin: 25px 15px;
+                    margin: 15px 15px;
                   }
                   a {
-                    margin: 15px 25px 15px 0
+                    margin: 7px 25px 7px 0;
                   }
                 }
             }
