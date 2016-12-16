@@ -17,6 +17,8 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
             $rootScope.animateInitial();
         }, 1000);
         $rootScope.track('swipe', 'cards', 'up');
+
+        $('.arrowBottom').fadeOut();
     }
 
 });
