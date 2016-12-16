@@ -57,15 +57,15 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
                 if (data.data.cards.length == 0) {
                     $scope.END = true;
+                    setTimeout(function() {
+                        $('.social-editor li').each(function(i) {
+                            var t = $(this);
+                            setTimeout(function() { t.addClass('animate'); }, (i + 1) * 50);
+                        });
+                    }, 1600);
                     if (!isMobileDevice) {
                         // $('.cards').removeClass('loading');
                         $('.cards-loading').removeClass('show');
-                        setTimeout(function() {
-                            $('.social-editor li').each(function(i) {
-                                var t = $(this);
-                                setTimeout(function() { t.addClass('animate'); }, (i + 1) * 50);
-                            });
-                        }, 1600);
                     } else {
                         if ($('.cards').data('masonry')) {
                             $('.cards').masonry('destroy');

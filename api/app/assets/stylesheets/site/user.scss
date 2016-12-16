@@ -288,7 +288,7 @@ body.profile {
                 }
             }
             .columns {
-                width: 100%;
+                width: 100% !important;
                 float: none;
             }
             .followers {
@@ -330,10 +330,11 @@ body.profile {
                 position: relative;
             }
             .box-avatar-user {
-                .avatar,
+                div.avatar,
                 .avatar_hover {
                     width: 106px;
                     height: 106px;
+                    margin: 0 auto;
                 }
                 img.badge {
                     position: absolute;
