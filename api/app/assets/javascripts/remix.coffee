@@ -17,6 +17,7 @@
 #= require 'html2canvas'
 #= require 'mustache.js/mustache'
 #= require 'bluebird'
+#= require 'exif-js/exif'
 
 API_URL = '/api/remix'
 DATA_BGS = []
@@ -49,6 +50,8 @@ DATA_CSS_EFFECTS = [
     'filter': 'none'
   }
 ]
+
+
 
 window.isMobile = ->
   return $(window).width() < 768
@@ -640,6 +643,7 @@ $('.remix-container').each ->
     reader.addEventListener 'load', ->
       $remix.trigger 'set-picture', reader.result
       $remix.trigger 'compose'
+      rotateImage file
 
     if file
       reader.readAsDataURL file
@@ -693,7 +697,7 @@ $('.remix-container').each ->
   $composer.find('.toolbox-item-elements .elements').on 'click', '.elements-item', (event) ->
     if $(this).hasClass('pattern')
       if $('.remix-canvas').find('.pattern').length == 0
-        $('.remix-canvas').prepend('<img src="" class="pattern" style="width: 100%; height: 100%; position: absolute; z-index: 0; opacity: 0" />');
+        $('.remix-canvas').prepend('<img src="" class="pattern" style="width: 100%; height: 100%; position: absolute; z-index: 0; opacity: 0" crossorigin="anonymous" />');
       $('.remix-canvas').find('.pattern').attr('src', $(this).data('src')).css({opacity: 1});
       return
     event.stopPropagation()
