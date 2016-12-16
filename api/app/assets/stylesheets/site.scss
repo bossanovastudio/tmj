@@ -31,18 +31,17 @@ html {
 }
 
 body {
-    background: #809ED4 asset-url('site/bg.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     min-height: 100%;
     min-width: 600px;
-    &.login {
-        background-image: asset-url('site/bg_login.jpg');
+    &.profile, &.homePage {
+      background: #809ED4 asset-url('site/bg.jpg') no-repeat center center fixed;
     }
-    &.edit-user{
-        background-image: asset-url('site/bg_login.jpg');
+    &.login, &.edit-user {
+        background: #987CD0 asset-url('site/bg_login.jpg') no-repeat center center fixed;
     }
 }
 
