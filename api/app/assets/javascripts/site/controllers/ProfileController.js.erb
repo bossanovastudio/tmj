@@ -1,12 +1,7 @@
 tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $compile, $routeParams, $location) {
 
-    if (!storage.get('user')) {
-        $location.path('/login');
-    }
     $scope.loggedUser = storage.get('user');
     $scope.currentUser = {};
-
-    console.log($routeParams.username);
 
     $http.get('/api/user/'+$routeParams.username+'/profile.json')
         .then(function(response) {
@@ -24,29 +19,7 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
             window.location = '/';
         });
 
-    // $http.get("/user/edit.json", {
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'X-User-username': $scope.currentUser.username,
-    //             'X-User-token': $scope.currentUser.authentication_token,
-    //         }
-    //     })
-    //     .then(function(response) {
-    //         $scope.currentUser.bio = response.data.bio;
-    //         $scope.currentUser.username = response.data.username;
-    //         $scope.currentUser.email = response.data.email;
-    //         $scope.currentUser.image = response.data.image;
-    //         $scope.currentUser.providers = {};
-    //         response.data.providers.forEach(function(p) {
-    //             $scope.currentUser.providers[p.name] = p.uid;
-    //         });
-    //         setTimeout(function() {
-    //             $('.avatar').attr('src', $scope.currentUser.image);
-    //         }, 1000);
-    //         storage.set('user', $scope.user);
-    //     });
-
-    $rootScope.pageName = $scope.currentUser.username;
+    $rootScope.pageName = $routeParams.username;
     $('body').addClass('profile');
 
     if (!isMobileDevice) {
@@ -62,6 +35,9 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
     var distanceTop = 0;
 
     $scope.swipeUp = function() {
+        if ($('.cards .card').length == 0) {
+            return false;
+        }
         distanceTop = -$(window).height();
         $('.cards').each(function(i, e) {
             var top = parseInt($(this).css('top').replace('px'));

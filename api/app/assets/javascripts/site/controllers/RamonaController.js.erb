@@ -18,6 +18,9 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
     });
 
     $scope.swipeUp = function() {
+        if ($('.cards .card').length == 0) {
+            return false;
+        }
         distanceTop = -$(window).height();
         $('.cards').each(function(i, e) {
             var top = parseInt($(this).css('top').replace('px'));
