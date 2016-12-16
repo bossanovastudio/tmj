@@ -90,7 +90,7 @@ window.getCanvasSize = () ->
   if !isMobile()
     size = 502
   else
-    size = 320
+    size = $(window).width()
 
 window.getElements = ->
   elements = [];
