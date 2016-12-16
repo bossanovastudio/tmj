@@ -239,6 +239,7 @@ section {
     z-index: 100;
     width: 420px;
     transform: translateX(-500px);
+    -webkit-transform: translateX(-500px);
     height: 100%;
     background: asset-url('site/bg_gray.jpg') center top;
     background-size: cover;
@@ -249,6 +250,7 @@ section {
     transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
     &.open {
         transform: translateX(0px);
+        -webkit-transform: translateX(0px);
         -webkit-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
         -moz-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
         -ms-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
