@@ -5,8 +5,6 @@ class ApplicationController < ActionController::Base
 
   protected
     def authenticate_user!
-      p request
-      exit
       if user_signed_in?
         super
       else
