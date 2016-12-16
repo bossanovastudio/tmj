@@ -177,6 +177,8 @@ getStickers = (id) ->
 getTextColors = (id) ->
   getApiData { entity: 'text_colors' }
 
+getPatterns = (id) ->
+  getApiData { entity: 'patterns' }
 
 $('.remix-container').each ->
   $remix = $(this)
@@ -192,6 +194,7 @@ $('.remix-container').each ->
     balloons: getBalloons()
     stickers: getStickers()
     text_colors: getTextColors()
+    patterns: getPatterns()
   }
   .then (result) ->
     result.pictures = []
@@ -251,6 +254,16 @@ $('.remix-container').each ->
       html += Mustache.render template, sticker
 
     $composer.find('.toolbox-item.stickers .elements').append(html)
+
+    # patterns
+    html = ''
+    template = '<div class="elements-item pattern" data-src="{{ &url }}"><img src="{{ &url }}" alt="" crossorigin="anonymous"></div>'
+    Mustache.parse template
+
+    result.patterns.forEach (sticker) ->
+      html += Mustache.render template, sticker
+
+    $composer.find('.toolbox-item.patterns .elements').append(html)
 
     # text colors
     if result.text_colors?
