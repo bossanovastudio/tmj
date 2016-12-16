@@ -83,6 +83,13 @@ parseColorTransparent = (x) ->
   else
     x = (x.css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join("")
 
+window.getCanvasSize = () ->
+  if !isMobile()
+    size = 502
+  else
+    size = 320
+
+
 window.getElements = ->
   elements = [];
   background_effect = 'none'
@@ -121,7 +128,7 @@ window.getElements = ->
 
   return {
     mobile: isMobile(),
-    canvas_size: $('.remix-canvas').width()
+    canvas_size: getCanvasSize()
     elements: elements
   }
 
