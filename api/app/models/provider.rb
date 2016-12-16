@@ -8,6 +8,7 @@
 #  uid        :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  username   :string
 #
 
 class Provider < ApplicationRecord

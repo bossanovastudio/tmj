@@ -3,8 +3,6 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  provider               :string           default("email"), not null
-#  uid                    :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
@@ -18,16 +16,15 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
-#  name                   :string
-#  nickname               :string
 #  image                  :string
 #  email                  :string
-#  tokens                 :json
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  username               :string           not null
-#  role                   :integer
+#  role                   :integer          default("user")
 #  mask                   :string
+#  authentication_token   :string(30)
+#  bio                    :text
 #
 
 class User < ActiveRecord::Base

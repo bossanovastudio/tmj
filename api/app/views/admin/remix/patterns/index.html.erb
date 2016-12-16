@@ -1,0 +1,13 @@
+
+<section id="cards" style="margin-top: 100px;">
+    <div class="content">
+        <%= link_to "New",  new_admin_remix_pattern_path %>
+        <ul>
+            <% @patterns.each do |pattern| %>
+            <li><img src="<%= pattern.image.url %>" alt="">
+            (<%= link_to "Delete", admin_remix_pattern_path(pattern), method: :delete, remote: true %>)
+            </li>
+            <% end %>
+        </ul>
+    </div>
+</section>

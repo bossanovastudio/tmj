@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     get '/user/auth/:provider/remove', to: 'users/omniauth_callbacks#remove'
     get '/user/is_signed_in', to: 'users/sessions#is_signed_in', as: 'is_signed_in'
   end
-  
+
   devise_for :user, :controllers => { sessions: 'users/sessions', registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
   namespace :api do
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
         get :unlike
       end
     end
-    
+
     resources :images, only: [:create]
     resources :videos, only: [:create]
     resources :remix,  only: [:create] do
@@ -38,6 +38,7 @@ Rails.application.routes.draw do
         get :backgrounds
         get :text_colors
         get :stickers
+        get :patterns
         post :delete
       end
     end
@@ -48,6 +49,7 @@ Rails.application.routes.draw do
       resources :background_colors, except: [:show]
       resources :text_colors, except: [:show]
       resources :stickers, except: [:show, :edit]
+      resources :patterns, except: [:show, :edit]
       resources :categories, except: [:show] do
         resources :images
       end
