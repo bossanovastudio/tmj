@@ -92,7 +92,8 @@ window.getElements = ->
     type: 'background',
     src: $('.picture.canvas-background').attr('src'),
     color: ($('.remix-canvas').css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join(""),
-    effect: background_effect
+    effect: background_effect,
+    custom: $('.picture.canvas-background').data('custom')
   });
 
   $('.element').each ->
@@ -345,8 +346,10 @@ $('.remix-container').each ->
         $canvas.append $picture
 
       $picture
-        # .css { 'background-image': 'url(' + src + ')' }
         .attr { class: 'picture canvas-background', src: src, crossorigin: 'anonymous' }
+
+      if src.indexOf('data') == 0
+        $picture.data({ custom: true })
 
       $composer.find('.artboard .empty').hide()
 
