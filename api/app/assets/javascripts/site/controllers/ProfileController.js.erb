@@ -13,13 +13,14 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
                 $scope.currentUser.providers[p.name] = p.username;
             });
             setTimeout(function() {
-                $('.avatar').attr('src', $scope.currentUser.image);
+                $('.avatar').css('background-image', "url("+$scope.currentUser.image+")");
             }, 1000);
         }, function(response) {
             window.location = '/';
         });
 
     $rootScope.pageName = $routeParams.username;
+
     $('body').addClass('profile');
 
     if (!isMobileDevice) {

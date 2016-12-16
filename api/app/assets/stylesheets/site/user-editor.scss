@@ -26,11 +26,15 @@
         cursor: pointer;
         margin-left: 40%;
         border-radius: 100%;
-        img.avatar {
+        div.avatar {
+            width: 200px;
+            height: 200px;
             border-radius: 100%;
-            min-height: 200px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
-        img.avatar_hover {
+        .avatar_hover {
             position: absolute;
             left: 0;
             top: 0;
@@ -89,7 +93,7 @@
                     text-transform: uppercase;
                     margin: 0;
                 }
-            }        
+            }
         .form-group label {
             position: relative;
             font-weight: bold;

@@ -31,10 +31,15 @@ body.profile {
             order: 1;
             flex-grow: 1;
             position: relative;
-            img.avatar {
+            div.avatar {
+                width: 200px;
+                height: 200px;
                 border-radius: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
             }
-            img.avatar_hover {
+            .avatar_hover {
                 position: absolute;
                 left: 0;
                 top: 0;
@@ -47,7 +52,7 @@ body.profile {
                 top: 30px;
             }
             &:hover {
-                img.avatar_hover {
+                .avatar_hover {
                     display: block;
                 }
             }
