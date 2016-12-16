@@ -326,11 +326,12 @@ $('.remix-container').each ->
 
       # removes selects of any element in canvas and the click event
       $canvas.find('.element').trigger('remix:deselect-element').off('click')
-
+      $elements = getElements()
+      $canvas.html('');
       $.ajax {
         url: API_URL
         method: 'POST'
-        data: getElements()
+        data: $elements
         dataType: 'json'
       }
       .done (data) ->
