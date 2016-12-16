@@ -25,10 +25,10 @@ class Users::SessionsController < Devise::SessionsController
 
 
   def is_signed_in
-    unless current_user
-      render json: { error: I18n.t('authentication.user_not_signed_in') }, status: :unauthorized
-    else
+    if user_signed_in?
       render json: { user: current_user }, status: :ok
+    else
+      render json: { error: I18n.t('authentication.user_not_signed_in') }, status: :unauthorized
     end
   end
 
