@@ -23,13 +23,15 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
     $('body').addClass('profile');
 
     if (!isMobileDevice) {
-        $('.cards').css({
-            "width": "80%",
-            "max-width": "1180px",
-            "margin": "0 auto 50px auto",
-            "padding": 0
-        });
-        $('html').css({ overflow: 'auto' });
+        setTimeout(function(){
+            $('.cards').css({
+                "width": "80%",
+                "max-width": "1180px",
+                "margin": "0 auto 50px auto",
+                "padding": 0
+            });
+            $('html').css({ overflow: 'auto' });
+        }, 2000)
     }
 
     var distanceTop = 0;
