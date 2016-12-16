@@ -7,6 +7,7 @@ json.following              current_user.bookmarks? @user if @user.role === 'edi
 json.ramona_recommendations @user.cards.pluck(:id) & User.find_by(username: 'ramona').likes.pluck(:id) unless User.find_by(username: 'ramona').nil?
 
 json.providers @user.providers do |provider|
-  json.name provider.provider
-  json.uid  provider.uid
+  json.name     provider.provider
+  json.uid      provider.uid
+  json.username provider.username
 end

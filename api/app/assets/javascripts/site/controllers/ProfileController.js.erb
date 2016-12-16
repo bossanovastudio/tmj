@@ -15,7 +15,7 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
             $scope.currentUser.image = response.data.image;
             $scope.currentUser.providers = {};
             response.data.providers.forEach(function(p) {
-                $scope.currentUser.providers[p.name] = p.uid;
+                $scope.currentUser.providers[p.name] = p.username;
             });
             setTimeout(function() {
                 $('.avatar').attr('src', $scope.currentUser.image);
