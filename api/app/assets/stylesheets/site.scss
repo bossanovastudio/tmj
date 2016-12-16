@@ -1623,8 +1623,8 @@ footer {
     background: #6441a5;
 }
 
-.mobile {
-    display: none !important;
+.mobile.mobile {
+    display: none;
 }
 
 .content p.text a,
@@ -1843,8 +1843,8 @@ p.content a {
     .desktop {
         display: none !important;
     }
-    .mobile {
-        display: block !important;
+    .mobile.mobile {
+        display: block;
         a {
             text-decoration: none;
         }
