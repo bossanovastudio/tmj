@@ -770,16 +770,16 @@ div.card {
         }
     }
     &.remixlike {
-      background: asset-url('site/faixa_remix.png') #d8d8d8 center top no-repeat;
-      padding-top: 30px;
+      background: asset-url('site/faixa_remix.png') #d8d8d8 center top no-repeat !important;
+      padding-top: 29px;
     }
     &.ramonalike {
-      background: asset-url('site/faixa_ramona.png') #d8d8d8 center top no-repeat;
-      padding-top: 30px;
+      background: asset-url('site/faixa_ramona.png') #d8d8d8 center top no-repeat !important;
+      padding-top: 29px;
     }
     &.geeklike {
-        background: asset-url('site/faixa_geek.png') #d8d8d8 center top no-repeat;
-        padding-top: 30px;
+        background: asset-url('site/faixa_geek.png') #d8d8d8 center top no-repeat !important;
+        padding-top: 29px;
     }
     &.geek {
         background-color: #5bcfed;
