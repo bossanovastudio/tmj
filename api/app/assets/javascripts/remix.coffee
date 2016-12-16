@@ -249,7 +249,7 @@ $('.remix-container').each ->
     DATA_TXT_COLORS.push { foreground: '#000000', background: '#000000' }
 
     # hides loading
-    $loader.fadeOut 400, ->
+    $loader.fadeOut 0, ->
       $(this).remove()
 
 
