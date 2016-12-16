@@ -146,7 +146,7 @@
                 <img ng-if="card.user.role == 'editor'" src="{{card.user.avatar}}" class="userPhoto" />
                 <p class="name">{{card.user.name}}</p>
                 <p class="date">
-                  <a target="_blank" ng-href="{{card.source_url}}">
+                  <a class="date-link" target="_blank" ng-href="{{card.source_url}}">
                     <img src="/assets/site/{{card.origin}}.svg" />
                     {{card.posted_at | formatDate}}
                   </a></p>

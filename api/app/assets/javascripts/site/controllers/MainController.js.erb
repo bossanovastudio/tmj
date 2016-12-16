@@ -266,7 +266,12 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         $rootScope.cardIsOpen = false;
         var e = angular.element($event.target);
         e = $(e);
-        if (!e.hasClass('preview') && !e.hasClass('detail') && !e.hasClass('share') && !e.hasClass('arrow') && !e.hasClass('content') && !e.hasClass('hr') && !e.hasClass('heart') && !e.hasClass('like-card') && !e.hasClass('item-share') && !e.hasClass('shareBox') && !e.hasClass('content-item-box') && !e.hasClass('shareButton')) {
+
+        if (!e.hasClass('preview') && !e.hasClass('detail') && !e.hasClass('share')
+            && !e.hasClass('arrow') && !e.hasClass('content') && !e.hasClass('hr')
+            && !e.hasClass('heart') && !e.hasClass('like-card') && !e.hasClass('item-share')
+            && !e.hasClass('shareBox') && !e.hasClass('content-item-box') && !e.hasClass('shareButton')
+            && !e.hasClass('text') && !e.hasClass('name') && !e.hasClass('date-link')) {
             $scope.closeLightbox();
         }
     }
