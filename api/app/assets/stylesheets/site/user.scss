@@ -267,6 +267,9 @@ body.profile {
         .author {
             text-align: center;
             display: block;
+            div{
+                width: 100%;
+            }
             .social {
                 float: none;
             }
