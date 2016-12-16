@@ -6,8 +6,6 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
     $scope.loggedUser = storage.get('user');
     $scope.currentUser = {};
 
-    console.log($routeParams.username);
-
     $http.get('/api/user/'+$routeParams.username+'/profile.json')
         .then(function(response) {
             $scope.currentUser.bio = response.data.bio;
