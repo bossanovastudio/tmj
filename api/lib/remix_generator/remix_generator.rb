@@ -25,6 +25,11 @@ module RemixGenerator
         case step[:type]
         when 'background'
           @canvas << Magick::Image.new(502, 502) { self.background_color = "##{step[:color]}" }
+          if step[:custom]
+            bin_data = step[:src].split(',')[1]
+            blob = Base64.decode64(bin_data)
+            step[:src] = Magick::Image.from_blob(blob).first
+          end
           @canvas << imgop(step[:src]) do |img|
             img.resize_to_fit!(502, 502)
             case step[:effect]
@@ -87,7 +92,9 @@ module RemixGenerator
     end
 
     def imgop(path)
-      img = Magick::ImageList.new(path).first
+      puts path.class
+      img = Magick::ImageList.new(path).first if path.kind_of? String
+      img = path if path.kind_of? Magick::Image
       ret = yield(img)
       ret
     end
