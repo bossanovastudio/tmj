@@ -96,7 +96,7 @@
           <button type="button" class="start-over">
             <%= image_tag "remix/icon-eraser", alt: 'Começar novamente' %>
           </button>
-          <a href="#" target="_blank" download class="download">
+          <a href="#" target="_blank" class="download">
             <%= image_tag "remix/icon-arrow-down", alt: 'Baixar' %>
           </a>
           <button type="button" class="remove">
@@ -210,23 +210,23 @@
             Compartilhe para aparecer na Home!
           </p>
           <div class="networks">
-            <%= link_to 'https://www.facebook.com/sharer/sharer.php?u=http://4.bp.blogspot.com/-B2AzEfwZqBA/UgVzf2P-PgI/AAAAAAAAAo8/qaVej64l6kY/s1600/Imagens-em-png-Queroimagem.com+(539).png', { :class => "btn btn-social btn-facebook", :target => "_blank" } do %>
+            <%= link_to 'https://www.facebook.com/sharer/sharer.php?u=http://4.bp.blogspot.com/-B2AzEfwZqBA/UgVzf2P-PgI/AAAAAAAAAo8/qaVej64l6kY/s1600/Imagens-em-png-Queroimagem.com+(539).png #tmjofilme', { :class => "btn btn-social btn-facebook", :target => "_blank", id: 'facebook_share_btn' } do %>
               <%= image_tag "remix/icon-facebook", alt: 'Facebook' %>
               Compartilhar no Facebook
             <% end %>
-            <%= link_to 'https://twitter.com/intent/tweet?text=Remix http://4.bp.blogspot.com/-B2AzEfwZqBA/UgVzf2P-PgI/AAAAAAAAAo8/qaVej64l6kY/s1600/Imagens-em-png-Queroimagem.com+(539).png', { :class => "btn btn-social btn-twitter", :target => "_blank" } do %>
+            <%= link_to 'https://twitter.com/intent/tweet?text=Remix http://4.bp.blogspot.com/-B2AzEfwZqBA/UgVzf2P-PgI/AAAAAAAAAo8/qaVej64l6kY/s1600/Imagens-em-png-Queroimagem.com+(539).png #tmjofilme', { :class => "btn btn-social btn-twitter", :target => "_blank", id: 'twitter_share_btn' } do %>
               <%= image_tag "remix/icon-twitter", alt: 'Twitter' %>
               Compartilhar no Twitter
             <% end %>
-            <%= link_to 'http://www.tumblr.com/share/link?url=http://4.bp.blogspot.com/-B2AzEfwZqBA/UgVzf2P-PgI/AAAAAAAAAo8/qaVej64l6kY/s1600/Imagens-em-png-Queroimagem.com+(539).png', { :class => "btn btn-social btn-tumblr", :target => "_blank" } do %>
+            <!--<%= link_to 'http://www.tumblr.com/share/link?url=http://4.bp.blogspot.com/-B2AzEfwZqBA/UgVzf2P-PgI/AAAAAAAAAo8/qaVej64l6kY/s1600/Imagens-em-png-Queroimagem.com+(539).png', { :class => "btn btn-social btn-tumblr", :target => "_blank", id: 'tumblr_share_btn' } do %>
               <%= image_tag "remix/icon-tumblr", alt: 'Tumblr' %>
               Compartilhar no Tumblr
-            <% end %>
+            <% end %>-->
           </div>
         </div>
       </section>
       <%= render "gallery" %>
-      <section class="remix-loader"></section>
+      <!-- <section class="remix-loader"></section> -->
     </div>
   </div>
 </div>

@@ -2,7 +2,7 @@
 <div class="container">
     <div class="four columns left">
         <div ng-click="selectFile()" class="box-avatar">
-          <img class="avatar" width="200" src="<%= asset_url('site/profile_default.svg') %>" />
+          <img class="avatar" width="200" height="200" src="<%= asset_url('site/profile_default.svg') %>" />
           <div class="avatar_hover"></div>
         </div>
         <input type="file" id="photo" style="display: none" file-on-change="changedFile" accept="image/*">
@@ -111,8 +111,9 @@
                     <div class="after"></div>
                 </div>
             </div>
-            <div class="form-group" ng-if="msg_update">
-                <label>{{msg_update}}</label>
+            <div class="msg_group">
+                <p class="error-msg" ng-if="msg_update">{{msg_update}}</p>
+                <p class="sucess-msg" ng-if="msg_sus_update">{{msg_sus_update}}</p>
             </div>
             <div class="form-actions">
                 <button type="button" ng-click="save()" class="btn btn-submit">Salvar</button>

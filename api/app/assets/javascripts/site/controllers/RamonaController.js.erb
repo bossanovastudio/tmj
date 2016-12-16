@@ -4,6 +4,19 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
 
     var distanceTop = 0;
 
+    $scope.following = false;
+
+    $http.get('/api/user/ramona/profile.json', {
+        headers: {
+            'Content-Type': 'application/json',
+            'X-User-username': storage.get('user').username,
+            'X-User-token': storage.get('user').authentication_token,
+        }
+    })
+    .then(function(response) {
+        $scope.following = response.data.following;
+    });
+
     $scope.swipeUp = function() {
         distanceTop = -$(window).height();
         $('.cards').each(function(i, e) {
@@ -19,6 +32,36 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
         $rootScope.track('swipe', 'cards', 'up');
 
         $('.arrowBottom').fadeOut();
+    }
+
+    $scope.followUser = function() {
+        if (!storage.get('user')) {
+            window.location = '/login';
+        } else {
+            $http.get('/api/ramona/follow.json', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-User-username': storage.get('user').username,
+                    'X-User-token': storage.get('user').authentication_token,
+                }
+            })
+            .then(function(response) {
+                $scope.following = true;
+            });
+        }
+    }
+
+    $scope.unFollowUser = function() {
+        $http.get('/api/ramona/unfollow.json', {
+            headers: {
+                'Content-Type': 'application/json',
+                'X-User-username': storage.get('user').username,
+                'X-User-token': storage.get('user').authentication_token,
+            }
+        })
+        .then(function(response) {
+            $scope.following = false;
+        });
     }
 
 });

@@ -4,8 +4,8 @@
       <div class="author">
         <div class="box-avatar-user">
           <img class="badge" src="<%=asset_url('site/ramona-badge.svg')%>" />
-          <img class="avatar" width="200" height="auto" src="<%=asset_url('site/ramona_novo.png')%>" />
-          <img class="avatar_hover" width="200" height="auto" src="<%=asset_url('site/ramona_hover.png')%>" />
+          <img class="avatar" width="200" height="200" src="<%=asset_url('site/ramona_novo.png')%>" />
+          <img class="avatar_hover" width="200" height="200" src="<%=asset_url('site/ramona_hover.png')%>" />
         </div>
         <div class="seven columns">
           <div class="profile">
@@ -13,7 +13,8 @@
               <p class="editor">RAMONA</p>
               <p class="position">Editor TMJ</p>
             </div>
-            <a ng-href="#" ng-click="followUser()" class="follow">SEGUIR</a>
+            <a ng-if="!following" ng-href="#" ng-click="followUser()" class="follow">SEGUIR</a>
+            <a ng-if="following" ng-href="#" ng-click="unFollowUser()" class="follow">SEGUINDO</a>
             <div class="followers">
               <img src="<%=asset_url('site/icon-followers.svg')%>" alt="" class="icon">
               <p class="number">2.4k</p>

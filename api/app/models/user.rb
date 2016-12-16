@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
 
   enum role: { user: 1, editor: 2, moderator: 3, admin: 4 }
   scope :editors, -> { where(role: :editor) }
+  scope :regular, -> { where(role: :user) }
 
   # Uploader
   mount_uploader :image, AvatarUploader
@@ -42,7 +43,7 @@ class User < ActiveRecord::Base
 
   has_many :providers
   has_many :cards, through: :providers
-  recommends :cards
+  recommends :cards, :users
 
   after_create :send_welcome_email
   
@@ -59,7 +60,7 @@ class User < ActiveRecord::Base
     clean_up_passwords
     result
   end
-  
+
   def password_required?
     true
   end
