@@ -98,24 +98,40 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
     }
 
     $scope.likeCard = function($event, id) {
-        var elem = $(angular.element($event.target)).closest('.card');
+        var elem = $(angular.element($event.target)).closest('.lightbox');
         var heart = elem.find('.heart');
+        var count = parseInt(elem.find('.counter').text());
         if (!heart.parent().hasClass('liked')) {
-            var count = parseInt(elem.find('.counter').text());
             $http({
                     method: 'GET',
-                    url: API_URL + 'cards/' + id + '/like'
+                    url: API_URL + 'cards/'+id+'/like.json'
                 })
-                .then(function(data) {
-                    heart.attr('src', '<%= asset_url('site/liked.svg')%>');
+                .success(function(data) {
+                    heart.attr('src', '<%= asset_url('site/like-ativo.svg')%>');
                     count++;
                     heart.parent().find('.counter').html('&nbsp;' + count);
                     heart.parent().addClass('liked');
-                }, function(data) {
-
+                })
+                .error(function(data) {
+                    window.location = '/login';
                 });
+            $rootScope.track('click', 'cards', 'like');
+        } else {
+            $http({
+                    method: 'GET',
+                    url: API_URL + 'cards/'+id+'/unlike.json'
+                })
+                .success(function(data) {
+                    heart.attr('src', '<%= asset_url('site/like.svg')%>');
+                    count--;
+                    heart.parent().find('.counter').html('&nbsp;' + count);
+                    heart.parent().removeClass('liked');
+                })
+                .error(function(data) {
+                    window.location = '/login';
+                });
+            $rootScope.track('click', 'cards', 'unlike');
         }
-        $rootScope.track('click', 'card', 'like');
     }
 
     $scope.openShare = function($event) {
@@ -250,7 +266,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         $rootScope.cardIsOpen = false;
         var e = angular.element($event.target);
         e = $(e);
-        if (!e.hasClass('preview') && !e.hasClass('detail') && !e.hasClass('share') && !e.hasClass('arrow') && !e.hasClass('content') && !e.hasClass('hr') && !e.hasClass('item-share') && !e.hasClass('shareBox') && !e.hasClass('content-item-box') && !e.hasClass('shareButton')) {
+        if (!e.hasClass('preview') && !e.hasClass('detail') && !e.hasClass('share') && !e.hasClass('arrow') && !e.hasClass('content') && !e.hasClass('hr') && !e.hasClass('heart') && !e.hasClass('like-card') && !e.hasClass('item-share') && !e.hasClass('shareBox') && !e.hasClass('content-item-box') && !e.hasClass('shareButton')) {
             $scope.closeLightbox();
         }
     }
