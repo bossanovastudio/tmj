@@ -32,6 +32,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             $scope.form.email = $scope.user.email;
             storage.set('user', $scope.user);
         }, function(response) {
+            storage.deleteKey('user');
             $location.path('/login');
         });
 
