@@ -286,10 +286,16 @@ $('.remix-container').each ->
     'choose-picture': (event, id) ->
       $(this).addClass('can-choose-picture')
 
+      $composer.find('.toolbox .toolbox-item.category .pictures .item')
+        .removeClass('on')
+
       # selects the holder of picture
       $composer.find('.toolbox .toolbox-item.category .pictures .item[data-category-id="' + id + '"]')
         .addClass('on')
-        .siblings('.item').removeClass('on')
+
+      # selects the holder of picture
+      $composer.find('.toolbox .toolbox-item.category .categories .item')
+        .removeClass('on')
 
       # resets scroll for categories and pictures popup (mobile)
       $composer.find('.toolbox .toolbox-item.category .popup .popup-holder').scrollLeft(0)
