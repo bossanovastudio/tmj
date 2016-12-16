@@ -171,4 +171,5 @@ Remix::TextColor.create(foreground: '#EBCE41', background: '#EBCE41')
 Remix::TextColor.create(foreground: '#EF8B4F', background: '#EF8B4F')
 Remix::TextColor.create(foreground: '#000000', background: '#000000')
 Remix::TextColor.create(foreground: '#FFFFFF', background: '#FFFFFF')
+
 ```
