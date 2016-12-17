@@ -45,7 +45,7 @@
                         <img ng-if="card.user.role=='editor' && pageName == 'homePage' && !isMobile" class="originalPost" src="/assets/site/{{card.origin}}-editor.svg" /> {{card.posted_at | formatDate}}
                     </a>
                 </p>
-                <p class="text" ng-bind-html="card | cropText | trust"></p>
+                <p class="text linkify" ng-bind-html="card | cropText | trust"></p>
                 <p class="read-more">Veja mais</p>
                 <div ng-include src="'<%= asset_url('share.html')%>'"></div>
             </div>
@@ -88,7 +88,7 @@
                         <img class="originalPost" src="/assets/site/{{card.origin}}.svg" /> {{card.posted_at | formatDate}}
                     </a>
                 </p>
-                <p class="text">{{card | cropText}}</p>
+                <p class="text linkify">{{card | cropText}}</p>
                 <p class="read-more">Veja mais</p>
                 <div ng-include src="'<%= asset_url('share.html')%>'"></div>
             </div>
@@ -116,7 +116,7 @@
                     {{card.posted_at | formatDate}}
                   </a>
                 </p>
-                <p class="text">{{card | cropText}}</p>
+                <p class="text linkify">{{card | cropText}}</p>
                 <p class="read-more">Veja mais</p>
                 <div ng-include src="'<%= asset_url('share.html')%>'"></div>
             </div>
