@@ -23,6 +23,10 @@ body {
   min-width: 320px;
 }
 
+html, body {
+    overflow-x: hidden;
+}
+
 @include mq-from-sm {
   body {
     background-image: asset-url('remix/bg-desktop.jpg');
