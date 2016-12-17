@@ -318,21 +318,11 @@
                     <input id="adult_email" ng-model="form.adult_email" />
                 </div>
                 <div class="clear"></div>
-                <div class="field simple twelve columns">
-                    <label class="placeholder" for="adult_address">Endereço</label>
-                    <input id="adult_address" ng-model="form.adult_address" />
+                <div class="field simple four columns ">
+                    <label class="placeholder" for="adult_zip">CEP</label>
+                    <input id="adult_zip" class="zip" ng-model="form.adult_zip" />
                 </div>
-                <div class="clear"></div>
-                <div class="field simple six columns">
-                    <label class="placeholder" for="adult_neighborhood">BAIRRO</label>
-                    <input id="adult_neighborhood" ng-model="form.adult_neighborhood" />
-                </div>
-                <div class="field simple six columns last">
-                    <label class="placeholder" for="adult_city">CIDADE</label>
-                    <input id="adult_city" ng-model="form.adult_city" />
-                </div>
-                <div class="clear"></div>
-                <div class="field simple four columns">
+                <div class="field simple four columns middle">
                     <label class="placeholder" for="adult_state">ESTADO</label>
                     <select id="adult_state" ng-model="form.adult_state">
                         <option value="">Selecione</option>
@@ -365,9 +355,19 @@
                         <option value="TO">Tocantins</option>
                     </select>
                 </div>
-                <div class="field simple four columns middle">
-                    <label class="placeholder" for="adult_zip">CEP</label>
-                    <input id="adult_zip" class="zip" ng-model="form.adult_zip" />
+                <div class="clear"></div>
+                <div class="field simple twelve columns">
+                    <label class="placeholder" for="adult_address">Endereço</label>
+                    <input id="adult_address" ng-model="form.adult_address" />
+                </div>
+                <div class="clear"></div>
+                <div class="field simple six columns">
+                    <label class="placeholder" for="adult_neighborhood">BAIRRO</label>
+                    <input id="adult_neighborhood" ng-model="form.adult_neighborhood" />
+                </div>
+                <div class="field simple six columns last">
+                    <label class="placeholder" for="adult_city">CIDADE</label>
+                    <input id="adult_city" ng-model="form.adult_city" />
                 </div>
                 <div class="clear"></div>
                 <div class="field simple six columns">

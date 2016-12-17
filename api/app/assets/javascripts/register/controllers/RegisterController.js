@@ -4,8 +4,8 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
 
 
     //temporary
-    // $('.form.active').removeClass('active');
-    // $('.form').eq(2).addClass('active');
+    $('.form.active').removeClass('active');
+    $('.form').eq(2).addClass('active');
     //temporary
 
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
@@ -93,6 +93,20 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
         console.log(valid);
         return valid;
     }
+
+    $('body').on('blur', '.zip', function() {
+        var zip = $(this).val();
+        $.ajax({
+            type: 'GET',
+            url: 'https://viacep.com.br/ws/'+zip+'/json',
+            success: function(data) {
+                $('#adult_address').val(data.logradouro);
+                $('#adult_neighborhood').val(data.bairro);
+                $('#adult_city').val(data.localidade);
+                $('#adult_state').val(data.uf);
+            }
+        })
+    });
 
     $scope.advanceForm = function() {
         if ($scope.validForm()) {
