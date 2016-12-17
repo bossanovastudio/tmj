@@ -4,8 +4,8 @@ json.content                card.content
 json.kind                   card.kind
 json.source_url             card.source_url
 json.likes                  card.liked_by_count
-json.liked                  current_user.likes?(card) if current_user
-json.recommended_by_ramona  User.find_by(username: 'ramona').likes?(card)
+json.liked                  current_user.likes?(card) if user_signed_in?
+json.recommended_by_ramona  User.find_by(username: 'ramona').likes?(card) if User.find_by(username: 'ramona')
 
 if card.media
   if card.kind == :image
@@ -35,7 +35,7 @@ if card.user
   end
 elsif card.social_user
   json.user do
-    json.id     card.social_user.fetch('id', '') 
+    json.id     card.social_user.fetch('id', '')
     json.name   card.social_user.fetch('username', '')
     json.role   :user
   end
