@@ -6,6 +6,14 @@ Rails.application.routes.draw do
 
   devise_for :user, :controllers => { sessions: 'users/sessions', registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
+  constraints(-> (req) { req.env["HTTP_USER_AGENT"] =~ /(facebookexternalhit|Twitterbot|Pinterest|Google.*snippet|Tumblr)/ }) do
+    get 'detalhe/card/:id', to: 'share#card'
+    get 'perfil/:username', to: 'share#profile'
+    get 'personagem/:username', to: 'share#profile'
+
+    root to: 'welcome#index'
+  end
+
   namespace :api do
     get '/ramona/follow', to: 'general#follow', username: :ramona
     get '/ramona/unfollow', to: 'general#unfollow', username: :ramona
@@ -89,5 +97,7 @@ Rails.application.routes.draw do
   get '/remix/image/:id' => 'remix#show', as: 'remix_image'
 
   root to: 'welcome#index'
+
   get "*path" => 'welcome#index'
 end
+
