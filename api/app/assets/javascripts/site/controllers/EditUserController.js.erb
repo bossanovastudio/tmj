@@ -65,6 +65,10 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         };
     };
 
+    $scope.slideInfo = function(classes) {
+        $(classes).slideToggle();
+    }
+
     $('.avatar').css('background-image', "url("+$scope.user.image.url+")");
 
     $scope.passwords = [{

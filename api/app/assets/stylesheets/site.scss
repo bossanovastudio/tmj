@@ -5,7 +5,6 @@
 //= require 'site/ramona'
 //= require 'site/user'
 //= require 'site/user-editor'
-
 @import 'https://fonts.googleapis.com/css?family=Lato:300,400,700';
 @font-face {
     font-family: 'KomikaTitle';
@@ -37,10 +36,12 @@ body {
     background-size: cover;
     min-height: 100%;
     min-width: 600px;
-    &.profile, &.homePage {
-      background: #809ED4 asset-url('site/bg.jpg') no-repeat center center fixed;
+    &.profile,
+    &.homePage {
+        background: #809ED4 asset-url('site/bg.jpg') no-repeat center center fixed;
     }
-    &.login, &.edit-user {
+    &.login,
+    &.edit-user {
         background: #987CD0 asset-url('site/bg_login.jpg') no-repeat center center fixed;
     }
 }
@@ -302,63 +303,61 @@ section {
                 background-size: auto 100%;
             }
             &.menu-login {
-              width: 100%;
-              height: 121px;
-              background: linear-gradient(104deg, rgba(48,35,174,0.5), rgba(200,109,215,0.5));
-              margin-bottom: 20px;
-              color: #000000;
-              font-size: 25px;
-              letter-spacing: 1px;
-              text-decoration: none;
-              display: block;
-              padding: 25px 0 25px 35px;
-
-              .avatar, img {
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-                float: left;
-                height: 70px;
-                width: 70px;
-                border-radius: 70px;
-                -webkit-box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
-                -moz-box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
-                box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
-                border: 1px solid #000000;
-              }
-              span {
-                font-family: KomikaTitle;
-                float: left;
-                margin: 15px;
-              }
-              a {
-                font-size: 18px;
-                float: right;
-                font-family: KomikaTitle;
-                background-color: #ffffff;
+                width: 100%;
+                height: 121px;
+                background: linear-gradient(104deg, rgba(48, 35, 174, 0.5), rgba(200, 109, 215, 0.5));
+                margin-bottom: 20px;
                 color: #000000;
-                width: 80px;
-                height: 40px;
-                line-height: 40px;
-                text-align: center;
-                padding: 0;
-                margin: 15px 35px 15px 0;
-                -webkit-box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
-                -moz-box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
-                box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
-                border: 1px solid #000000;
-
-                &:hover {
-                  transition-duration: 0.2s;
-                  transform: translate(2px, 2px);
-                  -webkit-box-shadow: none;
-                  -moz-box-shadow: none;
-                  box-shadow: none;
-                  background-color: #f1f1f1;
+                font-size: 25px;
+                letter-spacing: 1px;
+                text-decoration: none;
+                display: block;
+                padding: 25px 0 25px 35px;
+                .avatar,
+                img {
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    float: left;
+                    height: 70px;
+                    width: 70px;
+                    border-radius: 70px;
+                    -webkit-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+                    -moz-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+                    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+                    border: 1px solid #000000;
                 }
-              }
+                span {
+                    font-family: KomikaTitle;
+                    float: left;
+                    margin: 15px;
+                }
+                a {
+                    font-size: 18px;
+                    float: right;
+                    font-family: KomikaTitle;
+                    background-color: #ffffff;
+                    color: #000000;
+                    width: 80px;
+                    height: 40px;
+                    line-height: 40px;
+                    text-align: center;
+                    padding: 0;
+                    margin: 15px 35px 15px 0;
+                    -webkit-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+                    -moz-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+                    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+                    border: 1px solid #000000;
+                    &:hover {
+                        transition-duration: 0.2s;
+                        transform: translate(2px, 2px);
+                        -webkit-box-shadow: none;
+                        -moz-box-shadow: none;
+                        box-shadow: none;
+                        background-color: #f1f1f1;
+                    }
+                }
             }
-
             a {
                 cursor: pointer;
                 font-family: KomikaTitle;
@@ -534,6 +533,14 @@ p.date {
         vertical-align: text-bottom;
         margin-right: 3px;
     }
+}
+
+.arrow_down {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #f00;
 }
 
 .cards-loading {
@@ -773,12 +780,12 @@ div.card {
         }
     }
     &.remixlike {
-      background: asset-url('site/faixa_remix.png') #d8d8d8 center top no-repeat !important;
-      padding-top: 29px;
+        background: asset-url('site/faixa_remix.png') #d8d8d8 center top no-repeat !important;
+        padding-top: 29px;
     }
     &.ramonalike {
-      background: asset-url('site/faixa_ramona.png') #d8d8d8 center top no-repeat !important;
-      padding-top: 29px;
+        background: asset-url('site/faixa_ramona.png') #d8d8d8 center top no-repeat !important;
+        padding-top: 29px;
     }
     &.geeklike {
         background: asset-url('site/faixa_geek.png') #d8d8d8 center top no-repeat !important;
@@ -1080,7 +1087,7 @@ div.card {
             }
             .pass {
                 margin-bottom: 10px;
-                    label {
+                label {
                     padding-left: 20px;
                     &:after {
                         content: '';
@@ -1118,7 +1125,6 @@ div.card {
                 font-size: 14px;
                 margin-bottom: 20px;
                 padding: 5px 0 4px 0;
-
                 &:focus {
                     outline: none;
                 }
@@ -1145,20 +1151,32 @@ div.card {
                     border-color: #da001b;
                 }
             }
-            input::-webkit-input-placeholder { font-size: 9pt; color: #fff; }
-            input::-moz-placeholder { font-size: 9pt; color: #fff; }
-            input:-ms-input-placeholder { font-size: 9pt; color: #fff; }
-            input:-moz-placeholder { font-size: 9pt; color: #fff; }
-            .error-msg{
+            input::-webkit-input-placeholder {
+                font-size: 9pt;
+                color: #fff;
+            }
+            input::-moz-placeholder {
+                font-size: 9pt;
+                color: #fff;
+            }
+            input:-ms-input-placeholder {
+                font-size: 9pt;
+                color: #fff;
+            }
+            input:-moz-placeholder {
+                font-size: 9pt;
+                color: #fff;
+            }
+            .error-msg {
                 position: relative;
                 top: -15px;
                 font-size: 13px;
                 color: #da001b;
                 margin: 0px;
-                &.pass{
+                &.pass {
                     top: 0px;
                 }
-                &.pass-reset{
+                &.pass-reset {
                     top: 10px;
                 }
             }
@@ -1677,7 +1695,7 @@ p.content a {
         padding-top: 80px;
         margin-top: -5% !important;
         &.ramona {
-          background-color: #E88EDB;
+            background-color: #E88EDB;
         }
         #ramona-bg {
             height: 100%;
@@ -1685,9 +1703,8 @@ p.content a {
             position: absolute;
             top: 0;
             left: 0;
-
             img {
-              height: 105%;
+                height: 105%;
             }
         }
         &:after {
@@ -1818,21 +1835,20 @@ p.content a {
                     background-size: 100%;
                 }
                 &.menu-login {
-                  width: 100%;
-                  height: 82px;
-                  padding: 15px 0 15px 20px;
-
-                  .avatar{
-                    height: 50px;
-                    width: 50px;
-                  }
-                  span {
-                    font-size: 17px;
-                    margin: 15px 15px;
-                  }
-                  a {
-                    margin: 7px 25px 7px 0;
-                  }
+                    width: 100%;
+                    height: 82px;
+                    padding: 15px 0 15px 20px;
+                    .avatar {
+                        height: 50px;
+                        width: 50px;
+                    }
+                    span {
+                        font-size: 17px;
+                        margin: 15px 15px;
+                    }
+                    a {
+                        margin: 7px 25px 7px 0;
+                    }
                 }
             }
         }
