@@ -1,20 +1,26 @@
-.close-edit{
+.close-edit {
     display: none;
 }
+
 .container {
     display: block;
     width: 100%;
-    .columns{
+    .columns {
         padding-bottom: 10px;
-        &.left{
+        &.left {
             float: left;
         }
-        &.right{
+        &.right {
             float: right;
         }
-        &.offset{
-            margin:0 4%;
+        &.offset {
+            margin: 0 4%;
         }
+    }
+    .bioheader {
+        font-family: KomikaTitle;
+        color: #ffffff;
+        font-size: 20px;
     }
     .box-avatar {
         width: 200px;
@@ -59,7 +65,7 @@
                 display: block;
                 background-color: rgba(0, 0, 0, 0.3);
             }
-            :after{
+            :after {
                 content: '';
                 position: absolute;
                 top: 45%;
@@ -73,33 +79,34 @@
     }
     form {
         position: relative;
-        label{
+        label {
             font-size: 12px;
             text-transform: uppercase;
         }
-            .msg_group{
-                display: inline-block;
-                width: 100%;
-                height: 16px;
-                .error-msg{
-                    font-size: 13px;
-                    color: #da001b;
-                    text-transform: uppercase;
-                    margin: 0;
-                }
-                .sucess-msg{
-                    font-size: 13px;
-                    color: #1d7546;
-                    text-transform: uppercase;
-                    margin: 0;
-                }
+        .msg_group {
+            display: inline-block;
+            width: 100%;
+            height: 16px;
+            .error-msg {
+                font-size: 13px;
+                color: #da001b;
+                text-transform: uppercase;
+                margin: 0;
             }
+            .sucess-msg {
+                font-size: 13px;
+                color: #1d7546;
+                text-transform: uppercase;
+                margin: 0;
+            }
+        }
         .form-group label {
             position: relative;
             font-weight: bold;
             letter-spacing: 0.3px;
         }
         .bio {
+            display: none;
             label {
                 padding-left: 24px;
                 &:after {
@@ -112,11 +119,11 @@
                     background: no-repeat asset-url('site/bio-icon.svg');
                 }
             }
-            textarea{
+            textarea {
                 resize: none;
                 border: 1px solid #fff;
                 width: 100%;
-                resize:vertical;
+                resize: vertical;
                 margin: 5px 0;
                 padding: 3px;
                 color: #ffffff;
@@ -126,7 +133,8 @@
                 background-color: rgba(0, 0, 0, 0.25)
             }
         }
-        .checksocial{
+        .checksocial {
+            display: none;
             padding: 0;
             columns: 2;
             -webkit-columns: 2;
@@ -136,7 +144,7 @@
                 display: inline-block;
                 list-style: none;
                 margin-bottom: 10px;
-                .img-social{
+                .img-social {
                     width: 30x;
                     height: 30px;
                     background-color: #000000;
@@ -150,41 +158,40 @@
                 display: none;
             }
             input.cmn-toggle-round + label {
-              display: block;
-              padding: 2px;
-              width: 57px;
-              height: 30px;
-              border-radius: 2px;
-              float: right;
-              cursor: pointer;
+                display: block;
+                padding: 2px;
+                width: 57px;
+                height: 30px;
+                border-radius: 2px;
+                float: right;
+                cursor: pointer;
             }
             input.cmn-toggle-round + label:before,
             input.cmn-toggle-round + label:after {
-              display: block;
-              position: absolute;
-              top: 1px;
-              left: 1px;
-              bottom: 1px;
-              content: "";
+                display: block;
+                position: absolute;
+                top: 1px;
+                left: 1px;
+                bottom: 1px;
+                content: "";
             }
             input.cmn-toggle-round + label:before {
-              right: 1px;
-              background: url('site/toggle-on.svg') 10px 10px no-repeat,  /* On top,    like z-index: 4; */
-                url('site/toggle-off.svg') 35px 9px no-repeat,
-              ;
-              background-color: #000;
-              border-radius: 2px;
-              transition: opacity 0.4s;
-              opacity: 0.5;
+                right: 1px;
+                background: url('site/toggle-on.svg') 10px 10px no-repeat, /* On top,    like z-index: 4; */
+                url('site/toggle-off.svg') 35px 9px no-repeat, ;
+                background-color: #000;
+                border-radius: 2px;
+                transition: opacity 0.4s;
+                opacity: 0.5;
             }
             input.cmn-toggle-round + label:after {
-              width: 22px;
-              height: 22px;
-              margin: 3px;
-              background-color: #fff;
-              border-radius: 2px;
-              transition: margin 0.4s;
-              margin-left: 3px;
+                width: 22px;
+                height: 22px;
+                margin: 3px;
+                background-color: #fff;
+                border-radius: 2px;
+                transition: margin 0.4s;
+                margin-left: 3px;
             }
             input.cmn-toggle-round:checked + label:before {
                 opacity: 1;
@@ -193,19 +200,23 @@
                 margin-left: 30px;
             }
         }
-        .user label {
-            padding-left: 24px;
-            &:after {
-                content: '';
-                width: 14px;
-                height: 13px;
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                background: no-repeat asset-url('site/apelido-icon.svg');
+        .user {
+            display: none;
+            label {
+                padding-left: 24px;
+                &:after {
+                    content: '';
+                    width: 14px;
+                    height: 13px;
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    background: no-repeat asset-url('site/apelido-icon.svg');
+                }
             }
         }
         .pass {
+            display: none;
             position: relative;
             label {
                 padding-left: 20px;
@@ -220,16 +231,19 @@
                 }
             }
         }
-        .mail label {
-            padding-left: 25px;
-            &:after {
-                content: '';
-                width: 15px;
-                height: 12px;
-                position: absolute;
-                top: 3px;
-                left: 0px;
-                background: no-repeat asset-url('site/mail-icon.svg');
+        .mail {
+            display: none;
+            label {
+                padding-left: 25px;
+                &:after {
+                    content: '';
+                    width: 15px;
+                    height: 12px;
+                    position: absolute;
+                    top: 3px;
+                    left: 0px;
+                    background: no-repeat asset-url('site/mail-icon.svg');
+                }
             }
         }
         input {
@@ -271,10 +285,22 @@
                 border-color: #da001b;
             }
         }
-        input::-webkit-input-placeholder { font-size: 9pt; color: #fff; }
-        input::-moz-placeholder { font-size: 9pt; color: #fff; }
-        input:-ms-input-placeholder { font-size: 9pt; color: #fff; }
-        input:-moz-placeholder { font-size: 9pt; color: #fff; }
+        input::-webkit-input-placeholder {
+            font-size: 9pt;
+            color: #fff;
+        }
+        input::-moz-placeholder {
+            font-size: 9pt;
+            color: #fff;
+        }
+        input:-ms-input-placeholder {
+            font-size: 9pt;
+            color: #fff;
+        }
+        input:-moz-placeholder {
+            font-size: 9pt;
+            color: #fff;
+        }
         .input-pass {
             list-style: none;
             display: block;
@@ -293,11 +319,11 @@
                 float: left;
                 margin-right: 5px;
             }
-            &.register li{
+            &.register li {
                 background: asset-url('site/pass-silhuete.png')
             }
             &.error {
-                li{
+                li {
                     color: #da001b;
                     border-color: #da001b;
                 }
@@ -310,10 +336,10 @@
             font-weight: bold;
             font-size: 12px;
             transition-duration: 0.2s;
-                &:hover{
-                    color: #d0d0d0;
-                    transition-duration: 0.2s;
-                }
+            &:hover {
+                color: #d0d0d0;
+                transition-duration: 0.2s;
+            }
         }
         .label-pass {
             text-decoration: none;
@@ -335,7 +361,7 @@
                 border: none;
                 color: #000;
                 transition-duration: 0.2s;
-                &:hover{
+                &:hover {
                     color: #3e3e3e;
                     transition-duration: 0.2s;
                 }
@@ -345,7 +371,7 @@
             position: absolute;
             top: -130px;
             z-index: 9;
-            &.register{
+            &.register {
                 top: -130px;
             }
             ul {
@@ -414,7 +440,7 @@
             position: relative;
             display: inline-block;
             float: left;
-            &:before{
+            &:before {
                 background: #f1f1f1;
             }
         }
@@ -425,14 +451,14 @@
             position: relative;
             display: inline-block;
             float: right;
-            &:before{
+            &:before {
                 background: #7a68c9;
             }
         }
-        &:hover{
-            -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
-            -moz-box-shadow:  0px 0px 0px 0px rgba(0,0,0,1);
-            box-shadow:  0px 0px 0px 0px rgba(0,0,0,1);
+        &:hover {
+            -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+            -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
             transition-duration: 0.08s;
             transform: translate(3px, 4px);
             // background: transparent;
@@ -458,7 +484,8 @@
         }
     }
 }
-.overlay-pass{
+
+.overlay-pass {
     position: absolute;
     width: 100%;
     height: 100vh;
@@ -471,17 +498,18 @@
         width: 98%;
         float: none;
         padding: 0 20%;
-        &.offset{
+        &.offset {
             margin-left: 0;
         }
     }
-    .container .box-avatar{
+    .container .box-avatar {
         margin-left: 0;
         margin: 0 auto;
     }
 }
+
 @media (max-width: 500px) {
-    body.edit-user .close-edit{
+    body.edit-user .close-edit {
         display: block;
         position: absolute;
         top: 10px;
@@ -490,25 +518,25 @@
         background-color: transparent;
         border: none;
     }
-    .edit-user header{
+    .edit-user header {
         display: none;
     }
     .four.columns {
         padding: 0;
     }
-    .edit-user section{
+    .edit-user section {
         overflow: scroll;
         top: 40px;
         padding-bottom: 40px;
     }
-    .link-delete{
+    .link-delete {
         width: 70%;
     }
-    .btn.btn-cancel{
+    .btn.btn-cancel {
         display: none !important;
     }
     .box-avatar {
-        .avatar_hover{
+        .avatar_hover {
             width: 200px;
             height: 200px;
             position: absolute;
@@ -520,7 +548,7 @@
             display: block;
             background-color: rgba(0, 0, 0, 0.3);
         }
-        :after{
+        :after {
             content: '';
             position: absolute;
             top: 45%;
