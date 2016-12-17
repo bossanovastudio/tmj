@@ -411,6 +411,7 @@ $('.remix-container').each ->
     # sets picture element to the artboard and hides empty message
     'add-image': (event, src) ->
       $element = $('<div>').attr { class: 'element image' }
+      $element.css({ left: 40, top: 40 })
 
       $('<img>').attr { src: src, alt: '', crossOrigin: 'anonymous' }
         .appendTo $element
