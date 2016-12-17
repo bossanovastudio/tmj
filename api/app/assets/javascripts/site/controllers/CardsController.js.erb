@@ -65,6 +65,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             setTimeout(function() { t.addClass('animate'); }, (i + 1) * 50);
                         });
                     }, 1600);
+                    $('.content-no-cards').css('display', 'block');
+                    $rootScope.imgNoCards = "/assets/site/no_card_loggedUser.jpg"
+                    $rootScope.imgNoCardsCurrent = "/assets/site/no_card_currentUser.jpg"
+
                     if (!isMobileDevice) {
                         // $('.cards').removeClass('loading');
                         $('.cards-loading').removeClass('show');
@@ -141,7 +145,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         }, 1000);
                     }
                     setTimeout(function() {
-                        $('.content p.linkify').linkify({
+                        $('.content p.text').linkify({
                             target: "_blank"
                         });
 
