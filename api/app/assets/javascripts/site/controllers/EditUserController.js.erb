@@ -185,22 +185,24 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
     }
 
     $scope.save = function() {
-        console.log('opa');
         $scope.form.password = $scope.passwordChoice.map(function(p) {
             return p.value;
         }).join('');
 
         if (!$scope.form.username || $scope.form.username.length < 1) {
-            $scope.msg_update = 'Preencha seu apelido';
-            $scope.msg_sus_update = ''
+            $rootScope.popup_title = 'Preencha seu apelido!';
+            $rootScope.popup_confirm = 'Ok, entendi!';
+            $rootScope.openPopup();
             return false;
         } else if (!$scope.form.email || $scope.form.email.length < 1) {
-            $scope.msg_update = 'Email inválido';
-            $scope.msg_sus_update = ''
+            $rootScope.popup_title = 'Email inválido!';
+            $rootScope.popup_confirm = 'Ok, entendi!';
+            $rootScope.openPopup();
             return false;
         } else if ($scope.form.password.length != 12 && $scope.form.password != '0000') {
-            $scope.msg_update = 'Senha inválida';
-            $scope.msg_sus_update = ''
+            $rootScope.popup_title = 'Senha inválida!';
+            $rootScope.popup_confirm = 'Ok, entendi!';
+            $rootScope.openPopup();
             return false;
         }
 
@@ -208,7 +210,6 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             $scope.form.password = null;
         }
 
-        $scope.msg_sus_update = 'Aguarde';
         $scope.msg_update = '';
         $http.put("/user.json", {
                 user: $scope.form
@@ -220,12 +221,15 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
                 }
             })
             .then(function(response) {
-                $scope.msg_sus_update = 'Atualizado com sucesso.';
-                $scope.msg_update = '';
-                //$location.path('/sua-pagina');
+                $rootScope.popup_title = 'Atualizado com sucesso!';
+                $rootScope.popup_confirm = 'Ok, entendi!';
+                $rootScope.openPopup();
             }, function(response) {
-                $scope.msg_update = response.error;
-                $scope.msg_sus_update = ''
+                if (response.data.errors.username.length > 0) {
+                    $rootScope.popup_title = 'Este nome de usuário já existe!';
+                    $rootScope.popup_confirm = 'Ok, entendi!';
+                    $rootScope.openPopup();
+                }
             });
     }
 
