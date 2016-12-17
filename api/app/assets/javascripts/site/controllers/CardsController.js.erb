@@ -8,8 +8,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope.SIZE = 20;
     $scope.END = false;
     $rootScope.isCardsLoaded = false;
+    $rootScope.cardDetailOpened = false;
 
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+    $http.defaults.headers.common["X-Extra-card"] = '' + $routeParams.id;
 
     $scope.count = 0;
     $scope.cardsFeatured = [];
@@ -142,6 +144,12 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         $('.content p.linkify').linkify({
                             target: "_blank"
                         });
+
+                        if ($routeParams.id && !$rootScope.cardDetailOpened) {
+                            $rootScope.cardDetailOpened = true;
+                            angular.element('.cards:nth-child(3) .card:first-child').triggerHandler('click');
+                        }
+
                     }, 1000);
                 }
             }, function(data) {
@@ -312,6 +320,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         $rootScope.track('swipe', 'cards', 'down');
     }
 
+    $scope.redirectToHome = function() {
+        window.location = '/';
+    }
+
     $scope.openCard = function($event, id, content, force) {
         var elem = angular.element($event.target);
         $rootScope.cardIsOpen = true;
@@ -321,10 +333,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 $rootScope.track('click', 'featured', 'open');
             }
         } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('originalPost') && !elem.hasClass('shareButton')) {
-            $http({
-                    method: 'get',
-                    url: API_URL + 'cards/' + id + '.json',
-                })
+            console.log($routeParams.id);
+            $http.get(API_URL + 'cards/' + id + '.json')
                 .success(function(data) {
                     $rootScope.card = data;
                     $rootScope.track('click', 'cards', 'open');
@@ -386,6 +396,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                                 width: '100%'
                             });
                             var close = $compile('<img class="close" ng-click="close($event)" src="<%= asset_url('site/fechar.svg')%>" />')($scope);
+                            if ($rootScope.cardDetailOpened) {
+                                close = $compile('<img class="close" ng-click="redirectToHome()" src="<%= asset_url('site/fechar.svg')%>" />')($scope);
+                            }
                             $('.card').last().append(close);
                             $('.card').last().find('.close').css({
                                 display: 'block'
@@ -420,7 +433,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         }
     }
 
-    if ($routeParams.id) {
+    if ($routeParams.id && !isMobileDevice) {
         $scope.openCard({}, $routeParams.id, $rootScope.card, true);
     }
 
