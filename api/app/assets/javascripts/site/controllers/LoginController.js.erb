@@ -184,7 +184,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             })
             .then(function(response) {
                 storage.set('user', response.data);
-                $location.path('/perfil/' + storage.get('user').username);
+                window.location = '/perfil/' + storage.get('user').username;
             }, function(response) {
                 storage.deleteKey('user');
                 $scope.msg_register_username = response.error;
