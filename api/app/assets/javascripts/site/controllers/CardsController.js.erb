@@ -67,11 +67,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     $rootScope.imgNoCards = "/assets/site/no_card_loggedUser.jpg"
                     $rootScope.imgNoCardsCurrent = "/assets/site/no_card_currentUser.jpg"
 
-                    // if (loggedUser.username == currentUser.username){
-                    //     $('.content-no-cards.myself').css('display', 'block');
-                    // } else {
-                    //     $('.content-no-cards.others').css('display', 'block');
-                    // }
                     if (!isMobileDevice) {
                         // $('.cards').removeClass('loading');
                         $('.cards-loading').removeClass('show');

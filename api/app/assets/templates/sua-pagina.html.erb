@@ -58,9 +58,10 @@
 </div>
 <div class="clearfix"></div>
 <div class="content-no-cards" ng-if="currentUser.username == loggedUser.username">
-  <img src="{{imgNoCards}}" alt="">
-</div>
-<div class="content-no-cards" ng-if="currentUser.username != loggedUser.username">
   <img src="{{imgNoCardsCurrent}}" alt="">
 </div>
+<div class="content-no-cards" ng-if="currentUser.username != loggedUser.username">
+  <img src="{{imgNoCards}}" alt="">
+</div>
+
 <div ng-include src="'<%= asset_url('cards.html')%>'"></div>
