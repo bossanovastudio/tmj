@@ -201,7 +201,9 @@
             }
         }
         .user {
-            display: none;
+            &.hide {
+                display: none;
+            }
             label {
                 padding-left: 24px;
                 &:after {
@@ -216,7 +218,9 @@
             }
         }
         .pass {
-            display: none;
+            &.hide {
+                display: none;
+            }
             position: relative;
             label {
                 padding-left: 20px;
@@ -232,7 +236,9 @@
             }
         }
         .mail {
-            display: none;
+            &.hide {
+                display: none;
+            }
             label {
                 padding-left: 25px;
                 &:after {
