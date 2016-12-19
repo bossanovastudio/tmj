@@ -628,7 +628,6 @@ div.card {
     margin-bottom: 24px;
     margin: 0 1% 20px 1%;
     opacity: 0;
-    overflow: hidden;
     &:hover {
         p.read-more:before {
             left: 0;
@@ -1332,10 +1331,10 @@ div.card {
 
 @keyframes showLightbox {
     from {
-        transform: translate(-50%, 400px);
+        transform: scale(0.2);
     }
     to {
-        transform: translate(-50%, -50%);
+        transform: scale(1);
     }
 }
 
@@ -1350,10 +1349,10 @@ div.card {
 
 @keyframes hideLightbox {
     from {
-        transform: translate(-50%, -50%);
+        transform: scale(1);
     }
     to {
-        transform: translate(-50%, 400px);
+        transform: scale(0.2);
     }
 }
 
@@ -1385,9 +1384,8 @@ div.card {
     .detail {
         background: #ffffff;
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 20%;
+        left: 10%;
         max-width: 440px;
         width: auto;
         &.show {
