@@ -59,7 +59,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             .then(function(data) {
                 $rootScope.isCardsLoaded = true;
 
-                if (data.data.cards.length == 0) {
+                if (data.data.cards.length == 0 || data.data.cards.length < $scope.SIZE) {
                     $scope.END = true;
                     setTimeout(function() {
                         $('.social-editor li').each(function(i) {
