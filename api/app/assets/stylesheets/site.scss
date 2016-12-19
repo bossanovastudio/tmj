@@ -823,21 +823,27 @@ div.card {
             background-size: 110%;
             transition-duration: 0.2s;
         }
-        // &.remixlike {
-        //     &:before{
-        //         background: asset-url('site/faixa_remix.gif') #d8d8d8 center top no-repeat !important;
-        //     }
-        // }
-        // &.ramonalike {
-        //     &:before{
-        //         background: asset-url('site/faixa_ramona.gif') #d8d8d8 center top no-repeat !important;
-        //     }
-        // }
-        // &.geeklike {
-        //     &:before{
-        //         background: asset-url('site/faixa_geek.gif') #d8d8d8 center top no-repeat !important;
-        //     }
-        // }
+        &.remixlike {
+            &:before{
+                background: asset-url('site/faixa_remix.gif') no-repeat;
+                background-size: auto 100%;
+                background-position: center top;
+            }
+        }
+        &.ramonalike {
+            &:before{
+                background: asset-url('site/faixa_ramona.gif') no-repeat;
+                background-size: auto 100%;
+                background-position: center top;
+            }
+        }
+        &.geeklike {
+            &:before{
+                background: asset-url('site/faixa_geek.gif') no-repeat;
+                background-size: auto 100%;
+                background-position: center top;
+            }
+        }
     }
     &.show {
         transition: opacity 1s ease-in-out;
@@ -1023,17 +1029,23 @@ div.card {
     }
     &.remixlike {
         &:before{
-            background: asset-url('site/faixa_remix.png') #d8d8d8 center top no-repeat !important;
+            background: asset-url('/assets/site/faixa_remix.jpg') no-repeat;
+            background-size: auto 100%;
+            background-position: center top;        
         }
     }
     &.ramonalike {
         &:before{
-            background: asset-url('site/faixa_ramona.png') #d8d8d8 center top no-repeat !important;
+            background: asset-url('/assets/site/faixa_ramona.jpg') no-repeat;
+            background-size: auto 100%;
+            background-position: center top;
         }
     }
     &.geeklike {
         &:before{
-            background: asset-url('site/faixa_geek.png') #d8d8d8 center top no-repeat !important;
+            background: asset-url('/assets/site/faixa_remix.jpg') no-repeat;
+            background-size: auto 100%;
+            background-position: center top;         
         }
     }
     &.geek {
