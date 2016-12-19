@@ -8,7 +8,7 @@ class Api::GeneralController < ApplicationController
 
     @cards = Card.page(pagination[:page]).per(pagination[:quantity].to_i - 1).approved.ordered
 
-    if request.headers['X-Extra-card']
+    if request.headers['X-Extra-card'].to_i >= 1
       @card = Card.find_by_id(request.headers['X-Extra-card'])
 
       @cards = [@card] + @cards.where("id != ?", @card.id)
