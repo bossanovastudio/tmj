@@ -23,16 +23,19 @@
 <div class="sidebar">
     <ul>
       <li class="menu-login">
-<!--         <div>
-          <div class="avatar link" style="background-image: url('{{user.image}}')"></div>
-          <span>{{user.username}}</span>
+       <% if user_signed_in? %>
+       <div>
+          <div class="avatar link" style="background-image: url('<%= current_user.image.url %>')"></div>
+          <span><%= current_user.username %></span>
           <a href="/">SAIR</a>
-        </div> -->
+        </div>
+        <% else %>
         <div>
           <img src="<%=asset_url('site/profile_default.svg')%>" class="link" alt="">
           <span>MINHA ÁREA</span>
           <a href="/login">ENTRAR</a>
         </div>
+        <% end %>
       </li>
       <li class="red" ng-click="toggle()"><a href="/" target="_self">HOME</a></li>
       <li class="purple" ng-click="toggle()"><a href="/personagem/ramona" target="_self">RAMONA</a></li>
