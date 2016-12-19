@@ -634,6 +634,10 @@ div.card {
         p.read-more:before {
             left: 0;
         }
+        div.img{
+            background-size: 110%;
+            transition-duration: 0.2s;
+        }
     }
     &.show {
         transition: opacity 1s ease-in-out;
@@ -672,10 +676,11 @@ div.card {
     }
     div.img {
         background-position: center center;
-        background-size: cover;
+        background-size: 100%;
         background-repeat: no-repeat;
         position: relative;
         cursor: pointer;
+        transition-duration: 0.2s;
         &.no-padding {
             padding: 0 !important;
         }
@@ -1328,10 +1333,10 @@ div.card {
 
 @keyframes showLightbox {
     from {
-        transform: translate(-50%, 400px);
+        transform: scale(0.2);
     }
     to {
-        transform: translate(-50%, -50%);
+        transform: scale(1);
     }
 }
 
@@ -1346,10 +1351,10 @@ div.card {
 
 @keyframes hideLightbox {
     from {
-        transform: translate(-50%, -50%);
+        transform: scale(1);
     }
     to {
-        transform: translate(-50%, 400px);
+        transform: scale(0.2);
     }
 }
 
@@ -1372,7 +1377,7 @@ div.card {
     background-color: rgba(74, 74, 74, 0.6);
     &.show {
         display: block;
-        animation: showOverlay .2s linear forwards;
+        animation: showOverlay .2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
     &.hide {
         display: block;
@@ -1381,9 +1386,8 @@ div.card {
     .detail {
         background: #ffffff;
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 20%;
+        left: 10%;
         max-width: 440px;
         width: auto;
         &.show {
