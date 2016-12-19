@@ -9,7 +9,9 @@
     </div>
     <div class="four columns offset">
         <form name="profileForm">
-            <p class="bioheader" ng-click="slideInfo('.bio, .checksocial')">Perfil ▼</p>
+            <div>
+              <span class="bioheader open" ng-click="slideInfo($event, '.bio, .checksocial')">Perfil</span>
+            </div>
             <div class="form-group bio">
                 <label for="username">bio</label>
                 <br>
@@ -79,7 +81,9 @@
                 </li> -->
                 <li class="break"></li>
             </ul>
-            <p class="bioheader" ng-click="slideInfo('.user, .mail, .pass')">Dados Pessoais ▼</p>
+            <div>
+              <span class="bioheader" ng-click="slideInfo($event, '.user, .mail, .pass')">Dados Pessoais</span>
+            </div>
             <div class="form-group user hide">
                 <label for="username">Nome de usuário</label>
                 <br>
