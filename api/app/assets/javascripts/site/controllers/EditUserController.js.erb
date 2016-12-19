@@ -227,9 +227,8 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
                 }
             })
             .then(function(response) {
-                $rootScope.popup_title = 'Atualizado com sucesso!';
-                $rootScope.popup_confirm = 'Ok, entendi!';
-                $rootScope.openPopup();
+                storage.set('user', response.config.data.user);
+                $location.path('/perfil/' + storage.get('user').username);
             }, function(response) {
                 if (response.data.errors.username.length > 0) {
                     $rootScope.popup_title = 'Este nome de usuário já existe!';
