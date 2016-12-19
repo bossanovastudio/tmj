@@ -1,11 +1,19 @@
 class Api::GeneralController < ApplicationController
   before_action :authenticate_user!, only: [:follow, :unfollow]
-  
+
   def all
     pagination = pagination_params
 
     @highlight = Highlight.ordered_by_index.published.page(pagination[:page]).per(1).first
+
     @cards = Card.page(pagination[:page]).per(pagination[:quantity].to_i - 1).approved.ordered
+
+    if request.headers['X-Extra-card']
+      @card = Card.find_by_id(request.headers['X-Extra-card'])
+
+      @cards = [@card] + @cards.where("id != ?", @card.id)
+    end
+
   end
 
   def highlights
@@ -24,23 +32,23 @@ class Api::GeneralController < ApplicationController
     @user = User.editors.where(username: params[:username]).first
     @cards = @user.cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1).not_rejected.ordered
   end
-  
+
   def users
     pagination = pagination_params
 
     @user = User.find_by!(username: params[:username])
     @cards = @user.cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1).approved.ordered
   end
-  
+
   def profile
     @user = User.find_by!(username: params[:username])
   end
-  
+
   def follow
     user = User.find_by!(username: params[:username])
     current_user.bookmark user
   end
-  
+
   def unfollow
     user = User.find_by!(username: params[:username])
     current_user.unbookmark user
