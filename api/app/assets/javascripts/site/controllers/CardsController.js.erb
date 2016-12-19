@@ -11,7 +11,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $rootScope.cardDetailOpened = false;
 
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-    $http.defaults.headers.common["X-Extra-card"] = '' + $routeParams.id;
+    if ($routeParams.id) {
+        $http.defaults.headers.common["X-Extra-card"] = '' + $routeParams.id;
+    }
 
     $scope.count = 0;
     $scope.cardsFeatured = [];
