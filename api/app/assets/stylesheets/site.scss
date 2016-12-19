@@ -302,6 +302,7 @@ section {
             cursor: pointer;
             opacity: 1;
 
+
             $offset : -5px;
             $count : 5;
             $duration : 0.3;
@@ -311,19 +312,26 @@ section {
               to   { transform : translateY( $offset ); }
             }
 
-            .wavetext span {
-              font-family: KomikaTitle;
-              font-size: 25px;
-              display: inline-block;
+            .wavetext {
+                transition-duration: 0.5s;
+                span {
+                  font-family: KomikaTitle;
+                  font-size: 25px;
+                  display: inline-block;
+                }
             }
 
             &:hover{
-            .wavetext span {
-              animation-duration: #{$duration}s;
-              animation-name: wave;
-              animation-iteration-count: infinite;
-              animation-direction: alternate;
-              }
+                .wavetext {
+                    transition-duration: 0.5s;
+                    margin-left: 10px;
+                    span {
+                      animation-duration: #{$duration}s;
+                      animation-name: wave;
+                      animation-iteration-count: infinite;
+                      animation-direction: alternate;
+                     }
+                }
             }
             @for $i from 0 to $count {
               .wavetext :nth-child( #{$count}n + #{$i} ) {
@@ -332,10 +340,6 @@ section {
               }
             }
 
-            &:hover {
-                transition-duration: 0.5s;
-                transform: translate(5px, 0px);
-            }
             &.red {
                 background: asset-url('site/tudo_sobre_tmj.png') center center no-repeat;
                 background-size: auto 100%;
