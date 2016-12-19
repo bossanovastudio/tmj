@@ -68,8 +68,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         });
                     }, 1600);
                     $('.content-no-cards').css('display', 'block');
-                    $rootScope.imgNoCards = "/assets/site/no_card_loggedUser.png"
-                    $rootScope.imgNoCardsCurrent = "/assets/site/no_card_currentUser.png"
+                    $rootScope.imgNoCards = "<%= asset_url('site/no_card_loggedUser.png')%>"
+                    $rootScope.imgNoCardsCurrent = "<%= asset_url('site/no_card_currentUser.png')%>"
 
                     if (!isMobileDevice) {
                         // $('.cards').removeClass('loading');
