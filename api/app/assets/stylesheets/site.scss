@@ -817,6 +817,21 @@ div.card {
             background-size: 110%;
             transition-duration: 0.2s;
         }
+        // &.remixlike {
+        //     &:before{
+        //         background: asset-url('site/faixa_remix.gif') #d8d8d8 center top no-repeat !important;
+        //     }
+        // }
+        // &.ramonalike {
+        //     &:before{
+        //         background: asset-url('site/faixa_ramona.gif') #d8d8d8 center top no-repeat !important;
+        //     }
+        // }
+        // &.geeklike {
+        //     &:before{
+        //         background: asset-url('site/faixa_geek.gif') #d8d8d8 center top no-repeat !important;
+        //     }
+        // }
     }
     &.show {
         transition: opacity 1s ease-in-out;
@@ -975,6 +990,7 @@ div.card {
     &.remixlike,
     &.ramonalike,
     &.geeklike {
+        padding-top: 29px;
         &:before{
             content: '';
             position: absolute;
@@ -982,6 +998,7 @@ div.card {
             display: block;
             width: 100%;
             z-index: 9;
+            top: 0;
         }
     }
     &.remixlike {
