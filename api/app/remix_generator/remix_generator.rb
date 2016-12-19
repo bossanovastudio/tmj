@@ -28,13 +28,13 @@ module RemixGenerator
         case step[:type]
         when 'background'
           @canvas << Magick::Image.new(@canvas_side, @canvas_side) { self.background_color = "##{step[:color]}" }
+          if step.key? :pattern
+            @canvas << imgop(step[:pattern]) { |img| img.resize_to_fit!(@canvas_side, @canvas_side) }
+          end
           if step[:custom]
             bin_data = step[:src].split(',')[1]
             blob = Base64.decode64(bin_data)
             step[:src] = Magick::Image.from_blob(blob).first
-          end
-          if step.key? :pattern
-            @canvas << imgop(step[:pattern]) { |img| img.resize_to_fit!(@canvas_side, @canvas_side) }
           end
           @canvas << imgop(step[:src]) do |img|
             img.resize_to_fit!(@canvas_side, @canvas_side)
