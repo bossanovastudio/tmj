@@ -11,7 +11,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $rootScope.cardDetailOpened = false;
 
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-    $http.defaults.headers.common["X-Extra-card"] = '' + $routeParams.id;
+    if ($routeParams.id) {
+        $http.defaults.headers.common["X-Extra-card"] = '' + $routeParams.id;
+    }
 
     $scope.count = 0;
     $scope.cardsFeatured = [];
@@ -515,7 +517,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         if (!isMobileDevice) {
             clearTimeout($scope._throttleTimer);
             $scope._throttleTimer = setTimeout(function() {
-                if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                if ($(window).scrollTop() + $(window).height() == $(document).height()) {
                     $scope.PAGE++;
                     if (!$scope.END) {
                         $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'));

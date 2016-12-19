@@ -5,6 +5,7 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
     var distanceTop = 0;
 
     $scope.following = false;
+    $scope.currentUser = {};
 
     $http.get('/api/user/ramona/profile.json', {
         headers: {
@@ -14,7 +15,14 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
         }
     })
     .then(function(response) {
-        $scope.following = response.data.following;
+        $scope.currentUser.bio = response.data.bio;
+        $scope.currentUser.username = response.data.username;
+        $scope.currentUser.image = response.data.image;
+        setTimeout(function() {
+            $('.avatar').css('background-image', "url("+$scope.currentUser.image+")");
+        }, 1000);
+    }, function(response) {
+        window.location = '/';
     });
 
     $scope.swipeUp = function() {

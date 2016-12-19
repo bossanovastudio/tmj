@@ -4,17 +4,19 @@
       <div class="author">
         <div class="box-avatar-user">
           <img class="badge" src="<%=asset_url('site/ramona-badge.svg')%>" />
-          <div class="avatar" style="background-image: url('<%= asset_url('site/ramona_novo.png') %>')" />
+          <div class="avatar" style="background-image: url('{{currentUser.image}}')" />
           <img class="avatar_hover" width="200" height="200" src="<%=asset_url('site/ramona_hover.png')%>" />
         </div>
         <div class="seven columns">
           <div class="profile">
             <div class="box-profile">
-              <p class="editor">RAMONA</p>
+              <p class="editor">{{currentUser.username}}</p>
               <p class="position">Editor TMJ</p>
             </div>
-            <a ng-if="!following" ng-href="#" ng-click="followUser()" class="follow">SEGUIR</a>
-            <a ng-if="following" ng-href="#" ng-click="unFollowUser()" class="follow">SEGUINDO</a>
+            <a ng-click="!following ? followUser() : unFollowUser()" class="follow">
+              <div class="text" ng-if="!following">SEGUIR</div>
+              <div class="text" ng-if="following">SEGUINDO</div>
+            </a>
             <div class="followers">
               <img src="<%=asset_url('site/icon-followers.svg')%>" alt="" class="icon">
               <p class="number">2.4k</p>
@@ -22,9 +24,7 @@
           </div>
           <div class="about">
             <div class="twelve columns">
-              <p class="summary">
-                Ramona é uma bruxinha tímida, que acredita na importância de cada um e de suas diferenças no planeta Terra. Gosta de explorar os mistérios da vida, do universo e quer descobrir como fazer do mundo um lugar melhor para todos.
-              </p>
+              <p class="summary">{{currentUser.bio}}</p>
             </div>
           </div>
           <div class="social">

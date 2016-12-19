@@ -781,21 +781,43 @@ div.card {
         display: none;
     }
     &.text {
+        &.remixlike,
+        &.ramonalike,
+        &.geeklike {
+            &:before{
+                position: relative;
+            }
+        }
         p.text {
             font-size: 19px;
         }
     }
+    &.remixlike,
+    &.ramonalike,
+    &.geeklike {
+        &:before{
+            content: '';
+            position: absolute;
+            height: 29px;
+            display: block;
+            width: 100%;
+            z-index: 9;
+        }
+    }
     &.remixlike {
-        background: asset-url('site/faixa_remix.png') #d8d8d8 center top no-repeat !important;
-        padding-top: 29px;
+        &:before{
+            background: asset-url('site/faixa_remix.png') #d8d8d8 center top no-repeat !important;
+        }
     }
     &.ramonalike {
-        background: asset-url('site/faixa_ramona.png') #d8d8d8 center top no-repeat !important;
-        padding-top: 29px;
+        &:before{
+            background: asset-url('site/faixa_ramona.png') #d8d8d8 center top no-repeat !important;
+        }
     }
     &.geeklike {
-        background: asset-url('site/faixa_geek.png') #d8d8d8 center top no-repeat !important;
-        padding-top: 29px;
+        &:before{
+            background: asset-url('site/faixa_geek.png') #d8d8d8 center top no-repeat !important;
+        }
     }
     &.geek {
         background-color: #5bcfed;
