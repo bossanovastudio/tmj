@@ -207,6 +207,21 @@
                 display: inline-block;
                 width: 100%;
             }
+             label.label-social {
+                padding-left: 24px;
+                width: 100%;
+                display: inline-block;
+                margin-bottom: 10px;
+                &:after {
+                    content: '';
+                    width: 14px;
+                    height: 13px;
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    background: no-repeat asset-url('site/social-icon.svg');
+                }
+            }
         }
         .user {
             &.hide {
