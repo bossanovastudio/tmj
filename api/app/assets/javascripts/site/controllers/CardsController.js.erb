@@ -401,9 +401,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                                 bottom: 0,
                                 width: '100%'
                             });
-                            var close = $compile('<img class="close" ng-click="close($event)" src="<%= asset_url('site/fechar.svg')%>" />')($scope);
+                            var close = $compile('<div class="card-close-container"><img class="close" ng-click="close($event)" src="<%= asset_url('site/fechar.svg')%>" /></div>')($scope);
                             if ($rootScope.cardDetailOpened) {
-                                close = $compile('<img class="close" ng-click="redirectToHome()" src="<%= asset_url('site/fechar.svg')%>" />')($scope);
+                                close = $compile('<div class="card-close-container"><img class="close" ng-click="redirectToHome()" src="<%= asset_url('site/fechar.svg')%>" /></div>')($scope);
                             }
                             $('.card').last().append(close);
                             $('.card').last().find('.close').css({

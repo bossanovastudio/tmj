@@ -1752,13 +1752,22 @@ p.content a {
     }
     div.card {
         opacity: 0;
-        .close {
+        .card-close-container {
+            height: 40px;
+            width: 40px;
             right: 10px;
             top: 10px;
             background: rgba(255, 255, 255, 0.6);
-            padding: 9px;
             border-radius: 50%;
             position: fixed;
+        }
+        .close {
+            -webkit-filter: none;
+            filter: none;
+            height: 22px;
+            width: 22px;
+            top: 19px;
+            right: 19px;
         }
         &.openMobile {
             overflow: auto;
