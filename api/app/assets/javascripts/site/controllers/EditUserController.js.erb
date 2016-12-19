@@ -65,8 +65,10 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         };
     };
 
-    $scope.slideInfo = function(classes) {
+
+    $scope.slideInfo = function($event, classes) {
         $(classes).slideToggle();
+        $(angular.element($event.target)).toggleClass('open');
     }
 
     $('.avatar').css('background-image', "url("+$scope.user.image.url+")");

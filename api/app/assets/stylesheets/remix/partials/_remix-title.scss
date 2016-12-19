@@ -1,13 +1,20 @@
 .remix-title {
     h2 {
         font-family: 'KomikaTitle';
-        font-size: 32px;
+        font-size: 36px;
         margin-top: 20px;
-        text-align: center;
+        text-align: left;
+        letter-spacing: 2px;
     }
     .intro {
+        opacity: 0;
+        line-height: 20px;
         margin: 20px 0;
         font-size: 15px;
+        font-weight: 600;
+        @include mq-only-xs {
+            opacity: 0.8;
+        }
     }
     @include mq-from-sm {
         .create-new {

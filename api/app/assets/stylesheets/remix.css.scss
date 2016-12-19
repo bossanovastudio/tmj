@@ -21,15 +21,28 @@ body {
   background-size: cover;
   font: 14px 'Lato', sans-serif;
   min-width: 320px;
+  padding-bottom: 0px;
 }
 
 html, body {
     overflow-x: hidden;
 }
 
+.logo {
+  margin-top: 35px;
+  text-align: center;
+
+  @include mq-only-xs {
+      img {
+        height: 50px;
+      }
+  }
+}
+
 @include mq-from-sm {
   body {
     background-image: asset-url('remix/bg-desktop.jpg');
+    padding-bottom: 40px;
   }
 }
 

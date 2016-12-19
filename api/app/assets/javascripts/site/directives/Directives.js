@@ -28,15 +28,15 @@ var organizeCards = function(newValue, oldValue, rs) {
                     $(c).css({ "height": '100%' });
                 }
                 if ($(c).hasClass('featured')) {
-                    $(c).attr('class', 'card featured ng-scope');
+                    $(c).addClass('card featured ng-scope');
                 } else if ($(c).hasClass('initial')) {
-                    $(c).attr('class', 'card initial ng-scope');
+                    $(c).addClass('card initial ng-scope');
                 } else if ($(c).hasClass('video')) {
-                    $(c).attr('class', 'card video ng-scope');
+                    $(c).addClass('card video ng-scope');
                 } else if ($(c).hasClass('text')) {
-                    $(c).attr('class', 'card text ng-scope');
+                    $(c).addClass('card text ng-scope');
                 } else {
-                    $(c).attr('class', 'card cursor ng-scope');
+                    $(c).addClass('card cursor ng-scope');
                 }
                 if(hasClass && rs == 'homePage') {
                   $(c).addClass('ramona');

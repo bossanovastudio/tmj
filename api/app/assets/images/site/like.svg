@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 40 (33762) - http://www.bohemiancoding.com/sketch -->
@@ -25,3 +26,6 @@
         </g>
     </g>
 </svg>
+=======
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 19.95 19.87" width="20" height="20"><defs><mask id="a" x="2.58" y="2.5" width="17.37" height="17.37" maskUnits="userSpaceOnUse"><g transform="translate(-1.13 -1.5)"><polygon points="3.71 21.37 21.08 21.37 21.08 12.69 21.08 4 3.71 4 3.71 21.37" style="fill:#fff"/></g></mask></defs><title>like</title><g style="opacity:0.25999999046325684"><g style="mask:url(#a)"><path d="M15.65,4a5.12,5.12,0,0,0-1.79.29,5.29,5.29,0,0,0-1.14.56L12.47,5l-.08.05A5.42,5.42,0,0,0,3.7,9.43c0,4.91,3.16,9.36,8.45,11.89a.54.54,0,0,0,.47,0c5.29-2.53,8.45-7,8.45-11.89A5.56,5.56,0,0,0,15.65,4" transform="translate(-1.13 -1.5)"/></g><path d="M13.57,2a5.12,5.12,0,0,0-1.79.29,5.29,5.29,0,0,0-1.14.56L10.39,3l-.08.05A5.42,5.42,0,0,0,1.63,7.43c0,4.91,3.16,9.36,8.45,11.89a.54.54,0,0,0,.47,0c5.29-2.53,8.45-7,8.45-11.89A5.56,5.56,0,0,0,13.57,2" transform="translate(-1.13 -1.5)" style="fill:#939393"/><path d="M13.57,2a5.12,5.12,0,0,0-1.79.29,5.29,5.29,0,0,0-1.14.56L10.39,3l-.08.05A5.42,5.42,0,0,0,1.63,7.43c0,4.91,3.16,9.36,8.45,11.89a.54.54,0,0,0,.47,0c5.29-2.53,8.45-7,8.45-11.89A5.56,5.56,0,0,0,13.57,2Z" transform="translate(-1.13 -1.5)" style="fill:none;stroke:#000"/><path d="M8.35,7s.11-2.79,2-4" transform="translate(-1.13 -1.5)" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round"/></g></svg>
+>>>>>>> dev

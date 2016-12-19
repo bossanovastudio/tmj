@@ -18,9 +18,29 @@
         }
     }
     .bioheader {
+        cursor: pointer;
         font-family: KomikaTitle;
         color: #ffffff;
         font-size: 20px;
+        &.personal {
+          &:after {
+            transition: all 200ms ease;
+            position: absolute;
+            margin-left: 10px;
+            margin-top: 9px;
+            content: "";
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 6px 0 6px 10.4px;
+            border-color: transparent transparent transparent #ffffff;
+          }
+        }
+        &.open {
+          &:after {
+            transform: rotate(90deg);
+          }
+        }
     }
     .box-avatar {
         width: 200px;
@@ -100,13 +120,16 @@
                 margin: 0;
             }
         }
-        .form-group label {
-            position: relative;
-            font-weight: bold;
-            letter-spacing: 0.3px;
+        .form-group {
+          margin-top: 10px;
+          label {
+              position: relative;
+              font-weight: bold;
+              letter-spacing: 0.3px;
+          }
         }
         .bio {
-            display: none;
+            // display: none;
             label {
                 padding-left: 24px;
                 &:after {
@@ -134,7 +157,7 @@
             }
         }
         .checksocial {
-            display: none;
+            // display: none;
             padding: 0;
             margin: 20px 0;
             text-align: justify;

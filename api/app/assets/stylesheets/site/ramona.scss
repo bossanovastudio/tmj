@@ -322,8 +322,9 @@ body.ramona {
             .box-avatar-user {
                 .avatar,
                 .avatar_hover {
-                    width: 106px;
-                    height: 106px;
+                    width: 106px !important;
+                    height: 106px !important;
+                    margin: 0 auto;
                 }
                 img.badge {
                     position: absolute;

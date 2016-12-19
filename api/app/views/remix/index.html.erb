@@ -87,6 +87,11 @@
 <div role="main">
   <div class="container">
     <div class="remix-container">
+      <p class="logo">
+        <a ng-href="/" target="_self">
+          <img src="<%=asset_url('site/logo.svg')%>" height="84" />
+        </a>
+      </p>
       <%= render "title" %>
       <section class="remix-composer">
         <button type="button" class="cancel">&times;</button>
@@ -222,11 +227,11 @@
             Compartilhe para aparecer na Home!
           </p>
           <div class="networks">
-            <%= link_to '', { :class => "btn btn-social btn-facebook", :target => "_blank", id: 'facebook_share_btn' } do %>
+            <%= link_to '', { :class => "btn btn-social btn-facebook", target: "popup", id: 'facebook_share_btn' } do %>
               <%= image_tag "remix/icon-facebook", alt: 'Facebook' %>
               Compartilhar no Facebook
             <% end %>
-            <%= link_to '', { :class => "btn btn-social btn-twitter", :target => "_blank", id: 'twitter_share_btn' } do %>
+            <%= link_to '', { :class => "btn btn-social btn-twitter", target: "popup", id: 'twitter_share_btn' } do %>
               <%= image_tag "remix/icon-twitter", alt: 'Twitter' %>
               Compartilhar no Twitter
             <% end %>
