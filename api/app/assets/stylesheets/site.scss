@@ -846,6 +846,20 @@ div.card {
         background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+        &:hover{
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            -ms-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+            // border: 10px solid #fff;
+            // box-shadow: 13px 13px 0px -5px #fff;
+        }
         //background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), asset-url('site/tmj_monica.gif');
         p {
             font-family: KomikaTitle;
@@ -2034,6 +2048,10 @@ p.content a {
             top: 50px;
             position: relative;
             li {
+                &:hover {
+                    transition-duration: 0s;
+                    transform: translate(0px, 0px);
+                }
                 a {
                     font-size: 17px;
                     letter-spacing: 0.6px;
