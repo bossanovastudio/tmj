@@ -209,6 +209,27 @@ section {
     height: 150px;
 }
 
+.logo path {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.logo:hover path{
+    fill: #fff;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    -webkit-transform: translateX(7%) translateY(-5%);
+    -ms-transform: translateX(7%) translateY(-5%);
+    -moz-transform: translateX(7%) translateY(-5%);
+    transform: translateX(7%) translateY(-5%);
+}
+
 .overlay {
     position: fixed;
     right: 0px;
