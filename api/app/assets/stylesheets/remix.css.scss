@@ -28,6 +28,17 @@ html, body {
     overflow-x: hidden;
 }
 
+.logo {
+  margin-top: 35px;
+  text-align: center;
+
+  @include mq-only-xs {
+      img {
+        height: 50px;
+      }
+  }
+}
+
 @include mq-from-sm {
   body {
     background-image: asset-url('remix/bg-desktop.jpg');
