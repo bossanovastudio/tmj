@@ -51,7 +51,7 @@
             </div>
             <p ng-if="card.kind == 'featured'">{{card.content}}</p>
         </div>
-        <div class="card one-five column text end" style="height: 84%; background: transparent !important;"><img style="position: absolute; left: 50%; top: 50%; margin-left: -35px; margin-top: -20px;" src="<%= asset_url('site/end.svg') %>" /></div>
+        <div ng-if="cards.length > 0" class="card one-five column text end" style="height: 84%; background: transparent !important;"><img style="position: absolute; left: 50%; top: 50%; margin-left: -35px; margin-top: -20px;" src="<%= asset_url('site/end.svg') %>" /></div>
     </div>
     <div resize ng-if="ready && pageName == 'homePage'" class="container cards mobile ramona" ng-swipe-left="swipeLeft($event, 'ramona')" ng-swipe-right="swipeRight($event, 'ramona')" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()" data-page="1" data-slug="ramona">
         <div ng-if="isMobileDevice" id="ramona-bg"><img src="<%= asset_url('site/bg_ramona_mobile.jpg') %>"/></div>
@@ -94,7 +94,7 @@
                 <div ng-include src="'<%= asset_url('share.html')%>'"></div>
             </div>
         </div>
-        <div class="card one-five column text end" style="height: 84%; background: transparent !important;"><img style="position: absolute; left: 50%; top: 50%; margin-left: -35px; margin-top: -20px;" src="<%= asset_url('site/end.svg') %>" /></div>
+        <div ng-if="cardsRamona.length > 0" class="card one-five column text end" style="height: 84%; background: transparent !important;"><img style="position: absolute; left: 50%; top: 50%; margin-left: -35px; margin-top: -20px;" src="<%= asset_url('site/end.svg') %>" /></div>
     </div>
     <!-- <div resize ng-if="ready && pageName != 'homePage'" class="container cards" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()" data-page="1" data-slug="{{pageName}}/recommendation">
         <div ng-repeat="card in cards_recommended track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}">
