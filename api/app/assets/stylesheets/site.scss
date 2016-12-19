@@ -480,6 +480,24 @@ section {
     }
 }
 
+@keyframes heartBeat {
+    0%, 20% {
+        transform: scale(1);
+    }
+    35% {
+        transform: scale(1.1);
+    }
+    50%{
+        transform: scale(1);
+    }
+    65%{
+        transform: scale(1.1);
+    }
+    90%, 100% {
+        transform: scale(1);
+    }
+}
+
 p.share {
     margin: 10px 0 0 0;
     height: 23px;
@@ -487,8 +505,18 @@ p.share {
         text-decoration: none;
         outline: none;
     }
+    .liked{
+        img.heart{
+            &:hover{
+                animation: none;
+            }
+        }
+    }
     img.heart {
         float: left;
+        &:hover {
+            animation: heartBeat 1s linear infinite;
+        }
     }
     span.counter {
         //font-size: 20px;
@@ -502,6 +530,67 @@ p.share {
         float: right;
     }
 }
+.love-explosion{
+    position: relative;
+    bottom: 23px;
+    display: none;
+    .core{
+        position: absolute;
+        left: 0;
+        &.prim{
+            animation: heartFloating_prim 1s linear forwards;
+        }
+        &.segu{
+            animation: heartFloating_segu 1s linear forwards;
+        }
+        &.terc{
+            animation: heartFloating_terc 1s linear forwards;
+        }
+    }
+    &.anim{
+        display: block;
+    }
+}
+@keyframes heartFloating_prim {
+    0%{
+        opacity: 0;
+        transform: translate(0px, 0px) rotate(10deg) scale(1);
+    }
+    10%, 80%{
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-10px, -131px) rotate(-10deg) scale(1.4);
+    }
+}
+@keyframes heartFloating_segu {
+    0%{
+        opacity: 0;
+        transform: rotate(10deg) translate(0px, 0px) scale(1);
+    }
+    10%, 80%{
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(-5deg) translate(0px, -70px) scale(1);
+    }
+}
+@keyframes heartFloating_terc {
+    0%{
+        opacity: 0;
+        transform: rotate(10deg) translate(0px, 0px) scale(1);
+    }
+    10%, 80%{
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(15deg) translate(-7px, -100px) scale(1.8);
+    }
+}
+
 
 div.shareBox {
     position: absolute;
