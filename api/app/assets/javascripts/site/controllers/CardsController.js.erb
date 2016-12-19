@@ -513,7 +513,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         if (!isMobileDevice) {
             clearTimeout($scope._throttleTimer);
             $scope._throttleTimer = setTimeout(function() {
-                if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                if ($(window).scrollTop() + $(window).height() == $(document).height()) {
                     $scope.PAGE++;
                     if (!$scope.END) {
                         $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'));
