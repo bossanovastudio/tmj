@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 40 (33762) - http://www.bohemiancoding.com/sketch -->
@@ -26,6 +25,3 @@
         </g>
     </g>
 </svg>
-=======
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20.02 18.95" width="20" height="20"><defs><mask id="a" x="3.48" y="2.4" width="16.54" height="16.54" maskUnits="userSpaceOnUse"><g transform="translate(-0.95 -1.45)"><polygon points="4.43 20.4 20.98 20.4 20.98 12.13 20.98 3.86 4.43 3.86 4.43 20.4" style="fill:#fff"/></g></mask></defs><title>like-rollover</title><g style="opacity:0.5799999833106995"><g style="mask:url(#a)"><path d="M15.81,3.88a4.88,4.88,0,0,0-1.7.27A5,5,0,0,0,13,4.68l-.24.16-.07,0A5.16,5.16,0,0,0,4.43,9c0,4.68,3,8.91,8,11.32a.51.51,0,0,0,.45,0c5-2.41,8-6.64,8-11.32a5.29,5.29,0,0,0-5.17-5.15" transform="translate(-0.95 -1.45)"/></g><path d="M12.83,2a4.88,4.88,0,0,0-1.7.27A5,5,0,0,0,10,2.78l-.24.16L9.72,3A5.16,5.16,0,0,0,1.45,7.12c0,4.68,3,8.91,8,11.32a.51.51,0,0,0,.45,0C15,16,18,11.8,18,7.12A5.29,5.29,0,0,0,12.83,2" transform="translate(-0.95 -1.45)" style="fill:#d0d0d0"/><path d="M12.83,2a4.88,4.88,0,0,0-1.7.27A5,5,0,0,0,10,2.78l-.24.16L9.72,3A5.16,5.16,0,0,0,1.45,7.12c0,4.68,3,8.91,8,11.32a.51.51,0,0,0,.45,0C15,16,18,11.8,18,7.12A5.29,5.29,0,0,0,12.83,2Z" transform="translate(-0.95 -1.45)" style="fill:none;stroke:#000"/><path d="M7.86,6.73S8,4.08,9.8,2.94" transform="translate(-0.95 -1.45)" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round"/></g></svg>
->>>>>>> dev

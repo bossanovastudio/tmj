@@ -1964,8 +1964,17 @@ p.content a {
                     font-size: 15px;
                 }
             }
+            &:hover{
+                p.read-more:before {
+                    left: 100px;
+                }
+                div.img{
+                    background-size: 100%;
+                }
+            }
         }
     }
+
     img.heart {
         &:hover {
             animation: none !important;
