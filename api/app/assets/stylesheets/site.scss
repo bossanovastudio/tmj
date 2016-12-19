@@ -1928,6 +1928,11 @@ p.content a {
             }
         }
     }
+    img.heart {
+        &:hover {
+            animation: none !important;
+        }
+    }
     div.card {
         opacity: 0;
         .close {
