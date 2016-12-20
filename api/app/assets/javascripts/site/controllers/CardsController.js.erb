@@ -472,6 +472,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     count++;
                     heart.parent().find('.counter').html('&nbsp;' + count);
                     heart.parent().addClass('liked');
+                    heart.parent().find('.love-explosion').addClass('anim');
+                    setTimeout(function() {
+                        heart.parent().find('.love-explosion').removeClass('anim');
+                    }, 1100);
                 })
                 .error(function(data) {
                     window.location = '/login';
@@ -487,6 +491,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     count--;
                     heart.parent().find('.counter').html('&nbsp;' + count);
                     heart.parent().removeClass('liked');
+                    heart.parent().find('.love-explosion').removeClass('anim');
                 })
                 .error(function(data) {
                     window.location = '/login';

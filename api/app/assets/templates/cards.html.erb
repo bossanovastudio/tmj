@@ -93,6 +93,12 @@
                 <p class="text linkify">{{card | cropText}}</p>
                 <p class="read-more">Veja mais</p>
                 <div ng-include src="'<%= asset_url('share.html')%>'"></div>
+                <div class="love-explosion" style="position: absolute;">
+                    <img class="core prim" src="<%= asset_url('site/like-ativo.svg') %>">
+                    <img class="core segu" src="<%= asset_url('site/like-ativo.svg') %>">
+                    <img class="core terc" src="<%= asset_url('site/like-ativo.svg') %>">
+                    <img class="core quar" src="<%= asset_url('site/like-ativo.svg') %>">
+                </div>
             </div>
         </div>
         <div ng-if="cardsRamona.length > 0 && isMobile" class="card one-five column text end" style="height: 84%; background: transparent !important;"><img style="position: absolute; left: 50%; top: 50%; margin-left: -35px; margin-top: -20px;" src="<%= asset_url('site/end.svg') %>" /></div>
