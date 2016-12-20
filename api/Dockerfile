@@ -31,8 +31,10 @@ RUN echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
 RUN mkdir -p /app
 WORKDIR /app
 
-COPY . ./
+COPY Gemfile* /app/
 RUN gem install bundler && bundle install --jobs 20 --retry 5
+
+COPY . ./
 
 EXPOSE 3000
 
