@@ -38,11 +38,11 @@ body {
     min-width: 600px;
     padding-bottom: 40px;
 
-    &.profile,
     &.homePage {
         background: #809ED4 asset-url('site/bg.jpg') no-repeat center center fixed;
     }
     &.login,
+    &.profile,
     &.edit-user {
         background: #987CD0 asset-url('site/bg_login.jpg') no-repeat center center fixed;
     }
