@@ -38,12 +38,12 @@
   display: none;
   position: relative;
   .cancel {
-    font-size: 24px;
+    font-size: 28px;
     line-height: 40px;
     padding: 0 10px;
     position: absolute;
     transform: translateX(-50%);
-    left: 50%;
+    left: 5px;
     top: 0;
   }
   .actions {
@@ -311,7 +311,14 @@
   @include mq-only-xs {
     margin-left: -($grid-gutter-width / 2);
     margin-right: -($grid-gutter-width / 2);
+    margin-top: 20px;
+    .artboard {
+      margin-left: -15px;
+      margin-right: -15px;
+    }
     .toolbox {
+      margin-left: -15px;
+      margin-right: -15px;
       .toolbox-item-popup.category {
         .toggler {
           display: none;
@@ -510,4 +517,3 @@
     }
   }
 }
-
