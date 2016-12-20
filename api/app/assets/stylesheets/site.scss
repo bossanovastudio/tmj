@@ -1625,13 +1625,21 @@ div.card {
                     height: 25.4px;
                     top: -20px;
                     left: 10px;
-                    background: no-repeat asset-url('site/arrow-login.svg')
+                    background: no-repeat asset-url('site/arrow-login.svg');
+                    transition: $anim-fast cubic-bezier(.14,1.18,.73,1.19); 
                 }
                 &.show {
-                    display: block;
+                    // display: block;
+                    opacity: 1;
+                    transform: translateY(0px);
+                    transition-duration: $anim-fast;
                 }
                 &.hide {
-                    display: none;
+                    // display: none;
+                    opacity: 0;
+                    transform: translateY(20px);
+                    z-index: -1;
+                    transition-duration: $anim-fast;
                 }
             }
         }
