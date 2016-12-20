@@ -1015,7 +1015,7 @@ div.card {
                     position: absolute;
                     top: 10px;
                     left: 17px;
-                    background-image: asset-url('site/facebook-form.svg');
+                    background-image: image-url('site/facebook-form.svg');
                 }
             }
             &.btn-twitter {
@@ -1032,7 +1032,7 @@ div.card {
                     position: absolute;
                     top: 10px;
                     left: 17px;
-                    background-image: asset-url('site/twitter-form.svg');
+                    background-image: image-url('site/twitter-form.svg');
                 }
             }
             &.btn-instagram {
@@ -1049,7 +1049,7 @@ div.card {
                     position: absolute;
                     top: 10px;
                     left: 17px;
-                    background-image: asset-url('site/instagram-form.svg');
+                    background-image: image-url('site/instagram-form.svg');
                 }
             }
             &.btn-submit {
@@ -1691,7 +1691,7 @@ p.content a {
     body {
         background-size: cover;
         &.login {
-            background-image: asset-url('site/bg_login_mobile.jpg');
+            background-image: image-url('site/bg_login_mobile.jpg');
             section {
                 overflow: auto;
             }
