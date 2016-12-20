@@ -8,5 +8,10 @@ warning:
 
 crawler:
 	docker build -t "d3estudio/tmj-crawlers:$(BRANCH)" \
-							 crawlers
+							crawlers
 	docker push "d3estudio/tmj-crawlers:$(BRANCH)"
+
+web:
+	docker build -t "d3estudio/tmj-web:$(BRANCH)" \
+							api
+	docker push "d3estudio/tmj-web:$(BRANCH)"
