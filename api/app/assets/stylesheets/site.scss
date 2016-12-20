@@ -1246,6 +1246,10 @@ div.card {
     z-index: 3;
 }
 
+.recommendcounter {
+    opacity: 0;
+}
+
 .overlay-pass {
     position: absolute;
     width: 100%;
@@ -1626,7 +1630,7 @@ div.card {
                     top: -20px;
                     left: 10px;
                     background: no-repeat asset-url('site/arrow-login.svg');
-                    transition: $anim-fast cubic-bezier(.14,1.18,.73,1.19); 
+                    transition: $anim-fast cubic-bezier(.14,1.18,.73,1.19);
                 }
                 &.show {
                     // display: block;

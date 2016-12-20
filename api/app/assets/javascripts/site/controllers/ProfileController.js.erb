@@ -20,6 +20,20 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
             setTimeout(function() {
                 $('.avatar.profile').css('background-image', "url("+$scope.currentUser.image+")");
             }, 1000);
+            setTimeout(function() {
+              $('.recommendcounter').css('opacity', '1');
+              $('.recommendcounter').each(function () {
+                  $(this).prop('Counter',0).animate({
+                      Counter: $(this).text()
+                  }, {
+                      duration: 4000,
+                      easing: 'swing',
+                      step: function (now) {
+                          $(this).text(Math.ceil(now));
+                      }
+                  });
+              });
+            }, 2600);
         }, function(response) {
             window.location = '/';
         });
@@ -59,5 +73,8 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
         }, 1000);
         $rootScope.track('swipe', 'cards', 'up');
     }
+
+
+
 
 });
