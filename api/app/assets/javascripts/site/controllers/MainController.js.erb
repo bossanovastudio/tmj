@@ -138,6 +138,8 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
             $rootScope.track('click', 'cards', 'unlike');
         }
     }
+    $scope.alertHi = function() {
+    };
 
     $scope.openShare = function($event) {
         var elem = angular.element($event.target);
