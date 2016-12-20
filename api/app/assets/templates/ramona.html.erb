@@ -8,6 +8,9 @@
           <img class="avatar_hover" width="200" height="200" src="<%=asset_url('site/ramona_hover.png')%>" />
         </div>
         <div class="seven columns">
+          <a ng-if="loggedUser.username == currentUser.username" ng-href="/editar-perfil" target="_self">
+            <img class="edit" src="<%=asset_url('site/edit-icon-black.svg')%>" width="auto" height="20px" />
+          </a>
           <div class="profile">
             <div class="box-profile">
               <p class="editor">{{currentUser.username}}</p>
