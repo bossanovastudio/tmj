@@ -308,8 +308,8 @@ section {
 
 
             $offset : -5px;
-            $count : 5;
-            $duration : 0.3;
+            $count : 6;
+            $duration : 0.5;
 
             @keyframes wave {
               from { transform : translateY(0); color: white; }
@@ -332,7 +332,7 @@ section {
                     span {
                       animation-duration: #{$duration}s;
                       animation-name: wave;
-                      animation-iteration-count: infinite;
+                      animation-iteration-count: 1;
                       animation-direction: alternate;
                      }
                 }
@@ -888,14 +888,14 @@ div.card {
         -ms-transition: all $anim-normal;
         -o-transition: all $anim-normal;
         transition: all $anim-normal;
+        border: 0px solid #fff;
         &:hover{
             -webkit-transition: all $anim-normal;
             -moz-transition: all $anim-normal;
             -ms-transition: all $anim-normal;
             -o-transition: all $anim-normal;
             transition: all $anim-normal;
-            // border: 10px solid #fff;
-            // box-shadow: 13px 13px 0px -5px #fff;
+            border: 10px solid #fff;
         }
         //background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), asset-url('site/tmj_monica.gif');
         p {
@@ -1060,7 +1060,7 @@ div.card {
         &:before{
             background: asset-url('/assets/site/faixa_remix.jpg') no-repeat;
             background-size: auto 100%;
-            background-position: center top;        
+            background-position: center top;
         }
     }
     &.ramonalike {
@@ -1074,7 +1074,7 @@ div.card {
         &:before{
             background: asset-url('/assets/site/faixa_remix.jpg') no-repeat;
             background-size: auto 100%;
-            background-position: center top;         
+            background-position: center top;
         }
     }
     &.geek {
