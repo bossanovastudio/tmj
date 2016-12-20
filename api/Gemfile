@@ -72,6 +72,9 @@ gem 'recommendable'
 # Adds a custom CSV renderer to Rails applications
 gem 'render_csv', '~> 2.0'
 
+# Non-stupid non-digest assets in Rails 4
+gem 'non-stupid-digest-assets', github: 'alexspeller/non-stupid-digest-assets'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 
