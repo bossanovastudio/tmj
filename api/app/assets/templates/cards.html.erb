@@ -1,7 +1,7 @@
 <div class="card-container" ng-controller="CardsController">
     <img ng-show="!isCardsLoaded" class="initial-loading" src="<%= asset_url('site/loading.gif') %>" />
     <div resize ng-if="ready && pageName == 'homePage'" class="container cards mobile" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()" data-page="1">
-        <div class="card" style="height: 90% !important; background: none !important"><img style="left: 50%; margin-left: -90px; margin-top: -60px; position: absolute; top: 50%;" src="<%= asset_url('site/logo.svg') %>" height="84" /></div>
+        <div class="card" style="height: 90% !important; background: none !important"><img style="left: 50%; margin-left: -90px; margin-top: -60px; position: absolute; top: 50%;" src="<%= asset_url('site/logo.png') %>" height="84" /></div>
         <div ng-repeat="card in cardsFeatured track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}" style="background-image: url('{{isMobile ? card.mobile_url : card.url}}')">
             <div card-class ng-classes="card" class="img"></div>
             <p ng-if="card.kind == 'featured'">{{card.content}}</p>
@@ -14,7 +14,7 @@
                     <p>{{card.content}}</p>
                     <div>
                         <img src="{{card.icon.url}}" />
-                        <p>{{card.total_cards}}</p>
+                        <p>{{card.count}}</p>
                     </div>
                 </div>
             </div>

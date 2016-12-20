@@ -232,12 +232,11 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
 
       setTimeout(function() {
         $( "#popup .box" ).animate({ opacity: 0, top: "-10px" }, 300);
-
         $("#popup").fadeOut();
       }, 300);
       setTimeout(function() {
         resetCloseButton();
-      }, 500);
+      }, 400);
     }
 
     $scope.closeLightbox = function() {

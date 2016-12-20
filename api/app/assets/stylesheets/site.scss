@@ -38,11 +38,11 @@ body {
     min-width: 600px;
     padding-bottom: 40px;
 
-    &.profile,
     &.homePage {
         background: #809ED4 asset-url('site/bg.jpg') no-repeat center center fixed;
     }
     &.login,
+    &.profile,
     &.edit-user {
         background: #987CD0 asset-url('site/bg_login.jpg') no-repeat center center fixed;
     }
@@ -1950,9 +1950,9 @@ p.content a {
         height: 110%;
         overflow: hidden;
         padding-top: 80px;
-        margin-top: -5% !important;
+        // margin-top: -5% !important;
         &.ramona {
-            background-color: #E88EDB;
+            background: #E88EDB asset-url('site/bg_ramona_mobile.jpg');
         }
         #ramona-bg {
             height: 100%;
@@ -2002,6 +2002,7 @@ p.content a {
             background: rgba(255, 255, 255, 0.6);
             border-radius: 50%;
             position: fixed;
+            z-index: 9;
         }
         .close {
             -webkit-filter: none;
@@ -2010,6 +2011,19 @@ p.content a {
             width: 22px;
             top: 19px;
             right: 19px;
+            &:hover{
+                -ms-transform: translate(0,0);
+                -webkit-transform: translate(0,0);
+                transform: translate(0,0);
+            }
+        }
+        &:hover{
+            div{
+                &.img{
+                    background-size: 100%;
+                    transition-duration: 0;
+                }
+            }
         }
         &.openMobile {
             overflow: auto;
@@ -2132,7 +2146,11 @@ p.content a {
                         margin: 15px 15px;
                     }
                     a {
-                        margin: 7px 25px 7px 0;
+                        margin: 11px 25px 11px 0;
+                        font-size: 15px;
+                        width: 65px;
+                        height: 31px;
+                        line-height: 30px;
                     }
                     img{
                         width: 50px;
