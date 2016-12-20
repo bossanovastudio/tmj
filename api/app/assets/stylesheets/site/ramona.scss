@@ -65,10 +65,20 @@ body.ramona {
         .followers {
             display: inline-block;
             padding: 0 30px;
-            margin-top: 18px;
+            margin-top: 8px;
             vertical-align: top;
             order: 3;
             align-self: flex-start;
+            &:before{
+                content: '';
+                background: asset-url('site/icon-followers.svg') no-repeat;
+                background-size: auto 100%;
+                width: 31px;
+                display: inline-block;
+                height: 34px;
+                vertical-align: middle;
+                margin-right: 3px;
+            }
             p.number {
                 font-family: Lato;
                 font-size: 17px;
@@ -77,8 +87,8 @@ body.ramona {
                 font-stretch: normal;
                 letter-spacing: 0.6px;
                 color: #ffffff;
-                float: right;
-                margin-left: 4px;
+                vertical-align: bottom;
+                display: inline-block;
             }
             img.icon{
                 display: block;
@@ -282,11 +292,28 @@ body.ramona {
             }
             .followers {
                 margin: 0 auto;
-                position: absolute;
-                top: 66px;
-                width: auto;
-                right: 22px;
-                padding: 0;
+                p.number{
+                    float: none;
+                    display: inline-block;
+                    vertical-align: bottom;
+                    margin-left: 0;
+                }
+                &:before,
+                &:after{
+                    content: '';
+                    background: asset-url('site/icon-followers.svg') no-repeat;
+                    background-size: auto 100%;
+                    width: 31px;
+                    display: inline-block;
+                    height: 34px;
+                    vertical-align: middle;
+                }
+                &:before{
+                    margin-right: 3px;
+                }
+                &:after{
+                    margin-left: 3px;
+                }
             }
             .profile {
                 display: block;
@@ -296,7 +323,8 @@ body.ramona {
                 }
                 .follow {
                     display: table;
-                    margin: 10px auto;
+                    margin: 10px auto 0;
+                    border: 1px solid #000;
                 }
             }
         }
@@ -342,7 +370,17 @@ body.ramona {
             }
             .profile {
                 .follow {
-                    padding: 7px 20px;
+                    font-size: 15px;
+                    width: 65px;
+                    height: 31px;
+                    line-height: 30px;
+                    padding: 0;
+                }
+                .box-profile{
+                    .position{
+                        font-size: 12px;
+                        margin-top: -4px;
+                    }
                 }
             }
             .about {
