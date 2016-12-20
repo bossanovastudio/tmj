@@ -1724,7 +1724,7 @@ p.content a {
         padding-top: 80px;
         // margin-top: -5% !important;
         &.ramona {
-            background-color: #E88EDB;
+            background: #E88EDB asset-url('site/bg_ramona_mobile.jpg');
         }
         #ramona-bg {
             height: 100%;
