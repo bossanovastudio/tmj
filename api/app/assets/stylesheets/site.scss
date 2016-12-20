@@ -1016,7 +1016,6 @@ div.card {
     &.remixlike,
     &.ramonalike,
     &.geeklike {
-        padding-top: 29px;
         &:before{
             content: '';
             position: absolute;
@@ -1031,7 +1030,7 @@ div.card {
         &:before{
             background: asset-url('/assets/site/faixa_remix.jpg') no-repeat;
             background-size: auto 100%;
-            background-position: center top;        
+            background-position: center top;
         }
     }
     &.ramonalike {
@@ -1045,7 +1044,7 @@ div.card {
         &:before{
             background: asset-url('/assets/site/faixa_remix.jpg') no-repeat;
             background-size: auto 100%;
-            background-position: center top;         
+            background-position: center top;
         }
     }
     &.geek {
