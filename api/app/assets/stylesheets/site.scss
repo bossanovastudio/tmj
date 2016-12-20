@@ -56,19 +56,19 @@ header {
     position: relative;
     z-index: 1;
     margin-bottom: 40px;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in;
     &.animate {
         transform: translateX(100px);
-        transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-out;
     }
 }
 
 section {
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in;
     overflow: hidden;
     &.animate {
         transform: translateX(100px);
-        transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-out;
     }
 }
 
@@ -267,19 +267,19 @@ section {
     height: 100%;
     background: asset-url('site/bg_gray.jpg') center top;
     background-size: cover;
-    -webkit-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
-    -moz-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
-    -ms-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
-    -o-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
-    transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+    -webkit-transition: transform 0.3s ease-in 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+    -moz-transition: transform 0.3s ease-in 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+    -ms-transition: transform 0.3s ease-in 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+    -o-transition: transform 0.3s ease-in 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+    transition: transform 0.3s ease-in 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
     &.open {
         transform: translateX(0px);
         -webkit-transform: translateX(0px);
-        -webkit-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
-        -moz-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
-        -ms-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
-        -o-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
-        transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+        -webkit-transition: transform 0.3s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+        -moz-transition: transform 0.3s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+        -ms-transition: transform 0.3s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+        -o-transition: transform 0.3s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+        transition: transform 0.3s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
     }
     .menu {
         position: absolute;
@@ -817,7 +817,7 @@ div.card {
     opacity: 0;
     &:hover {
         p.read-more:before {
-            left: 0;
+            top: 0;
         }
         div.img{
             background-size: 110%;
@@ -960,16 +960,20 @@ div.card {
     p.read-more {
         position: relative;
         width: auto;
-        color: rgba(0, 0, 0, 0.81);
+        color: rgba(0, 0, 0, 0.61);
         font-weight: 700;
         font-size: 13px;
         cursor: pointer;
         margin: 5px 0 0 0;
-        transition-duration: 0.1s;
+        transition-duration: 0.2s;
         padding: 1px 6px;
         display: none;
         z-index: 9;
         overflow: hidden;
+        &:hover{
+                color: rgba(0, 0, 0, 0.81);
+                transition-duration: 0.2s;
+        }
         &:before {
             content: "";
             position: absolute;
@@ -978,14 +982,14 @@ div.card {
             height: 100%;
             background: rgba(0, 0, 0, 0.1);
             bottom: 0;
-            left: 100px;
+            left: 0;
             right: 0;
-            top: 0px;
+            top: 25px;
             z-index: -1;
             -webkit-transition: all 0.2s ease-in;
         }
         &:hover:before {
-            left: 0px;
+            top: 0px;
         }
     }
     &.cursor {
@@ -1793,7 +1797,7 @@ footer {
     right: 40px;
     bottom: 40px;
     width: 38px;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in;
     a {
         border: 1px solid #231F1F;
         width: 33px;
@@ -1860,7 +1864,7 @@ footer {
     }
     &.animate {
         transform: translateX(100px);
-        transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-out;
     }
 }
 
