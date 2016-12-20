@@ -27,14 +27,14 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
               $(this).prop('Counter',0).animate({
                   Counter: $(this).text()
               }, {
-                  duration: 4000,
+                  duration: 400,
                   easing: 'swing',
                   step: function (now) {
                       $(this).text(Math.ceil(now));
                   }
               });
           });
-        }, 2600);
+        }, 3500);
     }, function(response) {
         window.location = '/';
     });
