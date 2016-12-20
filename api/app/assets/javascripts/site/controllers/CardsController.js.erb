@@ -339,7 +339,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 $rootScope.track('click', 'featured', 'open');
             }
         } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('originalPost') && !elem.hasClass('shareButton')) {
-            console.log($routeParams.id);
             $http.get(API_URL + 'cards/' + id + '.json')
                 .success(function(data) {
                     $rootScope.card = data;
@@ -415,8 +414,20 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             setTimeout(function() {
                                 $('html').css({ overflow: "hidden" });
                             }, 1000);
+
                             var lightbox = angular.element(document.querySelector('.lightbox'));
                             var lightboxDetail = angular.element(document.querySelector('.lightbox .detail'));
+
+                            lightbox.find('.counter').html('&nbsp;' + $rootScope.card.likes);
+
+                            if (!$('[data-id="'+$rootScope.card.id+'"]').find('.share a').hasClass('liked')) {
+                                lightbox.find('.heart').attr('src', '<%= asset_url('site/like.svg')%>');
+                                lightbox.find('.share a').removeClass('liked');
+                            } else {
+                                lightbox.find('.heart').attr('src', '<%= asset_url('site/like-ativo.svg')%>');
+                                lightbox.find('.share a').addClass('liked');
+                            }
+
                             lightbox.addClass('show');
                             lightboxDetail.addClass('show');
                         }
@@ -461,7 +472,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope.likeCard = function($event, id) {
         var elem = $(angular.element($event.target)).closest('.card');
         var heart = elem.find('.heart');
-        var count = parseInt(elem.find('.counter').text());
+        var card = $('[data-id="'+id+'"]');
         if (!heart.parent().hasClass('liked')) {
             $http({
                     method: 'GET',
@@ -469,8 +480,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 })
                 .success(function(data) {
                     heart.attr('src', '<%= asset_url('site/like-ativo.svg')%>');
-                    count++;
-                    heart.parent().find('.counter').html('&nbsp;' + count);
+                    heart.parent().find('.counter').html('&nbsp;' + data.likes);
                     heart.parent().addClass('liked');
                     heart.parent().find('.love-explosion').addClass('anim');
                     setTimeout(function() {
@@ -488,8 +498,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 })
                 .success(function(data) {
                     heart.attr('src', '<%= asset_url('site/like.svg')%>');
-                    count--;
-                    heart.parent().find('.counter').html('&nbsp;' + count);
+                    heart.parent().find('.counter').html('&nbsp;' + data.likes);
                     heart.parent().removeClass('liked');
                     heart.parent().find('.love-explosion').removeClass('anim');
                 })
