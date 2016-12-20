@@ -2135,6 +2135,9 @@ p.content a {
             p {
                 font-size: 31px;
             }
+            &:hover{
+                border: 0px solid #fff;
+            }
         }
         &.initial {
             background: transparent;
