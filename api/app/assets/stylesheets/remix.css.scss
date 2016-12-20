@@ -46,6 +46,13 @@ html, body {
   }
 }
 
+@include mq-only-xs {
+  .container {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+
 @import "remix/partials/remix-title";
 @import "remix/partials/remix-gallery";
 @import "remix/partials/remix-composer";
