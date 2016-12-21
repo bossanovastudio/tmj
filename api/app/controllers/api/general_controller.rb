@@ -40,6 +40,11 @@ class Api::GeneralController < ApplicationController
     @cards = @user.cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1).approved.ordered
   end
 
+  def liked
+    @user = User.find_by!(username: params[:username])
+    @cards = @user.liked_cards
+  end
+
   def profile
     @user = User.find_by!(username: params[:username])
   end
