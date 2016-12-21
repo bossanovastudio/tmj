@@ -2251,6 +2251,11 @@ p.content a {
                 .wavetext {
                     padding: 12px 0px;
                     margin-bottom: 0px;
+                    margin-left: 0px !important;
+                    animation: none !important;
+                    span {
+                        animation: none !important;
+                    }
                 }
                 &.purple {
                     background: asset-url('site/ramona_menu.png') center center no-repeat;
