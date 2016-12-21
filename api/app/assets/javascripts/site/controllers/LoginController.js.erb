@@ -102,16 +102,33 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
         $scope.numClick = $scope.numClick + 1;
         if ($scope.numClick == 1) {
             $scope.passwordChoice.length = 0;
+            $('.input-pass li').removeClass('locker');
             $scope.passwordChoice.push($scope.passwords[pass.id]);
+            setTimeout(function(){
+                $('.input-pass li').eq(0).addClass('locker');
+                // $scope.passwordChoice[0].placeholder = '<%= asset_url('site/lock.png') %>';
+            }, 500)
             $('.after').css({ "left": 55 });
         } else if ($scope.numClick == 2) {
             $scope.passwordChoice.push($scope.passwords[pass.id]);
+            setTimeout(function(){
+                $('.input-pass li').eq(1).addClass('locker');
+                // $scope.passwordChoice[1].placeholder = '<%= asset_url('site/lock.png') %>';
+            }, 500)
             $('.after').css({ "left": 105 });
         } else if ($scope.numClick == 3) {
             $scope.passwordChoice.push($scope.passwords[pass.id]);
+            setTimeout(function(){
+                $('.input-pass li').eq(2).addClass('locker');
+                // $scope.passwordChoice[2].placeholder = '<%= asset_url('site/lock.png') %>';
+            }, 500)
             $('.after').css({ "left": 150 });
         } else {
             $scope.passwordChoice.push($scope.passwords[pass.id]);
+            setTimeout(function(){
+                $('.input-pass li').eq(3).addClass('locker');
+                // $scope.passwordChoice[3].placeholder = '<%= asset_url('site/lock.png') %>';
+            }, 500)
             $scope.numClick = 0;
             $scope.open = !$scope.open;
             $('.overlay-pass').css({ "display": "none" });
