@@ -71,7 +71,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         $(angular.element($event.target)).toggleClass('open');
     }
 
-    $('.avatar').css('background-image', "url("+$scope.user.image.url+")");
+    $('.avatar').css('background-image', "url("+$scope.user.image+")");
 
     $scope.passwords = [{
         id: 0,
