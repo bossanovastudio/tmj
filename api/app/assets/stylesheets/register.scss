@@ -75,6 +75,10 @@ section {
     background-size: cover;
     .logo {
         margin: 10% 0 15%;
+        img {
+          height: 83px;
+          width: 170px;
+        }
     }
     p.intro {
         font-family: KomikaTitle;
@@ -584,6 +588,7 @@ section {
       margin: 0 auto;
       display: block;
       height: 60px;
+      width: 122px;
     }
     .overlay {
       visibility: visible;

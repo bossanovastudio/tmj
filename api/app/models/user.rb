@@ -43,9 +43,9 @@ class User < ActiveRecord::Base
   recommends :cards, :users
 
   after_create :send_welcome_email
-  
+
   # Validations
-  validates :username, presence: true, uniqueness: true, format: { with: /\A[0-9a-zA-Z]+\z/ }, length: { in: 6..16 }
+  validates :username, presence: true, uniqueness: true, format: { with: /\A[0-9a-zA-Z\.\-\_]+\z/ }, length: { in: 4..16 }
 
   def update_without_password(params, *options)
     if params[:password].blank?
@@ -61,8 +61,8 @@ class User < ActiveRecord::Base
   def password_required?
     true
   end
-  
-  private  
+
+  private
     def send_welcome_email
       return true unless email
       UsersMailer.welcome(self).deliver_now

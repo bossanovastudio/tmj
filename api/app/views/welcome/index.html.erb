@@ -85,10 +85,10 @@
               <a ng-href="login"> ENTRAR </a>
             </div>
           </li>
-          <li class="red" ng-click="toggle()"><a ng-href="/" target="_self">HOME</a></li>
-          <li class="purple" ng-click="toggle()"><a ng-href="/personagem/ramona" target="_self">RAMONA</a></li>
-          <li class="blue" ng-click="toggle()"><a ng-href="/participe" target="_blank">PARTICIPE</a></li>
-          <li class="orange" ng-click="toggle()"><a ng-href="{{ user.username ? '/remix' : '/login?redirect_url=/remix' }}" target="_self">REMIX</a></li>
+          <li class="red" ng-click="toggle()"><a ng-href="/" class="wavetext" target="_self"><span>H</span><span>O</span><span>M</span><span>E</span></a></li>
+          <li class="purple" ng-click="toggle()"><a ng-href="/personagem/ramona" class="wavetext" target="_self"><span>R</span><span>A</span><span>M</span><span>O</span><span>N</span><span>A</span></a></li>
+          <li class="blue" ng-click="toggle()"><a ng-href="/participe" class="wavetext" target="_blank"><span>P</span><span>A</span><span>R</span><span>T</span><span>I</span><span>C</span><span>I</span><span>P</span><span>E</span></a></li>
+          <li class="orange" ng-click="toggle()"><a ng-href="{{ user.username ? '/remix' : '/login?redirect_url=/remix' }}" class="wavetext" target="_self"><span>R</span><span>E</span><span>M</span><span>I</span><span>X</span></a></li>
           <!-- <li class="yellow" ng-click="toggle()"><a ng-href="/feito-por-voce" target="_self">FEITO POR VOCÊ</a></li> -->
           <!-- <li class="pink" ng-click="toggle()"><a ng-href="/personagem/denise" target="_self">DENISE</a></li> -->
           <!-- <li class="blue" ng-click="toggle()"><a ng-href="/personagem/geek" target="_self">GEEK</a></li> -->
@@ -158,7 +158,7 @@
         </div>
     </div>
     <header>
-        <p class="container desktop" style="text-align: center"><a ng-href="/" target="_self"><img src="<%=asset_url('site/logo.svg')%>" height="84" /></a></p>
+        <p class="container desktop" style="text-align: center"><a ng-href="/" target="_self"><img src="<%=asset_url('site/logo.png')%>" height="84" /></a></p>
     </header>
     <section ng-view></section>
     <footer class="desktop">
