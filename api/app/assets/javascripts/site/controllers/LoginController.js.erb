@@ -159,7 +159,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             return p.value;
         }).join('');
 
-        if (!$scope.form.username || $scope.form.username.length > 16 || $scope.form.username.length < 4 || !$scope.form.username.match(/^[0-9a-zA-Z]+$/)) {
+        if (!$scope.form.username || $scope.form.username.length > 16 || $scope.form.username.length < 4 || !$scope.form.username.match(/^[a-zA-Z0-9_.-]*$/)) {
             $scope.msg_register_username = 'Seu apelido deve conter apenas letras e números, deve conter no mínimo 4 e no máximo 16 caracteres.';
             $scope.msg_register_email = '';
             $scope.msg_register_pass = '';
