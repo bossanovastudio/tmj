@@ -2041,15 +2041,18 @@ p.content a {
         overflow: hidden;
         padding-top: 80px;
         // margin-top: -5% !important;
-        &.ramona {
-            background: #E88EDB asset-url('site/bg_ramona_mobile.jpg');
-        }
+        // &.ramona {
+        //     background: #E88EDB asset-url('site/bg_ramona_mobile.jpg');
+        // }
         #ramona-bg {
-            height: 100%;
+            display: none;
+            height: 110%;
             width: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
+            position: fixed;
+            top: -5%;
+            left: 0 !important;
+            right: 0;
+            bottom: -5%;
             img {
                 height: 105%;
             }
