@@ -52,6 +52,45 @@ body {
         background: #987CD0 asset-url('site/bg_login.jpg') no-repeat center center fixed;
         background-size: cover;
     }
+
+    .content-no-cards {
+        display: none;
+        position: relative;
+        width: 100%;
+        &.show{
+            display: block;
+        }
+        &.other-user{
+            p{
+                max-width: 200px;
+            }
+        }
+        p,a{
+            max-width: 310px;
+            margin: 0 auto;
+            text-align: center;
+            font-family: KomikaTitle;
+            font-size: 16px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            letter-spacing: 0.5px;
+            color: #000000;
+            text-decoration: none;
+        }
+        a{
+            &:hover{
+                color: #fff;
+            }
+        }
+        img{
+            display: block;
+            max-width: 250px;
+            margin-top: 40px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
 }
 
 header {
@@ -2057,6 +2096,21 @@ p.content a {
         overflow: hidden;
         min-width: 100%;
         padding-bottom: 0px;
+
+        .content-no-cards {
+            &.other-user{
+                p{
+                    max-width: 90%;
+                }
+            }
+            p,a{
+                max-width: 100%;
+                font-size: 13px;
+            }
+            img{
+                max-width: 85%;
+            }
+        }
     }
     body {
         background-size: cover;
