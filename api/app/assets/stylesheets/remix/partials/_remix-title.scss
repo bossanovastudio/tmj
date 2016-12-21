@@ -47,11 +47,11 @@
     cursor: pointer;
     // -webkit-filter: drop-shadow( 3px 3px 0px #000);
     // filter: drop-shadow( 3px 3px 0px #000);
-    transition-duration: 0.2s;
+    transition-duration: 0.3s;
     cursor: pointer;
     display: inline-block;
     #nav-icon4 {
-        width: 24px;
+        width: 18px;
         height: 18px;
         position: absolute;
         top: 14px;
@@ -61,10 +61,10 @@
         -moz-transform: rotate(0deg);
         -o-transform: rotate(0deg);
         transform: rotate(0deg);
-        -webkit-transition: 0.2s;
-        -moz-transition: 0.2s;
-        -o-transition: 0.2s;
-        transition: 0.2s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
         cursor: pointer;
         span {
             display: block;
@@ -78,10 +78,10 @@
             -moz-transform: rotate(0deg);
             -o-transform: rotate(0deg);
             transform: rotate(0deg);
-            -webkit-transition: 0.2s;
-            -moz-transition: 0.2s;
-            -o-transition: 0.2s;
-            transition: 0.2s;
+            -webkit-transition: 0.3s;
+            -moz-transition: 0.3s;
+            -o-transition: 0.3s;
+            transition: 0.3s;
             &:nth-child(1) {
                 top: 0px;
                 width: 65%;
@@ -180,18 +180,19 @@
     height: 100%;
     background: asset-url('site/bg_gray.jpg') center top;
     background-size: cover;
-    -webkit-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
-    -moz-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
-    -ms-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
-    -o-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
-    transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+    -webkit-transition: transform 0.3s ease-in 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+    -moz-transition: transform 0.3s ease-in 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+    -ms-transition: transform 0.3s ease-in 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+    -o-transition: transform 0.3s ease-in 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+    transition: transform 0.3s ease-in 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
     &.open {
         transform: translateX(0px);
-        -webkit-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
-        -moz-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
-        -ms-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
-        -o-transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
-        transition: all 0.4s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+        -webkit-transform: translateX(0px);
+        -webkit-transition: transform 0.3s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+        -moz-transition: transform 0.3s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+        -ms-transition: transform 0.3s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+        -o-transition: transform 0.3s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
+        transition: transform 0.3s ease-out 0s, visibility 0s linear 0.4s, z-index 0s linear 0.01s;
     }
     .menu {
         position: absolute;
@@ -213,29 +214,157 @@
         li {
             cursor: pointer;
             opacity: 1;
+
+            $offset : 5px;
+            $count : 15;
+            $duration : 0.2;
+
+            @keyframes wave {
+              from { transform : translateY(0);  }
+              to   { transform : translateY( $offset ); }
+            }
+            @keyframes flash {
+              from { color: #fff; }
+              to   { color: rgba(72, 93, 99, 1); }
+            }
+            @keyframes flashramona {
+              from { color: #fff; }
+              to   { color: rgba(107, 72, 125, 1); }
+            }
+            @keyframes flashcasting {
+              from { color: #fff; }
+              to   { color: rgba(82, 97, 148, 1); }
+            }
+            @keyframes flashremix {
+              from { color: #fff; }
+              to   { color: rgba(59, 59, 59, 1); }
+            }
+
+            .wavetext {
+                transition-duration: 0.2s;
+                margin-bottom: 2px;
+                span {
+                  font-family: KomikaTitle;
+                  font-size: 25px;
+                  display: inline-block;
+                }
+            }
+
+            &:hover{
+                .wavetext {
+                    transition-duration: 0.2s;
+                    margin-left: 10px;
+                    &.homewv {
+                        span {
+                          animation-name: wave;
+                          animation-name: flash;
+                          animation-duration: #{$duration}s;
+                          //animation-delay: 1s;
+                          animation-iteration-count: 2;
+                          animation-direction: normal;
+                         }
+                    }
+                    &.ramonawv {
+                        span {
+                          animation-name: wave;
+                          animation-name: flashramona;
+                          animation-duration: #{$duration}s;
+                          //animation-delay: 1s;
+                          animation-iteration-count: 2;
+                          animation-direction: normal;
+                         }
+                    }
+                    &.castingwv {
+                        span {
+                          animation-name: wave;
+                          animation-name: flashcasting;
+                          animation-duration: #{$duration}s;
+                          //animation-delay: 1s;
+                          animation-iteration-count: 2;
+                          animation-direction: normal;
+                         }
+                    }
+                    &.remixwv {
+                        span {
+                          animation-name: wave;
+                          animation-name: flashremix;
+                          animation-duration: #{$duration}s;
+                          //animation-delay: 1s;
+                          animation-iteration-count: 2;
+                          animation-direction: normal;
+                         }
+                    }
+                }
+                @for $i from 0 to $count {
+                  .wavetext :nth-child( #{$count}n + #{$i} ) {
+                      animation-delay :
+                        -#{($count - $i) * 2 * $duration / $count }s;
+                        color: #fff;
+                  }
+                }
+
+            }
+
+
             &.red {
                 background: asset-url('site/tudo_sobre_tmj.png') center center no-repeat;
                 background-size: auto 100%;
+                transition-duration: 0.2s;
+                &:hover {
+                    background-size: auto 110%;
+                    transition-duration: 0.2s;
+                    color: #000;
+                }
             }
             &.orange {
                 background: asset-url('site/remix.png') center center no-repeat;
                 background-size: auto 100%;
+                transition-duration: 0.2s;
+                &:hover {
+                    background-size: auto 110%;
+                    transition-duration: 0.2s;
+                    color: #000;
+                }
             }
             &.yellow {
                 background: asset-url('site/feito_por_voce.png') center center no-repeat;
                 background-size: auto 100%;
+                transition-duration: 0.2s;
+                &:hover {
+                    background-size: auto 110%;
+                    transition-duration: 0.2s;
+                    color: #000;
+                }
             }
             &.purple {
                 background: asset-url('site/ramona_menu.png') center center no-repeat;
                 background-size: auto 100%;
+                transition-duration: 0.2s;
+                &:hover {
+                    background-size: auto 110%;
+                    transition-duration: 0.2s;
+                    color: #000;
+                }
             }
             &.pink {
                 background: asset-url('site/denise.png') center center no-repeat;
                 background-size: auto 100%;
+                transition-duration: 0.2s;
+                &:hover {
+                    background-size: auto 110%;
+                    transition-duration: 0.2s;
+                    color: #000;
+                }
             }
             &.blue {
                 background: asset-url('site/participe.png') center center no-repeat;
                 background-size: auto 100%;
+                transition-duration: 0.2s;
+                &:hover {
+                    background-size: auto 110%;
+                    transition-duration: 0.2s;
+                    color: #000;
+                }
             }
             &.menu-login {
                 width: 100%;
@@ -243,7 +372,7 @@
                 background: linear-gradient(104deg, rgba(48, 35, 174, 0.5), rgba(200, 109, 215, 0.5));
                 margin-bottom: 20px;
                 color: #000000;
-                font-size: 30px;
+                font-size: 25px;
                 letter-spacing: 1px;
                 text-decoration: none;
                 display: block;
@@ -269,34 +398,56 @@
                 }
                 a {
                     font-size: 18px;
+                    position: relative;
                     float: right;
                     font-family: KomikaTitle;
                     background-color: #ffffff;
                     color: #000000;
                     width: 80px;
-                    height: 40px;
-                    line-height: 40px;
+                    height: 33px;
+                    line-height: 32px;
                     text-align: center;
                     padding: 0;
-                    margin: 15px 35px 15px 0;
+                    margin: 18px 35px 15px 0;
                     -webkit-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
                     -moz-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
                     box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
                     border: 1px solid #000000;
+                    overflow: hidden;
+                    transition-duration: 0.3s;
+                    letter-spacing: 0px;
+
+                    &:before{
+                        content: '';
+                        position: absolute;
+                        background-color:#000;
+                        width: 160px;
+                        height: 160px;
+                        top: -160px;
+                        left: -160px;
+                        transition-duration: 0.3s;
+                        border-radius: 100%;
+                        z-index: -1;
+                    }
                     &:hover {
-                        transition-duration: 0.2s;
+                        transition-duration: 0.3s;
                         transform: translate(2px, 2px);
                         -webkit-box-shadow: none;
                         -moz-box-shadow: none;
                         box-shadow: none;
-                        background-color: #f1f1f1;
+                        color: #fff;
+                        &:before{
+                            top: -60px;
+                            left: -60px;
+                            transition-duration: 0.3s;
+                        }
                     }
                 }
             }
             a {
                 cursor: pointer;
                 font-family: KomikaTitle;
-                font-size: 30px;
+                font-size: 25px;
                 letter-spacing: 1px;
                 color: #ffffff;
                 text-decoration: none;
@@ -304,7 +455,7 @@
                 padding: 25px 0 25px 35px;
             }
             &.animate {
-                a {
+                .wavetext {
                     animation: itensMenu .4s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
                 }
             }
@@ -490,9 +641,18 @@ footer {
             li {
                 a {
                     font-size: 17px;
-                    letter-spacing: 0.6px;
+                    letter-spacing: 0px;
                     text-align: center;
                     padding: 17px 0px;
+                }
+                .wavetext {
+                    padding: 12px 0px;
+                    margin-bottom: 0px;
+                    margin-left: 0px !important;
+                    animation: none !important;
+                    span {
+                        animation: none !important;
+                    }
                 }
                 &.purple {
                     background: asset-url('site/ramona_menu.png') center center no-repeat;

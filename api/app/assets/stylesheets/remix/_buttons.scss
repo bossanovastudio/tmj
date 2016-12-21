@@ -1,12 +1,14 @@
 .btn {
   cursor: pointer;
   font-family: 'KomikaTitle';
-  font-size: 16px;
-  line-height: 18px;
-  padding: 10px 15px;
+  line-height: 14px;
+  padding: 6px 15px;
+  line-height: 20px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
   img {
-    max-height: 18px;
-    max-width: 18px;
+    max-height: 16px;
+    max-width: 16px;
     vertical-align: middle;
   }
   &:hover {
@@ -15,19 +17,20 @@
 }
 
 .btn-xs {
-  padding: 5px 10px;
+  padding: 5px 13px;
 }
 
 .btn-default {
   background-color: #FFF;
   border: 1px solid #000;
+  height: 33px;
+  font-size: 18px !important;
+  line-height: 20px !important;
   -webkit-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
   -moz-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
   box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
   margin-bottom: 4px;
   margin-right: 4px;
-  width: 70px;
-  height: 32px;
   transition-duration: 0.2s;
   overflow: hidden;
   position: relative;
@@ -148,11 +151,16 @@
 
 @include mq-from-sm {
   .btn {
+    line-height: 14px;
+    padding: 6px 15px;
     line-height: 20px;
-    font-size: 18px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
     img {
-      max-height: 20px;
-      max-width: 20px;
+      max-height: 16px;
+      max-width: 16px;
+      margin-top: 3px;
+      vertical-align: middle;
     }
   }
 }

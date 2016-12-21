@@ -50,7 +50,7 @@
             <ul>
               <li class="ramona">
                 <img src="<%=asset_url('site/icone-ramona.svg')%>" alt="">
-                <p class="number recommendcounter">{{currentUser.ramona_recommendations}}</p>
+                <p class="number recommendcounter">{{currentUser.ramona_recommendations ? currentUser.ramona_recommendations : 0}}</p>
               </li>
               <li class="geek">
                 <!-- <img src="<%=asset_url('site/icone-geek.svg')%>" alt="">

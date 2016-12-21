@@ -1,6 +1,8 @@
 var toggled;
 
-$('#menu').click(function() {
+
+
+$('#menu, .overlay').click(function() {
     $("#menu").toggleClass('open');
     toggled ? closeMenu() : openMenu();
     toggled = !toggled;

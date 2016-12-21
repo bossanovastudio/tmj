@@ -67,6 +67,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             setTimeout(function() { t.addClass('animate'); }, (i + 1) * 50);
                         });
                     }, 1600);
+                    setTimeout(function(){
+                        $('.author').addClass('animate');
+                        $('.recommendation').addClass('animate');
+                    }, 1000);
                     $('.content-no-cards').css('display', 'block');
                     $rootScope.imgNoCards = "<%= asset_url('site/no_card_loggedUser.png')%>"
                     $rootScope.imgNoCardsCurrent = "<%= asset_url('site/no_card_currentUser.png')%>"
@@ -139,6 +143,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                                 setTimeout(function() { t.addClass('animate'); }, (i + 1) * 50);
                             });
                         }, 1600);
+                        setTimeout(function(){
+                            $('.author').addClass('animate');
+                            $('.recommendation').addClass('animate');
+                        }, 1000);
                     } else {
                         setTimeout(function() {
                             $('.cards').removeClass('loading');
@@ -168,6 +176,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         setTimeout(function() { t.addClass('animate'); }, (i + 1) * 50);
                     });
                 }, 1600);
+                setTimeout(function(){
+                    $('.author').addClass('animate');
+                    $('.recommendation').addClass('animate');
+                }, 1000);
             });
         $rootScope.track('load', 'cards', 'content');
     }

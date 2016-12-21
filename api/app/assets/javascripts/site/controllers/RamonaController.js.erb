@@ -75,6 +75,7 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
             .then(function(response) {
                 $scope.currentUser.following = true;
                 $scope.currentUser.followers++;
+                $(".follow").addClass('following');
             });
         }
     }
@@ -90,6 +91,7 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
         .then(function(response) {
             $scope.currentUser.following = false;
             $scope.currentUser.followers--;
+            $(".follow").removeClass('following');
         });
     }
 
