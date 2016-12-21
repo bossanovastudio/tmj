@@ -2046,15 +2046,15 @@ p.content a {
         // }
         #ramona-bg {
             display: none;
-            height: 110%;
+            height: 120%;
             width: 100%;
             position: fixed;
-            top: -5%;
+            top: -10%;
             left: 0 !important;
             right: 0;
-            bottom: -5%;
+            bottom: -10%;
             img {
-                height: 105%;
+                height: 110%;
             }
         }
         &:after {
@@ -2072,9 +2072,6 @@ p.content a {
             &:hover{
                 p.read-more:before {
                     left: 100px;
-                }
-                div.img{
-                    background-size: 100%;
                 }
             }
         }
@@ -2173,6 +2170,7 @@ p.content a {
         }
         .img {
             min-height: 200px;
+            background-size: cover !important;
         }
     }
     #menu {
