@@ -329,6 +329,7 @@ section {
 
             .wavetext {
                 transition-duration: 0.2s;
+                margin-bottom: 2px;
                 span {
                   font-family: KomikaTitle;
                   font-size: 25px;
@@ -490,16 +491,17 @@ section {
                     background-color: #ffffff;
                     color: #000000;
                     width: 80px;
-                    height: 40px;
-                    line-height: 40px;
+                    height: 33px;
+                    line-height: 32px;
                     text-align: center;
                     padding: 0;
-                    margin: 15px 35px 15px 0;
+                    margin: 18px 35px 15px 0;
                     -webkit-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
                     -moz-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
                     box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
                     border: 1px solid #000000;
                     overflow: hidden;
+                    letter-spacing: 0px;
                     transition-duration: $anim-normal;
 
                     &:before{
@@ -2199,9 +2201,12 @@ p.content a {
                 }
                 a {
                     font-size: 17px;
-                    letter-spacing: 0.6px;
+                    letter-spacing: 0px;
                     text-align: center;
                     padding: 17px 0px;
+                }
+                .wavetext {
+                    padding: 12px 0px;
                 }
                 &.purple {
                     background: asset-url('site/ramona_menu.png') center center no-repeat;
