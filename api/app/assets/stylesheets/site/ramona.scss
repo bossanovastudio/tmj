@@ -536,6 +536,7 @@ body.ramona {
 
 @media only screen and (max-device-width: 550px) {
     body.ramona {
+      background-size: cover;
         .cards {
             padding-top: 55px !important;
         }
