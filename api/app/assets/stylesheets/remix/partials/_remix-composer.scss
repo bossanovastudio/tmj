@@ -586,7 +586,22 @@
     &.can-compose {
       .remix-composer {
         .actions .start-over {
-          display: inline-block;
+            display: inline-block;
+            position: relative;
+            .toggler-shad-icon {
+                position: absolute;
+                top: 13px;
+                left: 7px;
+                z-index: -1;
+            }
+            &:hover{
+                .toggler-main-icon {
+                    transform: translate(1px , 1px);
+                }
+                .toggler-shad-icon {
+                    opacity: 0;
+                }
+            }
         }
         .toolbox .publish { // fixme: misplaced
           display: block;
@@ -596,9 +611,41 @@
     &.can-share {
       .remix-composer {
         .actions {
-          .download,
+          .download{
+            display: inline-block;
+            position: relative; 
+            .toggler-shad-icon {
+                position: absolute;
+                top: 14px;
+                left: 9px;
+                z-index: -1;
+            }
+            &:hover{
+                .toggler-main-icon {
+                    transform: translate(1px , 1px);
+                }
+                .toggler-shad-icon {
+                    opacity: 0;
+                }
+            }
+          }
           .remove {
             display: inline-block;
+            position: relative; 
+            .toggler-shad-icon {
+                position: absolute;
+                top: 14.5px;
+                left: 9.7px;
+                z-index: -1;
+            }
+            &:hover{
+                .toggler-main-icon {
+                    transform: translate(1px , 1px);
+                }
+                .toggler-shad-icon {
+                    opacity: 0;
+                }
+            }
           }
         }
       }
