@@ -20,7 +20,7 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
         $scope.currentUser.username = response.data.username;
         $scope.currentUser.image = response.data.image;
         setTimeout(function() {
-            $('.avatar').css('background-image', "url("+$scope.currentUser.image+")");
+            $('.box-avatar-user .avatar').css('background-image', "url("+$scope.currentUser.image+")");
         }, 1000);
         setTimeout(function() {
           $('.recommendcounter').css('opacity', '1');
