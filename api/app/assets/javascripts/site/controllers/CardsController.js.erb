@@ -348,7 +348,14 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     $location.path("/detalhe/card/" + $rootScope.card.id, false);
 
                     if (isMobileDevice) {
-                        var card = $(elem).closest('.card').clone();
+                        // FIXME: This is hackish af, so someone please do find a
+                        // better way to deal with this, ffs.
+                        var card;
+                        if(data.kind !== 'image') {
+                            card = $(elem).closest('.card.' + data.kind).clone();
+                        } else {
+                            card = $(elem).closest('.card:not(.text, .video)');
+                        }
                         card.css({
                             "position": "absolute",
                             "left": "50%",
@@ -384,9 +391,13 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                                     overflow: 'auto'
                                 });
                             } else {
+                                console.log(data.image.url);
                                 var h = $scope.imageHeightMobile();
+                                $('.card').last().find('.img').css({
+                                    'background-image': 'url(' + data.image.url + ')'
+                                });
                                 $('.card').last().find('.img').animate({
-                                    height: h
+                                    height: h,
                                 }, 300);
                                 $('.card').last().find('.content').animate({
                                     height: 'auto'
@@ -410,7 +421,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             $('.card').last().find('.close').css({
                                 display: 'block'
                             });
-                        }, 1);
+                        }, 1000);
                     } else {
                         if (force || $rootScope.card.kind == 'image' || $rootScope.card.content.length > 300 || $rootScope.card.kind == 'video') {
                             setTimeout(function() {
