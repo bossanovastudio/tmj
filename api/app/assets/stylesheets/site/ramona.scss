@@ -170,6 +170,15 @@ body.ramona {
                     left: -50%;
                     top: -50%;
                 }
+                &.following{
+                    background-color: transparent;
+                    &:hover {
+                        color: #000;
+                    }
+                    &:before {
+                        background: #CE87EA;
+                    }
+                }
                 .text {
                   font-family: KomikaTitle;
                   cursor: pointer;
