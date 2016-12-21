@@ -1,5 +1,6 @@
 body.profile {
     background: #987CD0 asset-url('site/bg_login.jpg') no-repeat center center fixed;
+    background-size: cover;
     min-height: 100%;
     min-width: 600px;
     .initial-loading {
@@ -545,6 +546,7 @@ body.profile {
 @media only screen and (max-device-width: 550px) {
     body.login, body.profile, body.edit-user {
         background: #987CD0 asset-url('site/bg_login_mobile.jpg') no-repeat center center fixed;
+        background-size: cover;
         .cards {
             padding-top: 55px !important;
         }
