@@ -28,7 +28,7 @@ body.ramona {
         flex-wrap: nowrap;
         opacity: 0;
         &.animate{
-            animation: enterAuthor 0.6s linear forwards;
+            animation: enterAuthor 0.5s linear forwards;
         }
         .columns {
             order: 2;

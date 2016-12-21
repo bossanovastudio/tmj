@@ -33,7 +33,7 @@ body.profile {
         flex-wrap: nowrap;
         opacity: 0;
         &.animate{
-            animation: enterAuthor 0.6s linear forwards;
+            animation: enterAuthor 0.4s linear forwards;
         }
         .columns {
             order: 2;
@@ -248,8 +248,10 @@ body.profile {
             right: 20px;
             top: 0px;
             text-align: center;
+            opacity: 0;
             &.animate{
-                animation: enterAuthor 0.8s linear forwards;
+                animation: enterReco 0.2s linear forwards;
+                animation-delay: 0.4s;
             }
             .label{
                 font-family: KomikaTitle;
@@ -572,6 +574,16 @@ body.profile {
     from {
         opacity: 0;
         transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes enterReco {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
     }
     to {
         opacity: 1;
