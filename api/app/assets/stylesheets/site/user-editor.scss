@@ -146,6 +146,7 @@
                 }
             }
             textarea {
+                height: 80px;
                 resize: none;
                 border: 1px solid #fff;
                 border-radius: 0;
@@ -157,8 +158,10 @@
                 color: #ffffff;
                 font-weight: bold;
                 letter-spacing: 0.4px;
-                font-size: 13px;
+                font-size: 14px;
+                line-height: 18px;
                 background-color: rgba(0, 0, 0, 0.25)
+
             }
         }
         .checksocial {
@@ -170,7 +173,7 @@
             li {
                 display: inline-block;
                 list-style: none;
-                margin-bottom: 10px;
+                margin: 0 5px 15px 0;
                 .img-social {
                     width: 30x;
                     height: 30px;
@@ -629,5 +632,13 @@
             background: asset-url('site/edit-icon.svg');
             visibility: none;
         }
+    }
+    form .bio textarea {
+      height: auto !important;
+      font-size: 13px;
+      line-height: 17px;
+    }
+    .checksocial li {
+      margin: 0 0 5px 0;
     }
 }
