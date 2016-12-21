@@ -4,8 +4,7 @@ services:
   api:
     build: api
     volumes:
-      - ./api:/var/www/app
-    command: sh -c "QUEUE=* rake environment resque:work & bundle exec rails s -p 3000 -b 0.0.0.0 -P/dev/null"
+      - ./api:/app
     ports:
       - "3000:3000"
     links:
@@ -13,54 +12,52 @@ services:
       - redis
       - cache
     env_file:
-      - ./env/.env
+      - .env
 
-  crawler_sn:
-    extends:
-      file: crawlers/docker-compose-base.yml
-      service: crawler-base
+  resque:
+    build: api
+    command: rake environment resque:work
     volumes:
-      - ./crawlers:/var/app
-      - /bundler
+      - ./api:/app
+    links:
+      - db
+      - redis
+      - cache
+    env_file:
+      .env
+
+  crawler:
+    build: crawlers
     command: bundle exec bin/crawler
     links:
       - db
-    env_file:
-      - ./env/.env
-
-  crawler_parser:
-    extends:
-      file: crawlers/docker-compose-base.yml
-      service: crawler-base
     volumes:
-      - ./crawlers:/var/app
+      - ./crawlers:/app
       - /bundler
+    env_file:
+      - .env
+
+  parser:
+    build: crawlers
     command: bundle exec bin/parser
     links:
       - db
       - api
+    depends_on:
+      - api
+    volumes:
+      - ./crawlers:/app
+      - /bundler
     env_file:
-      - ./env/.env
+      - .env
 
   db:
-    image: postgres
+    image: postgres:9.6-alpine
     volumes:
       - ./db/data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-    env_file:
-      - ./env/.env
 
   cache:
-    image: memcached
-    volumes:
-      - ./db/data:/var/lib/memcached/data
-    env_file:
-      - ./env/.env
+    image: memcached:alpine
 
   redis:
-    image: redis
-    volumes:
-      - ./db/data:/var/lib/redis/data
-    env_file:
-      - ./env/.env
+    image: redis:alpine

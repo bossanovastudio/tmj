@@ -28,10 +28,14 @@ ENV LC_ALL en_US.UTF-8
 
 RUN echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
 
-RUN mkdir -p /var/www/app
-WORKDIR /var/www/app
+RUN mkdir -p /app
+WORKDIR /app
 
-COPY . ./
+COPY Gemfile* /app/
 RUN gem install bundler && bundle install --jobs 20 --retry 5
 
+COPY . ./
+
 EXPOSE 3000
+
+CMD ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0", "-P", "/dev/null"]
