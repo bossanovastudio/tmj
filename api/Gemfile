@@ -69,6 +69,9 @@ gem 'mailgun_rails'
 # A recommendation engine using Likes and Dislikes for your Ruby/Redis application.
 gem 'recommendable'
 
+# A Gem to add Follow functionality for models
+gem 'acts_as_follower'
+
 # Adds a custom CSV renderer to Rails applications
 gem 'render_csv', '~> 2.0'
 

@@ -54,7 +54,7 @@
         <div ng-if="cards.length == 0 && isMobile" class="card one-five column text end" style="height: 84%; background: transparent !important;"><img style="position: absolute; left: 50%; top: 50%; margin-left: -105px; margin-top: -207px;" src="<%= asset_url('site/no_card_loggedUser_mob.png')%>" /></div>
         <div ng-if="cards.length > 0 && isMobile" class="card one-five column text end" style="height: 84%; background: transparent !important;"><img style="position: absolute; left: 50%; top: 50%; margin-left: -35px; margin-top: -20px;" src="<%= asset_url('site/end.svg') %>" /></div>
     </div>
-    <div resize ng-if="ready && pageName == 'homePage'" class="container cards mobile ramona" ng-swipe-left="swipeLeft($event, 'ramona')" ng-swipe-right="swipeRight($event, 'ramona')" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()" data-page="1" data-slug="ramona">
+    <div resize ng-if="ready && pageName == 'homePage'" class="container cards mobile ramona" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown('ramonaSection')" data-page="1" data-slug="ramona">
         <div ng-if="isMobileDevice" id="ramona-bg"><img src="<%= asset_url('site/bg_ramona_mobile.jpg') %>"/></div>
         <div ng-repeat="card in cardsRamona track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}">
             <div ng-if="card.kind!='video'" card-class ng-classes="card" data-original="{{card.image.url}}" class="img">

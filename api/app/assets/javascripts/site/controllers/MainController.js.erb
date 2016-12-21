@@ -100,7 +100,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
     $scope.likeCard = function($event, id) {
         var elem = $(angular.element($event.target)).closest('.lightbox');
         var heart = elem.find('.heart');
-        var count = parseInt(elem.find('.counter').text());
+        var card = $('[data-id="'+id+'"]');
         if (!heart.parent().hasClass('liked')) {
             $http({
                     method: 'GET',
@@ -108,13 +108,15 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                 })
                 .success(function(data) {
                     heart.attr('src', '<%= asset_url('site/like-ativo.svg')%>');
-                    count++;
-                    heart.parent().find('.counter').html('&nbsp;' + count);
+                    heart.parent().find('.counter').html('&nbsp;' + data.likes);
                     heart.parent().addClass('liked');
                     heart.parent().find('.love-explosion').addClass('anim');
                     setTimeout(function() {
                         heart.parent().find('.love-explosion').removeClass('anim');
                     }, 1100);
+                    card.find('.heart').attr('src', '<%= asset_url('site/like-ativo.svg')%>');
+                    card.find('.counter').html('&nbsp;' + data.likes);
+                    card.find('.share a').addClass('liked');
                 })
                 .error(function(data) {
                     window.location = '/login';
@@ -127,10 +129,12 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                 })
                 .success(function(data) {
                     heart.attr('src', '<%= asset_url('site/like.svg')%>');
-                    count--;
-                    heart.parent().find('.counter').html('&nbsp;' + count);
+                    heart.parent().find('.counter').html('&nbsp;' + data.likes);
                     heart.parent().removeClass('liked');
                     heart.parent().find('.love-explosion').removeClass('anim');
+                    card.find('.heart').attr('src', '<%= asset_url('site/like.svg')%>');
+                    card.find('.counter').html('&nbsp;' + data.likes);
+                    card.find('.share a').removeClass('liked');
                 })
                 .error(function(data) {
                     window.location = '/login';

@@ -40,7 +40,9 @@ class User < ActiveRecord::Base
 
   has_many :providers
   has_many :cards, through: :providers
-  recommends :cards, :users
+  recommends :cards
+  acts_as_followable
+  acts_as_follower
 
   after_create :send_welcome_email
 

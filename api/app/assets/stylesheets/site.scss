@@ -44,11 +44,13 @@ body {
 
     &.homePage {
         background: #809ED4 asset-url('site/bg.jpg') no-repeat center center fixed;
+        background-size: cover;
     }
     &.login,
     &.profile,
     &.edit-user {
         background: #987CD0 asset-url('site/bg_login.jpg') no-repeat center center fixed;
+        background-size: cover;
     }
 }
 
@@ -1125,7 +1127,6 @@ div.card {
     &.remixlike,
     &.ramonalike,
     &.geeklike {
-        padding-top: 29px;
         &:before{
             content: '';
             position: absolute;
@@ -1356,7 +1357,7 @@ div.card {
                     position: absolute;
                     top: 10px;
                     left: 17px;
-                    background-image: asset-url('site/facebook-form.svg');
+                    background-image: image-url('site/facebook-form.svg');
                 }
             }
             &.btn-twitter {
@@ -1373,7 +1374,7 @@ div.card {
                     position: absolute;
                     top: 10px;
                     left: 17px;
-                    background-image: asset-url('site/twitter-form.svg');
+                    background-image: image-url('site/twitter-form.svg');
                 }
             }
             &.btn-instagram {
@@ -1390,7 +1391,7 @@ div.card {
                     position: absolute;
                     top: 10px;
                     left: 17px;
-                    background-image: asset-url('site/instagram-form.svg');
+                    background-image: image-url('site/instagram-form.svg');
                 }
             }
             &.btn-submit {
@@ -2053,7 +2054,7 @@ p.content a {
     body {
         background-size: cover;
         &.login {
-            background-image: asset-url('site/bg_login_mobile.jpg');
+            background-image: image-url('site/bg_login_mobile.jpg');
             section {
                 overflow: auto;
             }
@@ -2085,17 +2086,20 @@ p.content a {
         overflow: hidden;
         padding-top: 80px;
         // margin-top: -5% !important;
-        &.ramona {
-            background: #E88EDB asset-url('site/bg_ramona_mobile.jpg');
-        }
+        // &.ramona {
+        //     background: #E88EDB asset-url('site/bg_ramona_mobile.jpg');
+        // }
         #ramona-bg {
-            height: 100%;
+            display: none;
+            height: 120%;
             width: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
+            position: fixed;
+            top: -10%;
+            left: 0 !important;
+            right: 0;
+            bottom: -10%;
             img {
-                height: 105%;
+                height: 110%;
             }
         }
         &:after {
@@ -2113,9 +2117,6 @@ p.content a {
             &:hover{
                 p.read-more:before {
                     left: 100px;
-                }
-                div.img{
-                    background-size: 100%;
                 }
             }
         }
@@ -2214,6 +2215,7 @@ p.content a {
         }
         .img {
             min-height: 200px;
+            background-size: cover !important;
         }
     }
     #menu {

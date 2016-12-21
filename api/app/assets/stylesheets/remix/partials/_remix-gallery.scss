@@ -8,9 +8,15 @@
   .gallery-item {
     margin-bottom: 10px;
     margin-top: 10px;
+    overflow: hidden;
+    &:hover img.picture{
+        transform: scale(1.1);
+        transition-duration: 0.2s;
+    }
     .picture {
       cursor: pointer;
       width: 100%;
+      transition-duration: 0.2s;
     }
     .actions {
       @include clearfix;
@@ -40,6 +46,7 @@
     display: none;
     margin-bottom: 10px;
     margin-top: 10px;
+    overflow: hidden;    
     &:before {
       background-color: #FFF;
       content: '';
@@ -58,6 +65,10 @@
       transform: translate(-50%, -50%);
       top: 50%;
       left: 50%;
+      transition-duration: 0.2s;
+    }
+    &:hover:after{
+        font-size: 60px;
     }
   }
   @include mq-only-xs {
@@ -91,6 +102,19 @@
       display: block;
     }
   }
+    @include mq-to-sm() {
+        .gallery-item {
+          &:hover img.picture{
+            transform: none;
+            transition-duration: 0s;
+          }
+        }
+        .gallery-item-new{
+            &:hover:after{
+                font-size: 48px;
+            }
+        }
+    }
 }
 
 // States

@@ -206,8 +206,8 @@
             }
             input.cmn-toggle-round + label:before {
                 right: 1px;
-                background: url('site/toggle-on.svg') 10px 10px no-repeat, /* On top,    like z-index: 4; */
-                url('site/toggle-off.svg') 35px 9px no-repeat, ;
+                background: asset-url('site/toggle-on.svg') 10px 10px no-repeat, /* On top,    like z-index: 4; */
+                asset-url('site/toggle-off.svg') 35px 9px no-repeat, ;
                 background-color: #000;
                 border-radius: 2px;
                 transition: opacity 0.4s;
@@ -467,7 +467,7 @@
                 top: -20px;
                 left: 10px;
                 background: no-repeat asset-url('site/arrow-login.svg');
-                transition: $anim-fast cubic-bezier(.14,1.18,.73,1.19);              
+                transition: $anim-fast cubic-bezier(.14,1.18,.73,1.19);
             }
             &.show {
                 // display: block;
@@ -579,6 +579,7 @@
         right: 10px;
         outline: none;
         background-color: transparent;
+        background-size: cover;
         border: none;
     }
     .edit-user header {

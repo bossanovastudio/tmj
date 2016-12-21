@@ -4,7 +4,7 @@ MAINTAINER hey@vito.io
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
-ENV BUNDLE_GEMFILE=/var/app/Gemfile \
+ENV BUNDLE_GEMFILE=/app/Gemfile \
   BUNDLE_JOBS=2 \
   BUNDLE_PATH=/bundle
 
@@ -29,8 +29,8 @@ RUN apt-get update -qq && apt-get install -y \
 RUN locale-gen en_US.UTF-8
 RUN echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
 
-RUN mkdir -p /var/app
-WORKDIR /var/app
+RUN mkdir -p /app
+WORKDIR /app
 ADD Gemfile* ./
 
 RUN bundle install --jobs 20 --retry 5

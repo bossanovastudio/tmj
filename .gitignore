@@ -1,8 +1,10 @@
 .DS_store
-env/.env
-env/staging.env
-env/production.env
+.env
+staging.env
+production.env
 log/
 /db
 .byebug_history
 .elasticbeanstalk
+node_modules/
+tmp/

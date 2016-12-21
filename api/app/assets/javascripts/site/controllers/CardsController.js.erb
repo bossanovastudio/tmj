@@ -153,9 +153,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
                         if ($routeParams.id && !$rootScope.cardDetailOpened) {
                             $rootScope.cardDetailOpened = true;
-                            angular.element('.cards:nth-child(3) .card:first-child').triggerHandler('click');
+                            if(isMobileDevice) {
+                                $scope.openCard({ target: $('.cards:nth-child(3) .card:first-child').first() }, $routeParams.id, {});
+                            }
                         }
-
                     }, 1000);
                 }
             }, function(data) {
@@ -203,7 +204,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
     var running = false;
 
-    $scope.swipeLeft = function($event, sectionName) {
+    $scope.swipeLeft = function($event) {
         if (!running) {
             running = true;
             var e = angular.element($event.target);
@@ -251,18 +252,12 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 }
             }
             $scope.lazyLoad(false);
-
-            if (sectionName == 'ramona') {
-                $('#ramona-bg').css({
-                  'left': - walk
-                });
-            }
         }
         $rootScope.track('swipe', 'cards', 'left');
 
     }
 
-    $scope.swipeRight = function($event, sectionName) {
+    $scope.swipeRight = function($event) {
         var e = angular.element($event.target);
         e = $(e);
         if (!e.hasClass('container')) {
@@ -276,12 +271,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             left: walk
         }, 250, 'easeOutExpo');
         $rootScope.track('swipe', 'cards', 'right');
-
-        if (sectionName == 'ramona') {
-          $('#ramona-bg').css({
-              'left': - walk
-          });
-        }
     }
 
     var distanceTop = 0;
@@ -304,9 +293,13 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             $rootScope.animateInitial();
         }, 1000);
         $rootScope.track('swipe', 'cards', 'up');
+
+        if (section == 'mainSection') {
+            $('#ramona-bg').show();
+        }
     }
 
-    $scope.swipeDown = function() {
+    $scope.swipeDown = function(section) {
         distanceTop = $(window).height();
         $('.arrowBottom').fadeIn();
         cardPage--;
@@ -324,6 +317,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
             $rootScope.animateInitial();
         }, 1000);
         $rootScope.track('swipe', 'cards', 'down');
+
+        if (section == 'ramonaSection') {
+            $('#ramona-bg').hide();
+        }
     }
 
     $scope.redirectToHome = function() {
@@ -339,7 +336,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 $rootScope.track('click', 'featured', 'open');
             }
         } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('originalPost') && !elem.hasClass('shareButton')) {
-            console.log($routeParams.id);
             $http.get(API_URL + 'cards/' + id + '.json')
                 .success(function(data) {
                     $rootScope.card = data;
@@ -347,7 +343,14 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     $location.path("/detalhe/card/" + $rootScope.card.id, false);
 
                     if (isMobileDevice) {
-                        var card = $(elem).closest('.card').clone();
+                        // FIXME: This is hackish af, so someone please do find a
+                        // better way to deal with this, ffs.
+                        var card;
+                        if(data.kind !== 'image') {
+                            card = $(elem).closest('.card.' + data.kind).clone();
+                        } else {
+                            card = $(elem).closest('.card:not(.text, .video)');
+                        }
                         card.css({
                             "position": "absolute",
                             "left": "50%",
@@ -383,9 +386,13 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                                     overflow: 'auto'
                                 });
                             } else {
+                                console.log(data.image.url);
                                 var h = $scope.imageHeightMobile();
+                                $('.card').last().find('.img').css({
+                                    'background-image': 'url(' + data.image.url + ')'
+                                });
                                 $('.card').last().find('.img').animate({
-                                    height: h
+                                    height: h,
                                 }, 300);
                                 $('.card').last().find('.content').animate({
                                     height: 'auto'
@@ -409,14 +416,26 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             $('.card').last().find('.close').css({
                                 display: 'block'
                             });
-                        }, 1);
+                        }, 1000);
                     } else {
                         if (force || $rootScope.card.kind == 'image' || $rootScope.card.content.length > 300 || $rootScope.card.kind == 'video') {
                             setTimeout(function() {
                                 $('html').css({ overflow: "hidden" });
                             }, 1000);
+
                             var lightbox = angular.element(document.querySelector('.lightbox'));
                             var lightboxDetail = angular.element(document.querySelector('.lightbox .detail'));
+
+                            lightbox.find('.counter').html('&nbsp;' + $rootScope.card.likes);
+
+                            if (!$('[data-id="'+$rootScope.card.id+'"]').find('.share a').hasClass('liked')) {
+                                lightbox.find('.heart').attr('src', '<%= asset_url('site/like.svg')%>');
+                                lightbox.find('.share a').removeClass('liked');
+                            } else {
+                                lightbox.find('.heart').attr('src', '<%= asset_url('site/like-ativo.svg')%>');
+                                lightbox.find('.share a').addClass('liked');
+                            }
+
                             lightbox.addClass('show');
                             lightboxDetail.addClass('show');
                         }
@@ -461,7 +480,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope.likeCard = function($event, id) {
         var elem = $(angular.element($event.target)).closest('.card');
         var heart = elem.find('.heart');
-        var count = parseInt(elem.find('.counter').text());
+        var card = $('[data-id="'+id+'"]');
         if (!heart.parent().hasClass('liked')) {
             $http({
                     method: 'GET',
@@ -469,8 +488,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 })
                 .success(function(data) {
                     heart.attr('src', '<%= asset_url('site/like-ativo.svg')%>');
-                    count++;
-                    heart.parent().find('.counter').html('&nbsp;' + count);
+                    heart.parent().find('.counter').html('&nbsp;' + data.likes);
                     heart.parent().addClass('liked');
                     heart.parent().find('.love-explosion').addClass('anim');
                     setTimeout(function() {
@@ -488,8 +506,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 })
                 .success(function(data) {
                     heart.attr('src', '<%= asset_url('site/like.svg')%>');
-                    count--;
-                    heart.parent().find('.counter').html('&nbsp;' + count);
+                    heart.parent().find('.counter').html('&nbsp;' + data.likes);
                     heart.parent().removeClass('liked');
                     heart.parent().find('.love-explosion').removeClass('anim');
                 })

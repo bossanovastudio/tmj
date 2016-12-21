@@ -1,0 +1,6 @@
+.ebextensions
+.elasticbeanstalk
+log/
+tmp/
+deployment/
+db/

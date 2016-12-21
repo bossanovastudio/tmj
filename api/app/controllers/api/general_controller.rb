@@ -40,18 +40,23 @@ class Api::GeneralController < ApplicationController
     @cards = @user.cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1).approved.ordered
   end
 
+  def liked
+    @user = User.find_by!(username: params[:username])
+    @cards = @user.liked_cards
+  end
+
   def profile
     @user = User.find_by!(username: params[:username])
   end
 
   def follow
     user = User.find_by!(username: params[:username])
-    current_user.bookmark user
+    current_user.follow user
   end
 
   def unfollow
     user = User.find_by!(username: params[:username])
-    current_user.unbookmark user
+    current_user.stop_following user
   end
 
   private
