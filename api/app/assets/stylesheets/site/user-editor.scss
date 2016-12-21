@@ -134,7 +134,7 @@
         .bio {
             // display: none;
             label {
-                padding-left: 24px;
+                padding-left: 20px;
                 &:after {
                     content: '';
                     width: 14px;
@@ -148,10 +148,12 @@
             textarea {
                 resize: none;
                 border: 1px solid #fff;
+                border-radius: 0;
+                -webkit-appearance: none;
                 width: 100%;
                 resize: vertical;
                 margin: 5px 0;
-                padding: 3px;
+                padding: 10px 15px;
                 color: #ffffff;
                 font-weight: bold;
                 letter-spacing: 0.4px;
@@ -467,7 +469,7 @@
                 top: -20px;
                 left: 10px;
                 background: no-repeat asset-url('site/arrow-login.svg');
-                transition: $anim-fast cubic-bezier(.14,1.18,.73,1.19);              
+                transition: $anim-fast cubic-bezier(.14,1.18,.73,1.19);
             }
             &.show {
                 // display: block;
@@ -567,7 +569,13 @@
     }
     .container .box-avatar {
         margin-left: 0;
-        margin: 0 auto;
+        margin: 20px auto 15px auto;
+        width: 125px;
+        height: 125px;
+        div.avatar {
+            width: 125px;
+            height: 125px;
+        }
     }
 }
 
@@ -575,8 +583,8 @@
     body.edit-user .close-edit {
         display: block;
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 24px;
+        right: 18px;
         outline: none;
         background-color: transparent;
         border: none;
@@ -600,8 +608,8 @@
     }
     .box-avatar {
         .avatar_hover {
-            width: 200px;
-            height: 200px;
+            width: 125px;
+            height: 125px;
             position: absolute;
             top: 0;
             left: 0;
