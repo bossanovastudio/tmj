@@ -5,7 +5,6 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
 
     var distanceTop = 0;
 
-    $scope.following = false;
     $scope.currentUser = {};
 
     $http.get('/api/user/ramona/profile.json', {
@@ -19,6 +18,8 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
         $scope.currentUser.bio = response.data.bio;
         $scope.currentUser.username = response.data.username;
         $scope.currentUser.image = response.data.image;
+        $scope.currentUser.followers = response.data.followers;
+        $scope.currentUser.following = response.data.following;
         setTimeout(function() {
             $('.box-avatar-user .avatar').css('background-image', "url("+$scope.currentUser.image+")");
         }, 1000);
@@ -72,7 +73,8 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
                 }
             })
             .then(function(response) {
-                $scope.following = true;
+                $scope.currentUser.following = true;
+                $scope.currentUser.followers++;
                 $(".follow").addClass('following');
             });
         }
@@ -87,7 +89,8 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
             }
         })
         .then(function(response) {
-            $scope.following = false;
+            $scope.currentUser.following = false;
+            $scope.currentUser.followers--;
             $(".follow").removeClass('following');
         });
     }

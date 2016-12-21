@@ -90,7 +90,7 @@ section {
     cursor: pointer;
     display: inline-block;
     #nav-icon4 {
-        width: 18px;
+        width: 24px;
         height: 18px;
         position: absolute;
         top: 14px;
@@ -1584,7 +1584,13 @@ div.card {
                     position: relative;
                     float: left;
                     margin-right: 5px;
+<<<<<<< HEAD
                     transition-duration: 0.2s;
+=======
+                    &.locker{
+                        background-image: image-url('site/lock.png') !important;
+                    }
+>>>>>>> dev
                 }
                 &.register li {
                     background: asset-url('img/pass-silhuete.png')
@@ -2231,8 +2237,8 @@ p.content a {
             display: none;
         }
         #nav-icon4 {
-            top: 5px;
-            left: -5px;
+            top: 15px;
+            left: 0;
         }
     }
     .sidebar {
