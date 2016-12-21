@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
       if user_signed_in?
         super
       else
+        return render nothing: true, status: 403 if request.format.symbol == :json
         redirect_to "/login?redirect_url=#{request.path}"
       end
     end

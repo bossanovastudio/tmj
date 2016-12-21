@@ -88,7 +88,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
         if ($scope.open) {
             if ($scope.passwordPlaceholder || position == 'first' || $scope.passwordChoice.length == 4) {
               $scope.numClick = 0;
-
+                
               $('.after').css({ "left": 10 });
             }
             $('.overlay-pass').css({ "display": "block" });
