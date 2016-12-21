@@ -2073,9 +2073,6 @@ p.content a {
                 p.read-more:before {
                     left: 100px;
                 }
-                div.img{
-                    background-size: 100%;
-                }
             }
         }
     }
@@ -2173,6 +2170,7 @@ p.content a {
         }
         .img {
             min-height: 200px;
+            background-size: cover !important;
         }
     }
     #menu {
