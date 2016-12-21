@@ -16,9 +16,9 @@
               <p class="editor">{{currentUser.username}}</p>
               <p class="position">Editor TMJ</p>
             </div>
-            <a ng-click="!following ? followUser() : unFollowUser()" class="follow">
-              <div class="text" ng-if="!following">SEGUIR</div>
-              <div class="text" ng-if="following">SEGUINDO</div>
+            <a ng-click="!currentUser.following ? followUser() : unFollowUser()" class="follow">
+              <div class="text" ng-if="!currentUser.following">SEGUIR</div>
+              <div class="text" ng-if="currentUser.following">SEGUINDO</div>
             </a>
             <div class="followers">
               <p class="number">{{currentUser.followers}} {{currentUser.followers > 1 ? 'seguidores' : 'seguidor'}}</p>
