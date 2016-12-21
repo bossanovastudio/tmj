@@ -153,9 +153,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
                         if ($routeParams.id && !$rootScope.cardDetailOpened) {
                             $rootScope.cardDetailOpened = true;
-                            angular.element('.cards:nth-child(3) .card:first-child').triggerHandler('click');
+                            if(isMobileDevice) {
+                                $scope.openCard({ target: $('.cards:nth-child(3) .card:first-child').first() }, $routeParams.id, {});
+                            }
                         }
-
                     }, 1000);
                 }
             }, function(data) {
