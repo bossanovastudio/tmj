@@ -88,7 +88,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
         if ($scope.open) {
             if ($scope.passwordPlaceholder || position == 'first' || $scope.passwordChoice.length == 4) {
               $scope.numClick = 0;
-                
+              $('.input-pass').removeClass('error');
               $('.after').css({ "left": 10 });
             }
             $('.overlay-pass').css({ "display": "block" });
@@ -126,10 +126,15 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
         if (!$scope.form.username || $scope.form.username.length < 1) {
             $scope.msg_username = 'Preencha seu apelido';
             $scope.msg_pass = '';
+            $('input[name="username"]').addClass('error');
+            $('.input-pass').removeClass('error');
             return false;
         } else if ($scope.form.password.length != 12) {
             $scope.msg_pass = 'Senha inválida';
             $scope.msg_username = '';
+            
+            $('.input-pass').addClass('error');
+            $('input[name="username"]').removeClass('error');
 
             return false;
         }
@@ -150,6 +155,8 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
                 storage.deleteKey('user');
                 $scope.msg_username = response.data.error;
                 $scope.msg_pass = '';
+                $('input[name="username"]').addClass('error');
+                $('.input-pass').addClass('error');
 
             });
     }
@@ -163,18 +170,27 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             $scope.msg_register_username = 'Seu apelido deve conter apenas letras e números, deve conter no mínimo 6 e no máximo 16 caracteres.';
             $scope.msg_register_email = '';
             $scope.msg_register_pass = '';
+            $('.input-pass').removeClass('error');
+            $('nput[name="email"]').removeClass('error');
+            $('input[name="username"]').addClass('error');
 
             return false;
         } else if (!$scope.form.email || $scope.form.email.length < 1 || !$scope.form.email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
             $scope.msg_register_email = 'Email inválido';
             $scope.msg_register_username = '';
             $scope.msg_register_pass = '';
+            $('.input-pass').removeClass('error');
+            $('nput[name="email"]').addClass('error');
+            $('input[name="username"]').removeClass('error');
             return false;
         } else if ($scope.form.password.length != 12) {
             console.log('password');
             $scope.msg_register_pass = 'Senha inválida';
             $scope.msg_register_username = '';
             $scope.msg_register_email = '';
+            $('.input-pass').addClass('error');
+            $('nput[name="email"]').removeClass('error');
+            $('input[name="username"]').removeClass('error');
             return false;
         }
         $http.post("/user.json", {
@@ -190,6 +206,9 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
                 $scope.msg_register_username = response.error;
                 $scope.msg_register_email = '';
                 $scope.msg_register_pass = '';
+                $('.input-pass').removeClass('error');
+                $('nput[name="email"]').removeClass('error');
+                $('input[name="username"]').addClass('error');
             });
     }
     $scope.msg_recover = 'Cadastrar nova senha.';
@@ -201,6 +220,9 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
         if (!$scope.form.username) {
             $scope.msg_username = 'Preencha seu apelido';
             $scope.msg_recover_pass = '';
+             $('.input-pass').removeClass('error');
+             $('nput[name="email"]').removeClass('error');
+             $('input[name="username"]').addClass('error');
         } else {
             $rootScope.openPopup();
             $http.post("/user/password.json", {
@@ -223,6 +245,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
         }).join('');
         if ($scope.form.password.length != 12) {
             $scope.msg_recover_pass = 'Senha inválida';
+            $('.input-pass').addClass('error');
             return false;
         }
         $scope.msg_recover_pass = 'Aguarde';

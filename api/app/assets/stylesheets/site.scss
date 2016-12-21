@@ -1497,6 +1497,10 @@ div.card {
                 font-size: 14px;
                 margin-bottom: 20px;
                 padding: 5px 0 4px 0;
+                &:before{
+                    top: 100px;
+                    left: 100px;
+                }
                 &:focus {
                     outline: none;
                 }
@@ -1519,8 +1523,16 @@ div.card {
                     opacity: 1;
                 }
                 &.error {
-                    color: #da001b;
-                    border-color: #da001b;
+                    border-color: #ab1527;
+                    &:before{
+                        width: 100%;
+                        height: 100%;
+                        border-top-color: cyan; // Make borders visible
+                        border-right-color: cyan;
+                        transition:
+                        width 0.25s ease-out, // Width expands first
+                        height 0.25s ease-out 0.25s; // And then height
+                    }
                 }
             }
             input::-webkit-input-placeholder {
@@ -1543,7 +1555,7 @@ div.card {
                 position: relative;
                 top: -15px;
                 font-size: 13px;
-                color: #da001b;
+                color: #ab1527;
                 margin: 0px;
                 &.pass {
                     top: 0px;
@@ -1575,8 +1587,7 @@ div.card {
                 }
                 &.error {
                     li {
-                        color: #da001b;
-                        border-color: #da001b;
+                        border-color: #ab1527;
                     }
                 }
             }
