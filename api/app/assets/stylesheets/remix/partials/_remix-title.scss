@@ -47,11 +47,11 @@
     cursor: pointer;
     // -webkit-filter: drop-shadow( 3px 3px 0px #000);
     // filter: drop-shadow( 3px 3px 0px #000);
-    transition-duration: 0.2s;
+    transition-duration: 0.3s;
     cursor: pointer;
     display: inline-block;
     #nav-icon4 {
-        width: 24px;
+        width: 18px;
         height: 18px;
         position: absolute;
         top: 14px;
@@ -61,10 +61,10 @@
         -moz-transform: rotate(0deg);
         -o-transform: rotate(0deg);
         transform: rotate(0deg);
-        -webkit-transition: 0.2s;
-        -moz-transition: 0.2s;
-        -o-transition: 0.2s;
-        transition: 0.2s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
         cursor: pointer;
         span {
             display: block;
@@ -78,10 +78,10 @@
             -moz-transform: rotate(0deg);
             -o-transform: rotate(0deg);
             transform: rotate(0deg);
-            -webkit-transition: 0.2s;
-            -moz-transition: 0.2s;
-            -o-transition: 0.2s;
-            transition: 0.2s;
+            -webkit-transition: 0.3s;
+            -moz-transition: 0.3s;
+            -o-transition: 0.3s;
+            transition: 0.3s;
             &:nth-child(1) {
                 top: 0px;
                 width: 65%;
