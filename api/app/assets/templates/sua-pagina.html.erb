@@ -7,7 +7,18 @@
         </div>
         <div class="seven columns">
           <a ng-if="loggedUser.username == currentUser.username" ng-href="/editar-perfil" target="_self">
-            <img class="edit" src="<%=asset_url('site/edit-icon-black.svg')%>" width="auto" height="20px" />
+            <svg class="editicon" width="20px" height="20px" viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="Menu,-cadastro-e-perfil" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                    <g id="Perfil-usuário" transform="translate(-369.000000, -185.000000)" stroke="#000000" stroke-width="1.5">
+                        <g id="edit-copy" transform="translate(370.000000, 186.000000)">
+                            <polyline id="Stroke-4" points="0.798254545 13.5587118 0.000254545453 20.3824765 6.9118 19.5085059"></polyline>
+                            <path d="M19.2311636,7.53856765 C19.9871636,6.78133235 20.4529818,5.74924412 20.4529818,4.61153824 C20.4529818,2.28856765 18.5127091,0.405361765 16.1193455,0.405361765 C14.9567091,0.405361765 13.9009818,0.84945 13.1227091,1.57271471" id="Stroke-6"></path>
+                            <path d="M3.98688182,16.6620176 L16.3444273,4.66792941" id="Stroke-3"></path>
+                            <polygon id="Stroke-1" points="0.798254545 13.5587118 13.1519818 1.56832941 19.2731636 7.51009412 6.9118 19.5085059"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </svg>
           </a>
           <div class="profile">
             <div class="box-profile">
@@ -39,7 +50,7 @@
             <ul>
               <li class="ramona">
                 <img src="<%=asset_url('site/icone-ramona.svg')%>" alt="">
-                <p class="number">{{currentUser.ramona_recommendations ? currentUser.ramona_recommendations : 0}}</p>
+                <p class="number recommendcounter">{{currentUser.ramona_recommendations ? currentUser.ramona_recommendations : 100}}</p>
               </li>
               <li class="geek">
                 <!-- <img src="<%=asset_url('site/icone-geek.svg')%>" alt="">

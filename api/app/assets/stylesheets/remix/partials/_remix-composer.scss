@@ -128,9 +128,11 @@
       &.on {
         .toggler:after {
           display: block;
+          animation: enterElem .2s ease-in forwards;
         }
         .popup {
           display: block;
+          animation: enterElem .2s ease-in forwards;
         }
       }
       &.category {
@@ -285,6 +287,7 @@
   }
   .share {
     display: none;
+    animation: enterElem .2s ease-in forwards;
     p {
       font-family: 'KomikaTitle';
       font-size: 15px;
@@ -413,6 +416,17 @@
       }
     }
   }
+}
+
+@keyframes enterElem {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
 }
 
 // States
