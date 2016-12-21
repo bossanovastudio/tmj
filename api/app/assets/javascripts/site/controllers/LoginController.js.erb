@@ -188,7 +188,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             $scope.msg_register_email = '';
             $scope.msg_register_pass = '';
             $('.input-pass').removeClass('error');
-            $('nput[name="email"]').removeClass('error');
+            $('input[name="email"]').removeClass('error');
             $('input[name="username"]').addClass('error');
 
             return false;
@@ -197,7 +197,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             $scope.msg_register_username = '';
             $scope.msg_register_pass = '';
             $('.input-pass').removeClass('error');
-            $('nput[name="email"]').addClass('error');
+            $('input[name="email"]').addClass('error');
             $('input[name="username"]').removeClass('error');
             return false;
         } else if ($scope.form.password.length != 12) {
@@ -206,7 +206,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             $scope.msg_register_username = '';
             $scope.msg_register_email = '';
             $('.input-pass').addClass('error');
-            $('nput[name="email"]').removeClass('error');
+            $('input[name="email"]').removeClass('error');
             $('input[name="username"]').removeClass('error');
             return false;
         }
@@ -224,7 +224,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
                 $scope.msg_register_email = '';
                 $scope.msg_register_pass = '';
                 $('.input-pass').removeClass('error');
-                $('nput[name="email"]').removeClass('error');
+                $('input[name="email"]').removeClass('error');
                 $('input[name="username"]').addClass('error');
             });
     }
@@ -238,7 +238,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             $scope.msg_username = 'Preencha seu apelido';
             $scope.msg_recover_pass = '';
              $('.input-pass').removeClass('error');
-             $('nput[name="email"]').removeClass('error');
+             $('input[name="email"]').removeClass('error');
              $('input[name="username"]').addClass('error');
         } else {
             $rootScope.openPopup();
