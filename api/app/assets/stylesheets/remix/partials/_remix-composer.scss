@@ -184,9 +184,11 @@
       &.on {
         .toggler:after {
           display: block;
+          animation: enterElem .2s ease-in forwards;
         }
         .popup {
           display: block;
+          animation: enterElem .2s ease-in forwards;
         }
         .toggler-image:hover{
             .toggler-main-icon {
@@ -349,6 +351,7 @@
   }
   .share {
     display: none;
+    animation: enterElem .2s ease-in forwards;
     p {
       font-family: 'KomikaTitle';
       font-size: 15px;
@@ -489,6 +492,7 @@
         opacity: 1;
     }
 }
+
 // States
 .remix-container {
   &.initial {
