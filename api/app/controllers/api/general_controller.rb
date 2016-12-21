@@ -46,12 +46,12 @@ class Api::GeneralController < ApplicationController
 
   def follow
     user = User.find_by!(username: params[:username])
-    current_user.bookmark user
+    current_user.follow user
   end
 
   def unfollow
     user = User.find_by!(username: params[:username])
-    current_user.unbookmark user
+    current_user.stop_following user
   end
 
   private
