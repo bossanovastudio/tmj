@@ -19,6 +19,7 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
         $scope.currentUser.bio = response.data.bio;
         $scope.currentUser.username = response.data.username;
         $scope.currentUser.image = response.data.image;
+        $scope.currentUser.followers = response.data.followers;
         setTimeout(function() {
             $('.box-avatar-user .avatar').css('background-image', "url("+$scope.currentUser.image+")");
         }, 1000);
