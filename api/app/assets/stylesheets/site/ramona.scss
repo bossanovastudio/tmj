@@ -59,9 +59,25 @@ body.ramona {
                 left: 175px;
                 top: 30px;
             }
+            @keyframes dance {
+              0% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+              }
+              60% {
+                transform: scale(1.2) rotate(30deg);
+                opacity: 1;
+              }
+              100% {
+                transform: scale(1) rotate(0deg);
+              }
+            }
             &:hover {
                 .avatar_hover {
                     display: block;
+                }
+                img.badge {
+                    animation: dance 0.8s ease-in-out 2;
                 }
             }
         }
