@@ -1538,6 +1538,9 @@ div.card {
                     position: relative;
                     float: left;
                     margin-right: 5px;
+                    &.locker{
+                        background-image: image-url('site/lock.png') !important;
+                    }
                 }
                 &.register li {
                     background: asset-url('img/pass-silhuete.png')
