@@ -959,7 +959,7 @@ div.card {
         .read-more span::before,
         .read-more span::before {
         	background: rgba(0, 0, 0, 0.1);
-            color: rgba(0, 0, 0, 0.61);
+            // color: rgba(0, 0, 0, 0.61);
         }
         div.img{
             background-size: 110%;
@@ -1112,7 +1112,7 @@ div.card {
     	position: relative;
     	display: inline-block;
     	padding: 0 16px;
-    	background: rgba(255, 255, 255, 1);
+    	background: rgba(255, 255, 255, 0);
         color: rgba(0, 0, 0, 0.61);
     	-webkit-transition: -webkit-transform 0.3s;
     	-moz-transition: -moz-transform 0.3s;
