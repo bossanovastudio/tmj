@@ -2331,6 +2331,7 @@ p.content a {
                 &:hover {
                     transition-duration: 0s;
                     transform: translate(0px, 0px);
+                    animation: none !important;
                 }
                 a {
                     font-size: 17px;
@@ -2341,8 +2342,9 @@ p.content a {
                 .wavetext {
                     padding: 12px 0px;
                     margin-bottom: 0px;
-                    margin-left: 0px !important;
+                    margin-left: 25px !important;
                     animation: none !important;
+                    text-align: left;
                     span {
                         animation: none !important;
                     }
