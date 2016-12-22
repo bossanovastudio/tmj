@@ -1038,7 +1038,7 @@ div.card {
     }
     div.img {
         background-position: center center;
-        background-size: 100%;
+        background-size: 100.1%;
         background-repeat: no-repeat;
         position: relative;
         cursor: pointer;
@@ -1196,21 +1196,21 @@ div.card {
     &.remixlike {
         &:before{
             background: asset-url('/assets/site/faixa_remix.jpg') no-repeat;
-            background-size: auto 100%;
+            background-size: cover;
             background-position: center top;
         }
     }
     &.ramonalike {
         &:before{
             background: asset-url('/assets/site/faixa_ramona.jpg') no-repeat;
-            background-size: auto 100%;
+            background-size: cover;
             background-position: center top;
         }
     }
     &.geeklike {
         &:before{
             background: asset-url('/assets/site/faixa_remix.jpg') no-repeat;
-            background-size: auto 100%;
+            background-size: cover;
             background-position: center top;
         }
     }
