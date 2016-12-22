@@ -508,8 +508,11 @@
             position: relative;
             display: inline-block;
             float: left;
+            &:hover {
+                color: #fff;
+            }
             &:before {
-                background: #f1f1f1;
+                background: #000;
             }
         }
         &.btn-cancel {
@@ -537,18 +540,18 @@
             border-radius: 100%;
             -moz-border-radius: 33px 33px 0 0;
             overflow: hidden;
-            width: 200%;
-            height: 200%;
+            width: 340px;
+            height: 340px;
             bottom: 0;
-            left: -200%;
+            left: -340px;
             right: 0;
-            top: -200%;
+            top: -340px;
             z-index: -1;
-            -webkit-transition: all 0.08s ease-in;
+            -webkit-transition: all $anim-faster ease-in;
         }
         &:hover:before {
-            left: -50%;
-            top: -50%;
+            left: -90px;
+            top: -90px;
         }
     }
 }
