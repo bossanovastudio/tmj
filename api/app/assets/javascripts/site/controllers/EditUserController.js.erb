@@ -170,15 +170,28 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         $scope.numClick = $scope.numClick + 1;
         if ($scope.numClick == 1) {
             $scope.passwordChoice.length = 0;
+            $('.input-pass li').removeClass('locker');
             $scope.passwordChoice.push($scope.passwords[pass.id]);
+            setTimeout(function(){
+                $('.input-pass li').eq(0).addClass('locker');
+            }, 500)
             $('.after').css({ "left": 55 });
         } else if ($scope.numClick == 2) {
             $scope.passwordChoice.push($scope.passwords[pass.id]);
+            setTimeout(function(){
+                $('.input-pass li').eq(1).addClass('locker');
+            }, 500)
             $('.after').css({ "left": 105 });
         } else if ($scope.numClick == 3) {
             $scope.passwordChoice.push($scope.passwords[pass.id]);
+            setTimeout(function(){
+                $('.input-pass li').eq(2).addClass('locker');
+            }, 500)
             $('.after').css({ "left": 150 });
         } else {
+            setTimeout(function(){
+                $('.input-pass li').eq(3).addClass('locker');
+            }, 500)
             $scope.passwordChoice.push($scope.passwords[pass.id]);
             $scope.numClick = 0;
             $scope.open = !$scope.open;
