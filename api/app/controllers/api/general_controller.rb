@@ -45,6 +45,13 @@ class Api::GeneralController < ApplicationController
     @cards = @user.liked_cards
   end
 
+  def recommended
+    user = User.find_by!(username: params[:username])
+    editor = User.find_by!(username: params[:editor])
+
+    @cards = user.cards.find_by(id: editor.liked_cards_ids)
+  end
+
   def profile
     @user = User.find_by!(username: params[:username])
   end
