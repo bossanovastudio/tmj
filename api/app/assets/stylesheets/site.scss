@@ -2200,6 +2200,7 @@ p.content a {
         }
     }
 
+
     img.heart {
         &:hover {
             animation: none !important;
@@ -2207,9 +2208,10 @@ p.content a {
     }
     div.card {
         opacity: 0;
+
         .card-close-container {
-            height: 40px;
-            width: 40px;
+            height: 26px;
+            width: 26px;
             right: 10px;
             top: 10px;
             background: rgba(255, 255, 255, 0.6);
@@ -2220,10 +2222,10 @@ p.content a {
         .close {
             -webkit-filter: none;
             filter: none;
-            height: 22px;
-            width: 22px;
-            top: 19px;
-            right: 19px;
+            height: 12px;
+            width: 12px;
+            top: 17px;
+            right: 17px;
             &:hover{
                 -ms-transform: translate(0,0);
                 -webkit-transform: translate(0,0);
@@ -2241,6 +2243,15 @@ p.content a {
         &.openMobile {
             overflow: auto;
             padding-bottom: 60px;
+            &.remixlike,
+            &.ramonalike,
+            &.geeklike {
+                &:before{
+                    content: '';
+                    position: relative;
+                    height: 43px;
+                }
+            }
             div.img {
                 background-position: top center;
                 background-size: 100%;
