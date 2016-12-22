@@ -10,8 +10,8 @@
     .intro {
         line-height: 20px;
         @include mq-only-xs {
-            margin-top: 70px;
-            font-size: 32px;
+            margin-top: 50px;
+            font-size: 25px;
             font-weight: 400;
         }
     }
@@ -24,7 +24,7 @@
         @include mq-only-xs {
             font-size: 14px;
             opacity: 0.8;
-            margin: 10px 0 20px 0;
+            margin: 10px 0;
         }
     }
     @include mq-from-sm {
