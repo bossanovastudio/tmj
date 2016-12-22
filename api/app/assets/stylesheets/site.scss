@@ -108,6 +108,36 @@ header {
     }
 }
 
+.logo {
+  text-align: center;
+  cursor: pointer;
+  transition-duration: 0.2s;
+
+  svg {
+      .logoshadow {
+          transition-duration: 0.2s;
+
+      }
+      path {
+          transition-duration: 0.2s;
+      }
+      &:hover {
+          .logoshadow {
+              fill: #fff;
+              transition-duration: 0.2s;
+
+          }
+          path {
+              fill: #000;
+              transition-duration: 0.2s;
+              -ms-transform: translate(0px, 5px);
+              -webkit-transform: translate(0px, 5px);
+              transform: translate(0px, 5px);
+          }
+      }
+  }
+}
+
 section {
     transition: all $anim-normal ease-in;
     overflow: hidden;
@@ -254,27 +284,6 @@ section {
     left: 50%;
     transform: translate(-50%, -50%);
     height: 150px;
-}
-
-.logo path {
-    -webkit-transition: all $anim-normal;
-    -moz-transition: all $anim-normal;
-    -ms-transition: all $anim-normal;
-    -o-transition: all $anim-normal;
-    transition: all $anim-normal;
-}
-
-.logo:hover path{
-    fill: #fff;
-    -webkit-transition: all $anim-normal;
-    -moz-transition: all $anim-normal;
-    -ms-transition: all $anim-normal;
-    -o-transition: all $anim-normal;
-    transition: all $anim-normal;
-    -webkit-transform: translateX(7%) translateY(-5%);
-    -ms-transform: translateX(7%) translateY(-5%);
-    -moz-transform: translateX(7%) translateY(-5%);
-    transform: translateX(7%) translateY(-5%);
 }
 
 .overlay {
@@ -439,7 +448,7 @@ section {
                 background-size: auto 100%;
                 transition-duration: $anim-fast;
                 &:hover {
-                    background-size: auto 110%;
+                    background-size: auto 120%;
                     transition-duration: $anim-fast;
                     color: #000;
                 }
@@ -449,7 +458,7 @@ section {
                 background-size: auto 100%;
                 transition-duration: $anim-fast;
                 &:hover {
-                    background-size: auto 110%;
+                    background-size: auto 120%;
                     transition-duration: $anim-fast;
                     color: #000;
                 }
@@ -459,7 +468,7 @@ section {
                 background-size: auto 100%;
                 transition-duration: $anim-fast;
                 &:hover {
-                    background-size: auto 110%;
+                    background-size: auto 120%;
                     transition-duration: $anim-fast;
                     color: #000;
                 }
@@ -469,7 +478,7 @@ section {
                 background-size: auto 100%;
                 transition-duration: $anim-fast;
                 &:hover {
-                    background-size: auto 110%;
+                    background-size: auto 120%;
                     transition-duration: $anim-fast;
                     color: #000;
                 }
@@ -479,7 +488,7 @@ section {
                 background-size: auto 100%;
                 transition-duration: $anim-fast;
                 &:hover {
-                    background-size: auto 110%;
+                    background-size: auto 120%;
                     transition-duration: $anim-fast;
                     color: #000;
                 }
@@ -489,7 +498,7 @@ section {
                 background-size: auto 100%;
                 transition-duration: $anim-fast;
                 &:hover {
-                    background-size: auto 110%;
+                    background-size: auto 120%;
                     transition-duration: $anim-fast;
                     color: #000;
                 }
@@ -1372,9 +1381,10 @@ div.card {
         h1.title {
             font-family: KomikaTitle;
             font-size: 25px;
-            letter-spacing: 1.2px;
+            letter-spacing: 0.6px;
             margin: 25px 0;
             color: #000;
+            font-weight: lighter;
         }
         h2 {
             text-align: center;
@@ -2127,6 +2137,26 @@ p.content a {
             }
             img{
                 max-width: 85%;
+            }
+        }
+        .box-avatar {
+            .avatar {
+                a {
+                    transition-duration: $anim-normal;
+                    transform: translate(2px, 2px);
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                    color: #fff;
+                    &:before{
+                        top: -60px;
+                        left: -60px;
+                        transition-duration: $anim-normal;
+                    }
+                }
+            }
+            .avatar_hover {
+                display: block !important;
             }
         }
     }
