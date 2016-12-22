@@ -962,8 +962,8 @@ div.card {
             // color: rgba(0, 0, 0, 0.61);
         }
         div.img{
-            background-size: 110%;
-            transition-duration: $anim-fast;
+            background-size: 105%;
+            transition: background-size $anim-fast ease-in;
         }
         &.remixlike {
             &:before{
@@ -1042,7 +1042,7 @@ div.card {
         background-repeat: no-repeat;
         position: relative;
         cursor: pointer;
-        transition-duration: $anim-fast;
+        transition: background-size $anim-fast ease-out;
         &.no-padding {
             padding: 0 !important;
         }
