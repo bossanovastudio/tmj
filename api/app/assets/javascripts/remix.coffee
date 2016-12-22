@@ -564,7 +564,7 @@ $('.remix-container').each ->
         $(this).find('.gallery-item').removeAttr('style')
         $(this).find('.gallery-holder').removeAttr('style')
       else
-        itemWidth = $(this).width() - (40 * 2)
+        itemWidth = $(this).width()
         totalWidth = (itemWidth * $(this).find('.gallery-item').length) + (40 * 2)
         $(this).find('.gallery-item').outerWidth(itemWidth)
         $(this).find('.gallery-holder').outerWidth(totalWidth)

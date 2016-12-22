@@ -46,7 +46,7 @@
     display: none;
     margin-bottom: 10px;
     margin-top: 10px;
-    overflow: hidden;    
+    overflow: hidden;
     &:before {
       background-color: #FFF;
       content: '';
@@ -76,12 +76,13 @@
     width: 100%;
     .gallery-holder {
       @include clearfix;
-      padding-left: 40px;
-      padding-right: 40px;
+      padding-left: 0px;
+      padding-right: 0px;
       .gallery-item {
         float: left;
-        padding-left: ($grid-gutter-width / 2);
-        padding-right: ($grid-gutter-width / 2);
+        // padding-left: ($grid-gutter-width / 2);
+        // padding-right: ($grid-gutter-width / 2);
+        margin-right: 20px;
       }
     }
   }
