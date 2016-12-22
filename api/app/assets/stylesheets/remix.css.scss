@@ -33,9 +33,7 @@ html, body {
   text-align: center;
 
   @include mq-only-xs {
-      img {
-        height: 50px;
-      }
+      display: none;
   }
 }
 
@@ -48,8 +46,8 @@ html, body {
 
 @include mq-only-xs {
   .container {
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 34px;
+    padding-right: 34px;
   }
 }
 
