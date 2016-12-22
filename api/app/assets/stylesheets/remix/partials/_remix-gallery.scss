@@ -1,0 +1,129 @@
+.remix-gallery {
+  display: inline;
+  -webkit-overflow-scrolling: touch;
+  .gallery-holder {
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .gallery-item {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    &:hover img.picture{
+        transform: scale(1.1);
+        transition-duration: 0.2s;
+    }
+    .picture {
+      cursor: pointer;
+      width: 100%;
+      transition-duration: 0.2s;
+    }
+    .actions {
+      @include clearfix;
+      margin-top: 10px;
+      text-align: right;
+      button {
+        padding: 0 5px;
+        height: 24px;
+        img {
+          max-height: 100%;
+          max-width: 100%;
+        }
+        &:first-child {
+          padding-left: 0;
+        }
+        &:last-child {
+          padding-right: 0;
+        }
+        &.remove {
+          float: left;
+        }
+      }
+    }
+  }
+  .gallery-item-new {
+    cursor: pointer;
+    display: none;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    overflow: hidden;    
+    &:before {
+      background-color: #FFF;
+      content: '';
+      display: block;
+      left: 0;
+      padding-bottom: 100%;
+      top: 0;
+      width: 100%;
+    }
+    &:after {
+      content: '+';
+      display: block;
+      font-family: 'KomikaTitle';
+      font-size: 48px;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+      transition-duration: 0.2s;
+    }
+    &:hover:after{
+        font-size: 60px;
+    }
+  }
+  @include mq-only-xs {
+    overflow: hidden;
+    width: 100%;
+    .gallery-holder {
+      @include clearfix;
+      padding-left: 40px;
+      padding-right: 40px;
+      .gallery-item {
+        float: left;
+        padding-left: ($grid-gutter-width / 2);
+        padding-right: ($grid-gutter-width / 2);
+      }
+    }
+  }
+  @include mq-from-sm {
+    .gallery-holder {
+      @include make-row;
+      .gallery-item {
+        @include make-sm-column(3);
+      }
+    }
+    .gallery-item {
+      .actions {
+        display: none;
+      }
+    }
+    .gallery-item-new {
+      @include make-sm-column(3);
+      display: block;
+    }
+  }
+    @include mq-to-sm() {
+        .gallery-item {
+          &:hover img.picture{
+            transform: none;
+            transition-duration: 0s;
+          }
+        }
+        .gallery-item-new{
+            &:hover:after{
+                font-size: 48px;
+            }
+        }
+    }
+}
+
+// States
+.remix-container {
+  @include mq-only-xs {
+    &.initial {
+      .remix-gallery {
+        display: none;
+      }
+    }
+  }
+}

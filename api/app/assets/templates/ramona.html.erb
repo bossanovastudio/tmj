@@ -1,0 +1,68 @@
+<div class="vertical-container" ng-swipe-up="swipeUp()">
+  <div class="vertical-content">
+    <div ng-class="{show : isCardsLoaded}" class="container cards ramona-card animated">
+      <div class="author">
+        <div class="box-avatar-user">
+          <img class="badge" src="<%=asset_url('site/ramona-badge.svg')%>" />
+          <div class="avatar" style="background-image: url('{{currentUser.image}}')" />
+          <img class="avatar_hover" width="200" height="200" src="<%=asset_url('site/ramona_hover.png')%>" />
+        </div>
+        <div class="seven columns">
+          <a ng-if="loggedUser.username == currentUser.username" ng-href="/editar-perfil" target="_self">
+            <img class="edit" src="<%=asset_url('site/edit-icon-black.svg')%>" width="auto" height="20px" />
+          </a>
+          <div class="profile">
+            <div class="box-profile">
+              <p class="editor">{{currentUser.username}}</p>
+              <p class="position">Editor TMJ</p>
+            </div>
+            <a ng-click="!currentUser.following ? followUser() : unFollowUser()" class="follow">
+              <div class="text" ng-if="!currentUser.following">SEGUIR</div>
+              <div class="text" ng-if="currentUser.following">SEGUINDO</div>
+            </a>
+            <div class="followers">
+              <p class="number"><span>{{currentUser.followers}}</span> {{currentUser.followers > 1 ? 'seguidores' : 'seguidor'}}</p>
+            </div>
+          </div>
+          <div class="about">
+            <div class="twelve columns">
+              <p class="summary">{{currentUser.bio}}</p>
+            </div>
+          </div>
+          <div class="social">
+            <ul class="social-editor">
+              <li class="social-pi"><a href="https://br.pinterest.com/ramonatmj/" target="_blank"><img src="<%=asset_url('site/pinterest-profile.svg')%>" alt="" /></a></li>
+              <!-- <li class="social-fb"><a href="#" target="_blank"><img src="/img/facebook-profile.svg" alt="" /></a></li> -->
+              <!-- <li class="social-in"><a href="#" target="_blank"><img src="/img/instagram-profile.svg" alt="" /></a></li> -->
+              <li class="social-tu"><a href="https://lunetalunatica.tumblr.com/" target="_blank"><img src="<%=asset_url('site/tumblr-profile.svg')%>" alt="" /></a></li>
+              <!-- <li class="social-vi svg"><a href="#" target="_blank"><img src="/img/vimeo-profile.svg" alt="" /></a></li> -->
+              <!-- <li class="social-tw"><a href="#" target="_blank"><img src="/img/twitter-profile.svg" alt="" /></a></li> -->
+              <!-- <li class="social-go"><a href="#" target="_blank"><img src="/img/google-profile.svg" alt="" /></a></li> -->
+              <li class="social-yt"><a href="https://www.youtube.com/channel/UC2sp_4csOUc4VnmNdWxTXhQ" target="_blank"><img src="<%=asset_url('site/youtube-profile.svg')%>" alt="" /></a></li>
+              <!-- <li class="social-twitch"><a href="#" target="_blank"><img src="/img/twitch-profile.svg" alt="" /></a></li> -->
+            </ul>
+          </div>
+          <!-- <div class="recommendation">
+            <div class="label">Recomendações</div>
+            <ul>
+              <li class="ramona">
+                <img src="<%=asset_url('site/icone-ramona.svg')%>" alt="">
+                <p class="number">5</p>
+              </li>
+              <li class="geek">
+                <img src="<%=asset_url('site/icone-geek.svg')%>" alt="">
+                <p class="number">5</p>
+              </li>
+              <li class="denise">
+                <img src="<%=asset_url('site/icone-denise.svg')%>" alt="">
+                <p class="number">5</p>
+              </li>
+            </ul>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<div ng-include src="'<%= asset_url('cards.html')%>'"></div>

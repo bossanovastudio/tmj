@@ -1,0 +1,136 @@
+var toggled;
+
+
+
+$('#menu, .overlay').click(function() {
+    $("#menu").toggleClass('open');
+    toggled ? closeMenu() : openMenu();
+    toggled = !toggled;
+});
+
+$('.menu-login').click(function() {
+    window.location = '/sua-pagina';
+})
+
+var openMenu = function() {
+    var overlay = $('.overlay');
+    overlay.addClass('open');
+    var sidebar = $('.sidebar');
+    sidebar.addClass('open');
+    var html = $('html');
+    html.css({ 'overflow': 'hidden' });
+    $("header").addClass('animate');
+    $("section").addClass('animate');
+    $("footer.desktop").addClass('animate');
+    $(".sidebar li").each(function(i) {
+        var t = $(this);
+        setTimeout(function() { t.addClass('animate'); }, (i + 1) * 25);
+    });
+}
+
+var closeMenu = function() {
+    var overlay = $('.overlay');
+    overlay.removeClass('open');
+    var sidebar = $('.sidebar');
+    sidebar.removeClass('open');
+    var html = $('html');
+    html.css({ 'overflow': 'auto' });
+    $("header").removeClass('animate');
+    $("section").removeClass('animate');
+    $("footer.desktop").removeClass('animate');
+    setTimeout(function() {
+        $(".sidebar li").removeClass("animate")
+    }, 500);
+}
+
+function getOrientation(file, callback) {
+  var reader = new FileReader();
+
+  reader.onload = function(event) {
+    var view = new DataView(event.target.result);
+
+    if (view.getUint16(0, false) != 0xFFD8) return callback(-2);
+
+    var length = view.byteLength,
+        offset = 2;
+
+    while (offset < length) {
+      var marker = view.getUint16(offset, false);
+      offset += 2;
+
+      if (marker == 0xFFE1) {
+        if (view.getUint32(offset += 2, false) != 0x45786966) {
+          return callback(-1);
+        }
+        var little = view.getUint16(offset += 6, false) == 0x4949;
+        offset += view.getUint32(offset + 4, little);
+        var tags = view.getUint16(offset, little);
+        offset += 2;
+
+        for (var i = 0; i < tags; i++)
+          if (view.getUint16(offset + (i * 12), little) == 0x0112)
+            return callback(view.getUint16(offset + (i * 12) + 8, little));
+      }
+      else if ((marker & 0xFF00) != 0xFF00) break;
+      else offset += view.getUint16(offset, false);
+    }
+    return callback(-1);
+  };
+
+  reader.readAsArrayBuffer(file.slice(0, 64 * 1024));
+};
+
+function rotateImage(file) {
+  EXIF.getData(file,function() {
+      var orientation = EXIF.getTag(this,"Orientation");
+      var can = document.createElement("canvas");
+      var ctx = can.getContext('2d');
+      var thisImage = new Image;
+      thisImage.onload = function() {
+        can.width  = thisImage.width;
+        can.height = thisImage.height;
+        ctx.save();
+        var width  = can.width;  var styleWidth  = can.style.width;
+        var height = can.height; var styleHeight = can.style.height;
+        if (orientation) {
+          if (orientation > 4) {
+            can.width  = height; can.style.width  = styleHeight;
+            can.height = width;  can.style.height = styleWidth;
+          }
+          switch (orientation) {
+          case 2: ctx.translate(width, 0);     ctx.scale(-1,1); break;
+          case 3: ctx.translate(width,height); ctx.rotate(Math.PI); break;
+          case 4: ctx.translate(0,height);     ctx.scale(1,-1); break;
+          case 5: ctx.rotate(0.5 * Math.PI);   ctx.scale(1,-1); break;
+          case 6: ctx.rotate(0.5 * Math.PI);   ctx.translate(0,-height); break;
+          case 7: ctx.rotate(0.5 * Math.PI);   ctx.translate(width,-height); ctx.scale(-1,1); break;
+          case 8: ctx.rotate(-0.5 * Math.PI);  ctx.translate(-width,0); break;
+          }
+        }
+
+        ctx.drawImage(thisImage,0,0);
+        ctx.restore();
+        var dataURL = can.toDataURL();
+        $('.canvas-background').attr('src', dataURL);
+        $picture = $('.canvas-background');
+        w = $picture.width()
+        h = $picture.height()
+        if (w == h) {
+            $picture.css({width: '100%', height: '100%'})
+        } else if (w > h) {
+            $picture.css({width: '100%', height: 'auto'})
+        } else {
+            $picture.css({width: 'auto', height: '100%'})
+        }
+
+        //console.log(dataURL);
+
+        // at this point you can save the image away to your back-end using 'dataURL'
+      }
+
+      // now trigger the onload function by setting the src to your HTML5 file object (called 'file' here)
+      thisImage.src = URL.createObjectURL(file);
+
+    });
+
+};

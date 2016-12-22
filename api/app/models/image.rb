@@ -16,8 +16,12 @@ class Image < ApplicationRecord
 
   # Uploader
   mount_uploader :file, ImageUploader
-  
+
   def ratio
     self.width.to_f / self.height.to_f if self.width && self.height
+  end
+
+  def url
+    self.file.url if self.file
   end
 end

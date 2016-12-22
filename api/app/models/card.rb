@@ -3,7 +3,6 @@
 # Table name: cards
 #
 #  id          :integer          not null, primary key
-#  user_id     :integer
 #  origin      :integer
 #  content     :text
 #  media_type  :string
@@ -38,7 +37,7 @@ class Card < ApplicationRecord
       end
     end
     if options.present?
-      where(options)
+      left_joins(:provider).where(options)
     else
        all  ## or nil if you don't want to show any records in view
     end

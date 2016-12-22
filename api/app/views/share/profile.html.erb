@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="<%= @profile.username %>">
+    <meta name="twitter:description" content="<%= @profile.bio %>">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="<%= @profile.content %>" />
+    <% if @profile.image %>
+    <meta property="og:image" content="<%= @profile.image.url %>" />
+    <% end %>
+    <meta property="og:description" content="<%= @profile.content %>" />
+  </head>
+  <body>
+    <p><%= @profile.content %></p>
+    <% if @profile.image %>
+    <img src="<%= @profile.image.url %>">
+    <% end %>
+  </body>
+</html>

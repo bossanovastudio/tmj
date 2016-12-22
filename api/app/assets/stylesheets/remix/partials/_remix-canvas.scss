@@ -1,0 +1,124 @@
+.remix-canvas {
+  background-color: #FFF;
+  position: relative;
+  &:before {
+    content: '';
+    display: block;
+    left: 0;
+    padding-bottom: 100%;
+    top: 0;
+    width: 100%;
+  }
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .picture {
+    height: 100%;
+  }
+  .element {
+    border: 1px solid transparent;
+    cursor: pointer;
+    .action {
+      background-repeat: no-repeat;
+      background-size: cover;
+      cursor: pointer;
+      height: 30px;
+      position: absolute;
+      width: 30px;
+      z-index: 100;
+      &.remove {
+        background-image: image-url('remix/icon-close.svg');
+        display: none;
+        right: -15px;
+        top: -15px;
+      }
+      &.drag {
+        background-image: image-url('remix/icon-drag.svg');
+        cursor: move;
+        display: none;
+        bottom: -15px;
+        right: -15px;
+      }
+    }
+    &:focus, &.focus {
+      border-color: #000;
+      .remove,
+      .drag {
+        display: block;
+      }
+    }
+  }
+  .image {
+    height: 50px;
+    img {
+      height: 100%;
+    }
+    .action.resize {
+      background-image: image-url('remix/icon-resize.svg');
+      cursor: se-resize;
+      bottom: -15px;
+      right: -15px;
+    }
+    .action.rotate {
+      background-image: image-url('remix/icon-rotate.svg');
+      display: none;
+      top: -15px;
+      left: -15px;
+    }
+    &:focus, &.focus {
+      .rotate {
+        display: block;
+      }
+    }
+  }
+  .text {
+    @extend %text-styles;
+    textarea,
+    .hidden-content {
+      background-color: transparent;
+      border: none;
+      color: inherit;
+      font-family: 'KomikaTitle';
+      font-size: inherit;
+      padding: 0;
+    }
+    textarea {
+      cursor: inherit;
+      display: block;
+      min-width: 20px;
+      overflow: hidden;
+      width: 20px;
+      &:focus {
+        outline: none;
+      }
+    }
+    .hidden-content {
+      float: left;
+      display: none;
+      &:after {
+        content: '';
+        display: inline-block;
+      }
+    }
+    &.g1, &.g2 {
+      textarea {
+        height: 34px;
+        min-height: 34px;
+      }
+    }
+    &.m1, &.m2 {
+      textarea {
+        height: 25px;
+        min-height: 25px;
+      }
+    }
+    &.p1, &.p2 {
+      textarea {
+        height: 17px;
+        min-height: 17px;
+      }
+    }
+  }
+}

@@ -3,8 +3,6 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  provider               :string           default("email"), not null
-#  uid                    :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
@@ -18,34 +16,57 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
-#  name                   :string
-#  nickname               :string
 #  image                  :string
 #  email                  :string
-#  tokens                 :json
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  username               :string           not null
-#  role                   :integer
+#  role                   :integer          default("user")
+#  mask                   :string
+#  authentication_token   :string(30)
+#  bio                    :text
 #
 
 class User < ActiveRecord::Base
-  # Include default devise modules.
-  devise :database_authenticatable, :registerable, :rememberable, :trackable, :omniauthable
-  # include DeviseTokenAuth::Concerns::User
-  
+  devise :database_authenticatable, :registerable, :rememberable, :trackable, :omniauthable, :recoverable
+
   enum role: { user: 1, editor: 2, moderator: 3, admin: 4 }
   scope :editors, -> { where(role: :editor) }
-  
+  scope :regular, -> { where(role: :user) }
+
   # Uploader
   mount_uploader :image, AvatarUploader
   mount_uploader :mask, MaskUploader
-  
+
   has_many :providers
   has_many :cards, through: :providers
   recommends :cards
-  
-  def email_required?
-    false
+  acts_as_followable
+  acts_as_follower
+
+  after_create :send_welcome_email
+
+  # Validations
+  validates :username, presence: true, uniqueness: true, format: { with: /\A[0-9a-zA-Z\.\-\_]+\z/ }, length: { in: 4..16 }
+
+  def update_without_password(params, *options)
+    if params[:password].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation) if params[:password_confirmation].blank?
+    end
+
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
   end
+
+  def password_required?
+    true
+  end
+
+  private
+    def send_welcome_email
+      return true unless email
+      UsersMailer.welcome(self).deliver_now
+    end
 end

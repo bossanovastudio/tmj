@@ -1,58 +1,10 @@
 version: '2'
 services:
-  web:
-    image: nginx:latest
-    volumes:
-      - ./web/dist:/usr/share/nginx/html
-      - ./web/nginx:/etc/nginx/conf.d
-    ports:
-      - "8080:8080"
-
-  remix:
-    build: remix
-    volumes:
-      - ./remix:/var/www/app
-    command: bundle exec rails s -b 0.0.0.0 -P/dev/null
-    ports:
-      - "8081:3000"
-    links:
-      - db
-    env_file:
-      - ./env/.env
-
-  admin_web:
-    image: nginx:latest
-    volumes:
-      - ./admin_web/dist:/usr/share/nginx/html
-      - ./admin_web/nginx:/etc/nginx/conf.d
-    ports:
-      - "8082:8080"
-
-  web-register:
-    image: nginx:latest
-    volumes:
-      - ./web-register/dist:/usr/share/nginx/html
-      - ./web-register/nginx:/etc/nginx/conf.d
-    ports:
-      - "8083:8080"
-
-  admin:
-    build: admin
-    volumes:
-      - ./admin:/var/www/app
-    command: bundle exec rails s -p 3001 -b 0.0.0.0 -P/dev/null
-    ports:
-      - "3001:3001"
-    links:
-      - db
-    env_file:
-      - ./env/.env
 
   api:
     build: api
     volumes:
-      - ./api:/var/www/app
-    command: sh -c "QUEUE=* rake environment resque:work & bundle exec rails s -p 3000 -b 0.0.0.0 -P/dev/null"
+      - ./api:/app
     ports:
       - "3000:3000"
     links:
@@ -60,68 +12,52 @@ services:
       - redis
       - cache
     env_file:
-      - ./env/.env
+      - .env
 
-  crawler_sn:
-    build: crawler_socialnetwork
+  resque:
+    build: api
+    command: rake environment resque:work
     volumes:
-      - ./crawler_socialnetwork:/var/app
+      - ./api:/app
+    links:
+      - db
+      - redis
+      - cache
+    env_file:
+      .env
+
+  crawler:
+    build: crawlers
     command: bundle exec bin/crawler
     links:
       - db
-    env_file:
-      - ./env/.env
-
-  crawler_web:
-    build: crawler_web
     volumes:
-      - ./crawler_web:/var/app
-    command: bundle exec puma -p 3002 -b tcp://0.0.0.0
-    ports:
-      - "3002:3002"
+      - ./crawlers:/app
+      - /bundler
+    env_file:
+      - .env
+
+  parser:
+    build: crawlers
+    command: bundle exec bin/parser
     links:
       - db
-    env_file:
-      - ./env/.env
-
-  crawler_parser:
-    build: crawler_parser
+      - api
+    depends_on:
+      - api
     volumes:
-      - ./crawler_parser:/var/app
-    command: bundle exec bin/crawler
-    links:
-      - db
+      - ./crawlers:/app
+      - /bundler
     env_file:
-      - ./env/.env
-
-  # missions:
-  #   build: missions
-  #   volumes:
-  #     - ./crawler:/var/app
-  #   links:
-  #     - db
-  #   env_file:
-  #     - ./env/.env
+      - .env
 
   db:
-    image: postgres
+    image: postgres:9.6-alpine
     volumes:
       - ./db/data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-    env_file:
-      - ./env/.env
 
   cache:
-    image: memcached
-    volumes:
-      - ./db/data:/var/lib/memcached/data
-    env_file:
-      - ./env/.env
+    image: memcached:alpine
 
   redis:
-    image: redis
-    volumes:
-      - ./db/data:/var/lib/redis/data
-    env_file:
-      - ./env/.env
+    image: redis:alpine

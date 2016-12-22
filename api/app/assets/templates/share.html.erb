@@ -1,0 +1,38 @@
+<p class="share">
+    <a ng-click="likeCard($event, card.id)" class="{{card.liked ? 'liked' : ''}}" ng-href="#">
+        <img class="heart" src="{{card.liked ? '<%= asset_url('site/like-ativo.svg') %>' : '<%= asset_url('site/like.svg') %>'}}">
+        <span class="counter">&nbsp;{{card.likes ? card.likes : 0}}</span>
+        <span class="love-explosion">
+            <img class="core prim" src="<%= asset_url('site/like-ativo.svg') %>">
+            <img class="core segu" src="<%= asset_url('site/like-ativo.svg') %>">
+            <img class="core terc" src="<%= asset_url('site/like-ativo.svg') %>">
+        </span>
+    </a>
+    <a ng-if="card.user.role!='editor' || pageName != 'homePage' || isMobile" ng-click="openShare($event)" ng-href="#" ng-init="imgsrc='<%= asset_url('site/share.svg') %>'" ng-mouseenter="imgsrc='<%= asset_url('site/share-rollover.svg') %>'" ng-mouseleave="imgsrc='<%= asset_url('site/share.svg') %>'">
+        <img class="arrow" ng-src="{{imgsrc}}">
+    </a>
+    <a ng-if="card.user.role=='editor' && pageName == 'homePage' && !isMobile" ng-click="openShare($event)" ng-href="#" ng-init="imgsrc='<%= asset_url('site/share-editor.svg') %>'" ng-mouseenter="imgsrc='<%= asset_url('site/share-rollover-editor.svg') %>'" ng-mouseleave="imgsrc='<%= asset_url('site/share-editor.svg') %>'">
+        <img class="arrow" ng-src="{{imgsrc}}">
+    </a>
+</p>
+<div class="shareBox">
+    <div class="content-item-box">
+        <a class="item-share" target="popup"
+           ng-click="openSharePopup('https://www.facebook.com/sharer/sharer.php?u=', card.id)">
+            <img class="shareButton" src="<%= asset_url('site/facebook-remix.svg') %>" />
+        </a>
+        <a class="item-share" target="popup"
+            ng-click="openSharePopup('https://twitter.com/intent/tweet?text=', card.id)">
+            <img class="shareButton" src="<%= asset_url('site/twitter-remix.svg') %>" />
+        </a>
+        <a class="item-share" target="popup"
+            ng-click="openSharePopup('http://www.tumblr.com/share/link?url=', card.id)">
+            <img class="shareButton" src="<%= asset_url('site/tumblr-remix.svg') %>" />
+        </a>
+        <a class="item-share notSafari" ngclipboard data-clipboard-text="{{locationURL}}/detalhe/card/{{card.id}}" ngclipboard-success="onClipboardSuccess(e);">
+            <img class="shareButton" src="<%= asset_url('site/copy-link.svg') %>" />
+        </a>
+    </div>
+    <p class="tooltip-clip sucess">Copiado!</p>
+    <p class="tooltip-clip errror">Falhou! :(</p>
+</div>

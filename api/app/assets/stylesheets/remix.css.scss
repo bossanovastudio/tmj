@@ -1,0 +1,60 @@
+//= require 'jquery-ui/themes/base/theme'
+//= require 'jquery-ui/themes/base/core'
+//= require 'jquery-ui/themes/base/draggable'
+//= require 'jquery-ui/themes/base/resizable'
+
+@import "remix/variables";
+
+@import "bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/mixins/clearfix";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/mixins/grid";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/mixins/grid-framework";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/grid";
+
+@import "remix/mixins";
+@import "remix/reset";
+@import "remix/buttons";
+@import "remix/fonts";
+
+body {
+  background: asset-url('remix/bg-mobile.jpg') no-repeat fixed;
+  background-size: cover;
+  font: 14px 'Lato', sans-serif;
+  min-width: 320px;
+  padding-bottom: 0px;
+}
+
+html, body {
+    overflow-x: hidden;
+}
+
+.logo {
+  margin-top: 35px;
+  text-align: center;
+
+  @include mq-only-xs {
+      img {
+        height: 50px;
+      }
+  }
+}
+
+@include mq-from-sm {
+  body {
+    background-image: asset-url('remix/bg-desktop.jpg');
+    padding-bottom: 40px;
+  }
+}
+
+@include mq-only-xs {
+  .container {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+
+@import "remix/partials/remix-title";
+@import "remix/partials/remix-gallery";
+@import "remix/partials/remix-composer";
+@import "remix/partials/remix-canvas";
+@import "remix/partials/remix-loader";
