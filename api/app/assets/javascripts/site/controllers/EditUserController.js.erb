@@ -40,6 +40,8 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         $('#photo').trigger('click');
     });
 
+
+
     $scope.authSocial = function(sn) {
         if ($scope.user.providers[sn]) {
             $http.get('/user/auth/' + sn + '/remove.json', {

@@ -1,13 +1,13 @@
 <div class="overlay-pass" ng-click="togglePassword()"></div>
 <div class="container">
-    <div class="four columns left">
-        <div ng-click="selectFile()" class="box-avatar">
+    <div class="four columns left" style="position: relative; z-index: 100">
+        <div class="box-avatar">
           <div class="avatar" style="background-image: url('<%= asset_url('site/profile_default.svg') %>')" />
           <div class="avatar_hover"></div>
         </div>
         <input type="file" id="photo" style="display: none" file-on-change="changedFile" accept="image/*">
     </div>
-    <div class="four columns offset">
+    <div class="four columns offset" style="position: relative; z-index: 99">
         <form name="profileForm">
             <div>
               <span class="bioheader">Perfil</span>
