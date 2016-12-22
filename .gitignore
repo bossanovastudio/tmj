@@ -8,3 +8,4 @@ log/
 .elasticbeanstalk
 node_modules/
 tmp/
+api/public/assets/
