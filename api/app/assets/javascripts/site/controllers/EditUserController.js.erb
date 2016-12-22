@@ -189,26 +189,38 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
     $scope.back = function(){
         $window.history.back()
     }
+    $scope.saveButton = 'Salvar';
 
     $scope.save = function() {
         $scope.form.password = $scope.passwordChoice.map(function(p) {
             return p.value;
         }).join('');
 
+        $scope.saveButton = 'Salvando ...';
+        $('.btn-submit').addClass('pressed');
         if (!$scope.form.username || $scope.form.username.length < 1) {
             $rootScope.popup_title = 'Preencha seu apelido!';
             $rootScope.popup_confirm = 'Ok, entendi!';
             $rootScope.openPopup();
+            $scope.saveButton = 'Salvar';
+            $('.btn-submit').removeClass('pressed');
+
             return false;
         } else if (!$scope.form.email || $scope.form.email.length < 1) {
             $rootScope.popup_title = 'Email inválido!';
             $rootScope.popup_confirm = 'Ok, entendi!';
             $rootScope.openPopup();
+            $scope.saveButton = 'Salvar';
+            $('.btn-submit').removeClass('pressed');
+
             return false;
         } else if ($scope.form.password.length != 12 && $scope.form.password != '0000') {
             $rootScope.popup_title = 'Senha inválida!';
             $rootScope.popup_confirm = 'Ok, entendi!';
             $rootScope.openPopup();
+            $scope.saveButton = 'Salvar';
+            $('.btn-submit').removeClass('pressed');
+
             return false;
         }
 
