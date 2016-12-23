@@ -652,6 +652,7 @@ p.share {
     span.counter {
         //font-size: 20px;
         letter-spacing: 0.4px;
+        font-size: 16px;
         color: #bdbdbd;
         font-family: 'KomikaTitle';
         text-decoration: none;
@@ -967,30 +968,30 @@ div.card {
         .read-more span::before,
         .read-more span::before {
         	background: rgba(0, 0, 0, 0.1);
-            color: rgba(0, 0, 0, 0.61);
+            // color: rgba(0, 0, 0, 0.61);
         }
         div.img{
-            background-size: 110%;
-            transition-duration: $anim-fast;
+            background-size: 105%;
+            transition: background-size $anim-fast ease-in;
         }
         &.remixlike {
             &:before{
                 background: asset-url('site/faixa_remix.gif') no-repeat;
-                background-size: auto 100%;
+                background-size: cover;
                 background-position: center top;
             }
         }
         &.ramonalike {
             &:before{
                 background: asset-url('site/faixa_ramona.gif') no-repeat;
-                background-size: auto 100%;
+                background-size: cover;
                 background-position: center top;
             }
         }
         &.geeklike {
             &:before{
                 background: asset-url('site/faixa_geek.gif') no-repeat;
-                background-size: auto 100%;
+                background-size: cover;
                 background-position: center top;
             }
         }
@@ -1046,11 +1047,11 @@ div.card {
     }
     div.img {
         background-position: center center;
-        background-size: 100%;
+        background-size: 101%;
         background-repeat: no-repeat;
         position: relative;
         cursor: pointer;
-        transition-duration: $anim-fast;
+        transition: background-size $anim-fast ease-out;
         &.no-padding {
             padding: 0 !important;
         }
@@ -1120,7 +1121,7 @@ div.card {
     	position: relative;
     	display: inline-block;
     	padding: 0 16px;
-    	background: rgba(255, 255, 255, 1);
+    	background: rgba(255, 255, 255, 0);
         color: rgba(0, 0, 0, 0.61);
     	-webkit-transition: -webkit-transform 0.3s;
     	-moz-transition: -moz-transform 0.3s;
@@ -1204,21 +1205,21 @@ div.card {
     &.remixlike {
         &:before{
             background: asset-url('/assets/site/faixa_remix.jpg') no-repeat;
-            background-size: auto 100%;
+            background-size: cover;
             background-position: center top;
         }
     }
     &.ramonalike {
         &:before{
             background: asset-url('/assets/site/faixa_ramona.jpg') no-repeat;
-            background-size: auto 100%;
+            background-size: cover;
             background-position: center top;
         }
     }
     &.geeklike {
         &:before{
             background: asset-url('/assets/site/faixa_remix.jpg') no-repeat;
-            background-size: auto 100%;
+            background-size: cover;
             background-position: center top;
         }
     }
@@ -2231,6 +2232,7 @@ p.content a {
         }
     }
 
+
     img.heart {
         &:hover {
             animation: none !important;
@@ -2238,9 +2240,10 @@ p.content a {
     }
     div.card {
         opacity: 0;
+
         .card-close-container {
-            height: 40px;
-            width: 40px;
+            height: 26px;
+            width: 26px;
             right: 10px;
             top: 10px;
             background: rgba(255, 255, 255, 0.6);
@@ -2251,10 +2254,10 @@ p.content a {
         .close {
             -webkit-filter: none;
             filter: none;
-            height: 22px;
-            width: 22px;
-            top: 19px;
-            right: 19px;
+            height: 12px;
+            width: 12px;
+            top: 17px;
+            right: 17px;
             &:hover{
                 -ms-transform: translate(0,0);
                 -webkit-transform: translate(0,0);
@@ -2272,6 +2275,15 @@ p.content a {
         &.openMobile {
             overflow: auto;
             padding-bottom: 60px;
+            &.remixlike,
+            &.ramonalike,
+            &.geeklike {
+                &:before{
+                    content: '';
+                    position: relative;
+                    height: 43px;
+                }
+            }
             div.img {
                 background-position: top center;
                 background-size: 100%;
