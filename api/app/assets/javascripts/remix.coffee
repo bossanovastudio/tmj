@@ -561,15 +561,17 @@ $('.remix-container').each ->
   # gallery swipe
   $gallery.each ->
     $(this).on 'remix:gallery-adapt', ->
+      galleryItens = $(this).find('.gallery-item').length
+
       if window.isDesktop()
         $(this).find('.gallery-item').removeAttr('style')
         $(this).find('.gallery-holder').removeAttr('style')
       else
         itemWidth = $(this).width()
-        totalWidth = (itemWidth * $(this).find('.gallery-item').length) + (40 * 2)
+        totalWidth = ((itemWidth + 20) * galleryItens)
         $(this).find('.gallery-item').outerWidth(itemWidth)
         $(this).find('.actions').outerWidth(itemWidth)
-        $(this).find('.gallery-holder').outerWidth(totalWidth + 40)
+        $(this).find('.gallery-holder').outerWidth(totalWidth)
         $(this).scrollLeft(0)
         $(this).find('.actions .remove').click ->
           b = $(this);

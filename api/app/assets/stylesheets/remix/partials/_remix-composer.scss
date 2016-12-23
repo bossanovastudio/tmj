@@ -559,9 +559,6 @@
     &.can-compose {
       .remix-composer {
         .actions {
-          // button.next {
-          //   display: inline-block;
-          // }
           button.publish {
             display: inline-block;
             position: absolute;
@@ -585,6 +582,9 @@
       .remix-composer {
         .actions button.create-new {
           display: inline-block;
+          position: absolute;
+          right: -8px;
+          top: -7px;
         }
         .artboard {
           padding: 0 15%;
