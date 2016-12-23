@@ -43,7 +43,7 @@
     padding: 0 10px;
     position: absolute;
     transform: translateX(-50%);
-    left: 0px;
+    left: 49%;
     top: -10px;
   }
   .actions {
@@ -562,8 +562,11 @@
           // button.next {
           //   display: inline-block;
           // }
-          button.publish { // fixme: misplaced
+          button.publish {
             display: inline-block;
+            position: absolute;
+            right: -8px;
+            top: -7px;
           }
         }
       }
@@ -580,9 +583,6 @@
     }
     &.can-share {
       .remix-composer {
-        .cancel {
-          display: none;
-        }
         .actions button.create-new {
           display: inline-block;
         }

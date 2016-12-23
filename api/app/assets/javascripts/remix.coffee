@@ -569,8 +569,7 @@ $('.remix-container').each ->
         totalWidth = (itemWidth * $(this).find('.gallery-item').length) + (40 * 2)
         $(this).find('.gallery-item').outerWidth(itemWidth)
         $(this).find('.actions').outerWidth(itemWidth)
-        $(this).find('.gallery-holder').outerWidth(totalWidth)
-        $(this).outerWidth(totalWidth)
+        $(this).find('.gallery-holder').outerWidth(totalWidth + 40)
         $(this).scrollLeft(0)
         $(this).find('.actions .remove').click ->
           b = $(this);
@@ -658,13 +657,9 @@ $('.remix-container').each ->
 
   $remix.find('.create-new, .gallery-item-new, .start-over').click ->
     $remix.trigger 'init'
-    if window.isMobile()
-      $('#nav-icon4').hide()
 
   $composer.find('.cancel').click ->
     $remix.trigger 'finish'
-    if window.isMobile()
-      $('#nav-icon4').show()
 
   $composer.find('.actions .next').click ->
     $remix.trigger 'publish'
