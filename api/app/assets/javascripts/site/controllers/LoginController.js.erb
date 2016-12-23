@@ -197,13 +197,23 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             $('input[name="username"]').removeClass('error');
             return false;
         } else if ($scope.form.password.length != 12) {
-            console.log('password');
             $scope.msg_register_pass = 'Senha inválida';
             $scope.msg_register_username = '';
             $scope.msg_register_email = '';
             $('.input-pass').addClass('error');
             $('input[name="email"]').removeClass('error');
             $('input[name="username"]').removeClass('error');
+            return false;
+        } else if ($scope.form.accept_terms != 1) {
+            console.log("errou");
+            $scope.msg_register_pass = '';
+            $scope.msg_register_username = '';
+            $scope.msg_register_email = '';
+            $scope.msg_accept_terms = 'É necessário ler e aceitar os termos de uso';
+            $('.input-pass').removeClass('error');
+            $('input[name="email"]').removeClass('error');
+            $('input[name="username"]').removeClass('error');
+            $('.label-termo').addClass('error');
             return false;
         }
         $http.post("/user.json", {
@@ -222,6 +232,8 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
                 $('.input-pass').removeClass('error');
                 $('input[name="email"]').removeClass('error');
                 $('input[name="username"]').addClass('error');
+                $('.label-termo').removeClass('error');
+
             });
     }
     $scope.msg_recover = 'Cadastrar nova senha.';
