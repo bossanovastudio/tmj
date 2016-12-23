@@ -281,7 +281,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
             && !e.hasClass('arrow') && !e.hasClass('content') && !e.hasClass('hr')
             && !e.hasClass('heart') && !e.hasClass('like-card') && !e.hasClass('item-share')
             && !e.hasClass('shareBox') && !e.hasClass('content-item-box') && !e.hasClass('shareButton')
-            && !e.hasClass('text') && !e.hasClass('name') && !e.hasClass('date-link')) {
+            && !e.hasClass('text') && !e.hasClass('name') && !e.hasClass('date-link') && !e.hasClass('linkified')) {
             $scope.closeLightbox();
         }
     }
@@ -320,7 +320,6 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
 
     angular.element(document).ready(function () {
         $rootScope.documentReady = true;
-
         setTimeout(function() {
           $rootScope.pageIsLoading = false;
         }, 500);
