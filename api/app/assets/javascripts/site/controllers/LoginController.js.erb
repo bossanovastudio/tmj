@@ -162,7 +162,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
                 if ($scope.redirect_url) {
                     window.location = $scope.redirect_url;
                 } else {
-                    window.location = '/';
+                    window.location = '/perfil/' + storage.get('user').username;
                 }
             }, function(response) {
                 storage.deleteKey('user');
