@@ -1,6 +1,6 @@
 <p class="share">
-    <a ng-if="card.user.role!='editor' || pageName != 'homePage' || isMobile" ng-click="likeCard($event, card.id)" class="{{card.liked ? 'liked' : ''}}"ng-href="#">
-        <img class="heart" src="{{card.liked ? '<%= asset_url('site/like-ativo.svg') %>' : '<%= asset_url('site/like.svg') %>'}}">
+    <a ng-if="card.user.role!='editor' || pageName != 'homePage' || isMobile" ng-click="likeCard($event, card.id)" ng-init="card.liked ? heartsrc='<%= asset_url('site/like-ativo.svg') %>' : heartsrc='<%= asset_url('site/like.svg') %>'" ng-mouseenter="card.liked ? heartsrc='<%= asset_url('site/like.svg') %>' : heartsrc='<%= asset_url('site/like-rollover.svg') %>'" ng-mouseleave="heartsrc='<%= asset_url('site/like.svg') %>'" class="{{card.liked ? 'liked' : ''}}" ng-href="#">
+        <img class="heart" src="{{heartsrc}}">
         <span class="counter">&nbsp;{{card.likes ? card.likes : 0}}</span>
         <span class="love-explosion">
             <img class="core prim" src="<%= asset_url('site/like-ativo.svg') %>">
@@ -8,7 +8,7 @@
             <img class="core terc" src="<%= asset_url('site/like-ativo.svg') %>">
         </span>
     </a>
-    <a ng-if="card.user.role=='editor' && pageName == 'homePage' && !isMobile" ng-click="likeCard($event, card.id)" class="{{card.liked ? 'liked' : ''}}" ng-href="#">
+    <a ng-if="card.user.role=='editor' && pageName == 'homePage' && !isMobile" ng-click="likeCard($event, card.id)" ng-init="card.liked ? heartsrcramona='<%= asset_url('site/like-ativo.svg') %>' : heartsrcramona='<%= asset_url('site/like-ramona.svg') %>'" ng-mouseenter="card.liked ? heartsrcramona='<%= asset_url('site/like-ramona.svg') %>' : heartsrcramona='<%= asset_url('site/like-rollover-ramona.svg') %>'" ng-mouseleave="heartsrcramona='<%= asset_url('site/like-ramona.svg') %>'" class="{{card.liked ? 'liked' : ''}}" ng-href="#">
         <img class="heart" src="{{card.liked ? '<%= asset_url('site/like-ativo.svg') %>' : '<%= asset_url('site/like-ramona.svg') %>'}}">
         <span class="counter">&nbsp;{{card.likes ? card.likes : 0}}</span>
         <span class="love-explosion">
