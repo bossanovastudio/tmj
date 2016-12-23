@@ -561,25 +561,54 @@ $('.remix-container').each ->
   # gallery swipe
   $gallery.each ->
     $(this).on 'remix:gallery-adapt', ->
+      galleryItens = $(this).find('.gallery-item').length
+
       if window.isDesktop()
         $(this).find('.gallery-item').removeAttr('style')
         $(this).find('.gallery-holder').removeAttr('style')
       else
-        itemWidth = $(this).width() - (40 * 2)
-        totalWidth = (itemWidth * $(this).find('.gallery-item').length) + (40 * 2)
+        itemWidth = $(this).width()
+        totalWidth = ((itemWidth + 20) * galleryItens)
         $(this).find('.gallery-item').outerWidth(itemWidth)
+        $(this).find('.actions').outerWidth(itemWidth)
         $(this).find('.gallery-holder').outerWidth(totalWidth)
         $(this).scrollLeft(0)
+        $(this).find('.actions .remove').click ->
+          b = $(this);
+          id = $(this).data('id')
+          b.animate({opacity: 0.2});
+          $.ajax {
+            url: API_URL + '/delete'
+            method: 'POST'
+            data:
+              id: id
+            dataType: 'json'
+          }
+          .done (data) ->
+            b.animate({opacity: 1});
+            $('.gallery-item[data-id=' + id + ']').remove()
+            location.reload();
+          .fail ->
+            alert('Houve um problema ao remover a imagem')
     .trigger 'remix:gallery-adapt'
 
+    positionX = 0
     $(this).swipe {
       swipeLeft: (event, direction, duration, fingerCount, fingerData, currentDirection) ->
         width = $(this).find('.gallery-item').first().outerWidth(true)
-        $(this).animate({ scrollLeft: ('+=' + width) }, 100)
+        totalWidth = $(this).find('.gallery-holder').width()
+        positionX += width
+        if positionX >= totalWidth
+          positionX = totalWidth - width
+          return
+        $(this).find('.gallery-holder').css('transform', 'translateX(-' + positionX + 'px)');
 
       swipeRight: (event, direction, duration, fingerCount, fingerData, currentDirection) ->
+        if positionX <= 0
+          return
         width = $(this).find('.gallery-item').first().outerWidth(true)
-        $(this).animate({ scrollLeft: ('-=' + width) }, 100)
+        positionX -= width
+        $(this).find('.gallery-holder').css('transform', 'translateX(-' + positionX + 'px)');
     }
 
     $(this).find('.gallery-item').find('.actions .share').click ->

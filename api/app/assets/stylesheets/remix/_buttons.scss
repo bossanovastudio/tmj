@@ -1,15 +1,15 @@
 .btn {
   cursor: pointer;
   font-family: 'KomikaTitle';
-  line-height: 14px;
-  padding: 6px 15px;
-  line-height: 20px;
+  line-height: 32px;
+  padding: 0 15px;
   font-size: 14px;
   letter-spacing: 0.5px;
   img {
     max-height: 16px;
     max-width: 16px;
     vertical-align: middle;
+    margin-top: 8px;
   }
   &:hover {
     text-decoration: none;
@@ -24,16 +24,21 @@
   background-color: #FFF;
   border: 1px solid #000;
   height: 33px;
-  font-size: 18px !important;
-  line-height: 20px !important;
-  -webkit-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
-  -moz-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
-  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+  font-size: 18px;
+  line-height: 20px;
+  -webkit-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
   margin-bottom: 4px;
   margin-right: 4px;
   transition-duration: 0.2s;
   overflow: hidden;
   position: relative;
+  @include mq-only-xs {
+      font-size: 15px;
+      line-height: 30px;
+      padding: 0 12px;
+  }
   &:before{
         content: '';
         position: absolute;
