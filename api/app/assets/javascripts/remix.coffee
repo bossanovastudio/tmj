@@ -357,6 +357,7 @@ $('.remix-container').each ->
         $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url)
         $composer.find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
         $('.gallery-item-new').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
+        $('.artboard .loading').hide()
       .fail ->
         alert 'Não foi possível salvar a imagem'
 
@@ -630,6 +631,7 @@ $('.remix-container').each ->
       $composer.find('.actions .remove').data('id', $item.data('id'))
       $remix.addClass('initial can-share')
     , '.gallery-item .picture'
+      
 
   $(window).resize ->
     $gallery.trigger 'remix:gallery-adapt'
@@ -666,6 +668,8 @@ $('.remix-container').each ->
 
   $composer.find('.publish').click ->
     $remix.trigger 'share'
+    $('.artboard .loading').show()
+
 
   $composer.find('.toolbox .categories .take-photo input').change ->
     file = this.files[0];

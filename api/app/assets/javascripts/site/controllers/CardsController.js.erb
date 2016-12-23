@@ -18,6 +18,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope.count = 0;
     $scope.cardsFeatured = [];
     $scope.cardsRamona = [];
+    $scope.cardsRecommended = [];
 
     $scope.isMobile = isMobileDevice;
 
@@ -92,6 +93,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     }
                 } else {
                     if (($scope.PAGE == 1 && isMobileDevice && $rootScope.pageName != 'homePage') || icon == 'ramonaIcon') {
+                        $scope.initialCard(array, icon, data.data.total_cards ? data.data.total_cards : 0);
+                    }
+                    //robin, precisa por aqui o icone de recomendado!
+                    if (icon == 'recommendation') {
                         $scope.initialCard(array, icon, data.data.total_cards ? data.data.total_cards : 0);
                     }
                     data.data.cards.forEach(function(card, i) {
@@ -190,9 +195,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
 
     // THIS MUST BE USED FOR RECOMMENDED CARDS
-    // if (isMobileDevice) {
-    //     $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName+'/recommendation' : 'all', $scope.cards_recommended, 'recommendation');
-    // }
+    if (isMobileDevice && $rootScope.pageName != 'homePage' && $rootScope.pageName != 'ramona') {
+        $scope.loadCards($scope.PAGE, 'user/'
+             + $rootScope.pageName + '/recommended/ramona', $scope.cardsRecommended, 'recommendation');
+    }
 
     $scope.lazyLoad = function(desktop) {
         if (desktop) {
@@ -341,7 +347,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
     $scope.openCard = function($event, id, content, force) {
         var elem = angular.element($event.target);
-        $rootScope.cardIsOpen = true;
+
         if (content.kind == "featured") {
             if(content.source_url.length > 0) {
                 window.open(content.source_url);
@@ -355,14 +361,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     $location.path("/detalhe/card/" + $rootScope.card.id, false);
 
                     if (isMobileDevice) {
-                        // FIXME: This is hackish af, so someone please do find a
-                        // better way to deal with this, ffs.
-                        var card;
-                        if(data.kind !== 'image') {
-                            card = $(elem).closest('.card.' + data.kind).clone();
-                        } else {
-                            card = $(elem).closest('.card:not(.text, .video)');
-                        }
+                        var card = $(elem).closest('.card').clone();
+
                         card.css({
                             "position": "absolute",
                             "left": "50%",
@@ -375,6 +375,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         card.html(contentHTML);
                         $('body').append(card);
                         $('section').css({ overflow: "hidden !important" });
+
                         card.animate({
                             left: 0,
                             top: 0,
@@ -398,7 +399,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                                     overflow: 'auto'
                                 });
                             } else {
-                                console.log(data.image.url);
                                 var h = $scope.imageHeightMobile();
                                 $('.card').last().find('.img').css({
                                     'background-image': 'url(' + data.image.url + ')'
@@ -452,13 +452,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             lightboxDetail.addClass('show');
                         }
                     }
-                    // setTimeout(function() {
-                    //     $('p.content').linkify({
-                    //         target: "_blank"
-                    //     });
-                    // }, 500);
                 });
         }
+
+        $rootScope.cardIsOpen = true;
     }
 
     $scope.imageHeightMobile = function() {
@@ -475,7 +472,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
 
     $scope.close = function($event) {
-        $rootScope.cardIsOpen = false;
         var elem = angular.element($event.target);
         var card = $(elem).closest('.card');
         card.fadeOut(300, function() {
@@ -487,6 +483,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         }
         $location.path($rootScope.previousURL, false);
         $rootScope.track('click', 'cards', 'close');
+
+        $rootScope.cardIsOpen = false;
     }
 
     $scope.likeCard = function($event, id) {

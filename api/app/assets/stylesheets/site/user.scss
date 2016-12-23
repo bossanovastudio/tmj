@@ -6,6 +6,9 @@ body.profile {
     .initial-loading {
         top: 40%;
     }
+    .mobile-edit {
+        opacity: 0;
+    }
     .container.users {
         height: auto !important;
         opacity: 0;
@@ -236,7 +239,7 @@ body.profile {
         .recommendation{
             position: absolute;
             right: 20px;
-            top: 0px;
+            top: 29px;
             text-align: center;
             opacity: 0;
             &.animate{
@@ -358,6 +361,16 @@ body.profile {
         .container.geek {
             width: 100% !important;
             height: 100% !important;
+        }
+        .deskicon {
+            display:none;
+        }
+        .mobile-edit {
+            position: absolute;
+            top: 27px;
+            right: 20px;
+            opacity: 1;
+            z-index: 99999;
         }
         .author {
             margin: 0px;

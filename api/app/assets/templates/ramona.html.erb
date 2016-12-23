@@ -4,7 +4,7 @@
       <div class="author">
         <div class="box-avatar-user">
           <img class="badge" src="<%=asset_url('site/ramona-badge.svg')%>" />
-          <div class="avatar" style="background-image: url('{{currentUser.image}}')" />
+          <div class="avatar" style="background-image: url('{{currentUser.image.url}}')" />
           <img class="avatar_hover" width="200" height="200" src="<%=asset_url('site/ramona_hover.png')%>" />
         </div>
         <div class="seven columns">
@@ -16,12 +16,12 @@
               <p class="editor">{{currentUser.username}}</p>
               <p class="position">Editor TMJ</p>
             </div>
-            <a ng-click="!currentUser.following ? followUser() : unFollowUser()" class="follow">
+            <a ng-click="!currentUser.following ? followUser() : unFollowUser()" ng-class="currentUser.following ? 'following' : '' " class="follow">
               <div class="text" ng-if="!currentUser.following">SEGUIR</div>
               <div class="text" ng-if="currentUser.following">SEGUINDO</div>
             </a>
             <div class="followers">
-              <p class="number"><span>{{currentUser.followers}}</span> {{currentUser.followers > 1 ? 'seguidores' : 'seguidor'}}</p>
+              <p class="number"><span>{{currentUser.followers}}</span> {{currentUser.followers > 1 ? 'Seguidores' : 'Seguidor'}}</p>
             </div>
           </div>
           <div class="about">

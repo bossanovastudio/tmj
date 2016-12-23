@@ -37,11 +37,12 @@
             border-style: solid;
             border-width: 6px 0 6px 10.4px;
             border-color: transparent transparent transparent #ffffff;
+            transform: rotate(90deg);
           }
         }
         &.open {
           &:after {
-            transform: rotate(90deg);
+            transform: rotate(0deg);
           }
         }
     }
@@ -306,6 +307,21 @@
                 }
             }
         }
+        .username-fixed{
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px rgba(200, 200, 200, 0.6) solid;
+            border-radius: 0;
+            width: 100%;
+            letter-spacing: 0.4px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: bold;
+            letter-spacing: 0.4px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            padding: 5px 0 4px 0;
+            margin-top: 0px;
+        }
         input {
             background-color: transparent;
             border: none;
@@ -425,7 +441,7 @@
                 color: #000;
                 transition-duration: 0.2s;
                 &:hover {
-                    color: #3e3e3e;
+                    color: #fff;
                     transition-duration: 0.2s;
                 }
             }
@@ -511,8 +527,23 @@
             position: relative;
             display: inline-block;
             float: left;
+            &:hover {
+                color: #fff;
+            }
             &:before {
-                background: #f1f1f1;
+                background: #000;
+            }
+            &.pressed{
+                transform: translate(3px, 4px);
+                -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+                -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+                box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+                color: #fff;
+                &:before{
+                    background: #000;
+                    left: -90px;
+                    top: -90px;
+                }
             }
         }
         &.btn-cancel {
@@ -540,18 +571,18 @@
             border-radius: 100%;
             -moz-border-radius: 33px 33px 0 0;
             overflow: hidden;
-            width: 200%;
-            height: 200%;
+            width: 340px;
+            height: 340px;
             bottom: 0;
-            left: -200%;
+            left: -340px;
             right: 0;
-            top: -200%;
+            top: -340px;
             z-index: -1;
-            -webkit-transition: all 0.08s ease-in;
+            -webkit-transition: all $anim-faster ease-in;
         }
         &:hover:before {
-            left: -50%;
-            top: -50%;
+            left: -90px;
+            top: -90px;
         }
     }
 }
