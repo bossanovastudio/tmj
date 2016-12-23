@@ -571,6 +571,23 @@ $('.remix-container').each ->
         $(this).find('.gallery-holder').outerWidth(totalWidth)
         $(this).outerWidth(totalWidth)
         $(this).scrollLeft(0)
+        $(this).find('.actions .remove').click ->
+          b = $(this);
+          id = $(this).data('id')
+          b.animate({opacity: 0.2});
+          $.ajax {
+            url: API_URL + '/delete'
+            method: 'POST'
+            data:
+              id: id
+            dataType: 'json'
+          }
+          .done (data) ->
+            b.animate({opacity: 1});
+            $('.gallery-item[data-id=' + id + ']').remove()
+            location.reload();
+          .fail ->
+            alert('Houve um problema ao remover a imagem')
     .trigger 'remix:gallery-adapt'
 
     positionX = 0
