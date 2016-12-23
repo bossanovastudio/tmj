@@ -313,7 +313,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         $rootScope.track('swipe', 'cards', 'up');
 
         if (section == 'mainSection') {
-            $('#ramona-bg').show();
+            $('#ramona-bg').css({display: "block", top: window.innerHeight});
+            $('#ramona-bg').animate({top: "-10%"}, 200);
         }
     }
 
@@ -337,7 +338,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         $rootScope.track('swipe', 'cards', 'down');
 
         if (section == 'ramonaSection') {
-            $('#ramona-bg').hide();
+          $('#ramona-bg').animate({ top: window.innerHeight }, 200, function() {
+              $(this).hide();
+          });
         }
     }
 
