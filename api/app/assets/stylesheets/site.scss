@@ -523,9 +523,9 @@ section {
                     height: 70px;
                     width: 70px;
                     border-radius: 70px;
-                    -webkit-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
-                    -moz-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
-                    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+                    -webkit-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+                    -moz-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+                    box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
                     border: 1px solid #000000;
                 }
                 span {
@@ -546,9 +546,9 @@ section {
                     text-align: center;
                     padding: 0;
                     margin: 18px 35px 15px 0;
-                    -webkit-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
-                    -moz-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
-                    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+                    -webkit-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+                    -moz-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+                    box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
                     border: 1px solid #000000;
                     overflow: hidden;
                     letter-spacing: 0px;
@@ -2383,8 +2383,8 @@ p.content a {
     }
     #menu {
         position: absolute;
-        left: 7%;
-        top: 2%;
+        left: 22px;
+        top: 10px;
         filter: none;
         svg {
             display: none;
@@ -2463,7 +2463,7 @@ p.content a {
                         margin: 11px 25px 11px 0;
                         font-size: 15px;
                         width: 65px;
-                        height: 31px;
+                        height: 33px;
                         line-height: 30px;
                     }
                     img{
