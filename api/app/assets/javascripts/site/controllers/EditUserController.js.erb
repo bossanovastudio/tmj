@@ -26,6 +26,10 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             response.data.providers.forEach(function(p) {
                 $scope.user.providers[p.name] = p.uid;
             });
+            setTimeout(function(){
+              $('.user, .mail, .pass').slideToggle();
+              $('.personal').toggleClass('open');
+            }, 1500);
             $('.box-avatar .avatar').css('background-image', "url("+$scope.user.image+")");
             $scope.form.bio = $scope.user.bio;
             $scope.form.username = $scope.user.username;

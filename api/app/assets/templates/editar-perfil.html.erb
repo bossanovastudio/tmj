@@ -82,19 +82,19 @@
                 <li class="break"></li>
             </ul>
             <div>
-              <span class="bioheader personal" ng-click="slideInfo($event, '.user, .mail, .pass')">Dados Pessoais</span>
+              <span class="bioheader personal open" ng-click="slideInfo($event, '.user, .mail, .pass')">Dados Pessoais</span>
             </div>
-            <div class="form-group user hide">
+            <div class="form-group user">
                 <label for="username">Nome de usuário</label>
                 <br>
                 <input type="text" ng-model="form.username" name="username" class="form-control" placeholder="insira seu apelido"/>
             </div>
-            <div class="form-group mail hide">
+            <div class="form-group mail">
                 <label for="username">E-mail do Responsável</label>
                 <br>
                 <input type="text" name="email" ng-model="form.email" class="form-control" placeholder="insira o e-mail"/>
             </div>
-            <div class="form-group pass hide">
+            <div class="form-group pass">
                 <label for="password">Nova Senha</label>
                 <br>
                 <ul class="input-pass register">
