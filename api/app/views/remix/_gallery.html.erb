@@ -5,7 +5,7 @@
     <div class="gallery-item" data-id="<%= i.id %>">
       <%= image_tag remix_image_url(id: i.id), { :class => "picture" } %>
       <div class="actions">
-        <a href="#" target="_blank" class="download">
+        <a href="/remix/image/<%= i.id %>" target="_blank" class="download">
           <%= image_tag "remix/icon-arrow-down", alt: 'Baixar', class: 'toggler-main-icon' %>
           <%= image_tag "remix/icon-arrow-down-shadow", alt: 'Baixar', class: 'toggler-arrow-shad-icon' %>
         </a>
