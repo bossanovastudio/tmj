@@ -11,7 +11,8 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
         .then(function(response) {
             $scope.currentUser.bio = response.data.bio;
             $scope.currentUser.username = response.data.username;
-            $scope.currentUser.image = response.data.image;
+            $scope.currentUser.image = {};
+            $scope.currentUser.image.url = response.data.image;
             $scope.currentUser.ramona_recommendations = response.data.ramona_recommendations;
             $scope.currentUser.providers = {};
             response.data.providers.forEach(function(p) {
