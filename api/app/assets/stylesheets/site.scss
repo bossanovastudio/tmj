@@ -1014,18 +1014,18 @@ div.card {
         background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;
-        -webkit-transition: all $anim-normal;
-        -moz-transition: all $anim-normal;
-        -ms-transition: all $anim-normal;
-        -o-transition: all $anim-normal;
-        transition: all $anim-normal;
+        -webkit-transition: border $anim-normal;
+        -moz-transition: border $anim-normal;
+        -ms-transition: border $anim-normal;
+        -o-transition: border $anim-normal;
+        transition: border $anim-normal;
         border: 0px solid #fff;
         &:hover{
-            -webkit-transition: all $anim-normal;
-            -moz-transition: all $anim-normal;
-            -ms-transition: all $anim-normal;
-            -o-transition: all $anim-normal;
-            transition: all $anim-normal;
+            -webkit-transition: border $anim-normal;
+            -moz-transition: border $anim-normal;
+            -ms-transition: border $anim-normal;
+            -o-transition: border $anim-normal;
+            transition: border $anim-normal;
             border: 10px solid #fff;
         }
         //background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), asset-url('site/tmj_monica.gif');
@@ -2172,6 +2172,19 @@ p.content a {
             background-image: image-url('site/bg_login_mobile.jpg');
             section {
                 overflow: auto;
+            }
+        }
+        .share {
+            span.counter {
+                //font-size: 20px;
+                letter-spacing: 0.4px;
+                color: #bdbdbd;
+                font-family: 'KomikaTitle';
+                text-decoration: none;
+                float: left;
+                font-size: 14px;
+                margin-left: 3px;
+                margin-top: 3px;
             }
         }
     }
