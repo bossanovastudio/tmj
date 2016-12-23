@@ -5,6 +5,9 @@
     transition: all 200ms ease;
     margin-bottom: 10px;
     margin-top: 10px;
+    .actions {
+      display: none;
+    }
   }
   .gallery-item {
     margin-bottom: 10px;
@@ -80,6 +83,24 @@
       @include clearfix;
       padding-left: 0px;
       padding-right: 0px;
+      .actions {
+        display: inline-block;
+        button, a {
+          position: relative;
+        }
+        .toggler-trash-shad-icon {
+          position: absolute;
+          top: 1px;
+          left: 9px;
+          z-index: -1;
+        }
+        .toggler-arrow-shad-icon {
+          position: absolute;
+          top: -9px;
+          left: 2px;
+          z-index: -1;
+        }
+      }
       .gallery-item {
         float: left;
         // padding-left: ($grid-gutter-width / 2);
