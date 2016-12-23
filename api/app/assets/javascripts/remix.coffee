@@ -568,17 +568,25 @@ $('.remix-container').each ->
         totalWidth = (itemWidth * $(this).find('.gallery-item').length) + (40 * 2)
         $(this).find('.gallery-item').outerWidth(itemWidth)
         $(this).find('.gallery-holder').outerWidth(totalWidth)
+        $(this).outerWidth(totalWidth)
         $(this).scrollLeft(0)
     .trigger 'remix:gallery-adapt'
 
+    positionX = 0
     $(this).swipe {
       swipeLeft: (event, direction, duration, fingerCount, fingerData, currentDirection) ->
+        if positionX * 3 >= $(this).find('.gallery-holder').width()
+          return
         width = $(this).find('.gallery-item').first().outerWidth(true)
-        $(this).animate({ scrollLeft: ('+=' + width) }, 100)
+        positionX += width
+        $(this).find('.gallery-holder').css('transform', 'translateX(-' + positionX + 'px)');
 
       swipeRight: (event, direction, duration, fingerCount, fingerData, currentDirection) ->
+        if positionX == 0
+          return
         width = $(this).find('.gallery-item').first().outerWidth(true)
-        $(this).animate({ scrollLeft: ('-=' + width) }, 100)
+        positionX -= width
+        $(this).find('.gallery-holder').css('transform', 'translateX(-' + positionX + 'px)');
     }
 
     $(this).find('.gallery-item').find('.actions .share').click ->
