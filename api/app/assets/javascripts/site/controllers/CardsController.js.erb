@@ -487,7 +487,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         $rootScope.cardIsOpen = false;
     }
 
-    $scope.likeCard = function($event, id) {
+    $scope.likeCard = function($event, id, type) {
         var elem = $(angular.element($event.target)).closest('.card');
         var heart = elem.find('.heart');
         var card = $('[data-id="'+id+'"]');
@@ -497,7 +497,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     url: API_URL + 'cards/'+id+'/like.json'
                 })
                 .success(function(data) {
-                    heart.attr('src', '<%= asset_url('site/like-ativo.svg')%>');
+                    if( type == "ramona" ) {
+                        heart.attr('src', '<%= asset_url('site/like-ativo-ramona.svg')%>');
+                    } else {
+                        heart.attr('src', '<%= asset_url('site/like-ativo.svg')%>');
+                    }
                     heart.parent().find('.counter').html('&nbsp;' + data.likes);
                     heart.parent().addClass('liked');
                     heart.parent().find('.love-explosion').addClass('anim');
@@ -515,7 +519,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     url: API_URL + 'cards/'+id+'/unlike.json'
                 })
                 .success(function(data) {
-                    heart.attr('src', '<%= asset_url('site/like.svg')%>');
+                    if( type == "ramona" ) {
+                        heart.attr('src', '<%= asset_url('site/like-rollover-ramona.svg')%>');
+                    } else {
+                        heart.attr('src', '<%= asset_url('site/like-rollover.svg')%>');
+                    }
                     heart.parent().find('.counter').html('&nbsp;' + data.likes);
                     heart.parent().removeClass('liked');
                     heart.parent().find('.love-explosion').removeClass('anim');
