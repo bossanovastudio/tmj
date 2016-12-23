@@ -656,9 +656,13 @@ $('.remix-container').each ->
 
   $remix.find('.create-new, .gallery-item-new, .start-over').click ->
     $remix.trigger 'init'
+    if window.isMobile()
+      $('#nav-icon4').hide()
 
   $composer.find('.cancel').click ->
     $remix.trigger 'finish'
+    if window.isMobile()
+      $('#nav-icon4').show()
 
   $composer.find('.actions .next').click ->
     $remix.trigger 'publish'

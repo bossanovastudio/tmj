@@ -38,13 +38,13 @@
   display: none;
   position: relative;
   .cancel {
-    font-size: 28px;
+    font-size: 30px;
     line-height: 40px;
     padding: 0 10px;
     position: absolute;
     transform: translateX(-50%);
-    left: 5px;
-    top: 0;
+    left: 0px;
+    top: -10px;
   }
   .actions {
     @include clearfix;
@@ -380,12 +380,12 @@
     margin-right: -($grid-gutter-width / 2);
     margin-top: 20px;
     .artboard {
-      margin-left: -15px;
-      margin-right: -15px;
+      margin-left: -23px;
+      margin-right: -23px;
     }
     .toolbox {
-      margin-left: -15px;
-      margin-right: -15px;
+      margin-left: -23px;
+      margin-right: -23px;
       .toolbox-item-popup.category {
         .toggler {
           display: none;
@@ -613,7 +613,7 @@
         .actions {
           .download{
             display: inline-block;
-            position: relative; 
+            position: relative;
             .toggler-shad-icon {
                 position: absolute;
                 top: 14px;
@@ -631,7 +631,7 @@
           }
           .remove {
             display: inline-block;
-            position: relative; 
+            position: relative;
             .toggler-shad-icon {
                 position: absolute;
                 top: 14.5px;
