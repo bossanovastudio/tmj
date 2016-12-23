@@ -4,6 +4,19 @@
     <% @images.each do |i| %>
     <div class="gallery-item" data-id="<%= i.id %>">
       <%= image_tag remix_image_url(id: i.id), { :class => "picture" } %>
+      <div class="actions">
+        <a href="#" target="_blank" class="download">
+          <%= image_tag "remix/icon-arrow-down", alt: 'Baixar', class: 'toggler-main-icon' %>
+          <%= image_tag "remix/icon-arrow-down-shadow", alt: 'Baixar', class: 'toggler-arrow-shad-icon' %>
+        </a>
+        <a href="#" target="_blank" class="share">
+          <%= image_tag "remix/icon-reply", alt: 'Baixar', class: 'toggler-main-icon' %>
+        </a>
+        <button type="button" class="remove">
+          <%= image_tag "remix/icon-trash", alt: 'Remover', class: 'toggler-main-icon' %>
+          <%= image_tag "remix/icon-trash-shadow", alt: 'Remover', class: 'toggler-trash-shad-icon' %>
+        </button>
+      </div>
     </div>
     <% end %>
   </div>

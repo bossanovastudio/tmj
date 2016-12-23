@@ -567,6 +567,7 @@ $('.remix-container').each ->
         itemWidth = $(this).width()
         totalWidth = (itemWidth * $(this).find('.gallery-item').length) + (40 * 2)
         $(this).find('.gallery-item').outerWidth(itemWidth)
+        $(this).find('.actions').outerWidth(itemWidth)
         $(this).find('.gallery-holder').outerWidth(totalWidth)
         $(this).outerWidth(totalWidth)
         $(this).scrollLeft(0)
