@@ -97,7 +97,37 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         $rootScope.track('click', 'menu', 'close');
     }
 
-    $scope.likeCard = function($event, id) {
+    $scope.likeIcon = function($event, action, id, type) {
+
+        var card = $(angular.element($event.target)).closest('.lightbox');
+        if( card.length <= 0 ){
+            card = $('[data-id="'+id+'"]');
+        }
+        var heart = card.find('.heart');
+        if( heart.parent().hasClass('liked') ) {
+            if( type == 'ramona' ) {
+                heart.attr('src', '<%= asset_url('site/like-ativo-ramona.svg')%>');
+            } else {
+                heart.attr('src', '<%= asset_url('site/like-ativo.svg')%>');
+            }
+        } else {
+            if( action == "enter" ) {
+                if( type == 'ramona' ) {
+                    heart.attr('src', '<%= asset_url('site/like-rollover-ramona.svg')%>');
+                } else {
+                    heart.attr('src', '<%= asset_url('site/like-rollover.svg')%>');
+                }
+            } else {
+                if( type == 'ramona' ) {
+                    heart.attr('src', '<%= asset_url('site/like-ramona.svg')%>');
+                } else {
+                    heart.attr('src', '<%= asset_url('site/like.svg')%>');
+                }
+            }
+        }
+    }
+
+    $scope.likeCard = function($event, id, type) {
         var elem = $(angular.element($event.target)).closest('.lightbox');
         var heart = elem.find('.heart');
         var card = $('[data-id="'+id+'"]');
@@ -107,14 +137,17 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                     url: API_URL + 'cards/'+id+'/like.json'
                 })
                 .success(function(data) {
-                    heart.attr('src', '<%= asset_url('site/like-ativo.svg')%>');
+                   if( type == "ramona" ) {
+                       heart.attr('src', '<%= asset_url('site/like-ativo-ramona.svg')%>');
+                   } else {
+                       heart.attr('src', '<%= asset_url('site/like-ativo.svg')%>');
+                   }
                     heart.parent().find('.counter').html('&nbsp;' + data.likes);
                     heart.parent().addClass('liked');
                     heart.parent().find('.love-explosion').addClass('anim');
                     setTimeout(function() {
                         heart.parent().find('.love-explosion').removeClass('anim');
                     }, 1100);
-                    card.find('.heart').attr('src', '<%= asset_url('site/like-ativo.svg')%>');
                     card.find('.counter').html('&nbsp;' + data.likes);
                     card.find('.share a').addClass('liked');
                 })
@@ -128,7 +161,11 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                     url: API_URL + 'cards/'+id+'/unlike.json'
                 })
                 .success(function(data) {
-                    heart.attr('src', '<%= asset_url('site/like.svg')%>');
+                    if( type == "ramona" ) {
+                        heart.attr('src', '<%= asset_url('site/like-rollover-ramona.svg')%>');
+                    } else {
+                        heart.attr('src', '<%= asset_url('site/like-rollover.svg')%>');
+                    }
                     heart.parent().find('.counter').html('&nbsp;' + data.likes);
                     heart.parent().removeClass('liked');
                     heart.parent().find('.love-explosion').removeClass('anim');
