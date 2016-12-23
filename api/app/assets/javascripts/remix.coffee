@@ -576,14 +576,16 @@ $('.remix-container').each ->
     positionX = 0
     $(this).swipe {
       swipeLeft: (event, direction, duration, fingerCount, fingerData, currentDirection) ->
-        if positionX * 3 >= $(this).find('.gallery-holder').width()
-          return
         width = $(this).find('.gallery-item').first().outerWidth(true)
+        totalWidth = $(this).find('.gallery-holder').width()
         positionX += width
+        if positionX >= totalWidth
+          positionX = totalWidth - width
+          return
         $(this).find('.gallery-holder').css('transform', 'translateX(-' + positionX + 'px)');
 
       swipeRight: (event, direction, duration, fingerCount, fingerData, currentDirection) ->
-        if positionX == 0
+        if positionX <= 0
           return
         width = $(this).find('.gallery-item').first().outerWidth(true)
         positionX -= width
