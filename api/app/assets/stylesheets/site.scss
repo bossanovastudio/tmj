@@ -940,6 +940,11 @@ div.card {
     margin-bottom: 24px;
     margin: 0 1% 20px 1%;
     opacity: 0;
+    &.no-read-more{
+        .read-more{
+            display: none;
+        }
+    }
     &.end{
         p,a{
             text-align: center;
