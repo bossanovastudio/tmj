@@ -431,12 +431,14 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         }, 1000);
                     } else {
                         if (force || $rootScope.card.kind == 'image' || $rootScope.card.content.length > 300 || $rootScope.card.kind == 'video') {
-                            setTimeout(function() {
-                                $('html').css({ overflow: "hidden" });
-                            }, 1000);
-
                             var lightbox = angular.element(document.querySelector('.lightbox'));
                             var lightboxDetail = angular.element(document.querySelector('.lightbox .detail'));
+
+                            setTimeout(function() {
+                                lightbox.find('.content').linkify({
+                                    target: "_blank"
+                                });
+                            }, 500);
 
                             lightbox.find('.counter').html('&nbsp;' + $rootScope.card.likes);
 
