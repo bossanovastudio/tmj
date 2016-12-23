@@ -53,7 +53,7 @@ var organizeCards = function(newValue, oldValue, rs) {
                 "max-width": w,
                 "margin": 0,
                 "padding": 0,
-                "padding-top": 70
+                "padding-top": 60
             });
         });
     }
