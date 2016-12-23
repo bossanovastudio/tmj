@@ -7,7 +7,7 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
         $location.path('/personagem/ramona');
     }
 
-    $http.get('/api/user/'+$routeParams.username+'/profile.json')
+    $http.get(API_URL + '/user/'+$routeParams.username+'/profile.json')
         .then(function(response) {
             $scope.currentUser.bio = response.data.bio;
             $scope.currentUser.username = response.data.username;

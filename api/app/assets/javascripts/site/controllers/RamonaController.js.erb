@@ -64,7 +64,7 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
         if (!storage.get('user')) {
             window.location = '/login';
         } else {
-            $http.get('/api/ramona/follow.json', {
+            $http.get(API_URL + '/ramona/follow.json', {
                 headers: {
                     'Content-Type': 'application/json',
                     'X-User-username': storage.get('user').username,
