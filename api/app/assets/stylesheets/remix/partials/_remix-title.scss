@@ -463,6 +463,30 @@
     }
 }
 
+.terms-content {
+    position: absolute;
+    left: 30px;
+    bottom: 5px;
+    font-family: Lato;
+    font-weight: 300;
+    font-size: 13px;
+    font-weight: normal;
+    letter-spacing: 0.3px;
+    text-align: right;
+    color: #606060;
+    a {
+        text-decoration: none;
+        color: #606060;
+        font-weight: bold;
+        border-bottom: none;
+        transition-duration: $anim-fast;
+        &:hover{
+            color: #909090;
+            transition-duration: $anim-fast;
+        }
+    }
+}
+
 .overlay {
     position: fixed;
     right: 0px;
