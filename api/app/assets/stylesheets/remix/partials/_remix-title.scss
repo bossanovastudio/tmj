@@ -486,10 +486,10 @@
         color: #909090;
         font-weight: bold;
         border-bottom: none;
-        transition-duration: $anim-fast;
+        transition-duration: 0.2s;
         &:hover{
             color: #606060;
-            transition-duration: $anim-fast;
+            transition-duration: 0.2s;
         }
     }
 }
