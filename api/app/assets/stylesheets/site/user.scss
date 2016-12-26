@@ -564,6 +564,10 @@ body.profile {
             padding-top: 55px !important;
         }
     }
+    body.homePage {
+        background: #809ED4 asset-url('site/bg_mobile.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
 }
 
 @keyframes enterUsersSocial {
