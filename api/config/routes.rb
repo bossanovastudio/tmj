@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get 'detalhe/card/:id', to: 'share#card'
     get 'perfil/:username', to: 'share#profile'
     get 'personagem/:username', to: 'share#profile'
+    get 'remix/detalhe/:uid', to: 'share#remix'
 
     root to: 'welcome#index'
   end
@@ -96,8 +97,8 @@ Rails.application.routes.draw do
 
   get "/participe" => 'welcome#register'
   get "/remix" => 'remix#index'
-  get '/remix/image/:id' => 'remix#show', as: 'remix_image'
-  get '/remix/detail/:id' => 'remix#detail', as: 'remix_image_detail'
+  get '/remix/image/:uid' => 'remix#show', as: 'remix_image'
+  get '/remix/detail/:uid' => 'remix#detail', as: 'remix_image_detail'
 
   root to: 'welcome#index'
 

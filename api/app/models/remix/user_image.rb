@@ -10,9 +10,16 @@
 #
 
 class Remix::UserImage < ApplicationRecord
+  after_create :set_uid
+
   belongs_to :user
   mount_uploader :image, RemixUploader
 
   validates :image, presence: true
   validates :user, presence: true
+
+  private
+    def set_uid
+      self.update_attribute(:uid, Digest::SHA1.hexdigest("#{self.id}"))
+    end
 end
