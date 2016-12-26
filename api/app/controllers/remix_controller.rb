@@ -10,4 +10,10 @@ class RemixController < ApplicationController
     img = Remix::UserImage.find(params[:id])
     redirect_to img.image_url
   end
+
+  def detail
+    img = Remix::UserImage.find(params[:id])
+    @img = img.image_url
+    # redirect_to img.image_url
+  end
 end
