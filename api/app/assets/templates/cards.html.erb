@@ -47,6 +47,8 @@
                 </p>
                 <p class="text linkify" ng-bind-html="card | cropText | trust"></p>
                 <p class="read-more"><span data-hover="Veja mais">Veja mais</span></p>
+                <p class="IE-read-more">Veja mais</p>
+
                 <div ng-include src="'<%= asset_url('share.html')%>'"></div>
             </div>
             <p ng-if="card.kind == 'featured'">{{card.content}}</p>
