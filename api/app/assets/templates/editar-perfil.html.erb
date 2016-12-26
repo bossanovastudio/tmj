@@ -2,7 +2,7 @@
 <div class="container">
     <div class="four columns left" style="position: relative; z-index: 100">
         <div class="box-avatar">
-          <div class="avatar" style="background-image: {{user.image.url}}" />
+          <div class="avatar" style="background-image: url('{{user.image.url}}')" />
           <div class="avatar_hover"></div>
         </div>
         <input type="file" id="photo" style="display: none" file-on-change="changedFile" accept="image/*">
