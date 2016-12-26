@@ -20,6 +20,8 @@
 #= require 'exif-js/exif'
 
 API_URL = '/api/remix'
+isIE = (navigator.appVersion.indexOf("MSIE") != -1)
+isIE11 = (navigator.appVersion.indexOf('Trident/') > 0)
 DATA_BGS = []
 DATA_TXT_COLORS = []
 DATA_CSS_EFFECT_NAME = ['grayscale', 'sepia', 'filter_2', 'filter_3', 'none']
@@ -51,8 +53,6 @@ DATA_CSS_EFFECTS = [
   }
 ]
 
-
-
 window.isMobile = ->
   return $(window).width() < 768
 
@@ -65,6 +65,9 @@ parseColor = (x) ->
     x = "0" + x
   else
     x = x
+
+if isIE || isIE11
+    $('.toolbox .toolbox-item.effects').css('display', 'none')
 
 getRotationDegrees = (x) ->
   matrix = x.css("-webkit-transform") || x.css("-moz-transform") || x.css("-ms-transform") || x.css("-o-transform") || x.css("transform");
