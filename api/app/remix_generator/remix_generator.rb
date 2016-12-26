@@ -88,7 +88,8 @@ module RemixGenerator
             gc.rectangle position[0], position[1], position[0] + rect_width, position[1] + rect_height
             gc.draw(tmp)
           end
-          text.annotate(tmp, size_info.width, size_info.height, position[0] + 10, position[1] + 6, step[:content])
+          content = adjust_text(step[:content], rect_width, step[:size].to_i)
+          text.annotate(tmp, size_info.width, size_info.height, position[0] + 10, position[1] + 6, content)
           @canvas << tmp
         end
       end
@@ -103,5 +104,49 @@ module RemixGenerator
       img = yield(img) if block_given?
       img
     end
+
+    def text_fit_width?(options={})
+      width = options[:width]
+      size = options[:text_size]
+      contents = options[:content]
+
+      tmp_image = Magick::Image.new(width, 500)
+      drawing = Magick::Draw.new
+      drawing.annotate(tmp_image, 0, 0, 0, 0, contents) do |txt|
+        txt.gravity = Magick::NorthGravity
+        txt.pointsize = size
+        txt.fill = '#ffffff'
+        txt.font = './vendor/assets/fonts/KomikaTitle-webfont.ttf'
+      end
+      metrics = drawing.get_multiline_type_metrics(tmp_image, contents)
+      return metrics.width < width
+    end
+
+    def adjust_text(text, width, size)
+      sep = ' '
+      line = ''
+      if !text_fit_width?(width: width, text_size: size, content: text) && text.include?(sep)
+        i = 0
+        text.split(sep).each do |w|
+          if i == 0
+            tmp_line = line + w
+          else
+            tmp_line = line + sep + w
+          end
+
+          if text_fit_width?(content: tmp_line, width: width, text_size: size)
+            line += separator unless i == 0
+            line += w
+          else
+            line += '\n' unless i == 0
+            line += w
+          end
+          i += 1
+        end
+        text = line
+      end
+      text
+    end
+
   end
 end
