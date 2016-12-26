@@ -62,127 +62,22 @@
         </div>
         <div class="artboard">
           <div class="remix-canvas">
+            <img src="<%= @img %>" />
           </div>
-          <img src="<%=asset_url('site/loading.gif')%>" alt="" class="loading">
-          <div class="empty">Escolha uma categoria</div>
         </div>
-        <div class="toolbox">
-          <div class="toolbox-item toolbox-item-popup category on">
-            <button type="button" class="toggler toggler-image" title="Categoria">
-              <%= image_tag "remix/icon-image", alt: 'Categoria', class: 'toggler-main-icon' %>
-              <%= image_tag "remix/icon-image-shadow", alt: 'Categoria', class: 'toggler-shad-icon' %>
-            </button>
-            <div class="popup">
-              <div class="popup-holder">
-                <div class="categories">
-                  <div class="item take-photo">
-                    <div>
-                      <%= image_tag "remix/icon-camera", alt: 'Enviar foto' %>
-                      <input type="file">
-                    </div>
-                  </div>
-                </div>
-                <div class="pictures">
-                  <div class="item go-back">
-                    <div>
-                      <%= image_tag "remix/icon-arrow-left" %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="toolbox-item toolbox-item-colors color">
-            <button type="button" class="toggler toggler-itens toggler-aquarela" title="Aquarela">
-              <%= image_tag "remix/icon-watercolor", alt: 'Aquarela', class: 'toggler-main-icon' %>
-              <%= image_tag "remix/icon-watercolor-shadow", alt: 'Aquarela', class: 'toggler-shad-icon' %>
-            </button>
-          </div>
-          <div class="toolbox-item toolbox-item-popup toolbox-item-popup-above toolbox-item-elements patterns">
-            <button type="button" class="toggler toggler-itens toggler-bg" title="Backgrounds">
-              <%= image_tag "remix/icon-background", alt: 'Backgrounds', class: 'toggler-main-icon' %>
-              <%= image_tag "remix/icon-background-shadow", alt: 'Backgrounds', class: 'toggler-shad-icon' %>
-            </button>
-            <div class="popup">
-              <div class="popup-holder elements">
-              </div>
-            </div>
-          </div>
-          <div class="toolbox-item toolbox-item-effects effects">
-            <button type="button" class="toggler toggler-itens toggler-fx" title="Efeitos">
-              <%= image_tag "remix/icon-magic-wand", alt: 'Efeitos', class: 'toggler-main-icon' %>
-              <%= image_tag "remix/icon-magic-wand-shadow", alt: 'Efeitos', class: 'toggler-shad-icon' %>
-            </button>
-          </div>
-          <div class="toolbox-item toolbox-item-popup toolbox-item-popup-above toolbox-item-elements balloons">
-            <button type="button" class="toggler toggler-itens toggler-baloes" title="Balões">
-              <%= image_tag "remix/icon-balloon", alt: 'Balões', class: 'toggler-main-icon' %>
-              <%= image_tag "remix/icon-balloon-shadow", alt: 'Balões', class: 'toggler-shad-icon' %>
-            </button>
-            <div class="popup">
-              <div class="popup-holder elements">
-              </div>
-            </div>
-          </div>
-          <div class="toolbox-item toolbox-item-popup toolbox-item-popup-above toolbox-item-elements stickers">
-            <button type="button" class="toggler toggler-itens toggler-stickers" title="Stickers">
-              <%= image_tag "remix/icon-smile", alt: 'Stickers', class: 'toggler-main-icon' %>
-              <%= image_tag "remix/icon-smile-shadow", alt: 'Stickers', class: 'toggler-shad-icon' %>
-            </button>
-            <div class="popup">
-              <div class="popup-holder elements">
-              </div>
-            </div>
-          </div>
-          <div class="toolbox-item toolbox-item-popup toolbox-item-popup-above toolbox-item-texts">
-            <button type="button" class="toggler toggler-itens toggler-typo" title="Texto">
-              <%= image_tag "remix/icon-typography", alt: 'Texto', class: 'toggler-main-icon' %>
-              <%= image_tag "remix/icon-typography-shadow", alt: 'Texto', class: 'toggler-shad-icon' %>
-            </button>
-            <div class="popup">
-              <div class="popup-holder options">
-                <div class="color-palette">
-                  <div class="holder">
-                    <button type="button">
-                      <!-- <div class="palette-item" style="background-color:#FBB040;"></div>
-                      <div class="palette-item" style="background-color:#8DC63F;"></div>
-                      <div class="palette-item" style="background-color:#00A79D;"></div>
-                      <div class="palette-item" style="background-color:#27AAE1;"></div>
-                      <div class="palette-item" style="background-color:#92278F;"></div>
-                      <div class="palette-item" style="background-color:#231F20;"></div> -->
-                      <%= image_tag "remix/icon-color-palette", alt: 'Paleta de cores' %>
-                    </button>
-                  </div>
-                </div>
-                <div class="styles">
-                  <div class="styles-item g1" data-class="g1">
-                    <span>G1</span>
-                  </div>
-                  <div class="styles-item g2" data-class="g2">
-                    <span>G2</span>
-                  </div>
-                  <div class="styles-item m1" data-class="m1">
-                    <span>M1</span>
-                  </div>
-                  <div class="styles-item m2" data-class="m2">
-                    <span>M2</span>
-                  </div>
-                  <div class="styles-item p1" data-class="p1">
-                    <span>P1</span>
-                  </div>
-                  <div class="styles-item p2" data-class="p2">
-                    <span>P2</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <a class="btn btn-xs btn-default publish">Salvar</a>
-        </div>
-        <div class="share">
+        <div class="share detail">
+        <p class="avatar"><img src="<%= current_user.image.url %>" /><br /><br /><br /><%= current_user.username %><br /><br /></p>
           <p class="call">
-            Uau, seu remix ficou lindo!<br>
-            Compartilhe para aparecer na Home!
+            Olha só o remix que criei! <br />
+            Que tal fazer um você também?<br />
+          </p>
+          <div class="networks">
+            <%= link_to '/remix', { :class => "btn btn-social btn-normal" } do %>
+              Criar um Remix
+            <% end %>
+          </div>
+          <p class="call">
+            <br />OU<br /><br />
           </p>
           <div class="networks">
             <%= link_to '', { :class => "btn btn-social btn-facebook", target: "popup", id: 'facebook_share_btn' } do %>
@@ -193,15 +88,9 @@
               <%= image_tag "remix/icon-twitter", alt: 'Twitter' %>
               Compartilhar no Twitter
             <% end %>
-            <!--<%= link_to '', { :class => "btn btn-social btn-tumblr", :target => "_blank", id: 'tumblr_share_btn' } do %>
-              <%= image_tag "remix/icon-tumblr", alt: 'Tumblr' %>
-              Compartilhar no Tumblr
-            <% end %>-->
           </div>
         </div>
       </section>
-      <%= render "gallery" %>
-      <!-- <section class="remix-loader"></section> -->
     </div>
   </div>
 </div>
