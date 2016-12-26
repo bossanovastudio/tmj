@@ -616,15 +616,15 @@ section {
     font-weight: normal;
     letter-spacing: 0.3px;
     text-align: right;
-    color: #606060;
+    color: #909090;
     a {
         text-decoration: none;
-        color: #606060;
+        color: #909090;
         font-weight: bold;
         border-bottom: none;
         transition-duration: $anim-fast;
         &:hover{
-            color: #909090;
+            color: #606060;
             transition-duration: $anim-fast;
         }
     }
@@ -1418,13 +1418,8 @@ div.card {
         h1.title {
             font-family: KomikaTitle;
             font-size: 25px;
-<<<<<<< 6953c291afaa81d4675a32e287de4249098bbc74
-            letter-spacing: 0.6px;
-            margin: 25px 0;
-=======
             letter-spacing: 1.2px;
             margin: 40px 0 25px 0;
->>>>>>> fix remix title
             color: #000;
             font-weight: lighter;
         }
