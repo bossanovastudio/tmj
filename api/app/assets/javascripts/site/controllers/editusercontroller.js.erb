@@ -1,0 +1,296 @@
+
+tmj.controller('EditUserController', function($rootScope, $location, $scope, $http, $sce, $compile, $routeParams, $window) {
+
+    if (!storage.get('user')) {
+        $location.path('/login');
+    }
+
+    $rootScope.pageName = 'edit-user';
+
+    $scope.form = {};
+    $scope.user = storage.get('user');
+
+    $http.get("/user/edit.json", {
+            headers: {
+                'Content-Type': 'application/json',
+                'X-User-username': $scope.user.username,
+                'X-User-token': $scope.user.authentication_token,
+            }
+        })
+        .then(function(response) {
+            $scope.user.bio = response.data.bio;
+            $scope.user.username = response.data.username;
+            $scope.user.email = response.data.email;
+            $scope.user.image = {};
+            $scope.user.image.url = response.data.image;
+            $scope.user.providers = {};
+            response.data.providers.forEach(function(p) {
+                $scope.user.providers[p.name] = p.uid;
+            });
+            setTimeout(function(){
+              $('.user, .mail, .pass').slideToggle();
+              $('.personal').toggleClass('open');
+            }, 1500);
+            $('.box-avatar .avatar').css('background-image', "url("+$scope.user.image+")");
+            $scope.form.bio = $scope.user.bio;
+            $scope.form.username = $scope.user.username;
+            $scope.form.email = $scope.user.email;
+            storage.set('user', $scope.user);
+        }, function(response) {
+            storage.deleteKey('user');
+            $location.path('/login');
+        });
+
+    $('body').on('click','.box-avatar', function() {
+        $('#photo').trigger('click');
+    });
+
+
+
+    $scope.authSocial = function(sn) {
+        if ($scope.user.providers[sn]) {
+            $http.get('/user/auth/' + sn + '/remove.json', {
+                headers: {
+                    'X-User-username': $scope.user.username,
+                    'X-User-token': $scope.user.authentication_token,
+                }
+            });
+        } else {
+            window.location = '/user/auth/' + sn;
+        }
+    }
+
+    $scope.changedFile = function(event) {
+        var field = event.target;
+        var file = field.files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function() {
+            var base64 = reader.result;
+            $('.avatar').css('background-image', "url("+base64+")");
+            $scope.form.image = base64;
+        };
+    };
+
+
+    $scope.slideInfo = function($event, classes) {
+        $(classes).slideToggle();
+        $(angular.element($event.target)).toggleClass('open');
+    }
+
+    $('.avatar').css('background-image', "url("+$scope.user.image+")");
+
+    $scope.passwords = [{
+        id: 0,
+        value: 'mon',
+        name: 'monica',
+        img: '<%= asset_url('site/monica.png') %>'
+    },
+    {
+        id: 1,
+        value: 'ceb',
+        name: 'cebola',
+        img: '<%= asset_url('site/cebola.png') %>'
+    },
+    {
+        id: 2,
+        value: 'cas',
+        name: 'cascao',
+        img: '<%= asset_url('site/cascao.png') %>'
+    },
+    {
+        id: 3,
+        value: 'mag',
+        name: 'magali',
+        img: '<%= asset_url('site/magali.png') %>'
+    },
+    {
+        id: 4,
+        value: 'mar',
+        name: 'marina',
+        img: '<%= asset_url('site/marina.png') %>'
+    },
+    {
+        id: 5,
+        value: 'den',
+        name: 'denise',
+        img: '<%= asset_url('site/denisejovem.png') %>'
+    },
+    {
+        id: 6,
+        value: 'xav',
+        name: 'xaveco',
+        img: '<%= asset_url('site/xaveco.png') %>'
+    },
+    {
+        id: 7,
+        value: 'car',
+        name: 'carmen',
+        img: '<%= asset_url('site/carmen.png') %>'
+    },
+    {
+        id: 8,
+        value: 'doc',
+        name: 'docontra',
+        img: '<%= asset_url('site/docontra.png') %>'
+    },
+    {
+        id: 9,
+        value: 'nim',
+        name: 'nimbus',
+        img: '<%= asset_url('site/nimbus.png') %>'
+    }];
+
+    $scope.passwordChoice = [{
+        img: '<%= asset_url('site/pass-silhuete.svg') %>',
+        value: 0
+    }, {
+        img: '<%= asset_url('site/pass-silhuete.svg') %>',
+        value: 0
+    }, {
+        img: '<%= asset_url('site/pass-silhuete.svg') %>',
+        value: 0
+    }, {
+        img: '<%= asset_url('site/pass-silhuete.svg') %>',
+        value: 0
+    }];
+    $scope.numClick = 0;
+
+    $scope.open = false;
+    $scope.passwordPlaceholder = true;
+
+    $scope.togglePassword = function(position) {
+        $scope.open = !$scope.open;
+        if ($scope.open) {
+            if ($scope.passwordPlaceholder || position == 'first' || $scope.passwordChoice.length == 4) {
+              $scope.numClick = 0;
+              $('.after').css({ "left": 10 });
+            }
+            $('.overlay-pass').css({ "display": "block" });
+        } else {
+            $('.overlay-pass').css({ "display": "none" });
+        }
+        $scope.passwordPlaceholder = false;
+    };
+
+    $scope.addToPasswordChoice = function(pass) {
+        $scope.numClick = $scope.numClick + 1;
+        if ($scope.numClick == 1) {
+            $scope.passwordChoice.length = 0;
+            $('.input-pass li').removeClass('locker');
+            $scope.passwordChoice.push($scope.passwords[pass.id]);
+            setTimeout(function(){
+                $('.input-pass li').eq(0).addClass('locker');
+            }, 500)
+            $('.after').css({ "left": 55 });
+        } else if ($scope.numClick == 2) {
+            $scope.passwordChoice.push($scope.passwords[pass.id]);
+            setTimeout(function(){
+                $('.input-pass li').eq(1).addClass('locker');
+            }, 500)
+            $('.after').css({ "left": 105 });
+        } else if ($scope.numClick == 3) {
+            $scope.passwordChoice.push($scope.passwords[pass.id]);
+            setTimeout(function(){
+                $('.input-pass li').eq(2).addClass('locker');
+            }, 500)
+            $('.after').css({ "left": 150 });
+        } else {
+            setTimeout(function(){
+                $('.input-pass li').eq(3).addClass('locker');
+            }, 500)
+            $scope.passwordChoice.push($scope.passwords[pass.id]);
+            $scope.numClick = 0;
+            $scope.open = !$scope.open;
+            $('.overlay-pass').css({ "display": "none" });
+        }
+    }
+
+    $scope.back = function(){
+        $window.history.back()
+    }
+    $scope.saveButton = 'Salvar';
+
+    $scope.save = function() {
+        $scope.form.password = $scope.passwordChoice.map(function(p) {
+            return p.value;
+        }).join('');
+
+        $scope.saveButton = 'Salvando ...';
+        $('.btn-submit').addClass('pressed');
+        if (!$scope.form.username || $scope.form.username.length < 1) {
+            $rootScope.popup_title = 'Preencha seu apelido!';
+            $rootScope.popup_confirm = 'Ok, entendi!';
+            $rootScope.openPopup();
+            $scope.saveButton = 'Salvar';
+            $('.btn-submit').removeClass('pressed');
+
+            return false;
+        } else if (!$scope.form.email || $scope.form.email.length < 1) {
+            $rootScope.popup_title = 'Email inválido!';
+            $rootScope.popup_confirm = 'Ok, entendi!';
+            $rootScope.openPopup();
+            $scope.saveButton = 'Salvar';
+            $('.btn-submit').removeClass('pressed');
+
+            return false;
+        } else if ($scope.form.password.length != 12 && $scope.form.password != '0000') {
+            $rootScope.popup_title = 'Senha inválida!';
+            $rootScope.popup_confirm = 'Ok, entendi!';
+            $rootScope.openPopup();
+            $scope.saveButton = 'Salvar';
+            $('.btn-submit').removeClass('pressed');
+
+            return false;
+        }
+
+        if ($scope.form.password == '0000') {
+            $scope.form.password = null;
+        }
+
+        $scope.msg_update = '';
+        $http.put("/user.json", {
+                user: $scope.form
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-User-Username': $scope.user.username,
+                    'X-User-Token': $scope.user.authentication_token,
+                }
+            })
+            .then(function(response) {
+                storage.set('user', response.config.data.user);
+                $rootScope.user = response.config.data.user;
+                $rootScope.goToProfile();
+            }, function(response) {
+                if (response.data.errors.username.length > 0) {
+                    $rootScope.popup_title = 'Este nome de usuário já existe!';
+                    $rootScope.popup_confirm = 'Ok, entendi!';
+                    $rootScope.openPopup();
+                }
+            });
+    }
+
+    $scope.deleteAccount = function() {
+        if (window.confirm('Tem certeza?')) {
+            $http.delete("/user.json", {
+                headers: {
+                    'X-User-Username': $scope.user.username,
+                    'X-User-Token': $scope.user.authentication_token,
+                }
+            });
+            storage.deleteKey('user');
+            $location.path('/');
+        }
+    };
+
+    $('.cmn-toggle').change(function() {
+        if (this.checked) {
+            $(this).parent('.switch').find('.img-social').css('opacity', '1');
+        } else {
+            $(this).parent('.switch').find('.img-social').css('opacity', '0.5');
+        }
+    });
+
+
+});

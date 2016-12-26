@@ -1,0 +1,9 @@
+tmj.controller('HomeController', function($rootScope, $location, $scope, $http, $sce, $compile, $routeParams) {
+    $http.get('/user/is_signed_in.json')
+    .then(function(data){
+        if (data.data.user) {
+            storage.set('user', data.data.user);
+            $rootScope.user = data.data.user;
+        }
+    })
+});

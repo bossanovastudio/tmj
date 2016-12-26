@@ -1,0 +1,81 @@
+tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $compile, $routeParams, $location) {
+
+    $scope.loggedUser = storage.get('user');
+    $scope.currentUser = {};
+
+    if ($routeParams.username == 'ramona') {
+        $location.path('/personagem/ramona');
+    }
+
+    $http.get(API_URL + '/user/'+$routeParams.username+'/profile.json')
+        .then(function(response) {
+            $scope.currentUser.bio = response.data.bio;
+            $scope.currentUser.username = response.data.username;
+            $scope.currentUser.image = {};
+            $scope.currentUser.image.url = response.data.image;
+            $scope.currentUser.ramona_recommendations = response.data.ramona_recommendations;
+            $scope.currentUser.providers = {};
+            response.data.providers.forEach(function(p) {
+                $scope.currentUser.providers[p.name] = p.username;
+            });
+            setTimeout(function() {
+                $('.avatar.profile').css('background-image', "url("+$scope.currentUser.image+")");
+            }, 1000);
+            setTimeout(function() {
+              $('.recommendcounter').css('opacity', '1');
+              $('.recommendcounter').each(function () {
+                  $(this).prop('Counter',0).animate({
+                      Counter: $(this).text()
+                  }, {
+                      duration: 4000,
+                      easing: 'swing',
+                      step: function (now) {
+                          $(this).text(Math.ceil(now));
+                      }
+                  });
+              });
+            }, 2600);
+        }, function(response) {
+            window.location = '/';
+        });
+
+    $rootScope.pageName = $routeParams.username;
+
+    $('body').addClass('profile');
+
+    if (!isMobileDevice) {
+        setTimeout(function(){
+            $('.cards').css({
+                "width": "80%",
+                "max-width": "1180px",
+                "margin": "0 auto 50px auto",
+                "padding": 0
+            });
+            $('html').css({ overflow: 'auto' });
+        }, 2000)
+    }
+
+    var distanceTop = 0;
+
+    $scope.swipeUp = function() {
+        if ($('.cards .card').length == 0) {
+            return false;
+        }
+        distanceTop = -$(window).height();
+        $('.cards').each(function(i, e) {
+            var top = parseInt($(this).css('top').replace('px'));
+            if (i == 0 && top == (($('.cards').length - 1) * distanceTop)) {
+                distanceTop = 0;
+            }
+            $(this).animate({ top: top + distanceTop }, 500, 'easeOutExpo');
+        });
+        setTimeout(function() {
+            $rootScope.animateInitial();
+        }, 1000);
+        $rootScope.track('swipe', 'cards', 'up');
+    }
+
+
+
+
+});
