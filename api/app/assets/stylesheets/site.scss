@@ -606,6 +606,30 @@ section {
     }
 }
 
+.terms-content {
+    position: absolute;
+    left: 30px;
+    bottom: 5px;
+    font-family: Lato;
+    font-weight: 300;
+    font-size: 13px;
+    font-weight: normal;
+    letter-spacing: 0.3px;
+    text-align: right;
+    color: #909090;
+    a {
+        text-decoration: none;
+        color: #909090;
+        font-weight: bold;
+        border-bottom: none;
+        transition-duration: $anim-fast;
+        &:hover{
+            color: #606060;
+            transition-duration: $anim-fast;
+        }
+    }
+}
+
 @keyframes itensMenu {
     from {
         transform: translateX(-500px);
