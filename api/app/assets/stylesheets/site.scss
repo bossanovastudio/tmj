@@ -1927,9 +1927,12 @@ div.card {
     }
     .detail {
         background: #ffffff;
-        position: absolute;
+        position: relative;
+        display: flex;
         top: 20%;
-        left: 10%;
+        left: 0;
+        right: 0;
+        margin: auto;
         max-width: 440px;
         width: auto;
         &.show {
