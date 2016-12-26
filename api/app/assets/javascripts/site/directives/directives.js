@@ -111,10 +111,6 @@ tmj.directive("cardClass", function($rootScope) {
                 if (card.content.length > maxLength || card.kind !== 'text') {
                     $(elem).parent().addClass('cursor');
                 } else {
-                    if (isIE || isIE11) {
-                        $(".read-more").css('display', 'none');
-                        $(".IE-read-more").css('display', 'inline-block');
-                    }
                     $(elem).parent().addClass('no-read-more');
                     $(elem).parent().removeClass('cursor');
                 }
