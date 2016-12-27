@@ -355,9 +355,9 @@ $('.remix-container').each ->
       }
       .done (data) ->
         $canvas.html('<img src="' + data.share_url + '" alt="" style="width: 100%;">')
-        $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + data.share_url)
-        $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url)
-        $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url)
+        $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + data.share_url.replace('image','detalhe'))
+        $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url.replace('image','detalhe'))
+        $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url.replace('image','detalhe'))
         $composer.find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
         $('.gallery-item-new').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
         $('.artboard .loading').hide()
@@ -615,9 +615,9 @@ $('.remix-container').each ->
     }
 
     $(this).find('.gallery-item').find('.actions .share').click ->
-      $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + $image.attr('src'))
-      $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + $image.attr('src') + ' #tmjofilme')
-      $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + $image.attr('src') + ' #tmjofilme')
+      $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + $image.attr('src').replace('image','detalhe'))
+      $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + $image.attr('src').replace('image','detalhe'))
+      $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + $image.attr('src').replace('image','detalhe'))
 
     # $(this).find('.gallery-item').find('.picture').on click ->
     $(this).on click: ->
@@ -625,8 +625,8 @@ $('.remix-container').each ->
       $image = $(this).closest('.gallery-item').find('.picture').clone()
       $image.appendTo($canvas)
 
-      $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + $image.attr('src'))
-      $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + $image.attr('src') + ' #tmjofilme')
+      $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + $image.attr('src').replace('image','detalhe'))
+      $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + $image.attr('src').replace('image','detalhe'))
       # $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + $image.attr('src'))
 
       $composer.find('.artboard .empty').hide()
