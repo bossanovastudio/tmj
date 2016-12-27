@@ -634,7 +634,7 @@ $('.remix-container').each ->
       $composer.find('.actions .remove').data('id', $item.data('id'))
       $remix.addClass('initial can-share')
     , '.gallery-item .picture'
-      
+
 
   $(window).resize ->
     $gallery.trigger 'remix:gallery-adapt'
