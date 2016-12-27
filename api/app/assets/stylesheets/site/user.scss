@@ -44,10 +44,9 @@ body.profile {
                 transition: all 0.2s ease-out;
                 -moz-transition: all 0.2s ease-out;
                 -webkit-transition: all 0.2s ease-out;
-                transform: rotate(3deg);
-
             }
             &:hover {
+                transform: rotate(3deg);
                 transition: all 0.2s ease-out;
                 -moz-transition: all 0.2s ease-out;
                 -webkit-transition: all 0.2s ease-out;
