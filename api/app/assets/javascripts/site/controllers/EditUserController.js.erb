@@ -275,17 +275,24 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
                 }
             })
             .then(function(response) {
-                if (response.data.length > 0) {
-                    storage.set('user', response.config.data.user);
-                    $rootScope.user = response.config.data.user;
-                }
-                $rootScope.goToProfile();
+                $http.get(API_URL + '/user/'+ $scope.user.username +'/profile.json')
+                    .then(function(response) {
+                        $scope.user.bio = response.data.bio;
+                        $scope.user.username = response.data.username;
+                        $scope.user.image = {};
+                        $scope.user.image.url = response.data.image;
+                        $scope.user.ramona_recommendations = response.data.ramona_recommendations;
+                        $scope.user.providers = {};
+                        response.data.providers.forEach(function(p) {
+                            $scope.user.providers[p.name] = p.username;
+                        });
+                        storage.set('user', $scope.user);
+                        $rootScope.goToProfile();
+                    }, function(response) {
+                        $rootScope.goToProfile();
+                    });
             }, function(response) {
-                if (response.data.errors.username.length > 0) {
-                    $rootScope.popup_title = 'Este nome de usuário já existe!';
-                    $rootScope.popup_confirm = 'Ok, entendi!';
-                    $rootScope.openPopup();
-                }
+                $rootScope.goToProfile();
             });
     }
 

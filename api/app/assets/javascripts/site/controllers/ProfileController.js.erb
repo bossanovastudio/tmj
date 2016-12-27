@@ -1,6 +1,6 @@
 tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $compile, $routeParams, $location) {
 
-    $scope.loggedUser = storage.get('user');
+    $scope.user = storage.get('user');
     $scope.currentUser = {};
 
     if ($routeParams.username == 'ramona') {
