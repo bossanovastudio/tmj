@@ -112,22 +112,18 @@ header {
   text-align: center;
   cursor: pointer;
 
+
   svg {
       .logoshadow {
-          transition-duration: 0.2s;
           fill: #000;
-
-
       }
       path {
-          transition-duration: 0.2s;
           fill: #fff;
       }
       &:hover {
           .logoshadow {
               fill: #fff;
               transition-duration: 0.2s;
-
           }
           path {
               fill: #000;
@@ -138,10 +134,6 @@ header {
           }
       }
   }
-}
-@keyframes logointro {
-  from { transition-duration: 0.2s; }
-  to   { transition-duration: 0s; }
 }
 
 section {
