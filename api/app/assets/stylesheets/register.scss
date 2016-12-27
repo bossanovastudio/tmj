@@ -434,19 +434,19 @@ section {
                             border-radius: 100%;
                             -moz-border-radius: 33px 33px 0 0;
                             overflow: hidden;
-                            width: 500px;
-                            height: 500px;
+                            width: 1000px;
+                            height: 1000px;
                             background: #000;
                             bottom: 0;
-                            left: -500px;
+                            left: -1000px;
                             right: 0;
-                            top: -500px;
+                            top: -1000px;
                             z-index: -1;
                             -webkit-transition: all $anim-faster ease-in;
                           }
                           &:hover:before {
-                            left: -230px;
-                            top: -230px;
+                            left: -480px;
+                            top: -480px;
                           }
                     }
                     &.boolean {
