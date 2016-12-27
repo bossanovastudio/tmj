@@ -1,7 +1,7 @@
 <%= render "menu" %>
 <div role="main">
   <div class="container">
-    <div class="remix-container">
+    <div class="remix-container remix-composer">
       <p class="logo">
         <a ng-href="/" target="_self">
           <svg height="84px" viewBox="0 0 572 285" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -39,7 +39,7 @@
         </a>
       </p>
       <%= render "title" %>
-      <section class="remix-composer">
+      <section class="remix-composer share-remix-page">
         <button type="button" class="cancel">&times;</button>
         <div class="actions">
           <button type="button" class="next">
@@ -62,11 +62,13 @@
         </div>
         <div class="artboard">
           <div class="remix-canvas">
-            <img src="<%= @img %>" />
+            <img class="img-share-page" src="<%= @img %>" />
           </div>
         </div>
         <div class="share detail">
-        <p class="avatar"><a href="/perfil/<%= current_user.username %>"><img src="<%= current_user.image.url %>" /></a><br /><br /><br /><%= current_user.username %><br /><br /></p>
+        <p class="avatar">
+        <a href="/perfil/<%= current_user.username %>" class="img" style="background-image: url('<%= current_user.image.url %>')">
+        </a><br /><br /><%= current_user.username %><br /><br /></p>
           <p class="call">
             Olha só o remix que criei! <br />
             Que tal fazer um você também?<br />

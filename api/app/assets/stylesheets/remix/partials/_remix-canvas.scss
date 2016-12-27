@@ -1,6 +1,11 @@
 .remix-canvas {
   background-color: #FFF;
   position: relative;
+  overflow: hidden;
+  .img-share-page{
+    width: 100%;
+    height: auto;
+  }
   .loading{
     position: absolute;
     display: block;

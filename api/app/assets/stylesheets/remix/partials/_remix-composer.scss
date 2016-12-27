@@ -33,10 +33,26 @@
         padding: 2px 5px;
     }
 }
-
+.remix-container.remix-composer {
+    .remix-title{
+        h2{
+            margin-bottom: 30px;
+        }
+        .intro, button.create-new {
+            display: none !important;
+        } 
+    }
+    
+    button.cancel, .actions {
+        display: none !important;
+    }
+}
 .remix-composer {
     display: none;
     position: relative;
+    &.remix-composer {
+        display: block;
+    }
     .cancel {
         font-size: 30px;
         line-height: 40px;
@@ -371,11 +387,15 @@
             .avatar {
                 text-align: center;
                 font-size: 14px;
-                img {
+                .img {
+                    display: inline-block;
                     border-radius: 100%;
                     width: 66px;
                     height: 66px;
                     border: 1px solid black;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
                     box-shadow: 3px 3px 0px 0px black;
                     -webkit-transition: all 0.13s ease-in;
                     -moz-transition: all 0.13s ease-in;
@@ -387,6 +407,7 @@
                         -moz-transition: all 0.13s ease-in;
                         -o-transition: all 0.13s ease-in;
                         transition: all 0.13s ease-in;
+                        transform: translate(3px, 3px);
                     }
                 }
             }
@@ -427,6 +448,7 @@
         .artboard {
             margin-left: -23px;
             margin-right: -23px;
+            margin-bottom: 30px;
         }
         .toolbox {
             margin-left: -23px;
