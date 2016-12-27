@@ -67,6 +67,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
         sidebar.addClass('open');
         var html = angular.element(document.querySelector('html'));
         html.css({ 'overflow': 'hidden' });
+        $('body').css({ 'overflow': 'hidden' });
         $("header").addClass('animate');
         $("section").addClass('animate');
         $("footer.desktop").addClass('animate');
