@@ -33,7 +33,7 @@
         padding: 2px 5px;
     }
 }
-.remix-container.remix-composer {
+.remix-container.share-remix-page {
     .remix-title{
         h2{
             margin-bottom: 30px;
@@ -47,10 +47,11 @@
         display: none !important;
     }
 }
+
 .remix-composer {
     display: none;
     position: relative;
-    &.remix-composer {
+    &.share-remix-page {
         display: block;
     }
     .cancel {
