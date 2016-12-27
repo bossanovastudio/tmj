@@ -60,6 +60,21 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         }
     }
 
+    $scope.resizedataURL = function() {
+        var img = document.createElement('img');
+        img.onload = function() {
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            canvas.width = 200;
+            canvas.height = 200;
+            ctx.drawImage(this, 0, 0, 200, 200);
+            var dataURI = canvas.toDataURL();
+            $scope.form.image = dataURI;
+            $('.avatar').css('background-image', "url("+dataURI+")");
+        };
+        img.src = $scope.form.image;
+    }
+
     $scope.changedFile = function(event) {
         var field = event.target;
         var file = field.files[0];
@@ -67,8 +82,9 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         reader.readAsDataURL(file);
         reader.onload = function() {
             var base64 = reader.result;
-            $('.avatar').css('background-image', "url("+base64+")");
+            //$('.avatar').css('background-image', "url("+base64+")");
             $scope.form.image = base64;
+            $scope.resizedataURL();
         };
     };
 
