@@ -347,7 +347,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
     $scope.openCard = function($event, id, content, force) {
         var elem = angular.element($event.target);
-
+        $('html').css('overflow', 'hidden');
+        
         if (content.kind == "featured") {
             if(content.source_url.length > 0) {
                 window.open(content.source_url);
