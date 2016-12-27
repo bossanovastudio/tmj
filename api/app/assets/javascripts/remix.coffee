@@ -363,6 +363,7 @@ $('.remix-container').each ->
         $('.artboard .loading').hide()
       .fail ->
         alert 'Não foi possível salvar a imagem'
+        $('.artboard .loading').hide()
 
     # finish state
     'finish': ->
