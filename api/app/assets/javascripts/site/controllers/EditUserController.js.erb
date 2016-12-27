@@ -275,8 +275,10 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
                 }
             })
             .then(function(response) {
-                storage.set('user', response.config.data.user);
-                $rootScope.user = response.config.data.user;
+                if (response.data.length > 0) {
+                    storage.set('user', response.config.data.user);
+                    $rootScope.user = response.config.data.user;
+                }
                 $rootScope.goToProfile();
             }, function(response) {
                 if (response.data.errors.username.length > 0) {
