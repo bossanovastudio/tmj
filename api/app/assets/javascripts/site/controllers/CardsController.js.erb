@@ -347,7 +347,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
     $scope.openCard = function($event, id, content, force) {
         var elem = angular.element($event.target);
-        
         if (content.kind == "featured") {
             if(content.source_url.length > 0) {
                 window.open(content.source_url);
@@ -386,7 +385,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         }, 200);
                         setTimeout(function() {
                             $('.card').last().find('.videoMobile').show(0);
-                            $('.card').last().find('.heart').attr('src', '<%= asset_url('site/like.svg')%>').width(24);
+                            if ($rootScope.card.liked) {
+                                $('.card').last().find('.heart').attr('src', '<%= asset_url('site/like-ativo.svg')%>').width(24);
+                            } else {
+                                $('.card').last().find('.heart').attr('src', '<%= asset_url('site/like.svg')%>').width(24);
+                            }
                             $('.card').last().find('.arrow').attr('src', '<%= asset_url('site/share.svg')%>').width(24);
                             $('.card').last().find('.read-more').remove();
                             $('.card').last().addClass('openMobile');
