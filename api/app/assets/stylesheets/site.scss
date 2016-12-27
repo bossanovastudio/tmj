@@ -973,6 +973,11 @@ div.card {
             display: none;
         }
     }
+    &:first-child{
+        &.end{
+            margin-left: 40px !important;
+        }
+    }
     &.end{
         margin-left: 20px !important;
         p,a{
@@ -983,6 +988,7 @@ div.card {
             font-size: 14px;
             font-family: KomikaTitle;
             font-weight: 400;
+            margin-top: 20px;
             color: #000;
             text-decoration: none;
             &:hover{
