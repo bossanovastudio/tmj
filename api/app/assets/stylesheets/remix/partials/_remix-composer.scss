@@ -371,11 +371,15 @@
             .avatar {
                 text-align: center;
                 font-size: 14px;
-                img {
+                .img {
+                    display: inline-block;
                     border-radius: 100%;
                     width: 66px;
                     height: 66px;
                     border: 1px solid black;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
                     box-shadow: 3px 3px 0px 0px black;
                     -webkit-transition: all 0.13s ease-in;
                     -moz-transition: all 0.13s ease-in;
@@ -387,6 +391,7 @@
                         -moz-transition: all 0.13s ease-in;
                         -o-transition: all 0.13s ease-in;
                         transition: all 0.13s ease-in;
+                        transform: translate(3px, 3px);
                     }
                 }
             }
