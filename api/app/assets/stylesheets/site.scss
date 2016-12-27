@@ -532,8 +532,8 @@ section {
                 }
                 a {
                     font-size: 18px;
-                    position: relative;
-                    float: right;
+                    position: absolute;
+                    right: -10px;
                     font-family: KomikaTitle;
                     background-color: #ffffff;
                     color: #000000;
@@ -2581,6 +2581,7 @@ p.content a {
                         width: 65px;
                         height: 33px;
                         line-height: 30px;
+                        right: 0;
                     }
                     img{
                         width: 50px;
