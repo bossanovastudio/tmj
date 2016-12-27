@@ -84,7 +84,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             var base64 = reader.result;
             //$('.avatar').css('background-image', "url("+base64+")");
             $scope.form.image = base64;
-            $scope.resizedataURL();
+            $scope.rotateImage(file);
         };
     };
 
@@ -310,5 +310,54 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         }
     });
 
+    $scope.rotateImage = function(file) {
+      EXIF.getData(file,function() {
+          var orientation = EXIF.getTag(this,"Orientation");
+          var can = document.createElement("canvas");
+          var ctx = can.getContext('2d');
+          var thisImage = new Image;
+          thisImage.onload = function() {
+            can.width  = thisImage.width;
+            can.height = thisImage.height;
+            ctx.save();
+            var width  = can.width;  var styleWidth  = can.style.width;
+            var height = can.height; var styleHeight = can.style.height;
+            if (orientation) {
+              if (orientation > 4) {
+                can.width  = height; can.style.width  = styleHeight;
+                can.height = width;  can.style.height = styleWidth;
+              }
+              switch (orientation) {
+              case 2: ctx.translate(width, 0);     ctx.scale(-1,1); break;
+              case 3: ctx.translate(width,height); ctx.rotate(Math.PI); break;
+              case 4: ctx.translate(0,height);     ctx.scale(1,-1); break;
+              case 5: ctx.rotate(0.5 * Math.PI);   ctx.scale(1,-1); break;
+              case 6: ctx.rotate(0.5 * Math.PI);   ctx.translate(0,-height); break;
+              case 7: ctx.rotate(0.5 * Math.PI);   ctx.translate(width,-height); ctx.scale(-1,1); break;
+              case 8: ctx.rotate(-0.5 * Math.PI);  ctx.translate(-width,0); break;
+              }
+            }
+            ctx.drawImage(thisImage,0,0);
+            ctx.restore();
+            var dataURL = can.toDataURL();
+            $('.box-avatar .avatar').css('background-image', "url("+dataURL+")");
+            $picture = $('.box-avatar .avatar');
+            w = $picture.width()
+            h = $picture.height()
+            if (w == h) {
+                $picture.css({width: '100%', height: '100%'})
+            } else if (w > h) {
+                $picture.css({width: '100%', height: 'auto'})
+            } else {
+                $picture.css({width: 'auto', height: '100%'})
+            }
+            $scope.form.image = dataURL;
+            $scope.resizedataURL();
+
+          }
+          thisImage.src = URL.createObjectURL(file);
+        });
+
+    };
 
 });
