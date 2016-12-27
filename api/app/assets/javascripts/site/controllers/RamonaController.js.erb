@@ -1,6 +1,6 @@
 tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $compile, $routeParams) {
 
-    $scope.loggedUser = storage.get('user');
+    $scope.user = storage.get('user');
     $rootScope.pageName = 'ramona';
 
     var distanceTop = 0;
