@@ -180,7 +180,7 @@
 .sidebar {
     position: fixed;
     left: 0px;
-    z-index: 100;
+    z-index: 130;
     width: 420px;
     transform: translateX(-100%);
     -webkit-transform: translateX(-100%);
@@ -691,26 +691,44 @@ footer {
                 &.purple {
                     background: asset-url('site/ramona_menu.png') center center no-repeat;
                     background-size: 100%;
+                    &:hover {
+                        background-size: auto;
+                    }
                 }
                 &.red {
                     background: asset-url('site/tudo_sobre_tmj.png') center center no-repeat;
                     background-size: 100%;
+                    &:hover {
+                        background-size: auto;
+                    }
                 }
                 &.orange {
                     background: asset-url('site/remix.png') center center no-repeat;
                     background-size: 100%;
+                    &:hover {
+                        background-size: auto;
+                    }
                 }
                 &.yellow {
                     background: asset-url('site/feito_por_voce.png') center center no-repeat;
                     background-size: 100%;
+                    &:hover {
+                        background-size: auto;
+                    }
                 }
                 &.pink {
                     background: asset-url('site/denise.png') center center no-repeat;
                     background-size: 100%;
+                    &:hover {
+                        background-size: auto;
+                    }
                 }
                 &.blue {
                     background: asset-url('site/participe.png') center center no-repeat;
                     background-size: 100%;
+                    &:hover {
+                        background-size: auto;
+                    }
                 }
                 &.menu-login {
                     width: 100%;
