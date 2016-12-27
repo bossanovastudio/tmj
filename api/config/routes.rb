@@ -98,10 +98,9 @@ Rails.application.routes.draw do
   get "/participe" => 'welcome#register'
   get "/remix" => 'remix#index'
   get '/remix/image/:uid' => 'remix#show', as: 'remix_image'
-  get '/remix/detail/:uid' => 'remix#detail', as: 'remix_image_detail'
+  get '/remix/detalhe/:uid' => 'remix#detail', as: 'remix_image_detail'
 
   root to: 'welcome#index'
 
   get "*path" => 'welcome#index'
 end
-
