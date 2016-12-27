@@ -81,10 +81,10 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function() {
-            $scope.rotateImage(file);
             var base64 = reader.result;
             //$('.avatar').css('background-image', "url("+base64+")");
             $scope.form.image = base64;
+            $scope.rotateImage(file);
         };
     };
 
@@ -340,8 +340,8 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             ctx.drawImage(thisImage,0,0);
             ctx.restore();
             var dataURL = can.toDataURL();
-            $('.canvas-background').attr('src', dataURL);
-            $picture = $('.canvas-background');
+            $('.box-avatar .avatar').css('background-image', "url("+dataURL+")");
+            $picture = $('.box-avatar .avatar');
             w = $picture.width()
             h = $picture.height()
             if (w == h) {
@@ -351,7 +351,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             } else {
                 $picture.css({width: 'auto', height: '100%'})
             }
-
+            $scope.form.image = dataURL;
             $scope.resizedataURL();
 
           }
