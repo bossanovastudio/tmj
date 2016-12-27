@@ -78,24 +78,26 @@
     color: #000;
     overflow: hidden;
     position: relative;
+    transition-duration: 0.13s;
     &:hover {
         -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
         -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
         box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
         transition-duration: 0.13s;
         transform: translate(3px, 4px);
-        color: #000;
+        color: #fff;
         border-color: #000;
         // background: transparent;
         &:before {
             left: -220px;
             top: -220px;
+            -webkit-transition: all 0.13s ease-in;
         }
     }
     &:before {
         content: "";
         position: absolute;
-        background: #FEFEFE;
+        background: #000;
         border-radius: 100%;
         -moz-border-radius: 33px 33px 0 0;
         overflow: hidden;
