@@ -53,13 +53,13 @@
             </div>
             <p ng-if="card.kind == 'featured'">{{card.content}}</p>
         </div>
-        <div ng-if="cards.length == 0 && isMobile && currentUser.username != loggedUser.username" class="card one-five column text end" style="height: 84%; background: transparent !important;">
+        <div ng-if="cards.length == 0 && isMobile && currentUser.username != user.username" class="card one-five column text end" style="height: 84%; background: transparent !important;">
             <div class="content-no-cards show other-user">
                 <p>Opa, este perfil ainda não tem conteúdo TMJ!</p>
                 <img src="{{imgNoCards}}" alt="">
             </div>
         </div>
-        <div ng-if="cards.length == 0 && isMobile && currentUser.username == loggedUser.username" class="card one-five column text end" style="height: 84%; background: transparent !important;">
+        <div ng-if="cards.length == 0 && isMobile && currentUser.username == user.username" class="card one-five column text end" style="height: 84%; background: transparent !important;">
             <div class="content-no-cards show">
                 <p><a ng-href="/remix" target="_self">Vejo que você é novo por aqui. Que tal ativar seus privilégios de CCOTMJ (criador de conteúdo oficial TMJ) e compartilhar sua primeira criação com a gente?</a></p>
                 <img src="{{imgNoCardsCurrent}}" alt="">
