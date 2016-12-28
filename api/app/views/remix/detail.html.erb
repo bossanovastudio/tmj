@@ -67,7 +67,7 @@
         </div>
         <div class="share detail">
         <p class="avatar">
-        <a href="/perfil/<%= @user_image.user.username %>" class="img" style="background-image: url('<%= current_user.image.url %>')">
+        <a href="/perfil/<%= @user_image.user.username %>" class="img" style="background-image: url('<%= @user_image.user.image.url %>')">
         </a><br /><br /><%= @user_image.user.username %><br /><br /></p>
           <p class="call">
             Olha só o remix que criei! <br />
