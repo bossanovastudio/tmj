@@ -159,8 +159,8 @@ getApiData = (options) ->
     type: 'get'
     dataType: 'json',
   }
-  // .fail ->
-  //   alert 'Não foi possível carregar os dados da API. URL:' + url
+  # .fail ->
+  #   alert 'Não foi possível carregar os dados da API. URL:' + url
 
 getCategories = ->
   getApiData { entity: 'categories' }
