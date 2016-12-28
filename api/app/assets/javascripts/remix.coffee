@@ -805,6 +805,6 @@ $('.remix-container').each ->
     $(this).find('.element').trigger('remix:deselect-element')
 
   # shares
-  $composer.find('.share .networks a').click (event) ->
+  $composer.find('.share .networks').not('.notopen').find('a').click (event) ->
     window.open($(this).attr('href'), '', 'width=600,height=600')
     false
