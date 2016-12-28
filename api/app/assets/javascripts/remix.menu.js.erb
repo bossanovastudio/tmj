@@ -1,6 +1,8 @@
+//= require 'external/storage.js'
+
+var storage = $.jStorage;
+
 var toggled;
-
-
 
 $('#menu, .overlay').click(function() {
     $("#menu").toggleClass('open');
@@ -8,9 +10,9 @@ $('#menu, .overlay').click(function() {
     toggled = !toggled;
 });
 
-$('.menu-login').click(function() {
+$('.menu-login .avatar, .menu-login span').click(function() {
     window.location = '/sua-pagina';
-})
+});
 
 var openMenu = function() {
     var overlay = $('.overlay');
@@ -143,3 +145,14 @@ function resizedataURL() {
     };
     img.src = $('.canvas-background').attr('src');
 }
+
+$('.logoutRemix').click(function() {
+  $.ajax({
+      url: '/user/sign_out.json',
+      type: 'DELETE',
+      success: function() {
+          storage.deleteKey('user');
+          window.location = '/';
+      }
+  });
+});
