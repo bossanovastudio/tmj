@@ -12,11 +12,11 @@
         }
     }
     .intro {
-        opacity: 0;
+        opacity: 0.8;
         line-height: 18px;
         margin: 20px 0;
         font-size: 15px;
-        font-weight: 100;
+        font-weight: bold;
         @include mq-only-xs {
             font-size: 14px;
             opacity: 0.8;
