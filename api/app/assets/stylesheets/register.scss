@@ -434,7 +434,7 @@ section {
                             border-radius: 100%;
                             -moz-border-radius: 33px 33px 0 0;
                             overflow: hidden;
-                            width: 1000px;
+                            width: 200%;
                             height: 1000px;
                             background: #000;
                             bottom: 0;
@@ -445,8 +445,8 @@ section {
                             -webkit-transition: all $anim-faster ease-in;
                           }
                           &:hover:before {
-                            left: -480px;
-                            top: -480px;
+                            left: -55%;
+                            top: -300px;
                           }
                     }
                     &.boolean {
