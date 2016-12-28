@@ -4,6 +4,7 @@
     <div class="actions">
       <a ng-click="closePopup()" ng-if="popup_cancel" class="cancel">{{popup_cancel}}</a>
       <a ng-click="closePopup()" ng-if="popup_confirm" class="confirm">{{popup_confirm}}</a>
+      <a ng-click="confirmDeleteAccount()" ng-if="custom_confirm" class="confirm">{{custom_confirm}}</a>
     </div>
     <div class="close" ng-click="closePopup()">
       <div class="close-icon4">
