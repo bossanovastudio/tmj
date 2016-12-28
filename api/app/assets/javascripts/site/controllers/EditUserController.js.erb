@@ -176,6 +176,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
     $scope.passwordPlaceholder = true;
 
     $scope.togglePassword = function(position) {
+        $('.pass-box ul li').css({ "pointer-events": "auto" });
         $scope.open = !$scope.open;
         if ($scope.open) {
             if ($scope.passwordPlaceholder || position == 'first' || $scope.passwordChoice.length == 4) {
@@ -218,6 +219,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             $scope.passwordChoice.push($scope.passwords[pass.id]);
             $scope.numClick = 0;
             $scope.open = !$scope.open;
+            $('.pass-box ul li').css({ "pointer-events": "none" });
             $('.overlay-pass').css({ "display": "none" });
         }
     }
