@@ -34,6 +34,10 @@
     }
 }
 
+.to_clone{
+    display: none;
+}
+
 .remix-composer {
     display: none;
     position: relative;
@@ -405,7 +409,6 @@
             text-align: center;
             &.call {
                 margin: 20px 0;
-                line-height: 30px;
             }
         }
         .networks {
@@ -433,10 +436,15 @@
         margin-left: -($grid-gutter-width / 2);
         margin-right: -($grid-gutter-width / 2);
         margin-top: 20px;
+
+        .share-remix-page{
+            .artboard{
+                margin-bottom: 30px;
+            }
+        }
         .artboard {
             margin-left: -23px;
             margin-right: -23px;
-            margin-bottom: 30px;
         }
         .toolbox {
             margin-left: -23px;
@@ -484,6 +492,19 @@
             }
         }
     }
+    @media (max-width: 600px) {
+        .toolbox {
+            .toolbox-item{
+                width: percentage(1 / 6);
+            }
+        }
+        .artboard{
+            .loading{
+                width: 150px;
+            }
+        }
+    }
+
     @include mq-from-sm {
         @include make-row;
         display: block;
@@ -719,6 +740,13 @@
             display: none !important;
         }
     }
+    .share{
+          p{
+              &.call{
+                  line-height: 30px;
+              }
+          }
+      }
 
     button.cancel, .actions {
         display: none !important;
