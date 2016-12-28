@@ -143,7 +143,6 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
                     btn.removeAttr('disabled');
                 }, function(data) {
                     $rootScope.track('form', 'send', 'error');
-                    console.log(data);
                     $('.dark-overlay').fadeOut();
                     btn.removeAttr('disabled');
                 });
