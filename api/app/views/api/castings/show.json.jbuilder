@@ -1,1 +1,1 @@
-json.partial! "castings/casting", casting: @casting
+json.partial! "api/castings/casting", casting: @casting
