@@ -297,17 +297,23 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
     }
 
     $scope.deleteAccount = function() {
-        if (window.confirm('Tem certeza?')) {
-            $http.delete("/user.json", {
-                headers: {
-                    'X-User-Username': $scope.user.username,
-                    'X-User-Token': $scope.user.authentication_token,
-                }
-            });
-            storage.deleteKey('user');
-            window.location = '/';
-        }
+        $rootScope.openPopup();
+        $rootScope.popup_title = 'Tem certeza que você quer deletar sua conta?';
+        $rootScope.popup_cancel = 'Ops, não!';
+        $rootScope.custom_confirm = 'Sim, tenho!';
     };
+
+    $rootScope.confirmDeleteAccount = function() {
+        $http.delete("/user.json", {
+            headers: {
+                'X-User-Username': $scope.user.username,
+                'X-User-Token': $scope.user.authentication_token,
+            }
+        });
+        $rootScope.closePopup();
+        storage.deleteKey('user');
+        window.location = '/';
+    }
 
     $('.cmn-toggle').change(function() {
         if (this.checked) {
