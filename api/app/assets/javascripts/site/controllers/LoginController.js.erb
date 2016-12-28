@@ -84,6 +84,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
     $scope.passwordPlaceholder = true;
 
     $scope.togglePassword = function(position) {
+        $('.pass-box ul li').css({ "pointer-events": "auto" });
         $scope.open = !$scope.open;
         if ($scope.open) {
             if ($scope.passwordPlaceholder || position == 'first' || $scope.passwordChoice.length == 4) {
@@ -127,6 +128,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             }, 500)
             $scope.numClick = 0;
             $scope.open = !$scope.open;
+            $('.pass-box ul li').css({ "pointer-events": "none" });
             $('.overlay-pass').css({ "display": "none" });
         }
     }
