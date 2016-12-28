@@ -33,20 +33,6 @@
         padding: 2px 5px;
     }
 }
-.remix-container.share-remix-page {
-    .remix-title{
-        h2{
-            margin-bottom: 30px;
-        }
-        .intro, button.create-new {
-            display: none !important;
-        } 
-    }
-    
-    button.cancel, .actions {
-        display: none !important;
-    }
-}
 
 .remix-composer {
     display: none;
@@ -721,5 +707,32 @@
                 }
             }
         }
+    }
+}
+
+.remix-container.share-remix-page {
+    .remix-title{
+        h2{
+            margin-bottom: 30px;
+        }
+        .intro, button.create-new {
+            display: none !important;
+        }
+    }
+
+    button.cancel, .actions {
+        display: none !important;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .remix-composer .share p.call {
+        line-height: 20px
+    }
+    .remix-canvas{
+        width: 60% !important;
+        margin: 0 auto;
+        border: 5px solid #FFF;
     }
 }
