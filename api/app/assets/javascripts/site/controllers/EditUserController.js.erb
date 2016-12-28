@@ -305,7 +305,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
                 }
             });
             storage.deleteKey('user');
-            $location.path('/');
+            window.location = '/';
         }
     };
 
