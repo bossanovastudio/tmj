@@ -62,13 +62,13 @@
         </div>
         <div class="artboard">
           <div class="remix-canvas">
-            <img class="img-share-page" src="<%= @img %>" />
+            <img class="img-share-page" src="<%= @user_image.image.url %>" />
           </div>
         </div>
         <div class="share detail">
         <p class="avatar">
-        <a href="/perfil/<%= current_user.username %>" class="img" style="background-image: url('<%= current_user.image.url %>')">
-        </a><br /><br /><%= current_user.username %><br /><br /></p>
+        <a href="/perfil/<%= @user_image.user.username %>" class="img" style="background-image: url('<%= current_user.image.url %>')">
+        </a><br /><br /><%= @user_image.user.username %><br /><br /></p>
           <p class="call">
             Olha só o remix que criei! <br />
             Que tal fazer um você também?<br />
