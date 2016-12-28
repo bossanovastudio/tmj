@@ -360,6 +360,10 @@ $('.remix-container').each ->
         $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url.replace('image','detalhe'))
         $composer.find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
         $('.gallery-item-new').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
+        $('.gallery-item[data-id="' + data.id + '"]').append($('.actions.to_clone').clone().removeClass('to_clone'))
+        $('.gallery-item[data-id="' + data.id + '"]').find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
+        $('.gallery-item[data-id="' + data.id + '"]').find('.actions .remove').attr({'data-id': data.id})
+
         $('.artboard .loading').hide()
       .fail ->
         alert 'Não foi possível salvar a imagem'
@@ -368,6 +372,7 @@ $('.remix-container').each ->
     # finish state
     'finish': ->
       $(this).trigger('reset').removeClass('initial')
+      $gallery.trigger 'remix:gallery-adapt'
 
     # sets picture element to the artboard and hides empty message
     'set-picture': (event, src) ->
