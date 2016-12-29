@@ -165,14 +165,15 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                 })
                 .success(function(data) {
                     if( type == "ramona" ) {
-                        heart.attr('src', '<%= asset_url('site/like-rollover-ramona.svg')%>');
+                        heart.attr('src', '<%= asset_url('site/like-ramona.svg')%>');
+                        card.find('.heart').attr('src', '<%= asset_url('site/like-ramona.svg')%>');
                     } else {
-                        heart.attr('src', '<%= asset_url('site/like-rollover.svg')%>');
+                        heart.attr('src', '<%= asset_url('site/like.svg')%>');
+                        card.find('.heart').attr('src', '<%= asset_url('site/like.svg')%>');
                     }
                     heart.parent().find('.counter').html('&nbsp;' + data.likes);
                     heart.parent().removeClass('liked');
                     heart.parent().find('.love-explosion').removeClass('anim');
-                    card.find('.heart').attr('src', '<%= asset_url('site/like.svg')%>');
                     card.find('.counter').html('&nbsp;' + data.likes);
                     card.find('.share a').removeClass('liked');
                 })
