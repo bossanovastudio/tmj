@@ -8,8 +8,8 @@
             <img class="core terc" src="<%= asset_url('site/like-ativo.svg') %>">
         </span>
     </a>
-    <a ng-if="card.user.role=='editor' && pageName == 'homePage' && !isMobile" ng-click="likeCard($event, card.id, 'ramona')" ng-mouseenter="likeIcon($event, 'enter', card.id, 'ramona')" ng-mouseleave="likeIcon($event, 'leave', card.id, 'ramona')" class="{{card.liked ? 'liked' : ''}}" ng-href="#">
-        <img class="heart" src="{{card.liked ? '<%= asset_url('site/like-ativo-ramona.svg') %>' : '<%= asset_url('site/like-ramona.svg') %>'}}">
+    <a ng-if="card.user.role=='editor' && pageName == 'homePage' && !isMobile"  class="{{card.liked ? 'liked' : ''}}" ng-href="#">
+        <img class="heart" ng-click="likeCard($event, card.id, 'ramona')" ng-mouseenter="likeIcon($event, 'enter', card.id, 'ramona')" ng-mouseleave="likeIcon($event, 'leave', card.id, 'ramona')" ng-src="{{card.liked ? '<%= asset_url('site/like-ativo-ramona.svg') %>' : '<%= asset_url('site/like-ramona.svg') %>'}}">
         <span class="counter">&nbsp;{{card.likes ? card.likes : 0}}</span>
         <span class="love-explosion">
             <img class="core prim" src="<%= asset_url('site/like-ativo-ramona.svg') %>">
