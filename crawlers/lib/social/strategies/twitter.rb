@@ -37,7 +37,7 @@ module Crawlers::Social
     def search(search_term = nil)
       raise ::RuntimeError unless search_term
 
-      @conn.search(search_term, lang: "pt-br").each do |status|
+      @conn.search(search_term, result_type: 'recent').each do |status|
         unless CrawledPost.find_by_social_uuid(status.id)
           tweet = @conn.status(status.id)
 

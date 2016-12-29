@@ -9,6 +9,14 @@ module Crawlers::Social
       @tumblr    = Crawlers::Social::Tumblr.new
     end
 
+    def guard
+      begin
+        yield if block_given?
+      rescue Exception => e
+        $logger.error(e)
+      end
+    end
+
     def run
       begin
         [
@@ -24,22 +32,22 @@ module Crawlers::Social
           'TMJN0vos',
           'tmjdivertidos',
           'TMJ-CBM-Mania-1443398202598155',
-        ].each { |u| @facebook.timeline u }
+        ].each { |u| guard { @facebook.timeline u } }
 
         [
           'OpiniaoTMJ',
           'diariodorick',
           'revistaturmajovem',
-        ].each { |u| @youtube.channel u, true }
+        ].each { |u| guard { @youtube.channel u, true } }
 
         [
           'UCekYMr9EQSauMefFzMTrpSg',
           'UCpf5c40cP3MoXe2T81zb4xA',
           'UCIfAeO5OrsuxczdozQ5mcag',
-        ].each { |u| @youtube.channel u }
+        ].each { |u| guard { @youtube.channel u } }
 
-        @tumblr.search 'lunetalunatica.tumblr.com'
-        @pinterest.profile 'AWPUOpt6ygJugqlnzdUuNw07dfB-FIuTMID9YAtDl7PBEwAv_gAAAAA'
+        guard { @tumblr.search 'lunetalunatica.tumblr.com' }
+        guard { @pinterest.profile 'AWPUOpt6ygJugqlnzdUuNw07dfB-FIuTMID9YAtDl7PBEwAv_gAAAAA' }
 
         [
           '_turmadamonica_',
@@ -55,9 +63,9 @@ module Crawlers::Social
           'denisetmj.oficial',
           'cebola20',
           'tmj_4050',
-        ].each { |u| @instagram.profile u }
+        ].each { |u| guard { @instagram.profile u } }
 
-        @twitter.user 'revistadaturma'
+        guard { @twitter.user 'revistadaturma' }
 
         [
           'turmadamonicaccxp',
@@ -67,8 +75,8 @@ module Crawlers::Social
           'tmjofilme',
           'turmadamonicajovemofilme',
         ].each do |hashtag|
-          @instagram.hashtag hashtag
-          @twitter.search hashtag
+          guard { @instagram.hashtag hashtag }
+          guard { @twitter.search hashtag }
         end
       rescue Exception => e
         $logger.error(e)
