@@ -19,6 +19,16 @@ module Crawlers::Parser
         username: @post.content.user.fetch('from', {}).fetch('name', '')
       }
 
+      begin
+        urls = URI.extract(@post.content.message).select { |u| u.start_with? 'http' }
+        urls.collect! { |u| self.extract_remix_data_from_url(u) }.compact!
+        unless urls.empty?
+          card.remix_image_id = urls.first
+        end
+      rescue Exception => ex
+        puts ex
+      end
+
       if @post.kind == :image
         card.media_type = 'Image'
         card.media_id = self.image(self.image_url)
