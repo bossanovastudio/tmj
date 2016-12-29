@@ -11,7 +11,7 @@ module Crawlers::Social
 
     def timeline(user_id=nil)
       raise RuntimeError unless user_id
-
+      puts "Facebook#timeline for #{user_id}"
       begin
         feed = @graph.get_connections(user_id, "feed")
       rescue Exception => e

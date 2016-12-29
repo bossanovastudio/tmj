@@ -19,6 +19,7 @@ module Crawlers::Social
 
     def search(blog = nil)
       raise ::RuntimeError unless blog
+      puts "Tumblr#search for #{blog}"
 
       @conn.posts(blog).fetch('posts', []).each do |post|
         unless CrawledPost.find_by_social_uuid(post.fetch('id', ''))

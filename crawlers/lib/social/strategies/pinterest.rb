@@ -2,6 +2,8 @@ module Crawlers::Social
   class Pinterest
     def profile(access_token=nil)
       raise ::RuntimeError unless access_token
+      puts "Pinterest#profile for #{access_token}"
+
       @conn = ::Pinterest::Client.new access_token
 
       data = nil

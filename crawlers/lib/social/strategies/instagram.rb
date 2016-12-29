@@ -8,6 +8,7 @@ module Crawlers::Social
     headers "User-Agent" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0) Gecko/20100101 Firefox/52.0"
 
     def profile(u)
+      puts "Instagram#profile for #{u}"
       begin
         process_json_result(JSON.parse(self.class.get("/#{u}/media").body)['items'])
       rescue Exception => ex
@@ -16,6 +17,7 @@ module Crawlers::Social
     end
 
     def hashtag(tag)
+      puts "Instagram#hashtag for #{tag}"
       begin
         data = JSON.parse(self.class.get("/explore/tags/#{tag}", { query: { __a: 1 } }).body)
         data = (data['tag']['media']['nodes'] + data['tag']['top_posts']['nodes'])
