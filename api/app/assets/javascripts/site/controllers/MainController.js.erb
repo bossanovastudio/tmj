@@ -140,8 +140,10 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                 .success(function(data) {
                    if( type == "ramona" ) {
                        heart.attr('src', '<%= asset_url('site/like-ativo-ramona.svg')%>');
+                       card.find('.heart').attr('src', '<%= asset_url('site/like-ativo-ramona.svg')%>');
                    } else {
                        heart.attr('src', '<%= asset_url('site/like-ativo.svg')%>');
+                       card.find('.heart').attr('src', '<%= asset_url('site/like-ativo.svg')%>');
                    }
                     heart.parent().find('.counter').html('&nbsp;' + data.likes);
                     heart.parent().addClass('liked');
