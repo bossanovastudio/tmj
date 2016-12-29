@@ -91,12 +91,15 @@
     <div id="cards-container" class="container cards">
       <%= form_for [:admin, Card.new], remote: true do |f| %>
       <% @cards.each do |card| %>
-      <div class="card column show <%= card_size(card) %> <%= card.user.username if card.user %> " data-card-kind="<%= card.kind %>" data-card-origin="<%= card.origin %>" data-class="card column <%= card_size(card) %> <%= card.user.username if card.user %>">
+      <div class="card column show <%= card_size(card) %> <%= card.user.username if card.user %> " data-card-kind="<%= card.kind unless card.is_from_remix? %> <%= "image" if card.is_from_remix? %>" data-card-origin="<%= card.origin %>" data-class="card column <%= card_size(card) %> <%= card.user.username if card.user %>">
         <input type="checkbox" name="card[id][]" value="<%= card.id %>" />
         <div class="selected-overlay"></div>
         <div class="status-bar <%= card.status %> color"></div>
         <% if card.kind == :image %>
         <div style="background-image:url('<%= card.media.file.url if card.media %>'); padding: <%= card_image_size(card) if card.media %>% 0;" class="img"></div>
+        <% end %>
+        <% if card.is_from_remix? %>
+        <div style="background-image:url('<%= card.remix_image.image_url %>'); padding: 50% 0;" class="img"></div>
         <% end %>
         <% if card.kind == 'video' %>
         <div class="videoMobile"></div>

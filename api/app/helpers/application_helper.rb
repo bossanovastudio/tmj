@@ -47,6 +47,8 @@ module ApplicationHelper
           "one-five"
         end
       end
+    elsif card.is_from_remix?
+      "two-five"
     else
       "one-five"
     end
@@ -69,5 +71,5 @@ module ApplicationHelper
   def active_class(path)
     request.path =~ /#{path}/ ? 'active' : nil
   end
-  
+
 end
