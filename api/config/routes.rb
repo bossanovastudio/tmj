@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
     resources :images, only: [:create]
     resources :videos, only: [:create]
+    resources :remix_user_images, only: [:show]
     resources :remix,  only: [:create] do
       collection do
         get :categories
