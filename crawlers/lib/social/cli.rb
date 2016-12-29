@@ -76,7 +76,7 @@ module Crawlers::Social
           'turmadamonicajovemofilme',
         ].each do |hashtag|
           guard { @instagram.hashtag hashtag }
-          guard { @twitter.search hashtag }
+          guard { @twitter.search "##{hashtag}" }
         end
       rescue Exception => e
         $logger.error(e)
