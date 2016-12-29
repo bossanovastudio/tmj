@@ -35,7 +35,7 @@ class Api::CardsController < ApplicationController
       render json: @card.errors, status: :unprocessable_entity
     end
   end
-    
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_card
@@ -48,6 +48,6 @@ class Api::CardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
-      params.require(:card).permit(:user_id, :origin, :source_url, :content, :media_id, :media_type, :posted_at, :social_uid, :social_user => [:id, :username])
+      params.require(:card).permit(:user_id, :origin, :source_url, :content, :media_id, :media_type, :posted_at, :social_uid, :remix_image_id, :social_user => [:id, :username])
     end
 end
