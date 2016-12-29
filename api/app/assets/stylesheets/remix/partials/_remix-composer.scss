@@ -34,7 +34,7 @@
     }
 }
 
-.to_clone{
+.to_clone {
     display: none;
 }
 
@@ -427,18 +427,17 @@
         }
     }
     .publish {
-      display: none;
-      position: absolute;
-      right: -80px;
-      top: 0;
+        display: none;
+        position: absolute;
+        right: -80px;
+        top: 0;
     }
     @include mq-only-xs {
         margin-left: -($grid-gutter-width / 2);
         margin-right: -($grid-gutter-width / 2);
         margin-top: 20px;
-
-        .share-remix-page{
-            .artboard{
+        .share-remix-page {
+            .artboard {
                 margin-bottom: 30px;
             }
         }
@@ -494,17 +493,16 @@
     }
     @media (max-width: 600px) {
         .toolbox {
-            .toolbox-item{
+            .toolbox-item {
                 width: percentage(1 / 6);
             }
         }
-        .artboard{
-            .loading{
+        .artboard {
+            .loading {
                 width: 150px;
             }
         }
     }
-
     @include mq-from-sm {
         @include make-row;
         display: block;
@@ -732,35 +730,39 @@
 }
 
 .remix-container.share-remix-page {
-    .remix-title{
-        h2{
+    .remix-title {
+        h2 {
             margin-bottom: 30px;
         }
-        .intro, button.create-new {
+        .intro,
+        button.create-new {
             display: none !important;
         }
     }
-    .share{
-          p{
-              &.call{
-                  line-height: 30px;
-              }
-          }
-      }
-
-    button.cancel, .actions {
+    .share {
+        p {
+            &.call {
+                line-height: 30px;
+            }
+        }
+    }
+    button.cancel,
+    .actions {
         display: none !important;
     }
-
 }
 
 @media (max-width: 768px) {
     .remix-composer .share p.call {
         line-height: 20px
     }
-    .remix-canvas{
-        width: 60% !important;
-        margin: 0 auto;
-        border: 5px solid #FFF;
+    .remix-container {
+        .share-remix-page {
+            .remix-canvas {
+                width: 60% !important;
+                margin: 0 auto;
+                border: 5px solid #FFF;
+            }
+        }
     }
 }

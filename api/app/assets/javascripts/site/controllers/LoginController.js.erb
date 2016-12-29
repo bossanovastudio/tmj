@@ -160,7 +160,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
                 headers: { 'Content-Type': 'application/json' }
             })
             .then(function(response) {
-                storage.set('user', response.data);
+                storage.set('user', response.data, {TTL: 3600000});
                 if ($scope.redirect_url) {
                     window.location = $scope.redirect_url;
                 } else {
@@ -224,7 +224,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
                 headers: { 'Content-Type': 'application/json' }
             })
             .then(function(response) {
-                storage.set('user', response.data);
+                storage.set('user', response.data, {TTL: 3600000});
                 window.location = '/perfil/' + storage.get('user').username;
             }, function(response) {
                 storage.deleteKey('user');

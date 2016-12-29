@@ -35,7 +35,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
             $scope.form.bio = $scope.user.bio;
             $scope.form.username = $scope.user.username;
             $scope.form.email = $scope.user.email;
-            storage.set('user', $scope.user);
+            storage.set('user', $scope.user, {TTL: 3600000});
         }, function(response) {
             storage.deleteKey('user');
             $location.path('/login');
@@ -288,7 +288,7 @@ tmj.controller('EditUserController', function($rootScope, $location, $scope, $ht
                         response.data.providers.forEach(function(p) {
                             $scope.user.providers[p.name] = p.username;
                         });
-                        storage.set('user', $scope.user);
+                        storage.set('user', $scope.user, {TTL: 3600000});
                         $rootScope.goToProfile();
                     }, function(response) {
                         $rootScope.goToProfile();
