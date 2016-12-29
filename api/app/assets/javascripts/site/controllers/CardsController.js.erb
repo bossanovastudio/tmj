@@ -355,10 +355,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         } else if (!elem.hasClass('arrow') && !elem.hasClass('heart') && !elem.hasClass('originalPost') && !elem.hasClass('shareButton')) {
             $http.get(API_URL + 'cards/' + id + '.json')
                 .success(function(data) {
-                    $('html').css('overflow', 'hidden');
                     $rootScope.card = data;
                     $rootScope.track('click', 'cards', 'open');
-                    $location.path("/detalhe/card/" + $rootScope.card.id, false);
 
                     if (isMobileDevice) {
                         var card = $(elem).closest('.card').clone();
@@ -441,6 +439,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             var lightbox = angular.element(document.querySelector('.lightbox'));
                             var lightboxDetail = angular.element(document.querySelector('.lightbox .detail'));
 
+                            $('html').css('overflow', 'hidden');
+                            $location.path("/detalhe/card/" + $rootScope.card.id, false);
+                            
                             setTimeout(function() {
                                 lightbox.find('.content').linkify({
                                     target: "_blank"
