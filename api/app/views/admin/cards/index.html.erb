@@ -95,11 +95,8 @@
         <input type="checkbox" name="card[id][]" value="<%= card.id %>" />
         <div class="selected-overlay"></div>
         <div class="status-bar <%= card.status %> color"></div>
-        <% if card.kind == :image %>
+        <% if card.kind == :image || card.is_from_remix? %>
         <div style="background-image:url('<%= card.media.file.url if card.media %>'); padding: <%= card_image_size(card) if card.media %>% 0;" class="img"></div>
-        <% end %>
-        <% if card.is_from_remix? %>
-        <div style="background-image:url('<%= card.remix_image.image_url %>'); padding: 50% 0;" class="img"></div>
         <% end %>
         <% if card.kind == 'video' %>
         <div class="videoMobile"></div>
