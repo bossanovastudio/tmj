@@ -121,6 +121,8 @@ tmj.directive("cardClass", function($rootScope) {
             }
             if (card.recommended_by_ramona) {
                 $(elem).parent().addClass('ramonalike');
+            } else if (card.is_from_remix) {
+                $(elem).parent().addClass('remixlike');
             }
             if (card.user && card.user.role == 'editor') {
                 //if((isMobileDevice && $rootScope.pageName == 'homePage') || (!isMobileDevice && $rootScope.pageName == 'homePage')) {
