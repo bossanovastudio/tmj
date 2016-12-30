@@ -99,7 +99,7 @@
         <div style="background-image:url('<%= card.media.file.url if card.media %>'); padding: <%= card_image_size(card) if card.media %>% 0;" class="img"></div>
         <% end %>
         <% if card.is_from_remix? %>
-        <div style="background-image:url('<%= card.remix_image.image_url %>'); padding: <%= card_image_size(card) %>% 0;" class="img"></div>
+        <div style="background-image:url('<%= card.remix_image.image_url %>'); padding: 25% 0;" class="img"></div>
         <% end %>
         <% if card.kind == 'video' %>
         <div class="videoMobile"></div>
