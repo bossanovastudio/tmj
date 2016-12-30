@@ -48,7 +48,7 @@ module ApplicationHelper
         end
       end
     elsif card.is_from_remix?
-      "two-five"
+      "one-five"
     else
       "one-five"
     end
