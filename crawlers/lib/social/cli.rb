@@ -77,6 +77,10 @@ module Crawlers::Social
         guard { @instagram.hashtag hashtag }
         guard { @twitter.search "##{hashtag}" }
       end
+      
+      Profile.all.each do |profile|
+        guard { @facebook.timeline profile.uid, ['turmadamonicaccxp', 'mspnaccxp', 'tmj100', 'turmadamonicajovem', 'tmjofilme', 'turmadamonicajovemofilme' ] }
+      end
     end
   end
 end

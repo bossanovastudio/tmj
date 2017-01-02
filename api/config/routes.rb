@@ -54,6 +54,8 @@ Rails.application.routes.draw do
         post :delete
       end
     end
+
+    resources :profiles, only: [:index]
   end
 
   namespace :admin do

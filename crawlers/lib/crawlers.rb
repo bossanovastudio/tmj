@@ -21,6 +21,7 @@ require_relative "models/application_record"
 require_relative "models/crawled_post"
 require_relative "models/card"
 require_relative "models/image"
+require_relative "models/profile"
 require_relative "models/video"
 require_relative "models/remix_user_image"
 
