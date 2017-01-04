@@ -98,6 +98,10 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
                 $('#adult_neighborhood').val(data.bairro);
                 $('#adult_city').val(data.localidade);
                 $('#adult_state').val(data.uf);
+                $scope.form.adult_state = data.uf;
+                $scope.form.adult_address = data.logradouro;
+                $scope.form.adult_neighborhood = data.bairro;
+                $scope.form.adult_city = data.localidade;
             }
         })
     });
