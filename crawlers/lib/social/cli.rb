@@ -62,6 +62,7 @@ module Crawlers::Social
         'denisetmj.oficial',
         'cebola20',
         'tmj_4050',
+        'instadaramona',
       ].each { |u| guard { @instagram.profile u } }
 
       guard { @twitter.user 'revistadaturma' }
