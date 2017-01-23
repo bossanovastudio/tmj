@@ -207,7 +207,6 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             $('input[name="username"]').removeClass('error');
             return false;
         } else if ($scope.form.accept_terms != 1) {
-            console.log("errou");
             $scope.msg_register_pass = '';
             $scope.msg_register_username = '';
             $scope.msg_register_email = '';
@@ -228,14 +227,13 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
                 window.location = '/perfil/' + storage.get('user').username;
             }, function(response) {
                 storage.deleteKey('user');
-                $scope.msg_register_username = response.error;
+                $scope.msg_register_username = "O apelido informado já está em uso!";
                 $scope.msg_register_email = '';
                 $scope.msg_register_pass = '';
                 $('.input-pass').removeClass('error');
                 $('input[name="email"]').removeClass('error');
                 $('input[name="username"]').addClass('error');
                 $('.label-termo').removeClass('error');
-
             });
     }
     $scope.msg_recover = 'Cadastrar nova senha.';
