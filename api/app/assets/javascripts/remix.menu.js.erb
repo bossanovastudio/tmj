@@ -11,7 +11,9 @@ $('#menu, .overlay').click(function() {
 });
 
 $('.menu-login .avatar, .menu-login span').click(function() {
-    window.location = '/sua-pagina';
+    if( storage.get('user') ) {
+        window.location = '/perfil/' + storage.get('user').username;
+    }
 });
 
 var openMenu = function() {
