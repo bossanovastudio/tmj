@@ -258,6 +258,8 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             }, function(response) {
                 $rootScope.openPopup();
                 $scope.msg_recover_pass = response.error;
+                $rootScope.popup_title = 'O usuário não existe!';
+                $rootScope.popup_confirm = 'Ok, entendi!';
                 $scope.msg_username = '';
             });
         }
@@ -272,6 +274,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             return false;
         }
         $scope.msg_recover_pass = 'Aguarde';
+
         $http.put("/user/password.json", {
                 user: $scope.form
             }, {
