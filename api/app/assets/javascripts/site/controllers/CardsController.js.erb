@@ -72,9 +72,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         $('.author').addClass('animate');
                         $('.recommendation').addClass('animate');
                     }, 1000);
-                    $('.content-no-cards').css('display', 'block');
-                    $rootScope.imgNoCards = "<%= asset_url('site/no_card_loggedUser.png')%>"
-                    $rootScope.imgNoCardsCurrent = "<%= asset_url('site/no_card_currentUser.png')%>"
+                    if(p === 1) {
+                        $('.content-no-cards').css('display', 'block');
+                        $rootScope.imgNoCards = "<%= asset_url('site/no_card_loggedUser.png')%>"
+                        $rootScope.imgNoCardsCurrent = "<%= asset_url('site/no_card_currentUser.png')%>"
+                    }
 
                     if (!isMobileDevice) {
                         // $('.cards').removeClass('loading');
