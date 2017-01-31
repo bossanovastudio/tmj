@@ -441,7 +441,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
                             $('html').css('overflow', 'hidden');
                             $location.path("/detalhe/card/" + $rootScope.card.id, false);
-                            
+
                             setTimeout(function() {
                                 lightbox.find('.content').linkify({
                                     target: "_blank"
@@ -570,7 +570,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 if ($(window).scrollTop() + $(window).height() == $(document).height()) {
                     $scope.PAGE++;
                     if (!$scope.END) {
-                        $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'));
+                        $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? 'user/' + $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'));
                     }
                 }
             }, $scope._throttleDelay);
