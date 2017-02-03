@@ -20,6 +20,8 @@
 #= require 'exif-js/exif'
 
 API_URL = '/api/remix'
+isIE = (navigator.appVersion.indexOf("MSIE") != -1)
+isIE11 = (navigator.appVersion.indexOf('Trident/') > 0)
 DATA_BGS = []
 DATA_TXT_COLORS = []
 DATA_CSS_EFFECT_NAME = ['grayscale', 'sepia', 'filter_2', 'filter_3', 'none']
@@ -51,8 +53,6 @@ DATA_CSS_EFFECTS = [
   }
 ]
 
-
-
 window.isMobile = ->
   return $(window).width() < 768
 
@@ -65,6 +65,9 @@ parseColor = (x) ->
     x = "0" + x
   else
     x = x
+
+if isIE || isIE11
+    $('.toolbox .toolbox-item.effects').css('display', 'none')
 
 getRotationDegrees = (x) ->
   matrix = x.css("-webkit-transform") || x.css("-moz-transform") || x.css("-ms-transform") || x.css("-o-transform") || x.css("transform");
@@ -156,8 +159,8 @@ getApiData = (options) ->
     type: 'get'
     dataType: 'json',
   }
-  .fail ->
-    alert 'Não foi possível carregar os dados da API. URL:' + url
+  # .fail ->
+  #   alert 'Não foi possível carregar os dados da API. URL:' + url
 
 getCategories = ->
   getApiData { entity: 'categories' }
@@ -352,17 +355,24 @@ $('.remix-container').each ->
       }
       .done (data) ->
         $canvas.html('<img src="' + data.share_url + '" alt="" style="width: 100%;">')
-        $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + data.share_url)
-        $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url)
-        $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url)
+        $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + data.share_url.replace('image','detalhe'))
+        $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url.replace('image','detalhe') + ' #tmjofilme')
+        $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url.replace('image','detalhe'))
         $composer.find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
         $('.gallery-item-new').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
+        $('.gallery-item[data-id="' + data.id + '"]').append($('.actions.to_clone').clone().removeClass('to_clone'))
+        $('.gallery-item[data-id="' + data.id + '"]').find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
+        $('.gallery-item[data-id="' + data.id + '"]').find('.actions .remove').attr({'data-id': data.id})
+
+        $('.artboard .loading').hide()
       .fail ->
         alert 'Não foi possível salvar a imagem'
+        $('.artboard .loading').hide()
 
     # finish state
     'finish': ->
       $(this).trigger('reset').removeClass('initial')
+      $gallery.trigger 'remix:gallery-adapt'
 
     # sets picture element to the artboard and hides empty message
     'set-picture': (event, src) ->
@@ -560,31 +570,60 @@ $('.remix-container').each ->
   # gallery swipe
   $gallery.each ->
     $(this).on 'remix:gallery-adapt', ->
+      galleryItens = $(this).find('.gallery-item').length
+
       if window.isDesktop()
         $(this).find('.gallery-item').removeAttr('style')
         $(this).find('.gallery-holder').removeAttr('style')
       else
-        itemWidth = $(this).width() - (40 * 2)
-        totalWidth = (itemWidth * $(this).find('.gallery-item').length) + (40 * 2)
+        itemWidth = $(this).width()
+        totalWidth = ((itemWidth + 20) * galleryItens)
         $(this).find('.gallery-item').outerWidth(itemWidth)
+        $(this).find('.actions').outerWidth(itemWidth)
         $(this).find('.gallery-holder').outerWidth(totalWidth)
         $(this).scrollLeft(0)
+        $(this).find('.actions .remove').click ->
+          b = $(this);
+          id = $(this).data('id')
+          b.animate({opacity: 0.2});
+          $.ajax {
+            url: API_URL + '/delete'
+            method: 'POST'
+            data:
+              id: id
+            dataType: 'json'
+          }
+          .done (data) ->
+            b.animate({opacity: 1});
+            $('.gallery-item[data-id=' + id + ']').remove()
+            location.reload();
+          .fail ->
+            alert('Houve um problema ao remover a imagem')
     .trigger 'remix:gallery-adapt'
 
+    positionX = 0
     $(this).swipe {
       swipeLeft: (event, direction, duration, fingerCount, fingerData, currentDirection) ->
         width = $(this).find('.gallery-item').first().outerWidth(true)
-        $(this).animate({ scrollLeft: ('+=' + width) }, 100)
+        totalWidth = $(this).find('.gallery-holder').width()
+        positionX += width
+        if positionX >= totalWidth
+          positionX = totalWidth - width
+          return
+        $(this).find('.gallery-holder').css('transform', 'translateX(-' + positionX + 'px)');
 
       swipeRight: (event, direction, duration, fingerCount, fingerData, currentDirection) ->
+        if positionX <= 0
+          return
         width = $(this).find('.gallery-item').first().outerWidth(true)
-        $(this).animate({ scrollLeft: ('-=' + width) }, 100)
+        positionX -= width
+        $(this).find('.gallery-holder').css('transform', 'translateX(-' + positionX + 'px)');
     }
 
     $(this).find('.gallery-item').find('.actions .share').click ->
-      $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + $image.attr('src'))
-      $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + $image.attr('src') + ' #tmjofilme')
-      $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + $image.attr('src') + ' #tmjofilme')
+      $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + $image.attr('src').replace('image','detalhe'))
+      $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + $image.attr('src').replace('image','detalhe') + ' #tmjofilme')
+      $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + $image.attr('src').replace('image','detalhe'))
 
     # $(this).find('.gallery-item').find('.picture').on click ->
     $(this).on click: ->
@@ -592,8 +631,8 @@ $('.remix-container').each ->
       $image = $(this).closest('.gallery-item').find('.picture').clone()
       $image.appendTo($canvas)
 
-      $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + $image.attr('src'))
-      $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + $image.attr('src') + ' #tmjofilme')
+      $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + $image.attr('src').replace('image','detalhe'))
+      $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + $image.attr('src').replace('image','detalhe') + ' #tmjofilme')
       # $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + $image.attr('src'))
 
       $composer.find('.artboard .empty').hide()
@@ -601,6 +640,7 @@ $('.remix-container').each ->
       $composer.find('.actions .remove').data('id', $item.data('id'))
       $remix.addClass('initial can-share')
     , '.gallery-item .picture'
+
 
   $(window).resize ->
     $gallery.trigger 'remix:gallery-adapt'
@@ -637,6 +677,8 @@ $('.remix-container').each ->
 
   $composer.find('.publish').click ->
     $remix.trigger 'share'
+    $('.artboard .loading').show()
+
 
   $composer.find('.toolbox .categories .take-photo input').change ->
     file = this.files[0];
@@ -768,5 +810,6 @@ $('.remix-container').each ->
     $(this).find('.element').trigger('remix:deselect-element')
 
   # shares
-  $composer.find('.share .networks a').click (event) ->
+  $composer.find('.share .networks').not('.notopen').find('a').click (event) ->
     window.open($(this).attr('href'), '', 'width=600,height=600')
+    false

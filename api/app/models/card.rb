@@ -2,19 +2,20 @@
 #
 # Table name: cards
 #
-#  id          :integer          not null, primary key
-#  origin      :integer
-#  content     :text
-#  media_type  :string
-#  media_id    :integer
-#  posted_at   :datetime
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  source_url  :string
-#  status      :integer          default("pending")
-#  size        :integer          default("one")
-#  social_user :json
-#  social_uid  :string
+#  id             :integer          not null, primary key
+#  origin         :integer
+#  content        :text
+#  media_type     :string
+#  media_id       :integer
+#  posted_at      :datetime
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  source_url     :string
+#  status         :integer          default("pending")
+#  size           :integer          default("one")
+#  social_user    :json
+#  social_uid     :string
+#  remix_image_id :integer
 #
 
 class Card < ApplicationRecord
@@ -24,6 +25,7 @@ class Card < ApplicationRecord
   belongs_to :media, polymorphic: true
   belongs_to :provider, foreign_key: 'social_uid', primary_key: 'uid'
   has_one :user, through: :provider
+  belongs_to :remix_image, class_name: "Remix::UserImage"
 
   scope :ordered, -> { order(posted_at: 'DESC') }
   scope :approved, -> { where(status: :accepted) }
@@ -51,5 +53,9 @@ class Card < ApplicationRecord
     else
       :text
     end
+  end
+
+  def is_from_remix?
+    !remix_image.nil?
   end
 end

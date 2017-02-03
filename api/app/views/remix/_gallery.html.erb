@@ -3,7 +3,8 @@
     <div class="gallery-item-new"></div>
     <% @images.each do |i| %>
     <div class="gallery-item" data-id="<%= i.id %>">
-      <%= image_tag remix_image_url(id: i.id), { :class => "picture" } %>
+      <%= image_tag remix_image_url(uid: i.uid), { :class => "picture" } %>
+      <%= render "actions", id: i.id, uid: i.uid, custom_class: '' %>
     </div>
     <% end %>
   </div>

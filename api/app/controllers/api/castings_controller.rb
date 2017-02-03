@@ -1,4 +1,4 @@
-class CastingsController < ApplicationController
+class Api::CastingsController < ApplicationController
   # POST /castings
   # POST /castings.json
   def create

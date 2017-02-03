@@ -7,4 +7,8 @@ class ShareController < ApplicationController
   def profile
     @profile = User.find_by!(username: params[:username])
   end
+
+  def remix
+    @remix = Remix::UserImage.find_by!(uid: params[:uid])
+  end
 end

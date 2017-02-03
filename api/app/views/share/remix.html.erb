@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Remix - Turma da Mônica Jovem">
+    <meta name="twitter:description" content="Crie conteudo exclusivo para o #TMJofilme">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Remix - Turma da Mônica Jovem" />
+    <% if @remix.image %>
+    <meta property="og:image" content="<%= @remix.image.url %>" />
+    <% end %>
+    <meta property="og:description" content="Crie conteudo exclusivo para o #TMJofilme" />
+  </head>
+  <body>
+    <p>Crie conteudo exclusivo para o #TMJofilme</p>
+    <% if @remix.image %>
+    <img src="<%= @remix.image.url %>">
+    <% end %>
+  </body>
+</html>

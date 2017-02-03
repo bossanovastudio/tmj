@@ -84,6 +84,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
     $scope.passwordPlaceholder = true;
 
     $scope.togglePassword = function(position) {
+        $('.pass-box ul li').css({ "pointer-events": "auto" });
         $scope.open = !$scope.open;
         if ($scope.open) {
             if ($scope.passwordPlaceholder || position == 'first' || $scope.passwordChoice.length == 4) {
@@ -127,6 +128,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             }, 500)
             $scope.numClick = 0;
             $scope.open = !$scope.open;
+            $('.pass-box ul li').css({ "pointer-events": "none" });
             $('.overlay-pass').css({ "display": "none" });
         }
     }
@@ -158,11 +160,11 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
                 headers: { 'Content-Type': 'application/json' }
             })
             .then(function(response) {
-                storage.set('user', response.data);
+                storage.set('user', response.data, {TTL: 3600000});
                 if ($scope.redirect_url) {
                     window.location = $scope.redirect_url;
                 } else {
-                    window.location = '/';
+                    window.location = '/perfil/' + storage.get('user').username;
                 }
             }, function(response) {
                 storage.deleteKey('user');
@@ -197,13 +199,22 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             $('input[name="username"]').removeClass('error');
             return false;
         } else if ($scope.form.password.length != 12) {
-            console.log('password');
             $scope.msg_register_pass = 'Senha inválida';
             $scope.msg_register_username = '';
             $scope.msg_register_email = '';
             $('.input-pass').addClass('error');
             $('input[name="email"]').removeClass('error');
             $('input[name="username"]').removeClass('error');
+            return false;
+        } else if ($scope.form.accept_terms != 1) {
+            $scope.msg_register_pass = '';
+            $scope.msg_register_username = '';
+            $scope.msg_register_email = '';
+            $scope.msg_accept_terms = 'É necessário ler e aceitar os termos de uso';
+            $('.input-pass').removeClass('error');
+            $('input[name="email"]').removeClass('error');
+            $('input[name="username"]').removeClass('error');
+            $('.label-termo').addClass('error');
             return false;
         }
         $http.post("/user.json", {
@@ -212,16 +223,17 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
                 headers: { 'Content-Type': 'application/json' }
             })
             .then(function(response) {
-                storage.set('user', response.data);
+                storage.set('user', response.data, {TTL: 3600000});
                 window.location = '/perfil/' + storage.get('user').username;
             }, function(response) {
                 storage.deleteKey('user');
-                $scope.msg_register_username = response.error;
+                $scope.msg_register_username = "O apelido informado já está em uso!";
                 $scope.msg_register_email = '';
                 $scope.msg_register_pass = '';
                 $('.input-pass').removeClass('error');
                 $('input[name="email"]').removeClass('error');
                 $('input[name="username"]').addClass('error');
+                $('.label-termo').removeClass('error');
             });
     }
     $scope.msg_recover = 'Cadastrar nova senha.';
@@ -246,6 +258,8 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             }, function(response) {
                 $rootScope.openPopup();
                 $scope.msg_recover_pass = response.error;
+                $rootScope.popup_title = 'O usuário não existe!';
+                $rootScope.popup_confirm = 'Ok, entendi!';
                 $scope.msg_username = '';
             });
         }
@@ -260,6 +274,7 @@ tmj.controller('LoginController', function($rootScope, $scope, $http, $sce, $com
             return false;
         }
         $scope.msg_recover_pass = 'Aguarde';
+
         $http.put("/user/password.json", {
                 user: $scope.form
             }, {

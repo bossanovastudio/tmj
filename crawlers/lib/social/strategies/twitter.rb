@@ -13,11 +13,14 @@ module Crawlers::Social
         config.access_token         = tokens[:access_token]
         config.access_token_secret  = tokens[:access_token_secret]
       end
+
+      @last_post = CrawledPost.where(social_media: :twitter).order(social_uuid: :desc).first
     end
 
     def user(username = nil)
       raise ::RuntimeError unless username
 
+      puts "Twitter#user for #{username}"
       @conn.user_timeline(username).each do |status|
         unless CrawledPost.find_by_social_uuid(status.id)
           tweet = @conn.status(status.id)
@@ -37,7 +40,12 @@ module Crawlers::Social
     def search(search_term = nil)
       raise ::RuntimeError unless search_term
 
-      @conn.search(search_term, lang: "pt-br").each do |status|
+      puts "Twitter#search for #{search_term}"
+      since_id = 0
+      since_id = @last_post.social_uuid if @last_post
+
+      puts "'since_id:' #{since_id}"
+      @conn.search(search_term, result_type: 'recent', count: 100, since_id: since_id).each do |status|
         unless CrawledPost.find_by_social_uuid(status.id)
           tweet = @conn.status(status.id)
 

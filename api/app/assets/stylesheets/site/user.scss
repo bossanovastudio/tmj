@@ -6,6 +6,9 @@ body.profile {
     .initial-loading {
         top: 40%;
     }
+    .mobile-edit {
+        opacity: 0;
+    }
     .container.users {
         height: auto !important;
         opacity: 0;
@@ -41,10 +44,9 @@ body.profile {
                 transition: all 0.2s ease-out;
                 -moz-transition: all 0.2s ease-out;
                 -webkit-transition: all 0.2s ease-out;
-                transform: rotate(3deg);
-
             }
             &:hover {
+                transform: rotate(3deg);
                 transition: all 0.2s ease-out;
                 -moz-transition: all 0.2s ease-out;
                 -webkit-transition: all 0.2s ease-out;
@@ -160,9 +162,9 @@ body.profile {
                 width: auto;
                 height: auto;
                 overflow: hidden;
-                -webkit-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
-                -moz-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
-                box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+                -webkit-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+                -moz-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+                box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
                 transition-duration: 0.2s;
                 position: relative;
                 color: #000;
@@ -236,7 +238,7 @@ body.profile {
         .recommendation{
             position: absolute;
             right: 20px;
-            top: 0px;
+            top: 29px;
             text-align: center;
             opacity: 0;
             &.animate{
@@ -359,6 +361,16 @@ body.profile {
             width: 100% !important;
             height: 100% !important;
         }
+        .deskicon {
+            display:none;
+        }
+        .mobile-edit {
+            position: absolute;
+            top: 27px;
+            right: 20px;
+            opacity: 1;
+            z-index: 99999;
+        }
         .author {
             margin: 0px;
             .three.columns {
@@ -471,6 +483,7 @@ body.profile {
                 position: relative;
                 right: 0;
                 margin-top: 25px;
+                margin-bottom: 30px;
             }
             * {
                 text-align: center;
@@ -550,6 +563,10 @@ body.profile {
             padding-top: 55px !important;
         }
     }
+    body.homePage {
+        background: #809ED4 asset-url('site/bg_mobile.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
 }
 
 @keyframes enterUsersSocial {
@@ -580,4 +597,3 @@ body.profile {
         transform: translateY(0px);
     }
 }
-

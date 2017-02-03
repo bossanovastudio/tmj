@@ -18,6 +18,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope.count = 0;
     $scope.cardsFeatured = [];
     $scope.cardsRamona = [];
+    $scope.cardsRecommended = [];
 
     $scope.isMobile = isMobileDevice;
 
@@ -71,9 +72,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         $('.author').addClass('animate');
                         $('.recommendation').addClass('animate');
                     }, 1000);
-                    $('.content-no-cards').css('display', 'block');
-                    $rootScope.imgNoCards = "<%= asset_url('site/no_card_loggedUser.png')%>"
-                    $rootScope.imgNoCardsCurrent = "<%= asset_url('site/no_card_currentUser.png')%>"
+                    if(p === 1) {
+                        $('.content-no-cards').css('display', 'block');
+                        $rootScope.imgNoCards = "<%= asset_url('site/no_card_loggedUser.png')%>"
+                        $rootScope.imgNoCardsCurrent = "<%= asset_url('site/no_card_currentUser.png')%>"
+                    }
 
                     if (!isMobileDevice) {
                         // $('.cards').removeClass('loading');
@@ -190,9 +193,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
 
     // THIS MUST BE USED FOR RECOMMENDED CARDS
-    // if (isMobileDevice) {
-    //     $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName+'/recommendation' : 'all', $scope.cards_recommended, 'recommendation');
-    // }
+    if (isMobileDevice && $rootScope.pageName != 'homePage' && $rootScope.pageName != 'ramona') {
+        $scope.loadCards($scope.PAGE, 'user/' + $rootScope.pageName + '/recommended/ramona', $scope.cardsRecommended, 'recommendation');
+        // this is just for testing
+        // $scope.loadCards($scope.PAGE, 'all', $scope.cardsRecommended, 'recommendation');
+    }
 
     $scope.lazyLoad = function(desktop) {
         if (desktop) {
@@ -307,7 +312,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         $rootScope.track('swipe', 'cards', 'up');
 
         if (section == 'mainSection') {
-            $('#ramona-bg').show();
+            $('#ramona-bg').css({display: "block", top: window.innerHeight});
+            $('#ramona-bg').animate({top: "-10%"}, 200);
         }
     }
 
@@ -331,7 +337,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         $rootScope.track('swipe', 'cards', 'down');
 
         if (section == 'ramonaSection') {
-            $('#ramona-bg').hide();
+          $('#ramona-bg').animate({ top: window.innerHeight }, 200, function() {
+              $(this).hide();
+          });
         }
     }
 
@@ -341,7 +349,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
     $scope.openCard = function($event, id, content, force) {
         var elem = angular.element($event.target);
-        $rootScope.cardIsOpen = true;
         if (content.kind == "featured") {
             if(content.source_url.length > 0) {
                 window.open(content.source_url);
@@ -352,17 +359,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 .success(function(data) {
                     $rootScope.card = data;
                     $rootScope.track('click', 'cards', 'open');
-                    $location.path("/detalhe/card/" + $rootScope.card.id, false);
 
                     if (isMobileDevice) {
-                        // FIXME: This is hackish af, so someone please do find a
-                        // better way to deal with this, ffs.
-                        var card;
-                        if(data.kind !== 'image') {
-                            card = $(elem).closest('.card.' + data.kind).clone();
-                        } else {
-                            card = $(elem).closest('.card:not(.text, .video)');
-                        }
+                        var card = $(elem).closest('.card').clone();
+
                         card.css({
                             "position": "absolute",
                             "left": "50%",
@@ -375,6 +375,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         card.html(contentHTML);
                         $('body').append(card);
                         $('section').css({ overflow: "hidden !important" });
+
                         card.animate({
                             left: 0,
                             top: 0,
@@ -384,21 +385,24 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         }, 200);
                         setTimeout(function() {
                             $('.card').last().find('.videoMobile').show(0);
-                            $('.card').last().find('.heart').attr('src', '<%= asset_url('site/like.svg')%>').width(24);
+                            if ($rootScope.card.liked) {
+                                $('.card').last().find('.heart').attr('src', '<%= asset_url('site/like-ativo.svg')%>').width(24);
+                            } else {
+                                $('.card').last().find('.heart').attr('src', '<%= asset_url('site/like.svg')%>').width(24);
+                            }
                             $('.card').last().find('.arrow').attr('src', '<%= asset_url('site/share.svg')%>').width(24);
                             $('.card').last().find('.read-more').remove();
                             $('.card').last().addClass('openMobile');
                             if ($('.card').last().hasClass('text')) {
                                 $('.card').last().find('.content').css({
                                     height: '100%',
-                                    overflow: 'auto'
+                                    overflow: 'visible'
                                 });
                                 $('.card').last().find('.text').css({
                                     height: '85%',
                                     overflow: 'auto'
                                 });
                             } else {
-                                console.log(data.image.url);
                                 var h = $scope.imageHeightMobile();
                                 $('.card').last().find('.img').css({
                                     'background-image': 'url(' + data.image.url + ')'
@@ -420,9 +424,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                                 bottom: 0,
                                 width: '100%'
                             });
-                            var close = $compile('<div class="card-close-container"><img class="close" ng-click="close($event)" src="<%= asset_url('site/fechar.svg')%>" /></div>')($scope);
+                            var close = $compile('<div class="card-close-container" ng-click="close($event)"><img class="close" src="<%= asset_url('site/fechar.svg')%>" /></div>')($scope);
                             if ($rootScope.cardDetailOpened) {
-                                close = $compile('<div class="card-close-container"><img class="close" ng-click="redirectToHome()" src="<%= asset_url('site/fechar.svg')%>" /></div>')($scope);
+                                close = $compile('<div class="card-close-container" ng-click="redirectToHome()"><img class="close" src="<%= asset_url('site/fechar.svg')%>" /></div>')($scope);
                             }
                             $('.card').last().append(close);
                             $('.card').last().find('.close').css({
@@ -430,13 +434,21 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             });
                         }, 1000);
                     } else {
+                        if (elem.hasClass('date-link')) {
+                          return;
+                        }
                         if (force || $rootScope.card.kind == 'image' || $rootScope.card.content.length > 300 || $rootScope.card.kind == 'video') {
-                            setTimeout(function() {
-                                $('html').css({ overflow: "hidden" });
-                            }, 1000);
-
                             var lightbox = angular.element(document.querySelector('.lightbox'));
                             var lightboxDetail = angular.element(document.querySelector('.lightbox .detail'));
+
+                            $('html').css('overflow', 'hidden');
+                            $location.path("/detalhe/card/" + $rootScope.card.id, false);
+
+                            setTimeout(function() {
+                                lightbox.find('.content').linkify({
+                                    target: "_blank"
+                                });
+                            }, 500);
 
                             lightbox.find('.counter').html('&nbsp;' + $rootScope.card.likes);
 
@@ -452,13 +464,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                             lightboxDetail.addClass('show');
                         }
                     }
-                    // setTimeout(function() {
-                    //     $('p.content').linkify({
-                    //         target: "_blank"
-                    //     });
-                    // }, 500);
                 });
         }
+
+        $rootScope.cardIsOpen = true;
     }
 
     $scope.imageHeightMobile = function() {
@@ -475,7 +484,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
 
     $scope.close = function($event) {
-        $rootScope.cardIsOpen = false;
         var elem = angular.element($event.target);
         var card = $(elem).closest('.card');
         card.fadeOut(300, function() {
@@ -487,9 +495,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         }
         $location.path($rootScope.previousURL, false);
         $rootScope.track('click', 'cards', 'close');
+
+        $rootScope.cardIsOpen = false;
     }
 
-    $scope.likeCard = function($event, id) {
+    $scope.likeCard = function($event, id, type) {
         var elem = $(angular.element($event.target)).closest('.card');
         var heart = elem.find('.heart');
         var card = $('[data-id="'+id+'"]');
@@ -499,7 +509,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     url: API_URL + 'cards/'+id+'/like.json'
                 })
                 .success(function(data) {
-                    heart.attr('src', '<%= asset_url('site/like-ativo.svg')%>');
+                    if( type == "ramona" ) {
+                        heart.attr('src', '<%= asset_url('site/like-ativo-ramona.svg')%>');
+                    } else {
+                        heart.attr('src', '<%= asset_url('site/like-ativo.svg')%>');
+                    }
                     heart.parent().find('.counter').html('&nbsp;' + data.likes);
                     heart.parent().addClass('liked');
                     heart.parent().find('.love-explosion').addClass('anim');
@@ -517,7 +531,11 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     url: API_URL + 'cards/'+id+'/unlike.json'
                 })
                 .success(function(data) {
-                    heart.attr('src', '<%= asset_url('site/like.svg')%>');
+                    if( type == "ramona" ) {
+                        heart.attr('src', '<%= asset_url('site/like-rollover-ramona.svg')%>');
+                    } else {
+                        heart.attr('src', '<%= asset_url('site/like-rollover.svg')%>');
+                    }
                     heart.parent().find('.counter').html('&nbsp;' + data.likes);
                     heart.parent().removeClass('liked');
                     heart.parent().find('.love-explosion').removeClass('anim');
@@ -554,7 +572,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 if ($(window).scrollTop() + $(window).height() == $(document).height()) {
                     $scope.PAGE++;
                     if (!$scope.END) {
-                        $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'));
+                        $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? 'user/' + $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'));
                     }
                 }
             }, $scope._throttleDelay);

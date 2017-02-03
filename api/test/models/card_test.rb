@@ -2,19 +2,20 @@
 #
 # Table name: cards
 #
-#  id          :integer          not null, primary key
-#  origin      :integer
-#  content     :text
-#  media_type  :string
-#  media_id    :integer
-#  posted_at   :datetime
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  source_url  :string
-#  status      :integer          default("pending")
-#  size        :integer          default("one")
-#  social_user :json
-#  social_uid  :string
+#  id             :integer          not null, primary key
+#  origin         :integer
+#  content        :text
+#  media_type     :string
+#  media_id       :integer
+#  posted_at      :datetime
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  source_url     :string
+#  status         :integer          default("pending")
+#  size           :integer          default("one")
+#  social_user    :json
+#  social_uid     :string
+#  remix_image_id :integer
 #
 
 require "test_helper"

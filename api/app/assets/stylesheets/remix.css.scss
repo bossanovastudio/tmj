@@ -26,16 +26,41 @@ body {
 
 html, body {
     overflow-x: hidden;
+    height: 100%;
 }
 
 .logo {
   margin-top: 35px;
   text-align: center;
+  cursor: pointer;
+  transition-duration: 0.2s;
+
+  svg {
+      .logoshadow {
+          transition-duration: 0.2s;
+
+      }
+      path {
+          transition-duration: 0.2s;
+      }
+      &:hover {
+          .logoshadow {
+              fill: #fff;
+              transition-duration: 0.2s;
+
+          }
+          path {
+              fill: #000;
+              transition-duration: 0.2s;
+              -ms-transform: translate(0px, 5px);
+              -webkit-transform: translate(0px, 5px);
+              transform: translate(0px, 5px);
+          }
+      }
+  }
 
   @include mq-only-xs {
-      img {
-        height: 50px;
-      }
+      display: none;
   }
 }
 
@@ -48,8 +73,8 @@ html, body {
 
 @include mq-only-xs {
   .container {
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 34px;
+    padding-right: 34px;
   }
 }
 

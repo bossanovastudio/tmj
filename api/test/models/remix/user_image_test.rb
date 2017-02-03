@@ -7,6 +7,7 @@
 #  image      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  uid        :string
 #
 
 require "test_helper"

@@ -24,6 +24,12 @@ class Api::GeneralController < ApplicationController
     pagination = pagination_params
     @cards = Card.left_joins(:user).where({ users: { role: [1, nil] }}).approved.ordered
     @cards_paginated = @cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1)
+
+    if request.headers['X-Extra-card'].to_i >= 1
+      @card = Card.find_by_id(request.headers['X-Extra-card'])
+
+      @cards_paginated = [@card] + @cards_paginated.where("cards.id != ?", @card.id)
+    end
   end
 
   def editors
@@ -43,6 +49,15 @@ class Api::GeneralController < ApplicationController
   def liked
     @user = User.find_by!(username: params[:username])
     @cards = @user.liked_cards
+  end
+
+  def recommended
+    pagination = pagination_params
+
+    user = User.find_by!(username: params[:username])
+    editor = User.find_by!(username: params[:editor])
+
+    @cards = user.cards.where(id: editor.liked_cards_ids).page(pagination[:page]).per(pagination[:quantity].to_i - 1).approved.ordered
   end
 
   def profile

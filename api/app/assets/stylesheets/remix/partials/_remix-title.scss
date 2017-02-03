@@ -4,16 +4,23 @@
         font-size: 36px;
         margin-top: 35px;
         text-align: left;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
+        @include mq-only-xs {
+            margin-top: 50px;
+            font-size: 25px;
+            font-weight: 400;
+        }
     }
     .intro {
-        opacity: 0;
-        line-height: 20px;
+        opacity: 0.8;
+        line-height: 18px;
         margin: 20px 0;
         font-size: 15px;
-        font-weight: 600;
+        font-weight: bold;
         @include mq-only-xs {
+            font-size: 14px;
             opacity: 0.8;
+            margin: 10px 0;
         }
     }
     @include mq-from-sm {
@@ -173,7 +180,7 @@
 .sidebar {
     position: fixed;
     left: 0px;
-    z-index: 100;
+    z-index: 110;
     width: 420px;
     transform: translateX(-100%);
     -webkit-transform: translateX(-100%);
@@ -386,9 +393,9 @@
                     height: 70px;
                     width: 70px;
                     border-radius: 70px;
-                    -webkit-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
-                    -moz-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
-                    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+                    -webkit-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+                    -moz-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+                    box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
                     border: 1px solid #000000;
                 }
                 span {
@@ -398,8 +405,8 @@
                 }
                 a {
                     font-size: 18px;
-                    position: relative;
-                    float: right;
+                    position: absolute;
+                    right: -10px;
                     font-family: KomikaTitle;
                     background-color: #ffffff;
                     color: #000000;
@@ -409,9 +416,9 @@
                     text-align: center;
                     padding: 0;
                     margin: 18px 35px 15px 0;
-                    -webkit-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
-                    -moz-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
-                    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+                    -webkit-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+                    -moz-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+                    box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
                     border: 1px solid #000000;
                     overflow: hidden;
                     transition-duration: 0.3s;
@@ -459,6 +466,30 @@
                     animation: itensMenu .4s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
                 }
             }
+        }
+    }
+}
+
+.terms-content {
+    position: absolute;
+    left: 30px;
+    bottom: 5px;
+    font-family: Lato;
+    font-weight: 300;
+    font-size: 13px;
+    font-weight: normal;
+    letter-spacing: 0.3px;
+    text-align: right;
+    color: #909090;
+    a {
+        text-decoration: none;
+        color: #909090;
+        font-weight: bold;
+        border-bottom: none;
+        transition-duration: 0.2s;
+        &:hover{
+            color: #606060;
+            transition-duration: 0.2s;
         }
     }
 }
@@ -622,8 +653,8 @@ footer {
 @media only screen and (max-device-width: 480px) {
     #menu {
         position: absolute;
-        left: 7%;
-        top: 2%;
+        left: 22px;
+        top: 10px;
         filter: none;
         svg {
             display: none;
@@ -637,7 +668,8 @@ footer {
         width: 100vw;
         ul {
             margin-top: 0;
-            top: 110px;
+            top: 50px;
+            position: relative;
             li {
                 a {
                     font-size: 17px;
@@ -648,45 +680,75 @@ footer {
                 .wavetext {
                     padding: 12px 0px;
                     margin-bottom: 0px;
-                    margin-left: 0px !important;
+                    margin-left: 25px !important;
                     animation: none !important;
+                    text-align: left;
                     span {
                         animation: none !important;
+                        font-size: 17px;
                     }
                 }
                 &.purple {
                     background: asset-url('site/ramona_menu.png') center center no-repeat;
                     background-size: 100%;
+                    &:hover {
+                        background-size: auto;
+                    }
                 }
                 &.red {
                     background: asset-url('site/tudo_sobre_tmj.png') center center no-repeat;
                     background-size: 100%;
+                    &:hover {
+                        background-size: auto;
+                    }
                 }
                 &.orange {
                     background: asset-url('site/remix.png') center center no-repeat;
                     background-size: 100%;
+                    &:hover {
+                        background-size: auto;
+                    }
                 }
                 &.yellow {
                     background: asset-url('site/feito_por_voce.png') center center no-repeat;
                     background-size: 100%;
+                    &:hover {
+                        background-size: auto;
+                    }
                 }
                 &.pink {
                     background: asset-url('site/denise.png') center center no-repeat;
                     background-size: 100%;
+                    &:hover {
+                        background-size: auto;
+                    }
                 }
                 &.blue {
                     background: asset-url('site/participe.png') center center no-repeat;
                     background-size: 100%;
+                    &:hover {
+                        background-size: auto;
+                    }
                 }
                 &.menu-login {
                     width: 100%;
-                    padding: 25px 0 25px 20px;
+                    height: 82px;
+                    padding: 15px 0 15px 20px;
                     span {
                         font-size: 17px;
-                        margin: 25px 15px;
+                        margin: 15px 15px;
                     }
                     a {
-                        margin: 15px 25px 15px 0
+                        margin: 11px 25px 11px 0;
+                        font-size: 15px;
+                        width: 65px;
+                        height: 33px;
+                        line-height: 30px;
+                        right: 0;
+                    }
+                    .avatar {
+                        height: 50px;
+                        width: 50px;
                     }
                 }
             }
@@ -709,7 +771,7 @@ footer {
         right: auto;
         bottom: auto;
         width: 100%;
-        top: 10px;
+        top: 50px;
         a {
             vertical-align: top;
             top: 26px;

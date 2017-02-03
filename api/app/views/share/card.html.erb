@@ -11,12 +11,18 @@
     <% if @card.media %>
     <meta property="og:image" content="<%= @card.media.url %>" />
     <% end %>
+    <% if @card.is_from_remix? %>
+    <meta property="og:image" content="<%= @card.remix_image.image_url %>" />
+    <% end %>
     <meta property="og:description" content="<%= @card.content %>" />
   </head>
   <body>
     <p><%= @card.content %></p>
     <% if @card.media %>
     <img src="<%= @card.media.url %>">
+    <% end %>
+    <% if @card.is_from_remix? %>
+    <img src="<%= @card.remix_image.image_url %>">
     <% end %>
   </body>
 </html>

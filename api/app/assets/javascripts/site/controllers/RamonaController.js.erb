@@ -1,13 +1,13 @@
 tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $compile, $routeParams) {
 
-    $scope.loggedUser = storage.get('user');
+    $scope.user = storage.get('user');
     $rootScope.pageName = 'ramona';
 
     var distanceTop = 0;
 
     $scope.currentUser = {};
 
-    $http.get('/api/user/ramona/profile.json', {
+    $http.get(API_URL + '/user/ramona/profile.json', {
         headers: {
             'Content-Type': 'application/json',
             'X-User-username': storage.get('user') ? storage.get('user').username : '',
@@ -17,7 +17,8 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
     .then(function(response) {
         $scope.currentUser.bio = response.data.bio;
         $scope.currentUser.username = response.data.username;
-        $scope.currentUser.image = response.data.image;
+        $scope.currentUser.image = {};
+        $scope.currentUser.image.url = response.data.image;
         $scope.currentUser.followers = response.data.followers;
         $scope.currentUser.following = response.data.following;
         setTimeout(function() {
@@ -37,8 +38,6 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
               });
           });
         }, 3500);
-    }, function(response) {
-        window.location = '/';
     });
 
     $scope.swipeUp = function() {
@@ -65,7 +64,7 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
         if (!storage.get('user')) {
             window.location = '/login';
         } else {
-            $http.get('/api/ramona/follow.json', {
+            $http.get(API_URL + '/ramona/follow.json', {
                 headers: {
                     'Content-Type': 'application/json',
                     'X-User-username': storage.get('user').username,

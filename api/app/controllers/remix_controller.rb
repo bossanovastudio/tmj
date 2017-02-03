@@ -1,5 +1,5 @@
 class RemixController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, only: [:index]
   layout 'remix'
 
   def index
@@ -7,7 +7,13 @@ class RemixController < ApplicationController
   end
 
   def show
-    img = Remix::UserImage.find(params[:id])
+    img = Remix::UserImage.find_by!(uid: params[:uid])
     redirect_to img.image_url
+  end
+
+  def detail
+    @id = params[:uid]
+    @url = request.original_url
+    @user_image = Remix::UserImage.find_by!(uid: params[:uid])
   end
 end

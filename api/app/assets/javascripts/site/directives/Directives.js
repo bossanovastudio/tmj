@@ -53,7 +53,7 @@ var organizeCards = function(newValue, oldValue, rs) {
                 "max-width": w,
                 "margin": 0,
                 "padding": 0,
-                "padding-top": 70
+                "padding-top": 60
             });
         });
     }
@@ -111,11 +111,18 @@ tmj.directive("cardClass", function($rootScope) {
                 if (card.content.length > maxLength || card.kind !== 'text') {
                     $(elem).parent().addClass('cursor');
                 } else {
+                    if (isIE || isIE11) {
+                        $(".read-more").css('display', 'none');
+                        $(".IE-read-more").css('display', 'inline-block');
+                    }
+                    $(elem).parent().addClass('no-read-more');
                     $(elem).parent().removeClass('cursor');
                 }
             }
             if (card.recommended_by_ramona) {
                 $(elem).parent().addClass('ramonalike');
+            } else if (card.is_from_remix) {
+                $(elem).parent().addClass('remixlike');
             }
             if (card.user && card.user.role == 'editor') {
                 //if((isMobileDevice && $rootScope.pageName == 'homePage') || (!isMobileDevice && $rootScope.pageName == 'homePage')) {

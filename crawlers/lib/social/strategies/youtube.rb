@@ -14,6 +14,7 @@ module Crawlers::Social
     def channel(channel_id, is_user = false)
       raise RuntimeError unless channel_id
 
+      puts "Youtube#channel for #{channel_id}"
       if is_user
         channel_response = @conn.execute!(
           api_method: @youtube.channels.list,

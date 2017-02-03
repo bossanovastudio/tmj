@@ -7,6 +7,7 @@
 //= require 'external/linkify.js'
 //= require 'external/clipboard.js'
 //= require 'external/storage.js'
+//= require 'external/exif.js'
 
 //= require 'angular/angular.js'
 //= require 'angular/angular-cookies.js'
@@ -34,6 +35,10 @@ var storage = $.jStorage;
 var API_URL = "/api/";
 var SITE_URL = window.location.protocol + '//' + window.location.host;
 var isMobileDevice = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+var isIE = (navigator.appVersion.indexOf("MSIE") != -1);
+var isIE11 = (navigator.appVersion.indexOf('Trident/') > 0);
+
+
 
 (function(i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r;

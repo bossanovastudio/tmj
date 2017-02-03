@@ -167,9 +167,9 @@ body.ramona {
                 width: auto;
                 height: auto;
                 overflow: hidden;
-                -webkit-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
-                -moz-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
-                box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+                -webkit-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+                -moz-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+                box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
                 transition-duration: $anim-fast;
                 position: relative;
                 color: #000;
@@ -207,11 +207,18 @@ body.ramona {
                 }
                 &.following{
                     background-color: transparent;
+                    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+                    -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+                    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+                    transition-duration: $anim-fast;
+                    transform: translate(2px, 2px);
                     &:hover {
                         color: #000;
                     }
                     &:before {
-                        background: #CE87EA;
+                        background: transparent;
+                        left: -50%;
+                        top: -50%;
                     }
                 }
                 .text {
@@ -334,6 +341,11 @@ body.ramona {
                     display: inline-block;
                     vertical-align: bottom;
                     margin-left: 0;
+                    font-size: 14px;
+                    line-height: 23px;
+                    span{
+                        font-size: 16px;
+                    }
                 }
                 &:before,
                 &:after{
@@ -362,6 +374,9 @@ body.ramona {
                     display: table;
                     margin: 10px auto 0;
                     border: 1px solid #000;
+                    width: 75px;
+                    height: 31px;
+                    line-height: 30px;
                 }
             }
         }
@@ -409,7 +424,7 @@ body.ramona {
                 .follow {
                     font-size: 15px;
                     width: 65px;
-                    height: 31px;
+                    height: 33px;
                     line-height: 30px;
                     padding: 0;
                 }
@@ -498,6 +513,7 @@ body.ramona {
                 position: relative;
                 right: 0;
                 margin-top: 25px;
+
             }
             * {
                 text-align: center;

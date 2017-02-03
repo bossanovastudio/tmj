@@ -43,6 +43,12 @@
                 </div>
                 <p class="error-msg pass" ng-if="msg_register_pass">{{msg_register_pass}}</p>
             </div>
+            <div class="form-termo termo">
+                <input type="checkbox" class="input-termo" id="accept_terms" name="accept_terms" value="1" ng-model="form.accept_terms" />
+                <label class="label-termo placeholder" for="accept_terms"><span>Li e aceito os <a ng-href="http://cdn.tmjofilme.com.br/termos_de_uso.pdf" target="_blank">Termos e condições</a></label>
+
+            </div>
+            <p class="error-msg pass" ng-if="msg_accept_terms">{{msg_accept_terms}}</p>
             <div class="form-actions">
                 <button type="button" ng-click="register()" class="btn btn-submit">Cadastrar</button>
             </div>

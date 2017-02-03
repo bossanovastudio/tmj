@@ -64,6 +64,7 @@ class Admin::HighlightsController < ApplicationController
     unless @highlight.destroy
       render json: @highlight.errors, status: :unprocessable_entity
     end
+    redirect_to action: :index
   end
 
   def move

@@ -1,25 +1,39 @@
 json.id                     card.id
 json.origin                 card.origin
 json.content                card.content
-json.kind                   card.kind
+if card.is_from_remix?
+  json.kind                   :image
+else
+  json.kind                   card.kind
+end
 json.source_url             card.source_url
 json.likes                  card.liked_by_count
 json.liked                  current_user.likes?(card) if user_signed_in?
 json.recommended_by_ramona  User.find_by(username: 'ramona').likes?(card) if User.find_by(username: 'ramona')
+json.is_from_remix          card.is_from_remix?
 
-if card.media
-  if card.kind == :image
-    json.image do
-      json.url    card.media.file.url
-      json.width  card.media.width
-      json.height card.media.height
-      json.ratio  number_with_precision(card.media.ratio, precision: 3)
-    end
-  elsif card.kind == :video
-    json.video do
-      json.thumbnail  card.media.thumbnail.url
-      json.url        card.media.url
-      json.origin     card.media.origin
+if card.is_from_remix?
+  json.image do
+    json.url    card.remix_image.image_url
+    json.width  512
+    json.height 512
+    json.ratio  "1"
+  end
+else
+  if card.media
+    if card.kind == :image
+      json.image do
+        json.url    card.media.file.url
+        json.width  card.media.width
+        json.height card.media.height
+        json.ratio  number_with_precision(card.media.ratio, precision: 3)
+      end
+    elsif card.kind == :video
+      json.video do
+        json.thumbnail  card.media.thumbnail.url
+        json.url        card.media.url
+        json.origin     card.media.origin
+      end
     end
   end
 end

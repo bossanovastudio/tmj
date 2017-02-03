@@ -41,7 +41,7 @@ class Api::RemixController < ApplicationController
     img = gen.process
     image = Remix::UserImage.new(image: img, user: current_user)
     if image.save
-      render json: { share_url: remix_image_url(id: image.id), id: image.id }
+      render json: { share_url: remix_image_url(uid: image.uid), id: image.id, uid: image.uid }
     else
       render json: image.errors, status: :unprocessable_entity
     end

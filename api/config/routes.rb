@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get 'detalhe/card/:id', to: 'share#card'
     get 'perfil/:username', to: 'share#profile'
     get 'personagem/:username', to: 'share#profile'
+    get 'remix/detalhe/:uid', to: 'share#remix'
 
     root to: 'welcome#index'
   end
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
     get '/ramona/(:page)/(:quantity)', to: 'general#editors', username: :ramona, defaults: { page: 1, quantity: 10 }
     get '/user/:username/profile', to: 'general#profile'
     get '/user/:username/liked', to: 'general#liked'
+    get '/user/:username/recommended/:editor/(:page)/(:quantity)', to: 'general#recommended'
     get '/user/:username/(:page)/(:quantity)', to: 'general#users', defaults: { page: 1, quantity: 10 }
     get '/all/(:page)/(:quantity)', to: 'general#all', defaults: { page: 1, quantity: 10 }
     get '/all_without_editors/(:page)/(:quantity)', to: 'general#all_without_editors', defaults: { page: 1, quantity: 10 }
@@ -40,6 +42,7 @@ Rails.application.routes.draw do
 
     resources :images, only: [:create]
     resources :videos, only: [:create]
+    resources :remix_user_images, only: [:show]
     resources :remix,  only: [:create] do
       collection do
         get :categories
@@ -51,6 +54,8 @@ Rails.application.routes.draw do
         post :delete
       end
     end
+
+    resources :profiles, only: [:index]
   end
 
   namespace :admin do
@@ -95,10 +100,10 @@ Rails.application.routes.draw do
 
   get "/participe" => 'welcome#register'
   get "/remix" => 'remix#index'
-  get '/remix/image/:id' => 'remix#show', as: 'remix_image'
+  get '/remix/image/:uid' => 'remix#show', as: 'remix_image'
+  get '/remix/detalhe/:uid' => 'remix#detail', as: 'remix_image_detail'
 
   root to: 'welcome#index'
 
   get "*path" => 'welcome#index'
 end
-

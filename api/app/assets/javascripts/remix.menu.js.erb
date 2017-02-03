@@ -1,6 +1,8 @@
+//= require 'external/storage.js'
+
+var storage = $.jStorage;
+
 var toggled;
-
-
 
 $('#menu, .overlay').click(function() {
     $("#menu").toggleClass('open');
@@ -8,9 +10,11 @@ $('#menu, .overlay').click(function() {
     toggled = !toggled;
 });
 
-$('.menu-login').click(function() {
-    window.location = '/sua-pagina';
-})
+$('.menu-login .avatar, .menu-login span').click(function() {
+    if( storage.get('user') ) {
+        window.location = '/perfil/' + storage.get('user').username;
+    }
+});
 
 var openMenu = function() {
     var overlay = $('.overlay');
@@ -107,7 +111,6 @@ function rotateImage(file) {
           case 8: ctx.rotate(-0.5 * Math.PI);  ctx.translate(-width,0); break;
           }
         }
-
         ctx.drawImage(thisImage,0,0);
         ctx.restore();
         var dataURL = can.toDataURL();
@@ -123,14 +126,35 @@ function rotateImage(file) {
             $picture.css({width: 'auto', height: '100%'})
         }
 
-        //console.log(dataURL);
+        resizedataURL();
 
-        // at this point you can save the image away to your back-end using 'dataURL'
       }
-
-      // now trigger the onload function by setting the src to your HTML5 file object (called 'file' here)
       thisImage.src = URL.createObjectURL(file);
-
     });
 
 };
+
+function resizedataURL() {
+    var img = document.createElement('img');
+    img.onload = function() {
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+        canvas.width = $('.canvas-background').width();
+        canvas.height = $('.canvas-background').height();
+        ctx.drawImage(this, 0, 0, $('.canvas-background').width(), $('.canvas-background').height());
+        var dataURI = canvas.toDataURL();
+        $('.canvas-background').attr('src', dataURI);
+    };
+    img.src = $('.canvas-background').attr('src');
+}
+
+$('.logoutRemix').click(function() {
+  $.ajax({
+      url: '/user/sign_out.json',
+      type: 'DELETE',
+      success: function() {
+          storage.deleteKey('user');
+          window.location = '/';
+      }
+  });
+});

@@ -9,9 +9,9 @@ module Crawlers::Social
       @graph = Koala::Facebook::API.new(conn.get_app_access_token, tokens[:facebook_app_secret])
     end
 
-    def timeline(user_id=nil)
+    def timeline(user_id=nil, query_words=[])
       raise RuntimeError unless user_id
-
+      puts "Facebook#timeline for #{user_id}"
       begin
         feed = @graph.get_connections(user_id, "feed")
       rescue Exception => e
@@ -29,7 +29,13 @@ module Crawlers::Social
             crawled_post.social_media = :facebook
             crawled_post.social_uuid  = post['id']
             crawled_post.data = post
-
+            
+            if query_words.any?
+              unless Regexp.union(query_words) =~ post.fetch('message', '')
+                next
+              end
+            end
+            
             unless crawled_post.save
               $logger.error("Error saving post: #{post.inspect}")
             end

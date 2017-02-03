@@ -2,12 +2,6 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
     $scope.form = {};
     $scope.form.newsletter = '1';
 
-
-    //temporary
-    $('.form.active').removeClass('active');
-    $('.form').eq(2).addClass('active');
-    //temporary
-
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
     $('.form.active').css({ left: 0 });
 
@@ -153,7 +147,6 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
                     btn.removeAttr('disabled');
                 }, function(data) {
                     $rootScope.track('form', 'send', 'error');
-                    console.log(data);
                     $('.dark-overlay').fadeOut();
                     btn.removeAttr('disabled');
                 });

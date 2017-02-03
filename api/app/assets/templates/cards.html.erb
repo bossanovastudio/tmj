@@ -47,17 +47,19 @@
                 </p>
                 <p class="text linkify" ng-bind-html="card | cropText | trust"></p>
                 <p class="read-more"><span data-hover="Veja mais">Veja mais</span></p>
+                <p class="IE-read-more">Veja mais</p>
+
                 <div ng-include src="'<%= asset_url('share.html')%>'"></div>
             </div>
             <p ng-if="card.kind == 'featured'">{{card.content}}</p>
         </div>
-        <div ng-if="cards.length == 0 && isMobile && currentUser.username != loggedUser.username" class="card one-five column text end" style="height: 84%; background: transparent !important;">
+        <div ng-if="cards.length == 0 && isMobile && currentUser.username != user.username" class="card one-five column text end" style="height: 84%; background: transparent !important;">
             <div class="content-no-cards show other-user">
                 <p>Opa, este perfil ainda não tem conteúdo TMJ!</p>
                 <img src="{{imgNoCards}}" alt="">
             </div>
         </div>
-        <div ng-if="cards.length == 0 && isMobile && currentUser.username == loggedUser.username" class="card one-five column text end" style="height: 84%; background: transparent !important;">
+        <div ng-if="cards.length == 0 && isMobile && currentUser.username == user.username" class="card one-five column text end" style="height: 84%; background: transparent !important;">
             <div class="content-no-cards show">
                 <p><a ng-href="/remix" target="_self">Vejo que você é novo por aqui. Que tal ativar seus privilégios de CCOTMJ (criador de conteúdo oficial TMJ) e compartilhar sua primeira criação com a gente?</a></p>
                 <img src="{{imgNoCardsCurrent}}" alt="">
@@ -75,6 +77,58 @@
                     <p style="font-family: KomikaTitle; font-size: 30px; font-weight: normal; font-style: normal; font-stretch: normal; letter-spacing: 0.8px; text-align: center; color: #000000; position: absolute; top: 50%; margin-top: -90px; width: 100%;">RAMONA</p>
                     <img src="<%= asset_url('site/ramona-badge.svg') %>" width="54" style="position: absolute; left: 50%; top: 50%; margin-left: -19px; margin-top: -165px;">
                     <img src="<%= asset_url('site/ramona_novo.png') %>" width="200" style="position: absolute; left: 50%; top: 50%; margin-left: -78px; width: 160px; border-radius: 100%;" />
+                </div>
+            </div>
+            <div ng-if="card.kind=='video'" card-class ng-classes="card" data-original="{{card.video.thumbnail}}" class="img video">
+                <div class="videoMobile" ng-bind-html="card.source_url | formatVideo | trust"></div>
+                <div ng-show="!cardIsOpen" class="video-overlay"></div>
+                <div ng-show="!cardIsOpen" class="vertical-content">
+                    <svg viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g transform="translate(-858.000000, -482.000000)">
+                                <g transform="translate(858.000000, 482.000000)">
+                                    <path d="M59.556,29.778 C59.556,46.224 46.224,59.556 29.778,59.556 C13.332,59.556 0,46.224 0,29.778 C0,13.332 13.332,0 29.778,0 C46.224,0 59.556,13.332 59.556,29.778" id="Fill-1" fill="#FFFFFF" opacity="0.741312966"></path>
+                                    <path d="M48.2401,34.2453 L24.7761,46.5083 C24.2511,46.7823 23.6771,46.9183 23.1041,46.9183 C22.4561,46.9183 21.8071,46.7443 21.2351,46.3963 C20.1551,45.7433 19.4961,44.5723 19.4961,43.3103 L19.4961,18.8633 C19.4961,17.6033 20.1541,16.4333 21.2311,15.7803 C22.3101,15.1253 23.6491,15.0803 24.7671,15.6623 L48.2311,27.8453 C49.4241,28.4653 50.1751,29.6973 50.1761,31.0423 C50.1781,32.3883 49.4311,33.6213 48.2401,34.2453" id="Fill-3" fill="#000000"></path>
+                                    <path d="M46.1839,31.7795 L22.7199,44.0415 C22.1939,44.3165 21.6209,44.4515 21.0479,44.4515 C20.3989,44.4515 19.7509,44.2775 19.1789,43.9305 C18.0989,43.2775 17.4399,42.1055 17.4399,40.8435 L17.4399,16.3965 C17.4399,15.1375 18.0979,13.9675 19.1749,13.3145 C20.2529,12.6585 21.5919,12.6145 22.7109,13.1965 L46.1749,25.3795 C47.3679,25.9995 48.1179,27.2305 48.1199,28.5765 C48.1219,29.9225 47.3739,31.1555 46.1839,31.7795" id="Fill-5" fill="#FFFFFF"></path>
+                                    <path d="M46.1839,31.7795 L22.7199,44.0415 C22.1939,44.3165 21.6209,44.4515 21.0479,44.4515 C20.3989,44.4515 19.7509,44.2775 19.1789,43.9305 C18.0989,43.2775 17.4399,42.1055 17.4399,40.8435 L17.4399,16.3965 C17.4399,15.1375 18.0979,13.9675 19.1749,13.3145 C20.2529,12.6585 21.5919,12.6145 22.7109,13.1965 L46.1749,25.3795 C47.3679,25.9995 48.1179,27.2305 48.1199,28.5765 C48.1219,29.9225 47.3739,31.1555 46.1839,31.7795 L46.1839,31.7795 Z" id="Stroke-7" stroke="#000000"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <div ng-if="card.kind != 'featured' && card.kind != 'initial'" class="content">
+                <span ng-if="card.user.avatar" style="margin-top: -40px; display: block;"><img src="{{card.user.avatar}}" class="userPhoto {{ card.kind == 'text' ? 'noPhoto' : '' }}" /></span>
+                <p class="name">{{card.user.name}}</p>
+                <p class="date">
+                    <a class="date-link" target="_blank" ng-href="{{card.source_url}}">
+                        <img class="originalPost" src="/assets/site/{{card.origin}}.svg" /> {{card.posted_at | formatDate}}
+                    </a>
+                </p>
+                <p class="text linkify">{{card | cropText}}</p>
+                <p class="read-more">Veja mais</p>
+                <div ng-include src="'<%= asset_url('share.html')%>'"></div>
+                <div class="love-explosion" style="position: absolute;">
+                    <img class="core prim" src="<%= asset_url('site/like-ativo.svg') %>">
+                    <img class="core segu" src="<%= asset_url('site/like-ativo.svg') %>">
+                    <img class="core terc" src="<%= asset_url('site/like-ativo.svg') %>">
+                    <img class="core quar" src="<%= asset_url('site/like-ativo.svg') %>">
+                </div>
+            </div>
+        </div>
+        <div ng-if="cardsRamona.length > 0 && isMobile" class="card one-five column text end" style="height: 84%; background: transparent !important;">
+            <p><a ng-href="/remix" target="_self">Eita, parece que você chegou ao fim do arco-íris procurando seu pote de ouro! Quer ver mais conteúdo por aqui? Então compartilhe mais ideias com a gente!</a></p>
+        </div>
+    </div>
+    <div resize ng-if="ready && pageName != 'homePage' && pageName != 'ramona'" class="container cards mobile" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown('ramonaSection')" data-page="1" data-slug="user/{{currentUser.username}}/recommended/ramona">
+        <div ng-repeat="card in cardsRecommended track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}">
+            <div ng-if="card.kind!='video'" card-class ng-classes="card" data-original="{{card.image.url}}" class="img">
+                <div ng-if="card.kind == 'initial'">
+                    <p>{{card.content}}</p>
+                    <div>
+                        <img src="{{card.icon.url}}" />
+                        <p>{{card.count}}</p>
+                    </div>
                 </div>
             </div>
             <div ng-if="card.kind=='video'" card-class ng-classes="card" data-original="{{card.video.thumbnail}}" class="img video">
