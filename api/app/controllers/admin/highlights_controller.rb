@@ -1,4 +1,4 @@
-class Admin::HighlightsController < ApplicationController
+class Admin::HighlightsController < Admin::AdminController
   before_action :set_highlight, only: [:show, :update, :destroy, :edit]
   before_action :authenticate_user!, only: [:like, :unlike]
   # before_action :authenticate_admin!, only: [:index, :show, :create, :update, :destroy]

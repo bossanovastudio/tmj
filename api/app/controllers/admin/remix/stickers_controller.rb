@@ -1,4 +1,4 @@
-class Admin::Remix::StickersController < ApplicationController
+class Admin::Remix::StickersController < Admin::AdminController
   # before_action :authenticate_user!
   before_action :set_sticker, only: [:destroy]
 

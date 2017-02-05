@@ -1,4 +1,4 @@
-class Admin::Remix::TextColorsController < ApplicationController
+class Admin::Remix::TextColorsController < Admin::AdminController
   # before_action :authenticate_user!
   before_action :set_text, only: [:edit, :update, :destroy]
 

@@ -1,4 +1,4 @@
-class Admin::Remix::ImagesController < ApplicationController
+class Admin::Remix::ImagesController < Admin::AdminController
   # before_action :authenticate_user!
   before_action :set_image, only: [:destroy]
 

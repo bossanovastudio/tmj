@@ -1,4 +1,4 @@
-class Admin::CardsController < ApplicationController
+class Admin::CardsController < Admin::AdminController
   before_action :set_card, only: [:show, :update, :destroy]
   # before_action :authenticate_admin!, only: [:index, :show, :accept, :reject, :create, :update, :destroy]
 
