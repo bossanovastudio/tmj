@@ -1,0 +1,11 @@
+<div class="vertical-container" resize ng-if="isCardsLoaded">
+    <div class="vertical-content">
+        <div class="container madebyyou cards animated desktop">
+            <p class="title">FEITO POR VOCÊ</p>
+            <p class="subtitle">Aqui você pode ver o que a galera anda remixando! Ainda não fez uma arte? Corre lá!</p>
+            <a ng-href="/remix">CRIAR UM REMIX</a>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div ng-include src="'<%= asset_url('cards.html')%>'"></div>

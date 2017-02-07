@@ -60,6 +60,13 @@ class Api::GeneralController < ApplicationController
     @cards = user.cards.where(id: editor.liked_cards_ids).page(pagination[:page]).per(pagination[:quantity].to_i - 1).approved.ordered
   end
 
+  def made_by_you
+    pagination = pagination_params
+
+    @cards = Card.page(pagination[:page]).per(pagination[:quantity].to_i - 1).approved.ordered
+
+  end
+
   def profile
     @user = User.find_by!(username: params[:username])
   end
