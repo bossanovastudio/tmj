@@ -188,7 +188,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
 
     if ($rootScope.pageName == 'madebyyou') {
-        $scope.loadCards($scope.PAGE, 'madebyyou', $scope.cards, 'posts');
+        $scope.loadCards($scope.PAGE, 'madebyyou', $scope.cards, 'madebyyou');
     } else {
         $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? 'user/' + $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'), $scope.cards, 'posts');
     }
@@ -577,7 +577,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     if (!$scope.END) {
 
                         if ($rootScope.pageName == 'madebyyou') {
-                            $scope.loadCards($scope.PAGE, 'madebyyou', $scope.cards, 'posts');
+                            $scope.loadCards($scope.PAGE, 'madebyyou', $scope.cards, 'madebyyou');
                         } else {
                             $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? 'user/' + $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'));
                         }
