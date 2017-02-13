@@ -405,6 +405,31 @@ $('.remix-container').each ->
       .fail ->
         alert 'Não foi possível salvar a imagem'
         $('.artboard .loading').hide()
+        # share state: can share the generated image to networks
+    'share-comic': ->
+      $(this).removeClass('can-compose can-publish').addClass('can-share')
+      console.log COMIC_PICTURES
+      # $.ajax {
+      #   url: API_URL
+      #   method: 'POST'
+      #   data: $elements
+      #   dataType: 'json'
+      # }
+      # .done (data) ->
+      #   $canvas.html('<img src="' + data.share_url + '" alt="" style="width: 100%;">')
+      #   $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + data.share_url.replace('image','detalhe'))
+      #   $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url.replace('image','detalhe') + ' #tmjofilme')
+      #   $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url.replace('image','detalhe'))
+      #   $composer.find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
+      #   $('.gallery-item-new').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
+      #   $('.gallery-item[data-id="' + data.id + '"]').append($('.actions.to_clone').clone().removeClass('to_clone'))
+      #   $('.gallery-item[data-id="' + data.id + '"]').find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
+      #   $('.gallery-item[data-id="' + data.id + '"]').find('.actions .remove').attr({'data-id': data.id})
+
+      #   $('.artboard .loading').hide()
+      # .fail ->
+      #   alert 'Não foi possível salvar a imagem'
+      #   $('.artboard .loading').hide()
 
     # finish state
     'finish': ->
@@ -722,8 +747,13 @@ $('.remix-container').each ->
     $remix.trigger 'publish'
 
   $composer.find('.publish').click ->
-    $remix.trigger 'share'
-    $('.artboard .loading').show()
+    if $(this).hasClass('comic')
+      $remix.trigger 'share-comic'
+      $('.artboard .loading').show()
+    else
+      $remix.trigger 'share'
+      $('.artboard .loading').show()
+
 
 
   $composer.find('.toolbox .categories .take-photo input').change ->
