@@ -396,7 +396,7 @@ $('.remix-container').each ->
         $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url.replace('image','detalhe') + ' #tmjofilme')
         $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url.replace('image','detalhe'))
         $composer.find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
-        $('.gallery-item-new').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
+        $('.gallery-item-new-comic').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
         $('.gallery-item[data-id="' + data.id + '"]').append($('.actions.to_clone').clone().removeClass('to_clone'))
         $('.gallery-item[data-id="' + data.id + '"]').find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
         $('.gallery-item[data-id="' + data.id + '"]').find('.actions .remove').attr({'data-id': data.id})
@@ -409,27 +409,30 @@ $('.remix-container').each ->
     'share-comic': ->
       $(this).removeClass('can-compose can-publish').addClass('can-share')
       console.log COMIC_PICTURES
-      # $.ajax {
-      #   url: API_URL
-      #   method: 'POST'
-      #   data: $elements
-      #   dataType: 'json'
-      # }
-      # .done (data) ->
-      #   $canvas.html('<img src="' + data.share_url + '" alt="" style="width: 100%;">')
-      #   $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + data.share_url.replace('image','detalhe'))
-      #   $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url.replace('image','detalhe') + ' #tmjofilme')
-      #   $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url.replace('image','detalhe'))
-      #   $composer.find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
-      #   $('.gallery-item-new').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
-      #   $('.gallery-item[data-id="' + data.id + '"]').append($('.actions.to_clone').clone().removeClass('to_clone'))
-      #   $('.gallery-item[data-id="' + data.id + '"]').find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
-      #   $('.gallery-item[data-id="' + data.id + '"]').find('.actions .remove').attr({'data-id': data.id})
+      $.ajax {
+        url: API_URL + '/create_comic'
+        method: 'POST'
+        data: {
+          ids: COMIC_PICTURES
+        }
+        dataType: 'json'
+      }
+      .done (data) ->
+        $('.artboard .loading').hide()
+        console.log data
+        $canvas.html('<img src="' + data.share_url + '" alt="" style="width: 100%;">')
+        $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + data.share_url.replace('image','detalhe'))
+        $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url.replace('image','detalhe') + ' #tmjofilme')
+        # $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url.replace('image','detalhe'))
 
-      #   $('.artboard .loading').hide()
-      # .fail ->
-      #   alert 'Não foi possível salvar a imagem'
-      #   $('.artboard .loading').hide()
+        $composer.find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
+        $('.gallery-item-new-comic').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
+        $('.gallery-item[data-id="' + data.id + '"]').append($('.actions.to_clone').clone().removeClass('to_clone'))
+        $('.gallery-item[data-id="' + data.id + '"]').find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
+        $('.gallery-item[data-id="' + data.id + '"]').find('.actions .remove').attr({'data-id': data.id})
+      .fail ->
+        alert 'Não foi possível salvar a imagem'
+        $('.artboard .loading').hide()
 
     # finish state
     'finish': ->

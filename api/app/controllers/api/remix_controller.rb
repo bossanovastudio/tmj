@@ -48,6 +48,10 @@ class Api::RemixController < ApplicationController
     img.unlink
   end
 
+  def create_comic
+    render json: { share_url: 'http://cdntmjofilme.s3.amazonaws.com/remix/remix/user_image/image/5/test20161227-1-13pbj4q.png', id: 5, uid: 'ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4' }
+  end
+
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params

@@ -54,6 +54,7 @@ Rails.application.routes.draw do
         get :stickers
         get :patterns
         post :delete
+        post :create_comic
       end
     end
 
