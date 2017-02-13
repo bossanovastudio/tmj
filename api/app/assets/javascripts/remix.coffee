@@ -326,11 +326,13 @@ $('.remix-container').each ->
       $('.remix-canvas').attr('class', 'remix-canvas')
       $('.toolbox.comic .item').removeClass('selected')
       $('.toolbox.comic .item span').html('')
+      $('.toolbox.comic .publish').hide()
       COMIC_PICTURES = [];
 
     'organize-comic': ->
       if COMIC_PICTURES.length == 0
         $remix.trigger 'init-comic'
+        $('.toolbox.comic .publish').hide()
       else
         $('.empty-comic').hide()
         $('.remix-canvas').find('img.comic-picture').remove();
@@ -345,6 +347,7 @@ $('.remix-container').each ->
               $(item).find('span').html(i)
               $(item).addClass('selected')
           i++
+          $('.toolbox.comic .publish').show()
 
 
 
