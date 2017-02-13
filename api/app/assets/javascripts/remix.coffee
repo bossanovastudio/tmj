@@ -349,13 +349,6 @@ $('.remix-container').each ->
           i++
           $('.toolbox.comic .publish').show()
 
-
-
-        $('.remix-canvas .comic-picture').click ->
-          COMIC_PICTURES.splice $(this).index(), 1
-          $(this).remove()
-          $remix.trigger 'organize-comic'
-
     # choose state: can choose a picture to background elements
     'choose-picture': (event, id) ->
       $(this).addClass('can-choose-picture')
@@ -759,7 +752,17 @@ $('.remix-container').each ->
         }
 
       $remix.trigger 'organize-comic'
-      $(this).addClass('selected');
+      $(this).addClass('selected')
+    else
+      id = $(this).data('picture')
+      i = 0
+      index = null
+      for comic in COMIC_PICTURES
+        if comic.id == id
+          index = i
+        i++
+      COMIC_PICTURES.splice index, 1
+      $remix.trigger 'organize-comic'
 
 
   $composer.find('.toolbox .pictures .go-back').click ->
