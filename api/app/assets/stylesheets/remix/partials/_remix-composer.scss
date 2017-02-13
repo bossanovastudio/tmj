@@ -71,7 +71,8 @@
     }
     .artboard {
         position: relative;
-        .empty, .empty-comic {
+        .empty,
+        .empty-comic {
             transform: translate(-50%, -50%);
             position: absolute;
             left: 50%;
@@ -240,6 +241,9 @@
                                 background-color: #EFEFEF;
                                 height: 100%;
                                 position: relative;
+                                &.comic-picture {
+                                    background: #000000;
+                                }
                                 &:before {
                                     content: '';
                                     display: block;
@@ -254,6 +258,28 @@
                                     position: absolute;
                                     left: 0;
                                     bottom: 0;
+                                }
+                                span {
+                                    position: absolute;
+                                    left: 0px;
+                                    top: 50%;
+                                    transform: translate(0px, -50%);
+                                    width: 100%;
+                                    display: block;
+                                    font-family: KomikaTitle;
+                                    font-size: 30px;
+                                    font-weight: normal;
+                                    font-style: normal;
+                                    font-stretch: normal;
+                                    line-height: normal;
+                                    letter-spacing: 1px;
+                                    text-align: center;
+                                    color: #ffffff;
+                                }
+                            }
+                            &.selected {
+                                img {
+                                    opacity: 0.36;
                                 }
                             }
                             &.take-photo,
@@ -371,6 +397,9 @@
             position: absolute;
             right: -70px;
             top: 0;
+        }
+        &.comic {
+            display: none;
         }
     }
     .share {
@@ -612,8 +641,8 @@
     }
     &.can-share {
         .remix-composer {
-            .toolbox {
-                display: none;
+            .toolbox, .toolbox.comic {
+                display: none !important;
             }
             .share {
                 display: block;

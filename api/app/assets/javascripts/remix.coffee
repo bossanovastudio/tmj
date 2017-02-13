@@ -53,6 +53,8 @@ DATA_CSS_EFFECTS = [
   }
 ]
 
+COMIC_PICTURES = []
+
 window.isMobile = ->
   return $(window).width() < 768
 
@@ -312,11 +314,44 @@ $('.remix-container').each ->
     # initialize state: can select a category of pictures
     'init': ->
       $(this).trigger('reset').addClass('initial')
+      $composer.find('.toolbox').show()
+      $composer.find('.toolbox.comic').hide()
 
     'init-comic': ->
       $(this).trigger('reset').addClass('initial')
       $composer.find('.artboard .empty').hide()
       $composer.find('.artboard .empty-comic').show()
+      $composer.find('.toolbox').hide()
+      $composer.find('.toolbox.comic').show()
+      $('.remix-canvas').attr('class', 'remix-canvas')
+      $('.toolbox.comic .item').removeClass('selected')
+      $('.toolbox.comic .item span').html('')
+      COMIC_PICTURES = [];
+
+    'organize-comic': ->
+      if COMIC_PICTURES.length == 0
+        $remix.trigger 'init-comic'
+      else
+        $('.empty-comic').hide()
+        $('.remix-canvas').find('img.comic-picture').remove();
+        $('.remix-canvas').attr('class', 'remix-canvas ' + 'comic-canvas-' + COMIC_PICTURES.length)
+        i = 1
+        $('.toolbox.comic .item').removeClass('selected')
+        $('.toolbox.comic .item span').html('')
+        for picture in COMIC_PICTURES
+          $('.remix-canvas').append('<img src="' + picture.url + '" data-picture="' + picture.id + '" class="comic-picture" />')
+          for item in $('.toolbox.comic .item')
+            if $(item).data('picture') == picture.id
+              $(item).find('span').html(i)
+              $(item).addClass('selected')
+          i++
+
+
+
+        $('.remix-canvas .comic-picture').click ->
+          COMIC_PICTURES.splice $(this).index(), 1
+          $(this).remove()
+          $remix.trigger 'organize-comic'
 
     # choose state: can choose a picture to background elements
     'choose-picture': (event, id) ->
@@ -634,6 +669,8 @@ $('.remix-container').each ->
 
     # $(this).find('.gallery-item').find('.picture').on click ->
     $(this).on click: ->
+      COMIC_PICTURES = [];
+      $remix.trigger 'organize-comic'
       $item = $(this).closest('.gallery-item')
       $image = $(this).closest('.gallery-item').find('.picture').clone()
       $image.appendTo($canvas)
@@ -675,6 +712,8 @@ $('.remix-container').each ->
       alert('Houve um problema ao remover a imagem')
 
   $remix.find('.create-new, .gallery-item-new, .start-over').click ->
+    COMIC_PICTURES = [];
+    $remix.trigger 'organize-comic'
     $remix.trigger 'init'
 
   $remix.find('.gallery-item-new-comic').click ->
@@ -704,6 +743,21 @@ $('.remix-container').each ->
 
   $composer.find('.toolbox .categories').on 'click', '.item[data-id]', ->
     $remix.trigger 'choose-picture', $(this).data('id')
+
+  $composer.find('.toolbox .categories').on 'click', '.item[data-picture]', ->
+    if !$(this).hasClass('selected')
+      id = $(this).data('picture')
+      url = $(this).find('img').attr('src');
+
+      if COMIC_PICTURES.length < 4
+        COMIC_PICTURES.push {
+          id: id,
+          url: url
+        }
+
+      $remix.trigger 'organize-comic'
+      $(this).addClass('selected');
+
 
   $composer.find('.toolbox .pictures .go-back').click ->
     $remix.trigger 'init'
