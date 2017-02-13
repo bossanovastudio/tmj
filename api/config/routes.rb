@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
     get '/highlights', to: 'general#highlights'
 
+    get '/madebyyou/(:page)/(:quantity)', to: 'general#made_by_you', defaults: { page: 1, quantity: 10 }
+
     post '/register', to: 'castings#create'
 
     get '/castings/download', to: 'castings#download'

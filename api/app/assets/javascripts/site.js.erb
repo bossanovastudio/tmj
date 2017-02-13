@@ -28,6 +28,7 @@
 //= require 'site/controllers/RamonaController.js'
 //= require 'site/controllers/EditUserController.js'
 //= require 'site/controllers/ProfileController.js'
+//= require 'site/controllers/MadeByYouController.js'
 //= require 'site/directives/Directives.js'
 
 var storage = $.jStorage;
@@ -73,6 +74,10 @@ tmj
             .when('/personagem/ramona', {
                 templateUrl: '<%=asset_url("ramona.html")%>',
                 controller: 'RamonaController'
+            })
+            .when('/feito-por-voce', {
+                templateUrl: '<%=asset_url("madebyyou.html")%>',
+                controller: 'MadeByYouController'
             })
             .when('/detalhe/card/:id', {
                 templateUrl: '<%=asset_url("home.html")%>',

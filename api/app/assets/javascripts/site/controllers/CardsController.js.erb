@@ -187,16 +187,19 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         $rootScope.track('load', 'cards', 'content');
     }
 
-    $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? 'user/' + $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'), $scope.cards, 'posts');
+    if ($rootScope.pageName == 'madebyyou') {
+        $scope.loadCards($scope.PAGE, 'madebyyou', $scope.cards, 'madebyyou');
+    } else {
+        $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? 'user/' + $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'), $scope.cards, 'posts');
+    }
+
     if (isMobileDevice && $rootScope.pageName == 'homePage') {
         $scope.loadCards($scope.PAGE, 'ramona', $scope.cardsRamona, 'ramonaIcon');
     }
 
     // THIS MUST BE USED FOR RECOMMENDED CARDS
-    if (isMobileDevice && $rootScope.pageName != 'homePage' && $rootScope.pageName != 'ramona') {
+    if (isMobileDevice && $rootScope.pageName != 'homePage' && $rootScope.pageName != 'ramona' && $rootScope.pageName != 'madebyyou') {
         $scope.loadCards($scope.PAGE, 'user/' + $rootScope.pageName + '/recommended/ramona', $scope.cardsRecommended, 'recommendation');
-        // this is just for testing
-        // $scope.loadCards($scope.PAGE, 'all', $scope.cardsRecommended, 'recommendation');
     }
 
     $scope.lazyLoad = function(desktop) {
@@ -572,7 +575,13 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 if ($(window).scrollTop() + $(window).height() == $(document).height()) {
                     $scope.PAGE++;
                     if (!$scope.END) {
-                        $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? 'user/' + $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'));
+
+                        if ($rootScope.pageName == 'madebyyou') {
+                            $scope.loadCards($scope.PAGE, 'madebyyou', $scope.cards, 'madebyyou');
+                        } else {
+                            $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? 'user/' + $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'));
+                        }
+
                     }
                 }
             }, $scope._throttleDelay);

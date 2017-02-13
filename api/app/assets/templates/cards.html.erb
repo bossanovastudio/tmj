@@ -10,12 +10,18 @@
     <div resize ng-if="ready || (END && isMobile)" class="container cards" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp('mainSection')" ng-swipe-down="swipeDown()" data-page="1" data-slug="{{ pageName == 'homePage' ? (isMobile ? 'all_without_editors' : 'all') : 'user/' + pageName }}">
         <div ng-repeat="card in cards track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}" style="background-image: url('{{isMobile ? card.mobile_url : card.url}}')">
             <div ng-if="card.kind!='video'" card-class ng-classes="card" data-original="{{card.image.url}}" class="img">
-                <div ng-if="card.kind == 'initial'">
-                    <p>{{card.content}}</p>
+                <div ng-if="card.kind == 'initial' && pageName != 'madebyyou'">
+                    <p>{{card.content}} here</p>
                     <div>
                         <img src="{{card.icon.url}}" />
                         <p>{{card.count}}</p>
                     </div>
+                </div>
+                <div ng-if="card.kind == 'initial' && pageName == 'madebyyou'" class="madebyyou_initial">
+                    <p class="title">FEITO POR VOCÊ</p>
+                    <p class="subtitle">Aqui você pode ver o que a galera anda remixando! Ainda não fez uma arte? Corre lá!</p>
+                    <a ng-href="/remix">CRIAR UM REMIX</a>
+                    <img class="ballon" src="/assets/site/balao.svg" />
                 </div>
             </div>
             <div ng-if="card.kind=='video'" card-class ng-classes="card" data-original="{{card.video.thumbnail}}" class="img video">
