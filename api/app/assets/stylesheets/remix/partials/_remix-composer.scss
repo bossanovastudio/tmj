@@ -71,7 +71,7 @@
     }
     .artboard {
         position: relative;
-        .empty {
+        .empty, .empty-comic {
             transform: translate(-50%, -50%);
             position: absolute;
             left: 50%;
@@ -80,6 +80,9 @@
             font-size: 26px;
             text-align: center;
             width: 180px;
+        }
+        .empty-comic {
+            display: none;
         }
         .loading {
             position: absolute;

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="33px" height="33px" viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 40 (33762) - http://www.bohemiancoding.com/sketch -->
+    <title>2BB55BE9-0370-40B5-9317-72AE539652EC</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="33" height="33" rx="2"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="33" height="33" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="Remix" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Remix-tirinhas-desk-1" transform="translate(-466.000000, -908.000000)" stroke="#000000">
+            <g id="icon_tirinha" transform="translate(466.000000, 908.000000)">
+                <use id="Rectangle-2" mask="url(#mask-2)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xlink:href="#path-1"></use>
+                <path d="M2.25,17.625 L30.7894464,17.625" id="Line" stroke-width="1.5" stroke-linecap="square"></path>
+                <path d="M16.3125,2.18719464 L16.3125,16.8034941" id="Line" stroke-width="1.5" stroke-linecap="square"></path>
+            </g>
+        </g>
+    </g>
+</svg>

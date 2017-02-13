@@ -1,6 +1,13 @@
 <section class="remix-gallery">
   <div class="gallery-holder">
-    <div class="gallery-item-new"></div>
+    <div class="gallery-item-new">
+        <img src="<%=asset_url('site/icon-remix.svg')%>" />
+        <p>CRIAR NOVO<br />REMIX</p>
+    </div>
+    <div class="gallery-item-new-comic">
+        <img src="<%=asset_url('site/icon-tirinha.svg')%>" />
+        <p>CRIAR NOVA<br />TIRINHA</p>
+    </div>
     <% @images.each do |i| %>
     <div class="gallery-item" data-id="<%= i.id %>">
       <%= image_tag remix_image_url(uid: i.uid), { :class => "picture" } %>

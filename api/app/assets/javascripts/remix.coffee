@@ -300,6 +300,7 @@ $('.remix-container').each ->
       $canvas.removeAttr('style')
       $canvas.children().remove()
       $composer.find('.artboard .empty').show()
+      $composer.find('.artboard .empty-comic').hide()
 
       # resets storages
       $remix.removeData('last-element')
@@ -311,6 +312,11 @@ $('.remix-container').each ->
     # initialize state: can select a category of pictures
     'init': ->
       $(this).trigger('reset').addClass('initial')
+
+    'init-comic': ->
+      $(this).trigger('reset').addClass('initial')
+      $composer.find('.artboard .empty').hide()
+      $composer.find('.artboard .empty-comic').show()
 
     # choose state: can choose a picture to background elements
     'choose-picture': (event, id) ->
@@ -417,6 +423,7 @@ $('.remix-container').each ->
 
 
       $composer.find('.artboard .empty').hide()
+      $composer.find('.artboard .empty-comic').hide()
 
     # sets picture element to the artboard and hides empty message
     'add-image': (event, src) ->
@@ -636,6 +643,7 @@ $('.remix-container').each ->
       # $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + $image.attr('src'))
 
       $composer.find('.artboard .empty').hide()
+      $composer.find('.artboard .empty-comic').hide()
       $composer.find('.actions .download').attr('href', $image.attr('src'))
       $composer.find('.actions .remove').data('id', $item.data('id'))
       $remix.addClass('initial can-share')
@@ -668,6 +676,9 @@ $('.remix-container').each ->
 
   $remix.find('.create-new, .gallery-item-new, .start-over').click ->
     $remix.trigger 'init'
+
+  $remix.find('.gallery-item-new-comic').click ->
+    $remix.trigger 'init-comic'
 
   $composer.find('.cancel').click ->
     $remix.trigger 'finish'
