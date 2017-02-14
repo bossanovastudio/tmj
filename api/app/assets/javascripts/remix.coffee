@@ -411,6 +411,7 @@ $('.remix-container').each ->
         $('.artboard .loading').hide()
         # share state: can share the generated image to networks
     'share-comic': ->
+      $('.remix-canvas').attr('class', 'remix-canvas')
       $(this).removeClass('can-compose can-publish').addClass('can-share')
       ids = []
       for c in COMIC_PICTURES
@@ -425,8 +426,8 @@ $('.remix-container').each ->
         dataType: 'json'
       }
       .done (data) ->
+        $('.remix-canvas').attr('class', 'remix-canvas')
         $('.artboard .loading').hide()
-        console.log data
         $canvas.html('<img src="' + data.share_url + '" alt="" style="width: 100%;">')
         $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + data.share_url.replace('image','detalhe'))
         $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url.replace('image','detalhe') + ' #tmjofilme')
