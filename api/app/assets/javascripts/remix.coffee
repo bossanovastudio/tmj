@@ -347,7 +347,11 @@ $('.remix-container').each ->
               $(item).find('span').html(i)
               $(item).addClass('selected')
           i++
-          $('.toolbox.comic .publish').show()
+      if COMIC_PICTURES.length > 1
+        $('.toolbox.comic .publish').show()
+      else
+        $('.toolbox.comic .publish').hide()
+
 
     # choose state: can choose a picture to background elements
     'choose-picture': (event, id) ->
@@ -408,12 +412,15 @@ $('.remix-container').each ->
         # share state: can share the generated image to networks
     'share-comic': ->
       $(this).removeClass('can-compose can-publish').addClass('can-share')
-      console.log COMIC_PICTURES
+      ids = []
+      for c in COMIC_PICTURES
+        ids.push c.id
+      console.log(ids)
       $.ajax {
         url: API_URL + '/create_comic'
         method: 'POST'
         data: {
-          ids: COMIC_PICTURES
+          images: ids.join(',')
         }
         dataType: 'json'
       }
