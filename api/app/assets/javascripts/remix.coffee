@@ -223,7 +223,7 @@ $('.remix-container').each ->
     result.categories.forEach (category) ->
       html += Mustache.render template, category
 
-    $composer.find('.toolbox-item.category .categories').append(html)
+    $composer.find('.toolbox-item.category .categories.add_images').append(html)
 
     # pictures
     html = ''
