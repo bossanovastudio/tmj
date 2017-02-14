@@ -53,6 +53,8 @@ DATA_CSS_EFFECTS = [
   }
 ]
 
+COMIC_PICTURES = []
+
 window.isMobile = ->
   return $(window).width() < 768
 
@@ -300,6 +302,7 @@ $('.remix-container').each ->
       $canvas.removeAttr('style')
       $canvas.children().remove()
       $composer.find('.artboard .empty').show()
+      $composer.find('.artboard .empty-comic').hide()
 
       # resets storages
       $remix.removeData('last-element')
@@ -311,6 +314,44 @@ $('.remix-container').each ->
     # initialize state: can select a category of pictures
     'init': ->
       $(this).trigger('reset').addClass('initial')
+      $composer.find('.toolbox').show()
+      $composer.find('.toolbox.comic').hide()
+
+    'init-comic': ->
+      $(this).trigger('reset').addClass('initial')
+      $composer.find('.artboard .empty').hide()
+      $composer.find('.artboard .empty-comic').show()
+      $composer.find('.toolbox').hide()
+      $composer.find('.toolbox.comic').show()
+      $('.remix-canvas').attr('class', 'remix-canvas')
+      $('.toolbox.comic .item').removeClass('selected')
+      $('.toolbox.comic .item span').html('')
+      $('.toolbox.comic .publish').hide()
+      COMIC_PICTURES = [];
+
+    'organize-comic': ->
+      if COMIC_PICTURES.length == 0
+        $remix.trigger 'init-comic'
+        $('.toolbox.comic .publish').hide()
+      else
+        $('.empty-comic').hide()
+        $('.remix-canvas').find('img.comic-picture').remove();
+        $('.remix-canvas').attr('class', 'remix-canvas ' + 'comic-canvas-' + COMIC_PICTURES.length)
+        i = 1
+        $('.toolbox.comic .item').removeClass('selected')
+        $('.toolbox.comic .item span').html('')
+        for picture in COMIC_PICTURES
+          $('.remix-canvas').append('<img src="' + picture.url + '" data-picture="' + picture.id + '" class="comic-picture" />')
+          for item in $('.toolbox.comic .item')
+            if $(item).data('picture') == picture.id
+              $(item).find('span').html(i)
+              $(item).addClass('selected')
+          i++
+      if COMIC_PICTURES.length > 1
+        $('.toolbox.comic .publish').show()
+      else
+        $('.toolbox.comic .publish').hide()
+
 
     # choose state: can choose a picture to background elements
     'choose-picture': (event, id) ->
@@ -359,12 +400,51 @@ $('.remix-container').each ->
         $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url.replace('image','detalhe') + ' #tmjofilme')
         $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url.replace('image','detalhe'))
         $composer.find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
-        $('.gallery-item-new').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
+        $('.gallery-item-new-comic').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
         $('.gallery-item[data-id="' + data.id + '"]').append($('.actions.to_clone').clone().removeClass('to_clone'))
         $('.gallery-item[data-id="' + data.id + '"]').find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
         $('.gallery-item[data-id="' + data.id + '"]').find('.actions .remove').attr({'data-id': data.id})
-
         $('.artboard .loading').hide()
+
+        template = '<div class="item" data-picture="' + data.id + '">
+                    <div class="comic-picture">
+                      <img src="' + data.share_url + '" crossorigin="anonymous" class="comic-image">
+                      <span></span>
+                    </div>
+                  </div>';
+        $('.comic .categories').prepend(template)
+
+      .fail ->
+        alert 'Não foi possível salvar a imagem'
+        $('.artboard .loading').hide()
+        # share state: can share the generated image to networks
+    'share-comic': ->
+      $('.remix-canvas').attr('class', 'remix-canvas')
+      $(this).removeClass('can-compose can-publish').addClass('can-share')
+      ids = []
+      for c in COMIC_PICTURES
+        ids.push c.id
+      $canvas.html('');
+      $.ajax {
+        url: API_URL + '/create_comic'
+        method: 'POST'
+        data: {
+          images: ids.join(',')
+        }
+        dataType: 'json'
+      }
+      .done (data) ->
+        $('.remix-canvas').attr('class', 'remix-canvas')
+        $('.artboard .loading').hide()
+        $canvas.html('<img src="' + data.share_url + '" alt="" style="width: 100%;">')
+        $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + data.share_url.replace('image','detalhe'))
+        $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url.replace('image','detalhe') + ' #tmjofilme')
+
+        $composer.find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
+        $('.gallery-item-new-comic').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
+        $('.gallery-item[data-id="' + data.id + '"]').append($('.actions.to_clone').clone().removeClass('to_clone'))
+        $('.gallery-item[data-id="' + data.id + '"]').find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
+        $('.gallery-item[data-id="' + data.id + '"]').find('.actions .remove').attr({'data-id': data.id})
       .fail ->
         alert 'Não foi possível salvar a imagem'
         $('.artboard .loading').hide()
@@ -417,6 +497,7 @@ $('.remix-container').each ->
 
 
       $composer.find('.artboard .empty').hide()
+      $composer.find('.artboard .empty-comic').hide()
 
     # sets picture element to the artboard and hides empty message
     'add-image': (event, src) ->
@@ -627,6 +708,8 @@ $('.remix-container').each ->
 
     # $(this).find('.gallery-item').find('.picture').on click ->
     $(this).on click: ->
+      COMIC_PICTURES = [];
+      $remix.trigger 'organize-comic'
       $item = $(this).closest('.gallery-item')
       $image = $(this).closest('.gallery-item').find('.picture').clone()
       $image.appendTo($canvas)
@@ -636,6 +719,7 @@ $('.remix-container').each ->
       # $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + $image.attr('src'))
 
       $composer.find('.artboard .empty').hide()
+      $composer.find('.artboard .empty-comic').hide()
       $composer.find('.actions .download').attr('href', $image.attr('src'))
       $composer.find('.actions .remove').data('id', $item.data('id'))
       $remix.addClass('initial can-share')
@@ -667,7 +751,12 @@ $('.remix-container').each ->
       alert('Houve um problema ao remover a imagem')
 
   $remix.find('.create-new, .gallery-item-new, .start-over').click ->
+    COMIC_PICTURES = [];
+    $remix.trigger 'organize-comic'
     $remix.trigger 'init'
+
+  $remix.find('.gallery-item-new-comic').click ->
+    $remix.trigger 'init-comic'
 
   $composer.find('.cancel').click ->
     $remix.trigger 'finish'
@@ -676,8 +765,13 @@ $('.remix-container').each ->
     $remix.trigger 'publish'
 
   $composer.find('.publish').click ->
-    $remix.trigger 'share'
-    $('.artboard .loading').show()
+    if $(this).hasClass('comic')
+      $remix.trigger 'share-comic'
+      $('.artboard .loading').show()
+    else
+      $remix.trigger 'share'
+      $('.artboard .loading').show()
+
 
 
   $composer.find('.toolbox .categories .take-photo input').change ->
@@ -693,6 +787,31 @@ $('.remix-container').each ->
 
   $composer.find('.toolbox .categories').on 'click', '.item[data-id]', ->
     $remix.trigger 'choose-picture', $(this).data('id')
+
+  $composer.find('.toolbox .categories').on 'click', '.item[data-picture]', ->
+    if !$(this).hasClass('selected')
+      id = $(this).data('picture')
+      url = $(this).find('img').attr('src');
+
+      if COMIC_PICTURES.length < 4
+        COMIC_PICTURES.push {
+          id: id,
+          url: url
+        }
+
+      $remix.trigger 'organize-comic'
+      $(this).addClass('selected')
+    else
+      id = $(this).data('picture')
+      i = 0
+      index = null
+      for comic in COMIC_PICTURES
+        if comic.id == id
+          index = i
+        i++
+      COMIC_PICTURES.splice index, 1
+      $remix.trigger 'organize-comic'
+
 
   $composer.find('.toolbox .pictures .go-back').click ->
     $remix.trigger 'init'

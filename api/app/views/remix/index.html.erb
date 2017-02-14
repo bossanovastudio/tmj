@@ -65,6 +65,7 @@
           </div>
           <img src="<%=asset_url('site/loading.gif')%>" alt="" class="loading">
           <div class="empty">Escolha uma categoria</div>
+          <div class="empty-comic">Escolha até 4 imagens para criar SUA tirinha! </div>
         </div>
         <div class="toolbox">
           <div class="toolbox-item toolbox-item-popup category on">
@@ -178,6 +179,29 @@
             </div>
           </div>
           <a class="btn btn-xs btn-default publish">Salvar</a>
+        </div>
+        <div class="toolbox comic">
+          <div class="toolbox-item toolbox-item-popup category on">
+            <button type="button" class="toggler toggler-image" title="Categoria">
+              <%= image_tag "remix/icon-image", alt: 'Categoria', class: 'toggler-main-icon' %>
+              <%= image_tag "remix/icon-image-shadow", alt: 'Categoria', class: 'toggler-shad-icon' %>
+            </button>
+            <div class="popup">
+              <div class="popup-holder">
+                <div class="categories">
+                  <% @no_strips.each do |i| %>
+                  <div class="item" data-picture="<%= i.id %>">
+                    <div class="comic-picture">
+                      <%= image_tag remix_image_url(uid: i.uid), { :crossorigin => "anonymous", :class => "comic-image" } %>
+                      <span></span>
+                    </div>
+                  </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="btn btn-xs btn-default publish comic">Salvar</a>
         </div>
         <div class="share">
           <p class="call">

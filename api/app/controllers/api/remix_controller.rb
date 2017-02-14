@@ -38,8 +38,24 @@ class Api::RemixController < ApplicationController
     end
 
     gen = ::RemixGenerator::RemixGenerator.new(options)
-    img = gen.process
+    img = gen.generate_common
     image = Remix::UserImage.new(image: img, user: current_user)
+    if image.save
+      render json: { share_url: remix_image_url(uid: image.uid), id: image.id, uid: image.uid }
+    else
+      render json: image.errors, status: :unprocessable_entity
+    end
+    img.unlink
+  end
+
+  def create_comic
+    images = params[:images].split(',')
+    puts images
+    gen = ::RemixGenerator::RemixGenerator.new({
+      images: images
+    })
+    img = gen.generate_strip
+    image = Remix::UserImage.new(image: img, user: current_user, is_strip: true)
     if image.save
       render json: { share_url: remix_image_url(uid: image.uid), id: image.id, uid: image.uid }
     else

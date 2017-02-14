@@ -4,6 +4,7 @@ class RemixController < ApplicationController
 
   def index
     @images = Remix::UserImage.where(user_id: current_user.id).order(id: :desc)
+    @no_strips = Remix::UserImage.where(user_id: current_user.id, is_strip:false).order(id: :desc)
   end
 
   def show

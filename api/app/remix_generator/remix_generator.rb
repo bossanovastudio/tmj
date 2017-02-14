@@ -21,9 +21,10 @@ module RemixGenerator
       @canvas = Magick::ImageList.new
       @canvas_side = options.fetch(:canvas_side, 502)
       @canvas.new_image(@canvas_side, @canvas_side, Magick::HatchFill.new('white', 'gray90'))
+      @images = options.fetch(:images, [])
     end
 
-    def process
+    def generate_common
       @steps.each do |step|
         case step[:type]
         when 'background'
@@ -93,10 +94,80 @@ module RemixGenerator
           @canvas << tmp
         end
       end
-      t = Tempfile.new(['test', '.png'])
+      t = Tempfile.new(['remix', '.png'])
       @canvas.flatten_images.write(t.path)
       t
     end
+
+    def generate_strip
+      width = 502
+      height = 502
+      margin = 15
+      @images = Remix::UserImage.where(id: @images)
+
+      @canvas = Magick::ImageList.new
+
+      if @images.count < 4
+        pic_height = (height - (margin * 2)) / @images.count
+        pic_width = (width - (margin * 2) - ((@images.count - 1) * margin)) / @images.count
+        pos = margin
+        @canvas.new_image(width, pic_height + margin * 2, Magick::HatchFill.new('white', 'gray90'))
+        @canvas << Magick::Image.new(width, pic_height + margin * 2) { self.background_color = '#FFF' }
+
+        @images.each do |img|
+          tmp = Magick::Image.new(width, height) { self.background_color = '#0000' }
+          ops = imgop(img.image_url) do |img|
+            img.background_color = '#0000'
+            img.resize!(pic_width, pic_height)
+            gc = Magick::Draw.new
+            gc.fill = '#0000'
+            gc.stroke = '#000'
+            gc.rectangle 0, 0, pic_width - 1, pic_height - 1
+            gc.draw img
+            img
+          end
+          @canvas << tmp.composite(ops, pos, margin, Magick::OverCompositeOp)
+          pos += pic_width + 15
+        end
+      else
+        pic_height = (height - (margin * 3)) / (@images.count / 2)
+        pic_width =  (width -  (margin * 2) - ((@images.count - 2) * margin)) / (@images.count / 2)
+        x = margin
+        y = margin
+        height = pic_height * 2 + margin * 3
+        width = pic_width * 2 + margin * 3
+
+        @canvas.new_image(width, height, Magick::HatchFill.new('white', 'gray90'))
+        @canvas << Magick::Image.new(width, height + margin * 2) { self.background_color = '#FFF' }
+
+        @images.each do |img|
+          tmp = Magick::Image.new(width, height) { self.background_color = '#0000' }
+          ops = imgop(img.image_url) do |img|
+            img.background_color = '#0000'
+            img.resize!(pic_width, pic_height)
+            gc = Magick::Draw.new
+            gc.fill = '#0000'
+            gc.stroke = '#000'
+            gc.rectangle 0, 0, pic_width - 1, pic_height - 1
+            gc.draw img
+            img
+          end
+          @canvas << tmp.composite(ops, x, y, Magick::OverCompositeOp)
+
+          x += pic_width + margin
+          if x + margin * 2.5 >= width
+            y += pic_height + margin
+            x = margin
+          end
+        end
+      end
+
+      t = Tempfile.new(['strip', '.png'])
+      @canvas.flatten_images.write(t.path)
+      t
+    end
+
+
 
     def imgop(path)
       img = Magick::ImageList.new(path).first if path.kind_of? String
