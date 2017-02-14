@@ -189,7 +189,7 @@
             <div class="popup">
               <div class="popup-holder">
                 <div class="categories">
-                  <% @images.each do |i| %>
+                  <% @no_strips.each do |i| %>
                   <div class="item" data-picture="<%= i.id %>">
                     <div class="comic-picture">
                       <%= image_tag remix_image_url(uid: i.uid), { :crossorigin => "anonymous", :class => "comic-image" } %>

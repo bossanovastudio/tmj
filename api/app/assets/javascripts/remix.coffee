@@ -404,8 +404,16 @@ $('.remix-container').each ->
         $('.gallery-item[data-id="' + data.id + '"]').append($('.actions.to_clone').clone().removeClass('to_clone'))
         $('.gallery-item[data-id="' + data.id + '"]').find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
         $('.gallery-item[data-id="' + data.id + '"]').find('.actions .remove').attr({'data-id': data.id})
-
         $('.artboard .loading').hide()
+
+        template = '<div class="item" data-picture="' + data.id + '">
+                    <div class="comic-picture">
+                      <img src="' + data.share_url + '" crossorigin="anonymous" class="comic-image">
+                      <span></span>
+                    </div>
+                  </div>';
+        $('.comic .categories').prepend(template)
+
       .fail ->
         alert 'Não foi possível salvar a imagem'
         $('.artboard .loading').hide()
@@ -416,7 +424,7 @@ $('.remix-container').each ->
       ids = []
       for c in COMIC_PICTURES
         ids.push c.id
-      console.log(ids)
+      $canvas.html('');
       $.ajax {
         url: API_URL + '/create_comic'
         method: 'POST'
@@ -431,7 +439,6 @@ $('.remix-container').each ->
         $canvas.html('<img src="' + data.share_url + '" alt="" style="width: 100%;">')
         $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + data.share_url.replace('image','detalhe'))
         $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url.replace('image','detalhe') + ' #tmjofilme')
-        # $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url.replace('image','detalhe'))
 
         $composer.find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
         $('.gallery-item-new-comic').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
