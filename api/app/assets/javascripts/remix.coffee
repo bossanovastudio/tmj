@@ -356,12 +356,16 @@ $('.remix-container').each ->
           i++
       if COMIC_PICTURES.length > 1
         if window.isMobile()
-          $('.remix-container').addClass('can-compose comic');
-        $('.publish.comic').show()
+          $('.remix-container').addClass('can-compose comic')
+          $('.publish.comic.mobile').show()
+        else
+          $('.publish.comic').show()
       else
         if window.isMobile()
-          $('.remix-container').removeClass('can-compose comic');
-        $('.publish.comic').hide()
+          $('.remix-container').removeClass('can-compose comic')
+          $('.publish.comic.mobile').hide()
+        else
+          $('.publish.comic').hide()
 
 
     # choose state: can choose a picture to background elements
