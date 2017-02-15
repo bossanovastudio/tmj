@@ -637,7 +637,7 @@
                         }
                     }
                     &.category {
-                        opacity: 0.5;
+                        //opacity: 0.5;
                     }
                 }
             }
@@ -717,6 +717,16 @@
                 .toolbox .publish {
                     // fixme: misplaced
                     display: block;
+                }
+            }
+        }
+        &.comic {
+            .toolbox {
+                .publish {
+                    display: none;
+                    &.comic {
+                        display: block;
+                    }
                 }
             }
         }

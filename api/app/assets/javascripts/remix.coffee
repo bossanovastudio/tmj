@@ -327,6 +327,9 @@ $('.remix-container').each ->
       $('.toolbox.comic .item').removeClass('selected')
       $('.toolbox.comic .item span').html('')
       $('.toolbox.comic .publish').hide()
+      if window.isMobile()
+        $('.toolbox.comic').height(40)
+
       COMIC_PICTURES = [];
 
     'organize-comic': ->
@@ -348,10 +351,12 @@ $('.remix-container').each ->
               $(item).addClass('selected')
           i++
       if COMIC_PICTURES.length > 1
-        # $('.remix-container').addClass('can-compose');
+        if window.isMobile()
+          $('.remix-container').addClass('can-compose comic');
         $('.publish.comic').show()
       else
-        # $('.remix-container').removeClass('can-compose');
+        if window.isMobile()
+          $('.remix-container').removeClass('can-compose comic');
         $('.publish.comic').hide()
 
 
@@ -422,6 +427,7 @@ $('.remix-container').each ->
         # share state: can share the generated image to networks
     'share-comic': ->
       $('.remix-canvas').attr('class', 'remix-canvas')
+      $('.create-new').hide();
       $(this).removeClass('can-compose can-publish').addClass('can-share')
       ids = []
       for c in COMIC_PICTURES
@@ -659,7 +665,8 @@ $('.remix-container').each ->
         $(this).find('.gallery-item').removeAttr('style')
         $(this).find('.gallery-holder').removeAttr('style')
       else
-        itemWidth = $(this).width()
+        # itemWidth = $(this).width()
+        itemWidth = $(window).width() - 60;
         totalWidth = ((itemWidth + 20) * galleryItens)
 
         $(this).find('.gallery-item').outerWidth(itemWidth)

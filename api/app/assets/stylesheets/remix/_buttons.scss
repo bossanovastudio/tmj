@@ -67,6 +67,54 @@
 
 }
 
+.btn-default-big {
+  background-color: #FFF;
+  border: 1px solid #000;
+  height: 250px;
+  width: 240px !important;
+  font-size: 18px;
+  line-height: 20px;
+  -webkit-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+  // margin-bottom: 4px;
+  margin-right: 20px;
+  transition-duration: 0.2s;
+  overflow: hidden;
+  position: relative;
+  @include mq-only-xs {
+      font-size: 15px;
+      line-height: 30px;
+      padding: 0 12px;
+  }
+  &:before{
+        content: '';
+        position: absolute;
+        background-color:#000;
+        width: 140px;
+        height: 140px;
+        top: -140px;
+        left: -140px;
+        transition-duration: 0.2s;
+        border-radius: 100%;
+        z-index: -1;
+    }
+    &:hover {
+        transition-duration: 0.2s;
+        transform: translate(2px, 2px);
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        color: #fff;
+        &:before{
+            top: -50px;
+            left: -50px;
+            transition-duration: 0.2s;
+        }
+    }
+
+}
+
 .btn-social {
   border: 1px solid #000;
   box-shadow: 4px 4px 0 #000;

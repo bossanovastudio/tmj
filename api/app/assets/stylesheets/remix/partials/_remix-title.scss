@@ -24,7 +24,7 @@
         }
     }
     @include mq-from-sm {
-        .create-new {
+        .create-new, .create-new-comic {
             display: none;
         }
     }
@@ -33,7 +33,7 @@
 // States
 .remix-container {
     &.initial {
-        .remix-title .create-new {
+        .remix-title .create-new, .remix-title .create-new-comic {
             display: none;
         }
     }
