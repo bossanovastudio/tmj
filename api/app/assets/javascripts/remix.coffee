@@ -790,17 +790,16 @@ $('.remix-container').each ->
 
   $composer.find('.toolbox .categories').on 'click', '.item[data-picture]', ->
     if !$(this).hasClass('selected')
-      id = $(this).data('picture')
-      url = $(this).find('img').attr('src');
 
       if COMIC_PICTURES.length < 4
+        id = $(this).data('picture')
+        url = $(this).find('img').attr('src');
         COMIC_PICTURES.push {
           id: id,
           url: url
         }
-
-      $remix.trigger 'organize-comic'
-      $(this).addClass('selected')
+        $remix.trigger 'organize-comic'
+        $(this).addClass('selected')
     else
       id = $(this).data('picture')
       i = 0
