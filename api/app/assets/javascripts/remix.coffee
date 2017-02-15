@@ -318,6 +318,10 @@ $('.remix-container').each ->
       $composer.find('.toolbox.comic').hide()
 
     'init-comic': ->
+      if $('.comic-picture').length > 0
+        $('.no_remix').hide()
+      else
+        $('.no_remix').show()
       $(this).trigger('reset').addClass('initial')
       $composer.find('.artboard .empty').hide()
       $composer.find('.artboard .empty-comic').show()
