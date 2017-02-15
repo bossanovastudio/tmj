@@ -348,9 +348,11 @@ $('.remix-container').each ->
               $(item).addClass('selected')
           i++
       if COMIC_PICTURES.length > 1
-        $('.toolbox.comic .publish').show()
+        $('.remix-container').addClass('can-compose');
+        $('.publish.comic').show()
       else
-        $('.toolbox.comic .publish').hide()
+        $('.remix-container').remiveClass('can-compose');
+        $('.publish.comic').hide()
 
 
     # choose state: can choose a picture to background elements
@@ -659,6 +661,7 @@ $('.remix-container').each ->
       else
         itemWidth = $(this).width()
         totalWidth = ((itemWidth + 20) * galleryItens)
+
         $(this).find('.gallery-item').outerWidth(itemWidth)
         $(this).find('.actions').outerWidth(itemWidth)
         $(this).find('.gallery-holder').outerWidth(totalWidth)
@@ -755,7 +758,7 @@ $('.remix-container').each ->
     $remix.trigger 'organize-comic'
     $remix.trigger 'init'
 
-  $remix.find('.gallery-item-new-comic').click ->
+  $remix.find('.gallery-item-new-comic, .create-new-comic').click ->
     $remix.trigger 'init-comic'
 
   $composer.find('.cancel').click ->

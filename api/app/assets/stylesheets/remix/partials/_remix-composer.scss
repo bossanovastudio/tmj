@@ -67,6 +67,10 @@
                 font-family: 'KomikaTitle';
                 font-size: 15px;
             }
+            &.create-new-comic {
+                font-family: 'KomikaTitle';
+                font-size: 15px;
+            }
         }
     }
     .artboard {
@@ -674,7 +678,7 @@
         }
         &.can-share {
             .remix-composer {
-                .actions button.create-new {
+                .actions button.create-new, .actions button.create-new-comic {
                     display: inline-block;
                     position: absolute;
                     right: -8px;
@@ -766,8 +770,7 @@
         h2 {
             margin-bottom: 30px;
         }
-        .intro,
-        button.create-new {
+        .intro, button.create-new, button.create-new-comic {
             display: none !important;
         }
     }
