@@ -348,10 +348,10 @@ $('.remix-container').each ->
               $(item).addClass('selected')
           i++
       if COMIC_PICTURES.length > 1
-        $('.remix-container').addClass('can-compose');
+        # $('.remix-container').addClass('can-compose');
         $('.publish.comic').show()
       else
-        $('.remix-container').remiveClass('can-compose');
+        # $('.remix-container').removeClass('can-compose');
         $('.publish.comic').hide()
 
 
