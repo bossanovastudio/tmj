@@ -436,7 +436,7 @@ $('.remix-container').each ->
       .done (data) ->
         $('.remix-canvas').attr('class', 'remix-canvas')
         $('.artboard .loading').hide()
-        $canvas.html('<img src="' + data.share_url + '" alt="" style="width: 100%;">')
+        $canvas.html('<img src="' + data.share_url + '" alt="" style="width: 100%; max-height: 100%">')
         $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + data.share_url.replace('image','detalhe'))
         $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url.replace('image','detalhe') + ' #tmjofilme')
 
