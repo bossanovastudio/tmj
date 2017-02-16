@@ -1,4 +1,13 @@
 .remix-canvas {
+    &.finished {
+        &:before {
+            display: none;
+            height: auto;
+        }
+        img {
+            position: relative;
+        }
+    }
     &.comic-canvas-1 {
         img {
             margin: 2%;

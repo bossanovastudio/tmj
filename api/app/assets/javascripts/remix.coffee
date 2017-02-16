@@ -450,7 +450,7 @@ $('.remix-container').each ->
         dataType: 'json'
       }
       .done (data) ->
-        $('.remix-canvas').attr('class', 'remix-canvas')
+        $('.remix-canvas').addClass('finished')
         $('.artboard .loading').hide()
         $canvas.html('<img src="' + data.share_url + '" alt="" style="width: 100%; max-height: 100%">')
         $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + data.share_url.replace('image','detalhe'))
