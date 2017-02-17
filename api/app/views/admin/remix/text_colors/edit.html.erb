@@ -1,9 +1,12 @@
-<section id="cards" style="margin-top: 100px;">
+<section id="text-colors" class="remix-sub">
+  <div class="top-bar">
+    <h1 class="title">Text Colors</h1>
+  </div>
     <div class="content">
         <%= simple_form_for [:admin, @text_color] do |f| %>
-          <%= f.input :background, label: 'Background Color', error: 'Background Color is mandatory, please specify one' %>
-          <%= f.input :foreground, label: 'Foreground Color', error: 'Foreground Color is mandatory, please specify one' %>
-          <%= f.button :submit %>
+          <%= f.input :background, label: 'Background Color', error: 'Necessário informar uma cor para background.' %>
+          <%= f.input :foreground, label: 'Foreground Color', error: 'Necessário informar uma cor para foreground.' %>
+          <%= f.button :submit, :class => 'button' %>
         <% end %>
     </div>
 </section>

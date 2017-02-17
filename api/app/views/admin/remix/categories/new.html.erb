@@ -1,9 +1,12 @@
-<section id="cards" style="margin-top: 100px;">
+<section id="categories" class="remix-sub">
+  <div class="top-bar">
+    <h1 class="title">Categorias</h1>
+  </div>
     <div class="content">
         <%= simple_form_for [:admin, @category] do |f| %>
-          <%= f.input :name, label: 'Name', error: 'Name is mandatory, please specify one' %>
-          <%= f.input :cover, label: 'Cover', error: 'Cover is mandatory, please specify one' %>
-          <%= f.button :submit %>
+          <%= f.input :name, label: 'Nome', error: 'Necessário informar um nome.' %>
+          <%= f.input :cover, label: 'Capa', error: 'Necessário informar uma capa.' %>
+          <%= f.button :submit, :value => 'Criar Categoria' %>
         <% end %>
     </div>
 </section>

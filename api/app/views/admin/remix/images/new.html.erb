@@ -1,8 +1,11 @@
-<section id="cards" style="margin-top: 100px;">
+<section id="images" class="remix-sub">
+  <div class="top-bar">
+    <h1 class="title">Imagens</h1>
+  </div>
     <div class="content">
         <%= simple_form_for @image, url: admin_remix_category_images_path do |f| %>
-          <%= f.input :image, label: 'Image', error: 'Image is mandatory, please specify one' %>
-          <%= f.button :submit %>
+          <%= f.input :image, label: 'Imagem:', error: 'Necessário selecionar uma imagem.' %>
+          <%= f.button :submit, :value => 'Criar Imagem' %>
         <% end %>
     </div>
 </section>
