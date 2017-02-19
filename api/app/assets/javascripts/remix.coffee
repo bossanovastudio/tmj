@@ -401,12 +401,14 @@ $('.remix-container').each ->
 
     # share state: can share the generated image to networks
     'share': ->
+
       $(this).removeClass('can-compose can-publish').addClass('can-share')
 
       # removes selects of any element in canvas and the click event
       $canvas.find('.element').trigger('remix:deselect-element').off('click')
       $elements = getElements()
-      $canvas.html('');
+      $canvas.html('')
+      $('.remix-canvas').css('background-color', '#ffffff')
       $.ajax {
         url: API_URL
         method: 'POST'
