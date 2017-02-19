@@ -29,42 +29,37 @@ module RemixGenerator
         case step[:type]
         when 'background'
           @canvas << Magick::Image.new(@canvas_side, @canvas_side) { self.background_color = "##{step[:color]}" }
-          if step.key? :pattern
-            @canvas << imgop(step[:pattern]) { |img| img.resize_to_fit!(@canvas_side, @canvas_side) }
-          end
-          if step[:custom]
-            bin_data = step[:src].split(',')[1]
-            blob = Base64.decode64(bin_data)
-            step[:src] = Magick::Image.from_blob(blob).first
-          end
-          @canvas << imgop(step[:src]) do |img|
-            img.resize_to_fit!(@canvas_side, @canvas_side)
-            case step[:effect]
-            when 'sepia'
-              img.sepiatone
-            when 'grayscale'
-              img.quantize(256, Magick::GRAYColorspace)
-            when 'filter_2'
-              img = img.sepiatone
-              img.modulate(1, 1, 2)
-            when 'filter_3'
-              img = img.contrast true
-              img = img.sepiatone
-              img.modulate(1, 1.8, 1)
-            else
-              img
-            end
-          end
         when 'image'
           tmp = Magick::Image.new(@canvas_side, @canvas_side) { self.background_color = '#0000' }
           position = step[:position].collect &:to_i
           width = step[:width].to_i
           height = step[:height].to_i
           rotation = step[:rotation].to_i
-          ops = imgop(step[:src]) do |img|
+          src = step[:src]
+          if src.length > 500
+            bin_data = src.split(',')[1]
+            blob = Base64.decode64(bin_data)
+            src = Magick::Image.from_blob(blob).first
+          end
+          ops = imgop(src) do |img|
             img.background_color = '#0000'
             img.rotate! rotation
             img.resize! width, height
+          end
+          case step[:effect]
+          when 'sepia'
+            img.sepiatone
+          when 'grayscale'
+            img.quantize(256, Magick::GRAYColorspace)
+          when 'filter_2'
+            img = img.sepiatone
+            img.modulate(1, 1, 2)
+          when 'filter_3'
+            img = img.contrast true
+            img = img.sepiatone
+            img.modulate(1, 1.8, 1)
+          else
+            img
           end
           @canvas << tmp.composite(ops, position[0], position[1], Magick::OverCompositeOp)
         when 'text'

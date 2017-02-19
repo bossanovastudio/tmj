@@ -840,7 +840,13 @@ $('.remix-container').each ->
 
 
   $composer.find('.toolbox .pictures .go-back').click ->
-    $remix.trigger 'init'
+    # removes all states
+    $remix.removeClass('can-choose-picture')
+
+    # goes back to category tool selection
+    $composer
+      .find('.toolbox .toolbox-item').removeClass('on')
+      .filter('.category').addClass('on')
 
   $composer.find('.toolbox .pictures').on 'click', '.item[data-picture-src]', ->
     $remix
