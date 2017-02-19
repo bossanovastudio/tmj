@@ -284,6 +284,7 @@ $('.remix-container').each ->
     $loader.fadeOut 0, ->
       $(this).remove()
 
+    $remix.trigger 'init'
 
   $remix.on
     'reset': ->
@@ -303,6 +304,7 @@ $('.remix-container').each ->
       $canvas.children().remove()
       $composer.find('.artboard .empty').show()
       $composer.find('.artboard .empty-comic').hide()
+      $remix.trigger 'compose'
 
       # resets storages
       $remix.removeData('last-element')
@@ -316,6 +318,7 @@ $('.remix-container').each ->
       $(this).trigger('reset').addClass('initial')
       $composer.find('.toolbox').show()
       $composer.find('.toolbox.comic').hide()
+      $remix.trigger 'compose'
 
     'init-comic': ->
       if $('.comic-picture').length > 0
@@ -388,8 +391,9 @@ $('.remix-container').each ->
 
     # compose state: can compose elements above the chosen picture
     'compose': ->
-      $composer.find('.toolbox .toolbox-item').removeClass('on')
-      $(this).removeClass('can-choose-picture').addClass('can-compose')
+      # $composer.find('.toolbox .toolbox-item').removeClass('on')
+      $(this).addClass('can-compose')
+      # $(this).removeClass('can-choose-picture').addClass('can-compose')
 
     # publish state: can publish the composed image to the site and generate an image
     'publish': ->
@@ -519,6 +523,7 @@ $('.remix-container').each ->
     'add-image': (event, src) ->
       $element = $('<div>').attr { class: 'element image' }
       $element.css({ left: 40, top: 40 })
+      $composer.find('.artboard .empty').hide()
 
       $('<img>').attr { src: src, alt: '', crossOrigin: 'anonymous' }
         .appendTo $element
@@ -796,7 +801,11 @@ $('.remix-container').each ->
     file = this.files[0];
     reader = new FileReader()
     reader.addEventListener 'load', ->
-      $remix.trigger 'set-picture', reader.result
+      $remix
+        .trigger('add-image', reader.result)
+        .data('last-element').trigger('remix:select-element')
+      # $remix.trigger 'set-picture', reader.result
+      $composer.find('.artboard .empty').hide()
       $remix.trigger 'compose'
       rotateImage file
 
@@ -834,12 +843,17 @@ $('.remix-container').each ->
     $remix.trigger 'init'
 
   $composer.find('.toolbox .pictures').on 'click', '.item[data-picture-src]', ->
-    $remix.trigger 'set-picture', $(this).data('picture-src')
+    $remix
+      .trigger('add-image', $(this).data('picture-src'))
+      .data('last-element').trigger('remix:select-element')
+    $composer.find('.artboard .empty').hide()
     $remix.trigger 'compose'
+    # $remix.trigger 'set-picture', $(this).data('picture-src')
 
   # toggles between tools
   $composer.find('.toolbox .toggler').click ->
-    if $remix.hasClass('can-compose') && !$(this).parent().hasClass('category')
+    # if $remix.hasClass('can-compose') && !$(this).parent().hasClass('category')
+    if $remix.hasClass('can-compose')
       $(this)
         .closest('.toolbox-item').trigger('remix:toolbox-click')
         .siblings('.toolbox-item-popup').removeClass('on')
