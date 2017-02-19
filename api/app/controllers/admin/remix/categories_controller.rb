@@ -1,4 +1,4 @@
-class Admin::Remix::CategoriesController < ApplicationController
+class Admin::Remix::CategoriesController < Admin::AdminController
   # before_action :authenticate_user!
   before_action :set_category, only: [:edit, :update, :destroy]
 

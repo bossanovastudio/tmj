@@ -1,13 +1,15 @@
-
-<section id="cards" style="margin-top: 100px;">
+<section id="categories" class="remix-sub">
+  <div class="top-bar">
+    <h1 class="title">Categorias</h1>
+  </div>
     <div class="content">
-        <%= link_to "New",  new_admin_remix_category_path %>
+        <%= link_to "Nova Categoria",  new_admin_remix_category_path, class: 'button' %>
         <ul>
             <% @categories.each do |category| %>
-            <li><%= category.name %>
-                (<%= link_to "Edit",  edit_admin_remix_category_path(category) %> |
-                <%= link_to "Delete", admin_remix_category_path(category), method: :delete, remote: true %> |
-                <%= link_to "Images",  admin_remix_category_images_path(category) %>)
+            <li><p><%= category.name %></p>
+                <%= link_to "Editar",  edit_admin_remix_category_path(category), class: 'button' %>
+                <%= link_to "Apagar", admin_remix_category_path(category), class: 'button', method: :delete, remote: true %>
+                <%= link_to "Imagens",  admin_remix_category_images_path(category), class: 'button' %>
             </li>
             <% end %>
         </ul>

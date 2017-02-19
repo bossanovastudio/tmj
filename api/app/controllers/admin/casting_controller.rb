@@ -1,9 +1,9 @@
-class Admin::CastingController < ApplicationController
+class Admin::CastingController < Admin::AdminController
   respond_to :csv, :json, only: :download
-  
+
   def index
   end
-  
+
   # GET /castings/download.json
   # GET /castings/download.csv
   def download

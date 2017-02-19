@@ -1,4 +1,4 @@
-class Admin::Remix::BackgroundColorsController < ApplicationController
+class Admin::Remix::BackgroundColorsController < Admin::AdminController
   # before_action :authenticate_user!
   before_action :set_background, only: [:edit, :update, :destroy]
 

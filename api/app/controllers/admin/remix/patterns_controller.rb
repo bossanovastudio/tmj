@@ -1,4 +1,4 @@
-class Admin::Remix::PatternsController < ApplicationController
+class Admin::Remix::PatternsController < Admin::AdminController
   # before_action :authenticate_user!
   before_action :set_pattern, only: [:destroy]
 
