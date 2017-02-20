@@ -29,6 +29,9 @@ module RemixGenerator
         case step[:type]
         when 'background'
           @canvas << Magick::Image.new(@canvas_side, @canvas_side) { self.background_color = "##{step[:color]}" }
+          if step.key? :pattern
+            @canvas << imgop(step[:pattern]) { |img| img.resize_to_fit!(@canvas_side, @canvas_side) }
+          end
         when 'image'
           tmp = Magick::Image.new(@canvas_side, @canvas_side) { self.background_color = '#0000' }
           position = step[:position].collect &:to_i
