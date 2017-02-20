@@ -105,7 +105,7 @@ window.getElements = ->
   background = {
     type: 'background',
     color: ($('.remix-canvas').css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join(""),
-    effect: background_effect
+    # effect: background_effect
   }
   if $('.remix-canvas').find('.pattern').attr('src') && $('.remix-canvas').find('.pattern').attr('src').length > 1
     background.pattern = $('.remix-canvas').find('.pattern').attr('src')
@@ -114,14 +114,18 @@ window.getElements = ->
   $('.element').each ->
     $el = $(this);
     if $el.hasClass('image')
-      elements.push({
+      elem = {
         src: $el.find('img').attr('src'),
         width: $el.find('img').width(),
         height: $el.find('img').height(),
         position: [$el.offset().left - $el.parent().offset().left, $el.offset().top - $el.parent().offset().top]
         type: 'image',
         rotation: getRotationDegrees $el
-      })
+      }
+      if $el.find('img').hasClass('picture-character')
+        elem.effect = background_effect
+      elements.push(elem)
+
     else
       elements.push({
         type: 'text',

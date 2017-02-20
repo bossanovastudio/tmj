@@ -49,20 +49,20 @@ module RemixGenerator
             img.rotate! rotation
             img.resize! width, height
           end
-          case step[:effect]
+          ops = case step[:effect]
           when 'sepia'
-            img.sepiatone
+            ops.sepiatone
           when 'grayscale'
-            img.quantize(256, Magick::GRAYColorspace)
+            ops.quantize(256, Magick::GRAYColorspace)
           when 'filter_2'
-            img = img.sepiatone
-            img.modulate(1, 1, 2)
+            ops = ops.sepiatone
+            ops.modulate(1, 1, 2)
           when 'filter_3'
-            img = img.contrast true
-            img = img.sepiatone
-            img.modulate(1, 1.8, 1)
+            ops = ops.contrast true
+            ops = ops.sepiatone
+            ops.modulate(1, 1.8, 1)
           else
-            img
+            ops
           end
           @canvas << tmp.composite(ops, position[0], position[1], Magick::OverCompositeOp)
         when 'text'
