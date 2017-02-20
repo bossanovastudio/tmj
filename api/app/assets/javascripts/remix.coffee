@@ -523,13 +523,16 @@ $('.remix-container').each ->
 
     # sets picture element to the artboard and hides empty message
     'add-image': (event, src, character) ->
-      console.log character
-      $element = $('<div>').attr { class: 'element image' }
+      if character
+        $element = $('<div>').attr { class: 'element image', style: 'width: 422px; height: 422px' }
+      else
+        $element = $('<div>').attr { class: 'element image' }
+
       $element.css({ left: 40, top: 40 })
       $composer.find('.artboard .empty').hide()
 
       if character
-        $('<img>').attr { src: src, alt: '', crossOrigin: 'anonymous', class: 'picture-character' }
+        $('<img>').attr { src: src, alt: '', crossOrigin: 'anonymous', class: 'picture-character', width: '100%', height: '100%' }
           .appendTo $element
       else
         $('<img>').attr { src: src, alt: '', crossOrigin: 'anonymous' }
