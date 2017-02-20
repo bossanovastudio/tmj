@@ -18,7 +18,6 @@
 #= require 'mustache.js/mustache'
 #= require 'bluebird'
 #= require 'exif-js/exif'
-#= require 'masonry/dist/masonry.pkgd.min.js'
 
 API_URL = '/api/remix'
 isIE = (navigator.appVersion.indexOf("MSIE") != -1)
