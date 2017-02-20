@@ -24,6 +24,7 @@
     "jquery-ui-rotatable": "^1.0.1",
     "mustache.js": "mustache#^2.3.0",
     "bluebird": "^3.4.6",
-    "exif-js": "^2.1.1"
+    "exif-js": "^2.1.1",
+    "masonry": "^4.1.1"
   }
 }

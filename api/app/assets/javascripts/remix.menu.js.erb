@@ -158,3 +158,14 @@ $('.logoutRemix').click(function() {
       }
   });
 });
+
+if (isDesktop()) {
+  function organizeRemixes() {
+    $('.gallery-holder').masonry({
+      columnWidth: 261,
+      itemSelector: 'div'
+    });
+    setTimeout(organizeRemixes, 1000);
+  }
+  organizeRemixes();
+}
