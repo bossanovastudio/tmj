@@ -104,9 +104,7 @@ window.getElements = ->
     background_effect = DATA_CSS_EFFECT_NAME[$('.remix-container').data('effects-index') - 1]
   background = {
     type: 'background',
-    src: $('.picture.canvas-background').attr('src'),
     color: ($('.remix-canvas').css('background-color').split("(")[1].split(")")[0].split(",").map parseColor).join(""),
-    custom: $('.picture.canvas-background').data('custom'),
     effect: background_effect
   }
   if $('.remix-canvas').find('.pattern').attr('src') && $('.remix-canvas').find('.pattern').attr('src').length > 1
@@ -523,13 +521,19 @@ $('.remix-container').each ->
       $composer.find('.artboard .empty-comic').hide()
 
     # sets picture element to the artboard and hides empty message
-    'add-image': (event, src) ->
+    'add-image': (event, src, character) ->
+      console.log character
       $element = $('<div>').attr { class: 'element image' }
       $element.css({ left: 40, top: 40 })
       $composer.find('.artboard .empty').hide()
 
-      $('<img>').attr { src: src, alt: '', crossOrigin: 'anonymous' }
-        .appendTo $element
+      if character
+        $('<img>').attr { src: src, alt: '', crossOrigin: 'anonymous', class: 'picture-character' }
+          .appendTo $element
+      else
+        $('<img>').attr { src: src, alt: '', crossOrigin: 'anonymous' }
+          .appendTo $element
+
 
       $('<div>').attr { class: 'action remove' }
         .on 'click', ->
@@ -807,7 +811,7 @@ $('.remix-container').each ->
     reader = new FileReader()
     reader.addEventListener 'load', ->
       $remix
-        .trigger('add-image', reader.result)
+        .trigger('add-image', [reader.result, true])
         .data('last-element').trigger('remix:select-element')
       # $remix.trigger 'set-picture', reader.result
       $composer.find('.artboard .empty').hide()
@@ -855,7 +859,7 @@ $('.remix-container').each ->
 
   $composer.find('.toolbox .pictures').on 'click', '.item[data-picture-src]', ->
     $remix
-      .trigger('add-image', $(this).data('picture-src'))
+      .trigger('add-image', [$(this).data('picture-src'), true])
       .data('last-element').trigger('remix:select-element')
     $composer.find('.artboard .empty').hide()
     $remix.trigger 'compose'
@@ -889,7 +893,7 @@ $('.remix-container').each ->
     if index >= DATA_CSS_EFFECTS.length
       index = 0
 
-    $canvas.find('.picture').css(DATA_CSS_EFFECTS[index])
+    $canvas.find('.picture-character').css(DATA_CSS_EFFECTS[index])
     $remix.data('effects-index', index+1)
 
   # toolbox item popup
