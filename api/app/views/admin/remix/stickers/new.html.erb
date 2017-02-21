@@ -5,7 +5,7 @@
     <div class="content">
         <%= simple_form_for [:admin, @sticker] do |f| %>
           <%= f.input :image, label: 'Imagem', error: 'Necessário selecionar uma imagem' %>
-          <%= f.input :kind, label: 'Tipo', error: 'Necessário selecionar uma grupo de stickers.' %>
+          <%= f.input :kind, label: 'Tipo', error: 'Necessário selecionar um grupo de stickers' %>
           <%= f.button :submit %>
         <% end %>
     </div>

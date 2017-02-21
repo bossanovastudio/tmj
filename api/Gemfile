@@ -78,6 +78,9 @@ gem 'render_csv', '~> 2.0'
 # Non-stupid non-digest assets in Rails 4
 gem 'non-stupid-digest-assets', github: 'alexspeller/non-stupid-digest-assets'
 
+# Help ActiveRecord::Enum feature to work fine with I18n and simple_form.
+gem 'enum_help'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 
