@@ -820,6 +820,9 @@ $('.remix-container').each ->
     reader.addEventListener 'load', ->
       w = 420
       h = 420
+      if isMobile()
+        w = 200
+        h = 200
       i = new Image();
       i.onload = ->
         if i.width > i.height
@@ -876,8 +879,13 @@ $('.remix-container').each ->
       .filter('.category').addClass('on')
 
   $composer.find('.toolbox .pictures').on 'click', '.item[data-picture-src]', ->
+    w = 420
+    h = 420
+    if isMobile()
+      w = 200
+      h = 200
     $remix
-      .trigger('add-image', [$(this).data('picture-src'), true, 420, 420])
+      .trigger('add-image', [$(this).data('picture-src'), true, w, h])
       .data('last-element').trigger('remix:select-element')
     $composer.find('.artboard .empty').hide()
     $remix.trigger 'compose'
