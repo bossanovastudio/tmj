@@ -601,6 +601,9 @@ $('.remix-container').each ->
 
       # stores last used element
       $remix.data('last-element', $element)
+      setTimeout ( ->
+          $('.artboard .loading').hide()
+        ), 500
 
     'add-text': (event, cssClass) ->
       $element = $('<div>').attr { class: 'element text ' + cssClass }
@@ -820,32 +823,35 @@ $('.remix-container').each ->
 
 
   $composer.find('.toolbox .categories .take-photo input').change ->
-    file = this.files[0];
-    reader = new FileReader()
-    reader.addEventListener 'load', ->
-      w = 420
-      h = 420
-      if isMobile()
-        w = 200
-        h = 200
-      i = new Image();
-      i.onload = ->
-        if i.width > i.height
-          h = i.height * w / i.width
-        else
-          w = i.width * h / i.height
-        $remix
-          .trigger('add-image', [reader.result, true, w, h])
-          .data('last-element').trigger('remix:select-element')
-      i.src = reader.result
+    $('.artboard .loading').show()
+    $composer.find('.artboard .empty').hide()
+    that = this
+    setTimeout ( ->
+        file = that.files[0];
+        reader = new FileReader()
+        reader.addEventListener 'load', ->
+          w = 420
+          h = 420
+          if isMobile()
+            w = 200
+            h = 200
+          i = new Image();
+          i.onload = ->
+            if i.width > i.height
+              h = i.height * w / i.width
+            else
+              w = i.width * h / i.height
+            $remix
+              .trigger('add-image', [reader.result, true, w, h])
+              .data('last-element').trigger('remix:select-element')
+          i.src = reader.result
 
-      # $remix.trigger 'set-picture', reader.result
-      $composer.find('.artboard .empty').hide()
-      $remix.trigger 'compose'
-      rotateImage file
+          $remix.trigger 'compose'
+          rotateImage file
 
-    if file
-      reader.readAsDataURL file
+        if file
+          reader.readAsDataURL file
+      ), 500
 
   $composer.find('.toolbox .categories').on 'click', '.item[data-id]', ->
     $remix.trigger 'choose-picture', $(this).data('id')
