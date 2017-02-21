@@ -100,7 +100,7 @@ module RemixGenerator
     def generate_strip
       width = 502
       height = 502
-      margin = 15
+      margin = 502 * 0.02
       @images = Remix::UserImage.where(id: @images)
 
       @canvas = Magick::ImageList.new
@@ -128,8 +128,8 @@ module RemixGenerator
           pos += pic_width + 15
         end
       else
-        pic_height = (height - (margin * 3)) / (@images.count / 2)
-        pic_width =  (width -  (margin * 2) - ((@images.count - 2) * margin)) / (@images.count / 2)
+        pic_height = height  * 0.47 # (height - (margin * 3)) / (@images.count / 2)
+        pic_width =  width * 0.47 # (width -  (margin * 2) - ((@images.count - 2) * margin)) / (@images.count / 2)
         x = margin
         y = margin
         height = pic_height * 2 + margin * 3
@@ -146,7 +146,7 @@ module RemixGenerator
             gc = Magick::Draw.new
             gc.fill = '#0000'
             gc.stroke = '#000'
-            gc.rectangle 0, 0, pic_width - 1, pic_height - 1
+            gc.rectangle 0, 0, pic_width - 2, pic_height - 2
             gc.draw img
             img
           end
