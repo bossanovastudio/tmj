@@ -286,7 +286,9 @@ $('.remix-container').each ->
     $loader.fadeOut 0, ->
       $(this).remove()
 
-    $remix.trigger 'init'
+    if isDesktop()
+      $remix.trigger 'init'
+
 
   $remix.on
     'reset': ->
@@ -322,7 +324,9 @@ $('.remix-container').each ->
       $composer.find('.toolbox').show()
       $composer.find('.toolbox.comic').hide()
       $remix.trigger 'compose'
-      $('.start-over').show()
+      if isDesktop()
+        $('.start-over').show()
+
 
     'init-comic': ->
       if $('.comic-picture').length > 0
