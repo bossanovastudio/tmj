@@ -822,9 +822,9 @@ $('.remix-container').each ->
       i = new Image();
       i.onload = ->
         if i.width > i.height
-          h = i.height * 420 / i.width
+          h = i.height * w / i.width
         else
-          w = i.width * 420 / i.height
+          w = i.width * h / i.height
         $remix
           .trigger('add-image', [reader.result, true, w, h])
           .data('last-element').trigger('remix:select-element')
