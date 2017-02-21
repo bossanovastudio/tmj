@@ -755,6 +755,7 @@ $('.remix-container').each ->
       $item = $(this).closest('.gallery-item')
       $image = $(this).closest('.gallery-item').find('.picture').clone()
       $image.appendTo($canvas)
+      $('html, body').animate({scrollTop: 0})
 
 
       $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + $image.attr('src').replace('image','detalhe'))
