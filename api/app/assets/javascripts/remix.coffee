@@ -303,7 +303,8 @@ $('.remix-container').each ->
 
       # removes all elements from artboard and display empty message
       $canvas.removeAttr('style')
-      $canvas.children().remove()
+      if window.location.href.indexOf('detalhe') == -1
+        $canvas.children().remove()
       $composer.find('.artboard .empty').show()
       $composer.find('.artboard .empty-comic').hide()
       $remix.trigger 'compose'
