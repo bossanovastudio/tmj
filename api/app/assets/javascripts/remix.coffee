@@ -525,9 +525,9 @@ $('.remix-container').each ->
       $composer.find('.artboard .empty-comic').hide()
 
     # sets picture element to the artboard and hides empty message
-    'add-image': (event, src, character) ->
+    'add-image': (event, src, character, w, h) ->
       if character
-        $element = $('<div>').attr { class: 'element image', style: 'width: 422px; height: 422px' }
+        $element = $('<div>').attr { class: 'element image', style: 'width: ' + w + 'px; height: ' + h + 'px' }
       else
         $element = $('<div>').attr { class: 'element image' }
 
@@ -817,9 +817,19 @@ $('.remix-container').each ->
     file = this.files[0];
     reader = new FileReader()
     reader.addEventListener 'load', ->
-      $remix
-        .trigger('add-image', [reader.result, true])
-        .data('last-element').trigger('remix:select-element')
+      w = 420
+      h = 420
+      i = new Image();
+      i.onload = ->
+        if i.width > i.height
+          h = i.height * 420 / i.width
+        else
+          w = i.width * 420 / i.height
+        $remix
+          .trigger('add-image', [reader.result, true, w, h])
+          .data('last-element').trigger('remix:select-element')
+      i.src = reader.result
+
       # $remix.trigger 'set-picture', reader.result
       $composer.find('.artboard .empty').hide()
       $remix.trigger 'compose'
@@ -866,7 +876,7 @@ $('.remix-container').each ->
 
   $composer.find('.toolbox .pictures').on 'click', '.item[data-picture-src]', ->
     $remix
-      .trigger('add-image', [$(this).data('picture-src'), true])
+      .trigger('add-image', [$(this).data('picture-src'), true, 420, 420])
       .data('last-element').trigger('remix:select-element')
     $composer.find('.artboard .empty').hide()
     $remix.trigger 'compose'
