@@ -58,4 +58,12 @@ class Card < ApplicationRecord
   def is_from_remix?
     !remix_image.nil?
   end
+
+  def first_recommended_by
+    self.liked_by.where(role: :editor).first
+  end
+
+  def recommended_by_editor?
+    !first_recommended_by.nil?
+  end
 end
