@@ -1,13 +1,14 @@
-tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $compile, $routeParams) {
+tmj.controller('CharacterController', function($rootScope, $scope, $http, $sce, $compile, $routeParams) {
 
+    $rootScope.pageName = $routeParams.username;
+    $rootScope.extraBodyClass = "character-profile"
     $scope.user = storage.get('user');
-    $rootScope.pageName = 'ramona';
 
     var distanceTop = 0;
 
     $scope.currentUser = {};
 
-    $http.get(API_URL + '/user/ramona/profile.json', {
+    $http.get(API_URL + '/user/' + $routeParams.username + '/profile.json', {
         headers: {
             'Content-Type': 'application/json',
             'X-User-username': storage.get('user') ? storage.get('user').username : '',
@@ -21,6 +22,33 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
         $scope.currentUser.image.url = response.data.image;
         $scope.currentUser.followers = response.data.followers;
         $scope.currentUser.following = response.data.following;
+
+        $scope.currentUser.editor_color = response.data.editor_color;
+        $scope.currentUser.editor_icon = response.data.editor_icon;
+        $scope.currentUser.editor_desktop_background = response.data.editor_desktop_background;
+        $scope.currentUser.editor_mobile_background = response.data.editor_mobile_background;
+        $scope.currentUser.editor_menu_background = response.data.editor_menu_background;
+        $scope.currentUser.editor_recommendation_ribbon = response.data.editor_recommendation_ribbon;
+        $scope.currentUser.editor_avatar_hover = response.data.editor_avatar_hover;
+        $scope.currentUser.editor_networks = response.data.editor_networks;
+
+        $('head').append([
+            '<style>',
+            'body {',
+                'background: ' + $scope.currentUser.editor_color + ' url(' + $scope.currentUser.editor_desktop_background + ') no-repeat center center fixed;!important',
+            '}',
+            '@media only screen and (max-device-width: 550px) {',
+                'body {',
+                    'background-image: image-url(' + $scope.currentUser.editor_mobile_background + ')!important;',
+                    'background-size: cover!important;',
+                '}',
+                '.cards {',
+                    'padding-top: 55px!important;',
+                '}',
+            '}',
+            '</style>'
+        ].join('\n'))
+
         setTimeout(function() {
             $('.box-avatar-user .avatar').css('background-image', "url("+$scope.currentUser.image+")");
         }, 1000);
@@ -64,7 +92,7 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
         if (!storage.get('user')) {
             window.location = '/login';
         } else {
-            $http.get(API_URL + '/ramona/follow.json', {
+            $http.get(API_URL + '/' + $routeParams.username + '/follow.json', {
                 headers: {
                     'Content-Type': 'application/json',
                     'X-User-username': storage.get('user').username,
@@ -80,7 +108,7 @@ tmj.controller('RamonaController', function($rootScope, $scope, $http, $sce, $co
     }
 
     $scope.unFollowUser = function() {
-        $http.get('/api/ramona/unfollow.json', {
+        $http.get('/api/' + $routeParams.username + '/unfollow.json', {
             headers: {
                 'Content-Type': 'application/json',
                 'X-User-username': storage.get('user').username,

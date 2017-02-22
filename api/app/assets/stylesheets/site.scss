@@ -2,7 +2,7 @@
 //= require 'site/grid'
 //= require_self
 //= require 'site/popup'
-//= require 'site/ramona'
+//= require 'site/character-profile'
 //= require 'site/user'
 //= require 'site/user-editor'
 @import "variables";
@@ -1246,7 +1246,7 @@ div.card {
         }
     }
     div.content {
-        background: #ffffff;
+        background-color: #fff;
         padding: 18px 18px 12px 18px;
         text-align: center;
         position: relative;

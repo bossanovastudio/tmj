@@ -25,7 +25,7 @@
 //= require 'site/controllers/HomeController.js'
 //= require 'site/controllers/LoginController.js'
 //= require 'site/controllers/CardsController.js'
-//= require 'site/controllers/RamonaController.js'
+//= require 'site/controllers/CharacterController.js'
 //= require 'site/controllers/EditUserController.js'
 //= require 'site/controllers/ProfileController.js'
 //= require 'site/controllers/MadeByYouController.js'
@@ -71,9 +71,9 @@ tmj
                 templateUrl: '<%=asset_url("home.html")%>',
                 controller: 'HomeController'
             })
-            .when('/personagem/ramona', {
-                templateUrl: '<%=asset_url("ramona.html")%>',
-                controller: 'RamonaController'
+            .when('/personagem/:username', {
+                templateUrl: '<%=asset_url("character.html")%>',
+                controller: 'CharacterController'
             })
             .when('/feito-por-voce', {
                 templateUrl: '<%=asset_url("madebyyou.html")%>',

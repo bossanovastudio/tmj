@@ -42,7 +42,7 @@
 
 </head>
 
-<body ng-app="tmj" ng-controller="MainController" ng-keypress="closeLightboxKey($event.keyCode)" ng-keydown="closeLightboxKey($event.keyCode)" class="{{pageName}}">
+<body ng-app="tmj" ng-controller="MainController" ng-keypress="closeLightboxKey($event.keyCode)" ng-keydown="closeLightboxKey($event.keyCode)" class="{{pageName}} {{extraBodyClass}}">
     <div class="dark-overlay"></div>
     <ng-include src="'<%= asset_url('_popup.html')%>'"></ng-include>
 
