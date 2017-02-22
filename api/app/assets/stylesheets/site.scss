@@ -1075,6 +1075,11 @@ div.card {
     margin-bottom: 24px;
     margin: 0 1% 20px 1%;
     opacity: 0;
+    &.from-character {
+        div.content {
+            background-color: inherit!important;
+        }
+    }
     &.no-read-more {
         .read-more {
             display: none;
@@ -1134,18 +1139,12 @@ div.card {
                 background-position: center top;
             }
         }
-        &.ramonalike {
-            &:before {
-                background: asset-url('site/faixa_ramona.gif') no-repeat;
-                background-size: cover;
-                background-position: center top;
+        .character-like-ribbon {
+            &.static {
+                display: none;
             }
-        }
-        &.geeklike {
-            &:before {
-                background: asset-url('site/faixa_geek.gif') no-repeat;
-                background-size: cover;
-                background-position: center top;
+            &.hover {
+                display: block;
             }
         }
     }
@@ -1356,9 +1355,22 @@ div.card {
             font-size: 19px;
         }
     }
+    .character-like-ribbon {
+        &.hover {
+            display: none;
+        }
+        background-repeat: no-repeat;
+        position: absolute;
+        height: 29px;
+        display: block;
+        width: 100%;
+        z-index: 9;
+        top: 0;
+        background-size: cover;
+        background-position: center center;
+    }
     &.remixlike,
-    &.ramonalike,
-    &.geeklike {
+    &.characterlike {
         &:before {
             content: '';
             position: absolute;
@@ -1369,6 +1381,7 @@ div.card {
             top: 0;
         }
     }
+
     &.remixlike {
         &:before {
             background: asset-url('/assets/site/faixa_remix.jpg') no-repeat;
@@ -1376,45 +1389,15 @@ div.card {
             background-position: center top;
         }
     }
-    &.ramonalike {
-        &:before {
-            background: asset-url('/assets/site/faixa_ramona.jpg') no-repeat;
-            background-size: cover;
-            background-position: center top;
-        }
-    }
-    &.geeklike {
-        &:before {
-            background: asset-url('/assets/site/faixa_remix.jpg') no-repeat;
-            background-size: cover;
-            background-position: center top;
-        }
-    }
-    &.geek {
-        background-color: #5bcfed;
+
+    &.from-character {
         .content {
-            background-color: #5bcfed;
             * {
                 color: #ffffff;
             }
         }
-        img.userPhoto {
-            border: 2px solid #5bcfed;
-        }
     }
-    &.ramona {
-        background-color: #b450db;
-        .content {
-            background-color: #b450db;
-            * {
-                color: #ffffff;
-            }
-        }
-        img.userPhoto {
-            border: 2px solid #b450db;
-        }
-    }
-    &.editor {
+    &.from-editor {
         p.name {
             font-family: KomikaTitle;
             font-weight: 400;
