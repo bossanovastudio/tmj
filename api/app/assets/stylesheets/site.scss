@@ -485,6 +485,19 @@ section {
                 .wavetext {
                     transition-duration: 0.2s;
                     margin-left: 10px;
+
+                    /* Same as before, this will ensure the proper
+                    behaviour on any element inside the menu. Any
+                    undesired effect may be mitigated by writing
+                    more specific selectors. - Vito */
+                    span {
+                        animation-name: wave;
+                        animation-name: flash;
+                        animation-duration: #{$duration}s;
+                        //animation-delay: 1s;
+                        animation-iteration-count: 2;
+                        animation-direction: normal;
+                    }
                     &.homewv {
                         span {
                             animation-name: wave;
@@ -542,6 +555,22 @@ section {
                         color: #fff;
                     }
                 }
+            }
+            /*
+                Adding those styles just to normalise the menu,
+                although I'm not sure how this will impact the overall
+                behaviour of it. Since every class has the same descriptors,
+                I'm pretty sure everything will be fine.
+                - Vito
+            */
+
+            background-size: auto 100%;
+            transition-duration: $anim-fast;
+
+            &:hover {
+                background-size: auto 120%;
+                transition-duration: $anim-fast;
+                color: #000;
             }
             &.red {
                 background: asset-url('site/tudo_sobre_tmj.png') center center no-repeat;
