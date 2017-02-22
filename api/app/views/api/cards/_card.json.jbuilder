@@ -9,7 +9,20 @@ end
 json.source_url             card.source_url
 json.likes                  card.liked_by_count
 json.liked                  current_user.likes?(card) if user_signed_in?
-json.recommended_by_ramona  User.find_by(username: 'ramona').likes?(card) if User.find_by(username: 'ramona')
+
+if card.recommended_by_editor?
+  json.recommended_by do
+    json.editor_color             card.first_recommended_by.editor_color
+    json.editor_ribbon            card.first_recommended_by.editor_recommendation_ribbon_url
+    json.editor_ribbon_animated   card.first_recommended_by.editor_recommendation_ribbon_animated_url
+    json.editor_username          card.first_recommended_by.username
+  end
+end
+
+# json.recommended_by        card.liked_by.where(role: :editor).first
+
+ # json.recommended_by_ramona  User.find_by(username: 'ramona').likes?(card) if User.find_by(username: 'ramona')
+
 json.is_from_remix          card.is_from_remix?
 
 if card.is_from_remix?
@@ -46,6 +59,9 @@ if card.user
     json.role     card.user.role
     json.avatar   card.user.image.url
     json.mask     card.user.mask.url
+    if card.user.editor?
+      json.editor_color card.user.editor_color
+    end
   end
 elsif card.social_user
   json.user do
