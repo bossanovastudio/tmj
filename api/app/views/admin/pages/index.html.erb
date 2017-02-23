@@ -1,0 +1,14 @@
+<section id="background-colors" class="remix-sub">
+  <div class="top-bar">
+    <h1 class="title">Páginas</h1>
+  </div>
+  <div class="content">
+    <ul>
+      <% @pages.each do |page| %>
+      <li>
+        <p style="width: 300px;"><%= page.title %></p><%= link_to "Editar",  edit_admin_page_path(page), class: 'button' %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</section>

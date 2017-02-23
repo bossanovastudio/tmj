@@ -70,7 +70,6 @@ Rails.application.routes.draw do
       resources :categories, except: [:show] do
         resources :images
       end
-
     end
 
     resources :cards do
@@ -97,6 +96,7 @@ Rails.application.routes.draw do
 
     resources :images
     resources :videos
+    resources :pages, only: [:index, :edit, :update]
 
     root to: 'cards#index'
   end
