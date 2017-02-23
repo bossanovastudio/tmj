@@ -3,6 +3,7 @@
 # Table name: pages
 #
 #  id              :integer          not null, primary key
+#  slug            :string
 #  title           :string
 #  keywords        :string
 #  description     :string

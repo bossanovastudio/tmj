@@ -1,14 +1,14 @@
 class Admin::PagesController < Admin::AdminController
+  before_action :load_page, except: [:index]
   def index
     @pages = ::Page.all
   end
 
   def edit
-    @page = ::Page.find(params[:id])
   end
 
   def update
-    @page = ::Page.new(page_params)
+    @page.assign_attributes page_params
     if @page.save
       redirect_to action: :index
     else
@@ -18,7 +18,11 @@ class Admin::PagesController < Admin::AdminController
 
   private
     def page_params
-      params.require(:title).permit(:keywords, :description, :content, :background_menu)
+      params.require(:page).permit(:title, :keywords, :description, :content, :background_menu)
+    end
+
+    def load_page
+      @page = ::Page.find(params[:id])
     end
 
 end

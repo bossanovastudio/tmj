@@ -95,6 +95,14 @@
             </li>
           <% end %>
 
+          <% Page.all.each do |p| %>
+            <li style="background-image: url(<%= p.background_menu_url %>)" ng-click="toggle()">
+              <a ng-href="/<%= p.slug %>" class="wavetext" target="_self">
+                <%= raw p.title.upcase.split('').map { |l| "<span>#{l.gsub(/\s/,'&nbsp;')}</span>" }.join('') %>
+              </a>
+            </li>
+          <% end %>
+
           <li class="blue" ng-click="toggle()"><a ng-href="/participe" class="wavetext castingwv" target="_blank"><span>P</span><span>A</span><span>R</span><span>T</span><span>I</span><span>C</span><span>I</span><span>P</span><span>E</span></a></li>
 
           <!-- <li class="orange" ng-click="toggle()"><a ng-href="{{ user.username ? '/remix' : '/login?redirect_url=/remix' }}" class="wavetext remixwv" target="_self"><span>R</span><span>E</span><span>M</span><span>I</span><span>X</span></a></li> -->
