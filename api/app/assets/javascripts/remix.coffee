@@ -377,6 +377,7 @@ $('.remix-container').each ->
           $('.publish.comic.mobile').hide()
         else
           $('.publish.comic').hide()
+      $('.remix-canvas .comic-picture').height( $('.remix-canvas .comic-picture').width() )
 
 
     # choose state: can choose a picture to background elements
@@ -858,7 +859,6 @@ $('.remix-container').each ->
 
   $composer.find('.toolbox .categories').on 'click', '.item[data-picture]', ->
     if !$(this).hasClass('selected')
-
       if COMIC_PICTURES.length < 4
         id = $(this).data('picture')
         url = $(this).find('img').attr('src');
