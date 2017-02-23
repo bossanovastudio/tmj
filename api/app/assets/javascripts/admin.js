@@ -19,6 +19,7 @@
 //= require jquery-ui/ui/widget
 //= require jquery-ui/ui/widgets/mouse
 //= require jquery-ui/ui/widgets/sortable
+//= require "redactor"
 //= require masonry.pkgd
 //= require turbolinks
 //= require bootstrap
@@ -114,8 +115,8 @@ $(document).on('turbolinks:load', function() {
 
     $("#highlights .bottom-content").sortable({
         stop: function(event, ui) {
-          var elem = $(ui.item);
-          $.post("/admin/highlights/" + elem.find('[data-highlight-id]').attr('data-highlight-id') + "/move", { to: elem.index() + 1 });
+            var elem = $(ui.item);
+            $.post("/admin/highlights/" + elem.find('[data-highlight-id]').attr('data-highlight-id') + "/move", { to: elem.index() + 1 });
         }
     });
 
@@ -131,29 +132,34 @@ $(document).on('turbolinks:load', function() {
     });
 
     setTimeout(function() { initMasonry(); }, 1000);
+
+    $('.redactor textarea').redactor({
+        minHeight: 500
+    });
+
 });
 
 function initMasonry() {
-  if (!$('.cards').data('masonry')) {
-      $('.cards').masonry({
-          itemSelector: '.card',
-          columnWidth: '.one-five',
-          percentPosition: false,
-          gutter: 20,
-          transitionDuration: 0
-      });
-  } else {
-      $('.cards').masonry('reloadItems');
-      $('.cards').masonry();
-  }
+    if (!$('.cards').data('masonry')) {
+        $('.cards').masonry({
+            itemSelector: '.card',
+            columnWidth: '.one-five',
+            percentPosition: false,
+            gutter: 20,
+            transitionDuration: 0
+        });
+    } else {
+        $('.cards').masonry('reloadItems');
+        $('.cards').masonry();
+    }
 }
 
 function updateStatusToggle() {
-  if ($(".switch .checkbox input[type='checkbox']").prop("checked") == true) {
-      $(".slider").addClass('checked');
-  } else {
-      $(".slider").removeClass('checked');
-  }
+    if ($(".switch .checkbox input[type='checkbox']").prop("checked") == true) {
+        $(".slider").addClass('checked');
+    } else {
+        $(".slider").removeClass('checked');
+    }
 }
 
 function resizeAdminContent() {

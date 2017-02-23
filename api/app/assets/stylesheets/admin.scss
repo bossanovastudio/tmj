@@ -3,6 +3,7 @@
 // = require "cards"
 // = require "casting"
 // = require "highlights"
+// = require "redactor"
 // = require_self
 @import 'https://fonts.googleapis.com/css?family=Lato:300,700';
 
@@ -387,7 +388,7 @@ html {
       height: 35px;
       margin: 7px 0;
       span,
-      a, 
+      a,
       p {
         display: inline-block;
         vertical-align: middle;
