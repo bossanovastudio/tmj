@@ -33,6 +33,8 @@ Rails.application.routes.draw do
 
     post '/register', to: 'castings#create'
 
+    get '/page/:id', to: 'pages#index'
+
     get '/castings/download', to: 'castings#download'
 
     resources :cards,  only: [:create, :show] do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223185918) do
+ActiveRecord::Schema.define(version: 20170224134440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 20170223185918) do
     t.string   "background_menu"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "background_page"
     t.index ["slug"], name: "index_pages_on_slug", unique: true, using: :btree
   end
 

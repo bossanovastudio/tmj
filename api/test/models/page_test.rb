@@ -11,6 +11,7 @@
 #  background_menu :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  background_page :string
 #
 
 require "test_helper"

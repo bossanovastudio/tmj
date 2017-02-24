@@ -11,6 +11,7 @@
 #  background_menu :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  background_page :string
 #
 
 class Page < ApplicationRecord
@@ -18,5 +19,6 @@ class Page < ApplicationRecord
   validates :slug, presence: true, uniqueness: true
 
   mount_uploader :background_menu, PageAssetUploader
+  mount_uploader :background_page, PageAssetUploader
 
 end

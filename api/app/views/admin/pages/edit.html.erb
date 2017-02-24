@@ -23,8 +23,12 @@
         <%= f.input :keywords %> <br />
         <%= f.input :content %> <br />
         <%= f.input :background_menu %> <br />
-        <% if @page.background_menu %>
-            <%= image_tag @page.background_menu.file.url %>
+        <% if @page.background_menu_url %>
+            <%= image_tag @page.background_menu_url %>
+        <% end %><br /><br /> <br />
+        <%= f.input :background_page %> <br />
+        <% if @page.background_page_url %>
+            <%= image_tag @page.background_page_url %>
         <% end %><br /><br /><br />
 
         <div class="actions">

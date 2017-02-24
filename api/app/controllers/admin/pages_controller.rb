@@ -18,7 +18,7 @@ class Admin::PagesController < Admin::AdminController
 
   private
     def page_params
-      params.require(:page).permit(:title, :keywords, :description, :content, :background_menu)
+      params.require(:page).permit(:title, :keywords, :description, :content, :background_menu, :background_page)
     end
 
     def load_page
