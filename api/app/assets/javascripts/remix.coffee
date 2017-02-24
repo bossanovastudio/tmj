@@ -773,10 +773,6 @@ $('.remix-container').each ->
       $composer.find('.actions .download').attr('href', $image.attr('src'))
       $composer.find('.actions .remove').data('id', $item.data('id'))
       $remix.addClass('initial can-share')
-
-      if isMobile()
-        $('.create-new-comic').hide()
-
     , '.gallery-item .picture'
 
 

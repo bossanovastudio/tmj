@@ -286,6 +286,9 @@
                                 img {
                                     opacity: 0.36;
                                 }
+                                > div {
+                                    background: #000000;
+                                }
                             }
                             &.take-photo,
                             &.go-back {
