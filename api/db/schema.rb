@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224134440) do
+ActiveRecord::Schema.define(version: 20170224175814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,14 +21,15 @@ ActiveRecord::Schema.define(version: 20170224134440) do
     t.string   "media_type"
     t.integer  "media_id"
     t.datetime "posted_at"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "source_url"
-    t.integer  "status",         default: 1
-    t.integer  "size",           default: 1
+    t.integer  "status",              default: 1
+    t.integer  "size",                default: 1
     t.json     "social_user"
     t.string   "social_uid"
     t.integer  "remix_image_id"
+    t.json     "moderation_metadata"
     t.index ["media_type", "media_id"], name: "index_cards_on_media_type_and_media_id", using: :btree
   end
 

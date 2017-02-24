@@ -2,20 +2,21 @@
 #
 # Table name: cards
 #
-#  id             :integer          not null, primary key
-#  origin         :integer
-#  content        :text
-#  media_type     :string
-#  media_id       :integer
-#  posted_at      :datetime
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  source_url     :string
-#  status         :integer          default("pending")
-#  size           :integer          default("one")
-#  social_user    :json
-#  social_uid     :string
-#  remix_image_id :integer
+#  id                  :integer          not null, primary key
+#  origin              :integer
+#  content             :text
+#  media_type          :string
+#  media_id            :integer
+#  posted_at           :datetime
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  source_url          :string
+#  status              :integer          default("pending")
+#  size                :integer          default("one")
+#  social_user         :json
+#  social_uid          :string
+#  remix_image_id      :integer
+#  moderation_metadata :json
 #
 
 class Card < ApplicationRecord
@@ -27,9 +28,37 @@ class Card < ApplicationRecord
   has_one :user, through: :provider
   belongs_to :remix_image, class_name: "Remix::UserImage"
 
+  ##### About moderation_metadata #####
+  # Assume the following structure for the json field:
+  # {
+  #   home: true,
+  #   madebyyou: true,
+  #   characters: {
+  #     ramona: true
+  #   }
+  # }
+  # *Never* assume that a key is present, always test the key presence
+  # before attempting casts.
+  # *Always* assume an absent key as `false`.
+  # The `characters` key is dynamic. If a card has not been moderated, the
+  # key will be absent. In case a card has been reject, the key have `false`
+  # as its value. Otherwise, the card has been moderated and approved, thus
+  # the key value will be `true`.
+  #
+  # The migration responsible for moving current data to the new structure
+  # will basically take all approved cards and set the metadata to `home: true`.
+  # No further changes or assumptions will be made by the migration, and
+  # characters-specific data will have to be moderated once again.
+  # - Vito
+
+  # TODO: deprecate
   scope :ordered, -> { order(posted_at: 'DESC') }
   scope :approved, -> { where(status: :accepted) }
   scope :not_rejected, -> { where.not(status: :rejected) }
+
+  scope :for_home, -> { where("moderation_metadata::jsonb ? 'home' AND (moderation_metadata::jsonb #> '{home}')::text::boolean") }
+  scope :for_madebyyou, -> { where("moderation_metadata::jsonb ? 'madebyyou' AND (moderation_metadata::jsonb #> '{madebyyou}')::text::boolean") }
+  scope :for_editor, -> username { where("(moderation_metadata::jsonb ? 'characters') AND ((moderation_metadata::jsonb #> '{characters}')::jsonb ? '#{username}') AND ((moderation_metadata::jsonb #> '{characters,#{username}}')::text::boolean)") }
 
   def self.filter_query(params)
     options = {}
