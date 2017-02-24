@@ -904,6 +904,7 @@ $('.remix-container').each ->
       .trigger('add-image', [$(this).data('picture-src'), true, w, h])
       .data('last-element').trigger('remix:select-element')
     $composer.find('.artboard .empty').hide()
+    $('.toolbox-item-elements.category.on').removeClass('on')
     $remix.trigger 'compose'
     # $remix.trigger 'set-picture', $(this).data('picture-src')
 

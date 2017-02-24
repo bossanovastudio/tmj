@@ -106,7 +106,7 @@
     .toolbox {
         @include clearfix;
         margin-top: 5px;
-        padding: 10px 20px 15px;
+        padding: 10px 0px 15px;
         position: relative;
         .toolbox-item {
             float: left;
@@ -119,6 +119,7 @@
                 position: relative;
                 img {
                     vertical-align: middle;
+                    height: 26px;
                 }
                 &.toggler-image {
                     .toggler-shad-icon {
@@ -147,8 +148,8 @@
                 &.toggler-fx {
                     .toggler-shad-icon {
                         position: absolute;
-                        top: 6px;
-                        left: 6px;
+                        top: 4px;
+                        left: 4px;
                         z-index: -1;
                     }
                 }
@@ -493,7 +494,7 @@
             margin-right: -23px;
             .toolbox-item-popup.category {
                 .toggler {
-                    display: none;
+                    //display: none;
                 }
                 .popup {
                     margin-top: -70px;
@@ -537,7 +538,7 @@
     @media (max-width: 600px) {
         .toolbox {
             .toolbox-item {
-                width: percentage(1 / 6);
+                width: percentage(1 / 7);
             }
         }
         .artboard {
