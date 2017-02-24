@@ -762,6 +762,7 @@ $('.remix-container').each ->
       $('html, body').animate({scrollTop: 0})
 
 
+
       $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + $image.attr('src').replace('image','detalhe'))
       $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + $image.attr('src').replace('image','detalhe') + ' #tmjofilme')
       # $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + $image.attr('src'))
@@ -772,6 +773,10 @@ $('.remix-container').each ->
       $composer.find('.actions .download').attr('href', $image.attr('src'))
       $composer.find('.actions .remove').data('id', $item.data('id'))
       $remix.addClass('initial can-share')
+
+      if isMobile()
+        $('.create-new-comic').hide()
+
     , '.gallery-item .picture'
 
 
