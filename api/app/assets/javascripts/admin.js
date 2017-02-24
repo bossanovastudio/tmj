@@ -137,6 +137,74 @@ $(document).on('turbolinks:load', function() {
         minHeight: 500
     });
 
+    $('.editor-list').on('click', '[data-revoke-editor]', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $this = $(this),
+            container = $this.parents('li');
+
+        container.slideUp();
+
+        $.ajax({
+            url: '/admin/editors/revoke',
+            method: 'POST',
+            data: {
+                id: $this.attr('data-revoke-editor')
+            },
+            json: true,
+            success: function(data) {
+                if(data.success) {
+                    $this.remove();
+                } else {
+                    alert('Houve um problema ao rebaixar o editor.')
+                    container.slideDown();
+                }
+            },
+            error: function() {
+                alert('Houve um problema ao rebaixar o editor.')
+                container.slideDown();
+            }
+        });
+    });
+
+    (function() {
+        var nef = $('#new-editor-field');
+        var commitNewEditor = function() {
+            if(nef.val().trim() === '') {
+                return;
+            }
+            $.ajax({
+                url: '/admin/editors/promote',
+                method: 'POST',
+                data: {
+                    username: nef.val()
+                },
+                success: function(data) {
+                    var el = $(data);
+                    $('.editor-list').append(el);
+                    el.slideDown();
+                    nef.val('');
+                },
+                error: function() {
+                    alert('Não foi possível promover o usuário fornecido. Certifique-se de que ele está correto.');
+                }
+            })
+        }
+        nef.on('keyup', function(e) {
+            if(e.which != 13) {
+                return;
+            }
+            e.preventDefault();
+            e.stopPropagation();
+            commitNewEditor();
+            return false;
+        });
+        $('#promote-user-commit').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            commitNewEditor();
+        });
+    })();
 });
 
 function initMasonry() {

@@ -74,6 +74,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :editors do
+      post ':id/commit_edit', action: :commit, on: :collection, as: :commit_edit
+      post 'revoke', action: :revoke, on: :collection
+      post 'promote', action: :promote, on: :collection
+    end
+
     resources :cards do
       collection do
         post :accept

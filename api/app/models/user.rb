@@ -80,6 +80,11 @@ class User < ActiveRecord::Base
     true
   end
 
+  def editor_network_url(k)
+    n = self.editor_networks.find_by(kind: k)
+    n.url unless n.nil?
+  end
+
   private
     def send_welcome_email
       return true unless email
