@@ -18,70 +18,51 @@ module Crawlers::Social
     end
 
     def run
-      [
-        'TurmadaMonicaJovemBrasil',
-        'DoContradc',
-        'fasdeturmadamonicajovem',
-        'emersonabreu.msp',
-        'amamostmjforever',
-        'tmjdiversidades',
-        'OpiniaoTMJ',
-        'tmjmania',
-        'tmjjunto',
-        'TMJN0vos',
-        'tmjdivertidos',
-        'TMJ-CBM-Mania-1443398202598155',
-      ].each { |u| guard { @facebook.timeline u } }
+      runs = {
+        tumblr: [],
+        facebook: [],
+        youtube: [],
+        twitter: [],
+        instagram: []
+      }
+      editors = EditorProvider.all
+      editors.each do |e|
+        e.providers.each do |p|
+          k = p.provider.to_sym
+          unless runs.key? k
+            puts "WARNING! Cannot handle provider with type #{k}"
+            next
+          end
+          runs[k] << p.uid
+        end
+      end
 
-      [
-        'OpiniaoTMJ',
-        'diariodorick',
-        'revistaturmajovem',
-      ].each { |u| guard { @youtube.channel u, true } }
+      # Basic normalisation
+      runs[:tumblr] = runs[:tumblr].collect { |e| "#{e}.tumblr.com" }
 
-      [
-        'UCekYMr9EQSauMefFzMTrpSg',
-        'UCpf5c40cP3MoXe2T81zb4xA',
-        'UCIfAeO5OrsuxczdozQ5mcag',
-      ].each { |u| guard { @youtube.channel u } }
+      # Associate with static data
+      runs.keys.each do |k|
+        runs[k] = (runs[k] + Statics::RUNS[k]).uniq
+      end
 
-      guard { @tumblr.search 'lunetalunatica.tumblr.com' }
+      puts runs
+
+      runs[:tumblr].each { |u| guard { @tumblr.search u } }
+      runs[:facebook].each { |u| guard { @facebook.timeline u } }
+      runs[:youtube].each { |u| guard { @youtube.channel u, !u.start_with?('UC') } }
+      runs[:twitter].each { |u| guard { @twitter.user u } }
+      runs[:instagram].each { |u| guard { @instagram.profile u } }
+
+      # This is still here because the implemented providers mechanism does not
+      # store keys required for pinterest profiles work correctly.
       guard { @pinterest.profile 'AWPUOpt6ygJugqlnzdUuNw07dfB-FIuTMID9YAtDl7PBEwAv_gAAAAA' }
 
-      [
-        '_turmadamonica_',
-        'mundo_tmj15',
-        'tmj_turmadamonica',
-        'tmj_fanclub',
-        'monica_ironica',
-        'tmjprasempre',
-        'tmj_eterno',
-        'pride.tmj',
-        'forevercascali',
-        'monica_a_louca',
-        'denisetmj.oficial',
-        'cebola20',
-        'tmj_4050',
-        'instadaramona',
-      ].each { |u| guard { @instagram.profile u } }
-
-      guard { @twitter.user 'revistadaturma' }
-
-      [
-        'turmadamonicaccxp',
-        'mspnaccxp',
-        'tmj100',
-        'turmadamonicajovem',
-        'tmjofilme',
-        'turmadamonicajovemofilme',
-      ].each do |hashtag|
+      Statics::HASHTAGS.each do |hashtag|
         guard { @instagram.hashtag hashtag }
         guard { @twitter.search "##{hashtag}" }
       end
-      
-      Profile.all.each do |profile|
-        guard { @facebook.timeline profile.uid, ['turmadamonicaccxp', 'mspnaccxp', 'tmj100', 'turmadamonicajovem', 'tmjofilme', 'turmadamonicajovemofilme' ] }
-      end
+
+      runs[:facebook].each { |u| guard { @facebook.timeline u, Statics::HASHTAGS } }
     end
   end
 end
