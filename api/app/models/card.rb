@@ -95,4 +95,24 @@ class Card < ApplicationRecord
   def recommended_by_editor?
     !first_recommended_by.nil?
   end
+
+  def moderate_for_editor(name, approved)
+    mod = self.moderation_metadata || {}
+    chars = mod.fetch(:characters, {})
+    chars[name.to_sym] = approved
+    mod[:characters] = chars
+    self.moderation_metadata = mod
+  end
+
+  def moderate_for_home(approved)
+    mod = self.moderation_metadata || {}
+    mod[:home] = approved
+    self.moderation_metadata = mod
+  end
+
+  def moderate_for_madebyyou(approved)
+    mod = self.moderation_metadata || {}
+    mod[:madebyyou] = approved
+    self.moderation_metadata = mod
+  end
 end

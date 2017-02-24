@@ -16,16 +16,16 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    get '/ramona/follow', to: 'general#follow', username: :ramona
-    get '/ramona/unfollow', to: 'general#unfollow', username: :ramona
-    get '/ramona/(:page)/(:quantity)', to: 'general#editors', username: :ramona, defaults: { page: 1, quantity: 10 }
-    get '/ramona/(:page)/(:quantity)', to: 'general#editors', username: :ramona, defaults: { page: 1, quantity: 10 }
     get '/user/:username/profile', to: 'general#profile'
     get '/user/:username/liked', to: 'general#liked'
     get '/user/:username/recommended/:editor/(:page)/(:quantity)', to: 'general#recommended'
     get '/user/:username/(:page)/(:quantity)', to: 'general#users', defaults: { page: 1, quantity: 10 }
     get '/all/(:page)/(:quantity)', to: 'general#all', defaults: { page: 1, quantity: 10 }
     get '/all_without_editors/(:page)/(:quantity)', to: 'general#all_without_editors', defaults: { page: 1, quantity: 10 }
+    get '/:username/follow', to: 'general#follow'
+    get '/:username/unfollow', to: 'general#unfollow'
+    get '/:username/(:page)/(:quantity)', to: 'general#editors', defaults: { page: 1, quantity: 10 }
+    get '/:username/(:page)/(:quantity)', to: 'general#editors', defaults: { page: 1, quantity: 10 }
 
     get '/highlights', to: 'general#highlights'
 
