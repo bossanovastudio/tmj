@@ -49,8 +49,7 @@ class Api::RemixController < ApplicationController
   end
 
   def create_comic
-    images = params[:images].split(',')
-    puts images
+    images = params[:images].split(',').map(&:to_i)
     gen = ::RemixGenerator::RemixGenerator.new({
       images: images
     })

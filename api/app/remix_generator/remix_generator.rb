@@ -101,7 +101,8 @@ module RemixGenerator
       width = 502
       height = 502
       margin = 502 * 0.02
-      @images = Remix::UserImage.where(id: @images)
+      idx = Remix::UserImage.where(id: @images).group_by(&:id)
+      @images.map! { |i| idx[i].first }
 
       @canvas = Magick::ImageList.new
 
