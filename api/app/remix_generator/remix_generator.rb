@@ -107,8 +107,8 @@ module RemixGenerator
       @canvas = Magick::ImageList.new
 
       if @images.count < 4
-        pic_height = (height - (margin * 2)) / @images.count
-        pic_width = (width - (margin * 2) - ((@images.count - 1) * margin)) / @images.count
+        pic_height = (height - (margin * 2)) / @images.count.to_f
+        pic_width = (width - ((@images.count + 1) * margin)) / @images.count.to_f
         pos = margin
         @canvas.new_image(width, pic_height + margin * 2, Magick::HatchFill.new('white', 'gray90'))
         @canvas << Magick::Image.new(width, pic_height + margin * 2) { self.background_color = '#FFF' }
@@ -121,16 +121,16 @@ module RemixGenerator
             gc = Magick::Draw.new
             gc.fill = '#0000'
             gc.stroke = '#000'
-            gc.rectangle 0, 0, pic_width - 1, pic_height - 1
+            gc.rectangle 0, 0, pic_width - 2, pic_height - 2
             gc.draw img
             img
           end
           @canvas << tmp.composite(ops, pos, margin, Magick::OverCompositeOp)
-          pos += pic_width + 15
+          pos += pic_width + margin
         end
       else
-        pic_height = height  * 0.47 # (height - (margin * 3)) / (@images.count / 2)
-        pic_width =  width * 0.47 # (width -  (margin * 2) - ((@images.count - 2) * margin)) / (@images.count / 2)
+        pic_height = height  * 0.47
+        pic_width =  width * 0.47
         x = margin
         y = margin
         height = pic_height * 2 + margin * 3
