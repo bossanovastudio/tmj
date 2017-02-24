@@ -61,6 +61,7 @@ Rails.application.routes.draw do
     end
 
     resources :profiles, only: [:index]
+    resources :editor_providers, only: [:index]
   end
 
   namespace :admin do
