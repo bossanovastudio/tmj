@@ -43,8 +43,10 @@ class Api::GeneralController < ApplicationController
     pagination = pagination_params
 
     @user = User.find_by!(username: params[:username])
-    @cards = @user.cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1)
-    @cards = @cards.for_madebyyou.or(@cards.for_home).ordered
+    @cards = @user.cards
+    @cards = @cards.for_madebyyou.or(@cards.for_home)
+    @total_cards = @cards.count
+    @cards = @cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1).ordered
   end
 
   def liked

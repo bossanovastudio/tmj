@@ -71,5 +71,4 @@ elsif card.social_user
   end
 end
 
-json.status     card.status
 json.posted_at  card.posted_at
