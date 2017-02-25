@@ -54,7 +54,7 @@
         top: -10px;
     }
     .mobile-comic {
-        display: none !important;
+        display: none;
     }
     .action_mobile {
         display: none;
@@ -512,7 +512,7 @@
             }
         }
         .mobile-comic {
-            display: inline-block !important;
+            // display: inline-block !important;
         }
         .action_mobile {
             display: block;

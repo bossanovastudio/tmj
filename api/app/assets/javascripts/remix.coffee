@@ -93,9 +93,14 @@ parseColorTransparent = (x) ->
 
 window.getCanvasSize = () ->
   if !isMobile()
-    size = 502
+    size = $('.remix-canvas').width()
   else
     size = $(window).width()
+
+window.compensateScreenSize = (value) ->
+  if !isMobile
+    value = value * 502 / $('.remix-canvas').width()
+  return value
 
 window.getElements = ->
   elements = [];
@@ -116,9 +121,9 @@ window.getElements = ->
     if $el.hasClass('image')
       elem = {
         src: $el.find('img').attr('src'),
-        width: $el.find('img').width(),
-        height: $el.find('img').height(),
-        position: [$el.offset().left - $el.parent().offset().left, $el.offset().top - $el.parent().offset().top]
+        width: compensateScreenSize($el.find('img').width()),
+        height: compensateScreenSize($el.find('img').height()),
+        position: [compensateScreenSize($el.offset().left - $el.parent().offset().left), compensateScreenSize($el.offset().top - $el.parent().offset().top)]
         type: 'image',
         rotation: getRotationDegrees $el
       }
@@ -129,11 +134,11 @@ window.getElements = ->
     else
       elements.push({
         type: 'text',
-        position: [$el.offset().left - $el.parent().offset().left, $el.offset().top - $el.parent().offset().top]
+        position: [compensateScreenSize($el.offset().left - $el.parent().offset().left), compensateScreenSize($el.offset().top - $el.parent().offset().top)]
         size: $el.css('font-size').replace('px',''),
         content: $el.find('textarea').val(),
-        width: $el.width(),
-        height: $el.height(),
+        width: compensateScreenSize($el.width()),
+        height: compensateScreenSize($el.height()),
         fg: ($el.css('color').split("(")[1].split(")")[0].split(",").map parseColor).join(""),
         bg: parseColorTransparent $el,
       })
@@ -346,7 +351,7 @@ $('.remix-container').each ->
       $('.toolbox.comic .item').removeClass('selected')
       $('.toolbox.comic .item span').html('')
       $('.toolbox.comic .publish').hide()
-      if window.isMobile()
+      if isMobile()
         $('.toolbox.comic').height(40)
         $('.publish').hide()
         $('.publish.comic').show()
@@ -371,18 +376,16 @@ $('.remix-container').each ->
               $(item).find('span').html(i)
               $(item).addClass('selected')
           i++
+
       if COMIC_PICTURES.length > 1
-        if window.isMobile()
+        if isMobile()
           $('.remix-container').addClass('can-compose comic')
-          $('.publish.comic.mobile-comic').show()
-        else
           $('.publish.comic').show()
       else
-        if window.isMobile()
+        if isMobile()
           $('.remix-container').removeClass('can-compose comic')
-          $('.publish.comic.mobile-comic').hide()
-        else
           $('.publish.comic').hide()
+
       $('.remix-canvas .comic-picture').height( $('.remix-canvas .comic-picture').width() )
 
 
@@ -961,7 +964,7 @@ $('.remix-container').each ->
       .trigger('add-image', $(this).data('src'))
       .data('last-element').trigger('remix:select-element')
 
-    if window.isMobile()
+    if isMobile()
       $(this).closest('.toolbox-item').removeClass('on')
 
   # toolbox item texts colors
@@ -1015,7 +1018,7 @@ $('.remix-container').each ->
       .data('last-element').trigger('remix:select-element')
       .find('textarea').attr('readonly', false)
 
-    if window.isMobile()
+    if isMobile()
       $(this).closest('.toolbox-item').removeClass('on')
 
   # canvas
