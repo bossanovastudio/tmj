@@ -60,6 +60,26 @@ class Card < ApplicationRecord
   scope :for_madebyyou, -> { where("moderation_metadata::jsonb ? 'madebyyou' AND (moderation_metadata::jsonb #> '{madebyyou}')::text::boolean") }
   scope :for_editor, -> username { where("(moderation_metadata::jsonb ? 'characters') AND ((moderation_metadata::jsonb #> '{characters}')::jsonb ? '#{username}') AND ((moderation_metadata::jsonb #> '{characters,#{username}}')::text::boolean)") }
 
+  # This next was intended to be a scope, but the complexity of it made
+  # the scope body fugly.
+  def self.with_status(status, *relative_to)
+    status = status.downcase.to_sym
+    relative_to = [relative_to] unless relative_to.kind_of? Array
+    expr = nil
+    if status == :pending
+      # Pending express a lack of the the relative_to in the moderation
+      # structure
+      expr = "moderation_metadata::jsonb #> '{#{relative_to.join(',')}}' IS NULL"
+    elsif status == :accepted || status == :rejected
+      expr = "(moderation_metadata::jsonb #> '{#{relative_to.join(',')}}')::text::boolean"
+      expr = "not #{expr}" if status == :rejected
+    else
+      return all
+    end
+
+    return self.where(expr)
+  end
+
   def self.filter_query(params)
     options = {}
     if params.present?
@@ -114,5 +134,18 @@ class Card < ApplicationRecord
     mod = self.moderation_metadata || {}
     mod[:madebyyou] = approved
     self.moderation_metadata = mod
+  end
+
+  def relative_status(relative_to)
+    meta = moderation_metadata || {}
+    value = nil
+    if relative_to == :home || relative_to == :madebyyou
+      value = meta.fetch(relative_to.to_s, nil)
+    else
+      value = meta.fetch("characters", {}).fetch(relative_to, nil)
+    end
+    return 'pending' if value.nil?
+    return 'rejected' if !value
+    return 'accepted'
   end
 end
