@@ -53,6 +53,15 @@
         left: 49%;
         top: -10px;
     }
+    .mobile-comic {
+        display: none !important;
+    }
+    .action_mobile {
+        display: none;
+    }
+    .action_desktop {
+        display: block;
+    }
     .actions {
         @include clearfix;
         min-height: 40px;
@@ -488,6 +497,15 @@
                 margin-bottom: 30px;
             }
         }
+        .mobile-comic {
+            display: inline-block !important;
+        }
+        .action_mobile {
+            display: block;
+        }
+        .action_desktop {
+            display: none;
+        }
         .artboard {
             margin-left: -23px;
             margin-right: -23px;
@@ -557,13 +575,14 @@
             display: none;
         }
         .actions {
-            @include make-sm-column-push(6);
+            // @include make-sm-column-push(6);
             position: absolute;
-            bottom: 0;
-            left: 0;
+            bottom: -40px;
+            right: 10px;
         }
         .artboard {
             @include make-sm-column(6);
+            margin-bottom: 40px;
         }
         .toolbox {
             @include make-sm-column(6);
