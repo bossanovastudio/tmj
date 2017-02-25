@@ -832,8 +832,8 @@ $('.remix-container').each ->
         file = that.files[0];
         reader = new FileReader()
         reader.addEventListener 'load', ->
-          w = 420
-          h = 420
+          w = $('.remix-canvas').width() * 0.7
+          h = $('.remix-canvas').width() * 0.7
           if isMobile()
             w = 200
             h = 200
@@ -891,8 +891,8 @@ $('.remix-container').each ->
       .filter('.category').addClass('on')
 
   $composer.find('.toolbox .pictures').on 'click', '.item[data-picture-src]', ->
-    w = 420
-    h = 420
+    w = $('.remix-canvas').width() * 0.7
+    h = $('.remix-canvas').width() * 0.7
     if isMobile()
       w = 200
       h = 200
