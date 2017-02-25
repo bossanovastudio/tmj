@@ -83,7 +83,7 @@ $(document).on('turbolinks:load', function() {
             if (valid) {
                 $('.card').css({ opacity: 0.3 });
                 var action = $(this).attr('data-action');
-                $('#new_card').attr('action', '/admin/cards/' + action);
+                $('#new_card').attr('action', '/admin/moderator/' + action);
                 $('#new_card')[0].submit();
             }
         }

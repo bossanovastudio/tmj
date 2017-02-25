@@ -81,6 +81,16 @@ Rails.application.routes.draw do
       post 'promote', action: :promote, on: :collection
     end
 
+    resources :moderator do
+      collection do
+        get "/home",            action: :home_admin
+        get "/made-by-you",     action: :madebyyou_admin
+        get "/character/:username", action: :character_admin, as: :character_moderator
+        post :accept
+        post :reject
+      end
+    end
+
     resources :cards do
       collection do
         post :accept
@@ -107,7 +117,7 @@ Rails.application.routes.draw do
     resources :videos
     resources :pages, only: [:index, :edit, :update]
 
-    root to: 'cards#index'
+    root to: 'moderator#home_admin'
   end
 
   get "/participe" => 'welcome#register'

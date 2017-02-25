@@ -36,12 +36,20 @@
           <path d="M4.69,16.44h15.7" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round"/>
           <path d="M4.69,20.49h15.7" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round"/>
         </svg>
-        <span>Cards</span>
+        <span>Moderar Cards</span>
         <% end %>
         <ul class="subitem-list">
           <li>
-            <%= link_to "Moderar cards", admin_cards_path, class: "#{active_class('cards')}" %>
+            <%= link_to "Home", home_admin_moderator_index_path, class: "#{active_class('cards')}" %>
           </li>
+          <li>
+            <%= link_to "Feito Por Você", made_by_you_admin_moderator_index_path, class: "#{active_class('cards')}" %>
+          </li>
+          <% User.editors.each do |u| %>
+          <li>
+            <%= link_to "Editor: #{u.username.titleize}", character_moderator_admin_moderator_index_path(username: u.username), class: "#{active_class('cards')}" %>
+          </li>
+          <% end %>
           <li>
             <%= link_to "Destaques", admin_highlights_path, class: "#{active_class('highlights')}" %>
           </li>
