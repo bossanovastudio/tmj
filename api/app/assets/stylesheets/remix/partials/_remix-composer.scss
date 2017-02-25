@@ -272,6 +272,15 @@
                                     position: absolute;
                                     left: 0;
                                     bottom: 0;
+                                    transition: all 0.1s;
+                                    &:active {
+                                        transition: all 0.1s;
+                                        transform: translateX(0);
+                                        left: 4%;
+                                        bottom: 4%;
+                                        width: 92%;
+                                        height: 92%;
+                                    }
                                 }
                                 span {
                                     position: absolute;
@@ -357,6 +366,11 @@
                     padding: 5px;
                     img {
                         max-height: 100%;
+                        transition: all 0.1s;
+                        &:active {
+                            transition: all 0.1s;
+                            transform: scale(0.92);
+                        }
                     }
                 }
             }
