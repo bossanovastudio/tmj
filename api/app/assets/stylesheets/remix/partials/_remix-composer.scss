@@ -428,7 +428,7 @@
     }
     .share {
         display: none;
-        animation: enterElem .2s ease-in forwards;
+        // animation: enterElem .2s ease-in forwards;
         &.detail {
             display: block;
             .avatar {
