@@ -324,6 +324,10 @@ $('.remix-container').each ->
       $composer.find('.toolbox').show()
       $composer.find('.toolbox.comic').hide()
       $remix.trigger 'compose'
+      if isMobile()
+        $('.publish').show()
+        $('.publish.comic').hide()
+
       if isDesktop()
         $('.start-over').show()
 
@@ -344,8 +348,10 @@ $('.remix-container').each ->
       $('.toolbox.comic .publish').hide()
       if window.isMobile()
         $('.toolbox.comic').height(40)
-
+        $('.publish').hide()
+        $('.publish.comic').show()
       COMIC_PICTURES = [];
+      $('.publish').hide()
 
     'organize-comic': ->
       if COMIC_PICTURES.length == 0
@@ -368,13 +374,13 @@ $('.remix-container').each ->
       if COMIC_PICTURES.length > 1
         if window.isMobile()
           $('.remix-container').addClass('can-compose comic')
-          $('.publish.comic.mobile').show()
+          $('.publish.comic.mobile-comic').show()
         else
           $('.publish.comic').show()
       else
         if window.isMobile()
           $('.remix-container').removeClass('can-compose comic')
-          $('.publish.comic.mobile').hide()
+          $('.publish.comic.mobile-comic').hide()
         else
           $('.publish.comic').hide()
       $('.remix-canvas .comic-picture').height( $('.remix-canvas .comic-picture').width() )
@@ -450,7 +456,7 @@ $('.remix-container').each ->
         # share state: can share the generated image to networks
     'share-comic': ->
       $('.remix-canvas').attr('class', 'remix-canvas')
-      $('.create-new').hide();
+      # $('.create-new').hide();
       $(this).removeClass('can-compose can-publish').addClass('can-share')
       ids = []
       for c in COMIC_PICTURES
