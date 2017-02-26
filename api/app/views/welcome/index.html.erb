@@ -164,11 +164,11 @@
                   <img src="<%=asset_url('site/balao_simples3.svg')%>" class="link" alt="">
                   <img src="<%=asset_url('site/poof_simples.svg')%>" class="active" alt="">
                 </div>
-                <img ng-if="card.user.role == 'editor'" src="{{card.user.avatar}}" class="userPhoto" />
+                <img ng-if="card.user.role == 'editor'" ng-src="{{card.user.avatar}}" class="userPhoto" />
                 <p class="name">{{card.user.name}}</p>
                 <p class="date">
                   <a class="date-link" target="_blank" ng-href="{{card.source_url}}">
-                    <img src="/assets/site/{{card.origin}}.svg" />
+                    <img ng-src="/assets/site/{{card.origin}}.svg" />
                     {{card.posted_at | formatDate}}
                   </a></p>
                 <p class="content" ng-bind-html="card.content | trust"></p>

@@ -86,12 +86,12 @@
 <div class="clearfix"></div>
 <div class="content-no-cards other-user" ng-if="currentUser.username != user.username">
     <p>Opa, este perfil ainda não tem conteúdo TMJ!</p>
-    <img src="{{imgNoCards}}" alt="">
+    <img ng-src="{{imgNoCards}}" alt="">
 </div>
 <div class="content-no-cards" ng-if="currentUser.username == user.username">
     <!-- <p><a ng-href="/remix" target="_self">Vejo que você é novo por aqui. Que tal ativar seus privilégios de CCOTMJ (criador de conteúdo oficial TMJ) e compartilhar sua primeira criação com a gente?</a></p> -->
     <p>Faça parte desse universo, compartilhando conteúdo com a hashtag #TMJofilme em suas redes sociais!</p>
-    <img src="{{imgNoCardsCurrent}}" alt="">
+    <img ng-src="{{imgNoCardsCurrent}}" alt="">
 </div>
 
 <div ng-include src="'<%= asset_url('cards.html')%>'"></div>
