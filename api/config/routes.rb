@@ -66,6 +66,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    resources :cards, only: [:create] # Dummy af
     namespace :remix do
       resources :background_colors, except: [:show]
       resources :text_colors, except: [:show]
