@@ -98,7 +98,7 @@ window.getCanvasSize = () ->
     size = $(window).width()
 
 window.compensateScreenSize = (value) ->
-  if !isMobile
+  if !isMobile()
     value = value * 502 / $('.remix-canvas').width()
   return value
 
