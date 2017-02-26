@@ -273,22 +273,14 @@
                                     left: 0;
                                     bottom: 0;
                                     transition: all 0.1s;
-                                    &:active {
-                                        transition: all 0.1s;
-                                        transform: translateX(0);
-                                        left: 4%;
-                                        bottom: 4%;
-                                        width: 92%;
-                                        height: 92%;
-                                    }
-                                    @include mq-to-sm {
+                                    @include mq-from-md {
                                         &:active {
                                             transition: all 0.1s;
-                                            transform: translateX(50%);
-                                            left: 50%;
-                                            bottom: 0;
-                                            width: 100%;
-                                            height: 100%;
+                                            transform: translateX(0);
+                                            left: 4%;
+                                            bottom: 4%;
+                                            width: 92%;
+                                            height: 92%;
                                         }
                                     }
                                 }
@@ -377,14 +369,10 @@
                     img {
                         max-height: 100%;
                         transition: all 0.1s;
-                        &:active {
-                            transition: all 0.1s;
-                            transform: scale(0.92);
-                        }
-                        @include mq-to-sm {
+                        @include mq-from-md {
                             &:active {
                                 transition: all 0.1s;
-                                transform: scale(1);
+                                transform: scale(0.92);
                             }
                         }
                     }
@@ -705,7 +693,8 @@
     }
     &.can-share {
         .remix-composer {
-            .toolbox, .toolbox.comic {
+            .toolbox,
+            .toolbox.comic {
                 display: none !important;
             }
             .share {
@@ -738,7 +727,8 @@
         }
         &.can-share {
             .remix-composer {
-                .actions button.create-new, .actions button.create-new-comic {
+                .actions button.create-new,
+                .actions button.create-new-comic {
                     display: inline-block;
                     position: absolute;
                     right: -8px;
@@ -840,7 +830,9 @@
         h2 {
             margin-bottom: 30px;
         }
-        .intro, button.create-new, button.create-new-comic {
+        .intro,
+        button.create-new,
+        button.create-new-comic {
             display: none !important;
         }
     }
