@@ -330,8 +330,8 @@ $('.remix-container').each ->
       $composer.find('.toolbox.comic').hide()
       $remix.trigger 'compose'
       if isMobile()
-        $('.publish').show()
-        $('.publish.comic').hide()
+        $('.actions .publish').show()
+        $('.actions .publish.comic').hide()
 
       if isDesktop()
         $('.start-over').show()
