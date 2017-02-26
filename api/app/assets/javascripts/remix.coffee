@@ -224,7 +224,7 @@ $('.remix-container').each ->
   .then (result) ->
     # categories
     html = ''
-    template = '<div class="item" data-id="{{ id }}"><div><img crossorigin="anonymous" src="{{ &url }}" alt="{{ name }}"></div></div>'
+    template = '<div class="item" data-id="{{ id }}"><div><img src="{{ &url }}" alt="{{ name }}"></div></div>'
     Mustache.parse template
 
     result.categories.forEach (category) ->
@@ -234,7 +234,7 @@ $('.remix-container').each ->
 
     # pictures
     html = ''
-    template = '<div class="item" data-category-id="{{ category_id }}" data-picture-src="{{ &url }}"><div><img crossorigin="anonymous" src="{{ &url }}" alt=""></div></div>'
+    template = '<div class="item" data-category-id="{{ category_id }}" data-picture-src="{{ &url }}"><div><img src="{{ &url }}" alt=""></div></div>'
     Mustache.parse template
 
     result.pictures.forEach (category) ->
@@ -252,7 +252,7 @@ $('.remix-container').each ->
 
     # balloons
     html = ''
-    template = '<div class="elements-item" data-src="{{ &url }}"><img src="{{ &url }}" alt="" crossorigin="anonymous"></div>'
+    template = '<div class="elements-item" data-src="{{ &url }}"><img src="{{ &url }}" alt=""></div>'
     Mustache.parse template
 
     result.balloons.forEach (balloon) ->
@@ -262,7 +262,7 @@ $('.remix-container').each ->
 
     # stickers
     html = ''
-    template = '<div class="elements-item" data-src="{{ &url }}"><img src="{{ &url }}" alt="" crossorigin="anonymous"></div>'
+    template = '<div class="elements-item" data-src="{{ &url }}"><img src="{{ &url }}" alt=""></div>'
     Mustache.parse template
 
     result.stickers.forEach (sticker) ->
@@ -272,7 +272,7 @@ $('.remix-container').each ->
 
     # patterns
     html = ''
-    template = '<div class="elements-item pattern" data-src="{{ &url }}"><img src="{{ &url }}" alt="" crossorigin="anonymous"></div>'
+    template = '<div class="elements-item pattern" data-src="{{ &url }}"><img src="{{ &url }}" alt=""></div>'
     Mustache.parse template
 
     result.patterns.forEach (sticker) ->
@@ -447,7 +447,7 @@ $('.remix-container').each ->
 
         template = '<div class="item" data-picture="' + data.id + '">
                     <div class="comic-picture">
-                      <img src="' + data.share_url + '" crossorigin="anonymous" class="comic-image">
+                      <img src="' + data.share_url + '" class="comic-image">
                       <span></span>
                     </div>
                   </div>';
@@ -503,7 +503,7 @@ $('.remix-container').each ->
         $canvas.append $picture
 
       $picture
-        .attr { class: 'picture canvas-background', src: src, crossorigin: 'anonymous' }
+        .attr { class: 'picture canvas-background', src: src }
       $picture.css {
         opacity: 0
       }
@@ -550,10 +550,10 @@ $('.remix-container').each ->
       $composer.find('.artboard .empty').hide()
 
       if character
-        $('<img>').attr { src: src, alt: '', crossOrigin: 'anonymous', class: 'picture-character', width: '100%', height: '100%' }
+        $('<img>').attr { src: src, alt: '', class: 'picture-character', width: '100%', height: '100%' }
           .appendTo $element
       else
-        $('<img>').attr { src: src, alt: '', crossOrigin: 'anonymous' }
+        $('<img>').attr { src: src, alt: '' }
           .appendTo $element
 
 
@@ -956,7 +956,7 @@ $('.remix-container').each ->
   $composer.find('.toolbox-item-elements .elements').on 'click', '.elements-item', (event) ->
     if $(this).hasClass('pattern')
       if $('.remix-canvas').find('.pattern').length == 0
-        $('.remix-canvas').prepend('<img src="" class="pattern" style="width: 100%; height: 100%; position: absolute; z-index: 0; opacity: 0" crossorigin="anonymous" />');
+        $('.remix-canvas').prepend('<img src="" class="pattern" style="width: 100%; height: 100%; position: absolute; z-index: 0; opacity: 0" />');
       $('.remix-canvas').find('.pattern').attr('src', $(this).data('src')).css({opacity: 1});
       return
     event.stopPropagation()
