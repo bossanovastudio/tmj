@@ -137,12 +137,12 @@ class Card < ApplicationRecord
   end
 
   def relative_status(relative_to)
-    meta = moderation_metadata || {}
+    meta = self.moderation_metadata || {}
     value = nil
     if relative_to == :home || relative_to == :madebyyou
       value = meta.fetch(relative_to.to_s, nil)
     else
-      value = meta.fetch("characters", {}).fetch(relative_to, nil)
+      value = meta.fetch("characters", {}).fetch(relative_to.to_s, nil)
     end
     return 'pending' if value.nil?
     return 'rejected' if !value
