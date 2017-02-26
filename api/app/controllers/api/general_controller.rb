@@ -44,7 +44,11 @@ class Api::GeneralController < ApplicationController
 
     @user = User.find_by!(username: params[:username])
     @cards = @user.cards
-    @cards = @cards.for_madebyyou.or(@cards.for_home)
+    if @user.editor?
+      @cards = @cards.for_editor(@user.username)
+    else
+      @cards = @cards.for_madebyyou.or(@cards.for_home)
+    end
     @total_cards = @cards.count
     @cards = @cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1).ordered
   end
