@@ -15,7 +15,7 @@
           <tr>
             <td>Avatar</td>
             <td>
-              <% if @editor.image.nil? %>
+              <% if @editor.image.size == 0 %>
                 <div class="faded">(Nenhuma imagem fornecida)</div>
               <% else %>
                 <img src="<%= @editor.image_url %>" class="avatar" alt="">
@@ -26,7 +26,7 @@
            <tr>
             <td>Máscara do Avatar</td>
             <td>
-              <% if @editor.editor_avatar_hover.nil? %>
+              <% if @editor.editor_avatar_hover.size == 0 %>
                 <div class="faded">(Nenhuma imagem fornecida)</div>
               <% else %>
                 <img class="avatar" src="<%= @editor.editor_avatar_hover_url %>"></div>
@@ -49,7 +49,7 @@
           <tr>
             <td>Ícone</td>
             <td>
-              <% if @editor.editor_icon.nil? %>
+              <% if @editor.editor_icon.size == 0 %>
                 <div class="faded">(Nenhuma imagem fornecida)</div>
               <% else %>
                 <img src="<%= @editor.editor_icon_url %>" class="avatar" alt="">
@@ -60,7 +60,7 @@
           <tr>
             <td>Background (Desktop)</td>
             <td>
-              <% if @editor.editor_desktop_background.nil? %>
+              <% if @editor.editor_desktop_background.size == 0 %>
                 <div class="faded">(Nenhuma imagem fornecida)</div>
               <% else %>
                 <div class="background" style="background-image: url(<%= @editor.editor_desktop_background_url %>);"></div>
@@ -71,7 +71,7 @@
           <tr>
             <td>Background (Mobile)</td>
             <td>
-              <% if @editor.editor_mobile_background.nil? %>
+              <% if @editor.editor_mobile_background.size == 0 %>
                 <div class="faded">(Nenhuma imagem fornecida)</div>
               <% else %>
                 <div class="background" style="background-image: url(<%= @editor.editor_mobile_background_url %>);"></div>
@@ -82,7 +82,7 @@
           <tr>
             <td>Background (Menu)</td>
             <td>
-              <% if @editor.editor_menu_background.nil? %>
+              <% if @editor.editor_menu_background.size == 0 %>
                 <div class="faded">(Nenhuma imagem fornecida)</div>
               <% else %>
                 <div class="background-menu" style="background-image: url(<%= @editor.editor_menu_background_url %>);"></div>
@@ -93,7 +93,7 @@
           <tr>
             <td>Faixa de recomendação (Estática)</td>
             <td>
-              <% if @editor.editor_recommendation_ribbon.nil? %>
+              <% if @editor.editor_recommendation_ribbon.size == 0 %>
                 <div class="faded">(Nenhuma imagem fornecida)</div>
               <% else %>
                 <div class="ribbon" style="background-image: url(<%= @editor.editor_recommendation_ribbon_url %>);"></div>
@@ -104,7 +104,7 @@
           <tr>
             <td>Faixa de recomendação (Animada)</td>
             <td>
-              <% if @editor.editor_recommendation_ribbon_animated.nil? %>
+              <% if @editor.editor_recommendation_ribbon_animated.size == 0 %>
                 <div class="faded">(Nenhuma imagem fornecida)</div>
               <% else %>
                 <div class="ribbon" style="background-image: url(<%= @editor.editor_recommendation_ribbon_animated_url %>);"></div>
