@@ -2,7 +2,7 @@
 //= require 'site/grid'
 //= require_self
 //= require 'site/popup'
-//= require 'site/ramona'
+//= require 'site/character-profile'
 //= require 'site/user'
 //= require 'site/user-editor'
 @import "variables";
@@ -485,6 +485,19 @@ section {
                 .wavetext {
                     transition-duration: 0.2s;
                     margin-left: 10px;
+
+                    /* Same as before, this will ensure the proper
+                    behaviour on any element inside the menu. Any
+                    undesired effect may be mitigated by writing
+                    more specific selectors. - Vito */
+                    span {
+                        animation-name: wave;
+                        animation-name: flash;
+                        animation-duration: #{$duration}s;
+                        //animation-delay: 1s;
+                        animation-iteration-count: 2;
+                        animation-direction: normal;
+                    }
                     &.homewv {
                         span {
                             animation-name: wave;
@@ -542,6 +555,22 @@ section {
                         color: #fff;
                     }
                 }
+            }
+            /*
+                Adding those styles just to normalise the menu,
+                although I'm not sure how this will impact the overall
+                behaviour of it. Since every class has the same descriptors,
+                I'm pretty sure everything will be fine.
+                - Vito
+            */
+
+            background-size: auto 100%;
+            transition-duration: $anim-fast;
+
+            &:hover {
+                background-size: auto 120%;
+                transition-duration: $anim-fast;
+                color: #000;
             }
             &.red {
                 background: asset-url('site/tudo_sobre_tmj.png') center center no-repeat;
@@ -1075,6 +1104,11 @@ div.card {
     margin-bottom: 24px;
     margin: 0 1% 20px 1%;
     opacity: 0;
+    &.from-character {
+        div.content {
+            background-color: inherit!important;
+        }
+    }
     &.no-read-more {
         .read-more {
             display: none;
@@ -1134,18 +1168,12 @@ div.card {
                 background-position: center top;
             }
         }
-        &.ramonalike {
-            &:before {
-                background: asset-url('site/faixa_ramona.gif') no-repeat;
-                background-size: cover;
-                background-position: center top;
+        .character-like-ribbon {
+            &.static {
+                display: none;
             }
-        }
-        &.geeklike {
-            &:before {
-                background: asset-url('site/faixa_geek.gif') no-repeat;
-                background-size: cover;
-                background-position: center top;
+            &.hover {
+                display: block;
             }
         }
     }
@@ -1246,7 +1274,7 @@ div.card {
         }
     }
     div.content {
-        background: #ffffff;
+        background-color: #fff;
         padding: 18px 18px 12px 18px;
         text-align: center;
         position: relative;
@@ -1356,9 +1384,22 @@ div.card {
             font-size: 19px;
         }
     }
+    .character-like-ribbon {
+        &.hover {
+            display: none;
+        }
+        background-repeat: no-repeat;
+        position: absolute;
+        height: 29px;
+        display: block;
+        width: 100%;
+        z-index: 9;
+        top: 0;
+        background-size: cover;
+        background-position: center center;
+    }
     &.remixlike,
-    &.ramonalike,
-    &.geeklike {
+    &.characterlike {
         &:before {
             content: '';
             position: absolute;
@@ -1369,6 +1410,7 @@ div.card {
             top: 0;
         }
     }
+
     &.remixlike {
         &:before {
             background: asset-url('/assets/site/faixa_remix.jpg') no-repeat;
@@ -1376,45 +1418,15 @@ div.card {
             background-position: center top;
         }
     }
-    &.ramonalike {
-        &:before {
-            background: asset-url('/assets/site/faixa_ramona.jpg') no-repeat;
-            background-size: cover;
-            background-position: center top;
-        }
-    }
-    &.geeklike {
-        &:before {
-            background: asset-url('/assets/site/faixa_remix.jpg') no-repeat;
-            background-size: cover;
-            background-position: center top;
-        }
-    }
-    &.geek {
-        background-color: #5bcfed;
+
+    &.from-character {
         .content {
-            background-color: #5bcfed;
             * {
                 color: #ffffff;
             }
         }
-        img.userPhoto {
-            border: 2px solid #5bcfed;
-        }
     }
-    &.ramona {
-        background-color: #b450db;
-        .content {
-            background-color: #b450db;
-            * {
-                color: #ffffff;
-            }
-        }
-        img.userPhoto {
-            border: 2px solid #b450db;
-        }
-    }
-    &.editor {
+    &.from-editor {
         p.name {
             font-family: KomikaTitle;
             font-weight: 400;
@@ -2255,19 +2267,19 @@ footer {
         top: 0px;
         background: #fff;
         // margin-top: 10px;
-        &.social-fb:hover .social-fb-icon {
+        &.social-facebook:hover .social-facebook-icon {
             fill: #FFF;
             transition-duration: 0.01s;
         }
-        &.social-tw:hover .social-tw-icon {
+        &.social-twitter:hover .social-twitter-icon {
             fill: #FFF;
             transition-duration: 0.01s;
         }
-        &.social-yt:hover .social-yt-icon {
+        &.social-youtube:hover .social-youtube-icon {
             fill: #FFF;
             transition-duration: 0.01s;
         }
-        &.social-go:hover .social-go-icon {
+        &.social-google:hover .social-google-icon {
             fill: #FFF;
             transition-duration: 0.01s;
         }
@@ -2309,35 +2321,35 @@ footer {
     }
 }
 
-.social-vi:before {
+.social-vimeo:before {
     background: #1ab7ea;
 }
 
-.social-tu:before {
+.social-tumblr:before {
     background: #35465c;
 }
 
-.social-pi:before {
+.social-pinterest:before {
     background: #bd081c;
 }
 
-.social-in:before {
+.social-instagram:before {
     background: #e1306c;
 }
 
-.social-fb:before {
+.social-facebook:before {
     background: #3b5998;
 }
 
-.social-tw:before {
+.social-twitter:before {
     background: #4099FF;
 }
 
-.social-yt:before {
+.social-youtube:before {
     background: #cd201f;
 }
 
-.social-go:before {
+.social-google:before {
     background: #dd4b39;
 }
 

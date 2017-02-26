@@ -1,0 +1,14 @@
+<section id="editors-list" class="editors-sub">
+  <div class="top-bar">
+    <h1 class="title">Editores</h1>
+  </div>
+  <div class="content">
+    <input type="text" placeholder="Usuário" id="new-editor-field">
+    <a href="javascript:void(0)" id="promote-user-commit" class="button">Promover a Editor</a>
+    <ul class="editor-list">
+      <% @editors.each do |e| %>
+        <%= render partial: "editor", object: e %>
+      <% end %>
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,47 @@
+<section id="highlights-new">
+    <div class="top-bar">
+        <h1 class="title">Editar <%= @page.title %></h1>
+    </div>
+    <div class="content redactor">
+        <h1>Editar Pagina</h1>
+
+        <%= simple_form_for([:admin, @page], html: { class: 'form' }) do |f| %>
+        <% if @page.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+            <ul>
+                <% @page.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+        <% end %>
+
+        <%= f.input :title %> <br />
+        <%= f.input :description %> <br />
+        <%= f.input :keywords %> <br />
+        <%= f.input :content %> <br />
+        <%= f.input :background_menu %> <br />
+        <% if @page.background_menu_url %>
+            <%= image_tag @page.background_menu_url %>
+        <% end %><br /><br /> <br />
+        <%= f.input :background_page %> <br />
+        <% if @page.background_page_url %>
+            <%= image_tag @page.background_page_url %>
+        <% end %><br /><br /><br />
+
+        <div class="actions">
+        <%= f.submit class: 'btn btn-default' %>
+        </div>
+
+        <% end %> <br />
+
+
+        <%= link_to admin_pages_path do %>
+        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Voltar
+        <% end %>
+
+    </div>
+
+</section>

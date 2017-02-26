@@ -119,15 +119,21 @@ tmj.directive("cardClass", function($rootScope) {
                     $(elem).parent().removeClass('cursor');
                 }
             }
-            if (card.recommended_by_ramona) {
-                $(elem).parent().addClass('ramonalike');
+            if (card.recommended_by) {
+                $(elem).parent()
+                    .addClass('characterlike')
+                    .css('background-color', card.recommended_by.editor_color)
+                    .prepend('<div class="character-like-ribbon static" style="background-image: url(' + card.recommended_by.editor_ribbon + ')"></div>')
+                    .prepend('<div class="character-like-ribbon hover" style="background-image: url(' + card.recommended_by.editor_ribbon_animated + ')"></div>')
             } else if (card.is_from_remix) {
                 $(elem).parent().addClass('remixlike');
             }
             if (card.user && card.user.role == 'editor') {
                 //if((isMobileDevice && $rootScope.pageName == 'homePage') || (!isMobileDevice && $rootScope.pageName == 'homePage')) {
                 if((!isMobileDevice && $rootScope.pageName == 'homePage')) {
-                  $(elem).parent().addClass(card.user.username);
+                  $(elem).parent()
+                    .addClass('from-character')
+                    .css('background-color', card.user.editor_color);
                 }
                 $(elem).parent().addClass(card.user.role);
             }

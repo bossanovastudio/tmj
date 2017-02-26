@@ -6,7 +6,7 @@ class Api::GeneralController < ApplicationController
 
     @highlight = Highlight.ordered_by_index.published.page(pagination[:page]).per(1).first
 
-    @cards = Card.page(pagination[:page]).per(pagination[:quantity].to_i - 1).approved.ordered
+    @cards = Card.page(pagination[:page]).per(pagination[:quantity].to_i - 1).for_home.ordered
 
     if request.headers['X-Extra-card'].to_i >= 1
       @card = Card.find_by_id(request.headers['X-Extra-card'])
@@ -22,7 +22,7 @@ class Api::GeneralController < ApplicationController
 
   def all_without_editors
     pagination = pagination_params
-    @cards = Card.left_joins(:user).where({ users: { role: [1, nil] }}).approved.ordered
+    @cards = Card.left_joins(:user).where({ users: { role: [1, nil] }}).for_home.ordered
     @cards_paginated = @cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1)
 
     if request.headers['X-Extra-card'].to_i >= 1
@@ -34,16 +34,19 @@ class Api::GeneralController < ApplicationController
 
   def editors
     pagination = pagination_params
-
-    @user = User.editors.where(username: params[:username]).first
-    @cards = @user.cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1).not_rejected.ordered
+    @user = User.editors.find_by(username: params[:username])
+    @cards = []
+    @cards = Card.for_editor(@user.username).page(pagination[:page]).per(pagination[:quantity].to_i - 1).ordered unless @user.nil?
   end
 
   def users
     pagination = pagination_params
 
     @user = User.find_by!(username: params[:username])
-    @cards = @user.cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1).approved.ordered
+    @cards = @user.cards
+    @cards = @cards.for_madebyyou.or(@cards.for_home)
+    @total_cards = @cards.count
+    @cards = @cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1).ordered
   end
 
   def liked
@@ -57,13 +60,14 @@ class Api::GeneralController < ApplicationController
     user = User.find_by!(username: params[:username])
     editor = User.find_by!(username: params[:editor])
 
-    @cards = user.cards.where(id: editor.liked_cards_ids).page(pagination[:page]).per(pagination[:quantity].to_i - 1).approved.ordered
+    @cards = user.cards.where(id: editor.liked_cards_ids).page(pagination[:page]).per(pagination[:quantity].to_i - 1)
+    @cards = @cards.for_madebyyou.or(@cards.for_home).ordered
   end
 
   def made_by_you
     pagination = pagination_params
 
-    @cards = Card.page(pagination[:page]).per(pagination[:quantity].to_i - 1).approved.ordered
+    @cards = Card.page(pagination[:page]).per(pagination[:quantity].to_i - 1).for_madebyyou.ordered
 
   end
 

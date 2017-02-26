@@ -25,10 +25,11 @@
 //= require 'site/controllers/HomeController.js'
 //= require 'site/controllers/LoginController.js'
 //= require 'site/controllers/CardsController.js'
-//= require 'site/controllers/RamonaController.js'
+//= require 'site/controllers/CharacterController.js'
 //= require 'site/controllers/EditUserController.js'
 //= require 'site/controllers/ProfileController.js'
 //= require 'site/controllers/MadeByYouController.js'
+//= require 'site/controllers/PageController.js'
 //= require 'site/directives/Directives.js'
 
 var storage = $.jStorage;
@@ -38,8 +39,6 @@ var SITE_URL = window.location.protocol + '//' + window.location.host;
 var isMobileDevice = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 var isIE = (navigator.appVersion.indexOf("MSIE") != -1);
 var isIE11 = (navigator.appVersion.indexOf('Trident/') > 0);
-
-
 
 (function(i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r;
@@ -71,9 +70,9 @@ tmj
                 templateUrl: '<%=asset_url("home.html")%>',
                 controller: 'HomeController'
             })
-            .when('/personagem/ramona', {
-                templateUrl: '<%=asset_url("ramona.html")%>',
-                controller: 'RamonaController'
+            .when('/personagem/:username', {
+                templateUrl: '<%=asset_url("character.html")%>',
+                controller: 'CharacterController'
             })
             .when('/feito-por-voce', {
                 templateUrl: '<%=asset_url("madebyyou.html")%>',
@@ -98,6 +97,10 @@ tmj
             .when('/editar-perfil', {
                 templateUrl: '<%=asset_url("editar-perfil.html")%>',
                 controller: 'EditUserController'
+            })
+            .when('/tudosobretmj', {
+                templateUrl: '<%=asset_url("tudosobretmj.html")%>',
+                controller: 'PageController'
             })
             .when('/perfil/:username', {
                 templateUrl: '<%=asset_url("sua-pagina.html")%>',

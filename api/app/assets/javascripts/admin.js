@@ -19,6 +19,7 @@
 //= require jquery-ui/ui/widget
 //= require jquery-ui/ui/widgets/mouse
 //= require jquery-ui/ui/widgets/sortable
+//= require "redactor"
 //= require masonry.pkgd
 //= require turbolinks
 //= require bootstrap
@@ -82,7 +83,7 @@ $(document).on('turbolinks:load', function() {
             if (valid) {
                 $('.card').css({ opacity: 0.3 });
                 var action = $(this).attr('data-action');
-                $('#new_card').attr('action', '/admin/cards/' + action);
+                $('#new_card').attr('action', '/admin/moderator/' + action);
                 $('#new_card')[0].submit();
             }
         }
@@ -114,8 +115,8 @@ $(document).on('turbolinks:load', function() {
 
     $("#highlights .bottom-content").sortable({
         stop: function(event, ui) {
-          var elem = $(ui.item);
-          $.post("/admin/highlights/" + elem.find('[data-highlight-id]').attr('data-highlight-id') + "/move", { to: elem.index() + 1 });
+            var elem = $(ui.item);
+            $.post("/admin/highlights/" + elem.find('[data-highlight-id]').attr('data-highlight-id') + "/move", { to: elem.index() + 1 });
         }
     });
 
@@ -131,29 +132,93 @@ $(document).on('turbolinks:load', function() {
     });
 
     setTimeout(function() { initMasonry(); }, 1000);
+
+    $('.redactor textarea').redactor({
+        minHeight: 500
+    });
+
+    $('.editor-list').on('click', '[data-revoke-editor]', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $this = $(this),
+            container = $this.parents('li');
+
+        container.slideUp();
+
+        $.ajax({
+            url: '/admin/editors/revoke',
+            method: 'POST',
+            data: {
+                id: $this.attr('data-revoke-editor')
+            },
+            json: true,
+            success: function(data) {
+                if(data.success) {
+                    $this.remove();
+                } else {
+                    alert('Houve um problema ao rebaixar o editor.')
+                    container.slideDown();
+                }
+            },
+            error: function() {
+                alert('Houve um problema ao rebaixar o editor.')
+                container.slideDown();
+            }
+        });
+    });
+
+    (function() {
+        var nef = $('#new-editor-field');
+        var commitNewEditor = function() {
+            if(nef.val().trim() === '') {
+                return;
+            }
+            $.ajax({
+                url: '/admin/editors/promote',
+                method: 'POST',
+                data: {
+                    username: nef.val()
+                },
+                success: function(data) {
+                    var el = $(data);
+                    $('.editor-list').append(el);
+                    el.slideDown();
+                    nef.val('');
+                },
+                error: function() {
+                    alert('Não foi possível promover o usuário fornecido. Certifique-se de que ele está correto.');
+                }
+            })
+        }
+        $('#promote-user-commit').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            commitNewEditor();
+        });
+    })();
 });
 
 function initMasonry() {
-  if (!$('.cards').data('masonry')) {
-      $('.cards').masonry({
-          itemSelector: '.card',
-          columnWidth: '.one-five',
-          percentPosition: false,
-          gutter: 20,
-          transitionDuration: 0
-      });
-  } else {
-      $('.cards').masonry('reloadItems');
-      $('.cards').masonry();
-  }
+    if (!$('.cards').data('masonry')) {
+        $('.cards').masonry({
+            itemSelector: '.card',
+            columnWidth: '.one-five',
+            percentPosition: false,
+            gutter: 20,
+            transitionDuration: 0
+        });
+    } else {
+        $('.cards').masonry('reloadItems');
+        $('.cards').masonry();
+    }
 }
 
 function updateStatusToggle() {
-  if ($(".switch .checkbox input[type='checkbox']").prop("checked") == true) {
-      $(".slider").addClass('checked');
-  } else {
-      $(".slider").removeClass('checked');
-  }
+    if ($(".switch .checkbox input[type='checkbox']").prop("checked") == true) {
+        $(".slider").addClass('checked');
+    } else {
+        $(".slider").removeClass('checked');
+    }
 }
 
 function resizeAdminContent() {

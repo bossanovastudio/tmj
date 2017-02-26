@@ -541,19 +541,19 @@ footer {
         top: 0px;
         background: #fff;
         // margin-top: 10px;
-        &.social-fb:hover .social-fb-icon {
+        &.social-facebook:hover .social-facebook-icon {
             fill: #FFF;
             transition-duration: 0.01s;
         }
-        &.social-tw:hover .social-tw-icon {
+        &.social-twitter:hover .social-twitter-icon {
             fill: #FFF;
             transition-duration: 0.01s;
         }
-        &.social-yt:hover .social-yt-icon {
+        &.social-youtube:hover .social-youtube-icon {
             fill: #FFF;
             transition-duration: 0.01s;
         }
-        &.social-go:hover .social-go-icon {
+        &.social-google:hover .social-google-icon {
             fill: #FFF;
             transition-duration: 0.01s;
         }
@@ -595,35 +595,35 @@ footer {
     }
 }
 
-.social-vi:before {
+.social-vimeo:before {
     background: #1ab7ea;
 }
 
-.social-tu:before {
+.social-tumblr:before {
     background: #35465c;
 }
 
-.social-pi:before {
+.social-pinterest:before {
     background: #bd081c;
 }
 
-.social-in:before {
+.social-instagram:before {
     background: #e1306c;
 }
 
-.social-fb:before {
+.social-facebook:before {
     background: #3b5998;
 }
 
-.social-tw:before {
+.social-twitter:before {
     background: #4099FF;
 }
 
-.social-yt:before {
+.social-youtube:before {
     background: #cd201f;
 }
 
-.social-go:before {
+.social-google:before {
     background: #dd4b39;
 }
 

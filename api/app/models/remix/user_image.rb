@@ -8,6 +8,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  uid        :string
+#  is_strip   :boolean          default(FALSE)
 #
 
 class Remix::UserImage < ApplicationRecord

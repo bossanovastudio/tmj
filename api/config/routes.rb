@@ -16,22 +16,24 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    get '/ramona/follow', to: 'general#follow', username: :ramona
-    get '/ramona/unfollow', to: 'general#unfollow', username: :ramona
-    get '/ramona/(:page)/(:quantity)', to: 'general#editors', username: :ramona, defaults: { page: 1, quantity: 10 }
-    get '/ramona/(:page)/(:quantity)', to: 'general#editors', username: :ramona, defaults: { page: 1, quantity: 10 }
     get '/user/:username/profile', to: 'general#profile'
     get '/user/:username/liked', to: 'general#liked'
     get '/user/:username/recommended/:editor/(:page)/(:quantity)', to: 'general#recommended'
     get '/user/:username/(:page)/(:quantity)', to: 'general#users', defaults: { page: 1, quantity: 10 }
     get '/all/(:page)/(:quantity)', to: 'general#all', defaults: { page: 1, quantity: 10 }
     get '/all_without_editors/(:page)/(:quantity)', to: 'general#all_without_editors', defaults: { page: 1, quantity: 10 }
+    get '/:username/follow', to: 'general#follow'
+    get '/:username/unfollow', to: 'general#unfollow'
+    get '/:username/(:page)/(:quantity)', to: 'general#editors', defaults: { page: 1, quantity: 10 }
+    get '/:username/(:page)/(:quantity)', to: 'general#editors', defaults: { page: 1, quantity: 10 }
 
     get '/highlights', to: 'general#highlights'
 
     get '/madebyyou/(:page)/(:quantity)', to: 'general#made_by_you', defaults: { page: 1, quantity: 10 }
 
     post '/register', to: 'castings#create'
+
+    get '/page/:id', to: 'pages#index'
 
     get '/castings/download', to: 'castings#download'
 
@@ -59,6 +61,7 @@ Rails.application.routes.draw do
     end
 
     resources :profiles, only: [:index]
+    resources :editor_providers, only: [:index]
   end
 
   namespace :admin do
@@ -70,7 +73,22 @@ Rails.application.routes.draw do
       resources :categories, except: [:show] do
         resources :images
       end
+    end
 
+    resources :editors do
+      post ':id/commit_edit', action: :commit, on: :collection, as: :commit_edit
+      post 'revoke', action: :revoke, on: :collection
+      post 'promote', action: :promote, on: :collection
+    end
+
+    resources :moderator do
+      collection do
+        get "/home",            action: :home_admin
+        get "/made-by-you",     action: :madebyyou_admin
+        get "/character/:username", action: :character_admin, as: :character_moderator
+        post :accept
+        post :reject
+      end
     end
 
     resources :cards do
@@ -97,8 +115,9 @@ Rails.application.routes.draw do
 
     resources :images
     resources :videos
+    resources :pages, only: [:index, :edit, :update]
 
-    root to: 'cards#index'
+    root to: 'moderator#home_admin'
   end
 
   get "/participe" => 'welcome#register'

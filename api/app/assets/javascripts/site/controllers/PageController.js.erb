@@ -1,0 +1,14 @@
+tmj.controller('PageController', function($rootScope, $scope, $http, $sce, $compile, $routeParams) {
+
+    $scope.pageIsLoaded = false;
+
+    $http.get(API_URL + '/page/1.json')
+        .then(function(response) {
+            $scope.pageIsLoaded = true;
+            $scope.page = response.data;
+            $rootScope.pageName = $scope.page.slug;
+            $('body').css({'background-image': 'url(' + $scope.page.background_page.url + ')'})
+
+        });
+
+});

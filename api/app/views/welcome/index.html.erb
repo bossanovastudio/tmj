@@ -42,7 +42,7 @@
 
 </head>
 
-<body ng-app="tmj" ng-controller="MainController" ng-keypress="closeLightboxKey($event.keyCode)" ng-keydown="closeLightboxKey($event.keyCode)" class="{{pageName}}">
+<body ng-app="tmj" ng-controller="MainController" ng-keypress="closeLightboxKey($event.keyCode)" ng-keydown="closeLightboxKey($event.keyCode)" class="{{pageName}} {{extraBodyClass}}">
     <div class="dark-overlay"></div>
     <ng-include src="'<%= asset_url('_popup.html')%>'"></ng-include>
 
@@ -86,7 +86,23 @@
             </div>
           </li>
           <li class="red" ng-click="toggle()"><a ng-href="/" class="wavetext homewv" target="_self"><span>H</span><span>O</span><span>M</span><span>E</span></a></li>
-          <li class="purple" ng-click="toggle()"><a ng-href="/personagem/ramona" class="wavetext ramonawv" target="_self"><span>R</span><span>A</span><span>M</span><span>O</span><span>N</span><span>A</span></a></li>
+
+          <% User.editors.each do |u| %>
+            <li style="background-image: url(<%= u.editor_menu_background_url %>)" ng-click="toggle()">
+              <a ng-href="/personagem/<%= u.username %>" class="wavetext" target="_self">
+                <%= raw u.username.upcase.split('').map { |l| "<span>#{l}</span>" }.join('') %>
+              </a>
+            </li>
+          <% end %>
+
+          <% Page.all.each do |p| %>
+            <li style="background-image: url(<%= p.background_menu_url %>)" ng-click="toggle()">
+              <a ng-href="/<%= p.slug %>" class="wavetext" target="_self">
+                <%= raw p.title.upcase.split('').map { |l| "<span>#{l.gsub(/\s/,'&nbsp;')}</span>" }.join('') %>
+              </a>
+            </li>
+          <% end %>
+
           <li class="blue" ng-click="toggle()"><a ng-href="/participe" class="wavetext castingwv" target="_blank"><span>P</span><span>A</span><span>R</span><span>T</span><span>I</span><span>C</span><span>I</span><span>P</span><span>E</span></a></li>
 
           <!-- <li class="orange" ng-click="toggle()"><a ng-href="{{ user.username ? '/remix' : '/login?redirect_url=/remix' }}" class="wavetext remixwv" target="_self"><span>R</span><span>E</span><span>M</span><span>I</span><span>X</span></a></li> -->
@@ -202,13 +218,13 @@
     </header>
     <section ng-view></section>
     <footer class="desktop">
-        <a href="https://www.facebook.com/revistaturmadamonicajovem/" target="_blank" class="social-fb">
+        <a href="https://www.facebook.com/revistaturmadamonicajovem/" target="_blank" class="social-facebook">
             <img src="<%=asset_url('site/rede-social-facebook.svg')%>" target="_blank" class="svg"/>
         </a>
-        <a href="https://twitter.com/revistadaturma" target="_blank" class="social-tw">
+        <a href="https://twitter.com/revistadaturma" target="_blank" class="social-twitter">
             <img src="<%=asset_url('site/rede-social-twitter.svg')%>" class="svg"/>
         </a>
-        <a href="https://www.youtube.com/user/turmadamonicaTV" class="social-yt" target="_blank" >
+        <a href="https://www.youtube.com/user/turmadamonicaTV" class="social-youtube" target="_blank" >
             <img src="<%=asset_url('site/rede-social-youtube.svg')%>" class="svg"/>
         </a>
     </footer>

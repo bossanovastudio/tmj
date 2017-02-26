@@ -1,0 +1,137 @@
+<section id="editors-list" class="editors-sub">
+  <div class="top-bar">
+    <h1 class="title">Editores: <%= @editor.username %></h1>
+  </div>
+  <div class="content">
+    <form action="<%= commit_edit_admin_editors_path(editor_id: @editor.id) %>" method="POST" enctype="multipart/form-data">
+      <table class="editor-data">
+        <thead>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Avatar</td>
+            <td>
+              <% if @editor.image.nil? %>
+                <div class="faded">(Nenhuma imagem fornecida)</div>
+              <% else %>
+                <img src="<%= @editor.image_url %>" class="avatar" alt="">
+              <% end %>
+              <input type="file" name="image">
+            </td>
+          </tr>
+           <tr>
+            <td>Máscara do Avatar</td>
+            <td>
+              <% if @editor.editor_avatar_hover.nil? %>
+                <div class="faded">(Nenhuma imagem fornecida)</div>
+              <% else %>
+                <img class="avatar" src="<%= @editor.editor_avatar_hover_url %>"></div>
+              <% end %>
+              <input type="file" name="editor_avatar_hover">
+            </td>
+          </tr>
+          <tr>
+            <td>Bio</td>
+            <td>
+              <textarea name="bio" id="bio" cols="30" rows="10"><%= @editor.bio %></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Cor</td>
+            <td>
+              <input name="editor_color" type="color" value="<%= @editor.editor_color %>">
+            </td>
+          </tr>
+          <tr>
+            <td>Ícone</td>
+            <td>
+              <% if @editor.editor_icon.nil? %>
+                <div class="faded">(Nenhuma imagem fornecida)</div>
+              <% else %>
+                <img src="<%= @editor.editor_icon_url %>" class="avatar" alt="">
+              <% end %>
+              <input type="file" name="editor_icon">
+            </td>
+          </tr>
+          <tr>
+            <td>Background (Desktop)</td>
+            <td>
+              <% if @editor.editor_desktop_background.nil? %>
+                <div class="faded">(Nenhuma imagem fornecida)</div>
+              <% else %>
+                <div class="background" style="background-image: url(<%= @editor.editor_desktop_background_url %>);"></div>
+              <% end %>
+              <input type="file" name="editor_desktop_background">
+            </td>
+          </tr>
+          <tr>
+            <td>Background (Mobile)</td>
+            <td>
+              <% if @editor.editor_mobile_background.nil? %>
+                <div class="faded">(Nenhuma imagem fornecida)</div>
+              <% else %>
+                <div class="background" style="background-image: url(<%= @editor.editor_mobile_background_url %>);"></div>
+              <% end %>
+              <input type="file" name="editor_mobile_background">
+            </td>
+          </tr>
+          <tr>
+            <td>Background (Menu)</td>
+            <td>
+              <% if @editor.editor_menu_background.nil? %>
+                <div class="faded">(Nenhuma imagem fornecida)</div>
+              <% else %>
+                <div class="background-menu" style="background-image: url(<%= @editor.editor_menu_background_url %>);"></div>
+              <% end %>
+              <input type="file" name="editor_menu_background">
+            </td>
+          </tr>
+          <tr>
+            <td>Faixa de recomendação (Estática)</td>
+            <td>
+              <% if @editor.editor_recommendation_ribbon.nil? %>
+                <div class="faded">(Nenhuma imagem fornecida)</div>
+              <% else %>
+                <div class="ribbon" style="background-image: url(<%= @editor.editor_recommendation_ribbon_url %>);"></div>
+              <% end %>
+              <input type="file" name="editor_recommendation_ribbon">
+            </td>
+          </tr>
+          <tr>
+            <td>Faixa de recomendação (Animada)</td>
+            <td>
+              <% if @editor.editor_recommendation_ribbon_animated.nil? %>
+                <div class="faded">(Nenhuma imagem fornecida)</div>
+              <% else %>
+                <div class="ribbon" style="background-image: url(<%= @editor.editor_recommendation_ribbon_animated_url %>);"></div>
+              <% end %>
+              <input type="file" name="editor_recommendation_ribbon_animated">
+            </td>
+          </tr>
+          <tr>
+            <td>Redes Sociais</td>
+            <td>
+              <table>
+                <tbody>
+                  <% EditorNetwork.kinds.keys.each do |k| %>
+                  <tr>
+                    <td><%= EditorNetwork.kind_to_string k %></td>
+                    <td><input type="text" value="<%= @editor.editor_network_url(k) %>" name="social_network[<%= k %>]"></td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="actions">
+        <input type="submit" value="Salvar">
+      </div>
+    </form>
+  </div>
+</section>
