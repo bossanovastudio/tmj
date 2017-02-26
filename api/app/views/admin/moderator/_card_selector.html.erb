@@ -91,7 +91,7 @@
         <% end %>
         <% if card.kind == 'video' %>
         <div class="videoMobile"></div>
-        <%= render 'cards/youtube', video: card.video %>
+        <%= render 'moderator/youtube', video: card.video %>
         <% end %>
         <% if card.kind != 'featured' %>
         <div class="card-content">
