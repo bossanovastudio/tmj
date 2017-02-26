@@ -190,15 +190,6 @@ $(document).on('turbolinks:load', function() {
                 }
             })
         }
-        nef.on('keyup', function(e) {
-            if(e.which != 13) {
-                return;
-            }
-            e.preventDefault();
-            e.stopPropagation();
-            commitNewEditor();
-            return false;
-        });
         $('#promote-user-commit').on('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
