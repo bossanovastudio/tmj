@@ -148,7 +148,7 @@ html {
       transition-duration: 0.2s;
 
       span {
-        line-height: 60px;
+        line-height: 40px;
       }
 
       svg {
@@ -459,41 +459,131 @@ html {
 }
 
 // Admin Editors
+#editors-edit {
+  .content {
+    padding: 0;
+    :not(.items) {
+      .actions {
+        background: #fff;
+        padding: 40px 120px;
+        text-align: right;
+        input[type=submit]{
+          background-color: #68a6ef;
+          color: #fff;
+          font-weight: bold;
+          border-color: #fff;
+          font-size: 16px;
+          height: 40px;
+          padding: 10px 18px;
+        }
+      }
+    }
+  }
+}
 .editors-sub {
+    .new_user {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
     .clear { clear: both; }
-    li.editor-item {
+    .button {
+      background: transparent;
+      font-size: 14px;
+      color: #3e3e3e;
+      margin: 0 2px;
+      border: 1px solid #3e3e3e;
+      padding: 5px 10px;
+    }
+    a.button {
+      padding: 8px 10px;
+      height: 35px;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .content {
+      overflow: auto;
+      padding: 40px 30px;
+      background-color: #eaeaea;
+    }
+    input {
+      height: 35px;
+      padding: 0 5px;
+      margin: 0 10px;
+    }
+    .subtitle {
+      margin: 40px 0 20px;
+      font-weight: bold;
+    }
+    .remove-editor {
+      position: absolute;
+      top: 113px;
+      right: 20px;
+      color: red;
+      font-size: 12px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+      li.editor-item {
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+        &:last-child {
+          padding: 0;
+          margin: 0;
+          border: none;
+        }
         * {
-            vertical-align: middle;
+          vertical-align: middle;
+          display: inline-block;
+          margin-right: 10px;
+        }
+        .remove-editor {
+          color: red;
+          font-size: 12px;
         }
         .items {
             display: inline-block;
             .username {
-                font-weight: bolder;
+              font-weight: bolder;
+              font-size: 16px;
+              text-transform: uppercase;
             }
             .actions {
-                a:not(:first-of-type) {
-                    margin-left: 10px;
-                }
+              a:not(:first-of-type) {
+                  margin-left: 10px;
+              }
             }
         }
         img {
-            height: 64px;
-            width: 64px;
-            border-radius: 32px;
-            margin-right: 10px;
+          height: 64px;
+          width: 64px;
+          border-radius: 32px;
+          margin-right: 10px;
         }
+      }
     }
     table.editor-data {
+      width: 100%;
         tbody {
             tr {
-                td {
-                    padding: 20px;
-                }
-                td:first-of-type {
-                    font-weight: bolder;
-                    border-right: 1px solid #ccc;
-                    text-align: right;
-                }
+              &:nth-of-type(2n) {
+                background-color: #dedede;
+              }
+              td {
+                  padding: 20px;
+                  tr {
+                    &:nth-of-type(2n) {
+                      background-color: transparent;
+                    }
+                  }
+              }
+              td:first-of-type {
+                  font-weight: bolder;
+                  border-right: 1px solid #ccc;
+                  text-align: right;
+              }
             }
         }
         .faded {
@@ -504,6 +594,8 @@ html {
             width: 64px;
             border-radius: 32px;
             display: block;
+            margin-bottom: 15px;
+            margin-left: 15px;
         }
         #bio {
             width: 500px;

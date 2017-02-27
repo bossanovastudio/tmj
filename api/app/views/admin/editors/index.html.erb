@@ -3,8 +3,12 @@
     <h1 class="title">Editores</h1>
   </div>
   <div class="content">
-    <input type="text" placeholder="Usuário" id="new-editor-field">
-    <a href="javascript:void(0)" id="promote-user-commit" class="button">Promover a Editor</a>
+    <div class="new_user">
+      <label>Informe o nome do usuário que deseja alterar o status para <strong>Editor</strong></label>
+      <input type="text" placeholder="Usuário" id="new-editor-field">
+      <a href="javascript:void(0)" id="promote-user-commit" class="button">Promover a Editor</a>
+    </div>
+    <p class="subtitle">Lista de Editores</p>
     <ul class="editor-list">
       <% @editors.each do |e| %>
         <%= render partial: "editor", object: e %>
