@@ -1,6 +1,7 @@
-<section id="editors-list" class="editors-sub">
+<section id="editors-edit" class="editors-sub">
   <div class="top-bar">
     <h1 class="title">Editores: <%= @editor.username %></h1>
+    <a class="remove-editor" href="javascript:void(0)" data-revoke-editor="<%= @editor.id %>">Remover status de editor</a>
   </div>
   <div class="content">
     <form action="<%= commit_edit_admin_editors_path(editor_id: @editor.id) %>" method="POST" enctype="multipart/form-data">
@@ -130,7 +131,7 @@
         </tbody>
       </table>
       <div class="actions">
-        <input type="submit" value="Salvar">
+        <input class="button" type="submit" value="Salvar">
       </div>
     </form>
   </div>
