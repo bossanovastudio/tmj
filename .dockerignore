@@ -4,3 +4,8 @@ log/
 tmp/
 deployment/
 db/
+.git/
+
+app/log
+app/tmp
+app/public/uploads

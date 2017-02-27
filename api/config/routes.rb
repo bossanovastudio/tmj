@@ -22,10 +22,6 @@ Rails.application.routes.draw do
     get '/user/:username/(:page)/(:quantity)', to: 'general#users', defaults: { page: 1, quantity: 10 }
     get '/all/(:page)/(:quantity)', to: 'general#all', defaults: { page: 1, quantity: 10 }
     get '/all_without_editors/(:page)/(:quantity)', to: 'general#all_without_editors', defaults: { page: 1, quantity: 10 }
-    get '/:username/follow', to: 'general#follow'
-    get '/:username/unfollow', to: 'general#unfollow'
-    get '/:username/(:page)/(:quantity)', to: 'general#editors', defaults: { page: 1, quantity: 10 }
-    get '/:username/(:page)/(:quantity)', to: 'general#editors', defaults: { page: 1, quantity: 10 }
 
     get '/highlights', to: 'general#highlights'
 
@@ -62,9 +58,15 @@ Rails.application.routes.draw do
 
     resources :profiles, only: [:index]
     resources :editor_providers, only: [:index]
+
+    get '/:username/follow', to: 'general#follow'
+    get '/:username/unfollow', to: 'general#unfollow'
+    get '/:username/(:page)/(:quantity)', to: 'general#editors', defaults: { page: 1, quantity: 10 }
+    get '/:username/(:page)/(:quantity)', to: 'general#editors', defaults: { page: 1, quantity: 10 }
   end
 
   namespace :admin do
+    resources :cards, only: [:create] # Dummy af
     namespace :remix do
       resources :background_colors, except: [:show]
       resources :text_colors, except: [:show]
@@ -88,14 +90,6 @@ Rails.application.routes.draw do
         get "/character/:username", action: :character_admin, as: :character_moderator
         post :accept
         post :reject
-      end
-    end
-
-    resources :cards do
-      collection do
-        post :accept
-        post :reject
-        get :total
       end
     end
 

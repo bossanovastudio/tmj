@@ -23,7 +23,7 @@
                 <div class="pass-box recover hide" ng-class="{show: open, hide: !open}">
                     <ul>
                         <li ng-repeat="pass in passwords" ng-click="addToPasswordChoice(pass)">
-                            <img src="{{pass.img}}" alt="{{pass.name}}">
+                            <img ng-src="{{pass.img}}" alt="{{pass.name}}">
                         </li>
                     </ul>
                     <div class="after"></div>

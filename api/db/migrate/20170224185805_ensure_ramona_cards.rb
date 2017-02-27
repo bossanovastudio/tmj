@@ -4,6 +4,7 @@ class EnsureRamonaCards < ActiveRecord::Migration[5.0]
     unless u.nil?
       u.cards.each do |c|
         c.moderate_for_editor(u.username, true)
+        c.save!
       end
     end
   end

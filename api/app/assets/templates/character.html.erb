@@ -3,9 +3,9 @@
     <div ng-class="{show : isCardsLoaded}" class="container cards character-card animated">
       <div class="author">
         <div class="box-avatar-user">
-          <img class="badge" src="{{ currentUser.editor_icon }}" />
+          <img class="badge" ng-src="{{ currentUser.editor_icon }}" />
           <div class="avatar" style="background-image: url('{{currentUser.image.url}}')" />
-          <img class="avatar_hover" width="200" height="200" src="{{ currentUser.editor_avatar_hover }}" />
+          <img class="avatar_hover" width="200" height="200" ng-src="{{ currentUser.editor_avatar_hover }}" />
         </div>
         <div class="seven columns">
           <a ng-if="user.username == currentUser.username" ng-href="/editar-perfil" target="_self">
@@ -33,7 +33,7 @@
             <ul class="social-editor">
               <li ng-repeat="n in currentUser.editor_networks" class="social-{{ n.kind }}">
                 <a href="{{ n.url }}" target="_blank">
-                  <img src="{{ n.icon }}" alt="">
+                  <img ng-src="{{ n.icon }}" alt="">
                 </a>
               </li>
             </ul>

@@ -12,7 +12,7 @@ crawler:
 	docker push "d3estudio/tmj-crawlers:$(BRANCH)"
 
 web:
-	docker-compose run api rake assets:precompile RAILS_ENV=production SITE_URL=''
+	docker-compose run api rake assets:clean assets:precompile RAILS_ENV=production SITE_URL=''
 	docker build -t "d3estudio/tmj-web:$(BRANCH)" \
 							api
 	docker push "d3estudio/tmj-web:$(BRANCH)"
