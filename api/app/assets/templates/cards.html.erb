@@ -75,14 +75,19 @@
             <p><a ng-href="/remix" target="_self">Eita, parece que você chegou ao fim do arco-íris procurando seu pote de ouro! Quer ver mais conteúdo por aqui? Então compartilhe mais ideias com a gente!</a></p>
         </div>
     </div>
-    <div resize ng-if="ready && pageName == 'homePage'" class="container cards mobile ramona" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown('ramonaSection')" data-page="1" data-slug="ramona">
-        <div ng-if="isMobileDevice" id="ramona-bg"><img src="<%= asset_url('site/bg_ramona_mobile.jpg') %>"/></div>
-        <div ng-repeat="card in cardsRamona track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}">
+
+
+
+
+
+    <div ng-repeat="editor in editor_list" resize ng-if="ready && pageName == 'homePage'" class="container cards mobile {{editor.username}}" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown(editor.username + 'Section')" data-page="1" data-slug="{{editor.username}}">
+        <div ng-if="isMobileDevice" id="{{editor.username}}-bg"><img src="{{editor.background_mobile}}"/></div>
+        <div ng-repeat="card in editor.cards track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}">
             <div ng-if="card.kind!='video'" card-class ng-classes="card" data-original="{{card.image.url}}" class="img">
-                <div ng-if="card.kind == 'initial'" class="ramonaInitial">
-                    <p style="font-family: KomikaTitle; font-size: 30px; font-weight: normal; font-style: normal; font-stretch: normal; letter-spacing: 0.8px; text-align: center; color: #000000; position: absolute; top: 50%; margin-top: -90px; width: 100%;">RAMONA</p>
-                    <img src="<%= asset_url('site/ramona-badge.svg') %>" width="54" style="position: absolute; left: 50%; top: 50%; margin-left: -19px; margin-top: -165px;">
-                    <img src="<%= asset_url('site/ramona_novo.png') %>" width="200" style="position: absolute; left: 50%; top: 50%; margin-left: -78px; width: 160px; border-radius: 100%;" />
+                <div ng-if="card.kind == 'initial'" class="{{editor.username}}Initial">
+                    <p style="font-family: KomikaTitle; font-size: 30px; font-weight: normal; font-style: normal; font-stretch: normal; letter-spacing: 0.8px; text-align: center; color: #000000; position: absolute; top: 50%; margin-top: -90px; width: 100%; text-transform: uppercase;">{{editor.username}}</p>
+                    <img src="{{editor.badge}}" width="54" style="position: absolute; left: 50%; top: 50%; margin-left: -19px; margin-top: -165px;">
+                    <img src="{{editor.avatar}}" width="200" style="position: absolute; left: 50%; top: 50%; margin-left: -78px; width: 160px; border-radius: 100%;" />
                 </div>
             </div>
             <div ng-if="card.kind=='video'" card-class ng-classes="card" data-original="{{card.video.thumbnail}}" class="img video">
@@ -122,12 +127,16 @@
                 </div>
             </div>
         </div>
-        <div ng-if="cardsRamona.length > 0 && isMobile" class="card one-five column text end" style="height: 84%; background: transparent !important;">
+        <div ng-if="editor.cards.length > 0 && isMobile" class="card one-five column text end" style="height: 84%; background: transparent !important;">
             <p><a ng-href="/remix" target="_self">Eita, parece que você chegou ao fim do arco-íris procurando seu pote de ouro! Quer ver mais conteúdo por aqui? Então compartilhe mais ideias com a gente!</a></p>
         </div>
     </div>
-    <div resize ng-if="ready && pageName != 'homePage' && pageName != 'ramona'" class="container cards mobile" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown('ramonaSection')" data-page="1" data-slug="user/{{currentUser.username}}/recommended/ramona">
-        <div ng-repeat="card in cardsRecommended track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}">
+
+
+
+
+    <div ng-repeat="editor in editor_list" resize ng-if="ready && pageName != 'homePage' && pageName != editor.username" class="container cards mobile" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()" data-page="1" data-slug="user/{{currentUser.username}}/recommended/{{editor.username}}">
+        <div ng-repeat="card in editor.recommended_cards track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}">
             <div ng-if="card.kind!='video'" card-class ng-classes="card" data-original="{{card.image.url}}" class="img">
                 <div ng-if="card.kind == 'initial'">
                     <p>{{card.content}}</p>
@@ -174,39 +183,15 @@
                 </div>
             </div>
         </div>
-        <div ng-if="cardsRamona.length > 0 && isMobile" class="card one-five column text end" style="height: 84%; background: transparent !important;">
+        <div ng-if="editor.recommended_cards.length > 0 && isMobile" class="card one-five column text end" style="height: 84%; background: transparent !important;">
             <p><a ng-href="/remix" target="_self">Eita, parece que você chegou ao fim do arco-íris procurando seu pote de ouro! Quer ver mais conteúdo por aqui? Então compartilhe mais ideias com a gente!</a></p>
         </div>
     </div>
-    <!-- <div resize ng-if="ready && pageName != 'homePage'" class="container cards" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()" data-page="1" data-slug="{{pageName}}/recommendation">
-        <div ng-repeat="card in cards_recommended track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}">
-            <div ng-if="card.kind!='video'" card-class ng-classes="card" data-original="{{card.image.url}}" class="img">
-                <div ng-if="card.kind == 'initial'">
-                    <p>{{card.content}}</p>
-                    <div>
-                        <img ng-src="{{card.icon.url}}" />
-                        <p>{{card.count}}</p>
-                    </div>
-                </div>
-            </div>
-            <div ng-if="card.kind=='video'" card-class ng-classes="card" data-original="{{card.video.thumbnail}}" class="img">
-                <div class="videoMobile" ng-bind-html="card.source_url | formatVideo | trust"></div>
-            </div>
-            <div ng-if="card.kind != 'featured' && card.kind != 'initial'" class="content">
-                <p class="name">{{card.user.name}}</p>
-                <p class="date">
-                  <a class="date-link" target="_blank" ng-href="{{card.source_url}}">
-                    <img class="originalPost" src="/img/{{card.origin}}.svg" />
-                    {{card.posted_at | formatDate}}
-                  </a>
-                </p>
-                <p class="text linkify">{{card | cropText}}</p>
-                <p class="read-more">Veja mais</p>
-                <div ng-include src="'<%= asset_url('share.html')%>'"></div>
-            </div>
-            <p ng-if="card.kind == 'featured'">{{card.content}}</p>
-        </div>
-    </div> -->
+
+
+
+
+
     <img src="<%= asset_url('site/seta.svg') %>" class="arrowBottom mobile" />
     <div class="card one-five column"></div>
 </div>

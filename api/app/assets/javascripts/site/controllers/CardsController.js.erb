@@ -187,21 +187,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         $rootScope.track('load', 'cards', 'content');
     }
 
-    if ($rootScope.pageName == 'madebyyou') {
-        $scope.loadCards($scope.PAGE, 'madebyyou', $scope.cards, 'madebyyou');
-    } else {
-        $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? 'user/' + $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'), $scope.cards, 'posts');
-    }
-
-    if (isMobileDevice && $rootScope.pageName == 'homePage') {
-        $scope.loadCards($scope.PAGE, 'ramona', $scope.cardsRamona, 'ramonaIcon');
-    }
-
-    // THIS MUST BE USED FOR RECOMMENDED CARDS
-    if (isMobileDevice && $rootScope.pageName != 'homePage' && $rootScope.pageName != 'ramona' && $rootScope.pageName != 'madebyyou') {
-        $scope.loadCards($scope.PAGE, 'user/' + $rootScope.pageName + '/recommended/ramona', $scope.cardsRecommended, 'recommendation');
-    }
-
     $scope.lazyLoad = function(desktop) {
         if (desktop) {
             $(".card").not('.animated').each(function(i, e) {
@@ -598,6 +583,35 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
     $(document).ready(function() {
         $(window).off('scroll', $scope.ScrollHandler).on('scroll', $scope.ScrollHandler);
+    });
+
+    // main cards request
+    if ($rootScope.pageName == 'madebyyou') {
+        $scope.loadCards($scope.PAGE, 'madebyyou', $scope.cards, 'madebyyou');
+    } else {
+        $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? 'user/' + $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'), $scope.cards, 'posts');
+    }
+
+    // WARNING http://i.giphy.com/dnP2VxYVlW2NW.gif
+    $rootScope.editor_list = [{
+        username: 'ramona',
+        background_mobile: 'http://localhost:3000/assets/site/bg_ramona_mobile.jpg',
+        badge: 'http://localhost:3000/assets/site/ramona-badge.svg',
+        avatar: 'http://localhost:3000/assets/site/ramona_novo.png',
+        cards: [],
+        recommended_cards: []
+    }];
+
+    $rootScope.editor_list.forEach(function(character) {
+
+        if (isMobileDevice && $rootScope.pageName == 'homePage') {
+            $scope.loadCards($scope.PAGE, character.username, character.cards, character.username + 'Icon');
+        }
+
+        if (isMobileDevice && $rootScope.pageName != 'homePage' && $rootScope.pageName != character.username && $rootScope.pageName != 'madebyyou') {
+            $scope.loadCards($scope.PAGE, 'user/' + $rootScope.pageName + '/recommended/' + character.username, character.recommended_cards, 'recommendation');
+        }
+
     });
 
 });
