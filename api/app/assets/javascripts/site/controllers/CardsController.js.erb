@@ -314,15 +314,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                 cards.find('.' + character.username + '-bg').animate({top: "-10%"}, 200);
             });
         }
-
-        // if (section == 'mainSection') {
-
-            // $rootScope.editor_list.forEach(function(character, index) {
-            //     $('.' + character.username + '-bg').css({display: "block", top: window.innerHeight * (index+1)});
-            //     $('.' + character.username + '-bg').animate({top: "-10%"}, 200);
-            // });
-
-        // }
     }
 
     $scope.swipeDown = function(section) {
@@ -345,7 +336,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         $rootScope.track('swipe', 'cards', 'down');
 
         $rootScope.editor_list.forEach(function(character) {
-            console.log(character.username + 'Section', section);
             if (section == character.username + 'Section') {
                 $('.' + character.username + '-bg').animate({ top: window.innerHeight }, 200, function() {
                     $(this).hide();
