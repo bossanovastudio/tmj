@@ -80,8 +80,8 @@
 
 
 
-    <div ng-repeat="editor in editor_list" resize ng-if="ready && pageName == 'homePage'" class="container cards mobile {{editor.username}}" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown(editor.username + 'Section')" data-page="1" data-slug="{{editor.username}}">
-        <div ng-if="isMobileDevice" id="{{editor.username}}-bg"><img src="{{editor.background_mobile}}"/></div>
+    <div ng-repeat="editor in editor_list" resize ng-if="ready && pageName == 'homePage'" class="container cards mobile {{editor.username}}" ng-swipe-left="swipeLeft($event)" ng-swipe-right="swipeRight($event)" ng-swipe-up="swipeUp(editor.username + 'Section')" ng-swipe-down="swipeDown(editor.username + 'Section')" data-page="1" data-slug="{{editor.username}}">
+        <div ng-if="isMobileDevice" id="{{editor.username}}-bg" class="editor-bg {{editor.username}}-bg"><img src="{{editor.background_mobile}}"/></div>
         <div ng-repeat="card in editor.cards track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}">
             <div ng-if="card.kind!='video'" card-class ng-classes="card" data-original="{{card.image.url}}" class="img">
                 <div ng-if="card.kind == 'initial'" class="{{editor.username}}Initial">

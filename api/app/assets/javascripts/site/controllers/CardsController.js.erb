@@ -38,26 +38,7 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
 
     // WARNING http://i.giphy.com/dnP2VxYVlW2NW.gif
-    $rootScope.editor_list = [{
-        username: 'ramona',
-        background_mobile: 'http://localhost:3000/assets/site/bg_ramona_mobile.jpg',
-        badge: 'http://localhost:3000/assets/site/ramona-badge.svg',
-        avatar: 'http://localhost:3000/assets/site/ramona_novo.png',
-        like_button: 'http://localhost:3000/assets/site/like-ativo-ramona.svg',
-        like_button_rollover: 'http://localhost:3000/assets/site/like-rollover-ramona.svg',
-        cards: [],
-        recommended_cards: []
-    }];
-
-    $http({
-        method: 'get',
-        url: API_URL + 'editors.json',
-    })
-    .success(function(data) {
-        data.forEach(function(character) {
-            console.log(character);
-        });
-    });
+    $rootScope.editor_list = [];
 
     $scope.loadCards = function(p, slug, array, icon) {
         if (!slug) {
@@ -302,13 +283,13 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
 
     var distanceTop = 0;
-    var cardPage = 2;
+    // var cardPage = 2;
 
     $scope.swipeUp = function(section) {
         distanceTop = -$(window).height();
-        if (section == 'mainSection')
+        if (section == 'mainSection'){
             $('.arrowBottom').fadeOut();
-
+        }
         $('.cards').each(function(i, e) {
             var top = parseInt($(this).css('top').replace('px'));
             if (i == 0 && top == (($('.cards').length - 1) * distanceTop)) {
@@ -325,8 +306,8 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         if (section == 'mainSection') {
 
             $rootScope.editor_list.forEach(function(character) {
-                $('#' + character.username + '-bg').css({display: "block", top: window.innerHeight});
-                $('#' + character.username + '-bg').animate({top: "-10%"}, 200);
+                $('.' + character.username + '-bg').css({display: "block", top: window.innerHeight});
+                $('.' + character.username + '-bg').animate({top: "-10%"}, 200);
             });
 
         }
@@ -335,10 +316,10 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     $scope.swipeDown = function(section) {
         distanceTop = $(window).height();
         $('.arrowBottom').fadeIn();
-        cardPage--;
-        if (cardPage < 2) {
-            cardPage = 2;
-        }
+        // cardPage--;
+        // if (cardPage < 2) {
+        //     cardPage = 2;
+        // }
         $('.cards').each(function(i, e) {
             var top = parseInt($(this).css('top').replace('px'));
             if (i == 0 && top == 0) {
@@ -352,8 +333,9 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         $rootScope.track('swipe', 'cards', 'down');
 
         $rootScope.editor_list.forEach(function(character) {
+            console.log(character.username + 'Section', section);
             if (section == character.username + 'Section') {
-                $('#' + character.username + '-bg').animate({ top: window.innerHeight }, 200, function() {
+                $('.' + character.username + '-bg').animate({ top: window.innerHeight }, 200, function() {
                     $(this).hide();
                 });
             }
@@ -639,15 +621,36 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? 'user/' + $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'), $scope.cards, 'posts');
     }
 
-    $rootScope.editor_list.forEach(function(character) {
 
-        if (isMobileDevice && $rootScope.pageName == 'homePage') {
-            $scope.loadCards($scope.PAGE, character.username, character.cards, character.username + 'Icon');
-        }
 
-        if (isMobileDevice && $rootScope.pageName != 'homePage' && $rootScope.pageName != character.username && $rootScope.pageName != 'madebyyou') {
-            $scope.loadCards($scope.PAGE, 'user/' + $rootScope.pageName + '/recommended/' + character.username, character.recommended_cards, 'recommendation');
-        }
+    $http({
+        method: 'get',
+        url: API_URL + 'editors.json',
+    })
+    .success(function(data) {
+        data.forEach(function(character) {
+            $rootScope.editor_list.push({
+                username: character.username,
+                background_mobile: character.background_mobile,
+                badge: character.badge,
+                avatar: character.avatar,
+                like_button: character.like_button,
+                like_button_rollover: character.like_button_rollover,
+                cards: [],
+                recommended_cards: []
+            });
+        });
+
+        setTimeout(function() {
+            $rootScope.editor_list.forEach(function(character) {
+                if (isMobileDevice && $rootScope.pageName == 'homePage') {
+                    $scope.loadCards($scope.PAGE, character.username, character.cards, character.username + 'Icon');
+                }
+                if (isMobileDevice && $rootScope.pageName != 'homePage' && $rootScope.pageName != character.username && $rootScope.pageName != 'madebyyou') {
+                    $scope.loadCards($scope.PAGE, 'user/' + $rootScope.pageName + '/recommended/' + character.username, character.recommended_cards, 'recommendation');
+                }
+            });
+        })
 
     });
 
