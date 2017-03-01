@@ -17,8 +17,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
 
     $scope.count = 0;
     $scope.cardsFeatured = [];
-    $scope.cardsRamona = [];
-    $scope.cardsRecommended = [];
 
     $scope.isMobile = isMobileDevice;
 
@@ -39,6 +37,17 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         }
     }
 
+    // WARNING http://i.giphy.com/dnP2VxYVlW2NW.gif
+    $rootScope.editor_list = [{
+        username: 'ramona',
+        background_mobile: 'http://localhost:3000/assets/site/bg_ramona_mobile.jpg',
+        badge: 'http://localhost:3000/assets/site/ramona-badge.svg',
+        avatar: 'http://localhost:3000/assets/site/ramona_novo.png',
+        like_button: 'http://localhost:3000/assets/site/like-ativo-ramona.svg',
+        like_button_rollover: 'http://localhost:3000/assets/site/like-rollover-ramona.svg',
+        cards: [],
+        recommended_cards: []
+    }];
 
     $scope.loadCards = function(p, slug, array, icon) {
         if (!slug) {
@@ -94,9 +103,13 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                         }
                     }
                 } else {
-                    if (($scope.PAGE == 1 && isMobileDevice && $rootScope.pageName != 'homePage') || icon == 'ramonaIcon') {
-                        $scope.initialCard(array, icon, data.data.total_cards ? data.data.total_cards : 0);
-                    }
+
+                    $rootScope.editor_list.forEach(function(character) {
+                        if (($scope.PAGE == 1 && isMobileDevice && $rootScope.pageName != 'homePage') || icon == character.username + 'Icon') {
+                            $scope.initialCard(array, icon, data.data.total_cards ? data.data.total_cards : 0);
+                        }
+                    });
+
                     data.data.cards.forEach(function(card, i) {
                         if (!isMobileDevice && data.data.highlight && data.data.highlight.index == i) {
                             data.data.highlight.id *= 999999;
@@ -300,8 +313,12 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         $rootScope.track('swipe', 'cards', 'up');
 
         if (section == 'mainSection') {
-            $('#ramona-bg').css({display: "block", top: window.innerHeight});
-            $('#ramona-bg').animate({top: "-10%"}, 200);
+
+            $rootScope.editor_list.forEach(function(character) {
+                $('#' + character.username + '-bg').css({display: "block", top: window.innerHeight});
+                $('#' + character.username + '-bg').animate({top: "-10%"}, 200);
+            });
+
         }
     }
 
@@ -324,11 +341,14 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         }, 1000);
         $rootScope.track('swipe', 'cards', 'down');
 
-        if (section == 'ramonaSection') {
-          $('#ramona-bg').animate({ top: window.innerHeight }, 200, function() {
-              $(this).hide();
-          });
-        }
+        $rootScope.editor_list.forEach(function(character) {
+            if (section == character.username + 'Section') {
+                $('#' + character.username + '-bg').animate({ top: window.innerHeight }, 200, function() {
+                    $(this).hide();
+                });
+            }
+        });
+
     }
 
     $scope.redirectToHome = function() {
@@ -497,11 +517,19 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     url: API_URL + 'cards/'+id+'/like.json'
                 })
                 .success(function(data) {
-                    if( type == "ramona" ) {
-                        heart.attr('src', '<%= asset_url('site/like-ativo-ramona.svg')%>');
-                    } else {
+
+                    var found = false;
+                    $rootScope.editor_list.forEach(function(character) {
+                        if( type == character.username ) {
+                            heart.attr('src', character.like_button);
+                            found = true;
+                        }
+                    });
+
+                    if (!found) {
                         heart.attr('src', '<%= asset_url('site/like-ativo.svg')%>');
                     }
+
                     heart.parent().find('.counter').html('&nbsp;' + data.likes);
                     heart.parent().addClass('liked');
                     heart.parent().find('.love-explosion').addClass('anim');
@@ -519,11 +547,20 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
                     url: API_URL + 'cards/'+id+'/unlike.json'
                 })
                 .success(function(data) {
-                    if( type == "ramona" ) {
-                        heart.attr('src', '<%= asset_url('site/like-rollover-ramona.svg')%>');
-                    } else {
+
+                    var found = false;
+                    $rootScope.editor_list.forEach(function(character) {
+                        if( type == character.username ) {
+                            heart.attr('src', character.like_button);
+                            heart.attr('src', character.like_button_rollover);
+                            found = true;
+                        }
+                    });
+
+                    if (!found) {
                         heart.attr('src', '<%= asset_url('site/like-rollover.svg')%>');
                     }
+
                     heart.parent().find('.counter').html('&nbsp;' + data.likes);
                     heart.parent().removeClass('liked');
                     heart.parent().find('.love-explosion').removeClass('anim');
@@ -591,16 +628,6 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     } else {
         $scope.loadCards($scope.PAGE, $rootScope.pageName != 'homePage' ? 'user/' + $rootScope.pageName : (isMobileDevice ? 'all_without_editors' : 'all'), $scope.cards, 'posts');
     }
-
-    // WARNING http://i.giphy.com/dnP2VxYVlW2NW.gif
-    $rootScope.editor_list = [{
-        username: 'ramona',
-        background_mobile: 'http://localhost:3000/assets/site/bg_ramona_mobile.jpg',
-        badge: 'http://localhost:3000/assets/site/ramona-badge.svg',
-        avatar: 'http://localhost:3000/assets/site/ramona_novo.png',
-        cards: [],
-        recommended_cards: []
-    }];
 
     $rootScope.editor_list.forEach(function(character) {
 
