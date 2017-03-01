@@ -36,7 +36,12 @@ class Api::GeneralController < ApplicationController
     pagination = pagination_params
     @user = User.editors.find_by(username: params[:username])
     @cards = []
-    @cards = Card.for_editor(@user.username).page(pagination[:page]).per(pagination[:quantity].to_i - 1).ordered unless @user.nil?
+    @cards_count = 0
+    unless @user.nil?
+      @cards = Card.for_editor(@user.username)
+      @cards_count = @cards.count
+      @cards = @cards.page(pagination[:page]).per(pagination[:quantity].to_i - 1).ordered
+    end
   end
 
   def users
