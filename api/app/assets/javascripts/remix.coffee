@@ -332,8 +332,8 @@ $('.remix-container').each ->
       if isMobile()
         $('.actions .publish').show()
         $('.actions .publish.comic').hide()
-
-      if isDesktop()
+      else
+        $('.toolbox .publish').show()
         $('.start-over').show()
 
 
