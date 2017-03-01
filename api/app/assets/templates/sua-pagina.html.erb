@@ -64,17 +64,9 @@
           <div class="recommendation">
             <div class="label">Recomendações</div>
             <ul>
-              <li class="ramona">
-                <img src="<%=asset_url('site/icone-ramona.svg')%>" alt="">
-                <p class="number recommendcounter">{{currentUser.ramona_recommendations ? currentUser.ramona_recommendations : 0}}</p>
-              </li>
-              <li class="geek">
-                <!-- <img src="<%=asset_url('site/icone-geek.svg')%>" alt="">
-                <p class="number">{{currentUser.geek_recommendations ? currentUser.geek_recommendations : 0}}</p> -->
-              </li>
-              <li class="denise">
-                <!-- <img src="<%=asset_url('site/icone-denise.svg')%>" alt="">
-                <p class="number">{{currentUser.denise_recommendations ? currentUser.denise_recommendations : 0}}</p> -->
+              <li ng-repeat="r in currentUser.recommendations">
+                <img src="{{r.recommendation_icon}}" alt="">
+                <p class="number recommendcounter">{{r.recommendations ? r.recommendations : 0}}</p>
               </li>
             </ul>
           </div>
