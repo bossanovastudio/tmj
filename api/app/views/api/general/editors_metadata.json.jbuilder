@@ -1,5 +1,5 @@
 json.array! @editors.each do |user|
-    json.usernamename       user.username
+    json.username                user.username
     json.background_mobile       user.editor_mobile_background_url
     json.badge                   user.editor_icon_url
     json.avatar                  user.image_url
