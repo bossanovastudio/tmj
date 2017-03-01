@@ -119,7 +119,7 @@
               <% if @editor.like_button.size == 0 %>
                 <div class="faded">(Nenhuma imagem fornecida)</div>
               <% else %>
-                <img src="<%= @editor.like_button_url" alt="">
+                <img src="<%= @editor.like_button_url %>" alt="">
               <% end %>
               <input type="file" name="like_button">
             </td>
@@ -130,7 +130,7 @@
               <% if @editor.like_button_hover.size == 0 %>
                 <div class="faded">(Nenhuma imagem fornecida)</div>
               <% else %>
-                <img src="<%= @editor.like_button_hover_url" alt="">
+                <img src="<%= @editor.like_button_hover_url %>" alt="">
               <% end %>
               <input type="file" name="like_button_hover">
             </td>
