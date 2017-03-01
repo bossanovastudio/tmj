@@ -11,7 +11,7 @@
         <div ng-repeat="card in cards track by card.id" ng-click="openCard($event, card.id, card, false)" organize-cards data-class="" data-id="{{card.id}}" style="background-image: url('{{isMobile ? card.mobile_url : card.url}}')">
             <div ng-if="card.kind!='video'" card-class ng-classes="card" data-original="{{card.image.url}}" class="img">
                 <div ng-if="card.kind == 'initial' && pageName != 'madebyyou'">
-                    <p>{{card.content}} here</p>
+                    <p>{{card.content}}</p>
                     <div>
                         <img ng-src="{{card.icon.url}}" />
                         <p>{{card.count}}</p>

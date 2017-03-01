@@ -484,6 +484,16 @@ body.profile {
                 right: 0;
                 margin-top: 25px;
                 margin-bottom: 30px;
+                ul {
+                    width: auto;
+                    li {
+                        vertical-align: middle;
+                        padding: 0 10px;
+                        img {
+                            max-height: 30px;
+                        }    
+                    }
+                }
             }
             * {
                 text-align: center;
