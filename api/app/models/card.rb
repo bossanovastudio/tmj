@@ -11,7 +11,6 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  source_url          :string
-#  status              :integer          default("pending")
 #  size                :integer          default("one")
 #  social_user         :json
 #  social_uid          :string

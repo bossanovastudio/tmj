@@ -20,6 +20,10 @@ class Api::GeneralController < ApplicationController
     @highlights = Highlight.published
   end
 
+  def editors_metadata
+    @editors = User.editors
+  end
+
   def all_without_editors
     pagination = pagination_params
     @cards = Card.left_joins(:user).where({ users: { role: [1, nil] }}).for_home.ordered

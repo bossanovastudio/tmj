@@ -33,6 +33,8 @@
 #  editor_recommendation_ribbon          :string
 #  editor_avatar_hover                   :string
 #  editor_recommendation_ribbon_animated :string
+#  like_button                           :string
+#  like_button_hover                     :string
 #
 
 class User < ActiveRecord::Base
@@ -52,6 +54,8 @@ class User < ActiveRecord::Base
   mount_uploader :editor_recommendation_ribbon, EditorAssetUploader
   mount_uploader :editor_recommendation_ribbon_animated, EditorAssetUploader
   mount_uploader :editor_avatar_hover, EditorAssetUploader
+  mount_uploader :like_button, EditorAssetUploader
+  mount_uploader :like_button_hover, EditorAssetUploader
 
   has_many :providers
   has_many :cards, through: :providers

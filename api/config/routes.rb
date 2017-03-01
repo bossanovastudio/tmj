@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     get '/user/:username/(:page)/(:quantity)', to: 'general#users', defaults: { page: 1, quantity: 10 }
     get '/all/(:page)/(:quantity)', to: 'general#all', defaults: { page: 1, quantity: 10 }
     get '/all_without_editors/(:page)/(:quantity)', to: 'general#all_without_editors', defaults: { page: 1, quantity: 10 }
-
+    get '/editors', to: 'general#editors_metadata'
     get '/highlights', to: 'general#highlights'
 
     get '/madebyyou/(:page)/(:quantity)', to: 'general#made_by_you', defaults: { page: 1, quantity: 10 }
