@@ -283,10 +283,14 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
     }
 
     var distanceTop = 0;
-    // var cardPage = 2;
+    var cardPage = 0;
 
     $scope.swipeUp = function(section) {
         distanceTop = -$(window).height();
+        cardPage++;
+        if (cardPage > $('.cards').length - 1) {
+            cardPage = $('.cards').length - 1;
+        }
         if (section == 'mainSection'){
             $('.arrowBottom').fadeOut();
         }
@@ -303,23 +307,31 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         }, 1000);
         $rootScope.track('swipe', 'cards', 'up');
 
-        if (section == 'mainSection') {
-
-            $rootScope.editor_list.forEach(function(character) {
-                $('.' + character.username + '-bg').css({display: "block", top: window.innerHeight});
-                $('.' + character.username + '-bg').animate({top: "-10%"}, 200);
+        if (cardPage > 1) {
+            var cards = $('.cards').eq(cardPage);
+            $rootScope.editor_list.forEach(function(character, index) {
+                cards.find('.' + character.username + '-bg').css({display: "block", top: window.innerHeight * (index+1)});
+                cards.find('.' + character.username + '-bg').animate({top: "-10%"}, 200);
             });
-
         }
+
+        // if (section == 'mainSection') {
+
+            // $rootScope.editor_list.forEach(function(character, index) {
+            //     $('.' + character.username + '-bg').css({display: "block", top: window.innerHeight * (index+1)});
+            //     $('.' + character.username + '-bg').animate({top: "-10%"}, 200);
+            // });
+
+        // }
     }
 
     $scope.swipeDown = function(section) {
         distanceTop = $(window).height();
+        cardPage--;
+        if (cardPage < 0) {
+            cardPage = 0;
+        }
         $('.arrowBottom').fadeIn();
-        // cardPage--;
-        // if (cardPage < 2) {
-        //     cardPage = 2;
-        // }
         $('.cards').each(function(i, e) {
             var top = parseInt($(this).css('top').replace('px'));
             if (i == 0 && top == 0) {
