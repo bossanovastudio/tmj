@@ -49,6 +49,16 @@ tmj.controller('CardsController', function($rootScope, $location, $scope, $http,
         recommended_cards: []
     }];
 
+    $http({
+        method: 'get',
+        url: API_URL + 'editors.json',
+    })
+    .success(function(data) {
+        data.forEach(function(character) {
+            console.log(character);
+        });
+    });
+
     $scope.loadCards = function(p, slug, array, icon) {
         if (!slug) {
             slug = 'all'
