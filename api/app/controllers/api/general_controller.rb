@@ -85,9 +85,9 @@ class Api::GeneralController < ApplicationController
   end
 
   def profile
-    @user = User.find_by!(username: params[:username]).eager_load(:cards)
+    @user = User.eager_load(:cards).find_by!(username: params[:username])
     editors = User.editors
-    @recomendations = []
+    @recommendations = []
     editors.each do |e|
       @recommendations << {
         username: e.username,
