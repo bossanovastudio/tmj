@@ -16,7 +16,7 @@ class Admin::EditorsController < Admin::AdminController
     p = params.permit(:image, :editor_avatar_hover, :bio, :editor_color,
       :editor_icon, :editor_desktop_background, :editor_mobile_background,
       :editor_menu_background, :editor_recommendation_ribbon,
-      :editor_recommendation_ribbon_animated)
+      :editor_recommendation_ribbon_animated, :like_button, :like_button_hover)
     p.keys.each do |k|
       @editor.send("#{k}=", p[k])
     end

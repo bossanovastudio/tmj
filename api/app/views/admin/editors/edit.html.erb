@@ -114,6 +114,28 @@
             </td>
           </tr>
           <tr>
+            <td>Botão de Like</td>
+            <td>
+              <% if @editor.like_button.size == 0 %>
+                <div class="faded">(Nenhuma imagem fornecida)</div>
+              <% else %>
+                <img src="<%= @editor.like_button_url" alt="">
+              <% end %>
+              <input type="file" name="like_button">
+            </td>
+          </tr>
+          <tr>
+            <td>Botão de Like (Rollover)</td>
+            <td>
+              <% if @editor.like_button_hover.size == 0 %>
+                <div class="faded">(Nenhuma imagem fornecida)</div>
+              <% else %>
+                <img src="<%= @editor.like_button_hover_url" alt="">
+              <% end %>
+              <input type="file" name="like_button_hover">
+            </td>
+          </tr>
+          <tr>
             <td>Redes Sociais</td>
             <td>
               <table>
