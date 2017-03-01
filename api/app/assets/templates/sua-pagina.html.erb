@@ -65,8 +65,8 @@
             <div class="label">Recomendações</div>
             <ul>
               <li ng-repeat="r in currentUser.recommendations">
-                <img src="{{r.recommendation_icon}}" alt="">
-                <p class="number recommendcounter">{{r.recommendations ? r.recommendations : 0}}</p>
+                <img src="{{r.icon}}" alt="">
+                <p class="number recommendcounter">{{r.count ? r.count : 0}}</p>
               </li>
             </ul>
           </div>
