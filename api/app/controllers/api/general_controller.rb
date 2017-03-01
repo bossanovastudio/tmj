@@ -85,7 +85,16 @@ class Api::GeneralController < ApplicationController
   end
 
   def profile
-    @user = User.find_by!(username: params[:username])
+    @user = User.find_by!(username: params[:username]).eager_load(:cards)
+    editors = User.editors
+    @recomendations = []
+    editors.each do |e|
+      @recommendations << {
+        username: e.username,
+        icon: e.editor_icon_url,
+        count: (@user.cards.pluck(:id) & e.likes.pluck(:id)).count
+      }
+    end
   end
 
   def follow

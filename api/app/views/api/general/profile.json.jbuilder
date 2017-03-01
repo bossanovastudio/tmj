@@ -5,7 +5,7 @@ json.bio                    @user.bio
 json.image                  @user.image.url
 json.followers              @user.followers_count if @user.editor?
 json.following              current_user.following? @user if @user.editor? && user_signed_in?
-json.ramona_recommendations (@user.cards.pluck(:id) & User.find_by(username: 'ramona').likes.pluck(:id)).count unless User.find_by(username: 'ramona').nil?
+json.recommendations        @recommendations
 
 json.providers @user.providers do |provider|
   json.name     provider.provider
