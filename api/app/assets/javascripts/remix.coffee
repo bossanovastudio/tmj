@@ -384,7 +384,7 @@ $('.remix-container').each ->
       else
         if isMobile()
           $('.remix-container').removeClass('can-compose comic')
-          $('.publish.comic').hide()
+          $('.toolbox.comic .publish').show()
 
       $('.remix-canvas .comic-picture').height( $('.remix-canvas .comic-picture').width() )
 
