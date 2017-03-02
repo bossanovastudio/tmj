@@ -15,7 +15,7 @@
 </head>
 <body id="admin">
   <div class="menu">
-    <%= link_to "ADMIN TMJ", root_path, class: "title-admin" %>
+    <%= link_to "ADMIN TMJ", root_path, target: "self", class: "title-admin" %>
     <!--
     <div class="user">
       <span>Robson C.</span>
@@ -29,7 +29,7 @@
   <div class="sidebar">
     <ul class="item-list">
       <li>
-        <%= link_to home_admin_moderator_index_path, class: "#{active_class('cards')}" do %>
+        <%= link_to home_admin_moderator_index_path, target: "self", class: "#{active_class('cards')}" do %>
         <svg class="cards-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
           <polygon points="0.5 25.71 25.56 25.71 25.56 0.5 0.5 0.5 0.5 25.71" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round"/>
           <path d="M.5,11.37H25.57" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round"/>
@@ -40,23 +40,23 @@
         <% end %>
         <ul class="subitem-list">
           <li>
-            <%= link_to "Home", home_admin_moderator_index_path, class: "#{active_class('cards')}" %>
+            <%= link_to "Home", home_admin_moderator_index_path, target: "self", class: "#{active_class('cards')}" %>
           </li>
           <li>
-            <%= link_to "Feito Por Você", made_by_you_admin_moderator_index_path, class: "#{active_class('cards')}" %>
+            <%= link_to "Feito Por Você", made_by_you_admin_moderator_index_path, target: "self", class: "#{active_class('cards')}" %>
           </li>
           <% User.editors.each do |u| %>
           <li>
-            <%= link_to "Editor: #{u.username.titleize}", character_moderator_admin_moderator_index_path(username: u.username), class: "#{active_class('cards')}" %>
+            <%= link_to "Editor: #{u.username.titleize}", character_moderator_admin_moderator_index_path(username: u.username), target: "self", class: "#{active_class('cards')}" %>
           </li>
           <% end %>
           <li>
-            <%= link_to "Destaques", admin_highlights_path, class: "#{active_class('highlights')}" %>
+            <%= link_to "Destaques", admin_highlights_path, target: "self", class: "#{active_class('highlights')}" %>
           </li>
         </ul>
       </li>
       <li>
-        <%= link_to admin_pages_path, class: "#{active_class('pages')}" do %>
+        <%= link_to admin_pages_path, target: "self", class: "#{active_class('pages')}" do %>
         <svg class="cards-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
           <polygon points="0.5 25.71 25.56 25.71 25.56 0.5 0.5 0.5 0.5 25.71" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round"/>
           <path d="M.5,11.37H25.57" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round"/>
@@ -68,7 +68,7 @@
       </li>
 
       <li>
-        <%= link_to admin_editors_path, class: "#{active_class('editors')}" do %>
+        <%= link_to admin_editors_path, target: "self", class: "#{active_class('editors')}" do %>
         <svg class="cards-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
           <polygon points="0.5 25.71 25.56 25.71 25.56 0.5 0.5 0.5 0.5 25.71" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round"/>
           <path d="M.5,11.37H25.57" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round"/>
@@ -79,7 +79,7 @@
         <% end %>
       </li>
       <li>
-        <%= link_to admin_casting_index_path, class: "#{active_class('casting')}" do %>
+        <%= link_to admin_casting_index_path, target: "self", class: "#{active_class('casting')}" do %>
         <svg class="casting-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
             <g id="Admin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g id="Admin-Casting" transform="translate(-51.000000, -260.000000)" fill="#FFFFFF">
@@ -99,7 +99,7 @@
         <% end %>
       </li>
       <li>
-        <%= link_to 'javascript:void(0)', class: "#{active_class('cards')}" do %>
+        <%= link_to 'javascript:void(0)', target: "self", class: "#{active_class('cards')}" do %>
         <svg class="cards-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
           <polygon points="0.5 25.71 25.56 25.71 25.56 0.5 0.5 0.5 0.5 25.71" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round"/>
           <path d="M.5,11.37H25.57" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round"/>
