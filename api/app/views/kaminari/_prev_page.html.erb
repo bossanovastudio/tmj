@@ -7,7 +7,7 @@
     remote:        data-remote
 -%>
 <% unless current_page.first? %>
-  <%= link_to url, remote: true do %>
+  <%= link_to url, remote: false do %>
     <li class="prev">
       <%= t('views.pagination.previous').html_safe %>
     </li>
