@@ -332,8 +332,8 @@ $('.remix-container').each ->
       if isMobile()
         $('.actions .publish').show()
         $('.actions .publish.comic').hide()
-      else
-        $('.toolbox .publish').show()
+
+      if isDesktop()
         $('.start-over').show()
 
 
@@ -381,10 +381,14 @@ $('.remix-container').each ->
         if isMobile()
           $('.remix-container').addClass('can-compose comic')
           $('.publish.comic').show()
+        else
+          $('.toolbox.comic .publish').show()
       else
         if isMobile()
           $('.remix-container').removeClass('can-compose comic')
-          $('.toolbox.comic .publish').show()
+          $('.publish.comic').hide()
+        else
+          $('.toolbox.comic .publish').hide()
 
       $('.remix-canvas .comic-picture').height( $('.remix-canvas .comic-picture').width() )
 
