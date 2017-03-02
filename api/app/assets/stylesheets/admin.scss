@@ -128,6 +128,7 @@ html {
   float: left;
   padding-top: 59px;
   width: 300px;
+  overflow: auto;
   height: 100%;
   background-color: #727272;
 
@@ -138,7 +139,7 @@ html {
   .item-list {
     width: 100%;
     padding-left: 52px;
-    margin-top: 80px;
+    margin-top: 40px;
 
     li {
       text-transform: uppercase;
@@ -185,7 +186,7 @@ html {
     li {
       margin: 0;
       font-size: 15px;
-      line-height: 2.27;
+      line-height: 1.8;
       font-size: 15px;
       letter-spacing: 0.2px;
       text-transform: none;
