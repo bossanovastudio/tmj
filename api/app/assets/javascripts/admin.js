@@ -51,7 +51,7 @@ $(document).on('turbolinks:load', function() {
         filterList.hide();
     });
 
-    $('.card').click(function() {
+    $('body').on('click', '.card', function() {
         $(this).toggleClass('selected');
         $(this).find('input').prop("checked", !$(this).find('input').prop("checked"));
         if (filterSelectAllCards.hasClass('active')) {
