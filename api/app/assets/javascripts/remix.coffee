@@ -683,7 +683,9 @@ $('.remix-container').each ->
         }
         .on {
           'remix:select-element': ->
+            $('.element').css({"z-index": 0});
             $(this)
+              .css({"z-index": 1})
               .draggable('enable')
               .addClass('focus')
               .siblings('.element').trigger('remix:deselect-element')
