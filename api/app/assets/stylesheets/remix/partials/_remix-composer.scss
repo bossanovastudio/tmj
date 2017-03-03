@@ -211,6 +211,7 @@
                 position: absolute;
                 top: 100%;
                 width: 100%;
+                z-index: 2;
                 .popup-holder {
                     background-color: #FFF;
                     border-radius: $border-radius-small;
