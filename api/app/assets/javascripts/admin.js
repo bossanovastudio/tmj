@@ -21,11 +21,11 @@
 //= require jquery-ui/ui/widgets/sortable
 //= require "redactor"
 //= require masonry.pkgd
-//= require turbolinks
+
 //= require bootstrap
 //= require_self
 
-$(document).on('turbolinks:load', function() {
+$(document).ready(function() {
     resizeAdminContent();
     updateStatusToggle();
 
