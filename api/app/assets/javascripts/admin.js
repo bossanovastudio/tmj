@@ -137,7 +137,7 @@ $(document).ready(function() {
         minHeight: 500
     });
 
-    $('.editor-list').on('click', '[data-revoke-editor]', function(e) {
+    $('.editors-sub').on('click', '[data-revoke-editor]', function(e) {
         e.preventDefault();
         e.stopPropagation();
         var $this = $(this),
@@ -155,6 +155,7 @@ $(document).ready(function() {
             success: function(data) {
                 if(data.success) {
                     $this.remove();
+                    window.location = '/admin/editors';
                 } else {
                     alert('Houve um problema ao rebaixar o editor.')
                     container.slideDown();
