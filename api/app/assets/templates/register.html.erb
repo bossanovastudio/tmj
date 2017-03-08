@@ -87,7 +87,7 @@
                 </div>
                 <div class="field simple six columns last">
                     <label class="placeholder" for="document_cpf">CPF</label>
-                    <input id="document_cpf" class="cpf" ng-model="form.document_cpf" class="except" />
+                    <input id="document_cpf" class="cpf except" ng-model="form.document_cpf" />
                 </div>
                 <div class="clear"></div>
                 <p class="title space">APRESENTAÇÃO DO CANDIDATO</p>
@@ -200,7 +200,7 @@
                 <div class="clear"></div>
                 <div class="field twelve columns boolean">
                     <div class="five columns question">
-                        <label class="placeholder">Você canta?</label>
+                        <label class="placeholder" style="width: 100%">Você canta?</label>
                         <div class="four columns option" ng-click="checkField($event)">SIM
                             <input type="radio" name="singer" value="1" ng-model="form.singer" />
                         </div>

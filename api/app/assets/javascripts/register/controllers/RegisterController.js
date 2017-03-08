@@ -44,6 +44,7 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
         var valid = true;
         $('.form.active').find('.field').each(function(i, f) {
             if ($(f).hasClass('simple')) {
+                
                 if ($(f).find('input, textarea, select').val().length < 1 && !$(f).find('input, textarea, select').hasClass('except')) {
                     $(f).find('input, textarea, select').addClass('error');
                     valid = false;
@@ -52,14 +53,19 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
                 }
 
                 // CPF
-                if ($(f).find('#document_cpf, #adult_document_cpf').length > 0) {
-                    var field = $(f).find('#document_cpf, #adult_document_cpf');
+                if ($(f).find('#adult_document_cpf').length > 0) {
+                    var field = $(f).find('#adult_document_cpf');
                     var cpf = field.val();
-                    if (cpf.length > 0 && !$scope.validateCPF(field.val())) {
+                    if( cpf.length > 0 ) {
+                        if (!$scope.validateCPF(cpf)) {
+                            field.addClass('error');
+                            valid = false;
+                        } else {
+                            field.removeClass('error');
+                        }
+                    } else {
                         field.addClass('error');
                         valid = false;
-                    } else {
-                        field.removeClass('error');
                     }
                 }
 
@@ -99,7 +105,6 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
                 }
             }
         });
-        console.log(valid);
         return valid;
     }
 
