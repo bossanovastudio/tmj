@@ -73,7 +73,7 @@
                 </div>
                 <div class="clear"></div>
                 <div class="field simple six columns">
-                    <label class="placeholder" for="age">Idade</label>
+                    <label class="placeholder" for="age">Idade<span class="tooltip" title="Você precisa ter até 17 anos para se inscrever">?</label>
                     <input id="age" class="number" ng-model="form.age" />
                 </div>
                 <div class="field simple six columns last">
@@ -93,23 +93,23 @@
                 <p class="title space">APRESENTAÇÃO DO CANDIDATO</p>
                 <div class="field simple twelve columns">
                     <label for="video" class="placeholder files">VIDEO</label>
-                    <p>Fale seu nome, idade, de onde você é, explicando qual a sua relação com atuação e com a Turma da Mônica Jovem
+                    <p>Envie um vídeo falando seu nome, idade de onde você é - e explicando qual a sua relação com atuação e com a Turma da Monica Jovem
                         <br>
-                        <b>O vídeo deve estar no youtube ou vimeo, privado com senha ou não listado na busca.</b>
+                        <b>(obs. O vídeo precisa estar no vimeo como privado com senha ou no youtube como não listado)<span class="tooltip" title="Recomendamos que o vídeo seja de aproximadamente 2 minutos.">?</span></b>
                     </p>
                     <div class="field simple twelve columns">
                         <input id="video" ng-model="form.video" placeholder="https://" />
                     </div>
                     <div class="clear"></div>
                     <div class="field simple six columns">
-                        <label class="placeholder" for="videopassword">Senha do vídeo (Se houver)</label>
+                        <label class="placeholder" for="videopassword">Senha (Se houver)<span class="tooltip" title="Se o vídeo tiver sido postado no YouTube, lembre-se de verificar se está configurado como não listado, para podermos acessar o conteúdo.">?</span></label>
                         <input id="videopassword" class="except" ng-model="form.videopassword" />
                     </div>
                 </div>
                 <div class="clear"></div>
                 <div class="field twelve columns files">
                     <label for="video" class="placeholder files">FOTOS</label>
-                    <p>Mande-nos uma foto de rosto, uma de corpo inteiro e uma da cintura para cima</p>
+                    <p>Mande-nos uma foto de rosto, uma de corpo inteiro e uma da cintura para cima<span class="tooltip" title="Os nomes dos arquivos não devem conter espaços em branco ou caracteres especiais (underline, hífen, etc)">?</span></p>
                     <div class="file twelve columns">
                         <input type="file" id="photo_face" file-on-change="changedFile" accept="image/*">
                         <label class="eight columns">ROSTO</label>
@@ -388,7 +388,7 @@
                 <div class="field box twelve columns terms termsValidate">
                     <div class="twelve columns">
                         <input type="checkbox" id="accept_terms" name="accept_terms" value="1" ng-model="form.accept_terms" />
-                        <label class="placeholder" for="accept_terms"><span>Li e aceito os <a ng-href="http://cdn.tmjofilme.com.br/termos_de_uso.pdf" target="_blank">Termos e condições</a></label>
+                        <label class="placeholder" for="accept_terms"><span>Li e aceito os <a ng-href="http://cdn.tmjofilme.com.br/termos_de_uso.pdf" target="_blank">Termos e condições</a></span><span class="tooltip" title="Ao enviar seu cadastro, você vai receber uma confirmação no e-mail de seu responsável informado. Caso não encontre em sua caixa de entrada, lembre-se de checar a caixa de lixo eletrônico, spam e promoções.">?</label>
                     </div>
                 </div>
                 <div class="clear"></div>

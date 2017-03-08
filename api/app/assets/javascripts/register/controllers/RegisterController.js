@@ -5,6 +5,21 @@ tmj.controller('RegisterController', function($rootScope, $location, $scope, $ht
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
     $('.form.active').css({ left: 0 });
 
+    $('.tooltip').tooltip({
+        position: {
+            my: "center+5 top",
+            at: "center top+30",
+            using: function( position, feedback ) {
+                $( this ).css( position );
+                $( "<div>" )
+                    .addClass( "arrow" )
+                    .addClass( feedback.vertical )
+                    .addClass( feedback.horizontal )
+                    .appendTo( this );
+            }
+        }
+    });
+
     $scope.validateCPF = function(strCPF) {
         strCPF = strCPF.replace('.', '');
         strCPF = strCPF.replace('.', '');
