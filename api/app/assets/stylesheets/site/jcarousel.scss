@@ -47,6 +47,9 @@ have a fixed width and height (but it's not required).
     width: 30px;
     height: 30px;
     text-align: center;
+    &.inactive {
+        opacity: 0.1;
+    }
 }
 
 .jcarousel-prev {
