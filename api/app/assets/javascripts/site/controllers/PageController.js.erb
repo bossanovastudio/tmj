@@ -7,8 +7,47 @@ tmj.controller('PageController', function($rootScope, $scope, $http, $sce, $comp
             $scope.pageIsLoaded = true;
             $scope.page = response.data;
             $rootScope.pageName = $scope.page.slug;
-            $('body').css({'background-image': 'url(' + $scope.page.background_page.url + ')'})
+            $('body').css({'background-image': 'url(' + $scope.page.background_page.url + ')'});
+        
+	    	$(function() {
+			    $('.jcarousel-users')
+				    .on('jcarousel:create jcarousel:reload', function() {
+				        var element = $(this),
+				            width = element.innerWidth();
 
-        });
+				        if (width > 900) {
+				            width = width / 3;
+				        } else if (width > 600) {
+				            width = width / 2;
+				        }
 
+				        element.jcarousel('items').css('width', width + 'px');
+				    })
+				    .jcarousel({
+				        // Your configurations options
+				    });
+
+			    $('.jcarousel-slider')
+				    .on('jcarousel:create jcarousel:reload', function() {
+				        var element = $(this),
+				            width = element.innerWidth() * 0.8;
+
+				        // This shows 1 item at a time.
+				        // Divide `width` to the number of items you want to display,
+				        // eg. `width = width / 3` to display 3 items at a time.
+				        element.jcarousel('items').css('width', width + 'px');
+				    })
+				    .jcarousel({
+				        center: true
+				    });
+
+				 $('.jcarousel-prev').jcarouselControl({
+			        target: '-=1'
+			    });
+
+			    $('.jcarousel-next').jcarouselControl({
+			        target: '+=1'
+			    });
+			});
+		});
 });

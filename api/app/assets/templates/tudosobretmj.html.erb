@@ -1,6 +1,133 @@
-<div class="vertical-container" resize ng-if="pageIsLoaded">
+<div class="vertical-container" resize ng-if="pageIsLoaded" onLoad="initCarousel">
     <div class="vertical-content">
-        <p class="title">{{page.title}}</p>
-        <p class="subtitle">{{page.content}}</p>
+
+        <!-- {{page.content}} -->
+
+	 	<div class="jcarousel-wrapper slider-session">
+			<div class="jcarousel jcarousel-slider">
+	            <ul>
+	            	<li>
+	            		<img ng-src="http://cdn.tmjofilme.com.br/image/file/1082/MSP_CCXP_920x300.gif" width="100%" height="auto">
+	            	</li>
+	            	<li>
+	            		<img ng-src="http://cdn.tmjofilme.com.br/image/file/1082/MSP_CCXP_920x300.gif" width="100%" height="auto">
+	            	</li>
+	            	<li>
+	            		<img ng-src="http://cdn.tmjofilme.com.br/image/file/1082/MSP_CCXP_920x300.gif" width="100%" height="auto">
+	            	</li>
+	            </ul>
+	        </div>
+	        <div style="width: 100%">
+		        <!-- Controls -->
+	        	<a class="jcarousel-prev" href="#">
+			    	<img ng-src="<%= asset_url('assets/site/arrow-left.png') %>" width="15px" height="auto" />
+			    </a>
+			    <a class="jcarousel-next" href="#">
+			    	<img ng-src="<%= asset_url('assets/site/arrow-right.png') %>" width="15px" height="auto" />
+			    </a>
+			</div>
+	    </div>
+
+ 		<div class="container animated desktop">
+            <div id="conheca-a-turma" class="center">
+	            <h2>CONHEÇA A TURMA</h2>
+	            <h3>Dos quadrinhos para a vida real</h3>
+	        </div>
+	    </div>
+        <div class="jcarousel-wrapper users-session">
+            <div class="jcarousel jcarousel-users center container">
+	            <ul>
+	            	<li>
+	            		<div class="avatar">
+		            		<img class="badge" ng-src="<%= asset_url('/assets/site/ramona-badge-e39b55ed7fb51f1191ea3b4df6789eb64502e59d02af47a7d76b6d8aa52a7208.svg') %>" />
+		            		<img class="avatar" ng-src="<%= asset_url('http://cdn.tmjofilme.com.br/avatars/1/ramona.png') %>">
+		            		<img class="avatar_hover" ng-src="<%= asset_url('/assets/site/ramona_hover-b3bf68624718f66b5ddcac117e6ce6c0f23da979717583292304652b82c02f7f.png') %>">
+	            		</div>
+	            		<h4>Ramona</h4>
+	            		<p>Ramona é uma bruxinha tímida, que acredita na importância de cada um e de suas diferenças no planeta Terra. Gosta de explorar os mistérios da vida, do universo e quer descobrir como fazer do mundo um lugar melhor para todos.</p>
+	            		<a href="#" class="button">Ver perfil</a>
+	            	</li>
+	            	<li>
+	            		<div class="avatar">
+		            		<img class="badge" ng-src="<%= asset_url('/assets/site/ramona-badge-e39b55ed7fb51f1191ea3b4df6789eb64502e59d02af47a7d76b6d8aa52a7208.svg') %>" />
+		            		<img class="avatar" ng-src="<%= asset_url('http://cdn.tmjofilme.com.br/avatars/1/ramona.png') %>">
+		            		<img class="avatar_hover" ng-src="<%= asset_url('/assets/site/ramona_hover-b3bf68624718f66b5ddcac117e6ce6c0f23da979717583292304652b82c02f7f.png') %>">
+	            		</div>
+	            		<h4>Ramona</h4>
+	            		<p>Ramona é uma bruxinha tímida, que acredita na importância de cada um e de suas diferenças no planeta Terra. Gosta de explorar os mistérios da vida, do universo e quer descobrir como fazer do mundo um lugar melhor para todos.</p>
+	            		<a href="#" class="button">Ver perfil</a>
+	            	</li>
+	            	<li>
+	            		<div class="avatar">
+		            		<img class="badge" ng-src="<%= asset_url('/assets/site/ramona-badge-e39b55ed7fb51f1191ea3b4df6789eb64502e59d02af47a7d76b6d8aa52a7208.svg') %>" />
+		            		<img class="avatar" ng-src="<%= asset_url('http://cdn.tmjofilme.com.br/avatars/1/ramona.png') %>">
+		            		<img class="avatar_hover" ng-src="<%= asset_url('/assets/site/ramona_hover-b3bf68624718f66b5ddcac117e6ce6c0f23da979717583292304652b82c02f7f.png') %>">
+	            		</div>
+	            		<h4>Ramona</h4>
+	            		<p>Ramona é uma bruxinha tímida, que acredita na importância de cada um e de suas diferenças no planeta Terra. Gosta de explorar os mistérios da vida, do universo e quer descobrir como fazer do mundo um lugar melhor para todos.</p>
+	            		<a href="#" class="button">Ver perfil</a>
+	            	</li>
+	            	<li>
+	            		<div class="avatar">
+		            		<img class="badge" ng-src="<%= asset_url('/assets/site/ramona-badge-e39b55ed7fb51f1191ea3b4df6789eb64502e59d02af47a7d76b6d8aa52a7208.svg') %>" />
+		            		<img class="avatar" src="http://cdn.tmjofilme.com.br/avatars/1/ramona.png">
+		            		<img class="avatar_hover" ng-src="<%= asset_url('/assets/site/ramona_hover-b3bf68624718f66b5ddcac117e6ce6c0f23da979717583292304652b82c02f7f.png') %>">
+	            		</div>
+	            		<h4>Ramona</h4>
+	            		<p>Ramona é uma bruxinha tímida, que acredita na importância de cada um e de suas diferenças no planeta Terra. Gosta de explorar os mistérios da vida, do universo e quer descobrir como fazer do mundo um lugar melhor para todos.</p>
+	            		<a href="#" class="button">Ver perfil</a>
+	            	</li>
+	            </ul>
+	        </div>
+	        <!-- Controls -->
+        	<a class="jcarousel-prev" href="#">
+		    	<img ng-src="<%= asset_url('assets/site/arrow-left.png') %>" width="15px" height="auto" />
+		    </a>
+		    <a class="jcarousel-next" href="#">
+		    	<img ng-src="<%= asset_url('assets/site/arrow-right.png') %>" width="15px" height="auto" />
+		    </a>
+	    </div>
+	    <div class="about-session">
+	    	<div class="container">
+	    		<div class="half">
+		    		<h2>Fanfics, shipps e memes</h2>
+		    		<p>É aqui que você encontra tudo do universo TMJ! E o melhor é que, além de ver e interagir com tudo isso, você também vai criar histórias!<br />O que, tá duvidando? Pois pode acreditar. Você vai ter acesso a uma ferramenta fantástica para criar e remixar suas próprias tirinhas de Turma da Mônica Jovem. Sabe aquele casal que você quer ver junto e tá até hoje esperando? Agora você vai ter a chance de fazer acontecer com suas próprias mãos.</p>
+		    		<h4>#cascali #ranimbus</h4>
+		    	</div>
+		    	<div class="half box-ilustration">
+	    			<img ng-src="<%= asset_url('assets/site/cascali.png') %>" width="100%" height="auto" />
+	    		</div>
+	    	</div>
+	    </div>
+	    <div class="remix-session">
+	    	<div class="container">
+	    		<div class="small box-ilustration">
+	    			<img ng-src="<%= asset_url('assets/site/monica-remix-tudo-sobre-tmj.png') %>" width="100%" height="auto" />
+	    		</div>
+	    		<div class="large">
+		    		<h2>Remix</h2>
+		    		<h3>Destaques da semana</h3>
+		    		<ul>
+		    			<li><img ng-src="<%= asset_url('assets/site/remix-1-tudo-sobre-tmj.png') %>" width="100%" height="auto" /></li>
+		    			<li><img ng-src="<%= asset_url('assets/site/remix-2-tudo-sobre-tmj.png') %>" width="100%" height="auto" /></li>
+		    			<li><img ng-src="<%= asset_url('assets/site/remix-3-tudo-sobre-tmj.png') %>" width="100%" height="auto" /></li>
+		    			<li><img ng-src="<%= asset_url('assets/site/remix-4-tudo-sobre-tmj.png') %>" width="100%" height="auto" /></li>
+		    		</ul>
+		    		<a href="#" class="button">Crie um Remix</a>
+		    	</div>
+	    	</div>
+	    </div>
+	    <div class="hq-session">
+	    	<div class="container center">
+	    		<div>
+		    		<h2>HQS</h2>
+		    		<h3>Últimas Edições</h3>
+		    	</div>
+	    		<img ng-src="<%= asset_url('assets/site/revistas-tudo-sobre-tmj.png') %>" width="300px" />
+	    		<div>
+	    			<a href="#" class="button">Ver mais revistas</a>
+	    		</div>
+	    	</div>
+	    </div>
     </div>
 </div>
