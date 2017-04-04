@@ -6,6 +6,7 @@ tmj.controller('PageController', function($rootScope, $scope, $http, $sce, $comp
         .then(function(response) {
             $scope.pageIsLoaded = true;
             $scope.page = response.data;
+            $scope.page.content = $sce.trustAsHtml($scope.page.content);
             $rootScope.pageName = $scope.page.slug;
             $('body').css({'background-image': 'url(' + $scope.page.background_page.url + ')'});
         

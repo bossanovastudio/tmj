@@ -133,8 +133,21 @@ $(document).ready(function() {
 
     setTimeout(function() { initMasonry(); }, 1000);
 
-    $('.redactor textarea').redactor({
-        minHeight: 500
+    // $('.redactor textarea').redactor({
+    //     minHeight: 500
+    // });
+    tinymce.init({
+        selector:'.redactor textarea',
+        height: 500,
+        theme: 'modern',
+        plugins: [
+            'advlist autolink lists link image preview hr anchor pagebreak',
+            'searchreplace visualblocks visualchars code fullscreen',
+            'insertdatetime media nonbreaking table contextmenu',
+            'paste textcolor colorpicker textpattern imagetools toc'
+        ],
+        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar2: 'preview media | forecolor backcolor',
     });
 
     $('.editors-sub').on('click', '[data-revoke-editor]', function(e) {

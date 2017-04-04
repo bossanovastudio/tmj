@@ -1,0 +1,218 @@
+// tudo sobre TMJ
+body {
+    &.tudosobretmj {
+        padding-bottom: 0;
+        .center {
+            text-align: center;
+        }
+        h2 {
+            font-family: KomikaTitle;
+            font-size: 32px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: 0.4px;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+        h3 {
+            background-color: #000;
+            display: inline-block;
+            padding: 4px 15px;
+            font-family: KomikaTitle;
+            letter-spacing: 0.3px;
+            font-size: 17px;
+            color: #fff;
+            margin: 0;
+            font-weight: normal;
+        }
+        h4 {
+            font-family: 'KomikaTitle';
+            font-size: 20px;
+            font-weight: normal;
+            margin: 10px 0 0 0;
+        }
+        p {
+            font-size: 14px;
+        }
+        .slider-session {
+            margin: 30px 0 80px;
+            .jcarousel-slider {
+                li {
+                    padding: 0;
+                    text-align: center;
+                    img {
+                        width: 98%;
+                    }
+                }
+            }
+        }
+        .users-session {
+            margin: 50px 0;
+            .jcarousel-users {
+                li {
+                    padding: 0 50px;
+                    width: 30%;
+                    p {
+                        padding: 0 5%;
+                    }
+                }
+            }
+            p {
+                margin: 10px 0 20px;
+            }
+        }
+        .avatar {
+            width: 150px;
+            position: relative;
+            margin: 0 auto;
+            &:hover {
+                .badge {
+                    animation: dance 0.8s ease-in-out 2;
+                }
+                .avatar_hover {
+                    display: block
+                }
+            }
+            img {
+                &.badge {
+                    position: absolute;
+                    left: 125px;
+                    top: 15px;
+                    z-index: 1;
+                    width: 30px;
+                }
+                &.avatar {
+                    width: 100%;
+                    height: auto;
+                    border-radius: 100%;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+                &.avatar_hover {
+                    width: 100%;
+                    height: auto;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    z-index: 2;
+                    display: none;
+                }
+            }
+        }
+        .button {
+            background-color: #FFF;
+            border: 1px solid #000;
+            font-family: 'KomikaTitle';
+            -webkit-box-shadow: 3px 3px 0px 0px black;
+            -moz-box-shadow: 3px 3px 0px 0px black;
+            box-shadow: 3px 3px 0px 0px black;
+            margin-bottom: 4px;
+            margin-right: 4px;
+            transition-duration: 0.2s;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            padding: 6px 15px;
+            line-height: 20px;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            &:visited {
+                color: #000;
+            }
+            &:before {
+                content: '';
+                position: absolute;
+                background-color: #000;
+                width: 180px;
+                height: 180px;
+                top: -140px;
+                left: -140px;
+                transition-duration: 0.2s;
+                border-radius: 100%;
+                z-index: -1;
+            }
+            &:hover {
+                transition-duration: 0.2s;
+                transform: translate(2px, 2px);
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
+                color: #fff;
+                &:before {
+                    top: -50px;
+                    left: -10px;
+                    transition-duration: 0.2s;
+                }
+            }
+        }
+        .half {
+            width: 49%;
+            h2, h3, h4, p, img {
+                width: 90%;
+            }
+        }
+        .large {
+            width: 80%;
+            h2, h3, h4, p, a {
+                margin-left: 5%;
+            }
+        }
+        .small {
+            width: 19%;
+        }
+        .large,
+        .half,
+        .small {
+            vertical-align: top;
+            display: inline-block;
+        }
+        .box-ilustration {
+            vertical-align: bottom;
+            img {
+                display: inline-block;
+                vertical-align: bottom;
+            }
+        }
+        .about-session {
+            padding: 50px 50px 0 50px;
+            background-image: asset-url('assets/site/background-tudo-sobre-tmj-azul.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .remix-session {
+            padding: 50px 50px 0 50px;
+            background-image: asset-url('assets/site/background-tudo-sobre-tmj-cinza.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            ul {
+                width: 100%;
+                li {
+                    list-style-type: none;
+                    display: table-cell;
+                    padding: 0 1%;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+            .large {
+                margin-bottom: 50px;
+            }
+        }
+        .hq-session {
+            padding: 50px;
+            background-image: asset-url('assets/site/background-tudo-sobre-tmj-roxo.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            img {
+                margin: 30px 0;
+            }
+        }
+    }
+}
