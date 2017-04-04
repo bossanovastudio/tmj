@@ -13,25 +13,42 @@ tmj.controller('PageController', function($rootScope, $scope, $http, $sce, $comp
 	    	$(function() {
 			    $('.jcarousel-users')
 				    .on('jcarousel:create jcarousel:reload', function() {
-				        var element = $(this),
-				            width = element.innerWidth();
+				        var element = $(this);
+
+				        if ($rootScope.isMobileDevice) {
+				        	var width = $(window).width();
+			        	} else {
+			        		var width = element.innerWidth();
+			        	}
 
 				        if (width > 900) {
 				            width = width / 3;
 				        } else if (width > 600) {
 				            width = width / 2;
-				        }
+				        } 
 
-				        element.jcarousel('items').css('width', width + 'px');
+				        element.jcarousel('items').css('width', Math.ceil(width) + 'px');
 				    })
 				    .jcarousel({
 				        // Your configurations options
+				    })
+				    .jcarouselSwipe({
+				    	draggable: false // by default true
 				    });
 
 			    $('.jcarousel-slider')
 				    .on('jcarousel:create jcarousel:reload', function() {
-				        var element = $(this),
-				            width = element.innerWidth() * 0.8;
+				        var element = $(this);
+
+				        if ($rootScope.isMobileDevice) {
+				        	var width = $(window).width();
+			        	} else {
+			        		var width = element.innerWidth();
+			        	}
+
+			        	if (width > 600) {
+			            	width = element.innerWidth() * 0.8;
+			            }
 
 				        // This shows 1 item at a time.
 				        // Divide `width` to the number of items you want to display,
@@ -40,7 +57,25 @@ tmj.controller('PageController', function($rootScope, $scope, $http, $sce, $comp
 				    })
 				    .jcarousel({
 				        center: true
+				    })
+				    .jcarouselSwipe({
+				    	draggable: false // by default true
 				    });
+
+				if ($rootScope.isMobileDevice) {
+					$('.jcarousel-remix')
+					    .on('jcarousel:create jcarousel:reload', function() {
+					        var element = $(this);
+					        var width = $(window).width() * 0.8;
+					        element.jcarousel('items').css('width', width + 'px');
+					    })
+					    .jcarousel({
+					        center: true
+					    })
+					    .jcarouselSwipe({
+					    	draggable: false // by default true
+					    });
+				}
 
 			 	$('.jcarousel-prev')
 			 		.on('jcarouselcontrol:active', function() {
