@@ -133,8 +133,37 @@ $(document).ready(function() {
 
     setTimeout(function() { initMasonry(); }, 1000);
 
-    $('.redactor textarea').redactor({
-        minHeight: 500
+    // $('.redactor textarea').redactor({
+    //     minHeight: 500
+    // });
+    tinymce.init({
+        selector:'.redactor textarea',
+        height: 500,
+        theme: 'modern',
+        plugins: [
+            'advlist autolink lists link image preview hr anchor pagebreak',
+            'searchreplace visualblocks visualchars code fullscreen',
+            'insertdatetime media nonbreaking table contextmenu',
+            'paste textcolor colorpicker textpattern imagetools toc'
+        ],
+        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar2: 'preview media | forecolor backcolor',
+        removed_menuitems: 'newdocument',
+        file_picker_callback: function(callback, value, meta) {
+          if (meta.filetype == 'image') {
+            $('#upload').trigger('click');
+            $('#upload').on('change', function() {
+              var file = this.files[0];
+              var reader = new FileReader();
+              reader.onload = function(e) {
+                callback(e.target.result, {
+                  alt: ''
+                });
+              };
+              reader.readAsDataURL(file);
+            });
+          }
+        }
     });
 
     $('.editors-sub').on('click', '[data-revoke-editor]', function(e) {

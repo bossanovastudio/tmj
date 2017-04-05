@@ -1,6 +1,5 @@
 <div class="vertical-container" resize ng-if="pageIsLoaded">
     <div class="vertical-content">
-        <p class="title">{{page.title}}</p>
-        <p class="subtitle">{{page.content}}</p>
+        <div ng-bind-html="page.content"></div>
     </div>
 </div>
