@@ -72,3 +72,14 @@ have a fixed width and height (but it's not required).
 	    }
 	}
 }
+
+@media only screen and (max-device-width: 480px) {
+    .jcarousel-prev,
+    .jcarousel-next {
+        width: 15px;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}
