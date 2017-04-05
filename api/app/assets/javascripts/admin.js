@@ -148,6 +148,22 @@ $(document).ready(function() {
         ],
         toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
         toolbar2: 'preview media | forecolor backcolor',
+        removed_menuitems: 'newdocument',
+        file_picker_callback: function(callback, value, meta) {
+          if (meta.filetype == 'image') {
+            $('#upload').trigger('click');
+            $('#upload').on('change', function() {
+              var file = this.files[0];
+              var reader = new FileReader();
+              reader.onload = function(e) {
+                callback(e.target.result, {
+                  alt: ''
+                });
+              };
+              reader.readAsDataURL(file);
+            });
+          }
+        }
     });
 
     $('.editors-sub').on('click', '[data-revoke-editor]', function(e) {

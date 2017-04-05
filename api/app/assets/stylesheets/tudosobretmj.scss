@@ -2,8 +2,6 @@
 body {
     &.tudosobretmj {
         padding-bottom: 0;
-        background-repeat: no-repeat;
-        background-size: initial;
         .center {
             text-align: center;
         }
@@ -101,6 +99,10 @@ body {
                     top: 0;
                     z-index: 2;
                     display: none;
+                    border-radius: 100%;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
                 }
             }
         }
@@ -243,6 +245,7 @@ body {
     body {
         &.tudosobretmj {
             overflow: auto;
+            background-size: initial;
             #menu {
                 position: fixed; 
             }
@@ -269,11 +272,19 @@ body {
                 width: 100%;   
             }
             .avatar {
-                width: 115px;
+                width: 100px;
                 img {
                     &.badge {
                         left: 100px;
                         width: 25px;
+                    }
+                    &.avatar_hover {
+                        display: inline-block;
+                        left: 42%;
+                    }
+                    &.avatar {
+                        width: 100px;
+                        left: -42%;
                     }
                 }
             }
@@ -336,6 +347,7 @@ body {
                 }
             }
             .users-session {
+                margin: 50px 0 30px;
                 .jcarousel-users {
                     padding: 0;
                     li {
