@@ -185,15 +185,20 @@ body {
         }
         .about-session {
             padding: 50px 50px 0 50px;
-            background-image: asset-url('assets/site/background-tudo-sobre-tmj-azul.png');
+            background-image: asset-url('site/background-tudo-sobre-tmj-azul.png');
             background-repeat: no-repeat;
             background-size: cover;
         }
         .remix-session {
             padding: 50px 50px 0 50px;
-            background-image: asset-url('assets/site/background-tudo-sobre-tmj-cinza.png');
+            background-image: asset-url('site/background-tudo-sobre-tmj-cinza.png');
             background-repeat: no-repeat;
             background-size: cover;
+            .box-ilustration {
+                img {
+                    width: 100%;
+                }
+            }
             ul {
                 margin-left: 4%;
                 width: 100%;
@@ -215,7 +220,7 @@ body {
         }
         .hq-session {
             padding: 50px;
-            background-image: asset-url('assets/site/background-tudo-sobre-tmj-roxo.png');
+            background-image: asset-url('site/background-tudo-sobre-tmj-roxo.png');
             background-repeat: no-repeat;
             background-size: cover;
             img {
