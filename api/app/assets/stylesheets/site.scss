@@ -48,6 +48,16 @@ body {
     &.madebyyou {
         background: #809ED4 asset-url('site/bg_feitoporvc_desktop.jpg') no-repeat center center fixed;
         background-size: cover;
+
+        div {
+            .card {
+                .remixlike{
+                    &:before{
+                        display: none;
+                    }
+                }
+            }
+        }
     }
     &.login,
     &.profile,
@@ -2616,6 +2626,7 @@ p.content a {
     }
     .sidebar {
         width: 100vw;
+        overflow: auto;
         ul {
             margin-top: 0;
             top: 50px;
@@ -2746,10 +2757,10 @@ p.content a {
         right: auto;
         bottom: auto;
         width: 100%;
-        top: 50px;
+        top: 76px;
+        margin-bottom: 80px;
         a {
             vertical-align: top;
-            top: 26px;
             display: inline-block;
             margin: 0 5px 5px 5px;
             &:hover {
