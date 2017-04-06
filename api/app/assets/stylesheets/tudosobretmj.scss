@@ -271,7 +271,10 @@ body {
             }
             .container {
                 max-width: 480px;
-                width: 100%;   
+                width: 100%;  
+                &.marginMobile {
+                    width: 90%;
+                } 
             }
             .avatar {
                 width: 100px;
@@ -325,7 +328,7 @@ body {
                     padding: 0;
                 }
                 h2, h3 {
-                    margin-left: 20px;
+                    margin-left: 11%;
                 }
                 ul {
                     width: 2000em;
