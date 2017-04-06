@@ -145,9 +145,9 @@ $(document).ready(function() {
         toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
         toolbar2: 'template media | forecolor backcolor',
         removed_menuitems: 'newdocument',
-        templates: [
-            {title: 'Versão Original', description: 'HTML original da página', url: 'http://cdn.tmjofilme.com.br/tudosobretmj/template.html'}
-        ],
+        // templates: [
+        //     {title: 'Versão Original', description: 'HTML original da página', url: 'http://cdn.tmjofilme.com.br/tudosobretmj/template.html'}
+        // ],
         file_picker_callback: function(callback, value, meta) {
           if (meta.filetype == 'image') {
             $('#upload').trigger('click');

@@ -56,11 +56,16 @@ tmj.controller('PageController', function($rootScope, $scope, $http, $sce, $comp
 				        element.jcarousel('items').css('width', width + 'px');
 				    })
 				    .jcarousel({
-				        center: true
+				        center: true,
+				        wrap: 'circular'
 				    })
 				    .jcarouselSwipe({
 				    	draggable: false // by default true
-				    });
+				    })
+				    .jcarouselAutoscroll({
+			            interval: 5000,
+			            autostart: true
+			        })
 
 				if ($rootScope.isMobileDevice) {
 					$('.jcarousel-remix')
