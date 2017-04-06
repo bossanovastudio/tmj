@@ -20,7 +20,6 @@
             <%= f.input :description, label: 'Descrição' %> <br />
             <%= f.input :keywords, label: 'Keywords' %> <br />
             <%= f.input :content, label: 'Conteúdo' %> <br />
-            <input name="image" type="file" id="upload" class="hidden" style="display:none" onchange="">
             <%= f.input :background_menu, label: 'Background Menu' %> <br />
             <% if @page.background_menu_url %>
                 <%= image_tag @page.background_menu_url %>
@@ -30,6 +29,7 @@
             <% if @page.background_page_url %>
                 <%= image_tag @page.background_page_url %>
             <% end %>
+            <input name="image" type="file" id="upload" class="hidden" style="display:none" onchange="">
         </div>
 
         <div class="actions">
