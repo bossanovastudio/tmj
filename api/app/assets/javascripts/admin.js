@@ -21,7 +21,6 @@
 //= require jquery-ui/ui/widgets/sortable
 //= require "redactor"
 //= require masonry.pkgd
-
 //= require bootstrap
 //= require_self
 
@@ -133,22 +132,22 @@ $(document).ready(function() {
 
     setTimeout(function() { initMasonry(); }, 1000);
 
-    // $('.redactor textarea').redactor({
-    //     minHeight: 500
-    // });
     tinymce.init({
         selector:'.redactor textarea',
         height: 500,
         theme: 'modern',
         plugins: [
-            'advlist autolink lists link image preview hr anchor pagebreak',
-            'searchreplace visualblocks visualchars code fullscreen',
+            'template advlist autolink lists link image preview hr anchor pagebreak',
+            'searchreplace visualchars code fullscreen',
             'insertdatetime media nonbreaking table contextmenu',
             'paste textcolor colorpicker textpattern imagetools toc'
         ],
         toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-        toolbar2: 'preview media | forecolor backcolor',
+        toolbar2: 'template media | forecolor backcolor',
         removed_menuitems: 'newdocument',
+        // templates: [
+        //     {title: 'Versão Original', description: 'HTML original da página', url: 'http://cdn.tmjofilme.com.br/tudosobretmj/template.html'}
+        // ],
         file_picker_callback: function(callback, value, meta) {
           if (meta.filetype == 'image') {
             $('#upload').trigger('click');
