@@ -87,3 +87,17 @@ have a fixed width and height (but it's not required).
 .jcarousel-pagination{
     text-align: center;
 }
+
+.jcarousel-pagination a {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background: #fff;
+    border-radius: 50%;
+    margin: 10px 5px;
+    text-indent: -9999px;
+}
+
+.jcarousel-pagination a.active {
+    background: #000;
+}
