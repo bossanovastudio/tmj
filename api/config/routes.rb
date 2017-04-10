@@ -109,7 +109,10 @@ Rails.application.routes.draw do
 
     resources :images
     resources :videos
-    resources :pages, only: [:index, :edit, :update]
+
+    resources :pages, only: [:index, :edit, :update] do
+      post :presigned_url, on: :collection
+    end
 
     root to: 'moderator#home_admin'
   end
