@@ -1,5 +1,5 @@
 class Admin::PagesController < Admin::AdminController
-  before_action :load_page, except: [:index]
+  before_action :load_page, except: [:index, :presigned_url]
   def index
     @pages = ::Page.all
   end
@@ -14,6 +14,12 @@ class Admin::PagesController < Admin::AdminController
     else
       render :index
     end
+  end
+
+  def presigned_url
+    s3 = Aws::S3::Resource.new(region:'sa-east-1')
+    obj = s3.bucket(ENV['AWS_S3_BUCKET']).object("pages_assets/#{SecureRandom.uuid}")
+    render json: { presigned_url: obj.presigned_url(:put, acl: 'public-read') }
   end
 
   private
