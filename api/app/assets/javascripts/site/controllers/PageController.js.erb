@@ -4,8 +4,11 @@ tmj.controller('PageController', function($rootScope, $scope, $http, $sce, $comp
 
     $http.get(API_URL + '/page/1.json')
         .then(function(response) {
-            $scope.pageIsLoaded = true;
-            
+        	$scope.pageIsLoaded = true;
+
+        	setTimeout(function(){
+        		$('.page-content').animate({ opacity: 1 });
+ 			}, 1000)
             $scope.page = response.data;
             $scope.page.content = $sce.trustAsHtml($scope.page.content);
             $rootScope.pageName = $scope.page.slug;
