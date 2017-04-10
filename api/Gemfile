@@ -94,6 +94,9 @@ end
 # Loads environment variables from `.env`.
 gem 'dotenv-rails', :groups => [:development, :test]
 
+# Seamlessly integrates TinyMCE into the Rails asset pipeline introduced in Rails 3.1.
+gem 'tinymce-rails', '~> 4.3'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

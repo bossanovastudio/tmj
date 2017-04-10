@@ -1,0 +1,8 @@
+toolbar:
+  - undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image
+  - template media | forecolor backcolor
+plugins:
+  - template advlist autolink lists link image preview hr anchor pagebreak
+  - searchreplace visualchars code fullscreen
+  - insertdatetime media nonbreaking table contextmenu
+  - paste textcolor colorpicker textpattern imagetools toc
