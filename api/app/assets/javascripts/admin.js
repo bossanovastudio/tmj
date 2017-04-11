@@ -150,31 +150,32 @@ $(document).ready(function() {
         ],
         file_picker_callback: function(callback, value, meta) {
           if (meta.filetype == 'image') {
-            console.log('data')
             $('#upload').trigger('click');
             $('#upload').on('change', function() {
-              var file = this.files[0];
-              var reader = new FileReader();
+                var file = this.files[0];
+                var reader = new FileReader();
 
-              // reader.onload = function(e) {
+                reader.onload = function(e) {
+                    callback(e.target.result, {
+                        alt: ''
+                    });
+                };
+
                 $.ajax({
                     url: "/admin/pages/presigned_url",
                     type: "POST",
                     success: function(data) {
-                        console.log(data)
                         $.ajax({
                             url: data.presigned_url,
                             type: "PUT",
                             data: file,
                             processData: false,
                             success: function(data) {
-                                console.log(data + ' ---- 2')
-                                reader.readAsDataURL(presigned_url.split('?')[0]);
+                                reader.readAsDataURL(data.presigned_url.split('?')[0]);
                             }
                         });
                     }
                 })
-              // }
             })
           }
         }
