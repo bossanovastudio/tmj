@@ -1,6 +1,15 @@
 version: '2'
 services:
 
+  proxy:
+    image: nginx
+    links: 
+      - api
+    ports: 
+      - 3001:80
+    volumes:
+      - ./deployment/docker-nginx.conf:/etc/nginx/conf.d/default.conf
+
   api:
     build: api
     volumes:
