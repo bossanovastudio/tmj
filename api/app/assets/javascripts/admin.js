@@ -151,27 +151,23 @@ $(document).ready(function() {
         file_picker_callback: function(callback, value, meta) {
           if (meta.filetype == 'image') {
             $('#upload').trigger('click');
-            $('#upload').on('change', function() {
+            $('#upload').one('change', function() {
                 var file = this.files[0];
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    callback(e.target.result, {
-                        alt: ''
-                    });
-                };
-
                 $.ajax({
                     url: "/admin/pages/presigned_url",
                     type: "POST",
-                    success: function(data) {
+                    success: function(presigned_response) {
                         $.ajax({
-                            url: data.presigned_url,
+                            url: presigned_response.presigned_url,
                             type: "PUT",
                             data: file,
                             processData: false,
-                            success: function(data) {
-                                reader.readAsDataURL(data.presigned_url.split('?')[0]);
+                            success: function() {
+                                callback(presigned_response.presigned_url.split('?')[0], {
+                                    alt: '' 
+                                });
+
+                                $('#upload').val("");
                             }
                         });
                     }
