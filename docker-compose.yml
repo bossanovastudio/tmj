@@ -67,8 +67,5 @@ services:
     volumes:
       - ./db/data:/var/lib/postgresql/data
 
-  cache:
-    image: memcached:alpine
-
   redis:
     image: redis:alpine
