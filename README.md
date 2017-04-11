@@ -249,3 +249,106 @@ Remix::TextColor.transaction do
 end
 ```
 </details>
+
+## Provisionamento
+Máquinas de produção estão usando a seguinte versão do Ubuntu:
+```
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=16.04
+DISTRIB_CODENAME=xenial
+DISTRIB_DESCRIPTION="Ubuntu 16.04.1 LTS"
+```
+
+### Dependências necessárias
+
+Software:
+
+1. `docker-engine 1.12.5-0~ubuntu-xenial`
+2. `nginx 1.10.0-0ubuntu0.16.04.4`
+
+### Env Files
+#### /etc/tmj/deploy-vars
+Contém informações para os scripts de deploy
+```bash
+export TMJ_ENV=master
+export TMJ_INST_COUNT=2
+```
+
+#### /etc/tmj/env-vars
+Contém variáveis de ambiente usadas pelos containers
+```bash
+FACEBOOK_APP_ID=
+FACEBOOK_APP_SECRET=
+
+TWITTER_CONSUMER_KEY=
+TWITTER_CONSUMER_SECRET=
+TWITTER_ACCESS_TOKEN=
+TWITTER_ACCESS_TOKEN_SECRET=
+
+GOOGLE_API_KEY=
+GOOGLE_APP_NAME=
+
+INSTAGRAM_CLIENT_ID=
+INSTAGRAM_CLIENT_SECRET=
+
+PINTEREST_APP_ID=
+PINTEREST_APP_SECRET=
+
+TUMBLR_API_KEY=
+TUMBLR_TOKEN=
+TUMBLR_TOKEN_SECRET=
+TUMBLR_SECRET_KEY=
+
+RDS_DB_NAME=
+RDS_USERNAME=
+RDS_PASSWORD=
+RDS_HOSTNAME=
+RDS_PORT=
+
+CRAWLER_RDS_DB_NAME=
+CRAWLER_RDS_USERNAME=
+CRAWLER_RDS_PASSWORD=
+CRAWLER_RDS_HOSTNAME=
+CRAWLER_RDS_PORT=
+
+AWS_ACCESS_KEY_ID=
+AWS_S3_ASSETS_BUCKET=
+AWS_S3_BUCKET=
+AWS_SECRET_KEY=
+
+MAILGUN_API_KEY=
+MAILGUN_DOMAIN=
+
+REDIS_URL=
+
+API_URL=
+ASSETS_URL=
+SITE_URL=
+
+QUEUE=*
+
+FOG_DIRECTORY=
+FOG_PROVIDER=
+FOG_REGION=
+AWS_SECRET_ACCESS_KEY=
+
+MAILGUN_API_KEY=key-c736c844d65541ee60a9a43875ab868e
+MAILGUN_DOMAIN=tmjofilme.com.br
+
+SECRET_KEY_BASE=
+RAILS_ENV=production
+```
+
+### Scripts de deploy
+Os subdiretórios do diretório `deployment` contido nesse repositório pode ser copiado para `/root` na máquina de produção. Após autenticar-se contra o DockerHub usando `docker login`, os seguintes comandos poderão ser executados:
+
+```bash
+# /root/deploy/crawlers/update.sh --force
+# /root/deploy/web/update.sh --force
+```
+
+### Configuração NGiNX
+Copie o arquivo `deployment/sites-available` para `/etc/nginx/sites-available`.
+
+### Atualizações
+Após atualizar qualquer imagem do DockerHub, `/root/deploy/web/update.sh` certifica-se de baixar e aplicar as atualizações.
