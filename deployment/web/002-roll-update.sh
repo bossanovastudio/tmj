@@ -16,6 +16,7 @@ function update_instance {
         --publish="300$i:3000" \
         --detach=true \
         --name=$INST_NAME \
+        --link api-redis:redis \
         $IMGNAME
 }
 

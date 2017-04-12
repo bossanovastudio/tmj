@@ -15,6 +15,7 @@ function update_instance {
         --restart=always \
         --detach=true \
         --name=$INST_NAME \
+        --link crawler-postgres:postgres \
         $IMGNAME \
         $2
 
