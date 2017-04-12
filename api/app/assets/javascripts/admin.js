@@ -132,50 +132,52 @@ $(document).ready(function() {
 
     setTimeout(function() { initMasonry(); }, 1000);
 
-    tinymce.init({
-        selector:'.redactor textarea',
-        height: 500,
-        theme: 'modern',
-        plugins: [
-            'template advlist autolink lists link image preview hr anchor pagebreak',
-            'searchreplace visualchars code fullscreen',
-            'insertdatetime media nonbreaking table contextmenu',
-            'paste textcolor colorpicker textpattern imagetools toc'
-        ],
-        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-        toolbar2: 'template media | forecolor backcolor',
-        removed_menuitems: 'newdocument',
-        templates: [
-            {title: 'Versão Original', description: 'HTML original da página', url: 'http://cdn.tmjofilme.com.br/tudosobretmj/template.html'}
-        ],
-        file_picker_callback: function(callback, value, meta) {
-          if (meta.filetype == 'image') {
-            $('#upload').trigger('click');
-            $('#upload').one('change', function() {
-                var file = this.files[0];
-                $.ajax({
-                    url: "/admin/pages/presigned_url",
-                    type: "POST",
-                    success: function(presigned_response) {
-                        $.ajax({
-                            url: presigned_response.presigned_url,
-                            type: "PUT",
-                            data: file,
-                            processData: false,
-                            success: function() {
-                                callback(presigned_response.presigned_url.split('?')[0], {
-                                    alt: '' 
-                                });
+    if( $('.redactor textarea').length > 0 ) {
+        tinymce.init({
+            selector:'.redactor textarea',
+            height: 500,
+            theme: 'modern',
+            plugins: [
+                'template advlist autolink lists link image preview hr anchor pagebreak',
+                'searchreplace visualchars code fullscreen',
+                'insertdatetime media nonbreaking table contextmenu',
+                'paste textcolor colorpicker textpattern imagetools toc'
+            ],
+            toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+            toolbar2: 'template media | forecolor backcolor',
+            removed_menuitems: 'newdocument',
+            templates: [
+                {title: 'Versão Original', description: 'HTML original da página', url: 'http://cdn.tmjofilme.com.br/tudosobretmj/template.html'}
+            ],
+            file_picker_callback: function(callback, value, meta) {
+              if (meta.filetype == 'image') {
+                $('#upload').trigger('click');
+                $('#upload').one('change', function() {
+                    var file = this.files[0];
+                    $.ajax({
+                        url: "/admin/pages/presigned_url",
+                        type: "POST",
+                        success: function(presigned_response) {
+                            $.ajax({
+                                url: presigned_response.presigned_url,
+                                type: "PUT",
+                                data: file,
+                                processData: false,
+                                success: function() {
+                                    callback(presigned_response.presigned_url.split('?')[0], {
+                                        alt: '' 
+                                    });
 
-                                $('#upload').val("");
-                            }
-                        });
-                    }
+                                    $('#upload').val("");
+                                }
+                            });
+                        }
+                    })
                 })
-            })
-          }
-        }
-    });
+              }
+            }
+        });
+    }
 
     $('.editors-sub').on('click', '[data-revoke-editor]', function(e) {
         e.preventDefault();
