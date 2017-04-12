@@ -7,7 +7,7 @@
         <ul>
             <% @stickers.each do |sticker| %>
             <li><img src="<%= sticker.image.url %>" alt="">
-            <%= link_to "Apagar", admin_remix_sticker_path(sticker), class: 'button', method: :delete, remote: true %>
+            <%= link_to "Apagar", admin_remix_sticker_path(sticker), class: 'button', method: :delete %>
             </li>
             <% end %>
         </ul>
