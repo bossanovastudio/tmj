@@ -50,8 +50,8 @@ body {
         background-size: cover;
 
         div {
-            .card {
-                .remixlike{
+            &.card {
+                &.remixlike{
                     &:before{
                         display: none;
                     }
@@ -103,6 +103,11 @@ body {
             margin-left: auto;
             margin-right: auto;
         }
+    }
+    .madebyyou_cards {
+        width: 80%;
+        max-width: 1180px;
+        padding-left: 1%;
     }
     .madebyyou_initial {
         height: 540px !important;
@@ -606,7 +611,7 @@ section {
                 }
             }
             &.yellow {
-                background: asset-url('site/menu-desktop-feitoporvc.svg') center center no-repeat;
+                background: asset-url('site/menu-desktop-feitoporvc.png') center center no-repeat;
                 background-size: auto 100%;
                 transition-duration: $anim-fast;
                 &:hover {
