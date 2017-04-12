@@ -356,7 +356,6 @@ $('.remix-container').each ->
         $('.publish').hide()
         $('.publish.comic').show()
       COMIC_PICTURES = [];
-      $('.publish').hide()
 
     'organize-comic': ->
       if COMIC_PICTURES.length == 0
