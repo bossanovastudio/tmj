@@ -334,7 +334,7 @@
                 }
             }
             &.yellow {
-                background: asset-url('site/feito_por_voce.png') center center no-repeat;
+                background: asset-url('site/menu-desktop-feitoporvc.svg') center center no-repeat;
                 background-size: auto 100%;
                 transition-duration: 0.2s;
                 &:hover {
@@ -710,7 +710,7 @@ footer {
                     }
                 }
                 &.yellow {
-                    background: asset-url('site/feito_por_voce.png') center center no-repeat;
+                    background: asset-url('site/menu-desktop-feitoporvc.svg') center center no-repeat;
                     background-size: 100%;
                     &:hover {
                         background-size: auto;
