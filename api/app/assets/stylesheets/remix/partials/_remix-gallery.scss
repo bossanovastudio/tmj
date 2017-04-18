@@ -16,14 +16,17 @@
         overflow: hidden;
         min-height: 250px !important;
         transform: translateX(0px);
-        &:hover img.picture {
-            transform: scale(1.1);
-            transition-duration: 0.2s;
+        &:hover .picture{
+            transform: translate(0px,8px);
         }
         .picture {
             cursor: pointer;
             width: 100%;
-            transition-duration: 0.2s;
+            transform: translate(0px,0px);
+            transition: transform 0.2s;
+            &.active {
+                border: 2px solid #000;
+            }
         }
         .actions {
             @include clearfix;

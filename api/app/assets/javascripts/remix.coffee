@@ -777,6 +777,8 @@ $('.remix-container').each ->
       $image = $(this).closest('.gallery-item').find('.picture').clone()
       $image.appendTo($canvas)
       $('html, body').animate({scrollTop: 0})
+      $('.gallery-item .picture').removeClass('active')
+      $(this).addClass('active')
 
 
 
