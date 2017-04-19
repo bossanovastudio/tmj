@@ -445,6 +445,7 @@ $('.remix-container').each ->
         $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url.replace('image','detalhe') + ' #tmjofilme')
         $('#tumblr_share_btn').attr('href', 'http://www.tumblr.com/share/link?url=' + data.share_url.replace('image','detalhe'))
         $composer.find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
+        $composer.find('.actions .remove').data('id', data.id)
         $('.gallery-item-new-comic').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
         $('.gallery-item[data-id="' + data.id + '"]').append($('.actions.to_clone').clone().removeClass('to_clone'))
         $('.gallery-item[data-id="' + data.id + '"]').find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
@@ -486,6 +487,7 @@ $('.remix-container').each ->
         $('#twitter_share_btn').attr('href', 'https://twitter.com/intent/tweet?text=Remix ' + data.share_url.replace('image','detalhe') + ' #tmjofilme')
 
         $composer.find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
+        $composer.find('.actions .remove').data('id', data.id)
         $('.gallery-item-new-comic').after('<div class="gallery-item" data-id="' + data.id + '"><img src="' + data.share_url + '" class="picture" /></div>');
         $('.gallery-item[data-id="' + data.id + '"]').append($('.actions.to_clone').clone().removeClass('to_clone'))
         $('.gallery-item[data-id="' + data.id + '"]').find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
