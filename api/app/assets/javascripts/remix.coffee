@@ -447,7 +447,6 @@ $('.remix-container').each ->
         $('.gallery-item[data-id="' + data.id + '"]').find('.actions .download').attr({'href': data.share_url, 'target': '_blank'})
         $('.gallery-item[data-id="' + data.id + '"]').find('.actions .remove').attr({'data-id': data.id})
         $('.artboard .loading').hide()
-
         template = '<div class="item" data-picture="' + data.id + '">
                     <div class="comic-picture">
                       <img src="' + data.share_url + '" class="comic-image">
@@ -740,6 +739,9 @@ $('.remix-container').each ->
           .done (data) ->
             b.animate({opacity: 1});
             $('.gallery-item[data-id=' + id + ']').remove()
+
+            $('.comic .categories').find('.item[data-picture="' + id + '"]').remove();
+
             location.reload();
           .fail ->
             alert('Houve um problema ao remover a imagem')
@@ -816,6 +818,9 @@ $('.remix-container').each ->
         $('.gallery-item-new').trigger('click')
       else
         $('.gallery-item').last().find('.picture').trigger('click')
+
+      $('.comic .categories').find('.item[data-picture="' + id + '"]').remove();
+
     .fail ->
       alert('Houve um problema ao remover a imagem')
 
