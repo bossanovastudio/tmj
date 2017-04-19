@@ -816,7 +816,6 @@ $('.remix-container').each ->
       dataType: 'json'
     }
     .done (data) ->
-      console.log('id:' + id)
       b.animate({opacity: 1});
       $('.gallery-item[data-id=' + id + ']').remove()
       if $('.gallery-item').length == 0
