@@ -154,7 +154,7 @@ $('.logoutRemix').click(function() {
       type: 'DELETE',
       success: function() {
           storage.deleteKey('user');
-          window.location = '/';
+          window.location = '/login';
       }
   });
 });
