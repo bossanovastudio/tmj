@@ -335,6 +335,7 @@ $('.remix-container').each ->
 
       if isDesktop()
         $('.start-over').show()
+        $('html, body').animate({scrollTop: 0})
 
 
     'init-comic': ->
@@ -351,6 +352,8 @@ $('.remix-container').each ->
       $('.toolbox.comic .item').removeClass('selected')
       $('.toolbox.comic .item span').html('')
       $('.toolbox.comic .publish').hide()
+      if isDesktop()
+        $('html, body').animate({scrollTop: 0})
       if isMobile()
         $('.toolbox.comic').height(40)
         $('.publish').hide()
@@ -781,7 +784,6 @@ $('.remix-container').each ->
       $('html, body').animate({scrollTop: 0})
       $('.gallery-item .picture').removeClass('active')
       $(this).addClass('active')
-
 
 
       $('#facebook_share_btn').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + $image.attr('src').replace('image','detalhe'))
