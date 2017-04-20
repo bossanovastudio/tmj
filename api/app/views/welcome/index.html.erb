@@ -73,11 +73,11 @@
             <img src="<%=asset_url('site/botao-entrar.png')%>" />
         </a> -->
         <ul>
-          <li class="menu-login" ng-click="goToProfile()">
+          <li class="menu-login" >
             <div ng-if="user">
-              <div class="avatar link" style="background-image: url('{{user.image.url}}')"></div>
-              <span>{{user.username}}</span>
-              <a class="side-btn-login" ng-click="logout()"> SAIR </a>
+              <div ng-click="goToProfile()" class="avatar link" style="background-image: url('{{user.image.url}}')"></div>
+              <span ng-click="goToProfile()">{{user.username}}</span>
+              <a class="side-btn-login" target="_self" ng-click="logout()"> SAIR </a>
             </div>
             <div ng-if="!user">
               <img src="<%=asset_url('site/profile_default.svg')%>" class="link" alt="">
