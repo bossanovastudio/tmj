@@ -7,7 +7,7 @@ class Users::OmniauthCallbacksController < ApplicationController
 
     if provider
       sign_in provider.user
-      redirect_to request.env['omniauth.origin'] || root_path
+      redirect_to request.env['omniauth.origin']
     elsif user_signed_in?
       current_user.providers.create_with_omniauth omniauth_params
       redirect_to '/editar-perfil'
@@ -22,7 +22,7 @@ class Users::OmniauthCallbacksController < ApplicationController
 
     if provider
       sign_in provider.user
-      redirect_to request.env['omniauth.origin'] || root_path
+      redirect_to request.env['omniauth.origin']
     elsif user_signed_in?
       current_user.providers.create_with_omniauth omniauth_params
       redirect_to '/editar-perfil'
@@ -37,7 +37,7 @@ class Users::OmniauthCallbacksController < ApplicationController
 
     if provider
       sign_in provider.user
-      redirect_to request.env['omniauth.origin'] || root_path
+      redirect_to request.env['omniauth.origin']
     elsif user_signed_in?
       current_user.providers.create_with_omniauth omniauth_params
       redirect_to '/editar-perfil'

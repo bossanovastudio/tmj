@@ -2,13 +2,13 @@
 <div class="container login">
 	<div class="content-box">
 		<h1 class="title">Minha Área</h1>
-		<a ng-href="/user/auth/instagram{{ redirect_url ? '?origin=' + redirect_url : '' }}" target="_self">
+		<a ng-href="/user/auth/instagram?origin={{ redirect_url ? redirect_url : '/' }}" target="_self">
             <button class="btn btn-instagram">Entrar com Instagram</button>
         </a>
-		<a ng-href="/user/auth/facebook{{ redirect_url ? '?origin=' + redirect_url : '' }}" target="_self">
+		<a ng-href="/user/auth/facebook?origin={{ redirect_url ? redirect_url : '/' }}" target="_self">
             <button class="btn btn-fb">Entrar com Facebook</button>
         </a>
-        <a ng-href="/user/auth/twitter{{ redirect_url ? '?origin=' + redirect_url : '' }}" target="_self">
+        <a ng-href="/user/auth/twitter?origin={{ redirect_url ? redirect_url : '/' }}" target="_self">
             <button class="btn btn-twitter">Entrar com Twitter</button>
         </a>
 		<h2>ou</h2>
