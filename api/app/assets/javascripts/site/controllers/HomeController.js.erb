@@ -1,4 +1,7 @@
 tmj.controller('HomeController', function($rootScope, $location, $scope, $http, $sce, $compile, $routeParams) {
+    
+    $rootScope.pageName = 'homePage';
+
     $http.get('/user/is_signed_in.json')
     .then(function(data){
         if (data.data.user) {
