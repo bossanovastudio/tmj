@@ -199,7 +199,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                     card.find('.share a').addClass('liked');
                 })
                 .error(function(data) {
-                    window.location = '/login';
+                    window.location = '/login?redirect_url=/detalhe/card/' + id;
                 });
             $rootScope.track('click', 'cards', 'like');
         } else {
@@ -237,7 +237,7 @@ tmj.controller('MainController', function($rootScope, $scope, $http, $sce, $loca
                     card.find('.share a').removeClass('liked');
                 })
                 .error(function(data) {
-                    window.location = '/login';
+                    window.location = '/login?redirect_url=/detalhe/card/' + id;
                 });
             $rootScope.track('click', 'cards', 'unlike');
         }
