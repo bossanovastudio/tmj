@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     root to: 'welcome#index'
   end
 
+  get '/redir/profile', to: 'redir#profile'
+
   namespace :api do
     get '/user/:username/profile', to: 'general#profile'
     get '/user/:username/liked', to: 'general#liked'
