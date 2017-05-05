@@ -5,10 +5,10 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
         if (data.data.user) {
             storage.set('user', data.data.user, {TTL: 3600000});
             $rootScope.user = data.data.user;
+            $scope.user = storage.get('user');
         }
     })
     
-    $scope.user = storage.get('user');
     $scope.currentUser = {};
 
     if ($routeParams.username == 'ramona') {
