@@ -1,5 +1,13 @@
 tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $compile, $routeParams, $location) {
 
+    $http.get('/user/is_signed_in.json')
+    .then(function(data){
+        if (data.data.user) {
+            storage.set('user', data.data.user, {TTL: 3600000});
+            $rootScope.user = data.data.user;
+        }
+    })
+    
     $scope.user = storage.get('user');
     $scope.currentUser = {};
 
@@ -18,11 +26,6 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
             response.data.providers.forEach(function(p) {
                 $scope.currentUser.providers[p.name] = p.username;
             });
-
-            if( !$scope.user ) {
-                storage.set('user', response.currentUser, {TTL: 3600000});
-                $rootScope.user = response.currentUser;
-            }
             setTimeout(function() {
                 $('.avatar.profile').css('background-image', "url("+$scope.currentUser.image+")");
             }, 1000);
