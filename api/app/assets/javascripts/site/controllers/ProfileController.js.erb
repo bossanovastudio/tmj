@@ -4,7 +4,7 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
     $scope.currentUser = {};
 
     if ($routeParams.username == 'ramona') {
-        $location.path('/personagem/ramona');
+        window.location = '/personagem/ramona';
     }
 
     $http.get(API_URL + '/user/'+$routeParams.username+'/profile.json')
@@ -18,6 +18,11 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
             response.data.providers.forEach(function(p) {
                 $scope.currentUser.providers[p.name] = p.username;
             });
+
+            if( !$scope.user )
+                storage.set('user', response.currentUser, {TTL: 3600000});
+                $rootScope.user = response.currentUser;
+            }
             setTimeout(function() {
                 $('.avatar.profile').css('background-image', "url("+$scope.currentUser.image+")");
             }, 1000);
