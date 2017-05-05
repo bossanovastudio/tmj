@@ -19,7 +19,7 @@ tmj.controller('ProfileController', function($rootScope, $scope, $http, $sce, $c
                 $scope.currentUser.providers[p.name] = p.username;
             });
 
-            if( !$scope.user )
+            if( !$scope.user ) {
                 storage.set('user', response.currentUser, {TTL: 3600000});
                 $rootScope.user = response.currentUser;
             }
