@@ -363,3 +363,14 @@ Caso o resultado de ambos os comandos seja positivo, conecte-se ao ambiente de p
 ## Sources do Crawler
 
 Fontes visitadas pelo crawler estão disponíveis no arquivo [`/crawlers/lib/social/statics.rb`](crawlers/lib/social/statics.rb). Após alterar esse arquivo, será necessário executar um `make crawler`, tal como descrito na seção anterior. Após concluir o processo `make`, execute `/root/deploy/crawlers/update.sh --force` contra o ambiente desejado.
+
+## Mapeamento de branchs e ambientes
+
+A fim de isolaremos completamente ambientes de produção e e teste (também chamado de `staging`), todo o desenvolvimento
+é executado na branch `dev` e testado em `staging`. Quando estável, o conteúdo de `dev` deve ser mergido contra `master`
+e enviado para produção.
+
+| Ambiente     | Branch    |
+|--------------|-----------|
+| `staging`    | `dev`     |
+| `production` | `master`  |
