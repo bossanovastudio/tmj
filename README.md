@@ -1,9 +1,5 @@
 # Turma da Mônica Jovem
 
-## Como contribuir para este projeto
-
-* Todas as configurações relacionadas com Dockerfile e docker-compose.yml deverão ser comitadas diretamente em MASTER (testar bem antes de comitar)
-
 ## Como usar o docker
 
 #### Criando ou re-configurando um container
@@ -24,7 +20,7 @@ docker-compose up [container-name] [container-name-2]
 
 #### Criando ou re-configurando
 
-Para buildar o container utilize o seguinte comando:
+Para gerar a imagem para o container, utilize o seguinte comando:
 ```shell
 docker-compose build api
 ```
@@ -44,7 +40,7 @@ docker-compose up api
 
 #### Criando ou re-configurando
 
-Para buildar o container utilize o seguinte comando:
+Para gerar a imagem para o container, utilize o seguinte comando:
 ```shell
 docker-compose build crawler_sn
 ```
@@ -64,7 +60,7 @@ docker-compose run --rm crawler_sn
 
 #### Criando ou re-configurando
 
-Para buildar o container utilize o seguinte comando:
+Para gerar a imagem para o container, utilize o seguinte comando:
 ```shell
 docker-compose build crawler_parser
 ```
@@ -165,16 +161,16 @@ end
 Remix::Category.transaction do
     [
         {
-            :name=>"casais", 
+            :name=>"casais",
             :cover=>"http://cdntmjofilme.s3.amazonaws.com/remix/remix/category/cover/1/cover.png",
             :images=>["http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/1/casais3.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/2/casais2.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/3/casais4.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/4/casais5.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/5/casais8.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/6/casais6.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/7/casais1.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/8/casais11.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/9/casais9.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/10/casais10.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/11/casais7.png"]
-        }, 
+        },
         {
-            :name=>"turma", 
+            :name=>"turma",
             :cover=>"http://cdntmjofilme.s3.amazonaws.com/remix/remix/category/cover/2/cover.png",
             :images=>["http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/12/turma11.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/13/turma4.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/14/turma8.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/15/turma13.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/16/turma6.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/17/turma1.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/18/turma3.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/19/turma12.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/20/turma9.png"]
-        }, 
-        { 
+        },
+        {
             :name=>"personagens",
             :cover=>"http://cdntmjofilme.s3.amazonaws.com/remix/remix/category/cover/3/cover.png",
             :images=>["http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/21/personagem_v2_43.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/22/personagem_1.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/23/personagem_v2_55.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/24/personagem_16.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/25/personagem_36.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/26/personagem_v2_46.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/27/personagem_v2_47.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/28/personagem_26.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/29/personagem_v2_57.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/30/personagem_v2_60.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/31/personagem_3.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/32/personagem_38.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/33/personagem_39.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/34/personagem_40.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/35/personagem_v2_53.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/36/personagem_6.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/37/personagem_10.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/38/personagem_v2_61.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/39/personagem_13.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/40/personagem_19.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/41/personagem_33.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/42/personagem_v2_62.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/43/personagem_14.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/44/personagem_29.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/45/personagem_v2_58.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/46/personagem_22.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/47/personagem_34.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/48/personagem_23.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/49/personagem_32.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/50/personagem_v2_44.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/51/personagem_v2_45.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/52/personagem_11.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/53/personagem_v2_51.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/54/personagem_35.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/55/personagem_7.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/56/personagem_v2_50.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/57/personagem_28.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/58/personagem_21.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/59/personagem_v2_56.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/60/personagem_18.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/61/personagem_v2_48.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/62/personagem_27.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/63/personagem_30.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/64/personagem_5.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/65/personagem_v2_59.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/66/personagem_2.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/67/personagem_24.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/68/personagem_4.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/69/personagem_37.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/70/personagem_v2_42.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/71/personagem_v2_49.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/72/personagem_9.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/73/personagem_12.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/74/personagem_20.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/75/personagem_v2_54.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/76/personagem_31.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/77/personagem_17.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/78/personagem_v2_41.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/79/personagem_25.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/80/personagem_v2_52.png", "http://cdntmjofilme.s3.amazonaws.com/remix/remix/image/image/81/personagem_8.png"]
@@ -206,13 +202,13 @@ end
 ```ruby
 Remix::Pattern.transaction do
     [
-        "http://cdntmjofilme.s3.amazonaws.com/remix/remix/pattern/image/1/pattern3.png", 
-        "http://cdntmjofilme.s3.amazonaws.com/remix/remix/pattern/image/2/pattern4.png", 
-        "http://cdntmjofilme.s3.amazonaws.com/remix/remix/pattern/image/3/pattern6.png", 
-        "http://cdntmjofilme.s3.amazonaws.com/remix/remix/pattern/image/4/pattern5.png", 
-        "http://cdntmjofilme.s3.amazonaws.com/remix/remix/pattern/image/5/pattern8.png", 
-        "http://cdntmjofilme.s3.amazonaws.com/remix/remix/pattern/image/6/pattern2.png", 
-        "http://cdntmjofilme.s3.amazonaws.com/remix/remix/pattern/image/7/pattern1.png", 
+        "http://cdntmjofilme.s3.amazonaws.com/remix/remix/pattern/image/1/pattern3.png",
+        "http://cdntmjofilme.s3.amazonaws.com/remix/remix/pattern/image/2/pattern4.png",
+        "http://cdntmjofilme.s3.amazonaws.com/remix/remix/pattern/image/3/pattern6.png",
+        "http://cdntmjofilme.s3.amazonaws.com/remix/remix/pattern/image/4/pattern5.png",
+        "http://cdntmjofilme.s3.amazonaws.com/remix/remix/pattern/image/5/pattern8.png",
+        "http://cdntmjofilme.s3.amazonaws.com/remix/remix/pattern/image/6/pattern2.png",
+        "http://cdntmjofilme.s3.amazonaws.com/remix/remix/pattern/image/7/pattern1.png",
         "http://cdntmjofilme.s3.amazonaws.com/remix/remix/pattern/image/8/pattern7.png"
     ].each do |url|
         Remix::Pattern.create!(remote_image_url: url)
@@ -267,6 +263,7 @@ Software:
 2. `nginx 1.10.0-0ubuntu0.16.04.4`
 
 ### Env Files
+
 #### /etc/tmj/deploy-vars
 Contém informações para os scripts de deploy
 ```bash
@@ -352,3 +349,17 @@ Copie o arquivo `deployment/sites-available` para `/etc/nginx/sites-available`.
 
 ### Atualizações
 Após atualizar qualquer imagem do DockerHub, `/root/deploy/web/update.sh` certifica-se de baixar e aplicar as atualizações.
+
+## Mergindo `dev` em `master`
+
+> Aviso: Essa seção da documentação assume que a máquina em que os comandos listados serão executados já possui o Docker CE instalado e uma conta do DockerHub configurada.
+
+Após mergir as branches, é necessário gerar uma imagem e subi-la para o DockerHub. Para tal, certifique-se de que seu repositório local esteja usando a branch `master`, baixe todas as alterações presentes no remoto através do comando `git pull --rebase`, e execute o comando `make web` seguido de um `make crawler`.
+
+>  Ambos os comandos são responsáveis por gerar uma imagem de produção e envia-lá ao DockerHub.
+
+Caso o resultado de ambos os comandos seja positivo, conecte-se ao ambiente de produção e execute os scripts citados na seção [Scripts de deploy](#scripts-de-deploy).
+
+## Sources do Crawler
+
+Fontes visitadas pelo crawler estão disponíveis no arquivo [`/crawlers/lib/social/statics.rb`](crawlers/lib/social/statics.rb). Após alterar esse arquivo, será necessário executar um `make crawler`, tal como descrito na seção anterior. Após concluir o processo `make`, execute `/root/deploy/crawlers/update.sh --force` contra o ambiente desejado.
