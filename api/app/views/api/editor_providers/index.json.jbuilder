@@ -4,5 +4,6 @@ json.editors @users.each do |user|
     json.providers user.providers do |prov|
         json.provider       prov.provider
         json.uid            prov.uid
+        json.username       prov.username
     end
 end
