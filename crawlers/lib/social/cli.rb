@@ -33,7 +33,12 @@ module Crawlers::Social
             puts "WARNING! Cannot handle provider with type #{k}"
             next
           end
-          runs[k] << p.uid
+          runs[k] << case p.provider.to_sym
+          when :twitter, :instagram, :tumblr
+            p.username
+          else
+            p.uid
+          end
         end
       end
 
